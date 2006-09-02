@@ -1,0 +1,97 @@
+            mvWorld::mvWorldStep(float timeInSecs)
+            29/06/06
+
+                ///
+                //  2.3 check uniform forces and adds them 
+                //  gloabl total.
+                ///              
+           // std::cout << "no of forces : " << mvEnumString[currentForce->isGlobalForce()] << std::endl;
+           // std::cout << "Type  : " << mvEnumString[forceType] << std::endl;
+           // std::cout << "Type  : " << mvEnumString[currentForce->getEnableFlag()] << std::endl;                
+                /**
+                if (currentForce->getType() == MV_UNIFORM_ACCELERATION)
+                {
+                   ///
+                   // 2.3b) add acceleration to global accel
+                   ///
+                      std::cout << "hello 1" << std::endl;
+
+                      if (currentForce->getParameterv(MV_ACCELERATION_VECTOR,parameters,&noOfParameters) == MV_TRUE)
+                      {
+                         tempVector.set(parameters[0],parameters[1],parameters[2]);
+                         globalUniformAccel += tempVector;
+                      }
+                }
+                else
+                {
+                   puts("hello 2");
+               }
+                /**/ 
+
+			/**
+             * Step 3: calculate the new speed using constant
+             * acceleration
+             */       
+            //speed[0] = tempBody->speed;
+            //speed[0] = speed[0] + h * tempBody->acceleration;
+
+            /**
+             * 3a : clipping speed to max speed
+             */
+            //speed[0] = (speed[0] < maxSpeed) ? speed[0] : maxSpeed;
+           // speed[1] = (speed[1] < maxSpeed) ? speed[1] : maxSpeed;            
+
+            // add total drag force  = -df * direction
+            //totalForce += (-globalDragForceQuantity * tempBody->direction);
+            // add total drag accel = -da * direction 
+            //totalAccel += (-globalDragAccel * tempBody->direction);
+            // addd total drag vel = -dv * direction
+            //totalVelocity += (-globalDragShift * tempBody->direction);
+
+            /**
+             * new behaviours
+             *
+            std::cout << "No of Behaviours : " << tempBody->getNoOfBehaviours() << std::endl;
+            int noOfBehaviours = tempBody->getNoOfBehaviours();
+            mvBehaviourEntry* tempEntry = NULL;
+            mvEnum bType;
+            mvWaypoint* tempWaypoint = NULL;            
+            Vec3 accelVec;
+
+            for (k = 1; k <= noOfBehaviours; k++)
+            {
+               tempEntry = tempBody->getEntryByIndex(k);
+               if (tempEntry != NULL)
+               {
+                 bType = tempEntry->currentBehaviour->getType();
+                 //puts(mvGetEnumString(bType));
+                 if (bType == MV_SEEK)
+                 {
+                    tempWaypoint = tempEntry->currentBehaviour->getWaypoint();
+                    accelVec = mvBehaviour_Calculate_Seek(tempBody, tempWaypoint);
+                    totalAccel += accelVec;
+                 }
+                 else if (bType == MV_FLEE)
+                 {
+                    tempWaypoint = tempEntry->currentBehaviour->getWaypoint();
+                    accelVec = mvBehaviour_Calculate_Flee(tempBody, tempWaypoint);
+                    totalAccel += accelVec;                    
+                 }
+               }
+            }
+            **/
+
+            /**
+            for (j = 0; j < 2; j++)
+            {    
+               **
+               vel[j][0] = totalVelocity.x + tempBody->finalVelocity.x;
+               vel[j][1] = totalVelocity.y + tempBody->finalVelocity.y;
+               vel[j][2] = totalVelocity.z + tempBody->finalVelocity.z;
+               **
+               vel[j][0] = tempBody->direction.x;
+               vel[j][1] = tempBody->direction.y;
+               vel[j][2] = tempBody->direction.z;
+               **
+            }
+            **/

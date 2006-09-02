@@ -1,0 +1,17 @@
+Release
+Backup
+MotionAI.cbp
+.cvsignore
+MotionAI.plg
+mvEnums.xls
+MotionAI.dsp
+TestAI.cpp
+Vec3.cpp
+Vehicle.cpp
+MWorld.cpp
+Obstacle.cpp
+Particle.cpp
+Pathway.cpp
+Script.cpp
+Behaviour.h
+ADDcODE.PDF
