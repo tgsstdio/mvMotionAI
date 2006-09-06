@@ -55,5 +55,3 @@ mvAddForce(world1,'MV_UNIFORM_FORCE',0,-2,0);
 --mvAddCurrentBehaviourToCurrentBody(world1);
 --mvAddBodyToCurrentBehaviour(world1,body1);
 --mvAddCurrentBehaviourToCurrentBody(world1);
-
-

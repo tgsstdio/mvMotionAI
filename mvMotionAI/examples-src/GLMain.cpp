@@ -1,12 +1,17 @@
 /**
-GLUT Template
-2005, David Young
+GLUT Template with
+mvMotionAI library
+2005, 2006 David Young.
 **/
 
 #include <GL/glut.h>
 #include <iostream>
 #include "Camera.h"
+#include <cstdlib>
 
+/**
+ * Step 1.0 : include header to use library
+ */
 #include "mvMotionAI.h"
 
 static float left = -1.0;
@@ -26,109 +31,151 @@ static float previousTime;
 static float elapsedTime = 0.0;
 static long int noOfFrames = 0;
 static float angle = 0.0;
+static double frameRateInterval = 0.0;
 
 #define BUFFER_SIZE 1024
 static char buffer[BUFFER_SIZE];
 void displayFrameRate(long int frameNo);
 void drawText(GLint x, GLint y, char* s, int windowWidth,
               int windowHeight, GLfloat r, GLfloat g, GLfloat b);
+void init();
+void reshape(int w, int h);
+void keyboard(unsigned char key,int x, int y);
+void display();
+void animate();
 
-void drawText(GLint x, GLint y, char* s, int windowWidth,
-              int windowHeight, GLfloat r, GLfloat g, GLfloat b)
+#define USE_ARGUMENTV_FILE_ARG_COUNT 2
+#define FILE_NAME_ARGV_INDEX 1
+char defaultLuaFileName[] = "Test.lua";
+char* scriptFileName = NULL;
+bool isAnimating = false;
+
+void displayMotionAI();
+void displayWaypoint(mvWaypoint *wp, void* ptr);
+void displayObstacle(mvObstacle* o, void* ptr);
+void displayBody(mvBody* p, void* extraPtr);
+void worldFunction(mvWorld* tempWorld, void* ptr);
+
+int main(int argc, char** argv)
 {
+   glutInit(&argc, argv);
+   glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
+   glutInitWindowSize (windowWidth, windowHeight); 
+   glutInitWindowPosition (100, 100);
+   glutCreateWindow (argv[0]);
 
-  /* Fron Luke Bigum's TiledProj,2005*/
+   /**
+    * Step 2 : initialise mvMotionAI library
+    */ 
+   mvInitMotionAI();
 
-  int lines;
-  char* p;
+   /**
+    * Step 3: load lua file
+    */
+   std::cout << "Arg Count : " << argc << std::endl;
+   if (argc >= USE_ARGUMENTV_FILE_ARG_COUNT)
+   {
+      scriptFileName = argv[FILE_NAME_ARGV_INDEX];
+   }
+   else
+   {
+      scriptFileName = defaultLuaFileName;
+   }
+   mvLoadLuaScriptFile(scriptFileName);
+   init ();
 
-  glMatrixMode(GL_PROJECTION);
-  glPushMatrix();
+   glutDisplayFunc(display); 
+   glutReshapeFunc(reshape);
+   glutKeyboardFunc(keyboard);
 
-  glLoadIdentity();
-  glOrtho(0.0, windowWidth, 
-        0.0, windowHeight, -1.0, 1.0);
-
-  glMatrixMode(GL_MODELVIEW);
-  glPushMatrix();
-  glLoadIdentity();
-
-
-  glPushAttrib(GL_ENABLE_BIT);
-  glDisable(GL_LIGHTING);
-  glDisable(GL_DEPTH_TEST);
-  glDisable(GL_TEXTURE_2D);
-
- 
-  glColor3f(r, g, b);
-  glRasterPos2i(x, y);
-  for(p = s, lines = 0; *p; p++) 
-  {
-    if (*p == '\n') 
-    {
-      lines++;
-      glRasterPos2i(x, y-(lines*15));
-      continue;
-    }
-    glutBitmapCharacter(GLUT_BITMAP_9_BY_15, *p);
-  }
-
-  glPopAttrib();
-  glEnable(GL_DEPTH_TEST);
-  glPopMatrix();
-  glMatrixMode(GL_PROJECTION);
-  glPopMatrix();
-  glMatrixMode(GL_MODELVIEW);
+   glutMainLoop();
+   return EXIT_SUCCESS;
 };
 
-void cleanup()
+const char* animateFlag = NULL;
+const char no_animation[] = "a : Start animation";
+const char yes_animation[] = "A : stop Animation";
+
+void display(void)
 {
-   mvFreeMotionAI();
+   int i = 0;
+
+   glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+   glPushMatrix();
+     worldCam.apply();
+     glLightfv(GL_LIGHT0,GL_POSITION,lightPos1);
+
+     glColor3f(0,1,0);
+     glBegin(GL_QUADS);
+       glNormal3f(0,1,0);
+       glVertex3f(20,0,-20);
+       glVertex3f(-20,0,-20);
+       glVertex3f(-20,0,20);
+       glVertex3f(20,0,20);
+     glEnd();
+
+     /**
+      * MISC: Use teapot to see if animation is on.
+      */
+
+     glPushMatrix();
+       glRotatef(angle,0,1,0);
+       glColor3f(1,1,1);     
+       glutSolidTeapot(1.0);
+     glPopMatrix();
+
+     /**
+      * Step 4: Add the user defined function
+      * application to interact with mvMotionAI library
+      * displayMotionAI;
+      */
+     displayMotionAI();
+
+   glPopMatrix();
+   /**
+    * MISC : draw frame rate
+    */
+
+   animateFlag = (isAnimating) ? yes_animation : no_animation;
+   sprintf(buffer,"mvMotionAI, 2006\nFrame Rate : %3.3f fps\n%s\nScripting file : %s\n",frameRateInterval,animateFlag,scriptFileName);
+
+   drawText(5, windowHeight - 13, buffer ,windowWidth,windowHeight, 1.0, 1.0, 1.0);
+   glFlush();
+   glutSwapBuffers();
 };
 
-mvWorld* tempWorld = NULL;
-
-void init(void) 
+void displayMotionAI()
 {
-  glClearColor (0.0, 0.0, 0.0, 0.0);
-  glShadeModel (GL_SMOOTH);
-  glEnable(GL_LIGHT0);
-  glEnable(GL_LIGHTING);
-  glEnable(GL_COLOR_MATERIAL);
-  glEnable(GL_DEPTH_TEST);
-  glEnable(GL_NORMALIZE);
-  worldCam.resetCamera();
-  worldCam.addYPosition(3);
-  
-  //aiModule = new MotionAI();
-  mvInitMotionAI();
-  //if (aiModule != NULL)
-  mvLoadLuaScriptFile("Test.lua");
-  tempWorld = mvGetWorldByID("HELLO");
-  //else
-     //std::cout << "Print out stuff" << std::endl;
-};
-
-void reshape (int w, int h)
-{
-   windowWidth = w;
-   windowHeight = h;
-
-   glViewport (0, 0, (GLsizei) w, (GLsizei) h);
-   glMatrixMode (GL_PROJECTION);
-   glLoadIdentity ();
-   glFrustum(left,right,bottom,top,nearValue,farValue);
-   gluLookAt( 0 , 0, 2.0, 0, 0 , 0, 0, 1.00, 0);
-   glMatrixMode(GL_MODELVIEW);
-   glLoadIdentity();
-   glTranslatef (0.0, 0.0, -3.0);
+   /**
+    * Step 5: For all worlds, we apply the function 'worldFunction' 
+    * as a function pointer. By passing the function name to mvApplyToAllWorlds 
+    * and some other parameter. Here we used NULL but you could pass 
+    * structures, classes and anything that will fit as a void* pointer.
+    */ 
+   mvApplyToAllWorlds(worldFunction,NULL);
 }
 
-//void displayVehicle(Vehicle* v);
-//void displayPathway(Pathway *p);
-//void displayObstacle(Obstacle* o);
-//void displayParticle(Particle* p);
+void worldFunction(mvWorld* tempWorld, void* entry)
+{
+   /**
+    * Step 6: Here we call other functions to draw the classes
+    * inside the mvWorld instance such as mvBody, mvObstacles
+    * & mvWaypoints. 
+    */    
+   if (tempWorld != NULL)
+   {
+      tempWorld->mvApplyToAllBodies(displayBody,NULL);
+      tempWorld->mvApplyToAllObstacles(displayObstacle,NULL);
+      tempWorld->mvApplyToAllWaypoints(displayWaypoint,NULL);
+   }
+}
 
+
+
+/** 
+ * Step 6a : this function draws the mvBody type in the
+ * application
+ */
 void displayBody(mvBody* p,void* extraPtr)
 {
    mvEnum tempShape;
@@ -181,6 +228,10 @@ void displayBody(mvBody* p,void* extraPtr)
    }
 }
 
+/** 
+ * Step 6b : this function draws the mvObstacle type in the
+ * application
+ */
 void displayObstacle(mvObstacle* o,void* extraPtr)
 {
    //const float offsetY = 0.5;
@@ -208,6 +259,10 @@ void displayObstacle(mvObstacle* o,void* extraPtr)
    }
 }
 
+/** 
+ * Step 6a : this function draws the mvWaypoint type in the
+ * application
+ */
 void displayWaypoint(mvWaypoint* wp,void* extraPtr)
 {
    mvEnum tempShape;
@@ -235,54 +290,210 @@ void displayWaypoint(mvWaypoint* wp,void* extraPtr)
    }
 };
 
-void displayMotionAI()
+void animate(void)
 {
-   if (tempWorld != NULL)
+   float temp = (float) glutGet(GLUT_ELAPSED_TIME);
+   float diffTime = temp - previousTime;
+   float timeInSecs;
+
+   elapsedTime = glutGet(GLUT_ELAPSED_TIME)/(float)1000.0;
+   if (diffTime >  MIN_FRAME_PERIOD)
    {
-      tempWorld->mvApplyToAllBodies(displayBody,NULL);
-      tempWorld->mvApplyToAllObstacles(displayObstacle,NULL);
-      tempWorld->mvApplyToAllWaypoints(displayWaypoint,NULL);
+     timeInSecs = diffTime/1000.0;
+	  angle += (float) 25.0 * (timeInSecs);
+     previousTime = temp;
+     /**
+      * Step 7 : To animate mvMotionAI, add elapsed time in seconds to step 
+      * the worlds forward.
+      */
+     mvAllWorldsStepForward(timeInSecs);
    }
+   displayFrameRate(noOfFrames);
+   glutPostRedisplay();
+   noOfFrames++;
+};
 
-/**
-   int noOfObjects,noOfWorlds,i,j;
-   MWorld* tempWorld = NULL;
+void displayFrameRate(long int frameNo) 
+{
 
-   if (aiModule != NULL)
-   {
-      noOfWorlds = aiModule->getNoOfWorlds();
+  static const double interval = 1.0;
+  static long int frameNoStartInterval = 0;
+  static double elapsedTimeStartInterval = 0.0;
+  static double tpfPrevious = 0.0;
+  static double tpfCurrent = 0.0;
 
-      for (i = 0; i < noOfWorlds; i++)
-      {
-         tempWorld = aiModule->getMWorldByIndex(i);
-         noOfObjects = tempWorld->noOfVehicles;
+  if (elapsedTime > elapsedTimeStartInterval + interval) 
 
-         for (j = 0; j < noOfObjects; j++)
-         {
-            displayVehicle(tempWorld->vehicles[j]);
-         }
-
-         noOfObjects = tempWorld->noOfObstacles;
-         for (j = 0; j < noOfObjects; j++)
-         {
-            displayObstacle(tempWorld->obstacles[j]);
-         }
-
-         noOfObjects = tempWorld->noOfPathways;
-         for (j = 0; j < noOfObjects; j++)
-         {
-            displayPathway(tempWorld->pathways[j]);
-         }
-
-         noOfObjects = tempWorld->noOfParticles;
-         for (j = 0; j < noOfObjects; j++)
-         {
-            displayParticle(tempWorld->particles[j]);
-         }
-      }   
-   }
-   **/
+  {
+    frameRateInterval = (frameNo - frameNoStartInterval) / 
+                      (elapsedTime - elapsedTimeStartInterval);   
+    elapsedTimeStartInterval = elapsedTime;
+    frameNoStartInterval = frameNo;
+    tpfCurrent = 1000.0/frameRateInterval;
+    std::cout << "TPF : " << tpfCurrent << " +/- " << tpfCurrent - tpfPrevious <<std::endl;
+    tpfPrevious = tpfCurrent; 
+  }
 }
+
+/** 
+ * Ignore these function below
+ */
+
+void cleanup()
+{
+   mvFreeMotionAI();
+};
+
+/* ARGSUSED1 */
+void keyboard (unsigned char key, int x, int y)
+{   
+   switch (key) {
+      case 'a':
+         previousTime = (float) glutGet(GLUT_ELAPSED_TIME);
+         glutIdleFunc(animate);
+         isAnimating = true;
+         glutPostRedisplay();   
+         break;
+      case 'A':
+         glutIdleFunc(NULL);
+         isAnimating = false;
+         glutPostRedisplay();   
+         break;
+      case 'z':
+         worldCam.addXRotation(15.0);
+         glutPostRedisplay();         
+         break;  
+      case 'Z':
+         worldCam.addXRotation(-15.0);
+         glutPostRedisplay();         
+         break;
+      case 'x':
+         worldCam.addYRotation(15.0);
+         glutPostRedisplay();         
+         break;
+      case 'X':
+         worldCam.addYRotation(-15.0);
+         glutPostRedisplay();         
+         break;
+      case 'c':
+         worldCam.addZRotation(15.0);
+         glutPostRedisplay();         
+         break;
+      case 'C':
+         worldCam.addZRotation(-15.0);
+         glutPostRedisplay();         
+         break;
+      case 'q':
+         worldCam.addXPosition(0.25);
+         glutPostRedisplay(); 
+         break;
+      case 'Q':
+         worldCam.addXPosition(-0.25);
+         glutPostRedisplay(); 
+         break;
+      case 'w':
+         worldCam.addYPosition(0.25);
+         glutPostRedisplay(); 
+         break;
+      case 'W':
+         worldCam.addYPosition(-0.25);
+         glutPostRedisplay(); 
+         break;
+      case 'e':
+         worldCam.addZPosition(0.25);
+         glutPostRedisplay();          
+         break;  
+      case 'E':
+         worldCam.addZPosition(-0.25);
+         glutPostRedisplay();          
+         break;
+      case 27:
+         cleanup();
+         exit(0);
+         break;
+      default:
+         break;
+   }
+};
+
+void init(void) 
+{
+  glClearColor (0.0, 0.0, 0.0, 0.0);
+  glShadeModel (GL_SMOOTH);
+  glEnable(GL_LIGHT0);
+  glEnable(GL_LIGHTING);
+  glEnable(GL_COLOR_MATERIAL);
+  glEnable(GL_DEPTH_TEST);
+  glEnable(GL_NORMALIZE);
+  worldCam.resetCamera();
+  worldCam.addYPosition(3);  
+  // refresh screen
+  displayFrameRate(noOfFrames);
+  glutPostRedisplay();
+};
+
+void drawText(GLint x, GLint y, char* s, int windowWidth,
+              int windowHeight, GLfloat r, GLfloat g, GLfloat b)
+{
+
+  /* Fron Luke Bigum's TiledProj,2005*/
+
+  int lines;
+  char* p;
+
+  glMatrixMode(GL_PROJECTION);
+  glPushMatrix();
+
+  glLoadIdentity();
+  glOrtho(0.0, windowWidth, 
+        0.0, windowHeight, -1.0, 1.0);
+
+  glMatrixMode(GL_MODELVIEW);
+  glPushMatrix();
+  glLoadIdentity();
+
+
+  glPushAttrib(GL_ENABLE_BIT);
+  glDisable(GL_LIGHTING);
+  glDisable(GL_DEPTH_TEST);
+  glDisable(GL_TEXTURE_2D);
+
+ 
+  glColor3f(r, g, b);
+  glRasterPos2i(x, y);
+  for(p = s, lines = 0; *p; p++) 
+  {
+    if (*p == '\n') 
+    {
+      lines++;
+      glRasterPos2i(x, y-(lines*15));
+      continue;
+    }
+    glutBitmapCharacter(GLUT_BITMAP_9_BY_15, *p);
+  }
+
+  glPopAttrib();
+  glEnable(GL_DEPTH_TEST);
+  glPopMatrix();
+  glMatrixMode(GL_PROJECTION);
+  glPopMatrix();
+  glMatrixMode(GL_MODELVIEW);
+};
+
+void reshape (int w, int h)
+{
+   windowWidth = w;
+   windowHeight = h;
+
+   glViewport (0, 0, (GLsizei) w, (GLsizei) h);
+   glMatrixMode (GL_PROJECTION);
+   glLoadIdentity ();
+   glFrustum(left,right,bottom,top,nearValue,farValue);
+   gluLookAt( 0 , 0, 2.0, 0, 0 , 0, 0, 1.00, 0);
+   glMatrixMode(GL_MODELVIEW);
+   glLoadIdentity();
+   glTranslatef (0.0, 0.0, -3.0);
+};
 
 /**
 void displayParticle(Particle* p)
@@ -434,217 +645,3 @@ void displayPathway(Pathway *p)
    }
 };
 **/
-
-
-void display(void)
-{
-   int i = 0;
-   //int result;
-
-   glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-   glPushMatrix();
-     worldCam.apply();
-     glLightfv(GL_LIGHT0,GL_POSITION,lightPos1);
-
-     glColor3f(0,1,0);
-     glBegin(GL_QUADS);
-       glNormal3f(0,1,0);
-       glVertex3f(20,0,-20);
-       glVertex3f(-20,0,-20);
-       glVertex3f(-20,0,20);
-       glVertex3f(20,0,20);
-     glEnd();
-
-     glPushMatrix();
-       glRotatef(angle,0,1,0);
-       glColor3f(1,1,1);     
-       glutSolidTeapot(1.0);
-     glPopMatrix();
-     displayMotionAI();
-     /**/
-     /**
-     if (aiModule != NULL)
-     {
-       
-       result = aiModule->noOfVehicles;
-       **
-       std::cout << result << std::endl;
-       **
-       
-       for (i = 0; i < result; i++)
-       {
-         **
-         if (aiModule->vehicles[i] != NULL)
-           displayVehicle(aiModule->vehicles[i]); 
-        **
-       }
-
-       result = aiModule->noOfObstacles;
-       **
-       std::cout << result << std::endl;
-       **
-
-       for (i = 0; i < result; i++)
-       {
-         **
-         if (aiModule->obstacles[i] != NULL)
-           displayObstacle(aiModule->obstacles[i]);
-         **
-       }
-       **
-        std::cout << "Hello World" << std::endl;
-       **
-       result = aiModule->noOfPathways;
-
-       for (i = 0; i < result; i++)
-       { 
-          displayPathway(aiModule->pathways[i]);
-       }
-     }
-     **
-     glTranslatef(2,0,0);
-     displayVehicle();
-     glTranslatef(2,0,0);
-     displayObstacle();
-     **/
-     /**
-     glTranslatef(2,0,0);
-     displayEndPoint();
-     glTranslatef(2,0,0);
-     displayWaypoint();
-     glTranslatef(2,0,0);
-     **/
-   glPopMatrix();
-   drawText(5, windowHeight - 13, buffer ,windowWidth,windowHeight, 1.0, 1.0, 1.0);
-   glFlush();
-   glutSwapBuffers();
-}
-
-void animate(void)
-{
-   float temp = (float) glutGet(GLUT_ELAPSED_TIME);
-   float diffTime = temp - previousTime;
-   float timeInSecs;
-
-   elapsedTime = glutGet(GLUT_ELAPSED_TIME)/(float)1000.0;
-   if (diffTime >  MIN_FRAME_PERIOD)
-   {
-     timeInSecs = diffTime/1000.0;
-	  angle += (float) 25.0 * (timeInSecs);
-     previousTime = temp;
-     mvAllWorldsStepForward(timeInSecs);
-   }
-   displayFrameRate(noOfFrames);
-   glutPostRedisplay();
-   noOfFrames++;
-}
-
-/* ARGSUSED1 */
-void keyboard (unsigned char key, int x, int y)
-{   
-   switch (key) {
-      case 'a':
-         previousTime = (float) glutGet(GLUT_ELAPSED_TIME);
-         glutIdleFunc(animate);
-         break;
-      case 'A':
-         glutIdleFunc(NULL);
-         break;
-      case 'z':
-         worldCam.addXRotation(15.0);
-         glutPostRedisplay();         
-         break;  
-      case 'Z':
-         worldCam.addXRotation(-15.0);
-         glutPostRedisplay();         
-         break;
-      case 'x':
-         worldCam.addYRotation(15.0);
-         glutPostRedisplay();         
-         break;
-      case 'X':
-         worldCam.addYRotation(-15.0);
-         glutPostRedisplay();         
-         break;
-      case 'c':
-         worldCam.addZRotation(15.0);
-         glutPostRedisplay();         
-         break;
-      case 'C':
-         worldCam.addZRotation(-15.0);
-         glutPostRedisplay();         
-         break;
-      case 'q':
-         worldCam.addXPosition(0.25);
-         glutPostRedisplay(); 
-         break;
-      case 'Q':
-         worldCam.addXPosition(-0.25);
-         glutPostRedisplay(); 
-         break;
-      case 'w':
-         worldCam.addYPosition(0.25);
-         glutPostRedisplay(); 
-         break;
-      case 'W':
-         worldCam.addYPosition(-0.25);
-         glutPostRedisplay(); 
-         break;
-      case 'e':
-         worldCam.addZPosition(0.25);
-         glutPostRedisplay();          
-         break;  
-      case 'E':
-         worldCam.addZPosition(-0.25);
-         glutPostRedisplay();          
-         break;
-      case 27:
-         cleanup();
-         exit(0);
-         break;
-      default:
-         break;
-   }
-};
-
-void displayFrameRate(long int frameNo) 
-{
-
-  static const double interval = 1.0;
-  static double frameRateInterval = 0.0;
-  static long int frameNoStartInterval = 0;
-  static double elapsedTimeStartInterval = 0.0;
-  static double tpfPrevious = 0.0;
-  static double tpfCurrent = 0.0;
-
-  if (elapsedTime > elapsedTimeStartInterval + interval) 
-
-  {
-    frameRateInterval = (frameNo - frameNoStartInterval) / 
-                      (elapsedTime - elapsedTimeStartInterval);   
-    elapsedTimeStartInterval = elapsedTime;
-    frameNoStartInterval = frameNo;
-    tpfCurrent = 1000.0/frameRateInterval;
-    std::cout << "TPF : " << tpfCurrent << " +/- " << tpfCurrent - tpfPrevious <<std::endl;
-    tpfPrevious = tpfCurrent;
-    sprintf(buffer,"Frame Rate :%f\n",frameRateInterval); 
-  }
-}
-
-int main(int argc, char** argv)
-{
-   glutInit(&argc, argv);
-   glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
-   glutInitWindowSize (windowWidth, windowHeight); 
-   glutInitWindowPosition (100, 100);
-   glutCreateWindow (argv[0]);
-   init ();
-   glutDisplayFunc(display); 
-   glutReshapeFunc(reshape);
-   glutKeyboardFunc(keyboard);
-
-   glutMainLoop();
-
-   return 0;
-}
-
