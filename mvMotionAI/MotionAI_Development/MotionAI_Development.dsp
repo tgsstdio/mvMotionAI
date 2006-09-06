@@ -203,6 +203,10 @@ SOURCE=..\include\mvWorld.h
 
 SOURCE=..\misc\EditedCode.txt
 # End Source File
+# Begin Source File
+
+SOURCE=..\bin\Test.lua
+# End Source File
 # End Group
 # Begin Group "mvLuaScript Headers"
 
