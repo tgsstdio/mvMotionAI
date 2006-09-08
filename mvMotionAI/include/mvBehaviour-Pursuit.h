@@ -13,6 +13,6 @@ Vector2d Pursuit::calculate(const Pilot &target)
    return desired_velocity - vel;
 }
 **/
-mvVec3 mvBehaviour_Calculate_Pursuit(mvBody* currentBody, mvBody* targetBody);                               
+mvVec3 mvBehaviour_Calculate_Pursuit(mvBody* currentBody, mvBody* targetBody);
 
 #endif

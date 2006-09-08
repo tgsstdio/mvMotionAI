@@ -1,0 +1,14 @@
+mvMotionAI (mingw) requires these libraries which are found in
+the lib-other directory:
+Lua
+liblua5.a
+liblualib5.a
+
+Not included in workspace but important
+(can be found in Code::Blocks release)
+opengl32
+glut
+glu32
+
+David Young,2006
+

@@ -3,7 +3,7 @@
 #include "mvMotionAI-Types.h"
 #include <iostream>
 
-// replacement for OpenSteer's Vec3 
+// replacement for OpenSteer's Vec3
 static const mvIndex MV_VEC3_X_COMPONENT = 0;
 static const mvIndex MV_VEC3_Y_COMPONENT = 1;
 static const mvIndex MV_VEC3_Z_COMPONENT = 2;
@@ -130,19 +130,19 @@ class mvVec3
     const mvVec3& operator*= (const mvFloat& s);
 
     /**
-      * \brief  += 
+      * \brief  +=
       * adds constant float to all members
       */
     const mvVec3& operator+= (const mvFloat& s);
 
     /**
-      * \brief  -= 
+      * \brief  -=
       * subtracts constant float to all members
       */
     const mvVec3& operator-= (const mvFloat& s);
 
     /**
-     * \brief  /= 
+     * \brief  /=
      * divides constant float to all members
      */
     const mvVec3& operator/= (const mvFloat& s);
@@ -180,7 +180,7 @@ class mvVec3
    void divideVec3(const mvVec3& rhs);
 
     /**
-     * \brief returns X 
+     * \brief returns X
      */
    mvFloat getX() const;
     /**
@@ -188,7 +188,7 @@ class mvVec3
      */
    mvFloat getY() const;
        /**
-     * \brief returns Z 
+     * \brief returns Z
      */
    mvFloat getZ() const;
     /**

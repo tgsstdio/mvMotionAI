@@ -21,7 +21,7 @@ void mvProcessGroupBehaviours(mvWorld* worldPtr, mvGroupBehaviour* groupBehPtr, 
    mvEnum behaviourType;
 
    if (worldPtr == NULL || groupBehPtr == NULL)
-      return;   
+      return;
 
    //puts("Default");
    noOfGroups = groupBehPtr->getNoOfGroups();
@@ -53,7 +53,7 @@ void mvProcessGroupBehaviours(mvWorld* worldPtr, mvGroupBehaviour* groupBehPtr, 
          {
             /**
              * Step 2.1 for each body in group ...
-             */            
+             */
              noOfMembers = currentGroup->getNoOfMembers();
 #ifdef MV_BEHAVIOUR_CENTRAL_DEBUG_OUTPUT_FLAG
              std::cout << "No of Members : " << noOfMembers << std::endl;
@@ -74,7 +74,7 @@ void mvProcessGroupBehaviours(mvWorld* worldPtr, mvGroupBehaviour* groupBehPtr, 
 #ifdef MV_BEHAVIOUR_CENTRAL_DEBUG_OUTPUT_FLAG
                       puts("Created new behaviour");
 #endif
-                      currentBody->addExistingGroupBehaviourEntry(behaviourIndex,currentGroupIndex);                   
+                      currentBody->addExistingGroupBehaviourEntry(behaviourIndex,currentGroupIndex);
                    }
 #ifdef MV_BEHAVIOUR_CENTRAL_DEBUG_OUTPUT_FLAG
                    else
@@ -95,8 +95,8 @@ void mvProcessGroupBehaviours(mvWorld* worldPtr, mvGroupBehaviour* groupBehPtr, 
                    puts("HELLO 2");
                 }
                 **/
-                //if (currentBody != NULL && 
-                   
+                //if (currentBody != NULL &&
+
                /**/
              }
 
@@ -118,7 +118,7 @@ void mvProcessGroupBehaviours(mvWorld* worldPtr, mvGroupBehaviour* groupBehPtr, 
                    default:
                       break;
                 }
-            }         
+            }
          }
 
       }
@@ -174,7 +174,7 @@ void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBody* currentBody, mvFloat tim
          if (currentBNode != NULL)
          {
             /**
-             * Step 3.0a) get node type 
+             * Step 3.0a) get node type
              */
             nodeType = currentBNode->getType();
             /**
@@ -188,12 +188,12 @@ void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBody* currentBody, mvFloat tim
                case MV_EXISTING_GROUP_BEHAVIOUR:
                   groupIndex = currentBNode->getGroupIndex();
                   behaviourIndex = currentBNode->getBehaviourIndex();
-                  
+
                   /**
                    * Step 3.1a) check if group exists
-                   */   
+                   */
                   /**
-                  currentGroup = worldPtr->mvGetGroup(groupIndex);              
+                  currentGroup = worldPtr->mvGetGroup(groupIndex);
                   if (currentGroup == NULL)
                   {
                      behaviourType = MV_INVALID_BEHAVIOUR_TYPE;
@@ -203,7 +203,7 @@ void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBody* currentBody, mvFloat tim
 
                   /**
                    * Step 3.1b) check if group behaviour exists
-                   */   
+                   */
 
                   groupBehav = worldPtr->mvGetGroupBehaviour(behaviourIndex);
                   if (groupBehav == NULL)
@@ -213,9 +213,9 @@ void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBody* currentBody, mvFloat tim
                   }
 
                   /**
-                   * Step 3.1c) check if group exists 
+                   * Step 3.1c) check if group exists
                    * in group behaviour
-                   */ 
+                   */
                   //groupBehavNode = groupBehav->findGroupNodeByPtr(currentGroup);
                   groupBehavNode = groupBehav->findGroupNodeByIndex(groupIndex);
                   if (groupBehavNode == NULL)
@@ -225,7 +225,7 @@ void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBody* currentBody, mvFloat tim
                   }
 
                   /**
-                   * Step 3.1d) retrieve group entry 
+                   * Step 3.1d) retrieve group entry
                    */
                   //
                   groupEntry = groupBehavNode->getBehavData();
@@ -238,20 +238,20 @@ void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBody* currentBody, mvFloat tim
                   /**
                    * Step 3.1e) check if node has entry initialised
                    */
-    
+
                   bodyEntry = currentBNode->getBehavData();
                   if (bodyEntry != NULL)
                   {
-                     behaviourType = bodyEntry->getType(); 
+                     behaviourType = bodyEntry->getType();
                     // puts("hello2");
                   }
                   else
-                  {              
+                  {
                      behaviourType = groupBehav->getType();
                      currentBNode->initialiseEntry(behaviourType);
                      //puts("hello");
-                  }            
-                  
+                  }
+
                   nodeFactor = (currentBNode->getFactor()/listFactorTotal);
                   break;
                case MV_EXISTING_BEHAVIOUR:
@@ -301,7 +301,7 @@ void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBody* currentBody, mvFloat tim
                   wayPointPtr = worldPtr->mvGetWaypoint(waypointIndex);
                   if (wayPointPtr != NULL)
                   {
-                     mvAccelVector += nodeFactor * mvBehaviour_Calculate_Flee(currentBody, wayPointPtr);                  
+                     mvAccelVector += nodeFactor * mvBehaviour_Calculate_Flee(currentBody, wayPointPtr);
                   }
 #ifdef MV_BEHAVIOUR_CENTRAL_DEBUG_OUTPUT_FLAG
                   puts(mvGetEnumString(behaviourType));
@@ -350,7 +350,7 @@ void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBody* currentBody, mvFloat tim
 
          }
       }
-   } 
+   }
 };
 
    /**
@@ -360,12 +360,12 @@ void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBody* currentBody, mvFloat tim
    mvIndex index;
    mvEnum bType;
    mvPathway* currentPathway = NULL;
-   mvWaypoint* tempWaypoint = NULL;            
+   mvWaypoint* tempWaypoint = NULL;
    mvBody* tempBody1 = NULL;
    mvBody* tempBody2 = NULL;
    **/
 
-         /**          
+         /**
    //std::cout << "No of Behaviours : " << noOfBehaviours << std::endl;
          if (bType == MV_SEEK)
          {
@@ -382,7 +382,7 @@ void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBody* currentBody, mvFloat tim
             tempWaypoint = worldPtr->mvGetWaypoint(index);
             if (tempWaypoint != NULL)
             {
-               mvAccelVector += mvBehaviour_Calculate_Flee(tempBody, tempWaypoint);                  
+               mvAccelVector += mvBehaviour_Calculate_Flee(tempBody, tempWaypoint);
             }
          }
          else if (bType == MV_CLONE)
@@ -426,7 +426,7 @@ void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBody* currentBody, mvFloat tim
                tempWaypoint = worldPtr->mvGetWaypoint(index);
                if (tempWaypoint != NULL)
                {
-                  mvAccelVector += mvBehaviour_Calculate_Flee(tempBody, tempWaypoint);                  
+                  mvAccelVector += mvBehaviour_Calculate_Flee(tempBody, tempWaypoint);
                }
                break;
             case MV_CLONE:

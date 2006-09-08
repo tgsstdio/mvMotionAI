@@ -15,7 +15,7 @@
  *
  * Version     Date     Comments
  *
- * 00-01-05   26/7/06   - created behaviour list node instead of entry  
+ * 00-01-05   26/7/06   - created behaviour list node instead of entry
  */
 
 class mvBehaviourListNode
@@ -56,13 +56,13 @@ class mvBehaviourListNode
  *
  * Version     Date     Comments
  *
- * 00-01-05   26/7/06   - use node instead of entry for consistency and code reuse 
+ * 00-01-05   26/7/06   - use node instead of entry for consistency and code reuse
  *
  * 00-01-03   21/6/06   - created behaviour list
  */
 class mvBehaviourList
 {
-   private: 
+   private:
       mvCount noOfEntries;
       std::vector<mvBehaviourListNode*> entries;
       mvIndex defaultBody;

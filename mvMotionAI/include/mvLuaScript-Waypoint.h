@@ -5,3 +5,4 @@
 void mvLoadLuaWaypointFunctions(lua_State* L);
 
 #endif
+

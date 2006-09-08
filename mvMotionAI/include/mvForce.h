@@ -9,7 +9,7 @@
 /**
  * \class mvForce
  *
- * \brief environmental elements which act on bodies in the 
+ * \brief environmental elements which act on bodies in the
  * world system
  *
  * Log

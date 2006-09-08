@@ -112,7 +112,7 @@ mvEnum mvForce::initialiseForce(mvEnum fType)
    else
    {
       return MV_FALSE;
-   } 
+   }
 };
 
 //mvEnum mvForce::initialiseForceVariables(mvEnum fType);
@@ -236,7 +236,7 @@ mvEnum mvForce::getParameter(mvEnum paramFlag, mvEnum* dest)
    }
    else
       return MV_FALSE;
-   
+
 };
 
 mvEnum mvForce::setParameterv(mvEnum paramFlag, mvFloat* numArray)
@@ -259,8 +259,8 @@ mvEnum mvForce::setParameterv(mvEnum paramFlag, mvFloat* numArray)
    MV_FORCE_ACCELERATION_VARIABLE_INDEX = 0,
    MV_FORCE_QUANTITY_VARIABLE_INDEX = 0,
    MV_FORCE_GRAVITIONAL_MASS_VARIABLE_INDEX = 0,
-   MV_FORCE_GRAVITY_CONSTAN_VARIABLE_INDEX = 1,     
-   MV_FORCE_SPEED_VARIABLE_INDEX = 0,         
+   MV_FORCE_GRAVITY_CONSTAN_VARIABLE_INDEX = 1,
+   MV_FORCE_SPEED_VARIABLE_INDEX = 0,
          **/
          case MV_ACCELERATION_VECTOR:
             if (forceType == MV_UNIFORM_ACCELERATION || forceType == MV_GRAVITY)
@@ -271,7 +271,7 @@ mvEnum mvForce::setParameterv(mvEnum paramFlag, mvFloat* numArray)
                centralVector = tempVector.normalize();
                isValid = true;
             }
-            break;           
+            break;
          case MV_FORCE_VECTOR:
             if (forceType == MV_UNIFORM_FORCE || forceType == MV_DRAG_FORCE)
             {
@@ -302,7 +302,7 @@ mvEnum mvForce::setParameterv(mvEnum paramFlag, mvFloat* numArray)
             break;
          case MV_DIRECTION:
             if (forceType == MV_UNIFORM_FORCE ||  forceType == MV_UNIFORM_ACCELERATION
-               || forceType == MV_GRAVITY || forceType == MV_UNIFORM_SHIFT)              
+               || forceType == MV_GRAVITY || forceType == MV_UNIFORM_SHIFT)
             {
                tempVector.set(numArray[0],numArray[1],numArray[2]);
                centralVector = tempVector.normalize();
@@ -335,7 +335,7 @@ mvEnum mvForce::setParameterf(mvEnum paramFlag, mvFloat num)
    MV_FORCE_ACCELERATION_VARIABLE_INDEX = 0,
    MV_FORCE_QUANTITY_VARIABLE_INDEX = 0,
    MV_FORCE_GRAVITIONAL_MASS_VARIABLE_INDEX = 0,
-   MV_FORCE_GRAVITY_CONSTAN_VARIABLE_INDEX = 1,     
+   MV_FORCE_GRAVITY_CONSTAN_VARIABLE_INDEX = 1,
    MV_FORCE_SPEED_VARIABLE_INDEX = 0,
       **/
       case MV_ACCELERATION:
@@ -359,7 +359,7 @@ mvEnum mvForce::setParameterf(mvEnum paramFlag, mvFloat num)
            }
            isValid = true;
         }
-        break;              
+        break;
       case MV_GRAVITIONAL_MASS:
         if (forceType == MV_GRAVITY_TO_POINT)
         {
@@ -422,7 +422,7 @@ mvEnum mvForce::getParameterf(mvEnum paramFlag, mvFloat* dest)
    MV_FORCE_ACCELERATION_VARIABLE_INDEX = 0,
    MV_FORCE_QUANTITY_VARIABLE_INDEX = 0,
    MV_FORCE_GRAVITIONAL_MASS_VARIABLE_INDEX = 0,
-   MV_FORCE_GRAVITY_CONSTAN_VARIABLE_INDEX = 1,     
+   MV_FORCE_GRAVITY_CONSTAN_VARIABLE_INDEX = 1,
    MV_FORCE_SPEED_VARIABLE_INDEX = 0,
       **/
          case MV_ACCELERATION:
@@ -446,7 +446,7 @@ mvEnum mvForce::getParameterf(mvEnum paramFlag, mvFloat* dest)
                 }
                 isValid = true;
             }
-            break;              
+            break;
          case MV_GRAVITIONAL_MASS:
             if (forceType == MV_GRAVITY_TO_POINT)
             {
@@ -523,8 +523,8 @@ mvEnum mvForce::getParameterv(mvEnum paramFlag, mvFloat* dest, mvCount* size)
          MV_FORCE_ACCELERATION_VARIABLE_INDEX = 0,
          MV_FORCE_QUANTITY_VARIABLE_INDEX = 0,
          MV_FORCE_GRAVITIONAL_MASS_VARIABLE_INDEX = 0,
-         MV_FORCE_GRAVITY_CONSTAN_VARIABLE_INDEX = 1,     
-         MV_FORCE_SPEED_VARIABLE_INDEX = 0,         
+         MV_FORCE_GRAVITY_CONSTAN_VARIABLE_INDEX = 1,
+         MV_FORCE_SPEED_VARIABLE_INDEX = 0,
          **/
          case MV_ACCELERATION_VECTOR:
             if (forceType == MV_UNIFORM_ACCELERATION || forceType == MV_GRAVITY)
@@ -536,7 +536,7 @@ mvEnum mvForce::getParameterv(mvEnum paramFlag, mvFloat* dest, mvCount* size)
                //puts("hello");
                isValid = true;
             }
-            break;           
+            break;
          case MV_FORCE_VECTOR:
             if (forceType == MV_UNIFORM_FORCE || forceType == MV_DRAG_FORCE)
             {
@@ -569,7 +569,7 @@ mvEnum mvForce::getParameterv(mvEnum paramFlag, mvFloat* dest, mvCount* size)
             break;
          case MV_DIRECTION:
             if (forceType == MV_UNIFORM_FORCE ||  forceType == MV_UNIFORM_ACCELERATION
-               || forceType == MV_GRAVITY || forceType == MV_UNIFORM_SHIFT)              
+               || forceType == MV_GRAVITY || forceType == MV_UNIFORM_SHIFT)
             {
                params[0] = centralVector.getX();
                params[1] = centralVector.getY();
@@ -614,7 +614,7 @@ mvCount mvForce::getNoOfParameters(mvEnum paramFlag)
         return MV_NO_OF_FORCE_QUANTITY_PARAMETERS;
      case MV_FORCE_VECTOR:
         return MV_NO_OF_FORCE_VECTOR_PARAMETERS;
-     case MV_GRAVITIONAL_MASS: 
+     case MV_GRAVITIONAL_MASS:
         return MV_NO_OF_GRAVITIONAL_MASS_PARAMETERS;
      case MV_GRAVITY_CONSTANT:
         return MV_NO_OF_GRAVITY_CONSTANT_PARAMETERS;
@@ -626,3 +626,4 @@ mvCount mvForce::getNoOfParameters(mvEnum paramFlag)
         return MV_NO_OF_VELOCITY_PARAMETERS;
    }
 };
+

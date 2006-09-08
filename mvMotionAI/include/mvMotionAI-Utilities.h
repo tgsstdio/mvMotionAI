@@ -5,7 +5,7 @@
 #include "mvMotionAI-Types.h"
 #include <cmath>
 
-/** 
+/**
  * Log        Date      Comments
  *
  *00-01-00  22/05/06    - Headers file : Template functions are hard to split
@@ -23,7 +23,7 @@ template<class mvClass> mvEnum removeItemFromVectorByIndex(std::vector<mvClass*>
   {
     tempClass = mvClassList[classIndex];
     if (tempClass != NULL)
-    {       
+    {
        delete tempClass;
        mvClassList[classIndex] = NULL;
        if (classIndex == currentIndex)
@@ -40,7 +40,7 @@ template<class mvClass> mvEnum removeItemFromVectorByIndex(std::vector<mvClass*>
 template<class mvClass>
 mvEnum removeCurrentItemFromList(std::vector<mvClass*>& mvClassList, mvIndex& currentIndex, mvCount& noOfItems)
 {
-  mvClass* tempClass = NULL;  
+  mvClass* tempClass = NULL;
 
   if (currentIndex != MV_NO_CURRENT_INDEX)
   {
@@ -77,7 +77,7 @@ template<class mvClass> mvEnum mvSetClassParameterByIndex(std::vector<mvClass*>&
    mvIndex classIndex = index + MV_OFFSET_TO_INDEX;
 
    if (classIndex >= 0 && classIndex < noOfItems)
-   {    
+   {
       tempClass = mvClassList[classIndex];
       if (tempClass == NULL)
          return MV_FALSE;
@@ -92,7 +92,7 @@ template<class mvClass> mvEnum mvSetClassParameterByIndex(std::vector<mvClass*>&
 
 template<class mvClass> void mvRemoveAllClassObjectsFromList(std::vector<mvClass*>& mvClassList, mvIndex& currentIndex, mvCount& noOfItems)
 {
-   std::vector<mvClass*>::iterator i;
+   typename std::vector<mvClass*>::iterator i;
    mvClass* temp = NULL;
 
    for (i = mvClassList.begin(); i != mvClassList.end(); ++i)
@@ -114,7 +114,7 @@ template<class mvClass> mvEnum mvSetClassParameterf(std::vector<mvClass*>& mvCla
    mvClass* tempClass = NULL;
 
    if (classIndex >= 0 && classIndex < noOfItems)
-   {    
+   {
       tempClass = mvClassList[classIndex];
       if (tempClass == NULL)
          return MV_FALSE;
@@ -133,7 +133,7 @@ template<class mvClass> mvEnum mvSetClassParameterv(std::vector<mvClass*>& mvCla
    mvClass* tempClass = NULL;
 
    if (classIndex >= 0 && classIndex < noOfItems)
-   {    
+   {
       tempClass = mvClassList[classIndex];
       if (tempClass == NULL)
          return MV_FALSE;
@@ -166,14 +166,14 @@ template<class mvClass> mvIndex mvSetCurrentIndexOfClassList(std::vector<mvClass
   else
   {
      currentIndex = MV_NO_CURRENT_INDEX;
-     return MV_FALSE;   
-  }   
+     return MV_FALSE;
+  }
 };
 
 template <class mvClass>
-void mvApplyFunctionToAllItemsInListVector(std::vector<mvClass*>& mvClassList,void (someFunction)(mvClass*, void*), void* extraPtr)                                       
+void mvApplyFunctionToAllItemsInListVector(std::vector<mvClass*>& mvClassList,void (someFunction)(mvClass*, void*), void* extraPtr)
 {
-   std::vector<mvClass*>::iterator i;
+   typename std::vector<mvClass*>::iterator i;
    mvClass* tempClass = NULL;
 
    for (i = mvClassList.begin(); i != mvClassList.end(); ++i)
@@ -189,7 +189,7 @@ void mvApplyFunctionToAllItemsInListVector(std::vector<mvClass*>& mvClassList,vo
 template<class mvClass>
 mvEnum mvAddUniqueItemInVector(std::vector<mvClass*>& itemVector, mvClass* itemPtr, mvCount& noOfItems)
 {
-   std::vector<mvClass*>::iterator i;
+   typename std::vector<mvClass*>::iterator i;
    mvClass* currentItem = NULL;
 
    if (itemPtr == NULL)
@@ -199,7 +199,7 @@ mvEnum mvAddUniqueItemInVector(std::vector<mvClass*>& itemVector, mvClass* itemP
    {
      currentItem = *i;
      if (currentItem != NULL)
-        if (itemPtr == currentItem)           
+        if (itemPtr == currentItem)
            return MV_FALSE;
    }
    itemVector.push_back(itemPtr);
@@ -210,7 +210,7 @@ mvEnum mvAddUniqueItemInVector(std::vector<mvClass*>& itemVector, mvClass* itemP
 template<class mvClass>
 mvEnum mvRemoveUniqueItemInVector(std::vector<mvClass*>& itemVector, mvClass* itemPtr, mvCount& noOfItems)
 {
-   std::vector<mvClass*>::iterator i;
+   typename std::vector<mvClass*>::iterator i;
    mvClass* currentItem = NULL;
 
    if (itemPtr != NULL && noOfItems <= 0)
@@ -220,7 +220,7 @@ mvEnum mvRemoveUniqueItemInVector(std::vector<mvClass*>& itemVector, mvClass* it
    {
      currentItem = *i;
      if (currentItem != NULL)
-        if (itemPtr == currentItem)           
+        if (itemPtr == currentItem)
         {
            *i = NULL;
           // --noOfItems;
@@ -232,7 +232,7 @@ mvEnum mvRemoveUniqueItemInVector(std::vector<mvClass*>& itemVector, mvClass* it
 };
 
 /**
- * Code taken from OpenSteer Utilities.h (2002-2004) 
+ * Code taken from OpenSteer Utilities.h (2002-2004)
  * on the 20/06/2006
  * ----------------------------------------------------------------------------
  * Functions to encapsulate cross-platform differences for several <cmath>
@@ -248,7 +248,7 @@ inline float mvFloor (mvFloat x)          {return floor (x);}
 inline float mvSqrt (mvFloat x)           {return sqrt (x);}
 inline float mvSin (mvFloat x)          {return sin (x);}
 inline float mvCos (mvFloat x)           {return cos (x);}
-inline float mvAbs (mvFloat x)           {return abs (x);}
+//inline float mvAbs (mvFloat x)           {return abs (x);}
 inline int   mvAbs (int x)            {return abs (x);}
 inline float mvMax (mvFloat x, mvFloat y) {if (x > y) return x; else return y;}
 inline float mvMin (mvFloat x, mvFloat y) {if (x < y) return x; else return y;}

@@ -10,7 +10,7 @@ mvEnum mvBehaviour_InitialiseType(mvEnum type, mvEnum& bType, mvIndex* indexes,
 
 template<class mvType>
 mvEnum mvBehaviour_CopyArrayContents(mvType* dstArray, mvType* srcArray, mvCount noOfElements)
-{   
+{
    mvIndex i;
 
    if (dstArray != NULL && srcArray != NULL)
@@ -34,3 +34,6 @@ mvCount mvBehaviour_GetStateArraySize(mvEnum type);
 mvEnum selectBodyToGroupEntryType(mvEnum type);
 mvEnum selectGroupToBodyEntryType(mvEnum type);
 #endif
+
+
+

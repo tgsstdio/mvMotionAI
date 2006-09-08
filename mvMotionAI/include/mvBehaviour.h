@@ -20,7 +20,7 @@
  *00-01-05  26/7/06  - removed variables, added code reuse in mvBehaviourEntry
  *
  *00-01-03  21/6/06  - now using index values instead of pointers, finally
- *                     implemented two beahviours SEEK and FLEE,                    
+ *                     implemented two beahviours SEEK and FLEE,
  *
  *00-01-02  31/5/06  - removing groups from system until better solution
  *                     arrives.
@@ -44,7 +44,7 @@ class mvBehaviour
     void initDefault();
     //mvEnum initialiseType(mvEnum type);
     //mvEnum initialiseVectors(mvEnum type);
-    //mvEnum addEntry(mvGroup* bGroup, mvBody* bBody);    
+    //mvEnum addEntry(mvGroup* bGroup, mvBody* bBody);
     //mvEnum removeEntry(mvGroup* bGroup, mvBody* bBody);
     //mvEnum removeGroupEntries(mvGroup* bGroup);
     //mvFloat* defaultVariables;

@@ -19,11 +19,11 @@ int binarySearch(const char* key, char** array, int noOfItems)
          return index;
       else if (compare < 0)
       {
-         right = mid - 1;         
+         right = mid - 1;
       }
       else
       {
-         left = mid + 1; 
+         left = mid + 1;
       }
    }
    return -1;

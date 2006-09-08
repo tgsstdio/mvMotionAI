@@ -4,3 +4,4 @@
 
 void mvLoadLuaGroupBehaviourFunctions(lua_State* L);
 #endif
+
