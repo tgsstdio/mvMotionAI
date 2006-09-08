@@ -17,7 +17,7 @@ void mvBehaviourEntry::initDefault()
 
 mvBehaviourEntry::mvBehaviourEntry()
 {
-   initDefault();   
+   initDefault();
 };
 
 mvBehaviourEntry::mvBehaviourEntry(mvEnum type)
@@ -40,7 +40,7 @@ mvBehaviourEntry::mvBehaviourEntry(mvEnum type, mvIndex bIndex, mvIndex gIndex)
         case MV_EXISTING_GROUP_BEHAVIOUR:
            groupIndex = gIndex;
         case MV_EXISTING_BEHAVIOUR:
-           behaviourIndex = bIndex;        
+           behaviourIndex = bIndex;
            bType = type;
         default:
            bType = MV_INVALID_BEHAVIOUR_ENTRY_TYPE;
@@ -101,7 +101,7 @@ mvEnum mvBehaviourEntry::getParameter(mvEnum paramFlag, mvEnum* dest) const
   return MV_FALSE;
 };
 
-mvEnum mvBehaviourEntry::getParameterf(mvEnum paramFlag, mvFloat* dest) const 
+mvEnum mvBehaviourEntry::getParameterf(mvEnum paramFlag, mvFloat* dest) const
 {
   return MV_FALSE;
 };
@@ -199,11 +199,11 @@ mvEnum mvBehaviourEntry::setParameterv(mvEnum paramFlag, mvFloat* numArray)
 const mvBehaviourEntry& mvBehaviourEntry::operator=(const mvBehaviourEntry& rhs)
 {
    mvCount noOfElements;
-   
+
    mvBehaviour_InitialiseType(rhs.getType(),bType,this->indexes,
       this->extraVariables,this->extraStates,this->extraPoints);
    //mvBehaviour_InitialiseType(rhs.bType,bType,indexes);
-   
+
    if (indexes != NULL)
    {
       noOfElements = mvBehaviour_GetIndexesArraySize(bType);
@@ -214,16 +214,16 @@ const mvBehaviourEntry& mvBehaviourEntry::operator=(const mvBehaviourEntry& rhs)
    {
       noOfElements = mvBehaviour_GetPointsArraySize(bType);
       mvBehaviour_CopyArrayContents<mvVec3>(extraPoints,rhs.extraPoints,noOfElements);
-   } 
+   }
 
    if (extraVariables != NULL)
    {
       noOfElements = mvBehaviour_GetVariablesArraySize(bType);
       mvBehaviour_CopyArrayContents<mvFloat>(extraVariables,rhs.extraVariables,noOfElements);
    }
-   
+
    if (extraStates != NULL)
-   {   
+   {
       noOfElements = mvBehaviour_GetStateArraySize(bType);
       mvBehaviour_CopyArrayContents<mvEnum>(extraStates,rhs.extraStates,noOfElements);
    }
@@ -234,11 +234,11 @@ const mvBehaviourEntry& mvBehaviourEntry::operator=(const mvBehaviourEntry& rhs)
 mvBehaviourEntry::mvBehaviourEntry(const mvBehaviourEntry& rhs)
 {
    mvCount noOfElements;
-   
+
    mvBehaviour_InitialiseType(rhs.getType(),bType,this->indexes,
       this->extraVariables,this->extraStates,this->extraPoints);
    //mvBehaviour_InitialiseType(rhs.bType,bType,indexes);
-   
+
    if (indexes != NULL)
    {
       noOfElements = mvBehaviour_GetIndexesArraySize(bType);
@@ -249,19 +249,19 @@ mvBehaviourEntry::mvBehaviourEntry(const mvBehaviourEntry& rhs)
    {
       noOfElements = mvBehaviour_GetPointsArraySize(bType);
       mvBehaviour_CopyArrayContents<mvVec3>(extraPoints,rhs.extraPoints,noOfElements);
-   } 
+   }
 
    if (extraVariables != NULL)
    {
       noOfElements = mvBehaviour_GetVariablesArraySize(bType);
       mvBehaviour_CopyArrayContents<mvFloat>(extraVariables,rhs.extraVariables,noOfElements);
    }
-   
+
    if (extraStates != NULL)
-   {   
+   {
       noOfElements = mvBehaviour_GetStateArraySize(bType);
       mvBehaviour_CopyArrayContents<mvEnum>(extraStates,rhs.extraStates,noOfElements);
-   }  
+   }
 };
 
 mvIndex mvBehaviourEntry::getBody() const
@@ -271,16 +271,16 @@ mvIndex mvBehaviourEntry::getBody() const
      switch(bType)
      {
         case MV_CLONE:
-           return indexes[MV_BEHAVIOUR_CLONE_BODY_TARGET_INDEX];        
+           return indexes[MV_BEHAVIOUR_CLONE_BODY_TARGET_INDEX];
         case MV_PURSUIT:
         case MV_EVASION:
-           return indexes[MV_BEHAVIOUR_PURSUIT_BODY_TARGET_INDEX];  
+           return indexes[MV_BEHAVIOUR_PURSUIT_BODY_TARGET_INDEX];
         default:
            return MV_INVALID_BEHAVIOUR_INDEX_VALUE;
      }
   }
   else
-  { 
+  {
      return MV_INVALID_BEHAVIOUR_INDEX_VALUE;
   }
 };
@@ -303,7 +303,7 @@ mvEnum mvBehaviourEntry::addBody(mvIndex bBody)
      }
   }
   else
-     return MV_FALSE; 
+     return MV_FALSE;
 };
 
 mvIndex mvBehaviourEntry::getWaypoint() const
@@ -384,7 +384,7 @@ mvEnum mvBehaviourEntry::mvBehaviour_InitialiseType2(mvEnum type)
          if (extraStates != NULL)
          {
            delete [] extraStates;
-           extraStates = NULL;       
+           extraStates = NULL;
          }
 
          if (extraPoints != NULL)

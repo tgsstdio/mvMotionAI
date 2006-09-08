@@ -8,7 +8,7 @@
 #define MV_WORLD_DEBUG_OUTPUT_FLAG 1
 #undef MV_WORLD_DEBUG_OUTPUT_FLAG
 
-void applyImprovEuler(mvFloat h,mvVec3* position, mvVec3* direction, mvFloat* currentSpeed, 
+void applyImprovEuler(mvFloat h,mvVec3* position, mvVec3* direction, mvFloat* currentSpeed,
                       mvFloat maxSpeed, mvFloat currentAcceleration);
 
 void mvWorld::resetAllVariables()
@@ -29,7 +29,7 @@ void mvWorld::resetAllVariables()
    currentBehaviour = MV_NO_CURRENT_INDEX;
    currentWaypoint = MV_NO_CURRENT_INDEX;
    currentObstacle = MV_NO_CURRENT_INDEX;
-   
+
 };
 
 
@@ -66,7 +66,7 @@ mvWorld::mvWorld(char* worldID)
 };
 
 /**
- * 
+ *
  * \brief destructor
  */
 mvWorld::~mvWorld()
@@ -92,7 +92,7 @@ char* mvWorld::getWorldID() const
 };
 
 // really old integrator - obsolete
-void applyImprovEuler(mvFloat h,mvVec3* position, mvVec3* direction, mvFloat* currentSpeed, 
+void applyImprovEuler(mvFloat h,mvVec3* position, mvVec3* direction, mvFloat* currentSpeed,
                       mvFloat maxSpeed, mvFloat currentAcceleration)
 {
    mvFloat c1,c2;
@@ -100,7 +100,7 @@ void applyImprovEuler(mvFloat h,mvVec3* position, mvVec3* direction, mvFloat* cu
    mvFloat vel[2][3];
    mvFloat speed[2];
    mvIndex j;
-   
+
    /**
     * Step 3: initialise initial position
     */
@@ -121,7 +121,7 @@ void applyImprovEuler(mvFloat h,mvVec3* position, mvVec3* direction, mvFloat* cu
    /**
     * Step 3: calculate the new speed using constant
     * acceleration
-    */       
+    */
    speed[0] = *currentSpeed;
    speed[1] = speed[0] + h * currentAcceleration;
 
@@ -129,8 +129,8 @@ void applyImprovEuler(mvFloat h,mvVec3* position, mvVec3* direction, mvFloat* cu
     * 3a : clipping speed to max speed
     */
    speed[0] = (speed[0] < maxSpeed) ? speed[0] : maxSpeed;
-   speed[1] = (speed[1] < maxSpeed) ? speed[1] : maxSpeed;  
-     
+   speed[1] = (speed[1] < maxSpeed) ? speed[1] : maxSpeed;
+
    /**
     * Step 4 : for each calculate new position
     * with improved euler.
@@ -158,7 +158,7 @@ void applyImprovEuler(mvFloat h,mvVec3* position, mvVec3* direction, mvFloat* cu
     * position
     */
    position->set(pos[1][0],pos[1][1],pos[1][2]);
-   *currentSpeed = speed[1];   
+   *currentSpeed = speed[1];
 }
 
 void mvWorld::mvWorldStep(mvFloat timeInSecs)
@@ -177,12 +177,12 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
    // force variables
    mvFloat globalDragForceQuantity, globalDragAccel, globalDragShift;
    mvVec3 globalUniformForce, globalUniformAccel, globalUniformShift,
-      totalForce, totalAccel, totalVelocity, bodyDirection, 
+      totalForce, totalAccel, totalVelocity, bodyDirection,
       bodyAccel, bodyVelocity, bodyForce;
    mvEnum forceType, bodyState;
    mvVec3 tempVector;
    mvFloat parameters[MV_MAX_NO_OF_PARAMETERS];
-   mvCount noOfParameters;   
+   mvCount noOfParameters;
    //mvFloat totalMass;
    mvFloat speed[2], dir[3];
    mvIndex j, groupNo;
@@ -191,7 +191,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
    /**
     * Step 1 : initialise all global force, gravity
     and shift and drag.
-    */ 
+    */
     globalDragForceQuantity = 0.0f;
     globalDragAccel = 0.0f;
     globalDragShift = 0.0f;
@@ -202,7 +202,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
    /**
     * Step 2 : iterates over all forces in
     * force array to build global force values
-    */ 
+    */
     for (forceIterator = forces.begin(); forceIterator != forces.end(); ++forceIterator)
     {
        currentForce = *forceIterator;
@@ -211,13 +211,13 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
        {
            /**
             * 2.2 check if current force is global and
-            *     enabled 
+            *     enabled
             */
-            if (currentForce->isGlobalForce() == MV_TRUE && 
+            if (currentForce->isGlobalForce() == MV_TRUE &&
                 currentForce->getEnableFlag() == MV_FORCE_ON)
             {
                 forceType = currentForce->getType();
-              
+
                 switch (forceType)
                 {
 
@@ -263,7 +263,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
                    ///
                       if (currentForce->getParameterf(MV_FORCE_QUANTITY,parameters) == MV_TRUE)
                       {
-                         globalDragForceQuantity += parameters[0]; 
+                         globalDragForceQuantity += parameters[0];
                       }
                       break;
                    case MV_DRAG_ACCELERATION:
@@ -272,7 +272,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
                    ///
                       if (currentForce->getParameterf(MV_ACCELERATION,parameters) == MV_TRUE)
                       {
-                         globalDragForceQuantity += parameters[0]; 
+                         globalDragForceQuantity += parameters[0];
                       }
                       break;
                    case MV_DRAG_SHIFT:
@@ -281,7 +281,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
                    ///
                       if (currentForce->getParameterf(MV_SPEED,parameters) == MV_TRUE)
                       {
-                         globalDragForceQuantity += parameters[0]; 
+                         globalDragForceQuantity += parameters[0];
                       }
                       break;
                    case MV_NULL_ALL:
@@ -311,7 +311,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
                    ///
                       globalDragForceQuantity = 0.0f;
                       globalUniformForce.set(0.0f,0.0f,0.0f);
-                      break;                  
+                      break;
                    case MV_NULL_ACCELERATION:
                    ///
                    // 2.3i) resets (global + drag) acceleration to zero
@@ -345,17 +345,17 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
                       //puts("hello 2");
                       break;
                    /**/
-                }     
+                }
                 /**/
 
             }
        }
     }
-   
+
    /**
     * Step 3 : initialises the time step (h)
     *
-    */     
+    */
    h = timeInSecs;
 
    /**
@@ -376,7 +376,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
 
    /**
     * Step 5 : iterate over all vehicles
-    */       
+    */
    //puts("Step 5");
    for (i = bodies.begin(); i != bodies.end(); ++i)
    {
@@ -384,23 +384,23 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
       if (tempBody != NULL)
       {
 
-         bodyState = tempBody->getState();  
+         bodyState = tempBody->getState();
          /**
           * 5.1.1 (a) straight line integration if unaffected by forces
-          */         
+          */
          if (bodyState == MV_APPLY_NO_FORCES_STATE)
          {
             maxSpeed = tempBody->maxSpeed;
             currentAcceleration = tempBody->acceleration;
-            applyImprovEuler(h,&(tempBody->position),&(tempBody->direction), &(tempBody->speed), 
+            applyImprovEuler(h,&(tempBody->position),&(tempBody->direction), &(tempBody->speed),
                       maxSpeed,currentAcceleration);
          }
          /**
           * 5.1.2 (b) apply forces to body straight line integration
           * eular
-          */   
+          */
          else if (bodyState != MV_NO_MOTION_STATE && bodyState != MV_INVALID_BODY_STATE)
-         {             
+         {
             maxSpeed = tempBody->maxSpeed;
             //tempVector = tempBody->direction;
             //tempVector *= tempBody->acceleration;
@@ -416,21 +416,21 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
             mvProcessBodyBehaviours(this, tempBody, h,
                bodyDirection, bodyVelocity,bodyAccel,bodyForce);
 
-            /** 
+            /**
              * final integration
             **/
             /**
              * force(mvForce) => accel (a = f/m)
              */
-            totalAccel += ((1.0f/tempBody->mass) * totalForce);  
-            bodyAccel += ((1.0f/tempBody->mass) * bodyForce); 
+            totalAccel += ((1.0f/tempBody->mass) * totalForce);
+            bodyAccel += ((1.0f/tempBody->mass) * bodyForce);
             /**
              * accel to velocity <> change in v =  a * h
              */
-            totalVelocity += (h * totalAccel);     
+            totalVelocity += (h * totalAccel);
             bodyVelocity += (h * bodyAccel);
 
- 
+
             /**
              * 5.1.2.1: initialise initial position
              */
@@ -458,17 +458,17 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
 
             dir[0] = tempBody->direction.getX();
             dir[1] = tempBody->direction.getY();
-            dir[2] = tempBody->direction.getZ();            
+            dir[2] = tempBody->direction.getZ();
 
             /**
              * 5.1.2.3: calculate the new speed using constant
              * acceleration
-             */            
+             */
             speed[0] = tempBody->speed;
             speed[1] = bodyVelocity.length();
-           
+
             /**
-             * limits change in velocity by max velocity 
+             * limits change in velocity by max velocity
              *change per frame
              */
             /**/
@@ -487,7 +487,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
                   speed[1] = speed[0] + extraVelocity;
                }
             }
-            else 
+            else
             {
                extraVelocity = tempBody->deceleration * h;
                if ((speed[0] - speed[1]) > extraVelocity)
@@ -504,20 +504,20 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
              * 5.1.2.4: clipping speed to max speed
              */
             speed[0] = (speed[0] < maxSpeed) ? speed[0] : maxSpeed;
-            speed[1] = (speed[1] < maxSpeed) ? speed[1] : maxSpeed;      
+            speed[1] = (speed[1] < maxSpeed) ? speed[1] : maxSpeed;
 
             /**
              * 5.1.2.6: for each calculate new position
              * with improved euler.
              */
             for (j = 0; j < 3; j++)
-            {              
+            {
                /**
                 * 5.1.2.6.1 calculate the velocity
                 * for all
                 */
                vel[0][j] += dir[j] * speed[0];
-               vel[1][j] += dir[j] * speed[1];       
+               vel[1][j] += dir[j] * speed[1];
                //vel[0][j] *= speed[0];
                //vel[1][j] *= speed[1];
 
@@ -575,7 +575,7 @@ void mvWorld::mvApplyToAllWaypoints(void (someFunction)(mvWaypoint*,void*),void*
 // start mv Body declearations
 
 /**
- * adds bodies to 
+ * adds bodies to
  */
 mvIndex mvWorld::mvAddBody(mvEnum bType, mvEnum bShape)
 {
@@ -599,7 +599,7 @@ mvIndex mvWorld::mvAddBodyWithPos(mvEnum bType, mvEnum bShape, mvFloat x, mvFloa
 };
 
 mvBody* mvWorld::mvGetBody(mvIndex index)
-{ 
+{
    return mvGetClassPtr<mvBody>(bodies,index, noOfBodies);
 };
 
@@ -621,7 +621,7 @@ mvEnum mvWorld::mvRemoveBody(mvIndex index)
 
 void mvWorld::mvRemoveAllBodies()
 {
-   mvRemoveAllClassObjectsFromList<mvBody>(bodies, currentBody, noOfBodies);  
+   mvRemoveAllClassObjectsFromList<mvBody>(bodies, currentBody, noOfBodies);
 };
 
 mvEnum mvWorld::mvSetBodyParameter(mvIndex index, mvEnum paramFlag, mvEnum option)
@@ -656,7 +656,7 @@ mvEnum mvWorld::mvSetCurrentBodyParameterv(mvEnum paramFlag, mvFloat* array)
 // end body functions - start mv group functions
 
 /**
- * takes mvGroupID as parameter but 
+ * takes mvGroupID as parameter but
  *
  * returns index number of new group created
  */
@@ -666,9 +666,9 @@ mvIndex mvWorld::mvAddGroup(char* mvGroupID)
    mvGroup* tempGroup = NULL;
 
    if (mvGroupID == NULL)
-      return MV_FALSE;      
+      return MV_FALSE;
 
-   // iterate over all 
+   // iterate over all
    for (i = groups.begin(); i != groups.end(); ++i)
    {
       tempGroup = *i;
@@ -686,7 +686,7 @@ mvIndex mvWorld::mvAddGroup(char* mvGroupID)
    tempGroup = new mvGroup(mvGroupID);
    groups.push_back(tempGroup);
    ++noOfGroups;
-   currentGroup = noOfGroups; 
+   currentGroup = noOfGroups;
    return currentGroup;
 };
 
@@ -894,7 +894,7 @@ mvIndex mvWorld::mvGetGroupIndexByID(char* groupID)
 
    if (groupID == NULL)
       return 0;
-   
+
    for ( i = groups.begin(); i != groups.end(); ++i)
    {
       temp = *i;
@@ -914,7 +914,7 @@ mvIndex mvWorld::mvGetGroupIndexByID(char* groupID)
 // end group functions - start Obstacle functions
 
 /**
- * takes mvGroupID as parameter but 
+ * takes mvGroupID as parameter but
  *
  * returns index number of new group created
  */
@@ -990,7 +990,7 @@ mvEnum mvWorld::mvSetCurrentObstacleParameterv(mvEnum paramFlag, mvFloat* array)
    return mvSetClassParameterv<mvObstacle>(obstacles,noOfObstacles,currentObstacle,paramFlag,array);
 };
 
-// end obstacle functions -  start waypoint functions 
+// end obstacle functions -  start waypoint functions
 mvIndex mvWorld::mvAddWaypoint(mvEnum wType, mvEnum wShape)
 {
    return mvAddWaypointWithPos(wType,wShape, 0, 0, 0);
@@ -1268,7 +1268,7 @@ mvIndex mvWorld::mvSetCurrentForce(mvIndex index)
 
 //mvIndex mvWorld::mvAddBehaviour(char* bName, mvEnum bType)
 mvIndex mvWorld::mvAddBehaviour(mvEnum bType)
-{ 
+{
    //std::vector<mvBehaviour*>::iterator i;
    mvBehaviour* tempBehaviour = NULL;
    /**
@@ -1280,7 +1280,7 @@ mvIndex mvWorld::mvAddBehaviour(mvEnum bType)
       tempBehaviour = *i;
       if (tempBehaviour != NULL)
       {
-         // if same name abort 
+         // if same name abort
          if (strcmp(tempBehaviour->getName(),bName) == 0)
          {
             return 0;
@@ -1334,7 +1334,7 @@ mvIndex mvWorld::mvGetBehaviourIndexByID(char* bID)
 
    if (bID == NULL)
       return 0;
-   
+
    for ( i = behaviours.begin(); i != behaviours.end(); ++i)
    {
       temp = *i;
@@ -1551,7 +1551,7 @@ mvIndex mvWorld::mvAddGroupBehaviour(mvEnum type)
    groupBehaviours.push_back(tempGroupBehav);
    ++noOfGroupBehaviours;
    currentGroupBehaviour = noOfBehaviours;
-   return currentBehaviour;   
+   return currentBehaviour;
 };
 
 mvGroupBehaviour* mvWorld::mvGetGroupBehaviour(mvIndex index)
@@ -1716,7 +1716,7 @@ mvEnum mvWorld::mvInsertGroupIntoGroupBehaviour(mvIndex groupIndex, mvIndex grou
   else
   {
      return MV_FALSE;
-  }  
+  }
 };
 
 mvEnum mvWorld::mvInsertCurrentGroupIntoGroupBehaviour(mvIndex groupBehaviour)
@@ -1749,7 +1749,7 @@ mvEnum mvWorld::mvSetDefaultBehaviourFactorForBody(mvFloat factor, mvIndex bodyI
    }
 };
 
-mvEnum mvWorld::mvSetDefaultWaypointForCurrentBody(mvIndex wpIndex) 
+mvEnum mvWorld::mvSetDefaultWaypointForCurrentBody(mvIndex wpIndex)
 {
    return mvSetDefaultWaypointForBody(wpIndex,currentBody);
 };

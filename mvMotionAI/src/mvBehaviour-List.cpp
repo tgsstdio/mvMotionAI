@@ -44,7 +44,7 @@ void mvBehaviourList::removeAll()
    {
       tempEntry = *i;
       if (tempEntry)
-      {  
+      {
          // need to add counter to allow
          // one call to shared entry
          delete tempEntry;
@@ -78,15 +78,15 @@ mvBehaviourListNode* mvBehaviourList::findExistingGroupEntry(mvIndex bIndex, mvI
 };
 
 mvBehaviourListNode* mvBehaviourList::getEntryByIndex(mvIndex index) const
-{ 
+{
    if (index > 0 && index <= noOfEntries)
-   {       
+   {
       return entries[index + MV_OFFSET_TO_INDEX];
    }
    else
    {
       return NULL;
-   } 
+   }
 };
 
 mvCount mvBehaviourList::getNoOfEntries() const
@@ -95,7 +95,7 @@ mvCount mvBehaviourList::getNoOfEntries() const
 };
 
 mvBehaviourList::mvBehaviourList(const mvBehaviourList& rhs)
-{ 
+{
   mvBehaviourListNode* currentNode = NULL;
   mvBehaviourListNode* copyNode = NULL;
   mvIndex i;
@@ -115,7 +115,7 @@ mvBehaviourList::mvBehaviourList(const mvBehaviourList& rhs)
         copyNode = new mvBehaviourListNode(*currentNode);
         entries.push_back(copyNode);
      }
-  }  
+  }
 };
 
 const mvBehaviourList& mvBehaviourList::operator=(const mvBehaviourList& rhs)
@@ -139,8 +139,8 @@ const mvBehaviourList& mvBehaviourList::operator=(const mvBehaviourList& rhs)
         copyNode = new mvBehaviourListNode(*currentNode);
         entries.push_back(copyNode);
      }
-  }  
-  
+  }
+
   return *this;
 };
 
@@ -171,14 +171,14 @@ mvEnum mvBehaviourList::addEntry(mvEnum bType, mvIndex behaviourIndex, mvIndex g
    tempNode = new mvBehaviourListNode(bType,behaviourIndex,groupIndex);
 #ifdef MV_BEHAVIOUR_LIST_DEBUG_FLAG
    puts(mvGetEnumString(tempNode->getType()));
-   std::cout << "B I : "<<tempNode->getBehaviourIndex() << std::endl; 
+   std::cout << "B I : "<<tempNode->getBehaviourIndex() << std::endl;
    std::cout << "G I : "<<tempNode->getGroupIndex() << std::endl;
 #endif
    // if (bType != MV_EXISTING_BEHAVIOUR || MV_EXISTING_GROUP_BEHAVIOUR)
    if (tempNode->getBehavData() != NULL)
    {
 #ifdef MV_BEHAVIOUR_LIST_DEBUG_FLAG
-      std::cout << "PW : "<<defaultPathway << std::endl; 
+      std::cout << "PW : "<<defaultPathway << std::endl;
       std::cout << "BD : "<<defaultBody << std::endl;
       std::cout << "WP : "<<defaultWaypoint << std::endl;
       std::cout << "F : "<<tempNode->getFactor() << std::endl;
@@ -188,7 +188,7 @@ mvEnum mvBehaviourList::addEntry(mvEnum bType, mvIndex behaviourIndex, mvIndex g
       tempNode->getBehavData()->addPathway(defaultPathway);
       tempNode->setFactor(defaultFactor);
 #ifdef MV_BEHAVIOUR_LIST_DEBUG_FLAG
-      std::cout << "PW : "<<tempNode->getBehavData()->getPathway() << std::endl; 
+      std::cout << "PW : "<<tempNode->getBehavData()->getPathway() << std::endl;
       std::cout << "BD : "<<tempNode->getBehavData()->getBody() << std::endl;
       std::cout << "WP : "<<tempNode->getBehavData()->getWaypoint() << std::endl;
       std::cout << "F : "<<tempNode->getFactor() << std::endl;
@@ -209,7 +209,7 @@ mvBehaviourListNode::mvBehaviourListNode(const mvBehaviourListNode& rhs)
 {
    initDefault();
 
-   bNodeType = rhs.getType(); 
+   bNodeType = rhs.getType();
    switch(bNodeType)
    {
       /**
@@ -234,7 +234,7 @@ mvBehaviourListNode::mvBehaviourListNode(const mvBehaviourListNode& rhs)
          }
          break;
    }
-  
+
 };
 
 void mvBehaviourListNode::initialiseEntry(mvEnum type)
@@ -253,7 +253,7 @@ mvFloat mvBehaviourListNode::getFactor() const
 };
 mvEnum mvBehaviourListNode::setFactor(mvFloat factor)
 {
-  if (factor >= 0.0) 
+  if (factor >= 0.0)
   {
      bNodeFactor = factor;
      return MV_TRUE;
@@ -261,14 +261,14 @@ mvEnum mvBehaviourListNode::setFactor(mvFloat factor)
   else
   {
      return MV_FALSE;
-  }  
+  }
 };
 
 const mvBehaviourListNode& mvBehaviourListNode::operator=(const mvBehaviourListNode& rhs)
 {
    initDefault();
 
-   bNodeType = rhs.getType(); 
+   bNodeType = rhs.getType();
    switch(bNodeType)
    {
       /**
@@ -322,7 +322,7 @@ mvBehaviourListNode::mvBehaviourListNode(mvEnum nodeType, mvIndex behaviour, mvI
          bNodeType = nodeType;
          break;
    }
-   
+
 };
 
 mvBehaviourListNode::mvBehaviourListNode(mvEnum nodeType, mvIndex behaviour, mvIndex group,
@@ -347,12 +347,12 @@ mvBehaviourListNode::mvBehaviourListNode(mvEnum nodeType, mvIndex behaviour, mvI
          break;
    }
 
-   
+
 };
 
 mvBehaviourListNode::mvBehaviourListNode()
 {
-   initDefault();   
+   initDefault();
 };
 
 mvBehaviourListNode::~mvBehaviourListNode()
@@ -454,19 +454,19 @@ mvBehaviourEntry* mvBehaviour_List::findEntryByName(char* bName)
    for (i =  entries.begin(); i != entries.end(); ++i)
    {
       tempEntry = *i;
-      if (tempEntry != NULL 
+      if (tempEntry != NULL
          && strcmp(tempEntry->currentBehaviour->getName(),bName) == 0)
       {
          return tempEntry;
       }
    }
-   return NULL;   
+   return NULL;
 };
 **/
 
 /**
 mvEnum mvBehaviourList::addNewEntry(mvBehaviour* behaviourKey)
-{ 
+{
    mvBehaviourEntry* tempEntry = NULL;
 
    if (behaviourKey == NULL)
@@ -495,7 +495,7 @@ mvEnum mvBehaviourList::addNewEntryPtr(mvBehaviourEntry* bEntryPtr)
 
    if (bEntryPtr == NULL)
       return MV_FALSE;
-   
+
    // check if new entry is unique
    for (i = entries.begin(); i != entries.end(); ++i)
    {

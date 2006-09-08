@@ -1,0 +1,9 @@
+This is the mvMotionAI library 
+for Code::Blocks rc2 with mingGW.
+
+file : libmvMotionAI.a
+Size : 625 KB (640,072 bytes)
+Created, 9 September 2006, 12:17:09 AM
+
+David Young, 2006.
+

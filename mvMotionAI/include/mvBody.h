@@ -11,25 +11,25 @@
  *\file mvBody.h
  *\class mvBody
  *
- * \brief 
+ * \brief
  *
- * Particle : An unidirectional moving object that does not require 
- * rotation, 
+ * Particle : An unidirectional moving object that does not require
+ * rotation,
  *
  * Vehicle : a single directional moving object as either an obstacle or not.
  *
  * This class should be defined as a subclass of overall movement
- * class. This class differs from Vehicle because Particles can 
- * travel along any direction instead of travelling along a single unit 
+ * class. This class differs from Vehicle because Particles can
+ * travel along any direction instead of travelling along a single unit
  * vector.
  *
  * Log
- * Version		date		comments 
+ * Version		date		comments
  * 00-01-05   22/8/06   - using types headers and mvVec3.
  *
  * 00-01-03   21/6/06   - added behaviour list to mvBody class
  *
- * 00-01-02   31/5/06   - added behaviour / removing groups from body & system         
+ * 00-01-02   31/5/06   - added behaviour / removing groups from body & system
  *
  * 00-01-00   19/5/06   - renamed particles and vehicles, grouped them into a group
  *                     under the name of mvBody.
@@ -38,7 +38,7 @@
  *
  * 00-00-05    3/3/06   - intergration for motion.
  *
- * 00-00-02    8/2/06   - separated from MotionAI.h, created new 
+ * 00-00-02    8/2/06   - separated from MotionAI.h, created new
  *                     header and source file.
  *
  */
@@ -74,7 +74,7 @@ class mvBody
     //int noOfBehaviours;
     //int behaviourIndex;
     mvEnum type; //< body type i.e vehicle/particle/dual type
-    mvEnum state; //< motion to apply iteration  
+    mvEnum state; //< motion to apply iteration
 
     mvBody(mvEnum bType, mvEnum shape);
     mvBody(mvEnum bType, mvEnum shape, mvFloat x, mvFloat y, mvFloat z);
@@ -94,12 +94,12 @@ class mvBody
     mvFloat getX() const;
     mvFloat getY() const;
     mvFloat getZ() const;
-    //void setMaxAcceleration(mvFloat num);    
+    //void setMaxAcceleration(mvFloat num);
     void setAcceleration(mvFloat accel);
     mvEnum setParameter(mvEnum paramFlag, mvEnum option);
     mvEnum setParameterf(mvEnum paramFlag, mvFloat num);
     mvEnum setParameterv(mvEnum paramFlag, mvFloat* numArray);
-    // 
+    //
     mvEnum addExistingGroupBehaviourEntry(mvIndex behaviourIndex, mvIndex groupIndex);
     mvEnum addExistingBehaviourEntry(mvIndex behaviourIndex);
     mvEnum addNewBehaviourEntry(mvEnum behaviourType);

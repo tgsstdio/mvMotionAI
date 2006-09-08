@@ -46,7 +46,7 @@ mvEnum mvBehaviour_InitialiseType(mvEnum type, mvEnum& bType, mvIndex* indexes,
          if (states != NULL)
          {
            delete [] states;
-           states = NULL;       
+           states = NULL;
          }
 
          if (points != NULL)
@@ -152,7 +152,7 @@ mvEnum singleNodeArray[] =
   MV_SIMPLE_FLOCK,
 };
 
-mvEnum groupNodeArray[] = 
+mvEnum groupNodeArray[] =
 {
   MV_SIMPLE_FLOCK_GROUP_ENTRY,
 };
@@ -186,3 +186,4 @@ mvEnum selectGroupToBodyEntryType(mvEnum type)
    }
    return MV_INVALID_BEHAVIOUR_ENTRY_TYPE;
 };
+

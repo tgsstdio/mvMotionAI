@@ -50,7 +50,7 @@ int mvLua_AllWorldsStepForward(lua_State* L)
   mvFloat timeInSecs = (mvFloat) lua_tonumber(L, 1);
   mvAllWorldsStepForward(timeInSecs);
   lua_pushnumber(L,0);
-  return 1;   
+  return 1;
 };
 
 int mvLua_GetWorldByID(lua_State* luaVM)
@@ -91,8 +91,8 @@ int mvLua_RemoveAllWorlds(lua_State* luaVM)
 int mvLua_AddWorld(lua_State* luaVM)
 {
    int result = 0;
-   char* worldID = (char*) lua_tostring(luaVM, 1);   
- 
+   char* worldID = (char*) lua_tostring(luaVM, 1);
+
  #ifdef MV_MOTIONAI_LUA_DEBUG
    if (worldID != NULL)
       std::cout << worldID << std::endl;
@@ -117,9 +117,9 @@ int mvLua_AddWorld(lua_State* luaVM)
 
    #ifdef MV_MOTIONAI_LUA_DEBUG
      if (result == 0)
-     {         
+     {
         std::cout << "Add mvWorld Error " << std::endl;
-     } 
+     }
      else
      {
        std::cout << "No of Motion AI worlds : " << result << std::endl;
@@ -128,4 +128,7 @@ int mvLua_AddWorld(lua_State* luaVM)
 
    lua_pushnumber(luaVM,result);
    return 1;
-}
+};
+
+
+

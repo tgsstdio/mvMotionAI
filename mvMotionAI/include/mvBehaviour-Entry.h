@@ -19,7 +19,7 @@
  */
 
 class mvBehaviourEntry
-{  
+{
    private:
       void initDefault();
       mvEnum mvBehaviour_InitialiseType2(mvEnum type);

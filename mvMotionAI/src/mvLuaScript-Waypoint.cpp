@@ -6,10 +6,10 @@
 
 /**
  * \file mvLuaScript-Waypoint.cpp
- * 
+ *
  * Log
  *
- * version     date     comments 
+ * version     date     comments
  *00-01-03    21/6/06   - added lua functions for get, remove
  *                      waypoint functions
  */
@@ -54,7 +54,7 @@ int mvLua_AddWaypoint(lua_State* L)
    mvEnum wType, wShape;
 
    mvWorld* tempWorld = NULL;
-   
+
    // check if world exist
    tempWorld = mvGetWorldByIndex(worldID);
    if (tempWorld != NULL)
@@ -69,7 +69,7 @@ int mvLua_AddWaypoint(lua_State* L)
       wShape = mvScript_checkWaypointShape(shape);
       result = tempWorld->mvAddWaypointWithPos(wType,wShape,x,y,z);
    }
-   lua_pushnumber(L,result);         
+   lua_pushnumber(L,result);
    return 1;
 };
 
@@ -103,7 +103,7 @@ int mvWaypoint::getNoOfDimensions() const
        return MV_NO_OF_AACYLINDER_DIMENSIONS;
     default:
        return MV_INVALID_DIMENSIONS;
-  }    
+  }
 };
 **/
 
@@ -121,8 +121,8 @@ int mvLua_RemoveCurrentWaypoint(lua_State* L)
 #endif
       result = tempWorld->mvRemoveCurrentWaypoint();
    }
-   lua_pushnumber(L,result);         
-   return 1;   
+   lua_pushnumber(L,result);
+   return 1;
 };
 
 int mvLua_RemoveWaypoint(lua_State* L)
@@ -140,8 +140,8 @@ int mvLua_RemoveWaypoint(lua_State* L)
 #endif
       result = tempWorld->mvRemoveWaypoint(wIndex);
    }
-   lua_pushnumber(L,result);         
-   return 1;   
+   lua_pushnumber(L,result);
+   return 1;
 };
 
 int mvLua_SetCurrentWaypoint(lua_State* L)
@@ -159,8 +159,8 @@ int mvLua_SetCurrentWaypoint(lua_State* L)
 #endif
       result = tempWorld->mvSetCurrentWaypoint(wIndex);
    }
-   lua_pushnumber(L,result);         
-   return 1;  
+   lua_pushnumber(L,result);
+   return 1;
 };
 
 int mvLua_RemoveAllWaypoints(lua_State* L)
@@ -176,6 +176,7 @@ int mvLua_RemoveAllWaypoints(lua_State* L)
       puts(tempWorld->getWorldID());
 #endif
       tempWorld->mvRemoveAllWaypoints();
-   }        
-   return 0;  
+   }
+   return 0;
 };
+

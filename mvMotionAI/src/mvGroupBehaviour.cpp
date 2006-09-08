@@ -19,21 +19,21 @@ mvGroupBehaviour::mvGroupBehaviour(mvEnum gbType)
    //mvCount noOfDefaultBehaviours;
 
    initDefault();
-   // set type 
+   // set type
    groupBehaviourType = gbType;
    // get no of default beh entry
-   
+
 };
 
 // no repetition
 /**/
 //mvEnum mvGroupBehaviour::addGroup(mvGroup* groupPtr)
 mvEnum mvGroupBehaviour::addGroup(mvIndex  groupNo)
-{  
+{
    mvIndex currentGroupIndex;
    mvGroupBehaviourNode* tempNode = NULL;
    std::vector<mvGroupBehaviourNode*>::iterator i;
-   
+
    for (i = groupsList.begin(); i != groupsList.end(); ++i)
    {
       tempNode = *i;
@@ -62,8 +62,8 @@ mvEnum mvGroupBehaviour::removeGroup(mvIndex groupNo)
   /**
    mvGroup* currentGroup = NULL;
    mvGroupBehaviourNode* tempNode = NULL;
-   std::set<mvGroupBehaviourNode*>::iterator i; 
-   
+   std::set<mvGroupBehaviourNode*>::iterator i;
+
    for (i = groupsList.begin(); i != groupsList.end(); ++i)
    {
       tempNode = *i;
@@ -86,7 +86,7 @@ mvEnum mvGroupBehaviour::removeGroup(mvIndex groupNo)
    mvIndex currentGroupIndex;
    mvGroupBehaviourNode* tempNode = NULL;
    std::vector<mvGroupBehaviourNode*>::iterator i;
-   
+
    for (i = groupsList.begin(); i != groupsList.end(); ++i)
    {
       tempNode = *i;
@@ -227,10 +227,10 @@ mvEnum mvGroupBehaviour::setParameterv(mvIndex groupIndex, mvEnum paramFlag, mvF
 
 mvGroupBehaviourNode* mvGroupBehaviour::findGroupNodeByIndex(mvIndex groupIndex)
 {
-   mvIndex currentGroupIndex = NULL;
+   mvIndex currentGroupIndex;
    mvGroupBehaviourNode* tempNode = NULL;
    std::vector<mvGroupBehaviourNode*>::iterator i;
-   
+
    for (i = groupsList.begin(); i != groupsList.end(); ++i)
    {
       tempNode = *i;
@@ -254,7 +254,7 @@ mvGroupBehaviourNode* mvGroupBehaviour::findGroupNodeByPtr(mvGroup* groupPtr)
    mvGroup* currentGroup = NULL;
    mvGroupBehaviourNode* tempNode = NULL;
    std::vector<mvGroupBehaviourNode*>::iterator i;
-   
+
    for (i = groupsList.begin(); i != groupsList.end(); ++i)
    {
       tempNode = *i;
@@ -319,7 +319,7 @@ mvGroupBehaviourNode::mvGroupBehaviourNode(const mvGroupBehaviourNode& rhs)
 
    //groupPtr = rhs.getGroup();
    groupIndex = rhs.getGroup();
-   behavData = new mvBehaviourEntry(*rhs.getBehavData());    
+   behavData = new mvBehaviourEntry(*rhs.getBehavData());
 };
 // deep copy for behav entry , shallow copy for group ptr
 const mvGroupBehaviourNode& mvGroupBehaviourNode::operator=(const mvGroupBehaviourNode& rhs)
@@ -339,7 +339,7 @@ const mvGroupBehaviourNode& mvGroupBehaviourNode::operator=(const mvGroupBehavio
 
    //groupPtr = rhs.getGroup();
    groupIndex = rhs.getGroup();
-   behavData = new mvBehaviourEntry(*rhs.getBehavData()); 
+   behavData = new mvBehaviourEntry(*rhs.getBehavData());
    return *this;
 };
 
@@ -368,7 +368,7 @@ mvGroupBehaviourNode::~mvGroupBehaviourNode()
       groupPtr = NULL;
    }
    **/
-   
+
    if (behavData != NULL)
    {
       delete behavData;
@@ -380,7 +380,7 @@ mvGroupBehaviourNode::~mvGroupBehaviourNode()
 mvGroupBehaviour::mvGroupBehaviour(mvBehaviour* groupBeh)
 {
    currentBehaviour = groupBeh;
-   noOfGroups = 0; 
+   noOfGroups = 0;
 };
 
 mvEnum mvGroupBehaviour::addGroup(mvGroup* groupPtr)

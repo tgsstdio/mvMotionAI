@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE CodeBlocks_project_file>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="1"/>
+	<Project>
+		<Option title="mvMotionAI OpenGL application"/>
+		<Option makefile="Makefile"/>
+		<Option makefile_is_custom="0"/>
+		<Option compiler="0"/>
+		<Build>
+			<Target title="default">
+				<Option output="bin\mvMotion-mingw.exe"/>
+				<Option working_dir="bin"/>
+				<Option object_output=".objs"/>
+				<Option deps_output=".deps"/>
+				<Option type="1"/>
+				<Option compiler="0"/>
+				<Option projectResourceIncludeDirsRelation="1"/>
+				<Compiler>
+					<Add directory="include"/>
+					<Add directory="include-other\mingw"/>
+				</Compiler>
+				<Linker>
+					<Add library="glu32"/>
+					<Add library="glut32"/>
+					<Add library="mvMotionAI"/>
+					<Add library="lualib5"/>
+					<Add library="lua5"/>
+					<Add library="opengl32"/>
+					<Add directory="lib"/>
+					<Add directory="lib-other\mingw"/>
+					<Add directory="lib-other"/>
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="examples-src\Camera.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="default"/>
+		</Unit>
+		<Unit filename="examples-src\Camera.h">
+			<Option compilerVar=""/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="default"/>
+		</Unit>
+		<Unit filename="examples-src\GLMain.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="default"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

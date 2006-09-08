@@ -1,0 +1,129 @@
+# depslib dependency file v1.0
+1157174374 d:\mvmotionai\mvmotionai\examples-src\camera.cpp
+	"Camera.h"
+	<GL/glut.h>
+
+1157174374 d:\mvmotionai\mvmotionai\examples-src\camera.h
+
+1157729728 d:\mvmotionai\mvmotionai\examples-src\glmain.cpp
+	<GL/glut.h>
+	<iostream>
+	"Camera.h"
+	<cstdlib>
+	"mvMotionAI.h"
+
+1157174376 d:\mvmotionai\mvmotionai\include\mvmotionai.h
+	<cstdlib>
+	<iostream>
+	<vector>
+	"mvWorld.h"
+	"mvMotionAI-Types.h"
+	<lua.h>
+	<lualib.h>
+	<lauxlib.h>
+
+1157174376 d:\mvmotionai\mvmotionai\include\mvworld.h
+	"mvMotionAI-Types.h"
+	"mvBody.h"
+	"mvWaypoint.h"
+	"mvBehaviour.h"
+	"mvPathway.h"
+	"mvGroup.h"
+	"mvObstacle.h"
+	"mvForce.h"
+	"mvGroupBehaviour.h"
+
+1157174376 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
+
+1157700570 d:\mvmotionai\mvmotionai\include\mvbody.h
+	<vector>
+	"mvMotionAI-Types.h"
+	"mvEnum.h"
+	"mvVec3.h"
+	"mvBehaviour-List.h"
+
+1157174376 d:\mvmotionai\mvmotionai\include\mvenum.h
+	<cstdlib>
+
+1157700570 d:\mvmotionai\mvmotionai\include\mvvec3.h
+	"mvMotionAI-Types.h"
+	<iostream>
+
+1157700570 d:\mvmotionai\mvmotionai\include\mvbehaviour-list.h
+	<vector>
+	"mvEnum.h"
+	"mvMotionAI-Types.h"
+	"mvBehaviour-Entry.h"
+
+1157700570 d:\mvmotionai\mvmotionai\include\mvbehaviour-entry.h
+	"mvMotionAI-Types.h"
+	"mvVec3.h"
+	"mvEnum.h"
+
+1157174376 d:\mvmotionai\mvmotionai\include\mvwaypoint.h
+	<vector>
+	"mvMotionAI-Types.h"
+	"mvVec3.h"
+	"mvEnum.h"
+	"mvForce.h"
+
+1157700570 d:\mvmotionai\mvmotionai\include\mvforce.h
+	"mvVec3.h"
+	"mvMotionAI-Types.h"
+	"mvEnum.h"
+
+1157700570 d:\mvmotionai\mvmotionai\include\mvbehaviour.h
+	"mvBehaviour-Entry.h"
+	"mvEnum.h"
+	"mvMotionAI-Types.h"
+
+1157174376 d:\mvmotionai\mvmotionai\include\mvpathway.h
+	<vector>
+	"mvEnum.h"
+	"mvWaypoint.h"
+	"mvMotionAI-Types.h"
+
+1157174376 d:\mvmotionai\mvmotionai\include\mvgroup.h
+	<vector>
+	"mvMotionAI-Types.h"
+	"mvEnum.h"
+	"mvBody.h"
+
+1157174376 d:\mvmotionai\mvmotionai\include\mvobstacle.h
+	"mvEnum.h"
+	"mvVec3.h"
+	"mvMotionAI-Types.h"
+
+1157700570 d:\mvmotionai\mvmotionai\include\mvgroupbehaviour.h
+	"mvMotionAI-Types.h"
+	"mvBehaviour-Entry.h"
+	"mvEnum.h"
+	<vector>
+	<set>
+
+1136901012 d:\mvmotionai\mvmotionai\include-other\mingw\lua.h
+	<stdarg.h>
+	<stddef.h>
+	"luaconf.h"
+
+1135707120 d:\mvmotionai\mvmotionai\include-other\mingw\lualib.h
+	"lua.h"
+
+1135873930 d:\mvmotionai\mvmotionai\include-other\mingw\lauxlib.h
+	<stddef.h>
+	<stdio.h>
+	"lua.h"
+
+1139597046 d:\mvmotionai\mvmotionai\include-other\mingw\luaconf.h
+	<limits.h>
+	<stddef.h>
+	<unistd.h>
+	<io.h>
+	<stdio.h>
+	<stdio.h>
+	<readline/readline.h>
+	<readline/history.h>
+	<assert.h>
+	<math.h>
+	<unistd.h>
+

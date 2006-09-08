@@ -60,13 +60,13 @@ int main(int argc, char** argv)
 {
    glutInit(&argc, argv);
    glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
-   glutInitWindowSize (windowWidth, windowHeight); 
+   glutInitWindowSize (windowWidth, windowHeight);
    glutInitWindowPosition (100, 100);
    glutCreateWindow (argv[0]);
 
    /**
     * Step 2 : initialise mvMotionAI library
-    */ 
+    */
    mvInitMotionAI();
 
    /**
@@ -84,7 +84,7 @@ int main(int argc, char** argv)
    mvLoadLuaScriptFile(scriptFileName);
    init ();
 
-   glutDisplayFunc(display); 
+   glutDisplayFunc(display);
    glutReshapeFunc(reshape);
    glutKeyboardFunc(keyboard);
 
@@ -95,6 +95,7 @@ int main(int argc, char** argv)
 const char* animateFlag = NULL;
 const char no_animation[] = "a : Start animation";
 const char yes_animation[] = "A : stop Animation";
+const char camera_keys[] = "q|Q/w|W/e|E : move camera\nz|Z/x|X/c|c rotates camera\n";
 
 void display(void)
 {
@@ -120,7 +121,7 @@ void display(void)
 
      glPushMatrix();
        glRotatef(angle,0,1,0);
-       glColor3f(1,1,1);     
+       glColor3f(1,1,1);
        glutSolidTeapot(1.0);
      glPopMatrix();
 
@@ -137,7 +138,7 @@ void display(void)
     */
 
    animateFlag = (isAnimating) ? yes_animation : no_animation;
-   sprintf(buffer,"mvMotionAI, 2006\nFrame Rate : %3.3f fps\n%s\nScripting file : %s\n",frameRateInterval,animateFlag,scriptFileName);
+   sprintf(buffer,"mvMotionAI, 2006\nFrame Rate : %3.3f fps\n%s\nScripting file : %s\n%s\n",frameRateInterval,animateFlag,scriptFileName,camera_keys);
 
    drawText(5, windowHeight - 13, buffer ,windowWidth,windowHeight, 1.0, 1.0, 1.0);
    glFlush();
@@ -147,11 +148,11 @@ void display(void)
 void displayMotionAI()
 {
    /**
-    * Step 5: For all worlds, we apply the function 'worldFunction' 
-    * as a function pointer. By passing the function name to mvApplyToAllWorlds 
-    * and some other parameter. Here we used NULL but you could pass 
+    * Step 5: For all worlds, we apply the function 'worldFunction'
+    * as a function pointer. By passing the function name to mvApplyToAllWorlds
+    * and some other parameter. Here we used NULL but you could pass
     * structures, classes and anything that will fit as a void* pointer.
-    */ 
+    */
    mvApplyToAllWorlds(worldFunction,NULL);
 }
 
@@ -160,8 +161,9 @@ void worldFunction(mvWorld* tempWorld, void* entry)
    /**
     * Step 6: Here we call other functions to draw the classes
     * inside the mvWorld instance such as mvBody, mvObstacles
-    * & mvWaypoints. 
-    */    
+    * & mvWaypoints. Each of these functions below take a void function
+    * i.e void func(mvClass* object, void* ptr);
+    */
    if (tempWorld != NULL)
    {
       tempWorld->mvApplyToAllBodies(displayBody,NULL);
@@ -172,7 +174,7 @@ void worldFunction(mvWorld* tempWorld, void* entry)
 
 
 
-/** 
+/**
  * Step 6a : this function draws the mvBody type in the
  * application
  */
@@ -221,14 +223,14 @@ void displayBody(mvBody* p,void* extraPtr)
        }
        else
        {
-         glutWireOctahedron(); 
+         glutWireOctahedron();
        }
        glPopAttrib();
      glPopMatrix();
    }
 }
 
-/** 
+/**
  * Step 6b : this function draws the mvObstacle type in the
  * application
  */
@@ -253,13 +255,13 @@ void displayObstacle(mvObstacle* o,void* extraPtr)
        }
        else
        {
-         glutSolidOctahedron(); 
+         glutSolidOctahedron();
        }
      glPopMatrix();
    }
 }
 
-/** 
+/**
  * Step 6a : this function draws the mvWaypoint type in the
  * application
  */
@@ -284,7 +286,7 @@ void displayWaypoint(mvWaypoint* wp,void* extraPtr)
         }
         else
         {
-          glutSolidOctahedron(); 
+          glutSolidOctahedron();
         }
      glPopMatrix();
    }
@@ -303,7 +305,7 @@ void animate(void)
 	  angle += (float) 25.0 * (timeInSecs);
      previousTime = temp;
      /**
-      * Step 7 : To animate mvMotionAI, add elapsed time in seconds to step 
+      * Step 7 : To animate mvMotionAI, add elapsed time in seconds to step
       * the worlds forward.
       */
      mvAllWorldsStepForward(timeInSecs);
@@ -313,7 +315,7 @@ void animate(void)
    noOfFrames++;
 };
 
-void displayFrameRate(long int frameNo) 
+void displayFrameRate(long int frameNo)
 {
 
   static const double interval = 1.0;
@@ -322,20 +324,20 @@ void displayFrameRate(long int frameNo)
   static double tpfPrevious = 0.0;
   static double tpfCurrent = 0.0;
 
-  if (elapsedTime > elapsedTimeStartInterval + interval) 
+  if (elapsedTime > elapsedTimeStartInterval + interval)
 
   {
-    frameRateInterval = (frameNo - frameNoStartInterval) / 
-                      (elapsedTime - elapsedTimeStartInterval);   
+    frameRateInterval = (frameNo - frameNoStartInterval) /
+                      (elapsedTime - elapsedTimeStartInterval);
     elapsedTimeStartInterval = elapsedTime;
     frameNoStartInterval = frameNo;
     tpfCurrent = 1000.0/frameRateInterval;
     std::cout << "TPF : " << tpfCurrent << " +/- " << tpfCurrent - tpfPrevious <<std::endl;
-    tpfPrevious = tpfCurrent; 
+    tpfPrevious = tpfCurrent;
   }
 }
 
-/** 
+/**
  * Ignore these function below
  */
 
@@ -346,66 +348,66 @@ void cleanup()
 
 /* ARGSUSED1 */
 void keyboard (unsigned char key, int x, int y)
-{   
+{
    switch (key) {
       case 'a':
          previousTime = (float) glutGet(GLUT_ELAPSED_TIME);
          glutIdleFunc(animate);
          isAnimating = true;
-         glutPostRedisplay();   
+         glutPostRedisplay();
          break;
       case 'A':
          glutIdleFunc(NULL);
          isAnimating = false;
-         glutPostRedisplay();   
+         glutPostRedisplay();
          break;
       case 'z':
          worldCam.addXRotation(15.0);
-         glutPostRedisplay();         
-         break;  
+         glutPostRedisplay();
+         break;
       case 'Z':
          worldCam.addXRotation(-15.0);
-         glutPostRedisplay();         
+         glutPostRedisplay();
          break;
       case 'x':
          worldCam.addYRotation(15.0);
-         glutPostRedisplay();         
+         glutPostRedisplay();
          break;
       case 'X':
          worldCam.addYRotation(-15.0);
-         glutPostRedisplay();         
+         glutPostRedisplay();
          break;
       case 'c':
          worldCam.addZRotation(15.0);
-         glutPostRedisplay();         
+         glutPostRedisplay();
          break;
       case 'C':
          worldCam.addZRotation(-15.0);
-         glutPostRedisplay();         
+         glutPostRedisplay();
          break;
       case 'q':
          worldCam.addXPosition(0.25);
-         glutPostRedisplay(); 
+         glutPostRedisplay();
          break;
       case 'Q':
          worldCam.addXPosition(-0.25);
-         glutPostRedisplay(); 
+         glutPostRedisplay();
          break;
       case 'w':
          worldCam.addYPosition(0.25);
-         glutPostRedisplay(); 
+         glutPostRedisplay();
          break;
       case 'W':
          worldCam.addYPosition(-0.25);
-         glutPostRedisplay(); 
+         glutPostRedisplay();
          break;
       case 'e':
          worldCam.addZPosition(0.25);
-         glutPostRedisplay();          
-         break;  
+         glutPostRedisplay();
+         break;
       case 'E':
          worldCam.addZPosition(-0.25);
-         glutPostRedisplay();          
+         glutPostRedisplay();
          break;
       case 27:
          cleanup();
@@ -416,7 +418,7 @@ void keyboard (unsigned char key, int x, int y)
    }
 };
 
-void init(void) 
+void init(void)
 {
   glClearColor (0.0, 0.0, 0.0, 0.0);
   glShadeModel (GL_SMOOTH);
@@ -426,7 +428,7 @@ void init(void)
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_NORMALIZE);
   worldCam.resetCamera();
-  worldCam.addYPosition(3);  
+  worldCam.addYPosition(3);
   // refresh screen
   displayFrameRate(noOfFrames);
   glutPostRedisplay();
@@ -445,7 +447,7 @@ void drawText(GLint x, GLint y, char* s, int windowWidth,
   glPushMatrix();
 
   glLoadIdentity();
-  glOrtho(0.0, windowWidth, 
+  glOrtho(0.0, windowWidth,
         0.0, windowHeight, -1.0, 1.0);
 
   glMatrixMode(GL_MODELVIEW);
@@ -458,12 +460,12 @@ void drawText(GLint x, GLint y, char* s, int windowWidth,
   glDisable(GL_DEPTH_TEST);
   glDisable(GL_TEXTURE_2D);
 
- 
+
   glColor3f(r, g, b);
   glRasterPos2i(x, y);
-  for(p = s, lines = 0; *p; p++) 
+  for(p = s, lines = 0; *p; p++)
   {
-    if (*p == '\n') 
+    if (*p == '\n')
     {
       lines++;
       glRasterPos2i(x, y-(lines*15));
@@ -587,7 +589,7 @@ void displayWaypoint(Vec3* location)
        glTranslatef(location->x,location->y,location->z);
        glColor3f(0,1,1);
        //glutSolidOctahedron();
-       glutSolidOctahedron();  
+       glutSolidOctahedron();
      glPopMatrix();
    }
 };
@@ -629,7 +631,7 @@ void displayPathway(Pathway *p)
          *
         if (noOfWayPoints >= 2)
         {
-          displayEndPoint(p->wayPoints[noOfWayPoints-1]);         
+          displayEndPoint(p->wayPoints[noOfWayPoints-1]);
         }
 
 

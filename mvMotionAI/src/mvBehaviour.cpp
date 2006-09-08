@@ -94,7 +94,7 @@ mvEnum mvBehaviour::setParameteri(mvEnum paramFlag, mvIndex index)
       return MV_FALSE;
    }
 };
-  
+
 mvEnum mvBehaviour::setParameter(mvEnum paramFlag, mvEnum option)
 {
    return MV_FALSE;
@@ -146,12 +146,12 @@ mvBehaviour::~mvBehaviour()
    }
    *
    //removeAllGroups();
-}; 
+};
 
 mvBehaviour::mvBehaviour(char* bName, mvEnum type)
 {  *
    mvCount len;
-   
+
    behaviourName = NULL;
    if (bName != NULL)
    {
@@ -200,7 +200,7 @@ void mvBehaviour::removeAllGroups()
       {
          *i = NULL;
       }
-   } 
+   }
    noOfGroups = 0;
 };
 
@@ -216,12 +216,12 @@ mvEnum mvBehaviour::addGroup(mvGroup* bGroup)
       {
          return MV_FALSE;
       }
-   } 
+   }
    groups.push_back(bGroup);
    ++noOfGroups;
    return MV_TRUE;
 };
-  
+
 mvEnum mvBehaviour::removeGroup(mvGroup* bGroup)
 {
    std::vector<mvGroup*>::iterator i;
@@ -236,7 +236,7 @@ mvEnum mvBehaviour::removeGroup(mvGroup* bGroup)
          --noOfGroups;
          return MV_TRUE;
       }
-   } 
+   }
    return MV_FALSE;
 };
 **
@@ -260,3 +260,4 @@ mvEnum mvBehaviour::setParameterv(mvEnum paramFlag, mvFloat* numArray)
 //mvIndex getPathwayIndexAt(mvIndex num);
 //mvIndex mvBehaviour::getBodyIndexAt(mvIndex num);
 **/
+

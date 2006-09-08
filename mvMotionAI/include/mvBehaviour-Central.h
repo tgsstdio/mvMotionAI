@@ -10,9 +10,9 @@
 /**
  * \file mvBehaviour-Central.h
  *
- * version     date     comments 
+ * version     date     comments
  *00-01-03    21/6/06   - added processing to behaviours with central function : mvProcessBodyBehaviours
- *   
+ *
  */
 
 void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBody* currentBody, mvFloat timeStep,
@@ -21,6 +21,6 @@ void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBody* currentBody, mvFloat tim
 
 void mvProcessGroupBehaviours(mvWorld* worldPtr, mvGroupBehaviour* groupBehPtr,
                               mvIndex groupIndex, mvFloat timeStep);
-                           
+
 
 #endif

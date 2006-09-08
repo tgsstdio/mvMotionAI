@@ -87,7 +87,7 @@ class mvGroupBehaviour
      mvBehaviourEntry* defaultEntries;
      std::vector<mvGroupBehaviourNode*> groupsList;
      mvEnum groupBehaviourType;
-     mvCount noOfGroups;     
+     mvCount noOfGroups;
 
    public:
      //mvBehaviour* currentBehaviour;

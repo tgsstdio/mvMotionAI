@@ -6,10 +6,10 @@
 #include "mvWorld.h"
 /**
  * \file mvLuaScript-Behaviour.cpp
- * 
+ *
  * Log
  *
- * version     date     comments 
+ * version     date     comments
  *00-01-03    21/6/06   - added lua behaviour functions for get, remove, add waypoint, add to body
  *                      functions
  */
@@ -73,7 +73,7 @@ void mvLoadLuadBehaviourFunctions(lua_State* L)
    lua_register(L,"mvAddBehaviourToBody",mvLua_AddBehaviourToBody);
 
    /**
-    * 00-01-07 
+    * 00-01-07
     */
    lua_register(L,"mvSetBehaviourParameter",mvLua_SetBehaviourParameter);
    lua_register(L,"mvSetCurrentBehaviourParameter",mvLua_SetCurrentBehaviourParameter);
@@ -118,7 +118,7 @@ int mvLua_AddBehaviour(lua_State* L)
          result = tempWorld->mvAddBehaviour(bType);
       }
    };
-   lua_pushnumber(L,result);         
+   lua_pushnumber(L,result);
    return 1;
 };
 
@@ -134,8 +134,8 @@ int mvLua_RemoveCurrentBehaviour(lua_State* L)
      // puts(tempWorld->getWorldID());
       result = tempWorld->mvRemoveCurrentBehaviour();
    }
-   lua_pushnumber(L,result);         
-   return 1;   
+   lua_pushnumber(L,result);
+   return 1;
 };
 
 int mvLua_RemoveBehaviour(lua_State* L)
@@ -151,8 +151,8 @@ int mvLua_RemoveBehaviour(lua_State* L)
      // puts(tempWorld->getWorldID());
       result = tempWorld->mvRemoveBehaviour(bIndex);
    }
-   lua_pushnumber(L,result);         
-   return 1;   
+   lua_pushnumber(L,result);
+   return 1;
 };
 
 int mvLua_SetCurrentBehaviour(lua_State* L)
@@ -168,8 +168,8 @@ int mvLua_SetCurrentBehaviour(lua_State* L)
    //  puts(tempWorld->getWorldID());
       result = tempWorld->mvSetCurrentBehaviour(bIndex);
    }
-   lua_pushnumber(L,result);         
-   return 1;  
+   lua_pushnumber(L,result);
+   return 1;
 };
 
 int mvLua_RemoveAllBehaviours(lua_State* L)
@@ -183,8 +183,8 @@ int mvLua_RemoveAllBehaviours(lua_State* L)
    {
      // puts(tempWorld->getWorldID());
       tempWorld->mvRemoveAllBehaviours();
-   }        
-   return 0;  
+   }
+   return 0;
 };
 
 //mvEnum mvAddBehaviourToBody(int bodyIndex, mvEnum bType, int behaviourIndex, int groupIndex);
@@ -203,8 +203,8 @@ int mvLua_AddBehaviourToBody(lua_State* L)
    if (tempWorld != NULL)
    {
 #ifdef MV_LUA_SCRIPT_BEHAVIOUR_DEBUG_FLAG
-      std::cout << bodyIndex << "/" 
-                << behaviourIndex  << "/" 
+      std::cout << bodyIndex << "/"
+                << behaviourIndex  << "/"
                 << groupIndex << "/" << bTypeString << std::endl;
 #endif
       bType = mvScript_checkAddBehaviourParams(bTypeString);
@@ -213,8 +213,8 @@ int mvLua_AddBehaviourToBody(lua_State* L)
          result = tempWorld->mvAddBehaviourToBody(bodyIndex,bType,behaviourIndex,groupIndex);
       }
    }
-   lua_pushnumber(L,result);         
-   return 1; 
+   lua_pushnumber(L,result);
+   return 1;
 };
 
 int mvLua_SetBehaviourParameter(lua_State* L)
@@ -237,32 +237,32 @@ int mvLua_SetBehaviourParameter(lua_State* L)
       checkParams = mvScript_checkBehaviourParamsFlag(params);
       if (checkParams != MV_INVALID_BEHAVIOUR_PARAMETER)
       {
-         option = lua_tostring(L,4);         
+         option = lua_tostring(L,4);
          if (option != NULL)
          {
             checkOption = mvScript_checkBehaviourParamsFlagOptions(option);
             if (checkOption != MV_INVALID_BEHAVIOUR_PARAM_OPTION)
             {
                result = tempWorld->mvSetBehaviourParameter(behaviourIndex,checkParams,checkOption);
-               lua_pushnumber(L,result);         
+               lua_pushnumber(L,result);
                return 1;
             }
          }
       }
-      
+
       checkParams = mvScript_checkBehaviourParamsIndex(params);
       if (checkParams != MV_INVALID_BEHAVIOUR_PARAMETER)
-      { 
+      {
           indexValue = (mvIndex) lua_tonumber(L,4);
           result = tempWorld->mvSetBehaviourParameteri(behaviourIndex,checkParams,indexValue);
-          lua_pushnumber(L,result);         
+          lua_pushnumber(L,result);
           return 1;
       }
 
-      
+
       checkParams = mvScript_checkBehaviourParamsv(params);
       if (checkParams != MV_INVALID_BEHAVIOUR_PARAMETER)
-      { 
+      {
          for (i = 0; i < MV_MAX_NO_OF_PARAMETERS; i++)
          {
             numArray[i] = (mvFloat) lua_tonumber(L,4 + i);
@@ -270,18 +270,18 @@ int mvLua_SetBehaviourParameter(lua_State* L)
          result = tempWorld->mvSetBehaviourParameterv(behaviourIndex,checkParams,numArray);
       }
 
-      lua_pushnumber(L,result);         
+      lua_pushnumber(L,result);
       return 1;
    }
    else
    {
-      lua_pushnumber(L,result);         
+      lua_pushnumber(L,result);
       return 1;
    }
 };
 
 int mvLua_SetCurrentBehaviourParameter(lua_State* L)
-{  
+{
    int result = 0;
    mvIndex worldID = (mvIndex) lua_tonumber(L,1);
    const char* params = lua_tostring(L,2);
@@ -299,30 +299,30 @@ int mvLua_SetCurrentBehaviourParameter(lua_State* L)
       checkParams = mvScript_checkBehaviourParamsFlag(params);
       if (checkParams != MV_INVALID_BEHAVIOUR_PARAMETER)
       {
-         option = lua_tostring(L,3);         
+         option = lua_tostring(L,3);
          if (option != NULL)
          {
             checkOption = mvScript_checkBehaviourParamsFlagOptions(option);
             if (checkOption !=   MV_INVALID_BEHAVIOUR_PARAM_OPTION)
             {
                result = tempWorld->mvSetCurrentBehaviourParameter(checkParams,checkOption);
-               lua_pushnumber(L,result);         
+               lua_pushnumber(L,result);
                return 1;
             }
          }
       }
       checkParams = mvScript_checkBehaviourParamsIndex(params);
       if (checkParams != MV_INVALID_BEHAVIOUR_PARAMETER)
-      { 
+      {
           indexValue = (mvIndex) lua_tonumber(L,4);
           result = tempWorld->mvSetCurrentBehaviourParameteri(checkParams,indexValue);
-          lua_pushnumber(L,result);         
+          lua_pushnumber(L,result);
           return 1;
       }
-      
+
       checkParams = mvScript_checkBehaviourParamsv(params);
       if (checkParams != MV_INVALID_BEHAVIOUR_PARAMETER)
-      { 
+      {
          for (i = 0; i < MV_MAX_NO_OF_PARAMETERS; i++)
          {
             numArray[i] = (mvFloat) lua_tonumber(L,3 + i);
@@ -330,12 +330,12 @@ int mvLua_SetCurrentBehaviourParameter(lua_State* L)
          result = tempWorld->mvSetCurrentBehaviourParameterv(checkParams,numArray);
       }
 
-      lua_pushnumber(L,result);         
+      lua_pushnumber(L,result);
       return 1;
    }
    else
    {
-      lua_pushnumber(L,result);         
+      lua_pushnumber(L,result);
       return 1;
    }
 
@@ -354,8 +354,8 @@ int mvLua_AddBehaviourToBody(lua_State* L)
    {
       result = tempWorld->mvAddBehaviourToBody(behaviourID,bodyID);
    }
-   lua_pushnumber(L,result);         
-   return 1; 
+   lua_pushnumber(L,result);
+   return 1;
 };
 
 int mvLua_AddCurrentBehaviourToBody(lua_State* L)
@@ -370,8 +370,8 @@ int mvLua_AddCurrentBehaviourToBody(lua_State* L)
    {
       result = tempWorld->mvAddCurrentBehaviourToBody(bodyID);
    }
-   lua_pushnumber(L,result);         
-   return 1; 
+   lua_pushnumber(L,result);
+   return 1;
 };
 
 int mvLua_AddBehaviourToCurrentBody(lua_State* L)
@@ -386,8 +386,8 @@ int mvLua_AddBehaviourToCurrentBody(lua_State* L)
    {
       result = tempWorld->mvAddBehaviourToCurrentBody(behaviourID);
    }
-   lua_pushnumber(L,result);         
-   return 1; 
+   lua_pushnumber(L,result);
+   return 1;
 };
 
 int mvLua_AddCurrentBehaviourToCurrentBody(lua_State* L)
@@ -401,16 +401,16 @@ int mvLua_AddCurrentBehaviourToCurrentBody(lua_State* L)
    {
       result = tempWorld->mvAddCurrentBehaviourToCurrentBody();
    }
-   lua_pushnumber(L,result);         
-   return 1; 
+   lua_pushnumber(L,result);
+   return 1;
 };
 
 int mvLua_AddWaypointToBehaviour(lua_State* L)
 {
    mvWorld* tempWorld = NULL;
    int worldID = (int) lua_tonumber(L,1);
-   int wpID = (int) lua_tonumber(L,2); 
-   int behID = (int) lua_tonumber(L,3);  
+   int wpID = (int) lua_tonumber(L,2);
+   int behID = (int) lua_tonumber(L,3);
    int result = 0;
 
    tempWorld = mvGetWorldByIndex(worldID);
@@ -418,16 +418,16 @@ int mvLua_AddWaypointToBehaviour(lua_State* L)
    {
       result = tempWorld->mvAddWaypointToBehaviour(wpID,behID);
    }
-   lua_pushnumber(L,result);         
-   return 1; 
+   lua_pushnumber(L,result);
+   return 1;
 };
 
 int mvLua_AddCurrentWaypointToBehaviour(lua_State* L)
 {
    mvWorld* tempWorld = NULL;
    int worldID = (int) lua_tonumber(L,1);
-   //int wpID = (int) lua_tonumber(L,2); 
-   int behID = (int) lua_tonumber(L,2);  
+   //int wpID = (int) lua_tonumber(L,2);
+   int behID = (int) lua_tonumber(L,2);
    int result = 0;
 
    tempWorld = mvGetWorldByIndex(worldID);
@@ -435,16 +435,16 @@ int mvLua_AddCurrentWaypointToBehaviour(lua_State* L)
    {
       result = tempWorld->mvAddCurrentWaypointToBehaviour(behID);
    }
-   lua_pushnumber(L,result);         
-   return 1; 
+   lua_pushnumber(L,result);
+   return 1;
 };
 
 int mvLua_AddWaypointToCurrentBehaviour(lua_State* L)
 {
    mvWorld* tempWorld = NULL;
    int worldID = (int) lua_tonumber(L,1);
-   int wpID = (int) lua_tonumber(L,2); 
-   //int behID = (int) lua_tonumber(L,3);  
+   int wpID = (int) lua_tonumber(L,2);
+   //int behID = (int) lua_tonumber(L,3);
    int result = 0;
 
    tempWorld = mvGetWorldByIndex(worldID);
@@ -452,8 +452,8 @@ int mvLua_AddWaypointToCurrentBehaviour(lua_State* L)
    {
       result = tempWorld->mvAddWaypointToCurrentBehaviour(wpID);
    }
-   lua_pushnumber(L,result);         
-   return 1; 
+   lua_pushnumber(L,result);
+   return 1;
 };
 
 int mvLua_AddCurrentWaypointToCurrentBehaviour(lua_State* L)
@@ -467,16 +467,16 @@ int mvLua_AddCurrentWaypointToCurrentBehaviour(lua_State* L)
    {
       result = tempWorld->mvAddCurrentWaypointToCurrentBehaviour();
    }
-   lua_pushnumber(L,result);         
-   return 1; 
+   lua_pushnumber(L,result);
+   return 1;
 };
 
 int mvLua_AddBodyToBehaviour(lua_State* L)
 {
    mvWorld* tempWorld = NULL;
    int worldID = (int) lua_tonumber(L,1);
-   int bodyID = (int) lua_tonumber(L,2); 
-   int behID = (int) lua_tonumber(L,3);  
+   int bodyID = (int) lua_tonumber(L,2);
+   int behID = (int) lua_tonumber(L,3);
    int result = 0;
 
    tempWorld = mvGetWorldByIndex(worldID);
@@ -484,16 +484,16 @@ int mvLua_AddBodyToBehaviour(lua_State* L)
    {
       result = tempWorld->mvAddBodyToBehaviour(bodyID,behID);
    }
-   lua_pushnumber(L,result);         
-   return 1; 
+   lua_pushnumber(L,result);
+   return 1;
 };
 
 int mvLua_AddCurrentBodyToBehaviour(lua_State* L)
 {
    mvWorld* tempWorld = NULL;
    int worldID = (int) lua_tonumber(L,1);
-   //int wpID = (int) lua_tonumber(L,2); 
-   int behID = (int) lua_tonumber(L,2);  
+   //int wpID = (int) lua_tonumber(L,2);
+   int behID = (int) lua_tonumber(L,2);
    int result = 0;
 
    tempWorld = mvGetWorldByIndex(worldID);
@@ -501,16 +501,16 @@ int mvLua_AddCurrentBodyToBehaviour(lua_State* L)
    {
       result = tempWorld->mvAddCurrentBodyToBehaviour(behID);
    }
-   lua_pushnumber(L,result);         
-   return 1; 
+   lua_pushnumber(L,result);
+   return 1;
 };
 
 int mvLua_AddBodyToCurrentBehaviour(lua_State* L)
 {
    mvWorld* tempWorld = NULL;
    int worldID = (int) lua_tonumber(L,1);
-   //int wpID = (int) lua_tonumber(L,2); 
-   int bodyID = (int) lua_tonumber(L,2);  
+   //int wpID = (int) lua_tonumber(L,2);
+   int bodyID = (int) lua_tonumber(L,2);
    int result = 0;
 
    tempWorld = mvGetWorldByIndex(worldID);
@@ -518,8 +518,8 @@ int mvLua_AddBodyToCurrentBehaviour(lua_State* L)
    {
       result = tempWorld->mvAddBodyToCurrentBehaviour(bodyID);
    }
-   lua_pushnumber(L,result);         
-   return 1; 
+   lua_pushnumber(L,result);
+   return 1;
 };
 
 int mvLua_AddCurrentBodyToCurrentBehaviour(lua_State* L)
@@ -533,7 +533,8 @@ int mvLua_AddCurrentBodyToCurrentBehaviour(lua_State* L)
    {
       result = tempWorld->mvAddCurrentBodyToCurrentBehaviour();
    }
-   lua_pushnumber(L,result);         
-   return 1; 
+   lua_pushnumber(L,result);
+   return 1;
 };
 **/
+
