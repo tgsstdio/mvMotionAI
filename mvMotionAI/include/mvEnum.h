@@ -1,3 +1,27 @@
+/**
+ *\file mvEnum.h
+ * Copyright (c) 2006 David Young.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ *
+ */
+
 #ifndef MOTIONAI_MVENUM_H_
 #define MOTIONAI_MVENUM_H_
 #include <cstdlib>
@@ -14,7 +38,7 @@
 enum mvEnum{
    // MV_BOOLEAN
 
-   MV_FALSE = 0,  
+   MV_FALSE = 0,
    MV_TRUE,
 
    // MV BODY ENUMS
@@ -181,7 +205,7 @@ MV_INVALID_FORCE_OPTION,
    MV_INVALID_DIMENSIONS = 0,
    MV_NO_CURRENT_INDEX = -1,
    MV_MAX_NO_OF_BODY_DOMAIN_VARIABLES = 3,
-   MV_NO_OF_FULL_3D_VARIABLES = 0,   
+   MV_NO_OF_FULL_3D_VARIABLES = 0,
    MV_NO_OF_XY_PLANE_VARIABLES = 0,
    MV_NO_OF_XZ_PLANE_VARIABLES = 0,
    MV_NO_OF_YZ_PLANE_VARIABLES = 0,
@@ -203,7 +227,7 @@ MV_INVALID_FORCE_OPTION,
    MV_NO_OF_UNIFORM_SHIFT_VARIABLES = 1,
    MV_NO_OF_DIRECTION_POINT_SHIFT_VARIABLES = 1,
    MV_NO_OF_DRAG_SHIFT_VARIABLES = 1,
-   MV_NO_OF_DRAG_ACCELERATION_VARIABLES = 1,            
+   MV_NO_OF_DRAG_ACCELERATION_VARIABLES = 1,
    MV_NO_OF_INVALID_FORCE_TYPE_VARIABLES = 0,
    MV_MAX_NO_OF_FORCE_VARIABLES = 3,
    MV_GLOBAL_FORCE_TOTAL = 0,
@@ -223,7 +247,7 @@ MV_INVALID_FORCE_OPTION,
    MV_FORCE_ACCELERATION_VARIABLE_INDEX = 0,
    MV_FORCE_QUANTITY_VARIABLE_INDEX = 0,
    MV_FORCE_GRAVITIONAL_MASS_VARIABLE_INDEX = 1,
-   MV_FORCE_GRAVITY_CONSTANT_VARIABLE_INDEX = 2,     
+   MV_FORCE_GRAVITY_CONSTANT_VARIABLE_INDEX = 2,
    MV_FORCE_SPEED_VARIABLE_INDEX = 0,
    MV_OFFSET_TO_INDEX = -1,
    MV_BEHAVIOUR_SEEK_INDEX_SIZE = 1,

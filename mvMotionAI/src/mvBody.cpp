@@ -1,3 +1,27 @@
+/**
+ * \file mvBody.cpp
+ *
+ * Copyright (c) 2006 David Young.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
+
 #include "mvBody.h"
 
 void mvBody::initialiseFloats()
@@ -19,7 +43,7 @@ mvBody::mvBody(mvEnum bType, mvEnum shape)
    initialiseFloats();
    initialiseDimensions(shape);
    initialiseType(bType);
-   domain = MV_FULL_3D_DOMAIN; 
+   domain = MV_FULL_3D_DOMAIN;
 };
 
 mvBody::mvBody(mvEnum bType, mvEnum shape, mvFloat x, mvFloat y, mvFloat z)
@@ -30,7 +54,7 @@ mvBody::mvBody(mvEnum bType, mvEnum shape, mvFloat x, mvFloat y, mvFloat z)
    initialiseFloats();
    initialiseDimensions(shape);
    initialiseType(bType);
-   domain = MV_FULL_3D_DOMAIN; 
+   domain = MV_FULL_3D_DOMAIN;
 };
 
 void mvBody::setPosition(mvFloat x, mvFloat y, mvFloat z)
@@ -58,7 +82,7 @@ void mvBody::setMass(mvFloat num)
    mass = num;
 };
 
-//void mvBody::setMaxAcceleration(mvFloat num){};    
+//void mvBody::setMaxAcceleration(mvFloat num){};
 void mvBody::setAcceleration(mvFloat accel)
 {
    acceleration = accel;
@@ -69,7 +93,7 @@ mvEnum mvBody::setParameter(mvEnum paramFlag, mvEnum option)
    switch(paramFlag)
    {
      case MV_BODY_TYPE:
-        return (initialiseType(option) == MV_FALSE) ? MV_INVALID_BODY_TYPE : MV_TRUE;               
+        return (initialiseType(option) == MV_FALSE) ? MV_INVALID_BODY_TYPE : MV_TRUE;
      case MV_BODY_DOMAIN:
         return (initialiseDomain(option) == MV_FALSE) ? MV_NO_DOMAIN_APPLIED : MV_TRUE;
      case MV_BODY_SHAPE:
@@ -90,7 +114,7 @@ mvEnum mvBody::setParameterf(mvEnum paramFlag, mvFloat num)
   switch (paramFlag)
   {
     case MV_SPEED:
-       speed = num;        
+       speed = num;
        return MV_TRUE;
     case MV_MAX_SPEED:
        maxSpeed = num;
@@ -137,7 +161,7 @@ mvBody::~mvBody()
   }
 
   if (domainVariables != NULL)
-  { 
+  {
     delete [] domainVariables;
   }
 };
@@ -224,7 +248,7 @@ mvCount mvBody::getNoOfDimensions() const
        return MV_NO_OF_AACYLINDER_DIMENSIONS;
     default:
        return MV_INVALID_DIMENSIONS;
-  }    
+  }
 };
 
 mvEnum mvBody::initialiseType(mvEnum option)
@@ -276,7 +300,7 @@ mvEnum mvBody::initialiseDomain(mvEnum option)
   }
 
   switch(option)
-  { 
+  {
     //< default
     case MV_ANY_PLANE_DOMAIN:
     case MV_ANY_LINE_DOMAIN:
@@ -351,7 +375,7 @@ mvEnum mvBody::getShape() const
    return bodyShape;
 };
 /**
-16th June 2006 
+16th June 2006
 Behaviour functions in mvBody
 **
 mvEnum mvBody::addBehaviour(mvBehaviour* bItem, mvEnum* flagArray, mvFloat* varArray)

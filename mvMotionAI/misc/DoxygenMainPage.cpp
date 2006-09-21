@@ -18,11 +18,30 @@
  * etc...
  *
  * \section progress Current Progress in library module
- * (ver 00-01-05 : date 20/7/06)  attempting boids & group framework.
+ * (ver 00-01-15 : date 21/9/06)  
+ * documentation and Lua script support
  *
  *
  * \section Log
  * \subsection log_columns Version     Date     Comments
+ *
+ * 00-01-05 (27/6/06) - 00-01-14 (21/09/06)
+ * 
+ * - added mvMotionAI to SourceForge.org
+ *   
+ * - behaviour framework is made up of individual behaviours, global behaviour
+ *   and global group behaviours
+ *   
+ * - Code::Blocks IDE workspaces included with MSVC++ 6 workspace
+ *  
+ * - Source code in src, headers in include, dependencies in
+ *   lib-other & include-other, examples included in example-src,
+ *   misc files in misc, documentation in docs,
+ *
+ * - types headers included
+ *
+ * - more log entries inside Log.txt 
+ *  
  *
  *00-01-04    27/6/06   - added pursuit & clone behaviour
  *                         
@@ -173,3 +192,4 @@
  */
 
 #endif
+

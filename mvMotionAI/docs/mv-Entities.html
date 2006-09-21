@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>mvMotionAI - Entities </title>
+</head>
+<body>
+<h1>mvMotionAI - Entities </h1> 
+<h3> <a id="Content_Header">Contents </a></h3>
+<ol>
+<li> Class Diagram </li>
+<li> Detailed Entity Description </li>
+<ol> 
+<li><a href="#a_2">mvBody</a></li>
+<ol>
+<li> <a href="#a_2_1"> Particle </a></li>
+<li> <a href="#a_2_2"> Vehicle </a> </li>
+<li> <a href="#a_2_3"> Dual Type </a> </li> 
+</ol>
+<li> mvForce </li>
+   <ol>
+	 <li> Forces </li>
+	 <li> Acceleration / Gravity </li> 
+   <li> Shifts </li>
+	 <li> Force Fields </li>
+	 <li> Drag </li>
+	 <li> Null </li>
+   </ol>
+<li> mvObstacle </li>
+<li> mvWaypoint </li>
+<li> mvPathway </li>
+<li> mvBehaviour </li>	 
+</ol>
+<li><a href="#a_06">Index Log </a></li>
+</ol>
+<h4> <a href="index.html"> Return to main index page </a> </h4>
+<!-- 
+Entities
+ -->
+<ol>
+<li> <h2> Class Diagram </h2> </li>			
+<li><a id="a_2"><h2> Detailed Entity Description </h2></a></li>
+<ol>
+    <li><h3> mvBody </h3></li>
+    <p> This object in the mvMotionAI library is the most important as it represents moving items such as
+people, cars, planes etc. There are currently three types of mvBodies existing in this system.</p>
+    <ol>
+        <li><a id="a_2_1"> <h4> Particle </h4></a> </li>
+        <p> This body is for moving objects that do not have a central direction ('facing' a single direction),
+          so are omnidirectional at all times . Examples are balls and particles.
+			  </p>
+        <li><a id="a_2_2"> <h4> Vehicle </h4></a> </li>
+        <p> This body represents objects that move along a single direction. Turning is required to alter its intended 
+path. Typical examples are cars, boats and bicycles.
+        </p>
+        <li><a id="a_2_3"> <h4> Dual Type </h4></a> </li>
+        <p> Dual type covers objects which act like vehicles for some tasks such as path following and particle-like movement
+like quick evasion. 
+        </p>
+    </ol>
+    <p><a href="#Content_Header">Back To Contents</a><p>		
+    <li><h3> mvForce </h3></li>
+    <p> This class represents environmental forces which act on bodies; similar to 
+gravity and wind. 
+    </p>
+    <p>
+There are also subsets of mvForces implemented in the system. </p>
+    <ol>
+       <li><h4>Forces</h4></li>
+       <p> Forces are important as dependant on the mass of the body. According to the 
+formula, force = mass/acceleration or acceleration = force / mass,  lighter objects 
+are more affected than heavier ones. Forces can be either directional or uniform.
+       </p>
+       <li><h4> Acceleration or gravity </h4></li>
+       <p> Gravity in a simulation is often computed as a uniform acceleration in a single
+direction. Here mvForces' acceleration can represent environment acceleration as uniform or 
+directional. 
+       </p> 
+       <li><h4>Shifts </h4></li>
+       <p> We refer to environmental elements that apply constant velocity to bodies as shifts.
+Example of shifts in action is wind in sailboat simulation, as a general approximation. 
+       </p>
+       <li><h4> Force fields </h4></li>
+       <li> <h4>Drag </h4></li>
+      <li><h4> Null </h4></li>
+   </ol>
+    <p><a href="#Content_Header">Back To Contents</a><p>		 
+<li><h3> mvObstacle </h3></li>
+    <p><a href="#Content_Header">Back To Contents</a><p>	
+<li><h3> mvWaypoint </h3></li>
+    <p><a href="#Content_Header">Back To Contents</a><p>	
+<li><h3> mvPathway </h3></li>
+    <p><a href="#Content_Header">Back To Contents</a><p>	
+<li><h3> mvGroup </h3></li>
+    <p><a href="#Content_Header">Back To Contents</a><p>	
+</ol>
+<li><h2><a id="a_6">Index Log </a></h2></li>
+<table border="3" cellpadding="2" cellspacing="2" summary="">
+<tr><td>Version</td><td>Date</td><td>Comments</td></tr>
+<tr><td>1.03</td><td>9/06/06</td><td>Formatting and page referencing improvements, new Class Diagram section. </td></tr>
+<tr><td>1.02</td><td>6/06/05</td><td>More tables for lua function section, split section to files </td></tr>
+<tr><td>1.01</td><td>25/06/05</td><td>Breaking up tables in functionalities section into general and various detailed class types</td></tr>
+<tr><td>1.00</td><td>  23/05/06</td><td>Created index file along with sections overview, functionalities and design goals,
+C++ functions, Log and Entities.
+</td></tr>
+</table>
+    <p><a href="#Content_Header">Back To Contents</a><p>	
+</ol>
+<hr />
+<h4>Created by HTML Kit (Free) <h4>
+<p><a href="#Content_Header">Back To Contents</a><p>	
+</body>
+</html>
