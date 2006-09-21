@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<title>Motion AI (mvMotionAI) - movement based AI</title>
+</head>
+<body>
+<h1>
+Motion AI (mvMotionAI) - movement based AI library
+</h1>
+<h2> Version 00-01-15 (Date : 21 September 2006) </h2>
+<h3> <a id="Content_Header">Contents </a></h3>
+<ol>
+<li><a href="#Overview">Overview </a> </li>
+<li><a href="#a_5">External links</a></li>
+<li><a href="#a_6">Index Log </a></li>
+</ol>
+<h3> Sections links</h3>
+<ol>
+<li> <a href="mv-Functionalities.html"> Functionalities and Design Goals </a> </li>
+<li><a href="mv-Entities.html">Entities </a></li>
+<li><a href="mv-CFunctions.html">C++ functions</a></li>
+<li><a href="mv-LuaFunctions.html">Lua Script Functions</a></li>
+</ol>
+<ol>
+<hr />
+<li><h2> <a id="Overview">Overview </a></h2></li>
+<p>Basic motion/velocity integrator library for 3D worlds with basic behaviours for C++ programs.
+An important part is the scripting capabilities which allows easy file loading of
+AI settings. Currently the script library Lua is used and is open source under the MIT license.
+</p>
+<p>
+mvMotionAI is a C/C++ & Lua based artificial intelligence module dealing with motion type actions such as
+one body follow another or moving towards a single point. These types of actions are referred as
+steering behaviours. As well as these common behaviours, this library uses a scripting language, so
+the various settings of each behaviour can be changed without recompiling the program.
+</p>
+<p>
+mvMotionAI uses a OpenGL function interface, as most of the functions in the library have a prefix of 'mv'.
+The main class in the library is the mvWorld, which contains all of the minor classes. mvWorlds 
+contain mvForce (gravity, wind, direction pull), mvObstacles (non-moving objects which are not yet
+implemented), mvWaypoints (points or markers in the world).
+</p>
+<p>
+In the library, each moving item such as a car, a bird or person is represented as a mvBody. Each mvBody has various properties such as
+its position, maximum speed, direction in the world. These bodies can be grouped together,
+Each behaviour has already been written in the library, so there is no feature yet implemented
+which allows completely new behaviours to created at run-time.
+</p>
+<p>
+There are four implemented behaviour in the library which are:
+</p>
+
+<table border="3" cellpadding="2" cellspacing="0" summary="">
+<tr><td>MV_SEEK</td><td>moves towards a way point</td></tr>
+<tr><td>MV_FLEE</td><td>moves away from a way point</td></tr>
+<tr><td>MV_CLONE</td><td>copies the velocity of another body</td></tr>
+<tr><td>MV_PURSUIT</td><td>chases after a moving body</td></tr>
+<tr><td>MV_SIMPLE_FLOCK</td><td>a group flocking behaviour consisting of three types of behaviours
+             which is similar to boids. They are attraction, separation and cohesion.</td></tr>
+</table> 
+<p>
+The scripting language in this case is Lua. By combination of behaviours above you can create
+a different motion. In the test application, the Lua script (Test.lua) contains some behaviours
+which the bodies in a worlds follow.
+</p>
+<p>
+For example, to build a world containing a body at (4,1,0) moving towards a way point at
+(10,11,4), the following Lua code is:
+</p>
+<code>
+world1 = mvAddWorld('HELLO_WORLD');<br />
+body1 = mvAddBody(world1,'MV_PARTICLE','MV_AABOX',4,1,0);<br />
+waypoint1 = mvAddWaypoint(world1,'MV_SINGLE_WAYPOINT','MV_AABOX',10,11,4);<br />
+-- comments start with --<br />
+-- this<br />
+mvSetDefaultWaypointForBody(world1,waypoint1,body1);<br />
+mvAddBehaviourToBody(world1,body1,'MV_SEEK');
+</code> 
+<p><a href="#Content_Header">Back To Contents</a><p>
+<!-- External links -->
+<hr />			
+<li><a id="a_5"><h2> External links</h2></a></li>
+<p> <a href="html/index.html">mvMotionAI Doxygen documentation</a> </p>
+    <p><a href="#Content_Header">Back To Contents</a><p>	
+<!-- 
+C functions items
+ -->		
+<li><h2><a id="a_6">Index Log </a></h2></li>
+<table border="3" cellpadding="2" cellspacing="2" summary="">
+<tr><td>Version</td><td>Date</td><td>Comments</td></tr>
+<tr><td>1.04</td><td>21/09/06</td><td>Added more to the overview section</td></tr>
+<tr><td>1.03</td><td>9/06/06</td><td>Formatting and page referencing improvements</td></tr>
+<tr><td>1.02</td><td>6/06/05</td><td>More tables for lua function section, split section to files </td></tr>
+<tr><td>1.01</td><td>25/06/05</td><td>Breaking up tables in functionalities section into general and various detailed class types</td></tr>
+<tr><td>1.00</td><td>  23/05/06</td><td>Created index file along with sections overview, functionalities and design goals,
+C++ functions, Log and Entities.
+</td></tr>
+</table>
+    <p><a href="#Content_Header">Back To Contents</a><p>
+</ol>
+<hr />	
+<h4>Created by HTML Kit (Free) <h4>
+<p><a href="#Content_Header">Back To Contents</a><p>	
+</body>
+</html>

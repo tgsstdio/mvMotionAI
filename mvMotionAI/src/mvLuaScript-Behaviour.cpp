@@ -1,3 +1,27 @@
+/**
+ * \file mvLuaScript-Behaviour.cpp
+ *
+ * Copyright (c) 2006 David Young.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
+
 #include "mvLuaScript-Behaviour.h"
 #include "mvMotionAI-Types.h"
 #include "mvScript-Utilities.h"
@@ -5,7 +29,6 @@
 #include "mvMotionAI.h"
 #include "mvWorld.h"
 /**
- * \file mvLuaScript-Behaviour.cpp
  *
  * Log
  *
@@ -61,22 +84,34 @@ const char* mvLua_BehaviourFunctionNames[] =
 "mvSetCurrentBehaviour",
 "mvRemoveAllBehaviours",
 "mvAddBehaviourToBody",
+"mvSetBehaviourParameter",
+"mvSetCurrentBehaviourParameter",
+};
+
+const char** mvGetLuaBehaviourFunctions()
+{
+  return &mvLua_BehaviourFunctionNames[0];
+};
+
+mvCount mvGetNoOfLuaBehaviourFunctions()
+{
+   return sizeof(mvLua_BehaviourFunctionNames)/sizeof(const char*);
 };
 
 void mvLoadLuadBehaviourFunctions(lua_State* L)
 {
-   lua_register(L,"mvAddBehaviour",mvLua_AddBehaviour);
-   lua_register(L,"mvRemoveCurrentBehaviour",mvLua_RemoveCurrentBehaviour);
-   lua_register(L,"mvRemoveBehaviour",mvLua_RemoveBehaviour);
-   lua_register(L,"mvSetCurrentBehaviour",mvLua_SetCurrentBehaviour);
-   lua_register(L,"mvRemoveAllBehaviours",mvLua_RemoveAllBehaviours);
-   lua_register(L,"mvAddBehaviourToBody",mvLua_AddBehaviourToBody);
+   lua_register(L,mvLua_BehaviourFunctionNames[0],mvLua_AddBehaviour);
+   lua_register(L,mvLua_BehaviourFunctionNames[1],mvLua_RemoveCurrentBehaviour);
+   lua_register(L,mvLua_BehaviourFunctionNames[2],mvLua_RemoveBehaviour);
+   lua_register(L,mvLua_BehaviourFunctionNames[3],mvLua_SetCurrentBehaviour);
+   lua_register(L,mvLua_BehaviourFunctionNames[4],mvLua_RemoveAllBehaviours);
+   lua_register(L,mvLua_BehaviourFunctionNames[5],mvLua_AddBehaviourToBody);
 
    /**
     * 00-01-07
     */
-   lua_register(L,"mvSetBehaviourParameter",mvLua_SetBehaviourParameter);
-   lua_register(L,"mvSetCurrentBehaviourParameter",mvLua_SetCurrentBehaviourParameter);
+   lua_register(L,mvLua_BehaviourFunctionNames[6],mvLua_SetBehaviourParameter);
+   lua_register(L,mvLua_BehaviourFunctionNames[7],mvLua_SetCurrentBehaviourParameter);
 /**
    lua_register(L,"mvAddBehaviourToBody",mvLua_AddBehaviourToBody);
    lua_register(L,"mvAddCurrentBehaviourToBody",mvLua_AddCurrentBehaviourToBody);

@@ -26,8 +26,6 @@
 			<Add directory="include"/>
 		</Compiler>
 		<Linker>
-			<Add library="lualib5"/>
-			<Add library="liblua5"/>
 			<Add directory="lib-other"/>
 			<Add directory="lib-other\mingw"/>
 		</Linker>

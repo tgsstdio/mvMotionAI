@@ -1,3 +1,27 @@
+/**
+ * \file mvWaypoint.cpp
+ *
+ * Copyright (c) 2006 David Young.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
+
 #include "mvWaypoint.h"
 
 /**
@@ -39,7 +63,7 @@ mvEnum mvWaypoint::initialisePoints(mvEnum type)
    {
       points = new mvVec3[MV_NO_OF_SINGLE_POINTS];
       wayPointType = MV_GROUP_WAYPOINT;
-   }   
+   }
    else
    {
       points = NULL;
@@ -67,7 +91,7 @@ mvEnum mvWaypoint::initialisePoints(mvEnum type)
  *
  * NOTE : inomplete - as it does not carry- over of parameters
  *
- * partial completion for aabox, aacylinder (x,y,z), sphere, 
+ * partial completion for aabox, aacylinder (x,y,z), sphere,
  *
  */
 mvEnum mvWaypoint::initialiseShapeDimensions(mvEnum shape)
@@ -122,9 +146,9 @@ mvEnum mvWaypoint::initialiseShapeDimensions(mvEnum shape)
 /*
  * \constructor default constructor
  *
- * NOTE : 
+ * NOTE :
  *
- 
+
 mvWaypoint::mvWaypoint()
 {
   groupPtr = NULL;
@@ -138,7 +162,7 @@ mvWaypoint::mvWaypoint()
 *
  * \constructor second constructor defines type
  *
- * NOTE : 
+ * NOTE :
  *
 mvWaypoint::mvWaypoint(mvEnum targetType)
 {
@@ -152,7 +176,7 @@ mvWaypoint::mvWaypoint(mvEnum targetType)
 *
  * \constructor third constructor defines type and shape
  *
- * NOTE : 
+ * NOTE :
  */
 
 mvWaypoint::mvWaypoint(mvEnum targetType, mvEnum targetShape)
@@ -287,7 +311,7 @@ mvCount mvWaypoint::getNoOfPoints() const
 };
 
 /**
- * returns no of dimensions required for current 
+ * returns no of dimensions required for current
  * waypoint shape
  */
 mvCount mvWaypoint::getNoOfDimensions() const
@@ -304,7 +328,7 @@ mvCount mvWaypoint::getNoOfDimensions() const
        return MV_NO_OF_AACYLINDER_DIMENSIONS;
     default:
        return MV_INVALID_DIMENSIONS;
-  }    
+  }
 };
 
 /**
@@ -322,7 +346,7 @@ void mvWaypoint::setGroup(mvGroup* wpGroup)
  * NOTE : arguments accepted
  *
  *  MV_WAYPOINT_TYPE - single ,nurbs, group
- * 
+ *
  *  MV_WAYPOINT_SHAPE - aabox, aacylinder, sphere
  *
  */
@@ -362,7 +386,7 @@ mvEnum mvWaypoint::setParameter(mvEnum paramFlag, mvEnum option)
  * NOTE : arguments accepted
  *
  *  MV_RADIUS - aacylinder, sphere
- * 
+ *
  *  MV_LENGTH - aacylinder, sphere
  *
  */
@@ -379,17 +403,17 @@ mvEnum mvWaypoint::setParameterf(mvEnum paramFlag, mvFloat num)
       else if (wayPointShape == MV_X_AXIS_AA_CYLINDER)
       {
          dimensions[MV_AACYLINDER_RADIUS_INDEX_NO] = num;
-         return MV_TRUE;   
+         return MV_TRUE;
       }
       else if (wayPointShape == MV_Y_AXIS_AA_CYLINDER)
       {
          dimensions[MV_AACYLINDER_RADIUS_INDEX_NO] = num;
-         return MV_TRUE;   
+         return MV_TRUE;
       }
       else if (wayPointShape == MV_Z_AXIS_AA_CYLINDER)
       {
          dimensions[MV_AACYLINDER_RADIUS_INDEX_NO] = num;
-         return MV_TRUE;   
+         return MV_TRUE;
       }
       else
       {
@@ -400,17 +424,17 @@ mvEnum mvWaypoint::setParameterf(mvEnum paramFlag, mvFloat num)
       if (wayPointShape == MV_X_AXIS_AA_CYLINDER)
       {
          dimensions[MV_AACYLINDER_LENGTH_INDEX_NO] = num;
-         return MV_TRUE;   
+         return MV_TRUE;
       }
       else if (wayPointShape == MV_Y_AXIS_AA_CYLINDER)
       {
          dimensions[MV_AACYLINDER_LENGTH_INDEX_NO] = num;
-         return MV_TRUE;   
+         return MV_TRUE;
       }
       else if (wayPointShape == MV_Z_AXIS_AA_CYLINDER)
       {
          dimensions[MV_AACYLINDER_LENGTH_INDEX_NO] = num;
-         return MV_TRUE;   
+         return MV_TRUE;
       }
       else
       {

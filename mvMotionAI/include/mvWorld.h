@@ -1,3 +1,27 @@
+/**
+ * \file mvWorld.h
+ *
+ * Copyright (c) 2006 David Young.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
+
 #ifndef MOTIONAI_MVWORLD_H_
 #define MOTIONAI_MVWORLD_H_
 #include "mvMotionAI-Types.h"
@@ -15,7 +39,7 @@
  * \brief an global instance of the AI module, storing all instances
  *         of vehicles, obstacles and global variables.
  *
- *Log 
+ *Log
  *version     date     comments
  *00-01-05   23/8/06   - using mvMotionAI types headers
  *
@@ -23,7 +47,7 @@
  *
  *00-01-01   25/6/06   - completing mvBehaviour functions
  *
- *00-01-00   22/5/06   - rename mWorld into mvWorld, allowed forces and 
+ *00-01-00   22/5/06   - rename mWorld into mvWorld, allowed forces and
  *                     groups
  *
  *00-00-06    6/3/06   - adding (hopefully) a temporary Particle array and
@@ -32,7 +56,7 @@
  *00-00-05    3/3/06    - adding basic intergrater (Improved Euler)
  * to m world.
  *
- *00-00-04     26/2/06   - added world ID variable 
+ *00-00-04     26/2/06   - added world ID variable
  *
  *00-00-04    22/2/06   Separated MotionAI to allow multiple instances
  *
@@ -41,7 +65,6 @@
  *
  *00-00-01    8/2/06   loads lua script files and adds vehicles
  *                     and obstacles
- *
  *
  */
 
@@ -134,7 +157,7 @@ class mvWorld
       void mvRemoveAllBodies();
       mvEnum mvSetBodyParameter(mvIndex index, mvEnum paramFlag, mvEnum option); //< initialised
       mvEnum mvSetBodyParameterf(mvIndex index, mvEnum paramFlag, mvFloat num); //< initialised
-      mvEnum mvSetBodyParameterv(mvIndex index, mvEnum paramFlag, mvFloat* array); //< initialised 
+      mvEnum mvSetBodyParameterv(mvIndex index, mvEnum paramFlag, mvFloat* array); //< initialised
       mvEnum mvSetCurrentBodyParameter(mvEnum paramFlag, mvEnum option); //< initialised
       mvEnum mvSetCurrentBodyParameterf(mvEnum paramFlag, mvFloat num); //< initialised
       mvEnum mvSetCurrentBodyParameterv(mvEnum paramFlag, mvFloat* array); //< initialised
@@ -145,7 +168,7 @@ class mvWorld
       mvEnum mvRemoveCurrentObstacle(); //< initialised
       mvEnum mvRemoveObstacle(mvIndex index); //< initialised
       mvIndex mvSetCurrentObstacle(mvIndex index); //< initialised
-      void mvRemoveAllObstacles(); //< initialised     
+      void mvRemoveAllObstacles(); //< initialised
       mvEnum mvSetCurrentObstacleParameter(mvEnum paramFlag, mvEnum option); //< initialised
       mvEnum mvSetCurrentObstacleParameterf(mvEnum paramFlag, mvFloat num); //< initialised
       mvEnum mvSetCurrentObstacleParameterv(mvEnum paramFlag, mvFloat* array); //< initialised
@@ -199,7 +222,7 @@ class mvWorld
       mvEnum mvSetGroupParameterf(mvIndex index, mvEnum paramFlag, mvFloat num); //< initialised
       mvEnum mvSetGroupParameterv(mvIndex index, mvEnum paramFlag, mvFloat* array); //< initialised
       mvEnum mvSetCurrentGroupParameter(mvEnum paramFlag, mvEnum option); //< initialised
-      mvEnum mvSetCurrentGroupParameterf(mvEnum paramFlag, mvFloat num); //< initialised 
+      mvEnum mvSetCurrentGroupParameterf(mvEnum paramFlag, mvFloat num); //< initialised
       mvEnum mvSetCurrentGroupParameterv(mvEnum paramFlag, mvFloat* array); //< initialised
 
       //
@@ -251,7 +274,7 @@ class mvWorld
       mvEnum mvSetCurrentGroupBehaviourParameteri(mvIndex groupIndex, mvEnum paramFlag, mvIndex option);
       mvEnum mvSetCurrentGroupBehaviourParameterf(mvIndex groupIndex, mvEnum paramFlag, mvFloat num);
       mvEnum mvSetCurrentGroupBehaviourParameterv(mvIndex groupIndex, mvEnum paramFlag, mvFloat* array);
-      
+
       mvEnum mvInsertGroupIntoGroupBehaviour(mvIndex groupIndex, mvIndex groupBehaviour);
       mvEnum mvInsertCurrentGroupIntoGroupBehaviour(mvIndex groupBehaviour);
       mvEnum mvInsertGroupIntoCurrentGroupBehaviour(mvIndex groupIndex);

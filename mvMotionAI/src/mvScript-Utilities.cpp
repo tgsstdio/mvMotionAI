@@ -1,3 +1,27 @@
+/**
+ * \file mvScript-Utilities.cpp
+ *
+ * Copyright (c) 2006 David Young.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
+
 #include "mvScript-Utilities.h"
 #include "mvEnum.h"
 #include "mvWorld.h"
@@ -54,7 +78,7 @@ mvIndex binaryEnumSearch(const char* key, const mvEnum* array, mvCount noOfItems
 #endif
 
    while (left <= right)
-   {  
+   {
       mid = (right + left) / 2;
       index = mid;
       tempString = mvGetEnumString(array[index]);
@@ -68,16 +92,16 @@ mvIndex binaryEnumSearch(const char* key, const mvEnum* array, mvCount noOfItems
          if (compare == 0)
             return index;
           else if (compare < 0)
-          {         
-             right = mid - 1;         
+          {
+             right = mid - 1;
           }
           else
           {
-             left = mid + 1; 
+             left = mid + 1;
           }
       }
       else
-      {  
+      {
          // drop out
          return -1;
       }
@@ -85,7 +109,7 @@ mvIndex binaryEnumSearch(const char* key, const mvEnum* array, mvCount noOfItems
    return -1;
 };
 
-mvEnum mvScript_checkEnumArrayIteratively(const char* key, const mvEnum* array, mvCount noOfEnums, mvEnum invalidOption) 
+mvEnum mvScript_checkEnumArrayIteratively(const char* key, const mvEnum* array, mvCount noOfEnums, mvEnum invalidOption)
 {
    mvCount index = iterativeEnumSearch(key,array,noOfEnums);
 
@@ -96,7 +120,7 @@ mvEnum mvScript_checkEnumArrayIteratively(const char* key, const mvEnum* array, 
    return (index == -1) ? invalidOption : array[index];
 };
 
-mvEnum mvScript_checkEnumArrayBinarySearch(const char* key, const mvEnum* array, mvCount noOfEnums, mvEnum invalidOption) 
+mvEnum mvScript_checkEnumArrayBinarySearch(const char* key, const mvEnum* array, mvCount noOfEnums, mvEnum invalidOption)
 {
    mvIndex index = binaryEnumSearch(key,array,noOfEnums);
 
@@ -123,11 +147,11 @@ mvIndex binarySearch(const char* key, char** array, mvCount noOfItems)
          return index;
       else if (compare < 0)
       {
-         right = mid - 1;         
+         right = mid - 1;
       }
       else
       {
-         left = mid + 1; 
+         left = mid + 1;
       }
    }
    return -1;
@@ -189,7 +213,7 @@ static const mvEnum mvScript_ObstacleStateEnums[] =
 {
    MV_AIR_OBSTACLE,
    MV_LIQUID_OBSTACLE,
-   MV_SOLID_OBSTACLE,  
+   MV_SOLID_OBSTACLE,
 };
 
 static const mvCount MVSCRIPT_NO_OF_OBSTACLE_STATES = sizeof(mvScript_ObstacleStateEnums)/sizeof(mvEnum);
@@ -210,7 +234,7 @@ mvEnum mvScript_checkObstacleState(const char* state)
   int index = iterativeSearch(state,mvScript_ObstacleStateStringEnums,MVSCRIPT_NO_OF_OBSTACLE_STATES);
 
 #ifdef MV_SCRIPT_DEBUG_STDOUT
-  std::cout << "mv script size s= " << MVSCRIPT_NO_OF_OBSTACLE_STATES << std::endl;  
+  std::cout << "mv script size s= " << MVSCRIPT_NO_OF_OBSTACLE_STATES << std::endl;
 #endif
 
   if (index == -1)
@@ -235,9 +259,9 @@ mvEnum mvScript_checkObstacleParamsFlag(const char* params);
 mvEnum mvScript_checkObstacleParamsv(const char* params);
 mvEnum mvScript_checkObstacleParamsFlagOptions(const char* option);
 
-// waypoints 
+// waypoints
 /**
-static const char* mvScript_WaypointTypeEnumStrings[] = 
+static const char* mvScript_WaypointTypeEnumStrings[] =
 {
    mvEnumString[MV_GROUP_WAYPOINT],
    mvEnumString[MV_SINGLE_WAYPOINT],
@@ -253,7 +277,7 @@ MV_SINGLE_WAYPOINT,
 static const mvCount MVSCRIPT_NO_OF_WAYPOINT_TYPES = sizeof(mvScript_WaypointTypeEnums)/sizeof(mvEnum);
 
 /**
-static const char* mvScript_WaypointShapeEnumStrings[] = 
+static const char* mvScript_WaypointShapeEnumStrings[] =
 {
    mvEnumString[MV_AABOX],
    mvEnumString[MV_SPHERE],
@@ -277,7 +301,7 @@ static const mvCount MVSCRIPT_NO_OF_WAYPOINT_SHAPES = sizeof(mvScript_WaypointSh
 mvEnum mvScript_checkWaypointType(const char* type)
 {
    /**
-   int index = iterativeSearch(type, mvScript_WaypointTypeEnumStrings, MVSCRIPT_NO_OF_WAYPOINT_TYPES);   
+   int index = iterativeSearch(type, mvScript_WaypointTypeEnumStrings, MVSCRIPT_NO_OF_WAYPOINT_TYPES);
 
 #ifdef MV_SCRIPT_DEBUG_STDOUT
    std::cout << "mv script size = " << MVSCRIPT_NO_OF_WAYPOINT_TYPES << std::endl;
@@ -299,7 +323,7 @@ mvEnum mvScript_checkWaypointType(const char* type)
 mvEnum mvScript_checkWaypointShape(const char* shape)
 {
    /**
-   int index = iterativeSearch(shape, mvScript_WaypointShapeEnumStrings, MVSCRIPT_NO_OF_WAYPOINT_SHAPES);   
+   int index = iterativeSearch(shape, mvScript_WaypointShapeEnumStrings, MVSCRIPT_NO_OF_WAYPOINT_SHAPES);
    //std::cout << "mv script size = " << MVSCRIPT_NO_OF_WAYPOINT_SHAPES << std::endl;
    if (index == -1)
    {
@@ -311,7 +335,7 @@ mvEnum mvScript_checkWaypointShape(const char* shape)
    }
    **/
    return mvScript_checkEnumArrayBinarySearch(shape, &mvScript_WaypointShapeEnums[0],
-      MVSCRIPT_NO_OF_WAYPOINT_SHAPES, MV_INVALID_SHAPE_TYPE); 
+      MVSCRIPT_NO_OF_WAYPOINT_SHAPES, MV_INVALID_SHAPE_TYPE);
 
 };
 
@@ -353,7 +377,7 @@ mvEnum mvScript_checkBodyType(const char* type)
    **/
 
    return mvScript_checkEnumArrayBinarySearch(type, &mvScript_BodyTypeEnums[0],
-      MVSCRIPT_NO_OF_BODY_TYPES, MV_INVALID_BODY_TYPE); 
+      MVSCRIPT_NO_OF_BODY_TYPES, MV_INVALID_BODY_TYPE);
 };
 
 static const mvEnum mvScript_BodyShapeEnums[] =

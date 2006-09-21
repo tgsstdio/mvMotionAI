@@ -1,3 +1,26 @@
+/**
+ *\file mvMotionAI-Utilities.h
+ * Copyright (c) 2006 David Young.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ *
+ */
 #ifndef MV_MOTIONAI_UTILITIES_H_
 #define MV_MOTIONAI_UTILITIES_H_
 #include <vector>
@@ -235,7 +258,7 @@ mvEnum mvRemoveUniqueItemInVector(std::vector<mvClass*>& itemVector, mvClass* it
  * Code taken from OpenSteer Utilities.h (2002-2004)
  * on the 20/06/2006
  * ----------------------------------------------------------------------------
- * Functions to encapsulate cross-platform differences for several <cmath>
+ * Functions to encapsulate cross-platform differences for several cmath
  * functions.  Specifically, the C++ standard says that these functions are
  * in the std namespace (std::sqrt, etc.)  Apparently the MS VC6 compiler (or
  * its header files) do not implement this correctly and the function names

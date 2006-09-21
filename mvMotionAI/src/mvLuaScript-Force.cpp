@@ -1,3 +1,27 @@
+/**
+ * \file mvLuaScript-Force.cpp
+ *
+ * Copyright (c) 2006 David Young.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
+
 #include "mvLuaScript-Force.h"
 #include "mvScript-Utilities.h"
 #include "mvMotionAI-Types.h"
@@ -14,11 +38,28 @@ int mvLua_RemoveAllForces(lua_State* L);
 int mvLua_SetForceParameter(lua_State* L);
 int mvLua_SetCurrentForceParameter(lua_State* L);
 
+const char* mvLua_LuaForceFunctionNames[] =
+{
+"mvAddForce",
+"mvSetForceParameter",
+"mvSetCurrentForceParameter",
+};
+
+const char** mvGetLuaForceFunctions()
+{
+   return &mvLua_LuaForceFunctionNames[0];
+};
+
+mvCount mvGetNoOfLuaForceFunctions()
+{
+   return sizeof(mvLua_LuaForceFunctionNames)/sizeof(const char*);
+};
+
 void mvLoadLuaForceFunctions(lua_State* L)
 {
-  lua_register(L,"mvAddForce",mvLua_AddForce);
-  lua_register(L,"mvSetForceParameter",mvLua_SetForceParameter);
-  lua_register(L,"mvSetCurrentForceParameter",mvLua_SetCurrentForceParameter);
+  lua_register(L,mvLua_LuaForceFunctionNames[0],mvLua_AddForce);
+  lua_register(L,mvLua_LuaForceFunctionNames[1],mvLua_SetForceParameter);
+  lua_register(L,mvLua_LuaForceFunctionNames[2],mvLua_SetCurrentForceParameter);
 };
 
 int mvLua_AddForce(lua_State* L)

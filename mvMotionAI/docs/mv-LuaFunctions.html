@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Lua Script Functions</title>
+</head>
+<body>
+<!-- 
+Lua script items
+ -->
+<h1> mvMotionAI - Lua Script Functions</h1>
+<h3> <a id="Content_Header">Contents </a></h3>
+<ol>			
+<li>Lua Script Functions</li>
+<ol>
+<li>mvMotionAI central module</li>
+<li>mvBody functions</li>
+<li>mvObstacle functions</li>
+<li>mvBehaviour functions</li>
+<li>mvForce functions</li>
+<li>mvGroup functions</li>
+<li>mvWaypoint functions</li>
+<li>mvPathway functions</li>
+</ol>
+<li><a href="#a_6">Index Log </a></li>
+</ol>
+<h4> <a href="index.html"> Return to main index page </a> </h4>
+<ol>
+<li> <h2>Lua Script Functions </h2> </li>
+<p>
+The example code (LuaFuncTest.cpp) & program (mvMotionAI-LuaFunctions) in the mvMotionAI workspace when executed will display the implemented Lua
+functions. This is the current output from 00-01-15.
+</p>
+<code>
+============= <br />
+mvMotionAI <br />
+No Of Functions : 5 <br />
+============= <br />
+mvLoadLuaScriptFile <br />
+mvRemoveAllWorlds <br />
+mvAddWorld <br />
+mvGetWorldByID <br />
+mvAllWorldsStepForward <br />
+ <br />
+============= <br />
+mvWorld <br />
+No Of Functions : 0 <br />
+============= <br />
+ <br />
+============= <br />
+mvBody <br />
+No Of Functions : 13 <br />
+============= <br />
+mvAddBody <br />
+mvRemoveCurrentBody <br />
+mvRemoveBody <br />
+mvRemoveAllBodies <br />
+mvSetCurrentBody <br />
+mvSetDefaultWaypointForBody <br />
+mvSetDefaultPathwayForBody <br />
+mvSetDefaultBodyForBody <br />
+mvSetDefaultBehaviourFactorForBody <br />
+mvSetDefaultWaypointForCurrentBody <br />
+mvSetDefaultPathwayForCurrentBody <br />
+mvSetDefaultBodyForCurrentBody <br />
+mvSetDefaultBehaviourFactorForCurrentBody <br />
+ <br />
+============= <br />
+mvObstacle <br />
+No Of Functions : 5 <br />
+============= <br />
+mvAddObstacle <br />
+mvRemoveCurrentObstacle <br />
+mvRemoveObstacle <br />
+mvSetCurrentObstacle <br />
+mvRemoveAllObstacles <br />
+ <br />
+============= <br />
+mvWaypoint <br />
+No Of Functions : 5 <br />
+============= <br />
+mvAddWaypoint <br />
+mvRemoveWaypoint <br />
+mvRemoveCurrentWaypoint <br />
+mvSetCurrentWaypoint <br />
+mvRemoveAllWaypoints <br />
+ <br />
+============= <br />
+mvBehaviour <br />
+No Of Functions : 8 <br />
+============= <br />
+mvAddBehaviour <br />
+mvRemoveCurrentBehaviour <br />
+mvRemoveBehaviour <br />
+mvSetCurrentBehaviour <br />
+mvRemoveAllBehaviours <br />
+mvAddBehaviourToBody <br />
+mvSetBehaviourParameter <br />
+mvSetCurrentBehaviourParameter <br />
+ <br />
+============= <br />
+mvForce <br />
+No Of Functions : 3 <br />
+============= <br />
+mvAddForce <br />
+mvSetForceParameter <br />
+mvSetCurrentForceParameter <br />
+ <br />
+============= <br />
+mvPathway <br />
+No Of Functions : 0 <br />
+============= <br />
+ <br />
+============= <br />
+mvGroup <br />
+No Of Functions : 14 <br />
+============= <br />
+mvAddGroup <br />
+mvGetGroup <br />
+mvRemoveCurrentGroup <br />
+mvRemoveGroup <br />
+mvSetCurrentGroup <br />
+mvRemoveAllGroups <br />
+mvAddBodyToGroup <br />
+mvAddCurrentBodyToGroup <br />
+mvAddBodyToCurrentGroup <br />
+mvAddCurrentBodyToCurrentGroup <br />
+mvRemoveBodyFromGroup <br />
+mvRemoveCurrentBodyFromGroup <br />
+mvRemoveBodyFromCurrentGroup <br />
+mvRemoveCurrentBodyFromCurrentGroup <br />
+ <br />
+============= <br />
+mvGroupBehaviour <br />
+No Of Functions : 11 <br />
+============= <br />
+mvAddGroupBehaviour <br />
+mvRemoveGroupCurrentBehaviour <br />
+mvRemoveGroupBehaviour <br />
+mvSetCurrentGroupBehaviour <br />
+mvRemoveAllGroupBehaviours <br />
+mvInsertGroupIntoGroupBehaviour <br />
+mvInsertCurrentGroupIntoGroupBehaviour <br />
+mvInsertGroupIntoCurrentGroupBehaviour <br />
+mvInsertCurrentGroupIntoCurrentGroupBehaviour <br />
+mvSetGroupBehaviourParameter <br />
+mvSetCurrentGroupBehaviourParameter <br />
+</p>
+<!--
+<h3>mvMotionAI central module</h3>
+<table border="4" cellpadding="0" cellspacing="0" summary="mvMotionAI central module">
+<tr><td>mv Function Name</td><td>Parameters</td><td>Progress(%)</td><td>Comments</td></tr>
+<tr><td>mvInitMotionAI</td><td>-</td><td>100</td><td>-</td></tr>
+<!-- <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+</table>
+    <p><a href="#Content_Header">Back To Contents</a><p>	
+<h3>mvBody Functions</h3>
+<table border="4" cellpadding="0" cellspacing="0" summary="mvBody Functions">
+<tr><td>mvFunction Name</td><td>Parameters</td><td>Progress(%)</td><td>Comments</td></tr>
+</table>
+    <p><a href="#Content_Header">Back To Contents</a><p>	
+<h3>mvObstacle Functions</h3>
+<table border="4" cellpadding="0" cellspacing="0" summary="mvObstacle Functions">
+<tr><td>mvFunction Name</td><td>Parameters</td><td>Progress(%)</td><td>Comments</td></tr>
+</table>
+    <p><a href="#Content_Header">Back To Contents</a><p>	
+<h3>mvBehaviour Functions</h3>
+<table border="4" cellpadding="0" cellspacing="0" summary="mvBehaviour Functions">
+<tr><td>mvFunction Name</td><td>Parameters</td><td>Progress(%)</td><td>Comments</td></tr>
+</table>
+    <p><a href="#Content_Header">Back To Contents</a><p>	
+<h3>mvForce Functions</h3>
+<table border="4" cellpadding="0" cellspacing="0" summary="mvForce Functions">
+<tr><td>mvFunction Name</td><td>Parameters</td><td>Progress(%)</td><td>Comments</td></tr>
+</table>
+    <p><a href="#Content_Header">Back To Contents</a><p>	
+<h3>mvGroup Functions</h3>
+<table border="4" cellpadding="0" cellspacing="0" summary="mvGroup Functions">
+<tr><td>mvFunction Name</td><td>Parameters</td><td>Progress(%)</td><td>Comments</td></tr>
+</table>
+    <p><a href="#Content_Header">Back To Contents</a><p>	
+<h3>mvWaypoint Functions</h3>
+<table border="4" cellpadding="0" cellspacing="0" summary="mvWaypoint Functions">
+<tr><td>mvFunction Name</td><td>Parameters</td><td>Progress(%)</td><td>Comments</td></tr>
+</table>
+    <p><a href="#Content_Header">Back To Contents</a><p>	
+<h3>mvPathway Functions</h3>
+<table border="4" cellpadding="0" cellspacing="0" summary="mvPathway Functions">
+<tr><td>mvFunction Name</td><td>Parameters</td><td>Progress(%)</td><td>Comments</td></tr>
+</table>
+-->
+    <p><a href="#Content_Header">Back To Contents</a><p>
+		<li><h2><a id="a_6">Index Log </a></h2></li>
+<table border="3" cellpadding="2" cellspacing="2" summary="">
+<tr><td>Version</td><td>Date</td><td>Comments</td></tr>
+<tr><td>1.04</td><td>21/09/06</td><td>Added output from Lua executable</td></tr>
+<tr><td>1.03</td><td>9/06/06</td><td>Formatting and page referencing improvements</td></tr>
+<tr><td>1.02</td><td>6/06/05</td><td>More tables for lua function section, split section to files </td></tr>
+<tr><td>1.01</td><td>25/06/05</td><td>Breaking up tables in functionalities section into general and various detailed class types</td></tr>
+<tr><td>1.00</td><td>  23/05/06</td><td>Created index file along with sections overview, functionalities and design goals,
+C++ functions, Log and Entities.
+</td></tr>
+</table>
+    <p><a href="#Content_Header">Back To Contents</a><p>	
+</ol>
+<hr />
+<h4> Created by HTML Kit (Free) <h4>
+</body>
+</html>

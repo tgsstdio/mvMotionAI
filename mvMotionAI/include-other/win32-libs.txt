@@ -1,0 +1,21 @@
+These headers files are required for compiling 
+the Visual C++ 6.0 workspace version of mvMotionAI.
+
+GL (directory)
+GL/freeglut.h
+GL/wglew.h
+GL/glew.h
+GL/glut.h
+GL/freeglut_std.h
+GL/freeglut_ext.h
+GL/GLAux.h
+GL/GL.h
+
+Headers files for Lua 5.0 (or 5.1?)
+lualib.h
+luaconf.h
+lualib.h
+lua.h
+lua.hpp
+
+David Young, 2006
