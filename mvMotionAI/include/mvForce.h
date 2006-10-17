@@ -27,7 +27,7 @@
 #include "mvVec3.h"
 #include "mvMotionAI-Types.h"
 //#include "Vec3.h"
-#include "mvEnum.h"
+#include "mvEnums.h"
 
 /**
  * \class mvForce
@@ -38,43 +38,48 @@
  * Log
  *
  *version     date  comments
+ *
+ *00-01-16  15/10/06 - updated mvEnum to 3 enums
+ *
  *00-01-05  22/5/06  - replaces c++ types with mv types,
  *                   change Vec3 to mvVec3
  *
  *00-01-00  22/5/06  - initialised forces
  */
+// TODO: get/set parameteri functions
 
+static const mvCount MV_MAX_NO_OF_FORCE_VARIABLES = 3;
 class mvForce
 {
    private:
       void initLengthParameter(mvFloat length);
-      mvEnum initialiseForce(mvEnum fType);
-      mvCount getNoOfParameters(mvEnum paramFlag);
+      mvErrorEnum initialiseForce(mvOptionEnum fType);
+      mvCount getNoOfParameters(mvParamEnum paramFlag);
       mvCount getNoOfForceVariables();
       //mvEnum initialiseForceVariables(mvEnum fType);
-      mvEnum forceType;
+      mvOptionEnum forceType;
 	   mvVec3 centralVector;
 	   mvFloat* variables;
-      mvEnum enableFlag;
+      mvOptionEnum enableFlag;
       mvCount count;
 
    public:
-      mvForce(mvEnum fType);
-      mvForce(mvEnum fType, mvFloat fx, mvFloat fy, mvFloat fz);
-      mvEnum toggleEnableFlag();
-      mvEnum getEnableFlag() const;
-      mvEnum setEnableFlag(mvEnum option);
-      mvEnum getType() const;
+      mvForce(mvOptionEnum fType);
+      mvForce(mvOptionEnum fType, mvFloat fx, mvFloat fy, mvFloat fz);
+      mvOptionEnum toggleEnableFlag();
+      mvOptionEnum getEnableFlag() const;
+      mvOptionEnum setEnableFlag(mvOptionEnum option);
+      mvOptionEnum getType() const;
       const mvVec3& getVector() const;
       void incrementCount();
       void decrementCount();
-      mvEnum isGlobalForce();
-      mvEnum getParameter(mvEnum paramFlag, mvEnum* dest);
-      mvEnum getParameterf(mvEnum paramFlag, mvFloat* dest);
-      mvEnum getParameterv(mvEnum paramFlag, mvFloat* dest, mvCount* size);
-      mvEnum setParameter(mvEnum paramFlag, mvEnum option);
-      mvEnum setParameterf(mvEnum paramFlag, mvFloat num);
-      mvEnum setParameterv(mvEnum paramFlag, mvFloat* numArray);
+      bool isGlobalForce();
+      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* dest);
+      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* dest);
+      mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* dest, mvCount* size);
+      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
       ~mvForce();
 };
 

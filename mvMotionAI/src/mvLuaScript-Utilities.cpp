@@ -25,33 +25,32 @@
 #include "mvLuaScript-Utilities.h"
 #include <cstdlib>
 #include <cstring>
-
+//TODO: incomplete
 int binarySearch(const char* key, char** array, int noOfItems)
 {
-   int mid = noOfItems / 2;
    int left = 0;
    int right = noOfItems - 1;
-   int result = -1;
+   //int result = -1;
    int compare;
    int index;
 
    while (left < right)
    {
-      index = mid;
+      index = left + right / 2;
       compare = strcmp(key,array[index]);
       if (compare == 0)
          return index;
       else if (compare < 0)
       {
-         right = mid - 1;
+         right = index - 1;
       }
       else
       {
-         left = mid + 1;
+         left = index + 1;
       }
    }
    return -1;
-};
+}
 
 int iterativeSearch(const char* key, const char** array, int noOfItems)
 {
@@ -65,4 +64,4 @@ int iterativeSearch(const char* key, const char** array, int noOfItems)
       }
    }
    return -1;
-};
+}

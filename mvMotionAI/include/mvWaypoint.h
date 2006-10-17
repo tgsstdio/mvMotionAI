@@ -27,7 +27,7 @@
 //#include "Vec3.h"
 #include "mvMotionAI-Types.h"
 #include "mvVec3.h"
-#include "mvEnum.h"
+#include "mvEnums.h"
 //#include "mvGroup.h"
 #include "mvForce.h"
 
@@ -47,16 +47,18 @@
  * 00-00-07		9/3/06		- initialised Target Object,
  */
 
+static const mvCount MV_MAX_NO_OF_WAYPOINT_DIMENSIONS = 3;
+
 class mvWaypoint
 {
    private:
-      mvEnum initialisePoints(mvEnum type);
-      mvEnum initialiseShapeDimensions(mvEnum shape);
+      mvErrorEnum initialisePoints(mvOptionEnum type);
+      mvErrorEnum initialiseShapeDimensions(mvOptionEnum shape);
       //mvGroup* groupPtr;
       mvVec3* points;
       //mvCount noOfPoints;
-      mvEnum wayPointType;
-      mvEnum wayPointShape;
+      mvOptionEnum wayPointType;
+      mvOptionEnum wayPointShape;
       mvFloat* dimensions;
       std::vector<mvForce*> forceList;
       mvCount noOfForces;
@@ -64,20 +66,20 @@ class mvWaypoint
    public:
       //mvWaypoint();
       //mvWaypoint(mvEnum targetType);
-      mvWaypoint(mvEnum targetType, mvEnum targetShape);
-      mvWaypoint(mvEnum targetType, mvEnum targetShape, mvFloat x, mvFloat y, mvFloat z);
-      mvEnum setParameter(mvEnum paramFlag, mvEnum option);
-      mvEnum setParameterf(mvEnum paramFlag, mvFloat num);
-      mvEnum setParameterv(mvEnum paramFlag, mvFloat* numArray);
-      mvEnum addForce(mvForce* forcePtr);
-      mvEnum removeForce(mvForce* forcePtr);
+      mvWaypoint(mvOptionEnum targetType, mvOptionEnum targetShape);
+      mvWaypoint(mvOptionEnum targetType, mvOptionEnum targetShape, mvFloat x, mvFloat y, mvFloat z);
+      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
+      mvErrorEnum addForce(mvForce* forcePtr);
+      mvErrorEnum removeForce(mvForce* forcePtr);
       void removeAllForces();
       mvCount getNoOfForces() const;
       mvCount getNoOfPoints() const;
       mvCount getNoOfDimensions() const;
       //void setGroup(mvGroup* wpGroup);
-      mvEnum getType();
-      mvEnum getShape();
+      mvOptionEnum getType();
+      mvOptionEnum getShape();
       mvFloat getX() const;
       mvFloat getY() const;
       mvFloat getZ() const;

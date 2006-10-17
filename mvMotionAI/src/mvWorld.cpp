@@ -54,7 +54,7 @@ void mvWorld::resetAllVariables()
    currentWaypoint = MV_NO_CURRENT_INDEX;
    currentObstacle = MV_NO_CURRENT_INDEX;
 
-};
+}
 
 
 /**
@@ -64,7 +64,7 @@ mvWorld::mvWorld()
 {
    idString = NULL;
    resetAllVariables();
-};
+}
 
 /**
  * \brief constructor
@@ -74,7 +74,9 @@ mvWorld::mvWorld(char* worldID)
    mvCount strLen;
    //idString = NULL;
 
-   /** c string copy **/
+   /*
+    c string copy
+   */
    if (worldID != NULL)
    {
       strLen = strlen(worldID) + 1;
@@ -87,7 +89,7 @@ mvWorld::mvWorld(char* worldID)
    }
 
    resetAllVariables();
-};
+}
 
 /**
  *
@@ -108,12 +110,12 @@ mvWorld::~mvWorld()
      delete [] idString;
      idString = NULL;
   }
-};
+}
 
 char* mvWorld::getWorldID() const
 {
    return idString;
-};
+}
 
 // really old integrator - obsolete
 void applyImprovEuler(mvFloat h,mvVec3* position, mvVec3* direction, mvFloat* currentSpeed,
@@ -125,14 +127,14 @@ void applyImprovEuler(mvFloat h,mvVec3* position, mvVec3* direction, mvFloat* cu
    mvFloat speed[2];
    mvIndex j;
 
-   /**
+   /*
     * Step 3: initialise initial position
     */
    pos[0][0] = position->getX();
    pos[0][1] = position->getY();
    pos[0][2] = position->getZ();
 
-   /**
+   /*
     * Step 3 : set velocity direction (as in unit vector direction)
     */
    for (j = 0; j < 2; j++)
@@ -142,33 +144,33 @@ void applyImprovEuler(mvFloat h,mvVec3* position, mvVec3* direction, mvFloat* cu
       vel[j][2] = direction->getZ();
    }
 
-   /**
+   /*
     * Step 3: calculate the new speed using constant
     * acceleration
     */
    speed[0] = *currentSpeed;
    speed[1] = speed[0] + h * currentAcceleration;
 
-   /**
+   /*
     * 3a : clipping speed to max speed
     */
    speed[0] = (speed[0] < maxSpeed) ? speed[0] : maxSpeed;
    speed[1] = (speed[1] < maxSpeed) ? speed[1] : maxSpeed;
 
-   /**
+   /*
     * Step 4 : for each calculate new position
     * with improved euler.
     */
    for (j = 0; j < 3; j++)
    {
-      /**
+      /*
        * Step 4a: calculate the velocity
        * for all
        */
       vel[0][j] *= speed[0];
       vel[1][j] *= speed[1];
 
-      /**
+      /*
        * Step 4b: calculate the position
        */
       c1 = h * vel[0][j];
@@ -177,7 +179,7 @@ void applyImprovEuler(mvFloat h,mvVec3* position, mvVec3* direction, mvFloat* cu
 
    }
 
-   /**
+   /*
     * Step 5: set the final speed and
     * position
     */
@@ -203,16 +205,16 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
    mvVec3 globalUniformForce, globalUniformAccel, globalUniformShift,
       totalForce, totalAccel, totalVelocity, bodyDirection,
       bodyAccel, bodyVelocity, bodyForce;
-   mvEnum forceType, bodyState;
+   mvOptionEnum forceType, bodyState;
    mvVec3 tempVector;
-   mvFloat parameters[MV_MAX_NO_OF_PARAMETERS];
+   mvFloat parameters[MV_MAX_NO_OF_FORCE_VARIABLES];
    mvCount noOfParameters;
    //mvFloat totalMass;
    mvFloat speed[2], dir[3];
    mvIndex j, groupNo;
 
 
-   /**
+   /*
     * Step 1 : initialise all global force, gravity
     and shift and drag.
     */
@@ -223,7 +225,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
     globalUniformAccel.set(0.0f,0.0f,0.0f);
     globalUniformShift.set(0.0f,0.0f,0.0f);
 
-   /**
+   /*
     * Step 2 : iterates over all forces in
     * force array to build global force values
     */
@@ -233,12 +235,12 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
        // 2.1 check if not null
        if (currentForce != NULL)
        {
-           /**
+           /*
             * 2.2 check if current force is global and
             *     enabled
             */
-            if (currentForce->isGlobalForce() == MV_TRUE &&
-                currentForce->getEnableFlag() == MV_FORCE_ON)
+            if (currentForce->isGlobalForce() &&
+                currentForce->getEnableFlag() == MV_TRUE)
             {
                 forceType = currentForce->getType();
 
@@ -249,7 +251,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
                    ///
                    // 2.3a) add force to global force
                    ///
-                      if (currentForce->getParameterv(MV_FORCE_VECTOR,parameters,&noOfParameters) == MV_TRUE)
+                      if (currentForce->getParameterv(MV_FORCE_VECTOR,parameters,&noOfParameters) == MV_NO_ERROR)
                       {
                          tempVector.set(parameters[0],parameters[1],parameters[2]);
                          globalUniformForce += tempVector;
@@ -264,7 +266,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
                    ///
                       //std::cout << "hello 2" << std::endl;
 
-                      if (currentForce->getParameterv(MV_ACCELERATION_VECTOR,parameters,&noOfParameters) == MV_TRUE)
+                      if (currentForce->getParameterv(MV_ACCELERATION_VECTOR,parameters,&noOfParameters) == MV_NO_ERROR)
                       {
                          tempVector.set(parameters[0],parameters[1],parameters[2]);
                          globalUniformAccel += tempVector;
@@ -275,7 +277,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
                    ///
                    // 2.3c) add acceleration to global velocity
                    ///
-                      if (currentForce->getParameterv(MV_VELOCITY,parameters,&noOfParameters) == MV_TRUE)
+                      if (currentForce->getParameterv(MV_VELOCITY,parameters,&noOfParameters) == MV_NO_ERROR)
                       {
                          tempVector.set(parameters[0],parameters[1],parameters[2]);
                          globalUniformShift += tempVector;
@@ -285,7 +287,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
                    ///
                    // 2.3d) adds drag force to global drag force quantity
                    ///
-                      if (currentForce->getParameterf(MV_FORCE_QUANTITY,parameters) == MV_TRUE)
+                      if (currentForce->getParameterf(MV_FORCE_QUANTITY,parameters) == MV_NO_ERROR)
                       {
                          globalDragForceQuantity += parameters[0];
                       }
@@ -294,7 +296,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
                    ///
                    // 2.3d) adds drag acceleration to global drag accel
                    ///
-                      if (currentForce->getParameterf(MV_ACCELERATION,parameters) == MV_TRUE)
+                      if (currentForce->getParameterf(MV_ACCELERATION,parameters) == MV_NO_ERROR)
                       {
                          globalDragForceQuantity += parameters[0];
                       }
@@ -303,7 +305,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
                    ///
                    // 2.3e) adds drag shift to total drag shift
                    ///
-                      if (currentForce->getParameterf(MV_SPEED,parameters) == MV_TRUE)
+                      if (currentForce->getParameterf(MV_SPEED,parameters) == MV_NO_ERROR)
                       {
                          globalDragForceQuantity += parameters[0];
                       }
@@ -376,13 +378,13 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
        }
     }
 
-   /**
+   /*
     * Step 3 : initialises the time step (h)
     *
     */
    h = timeInSecs;
 
-   /**
+   /*
     * Step 4 : iterate & perform group functions
     */
    mvGroupBehaviour* currentGroupBeh = NULL;
@@ -398,7 +400,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
 
 
 
-   /**
+   /*
     * Step 5 : iterate over all vehicles
     */
    //puts("Step 5");
@@ -409,21 +411,22 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
       {
 
          bodyState = tempBody->getState();
-         /**
+         /*
           * 5.1.1 (a) straight line integration if unaffected by forces
           */
          if (bodyState == MV_APPLY_NO_FORCES_STATE)
          {
             maxSpeed = tempBody->maxSpeed;
             currentAcceleration = tempBody->acceleration;
+// TO_DO : motion integration of MV_APPLY_NO_FORCES_STATE not correct
             applyImprovEuler(h,&(tempBody->position),&(tempBody->direction), &(tempBody->speed),
                       maxSpeed,currentAcceleration);
          }
-         /**
+         /*
           * 5.1.2 (b) apply forces to body straight line integration
           * eular
           */
-         else if (bodyState != MV_NO_MOTION_STATE && bodyState != MV_INVALID_BODY_STATE)
+         else if (bodyState != MV_NO_MOTION_STATE && bodyState != MV_NON_BODY_STATE)
          {
             maxSpeed = tempBody->maxSpeed;
             //tempVector = tempBody->direction;
@@ -440,31 +443,31 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
             mvProcessBodyBehaviours(this, tempBody, h,
                bodyDirection, bodyVelocity,bodyAccel,bodyForce);
 
-            /**
+            /*
              * final integration
-            **/
-            /**
+             */
+            /*
              * force(mvForce) => accel (a = f/m)
              */
             totalAccel += ((1.0f/tempBody->mass) * totalForce);
             bodyAccel += ((1.0f/tempBody->mass) * bodyForce);
-            /**
+            /*
              * accel to velocity <> change in v =  a * h
              */
             totalVelocity += (h * totalAccel);
             bodyVelocity += (h * bodyAccel);
 
 
-            /**
+            /*
              * 5.1.2.1: initialise initial position
              */
             pos[0][0] = tempBody->getX();
             pos[0][1] = tempBody->getY();
             pos[0][2] = tempBody->getZ();
 
-            /**
+            /*
              * 5.1.2.2: set velocity direction to total velocity (as in unit vector direction)
-             **/
+             */
             //tempBody->finalVelocity.x;
 
             vel[0][0] = tempBody->finalVelocity.getX();
@@ -475,7 +478,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
             vel[1][1] = totalVelocity.getY() + tempBody->finalVelocity.getY();
             vel[1][2] = totalVelocity.getZ() + tempBody->finalVelocity.getZ();
 
-            /**
+            /*
              * 5.1.2.3 realign direction
              */
             tempBody->direction = bodyVelocity.normalize();
@@ -484,14 +487,14 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
             dir[1] = tempBody->direction.getY();
             dir[2] = tempBody->direction.getZ();
 
-            /**
+            /*
              * 5.1.2.3: calculate the new speed using constant
              * acceleration
              */
             speed[0] = tempBody->speed;
             speed[1] = bodyVelocity.length();
 
-            /**
+            /*
              * limits change in velocity by max velocity
              *change per frame
              */
@@ -499,7 +502,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
             if (speed[0] < speed[1])
             {
                extraVelocity = tempBody->acceleration * h;
-               /**
+               /*
                std::cout << "Acceleration : " << tempBody->acceleration << std::endl
                          << "Extra velocity : " << extraVelocity << std::endl
                          << "Speed[0] : " << speed[0] << std::endl
@@ -524,19 +527,19 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
 
             //speed[1] *= (speed[1] < 0) ? -1.0f : 1.0f;
 
-            /**
+            /*
              * 5.1.2.4: clipping speed to max speed
              */
             speed[0] = (speed[0] < maxSpeed) ? speed[0] : maxSpeed;
             speed[1] = (speed[1] < maxSpeed) ? speed[1] : maxSpeed;
 
-            /**
+            /*
              * 5.1.2.6: for each calculate new position
              * with improved euler.
              */
             for (j = 0; j < 3; j++)
             {
-               /**
+               /*
                 * 5.1.2.6.1 calculate the velocity
                 * for all
                 */
@@ -545,7 +548,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
                //vel[0][j] *= speed[0];
                //vel[1][j] *= speed[1];
 
-               /**
+               /*
                 * 5.1.2.6.2 calculate the position
                 */
                c1 = h * vel[0][j];
@@ -553,7 +556,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
                pos[1][j] = pos[0][j] + 0.5 * (c1 + c2);
 
             }
-            /**
+            /*
              * 5.1.2.7: set new position
              * and new speed
              */
@@ -563,13 +566,11 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
          }
       }
    }
-};
-
-
+}
 
 void mvWorld::mvApplyToAllBodies(void (someFunction)(mvBody*,void*),void* extraPtr)
 {
-   /**
+   /*
    std::vector<mvBody*>::iterator i;
    mvBody* tempBody = NULL;
 
@@ -581,7 +582,7 @@ void mvWorld::mvApplyToAllBodies(void (someFunction)(mvBody*,void*),void* extraP
          someFunction(tempBody);
       }
    }
-   **/
+   */
    mvApplyFunctionToAllItemsInListVector<mvBody>(bodies,someFunction,extraPtr);
 }
 
@@ -593,20 +594,19 @@ void mvWorld::mvApplyToAllObstacles(void (someFunction)(mvObstacle*,void*),void*
 void mvWorld::mvApplyToAllWaypoints(void (someFunction)(mvWaypoint*,void*),void* extraPtr)
 {
    mvApplyFunctionToAllItemsInListVector<mvWaypoint>(waypoints,someFunction,extraPtr);
-};
-
+}
 
 // start mv Body declearations
 
 /**
  * adds bodies to
  */
-mvIndex mvWorld::mvAddBody(mvEnum bType, mvEnum bShape)
+mvIndex mvWorld::mvAddBody(mvOptionEnum bType, mvOptionEnum bShape)
 {
    return mvAddBodyWithPos(bType, bShape, 0, 0, 0);
-};
+}
 
-mvIndex mvWorld::mvAddBodyWithPos(mvEnum bType, mvEnum bShape, mvFloat x, mvFloat y, mvFloat z)
+mvIndex mvWorld::mvAddBodyWithPos(mvOptionEnum bType, mvOptionEnum bShape, mvFloat x, mvFloat y, mvFloat z)
 {
    mvBody* tempBody = NULL;
 
@@ -620,63 +620,63 @@ mvIndex mvWorld::mvAddBodyWithPos(mvEnum bType, mvEnum bShape, mvFloat x, mvFloa
    //groups[0]->addMember(tempBody);
 
    return currentBody;
-};
+}
 
 mvBody* mvWorld::mvGetBody(mvIndex index)
 {
    return mvGetClassPtr<mvBody>(bodies,index, noOfBodies);
-};
+}
 
 mvIndex mvWorld::mvSetCurrentBody(mvIndex index)
 {
   return mvSetCurrentIndexOfClassList<mvBody>(bodies, index, currentBody, noOfBodies);
-};
+}
 
-mvEnum mvWorld::mvRemoveCurrentBody()
+mvErrorEnum mvWorld::mvRemoveCurrentBody()
 {
    //return removeCurrentItemFromList<mvBody>(bodies,currentBody,noOfBodies);
    return removeItemFromVectorByIndex<mvBody>(bodies, currentBody, currentBody, noOfBodies);
-};
+}
 
-mvEnum mvWorld::mvRemoveBody(mvIndex index)
+mvErrorEnum mvWorld::mvRemoveBody(mvIndex index)
 {
   return removeItemFromVectorByIndex<mvBody>(bodies,index,currentBody,noOfBodies);
-};
+}
 
 void mvWorld::mvRemoveAllBodies()
 {
    mvRemoveAllClassObjectsFromList<mvBody>(bodies, currentBody, noOfBodies);
-};
+}
 
-mvEnum mvWorld::mvSetBodyParameter(mvIndex index, mvEnum paramFlag, mvEnum option)
+mvErrorEnum mvWorld::mvSetBodyParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return mvSetClassParameterByIndex<mvBody>(bodies,index, noOfBodies, paramFlag, option);
-};
+   return mvSetClassParameter<mvBody>(bodies,index, noOfBodies, paramFlag, option);
+}
 
-mvEnum mvWorld::mvSetBodyParameterf(mvIndex index, mvEnum paramFlag, mvFloat num)
+mvErrorEnum mvWorld::mvSetBodyParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat num)
 {
   return mvSetClassParameterf<mvBody>(bodies, noOfBodies, index, paramFlag, num);
 }
 
-mvEnum mvWorld::mvSetBodyParameterv(mvIndex index, mvEnum paramFlag, mvFloat* array)
+mvErrorEnum mvWorld::mvSetBodyParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array)
 {
    return mvSetClassParameterv<mvBody>(bodies, noOfBodies,index, paramFlag, array);
-};
+}
 
-mvEnum mvWorld::mvSetCurrentBodyParameter(mvEnum paramFlag, mvEnum option)
+mvErrorEnum mvWorld::mvSetCurrentBodyParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
-  return mvSetClassParameterByIndex<mvBody>(bodies, currentBody, noOfBodies, paramFlag, option);
-};
+   return mvSetClassParameter<mvBody>(bodies, currentBody, noOfBodies, paramFlag, option);
+}
 
-mvEnum mvWorld::mvSetCurrentBodyParameterf(mvEnum paramFlag, mvFloat num)
+mvErrorEnum mvWorld::mvSetCurrentBodyParameterf(mvParamEnum paramFlag, mvFloat num)
 {
   return mvSetClassParameterf<mvBody>(bodies,noOfBodies, currentBody, paramFlag, num);
 }
 
-mvEnum mvWorld::mvSetCurrentBodyParameterv(mvEnum paramFlag, mvFloat* array)
+mvErrorEnum mvWorld::mvSetCurrentBodyParameterv(mvParamEnum paramFlag, mvFloat* array)
 {
   return mvSetClassParameterv<mvBody>(bodies, noOfBodies, currentBody, paramFlag, array);
-};
+}
 // end body functions - start mv group functions
 
 /**
@@ -712,23 +712,23 @@ mvIndex mvWorld::mvAddGroup(char* mvGroupID)
    ++noOfGroups;
    currentGroup = noOfGroups;
    return currentGroup;
-};
+}
 
 mvGroup* mvWorld::mvGetGroup(mvIndex index)
 {
    //std::cout << "Index : " << index << std::endl;
    return mvGetClassPtr<mvGroup>(groups, index, noOfGroups);
-};
+}
 
-mvEnum mvWorld::mvRemoveCurrentGroup()
+mvErrorEnum mvWorld::mvRemoveCurrentGroup()
 {
    // return removeCurrentItemFromList<mvGroup>(groups, currentGroup, noOfGroups);
     return removeItemFromVectorByIndex<mvGroup>(groups, currentGroup, currentGroup, noOfGroups);
-};
+}
 
-mvEnum mvWorld::mvRemoveGroup(mvIndex index)
+mvErrorEnum mvWorld::mvRemoveGroup(mvIndex index)
 {
-  /**
+  /*
   mvGroup* tempGroup = NULL;
   mvIndex groupIndex = index + MV_OFFSET_TO_INDEX;
 
@@ -750,21 +750,21 @@ mvEnum mvWorld::mvRemoveGroup(mvIndex index)
   {
      return MV_FALSE;
   }
-  **/
+  */
   return removeItemFromVectorByIndex<mvGroup>(groups, index, currentGroup, noOfGroups);
-};
+}
 
 mvIndex mvWorld::mvSetCurrentGroup(mvIndex index)
 {
-  return mvSetCurrentIndexOfClassList<mvGroup>(groups, index, currentGroup, noOfGroups);
-};
+   return mvSetCurrentIndexOfClassList<mvGroup>(groups, index, currentGroup, noOfGroups);
+}
 
 /**
  *  \brief remove all additional groups in mvWorld
  */
 void mvWorld::mvRemoveAllGroups()
 {
-   /**
+   /*
    std::vector<mvGroup*>::iterator i = groups.begin();
    mvGroup* temp = NULL;
 
@@ -779,46 +779,45 @@ void mvWorld::mvRemoveAllGroups()
       }
    }
    noOfGroups = 1;
-   **/
+   */
    //noOfGroupsSlots = 0;
    mvRemoveAllClassObjectsFromList<mvGroup>(groups, currentGroup, noOfGroups);
-};
+}
 
-mvEnum mvWorld::mvSetGroupParameter(mvIndex index, mvEnum paramFlag, mvEnum option)
+mvErrorEnum mvWorld::mvSetGroupParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return mvSetClassParameterByIndex<mvGroup>(groups, index, noOfGroups, paramFlag, option);
-};
+   return mvSetClassParameter<mvGroup>(groups, index, noOfGroups, paramFlag, option);
+}
 
-mvEnum mvWorld::mvSetGroupParameterf(mvIndex index, mvEnum paramFlag, mvFloat num)
+mvErrorEnum mvWorld::mvSetGroupParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat num)
 {
    return mvSetClassParameterf<mvGroup>(groups, noOfGroups, index, paramFlag, num);
-};
+}
 
-mvEnum mvWorld::mvSetGroupParameterv(mvIndex index, mvEnum paramFlag, mvFloat* array)
+mvErrorEnum mvWorld::mvSetGroupParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array)
 {
    return mvSetClassParameterv<mvGroup>(groups, noOfGroups,index, paramFlag, array);
-};
+}
 
-mvEnum mvWorld::mvSetCurrentGroupParameter(mvEnum paramFlag, mvEnum option)
+mvErrorEnum mvWorld::mvSetCurrentGroupParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return mvSetClassParameterByIndex<mvGroup>(groups, currentGroup,noOfObstacles, paramFlag, option);
-};
+   return mvSetClassParameter<mvGroup>(groups, currentGroup,noOfObstacles, paramFlag, option);
+}
 
-mvEnum mvWorld::mvSetCurrentGroupParameterf(mvEnum paramFlag, mvFloat num)
+mvErrorEnum mvWorld::mvSetCurrentGroupParameterf(mvParamEnum paramFlag, mvFloat num)
 {
-   return  mvSetClassParameterf<mvGroup>(groups,noOfGroups, currentGroup, paramFlag,num);
-};
+   return mvSetClassParameterf<mvGroup>(groups,noOfGroups, currentGroup, paramFlag,num);
+}
 
-mvEnum mvWorld::mvSetCurrentGroupParameterv(mvEnum paramFlag, mvFloat* array)
+mvErrorEnum mvWorld::mvSetCurrentGroupParameterv(mvParamEnum paramFlag, mvFloat* array)
 {
    return mvSetClassParameterv<mvGroup>(groups, noOfGroups, currentGroup, paramFlag, array);
-};
+}
 
-mvEnum mvWorld::mvAddBodyToGroup(mvIndex bodyIndex, mvIndex groupIndex)
+mvErrorEnum mvWorld::mvAddBodyToGroup(mvIndex bodyIndex, mvIndex groupIndex)
 {
    mvGroup* currentGroup = NULL;
    mvBody* tempBody = NULL;
-   mvEnum result = MV_FALSE;
 
    tempBody = mvGetBody(bodyIndex);
    if (tempBody != NULL)
@@ -827,36 +826,41 @@ mvEnum mvWorld::mvAddBodyToGroup(mvIndex bodyIndex, mvIndex groupIndex)
      // puts("HELLO");
       if (currentGroup != NULL)
       {
-         currentGroup->addMember(tempBody);
 #ifdef MV_WORLD_DEBUG_OUTPUT_FLAG
          std::cout << "No of Members : " << currentGroup->getNoOfMembers() << std::endl;
 #endif
-         result = MV_TRUE;
+         return currentGroup->addMember(tempBody);
+      }
+      else
+      {
+         return MV_GROUP_INDEX_IS_INVALID;
       }
    }
-   return result;
-};
+   else
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+}
 
-mvEnum mvWorld::mvAddCurrentBodyToGroup(mvIndex groupIndex)
+mvErrorEnum mvWorld::mvAddCurrentBodyToGroup(mvIndex groupIndex)
 {
    return mvAddBodyToGroup(currentBody, groupIndex);
-};
+}
 
-mvEnum mvWorld::mvAddBodyToCurrentGroup(mvIndex bodyIndex)
+mvErrorEnum mvWorld::mvAddBodyToCurrentGroup(mvIndex bodyIndex)
 {
    return mvAddBodyToGroup(bodyIndex, currentGroup);
-};
+}
 
-mvEnum mvWorld::mvAddCurrentBodyToCurrentGroup()
+mvErrorEnum mvWorld::mvAddCurrentBodyToCurrentGroup()
 {
    return mvAddBodyToGroup(currentBody, currentGroup);
-};
+}
 
-mvEnum mvWorld::mvRemoveBodyFromGroup(mvIndex bodyIndex, mvIndex groupIndex)
+mvErrorEnum mvWorld::mvRemoveBodyFromGroup(mvIndex bodyIndex, mvIndex groupIndex)
 {
    mvGroup* currentGroup = NULL;
    mvBody* tempBody = NULL;
-   mvEnum result = MV_FALSE;
 
    tempBody = mvGetBody(bodyIndex);
    if (tempBody != NULL)
@@ -864,27 +868,34 @@ mvEnum mvWorld::mvRemoveBodyFromGroup(mvIndex bodyIndex, mvIndex groupIndex)
       currentGroup = mvGetGroup(groupIndex);
       if (currentGroup != NULL)
       {
-         currentGroup->removeMember(tempBody);
-         result = MV_TRUE;
+         return currentGroup->removeMember(tempBody);
+      }
+      else
+      {
+         return MV_GROUP_INDEX_IS_INVALID;
       }
    }
-   return result;
-};
+   else
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
 
-mvEnum mvWorld::mvRemoveCurrentBodyFromGroup(mvIndex groupIndex)
+}
+
+mvErrorEnum mvWorld::mvRemoveCurrentBodyFromGroup(mvIndex groupIndex)
 {
    return mvRemoveBodyFromGroup(currentBody, groupIndex);
-};
+}
 
-mvEnum mvWorld::mvRemoveBodyFromCurrentGroup(mvIndex bodyIndex)
+mvErrorEnum mvWorld::mvRemoveBodyFromCurrentGroup(mvIndex bodyIndex)
 {
    return mvRemoveBodyFromGroup(bodyIndex, currentGroup);
-};
+}
 
-mvEnum mvWorld::mvRemoveCurrentBodyFromCurrentGroup()
+mvErrorEnum mvWorld::mvRemoveCurrentBodyFromCurrentGroup()
 {
    return mvRemoveBodyFromGroup(currentBody, currentGroup);
-};
+}
 
 mvGroup* mvWorld::mvGetGroupByID(char* groupID)
 {
@@ -907,7 +918,7 @@ mvGroup* mvWorld::mvGetGroupByID(char* groupID)
       }
    }
    return NULL;
-};
+}
 
 mvIndex mvWorld::mvGetGroupIndexByID(char* groupID)
 {
@@ -933,7 +944,7 @@ mvIndex mvWorld::mvGetGroupIndexByID(char* groupID)
       ++count;
    }
    return 0;
-};
+}
 
 // end group functions - start Obstacle functions
 
@@ -943,12 +954,12 @@ mvIndex mvWorld::mvGetGroupIndexByID(char* groupID)
  * returns index number of new group created
  */
 
-mvIndex mvWorld::mvAddObstacle(mvEnum oType, mvEnum oState)
+mvIndex mvWorld::mvAddObstacle(mvOptionEnum oType, mvOptionEnum oState)
 {
    return mvAddObstacleWithPos(oType, oState, 0, 0, 0);
-};
+}
 
-mvIndex mvWorld::mvAddObstacleWithPos(mvEnum oType, mvEnum oState,mvFloat x, mvFloat y, mvFloat z)
+mvIndex mvWorld::mvAddObstacleWithPos(mvOptionEnum oType, mvOptionEnum oState,mvFloat x, mvFloat y, mvFloat z)
 {
    // initialise obstacle
    mvObstacle* tempObstacle = new mvObstacle(oType,oState,x,y,z);
@@ -956,136 +967,135 @@ mvIndex mvWorld::mvAddObstacleWithPos(mvEnum oType, mvEnum oState,mvFloat x, mvF
    ++noOfObstacles;
    currentObstacle = noOfObstacles;
    return currentObstacle;
-};
+}
 
 mvObstacle* mvWorld::mvGetObstacle(mvIndex index)
 {
    return  mvGetClassPtr<mvObstacle>(obstacles, index, noOfObstacles);
-};
+}
 
 void mvWorld::mvRemoveAllObstacles()
 {
    mvRemoveAllClassObjectsFromList<mvObstacle>(obstacles,currentObstacle,noOfObstacles);
-};
+}
 
-mvEnum mvWorld::mvRemoveCurrentObstacle()
+mvErrorEnum mvWorld::mvRemoveCurrentObstacle()
 {
    //return removeCurrentItemFromList<mvObstacle>(obstacles, currentObstacle, noOfObstacles);
    return removeItemFromVectorByIndex<mvObstacle>(obstacles, currentObstacle, currentObstacle, noOfObstacles);
-};
+}
 
-mvEnum mvWorld::mvRemoveObstacle(mvIndex index)
+mvErrorEnum mvWorld::mvRemoveObstacle(mvIndex index)
 {
-  return removeItemFromVectorByIndex<mvObstacle>(obstacles, index, currentObstacle, noOfObstacles);
-};
+   return removeItemFromVectorByIndex<mvObstacle>(obstacles, index, currentObstacle, noOfObstacles);
+}
 
 mvIndex mvWorld::mvSetCurrentObstacle(mvIndex index)
 {
-  return mvSetCurrentIndexOfClassList<mvObstacle>(obstacles, index, currentObstacle, noOfObstacles);
-};
+   return mvSetCurrentIndexOfClassList<mvObstacle>(obstacles, index, currentObstacle, noOfObstacles);
+}
 
-mvEnum mvWorld::mvSetObstacleParameter(mvIndex index, mvEnum paramFlag, mvEnum option)
+mvErrorEnum mvWorld::mvSetObstacleParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return mvSetClassParameterByIndex<mvObstacle>(obstacles, index, noOfObstacles, paramFlag, option);
-};
+   return mvSetClassParameter<mvObstacle>(obstacles, index, noOfObstacles, paramFlag, option);
+}
 
-mvEnum mvWorld::mvSetObstacleParameterf(mvIndex index, mvEnum paramFlag, mvFloat num)
+mvErrorEnum mvWorld::mvSetObstacleParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat num)
 {
    return mvSetClassParameterf<mvObstacle>(obstacles, noOfObstacles, index, paramFlag, num);
-};
+}
 
-mvEnum mvWorld::mvSetObstacleParameterv(mvIndex index, mvEnum paramFlag, mvFloat* array)
+mvErrorEnum mvWorld::mvSetObstacleParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array)
 {
    return mvSetClassParameterv<mvObstacle>(obstacles, noOfObstacles,index, paramFlag, array);
-};
+}
 
-mvEnum mvWorld::mvSetCurrentObstacleParameter(mvEnum paramFlag, mvEnum option)
+mvErrorEnum mvWorld::mvSetCurrentObstacleParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return mvSetClassParameterByIndex<mvObstacle>(obstacles, currentObstacle, noOfObstacles, paramFlag, option);
-};
+   return mvSetClassParameter<mvObstacle>(obstacles, currentObstacle, noOfObstacles, paramFlag, option);
+}
 
-mvEnum mvWorld::mvSetCurrentObstacleParameterf(mvEnum paramFlag, mvFloat num)
+mvErrorEnum mvWorld::mvSetCurrentObstacleParameterf(mvParamEnum paramFlag, mvFloat num)
 {
    return mvSetClassParameterf<mvObstacle>(obstacles, noOfObstacles, currentObstacle, paramFlag, num);
-};
+}
 
-mvEnum mvWorld::mvSetCurrentObstacleParameterv(mvEnum paramFlag, mvFloat* array)
+mvErrorEnum mvWorld::mvSetCurrentObstacleParameterv(mvParamEnum paramFlag, mvFloat* array)
 {
    return mvSetClassParameterv<mvObstacle>(obstacles,noOfObstacles,currentObstacle,paramFlag,array);
-};
+}
 
 // end obstacle functions -  start waypoint functions
-mvIndex mvWorld::mvAddWaypoint(mvEnum wType, mvEnum wShape)
+mvIndex mvWorld::mvAddWaypoint(mvOptionEnum wType, mvOptionEnum wShape)
 {
    return mvAddWaypointWithPos(wType,wShape, 0, 0, 0);
-};
+}
 
-mvIndex mvWorld::mvAddWaypointWithPos(mvEnum wType, mvEnum wShape, mvFloat x, mvFloat y, mvFloat z)
+mvIndex mvWorld::mvAddWaypointWithPos(mvOptionEnum wType, mvOptionEnum wShape, mvFloat x, mvFloat y, mvFloat z)
 {
   mvWaypoint* temp = new mvWaypoint(wType, wShape, x,y,z);
   waypoints.push_back(temp);
   ++noOfWaypoints;
   currentWaypoint = noOfWaypoints;
   return currentWaypoint;
-};
+}
 
 mvWaypoint* mvWorld::mvGetWaypoint(mvIndex index)
 {
-  return mvGetClassPtr<mvWaypoint>(waypoints, index, noOfWaypoints);
-};
+   return mvGetClassPtr<mvWaypoint>(waypoints, index, noOfWaypoints);
+}
 
-mvEnum mvWorld::mvRemoveWaypoint(mvIndex index)
+mvErrorEnum mvWorld::mvRemoveWaypoint(mvIndex index)
 {
   return removeItemFromVectorByIndex<mvWaypoint>(waypoints, index, currentWaypoint, noOfWaypoints);
-};
+}
 
-mvEnum mvWorld::mvRemoveCurrentWaypoint()
+mvErrorEnum mvWorld::mvRemoveCurrentWaypoint()
 {
    return removeItemFromVectorByIndex<mvWaypoint>(waypoints, currentWaypoint, currentWaypoint, noOfWaypoints);
-};
+}
 
 mvIndex mvWorld::mvSetCurrentWaypoint(mvIndex index)
 {
   return mvSetCurrentIndexOfClassList<mvWaypoint>(waypoints, index, currentWaypoint, noOfWaypoints);
-};
+}
 
 void mvWorld::mvRemoveAllWaypoints()
 {
    mvRemoveAllClassObjectsFromList<mvWaypoint>(waypoints, currentWaypoint, noOfWaypoints);
-};
+}
 
-mvEnum mvWorld::mvSetWaypointParameter(mvIndex index, mvEnum paramFlag, mvEnum option)
+mvErrorEnum mvWorld::mvSetWaypointParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return mvSetClassParameterByIndex<mvWaypoint>(waypoints, index, noOfWaypoints, paramFlag, option);
-};
+   return mvSetClassParameter<mvWaypoint>(waypoints, index, noOfWaypoints, paramFlag, option);
+}
 
-mvEnum mvWorld::mvSetWaypointParameterf(mvIndex index, mvEnum paramFlag, mvFloat num)
+mvErrorEnum mvWorld::mvSetWaypointParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat num)
 {
-  return mvSetClassParameterf<mvWaypoint>(waypoints, noOfWaypoints, index, paramFlag, num);
-};
+   return mvSetClassParameterf<mvWaypoint>(waypoints, noOfWaypoints, index, paramFlag, num);
+}
 
-mvEnum mvWorld::mvSetWaypointParameterv(mvIndex index, mvEnum paramFlag, mvFloat* array)
+mvErrorEnum mvWorld::mvSetWaypointParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array)
 {
    return mvSetClassParameterv<mvWaypoint>(waypoints, noOfWaypoints, index, paramFlag, array);
-};
+}
 
-mvEnum mvWorld::mvSetCurrentWaypointParameter(mvEnum paramFlag, mvEnum option)
+mvErrorEnum mvWorld::mvSetCurrentWaypointParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return mvSetClassParameterByIndex<mvWaypoint>(waypoints, currentWaypoint, noOfWaypoints, paramFlag, option);
-};
+   return mvSetClassParameter<mvWaypoint>(waypoints, currentWaypoint, noOfWaypoints, paramFlag, option);
+}
 
-mvEnum mvWorld::mvSetCurrentWaypointParameterf(mvEnum paramFlag, mvFloat num)
+mvErrorEnum mvWorld::mvSetCurrentWaypointParameterf(mvParamEnum paramFlag, mvFloat num)
 {
   return mvSetClassParameterf<mvWaypoint>(waypoints, noOfWaypoints, currentWaypoint, paramFlag, num);
-};
+}
 
-mvEnum mvWorld::mvSetCurrentWaypointParameterv(mvEnum paramFlag, mvFloat* array)
+mvErrorEnum mvWorld::mvSetCurrentWaypointParameterv(mvParamEnum paramFlag, mvFloat* array)
 {
   return mvSetClassParameterv<mvWaypoint>(waypoints, noOfWaypoints, currentWaypoint, paramFlag, array);
-};
+}
 
 // end waypoint functions - start pathway functions
-
 mvIndex mvWorld::mvBeginPathway()
 {
    mvPathway* temp = new mvPathway();
@@ -1093,209 +1103,205 @@ mvIndex mvWorld::mvBeginPathway()
    ++noOfPathways;
    currentPathway = noOfPathways;
    return currentPathway;
-};
+}
 
 mvPathway* mvWorld::mvGetPathway(mvIndex index)
 {
    return mvGetClassPtr<mvPathway>(pathways,index, noOfPathways);
-};
+}
 
-mvEnum mvWorld::mvRemovePathway(mvIndex index)
+mvErrorEnum mvWorld::mvRemovePathway(mvIndex index)
 {
    return removeItemFromVectorByIndex<mvPathway>(pathways, index, currentPathway, noOfPathways);
-};
+}
 
 //mvIndex mvEndPathway();
-mvEnum mvWorld::mvRemoveCurrentPathway()
+mvErrorEnum mvWorld::mvRemoveCurrentPathway()
 {
    //return removeCurrentItemFromList<mvPathway>(pathways, currentPathway, noOfPathways);
    return removeItemFromVectorByIndex<mvPathway>(pathways, currentPathway, currentPathway, noOfPathways);
-};
+}
 
 mvIndex mvWorld::mvSetCurrentPathway(mvIndex index)
 {
    return mvSetCurrentIndexOfClassList<mvPathway>(pathways, index, currentPathway, noOfPathways);
-};
+}
 
 void mvWorld::mvRemoveAllPathways()
 {
    mvRemoveAllClassObjectsFromList<mvPathway>(pathways,currentPathway,noOfPathways);
-};
+}
 
-mvEnum mvWorld::mvSetPathwayParameter(mvIndex index, mvEnum paramFlag, mvEnum option)
+mvErrorEnum mvWorld::mvSetPathwayParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return mvSetClassParameterByIndex<mvPathway>(pathways, index, noOfPathways, paramFlag, option);
-};
+   return mvSetClassParameter<mvPathway>(pathways, index, noOfPathways, paramFlag, option);
+}
 
-mvEnum mvWorld::mvSetPathwayParameterf(mvIndex index, mvEnum paramFlag, mvFloat num)
+mvErrorEnum mvWorld::mvSetPathwayParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat num)
 {
    return mvSetClassParameterf<mvPathway>(pathways, noOfPathways, index, paramFlag, num);
-};
+}
 
-mvEnum mvWorld::mvSetPathwayParameterv(mvIndex index, mvEnum paramFlag, mvFloat* array)
+mvErrorEnum mvWorld::mvSetPathwayParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array)
 {
   return mvSetClassParameterv<mvPathway>(pathways, noOfPathways, index, paramFlag, array);
-};
+}
 
-mvEnum mvWorld::mvSetCurrentPathwayParameter(mvEnum paramFlag, mvEnum option)
+mvErrorEnum mvWorld::mvSetCurrentPathwayParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return mvSetClassParameterByIndex<mvPathway>(pathways, currentPathway, noOfPathways, paramFlag, option);
-};
+   return mvSetClassParameter<mvPathway>(pathways, currentPathway, noOfPathways, paramFlag, option);
+}
 
-mvEnum mvWorld::mvSetCurrentPathwayParameterf(mvEnum paramFlag, mvFloat num)
+mvErrorEnum mvWorld::mvSetCurrentPathwayParameterf(mvParamEnum paramFlag, mvFloat num)
 {
    return mvSetClassParameterf<mvPathway>(pathways, noOfPathways, currentPathway, paramFlag, num);
-};
+}
 
-mvEnum mvWorld::mvSetCurrentPathwayParameterv(mvEnum paramFlag, mvFloat* array)
+mvErrorEnum mvWorld::mvSetCurrentPathwayParameterv(mvParamEnum paramFlag, mvFloat* array)
 {
    return mvSetClassParameterv<mvPathway>(pathways, noOfPathways, currentPathway, paramFlag, array);
 }
 
-//
-mvEnum mvWorld::mvAddWaypointToPathway(mvIndex wpIndex, mvIndex pIndex)
+mvErrorEnum mvWorld::mvAddWaypointToPathway(mvIndex wpIndex, mvIndex pIndex)
 {
    mvPathway* tempPathway = NULL;
    mvWaypoint* wPoint = NULL;
 
    wPoint = mvGetWaypoint(wpIndex);
    if (wPoint == NULL)
-      return MV_FALSE;
+      return MV_WAYPOINT_INDEX_IS_INVALID;
 
    tempPathway = mvGetPathway(pIndex);
    if (tempPathway == NULL)
-      return MV_FALSE;
+      return MV_PATHWAY_INDEX_IS_INVALID;
 
    tempPathway->addWaypoint(wPoint);
-   return MV_TRUE;
-};
+   return MV_NO_ERROR;
+}
 
-mvEnum mvWorld::mvAddWaypointToCurrentPathway(mvIndex wpIndex)
+mvErrorEnum mvWorld::mvAddWaypointToCurrentPathway(mvIndex wpIndex)
 {
-  return mvAddWaypointToPathway(wpIndex,currentPathway);
-};
+   return mvAddWaypointToPathway(wpIndex,currentPathway);
+}
 
-mvEnum mvWorld::mvAddCurrentWaypointToCurrentPathway()
+mvErrorEnum mvWorld::mvAddCurrentWaypointToCurrentPathway()
 {
-  return mvAddWaypointToPathway(currentWaypoint,currentPathway);
-};
+   return mvAddWaypointToPathway(currentWaypoint,currentPathway);
+}
 
-mvEnum mvWorld::mvAddCurrentWaypointToPathway(mvIndex pIndex)
+mvErrorEnum mvWorld::mvAddCurrentWaypointToPathway(mvIndex pIndex)
 {
-  return mvAddWaypointToPathway(currentWaypoint,pIndex);
-};
+   return mvAddWaypointToPathway(currentWaypoint,pIndex);
+}
 
-mvEnum mvWorld::mvRemoveWaypointFromPathway(mvIndex wpIndex, mvIndex pIndex)
+mvErrorEnum mvWorld::mvRemoveWaypointFromPathway(mvIndex wpIndex, mvIndex pIndex)
 {
    mvPathway* tempPathway = NULL;
    mvWaypoint* wPoint = NULL;
 
    wPoint = mvGetWaypoint(wpIndex);
    if (wPoint == NULL)
-      return MV_FALSE;
+      return MV_WAYPOINT_INDEX_IS_INVALID;
 
    tempPathway = mvGetPathway(pIndex);
    if (tempPathway == NULL)
-      return MV_FALSE;
+      return MV_PATHWAY_INDEX_IS_INVALID;
 
    return tempPathway->removeWaypoint(wPoint);
-};
+}
 
-mvEnum mvWorld::mvRemoveWaypointFromCurrentPathway(mvIndex wpIndex)
+mvErrorEnum mvWorld::mvRemoveWaypointFromCurrentPathway(mvIndex wpIndex)
 {
-  return mvRemoveWaypointFromPathway(wpIndex, currentPathway);
-};
+   return mvRemoveWaypointFromPathway(wpIndex, currentPathway);
+}
 
-mvEnum mvWorld::mvRemoveCurrentWaypointFromPathway(mvIndex pIndex)
+mvErrorEnum mvWorld::mvRemoveCurrentWaypointFromPathway(mvIndex pIndex)
 {
-  return mvRemoveWaypointFromPathway(currentWaypoint, pIndex);
-};
+   return mvRemoveWaypointFromPathway(currentWaypoint, pIndex);
+}
 
-mvEnum mvWorld::mvRemoveCurrentWaypointFromCurrentPathway()
+mvErrorEnum mvWorld::mvRemoveCurrentWaypointFromCurrentPathway()
 {
-  return mvRemoveWaypointFromPathway(currentWaypoint, currentPathway);
-};
+   return mvRemoveWaypointFromPathway(currentWaypoint, currentPathway);
+}
 // end waypoint / start force function
 
-mvIndex mvWorld::mvAddForce(mvEnum fType)
+mvIndex mvWorld::mvAddForce(mvOptionEnum fType)
 {
    return mvAddForceVector(fType, 0, 0, 0);
-};
+}
 
 mvForce* mvWorld::mvGetForce(mvIndex index)
 {
-  return mvGetClassPtr<mvForce>(forces, index, noOfForces);
-};
+   return mvGetClassPtr<mvForce>(forces, index, noOfForces);
+}
 
-mvIndex mvWorld::mvAddForceVector(mvEnum fType, mvFloat x, mvFloat y, mvFloat z)
+mvIndex mvWorld::mvAddForceVector(mvOptionEnum fType, mvFloat x, mvFloat y, mvFloat z)
 {
-  mvForce* tempForce = new mvForce(fType,x,y,z);
+   mvForce* tempForce = new mvForce(fType,x,y,z);
 
-  forces.push_back(tempForce);
-  ++noOfForces;
-  currentForce = noOfForces;
-  return currentForce;
-};
+   forces.push_back(tempForce);
+   ++noOfForces;
+   currentForce = noOfForces;
+   return currentForce;
+}
 
-mvEnum mvWorld::mvRemoveForce(mvIndex index)
+mvErrorEnum mvWorld::mvRemoveForce(mvIndex index)
 {
    return removeItemFromVectorByIndex<mvForce>(forces, index, currentForce, noOfForces);
-};
+}
 
-mvEnum mvWorld::mvRemoveCurrentForce()
+mvErrorEnum mvWorld::mvRemoveCurrentForce()
 {
    return removeItemFromVectorByIndex<mvForce>(forces, currentForce, currentForce, noOfForces);
-};
+}
 
 void mvWorld::mvRemoveAllForces()
 {
    mvRemoveAllClassObjectsFromList<mvForce>(forces, currentForce, noOfForces);
-};
+}
 
-mvEnum mvWorld::mvSetForceParameter(mvIndex index, mvEnum paramFlag, mvEnum option)
+mvErrorEnum mvWorld::mvSetForceParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return mvSetClassParameterByIndex<mvForce>(forces, index, noOfForces, paramFlag, option);
-};
+   return mvSetClassParameter<mvForce>(forces, index, noOfForces, paramFlag, option);
+}
 
-mvEnum mvWorld::mvSetForceParameterf(mvIndex index, mvEnum paramFlag, mvFloat num)
+mvErrorEnum mvWorld::mvSetForceParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat num)
 {
    return mvSetClassParameterf<mvForce>(forces, noOfForces, index, paramFlag, num);
-};
+}
 
-mvEnum mvWorld::mvSetForceParameterv(mvIndex index, mvEnum paramFlag, mvFloat* array)
+mvErrorEnum mvWorld::mvSetForceParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array)
 {
    return mvSetClassParameterv<mvForce>(forces, noOfForces,index, paramFlag, array);
-};
+}
 
-mvEnum mvWorld::mvSetCurrentForceParameter(mvEnum paramFlag, mvEnum option)
+mvErrorEnum mvWorld::mvSetCurrentForceParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return mvSetClassParameterByIndex<mvForce>(forces, currentForce, noOfForces, paramFlag, option);
-};
+   return mvSetClassParameter<mvForce>(forces, currentForce, noOfForces, paramFlag, option);
+}
 
-mvEnum mvWorld::mvSetCurrentForceParameterf(mvEnum paramFlag, mvFloat num)
+mvErrorEnum mvWorld::mvSetCurrentForceParameterf(mvParamEnum paramFlag, mvFloat num)
 {
    return mvSetClassParameterf<mvForce>(forces, noOfForces, currentForce, paramFlag, num);
-};
+}
 
-mvEnum mvWorld::mvSetCurrentForceParameterv(mvEnum paramFlag, mvFloat* array)
+mvErrorEnum mvWorld::mvSetCurrentForceParameterv(mvParamEnum paramFlag, mvFloat* array)
 {
    return mvSetClassParameterv<mvForce>(forces, noOfForces,currentForce, paramFlag, array);
-};
+}
 
 mvIndex mvWorld::mvSetCurrentForce(mvIndex index)
 {
    return mvSetCurrentIndexOfClassList<mvForce>(forces, index, currentForce, noOfForces);
-};
-//
-
-
+}
 
 //mvIndex mvWorld::mvAddBehaviour(char* bName, mvEnum bType)
-mvIndex mvWorld::mvAddBehaviour(mvEnum bType)
+mvIndex mvWorld::mvAddBehaviour(mvOptionEnum bType)
 {
    //std::vector<mvBehaviour*>::iterator i;
    mvBehaviour* tempBehaviour = NULL;
-   /**
+   /*
    if (bName == NULL)
       return 0;
 
@@ -1311,7 +1317,7 @@ mvIndex mvWorld::mvAddBehaviour(mvEnum bType)
          }
       }
    }
-   **/
+   */
    // now name is unique
   // tempBehaviour = new mvBehaviour(bName,bType);
    tempBehaviour = new mvBehaviour(bType);
@@ -1319,13 +1325,13 @@ mvIndex mvWorld::mvAddBehaviour(mvEnum bType)
    ++noOfBehaviours;
    currentBehaviour = noOfBehaviours;
    return currentBehaviour;
-};
+}
 
 mvBehaviour* mvWorld::mvGetBehaviour(mvIndex index)
 {
-  return mvGetClassPtr<mvBehaviour>(behaviours, index, noOfBehaviours);
-};
-/**
+   return mvGetClassPtr<mvBehaviour>(behaviours, index, noOfBehaviours);
+}
+/*
 mvBehaviour* mvWorld::mvGetBehaviourByID(char* bID)
 {
    std::vector<mvBehaviour*>::iterator i;
@@ -1374,59 +1380,59 @@ mvIndex mvWorld::mvGetBehaviourIndexByID(char* bID)
    }
    return 0;
 };
-**/
+*/
 
-mvEnum mvWorld::mvRemoveCurrentBehaviour()
+mvErrorEnum mvWorld::mvRemoveCurrentBehaviour()
 {
    return removeItemFromVectorByIndex<mvBehaviour>(behaviours, currentBehaviour, currentBehaviour, noOfBehaviours);
-};
+}
 
-mvEnum mvWorld::mvRemoveBehaviour(mvIndex index)
+mvErrorEnum mvWorld::mvRemoveBehaviour(mvIndex index)
 {
    return removeItemFromVectorByIndex<mvBehaviour>(behaviours, index, currentBehaviour, noOfBehaviours);
-};
+}
 
 mvIndex mvWorld::mvSetCurrentBehaviour(mvIndex index)
 {
    return mvSetCurrentIndexOfClassList<mvBehaviour>(behaviours, index, currentBehaviour, noOfBehaviours);
-};
+}
 
 void mvWorld::mvRemoveAllBehaviours()
 {
    mvRemoveAllClassObjectsFromList<mvBehaviour>(behaviours,currentBehaviour,noOfBehaviours);
-};
+}
 
-mvEnum mvWorld::mvSetBehaviourParameter(mvIndex index, mvEnum paramFlag, mvEnum option)
+mvErrorEnum mvWorld::mvSetBehaviourParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return mvSetClassParameterByIndex<mvBehaviour>(behaviours, index, noOfBehaviours, paramFlag, option);
-};
+   return mvSetClassParameter<mvBehaviour>(behaviours, index, noOfBehaviours, paramFlag, option);
+}
 
-mvEnum mvWorld::mvSetBehaviourParameterf(mvIndex index, mvEnum paramFlag, mvFloat num)
+mvErrorEnum mvWorld::mvSetBehaviourParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat num)
 {
    return mvSetClassParameterf<mvBehaviour>(behaviours, noOfBehaviours, index, paramFlag, num);
-};
+}
 
-mvEnum mvWorld::mvSetBehaviourParameterv(mvIndex index, mvEnum paramFlag, mvFloat* array)
+mvErrorEnum mvWorld::mvSetBehaviourParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array)
 {
    return mvSetClassParameterv<mvBehaviour>(behaviours,noOfBehaviours,index,paramFlag,array);
-};
+}
 
-mvEnum mvWorld::mvSetCurrentBehaviourParameter(mvEnum paramFlag, mvEnum option)
+mvErrorEnum mvWorld::mvSetCurrentBehaviourParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return mvSetClassParameterByIndex<mvBehaviour>(behaviours, currentBehaviour, noOfBehaviours, paramFlag, option);
-};
+   return mvSetClassParameter<mvBehaviour>(behaviours, currentBehaviour, noOfBehaviours, paramFlag, option);
+}
 
-mvEnum mvWorld::mvSetCurrentBehaviourParameterf(mvEnum paramFlag, mvFloat num)
+mvErrorEnum mvWorld::mvSetCurrentBehaviourParameterf(mvParamEnum paramFlag, mvFloat num)
 {
    return mvSetClassParameterf<mvBehaviour>(behaviours, noOfBehaviours, currentBehaviour, paramFlag, num);
-};
+}
 
-mvEnum mvWorld::mvSetCurrentBehaviourParameterv(mvEnum paramFlag, mvFloat* array)
+mvErrorEnum mvWorld::mvSetCurrentBehaviourParameterv(mvParamEnum paramFlag, mvFloat* array)
 {
    return mvSetClassParameterv<mvBehaviour>(behaviours, noOfBehaviours, currentBehaviour, paramFlag, array);
-};
+}
 
-/**
+/*
 mvEnum mvWorld::mvAddBehaviourToBody(mvIndex behaviourIndex, mvIndex bodyIndex)
 {
    mvBody* tempBody = NULL;
@@ -1526,48 +1532,48 @@ mvEnum mvWorld::mvAddCurrentBodyToCurrentBehaviour()
    return mvAddBodyToBehaviour(currentBody,currentBehaviour);
 };
 
-**/
+*/
 
-mvEnum mvWorld::mvSetDefaultWaypointForBody(mvIndex waypointIndex, mvIndex bodyIndex)
+mvErrorEnum mvWorld::mvSetDefaultWaypointForBody(mvIndex waypointIndex, mvIndex bodyIndex)
 {
    mvBody* tempBody = mvGetBody(bodyIndex);
 
    if (tempBody == NULL)
    {
-      return MV_FALSE;
+      return MV_BODY_INDEX_IS_INVALID;
    };
 
    tempBody->setDefaultWaypoint(waypointIndex);
-   return MV_TRUE;
-};
+   return MV_NO_ERROR;
+}
 
-mvEnum mvWorld::mvSetDefaultPathwayForBody(mvIndex pathwayIndex, mvIndex bodyIndex)
+mvErrorEnum mvWorld::mvSetDefaultPathwayForBody(mvIndex pathwayIndex, mvIndex bodyIndex)
 {
    mvBody* tempBody = mvGetBody(bodyIndex);
 
    if (tempBody == NULL)
    {
-      return MV_FALSE;
+      return MV_BODY_INDEX_IS_INVALID;
    };
 
    tempBody->setDefaultPathway(pathwayIndex);
-   return MV_TRUE;
-};
+   return MV_NO_ERROR;
+}
 
-mvEnum mvWorld::mvSetDefaultBodyForBody(mvIndex targetIndex,mvIndex bodyIndex)
+mvErrorEnum mvWorld::mvSetDefaultBodyForBody(mvIndex targetIndex,mvIndex bodyIndex)
 {
    mvBody* tempBody = mvGetBody(bodyIndex);
 
    if (tempBody == NULL)
    {
-      return MV_FALSE;
+      return MV_BODY_INDEX_IS_INVALID;
    };
 
    tempBody->setDefaultBody(targetIndex);
-   return MV_TRUE;
-};
+   return MV_NO_ERROR;
+}
 
-mvIndex mvWorld::mvAddGroupBehaviour(mvEnum type)
+mvIndex mvWorld::mvAddGroupBehaviour(mvOptionEnum type)
 {
    mvGroupBehaviour* tempGroupBehav = NULL;
 
@@ -1576,35 +1582,35 @@ mvIndex mvWorld::mvAddGroupBehaviour(mvEnum type)
    ++noOfGroupBehaviours;
    currentGroupBehaviour = noOfBehaviours;
    return currentBehaviour;
-};
+}
 
 mvGroupBehaviour* mvWorld::mvGetGroupBehaviour(mvIndex index)
 {
    return mvGetClassPtr<mvGroupBehaviour>(groupBehaviours,index, noOfGroupBehaviours);
-};
+}
 
-mvEnum mvWorld::mvRemoveGroupBehaviour(mvIndex index)
+mvErrorEnum mvWorld::mvRemoveGroupBehaviour(mvIndex index)
 {
    return removeItemFromVectorByIndex<mvGroupBehaviour>(groupBehaviours, index,
       currentGroupBehaviour, noOfGroupBehaviours);
-};
+}
 
-mvEnum mvWorld::mvRemoveCurrentGroupBehaviour()
+mvErrorEnum mvWorld::mvRemoveCurrentGroupBehaviour()
 {
    return removeItemFromVectorByIndex<mvGroupBehaviour>(groupBehaviours, currentGroupBehaviour,
       currentGroupBehaviour, noOfGroupBehaviours);
-};
+}
 
 void mvWorld::mvRemoveAllGroupBehaviours()
 {
    mvRemoveAllClassObjectsFromList<mvGroupBehaviour>(groupBehaviours, currentGroupBehaviour, noOfGroupBehaviours);
-};
+}
 
 mvIndex mvWorld::mvSetCurrentGroupBehaviour(mvIndex index)
 {
    return mvSetCurrentIndexOfClassList<mvGroupBehaviour>(groupBehaviours, index, currentGroupBehaviour, noOfGroupBehaviours);
-};
-/**
+}
+/*
 mvEnum mvWorld::mvSetGroupBehaviourParameter(mvIndex index, mvEnum paramFlag, mvEnum option)
 {
    return mvSetClassParameterByIndex<mvGroupBehaviour>(groupBehaviours, index, noOfGroupBehaviours,
@@ -1638,9 +1644,9 @@ mvEnum mvWorld::mvSetCurrentGroupBehaviourParameterv(mvEnum paramFlag, mvFloat* 
 {
    return mvSetClassParameterv<mvGroupBehaviour>(groupBehaviours, noOfGroupBehaviours, currentGroupBehaviour, paramFlag, array);
 };
-**/
+*/
 // 00-01-09
-mvEnum mvWorld::mvSetGroupBehaviourParameter(mvIndex gbIndex, mvIndex groupIndex, mvEnum paramFlag, mvEnum option)
+mvErrorEnum mvWorld::mvSetGroupBehaviourParameter(mvIndex gbIndex, mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(gbIndex);
 
@@ -1650,11 +1656,11 @@ mvEnum mvWorld::mvSetGroupBehaviourParameter(mvIndex gbIndex, mvIndex groupIndex
    }
    else
    {
-      return MV_FALSE;
+      return MV_GROUP_BEHAVIOUR_INDEX_IS_INVALID;
    }
-};
+}
 
-mvEnum mvWorld::mvSetGroupBehaviourParameteri(mvIndex gbIndex, mvIndex groupIndex, mvEnum paramFlag, mvIndex option)
+mvErrorEnum mvWorld::mvSetGroupBehaviourParameteri(mvIndex gbIndex, mvIndex groupIndex, mvParamEnum paramFlag, mvIndex option)
 {
    mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(gbIndex);
 
@@ -1664,11 +1670,11 @@ mvEnum mvWorld::mvSetGroupBehaviourParameteri(mvIndex gbIndex, mvIndex groupInde
    }
    else
    {
-      return MV_FALSE;
+      return MV_GROUP_INDEX_IS_INVALID;
    }
-};
+}
 
-mvEnum mvWorld::mvSetGroupBehaviourParameterf(mvIndex gbIndex, mvIndex groupIndex, mvEnum paramFlag, mvFloat num)
+mvErrorEnum mvWorld::mvSetGroupBehaviourParameterf(mvIndex gbIndex, mvIndex groupIndex, mvParamEnum paramFlag, mvFloat num)
 {
    mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(gbIndex);
 
@@ -1678,11 +1684,11 @@ mvEnum mvWorld::mvSetGroupBehaviourParameterf(mvIndex gbIndex, mvIndex groupInde
    }
    else
    {
-      return MV_FALSE;
+      return MV_GROUP_INDEX_IS_INVALID;
    }
-};
+}
 
-mvEnum mvWorld::mvSetGroupBehaviourParameterv(mvIndex gbIndex, mvIndex groupIndex, mvEnum paramFlag, mvFloat* array)
+mvErrorEnum mvWorld::mvSetGroupBehaviourParameterv(mvIndex gbIndex, mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* array)
 {
    mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(gbIndex);
 
@@ -1692,43 +1698,41 @@ mvEnum mvWorld::mvSetGroupBehaviourParameterv(mvIndex gbIndex, mvIndex groupInde
    }
    else
    {
-      return MV_FALSE;
+      return MV_GROUP_INDEX_IS_INVALID;
    }
-};
+}
 
-mvEnum mvWorld::mvSetCurrentGroupBehaviourParameter(mvIndex groupIndex, mvEnum paramFlag, mvEnum option)
+mvErrorEnum mvWorld::mvSetCurrentGroupBehaviourParameter(mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum option)
 {
    return mvSetGroupBehaviourParameter(currentGroupBehaviour,groupIndex,paramFlag,option);
-};
+}
 
-mvEnum mvWorld::mvSetCurrentGroupBehaviourParameteri(mvIndex groupIndex, mvEnum paramFlag, mvIndex option)
+mvErrorEnum mvWorld::mvSetCurrentGroupBehaviourParameteri(mvIndex groupIndex, mvParamEnum paramFlag, mvIndex option)
 {
    return mvSetGroupBehaviourParameteri(currentGroupBehaviour,groupIndex,paramFlag,option);
-};
+}
 
-mvEnum mvWorld::mvSetCurrentGroupBehaviourParameterf(mvIndex groupIndex, mvEnum paramFlag, mvFloat num)
+mvErrorEnum mvWorld::mvSetCurrentGroupBehaviourParameterf(mvIndex groupIndex, mvParamEnum paramFlag, mvFloat num)
 {
    return mvSetGroupBehaviourParameterf(currentGroupBehaviour, groupIndex, paramFlag, num);
-};
+}
 
-mvEnum mvWorld::mvSetCurrentGroupBehaviourParameterv(mvIndex groupIndex, mvEnum paramFlag, mvFloat* array)
+mvErrorEnum mvWorld::mvSetCurrentGroupBehaviourParameterv(mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* array)
 {
    return mvSetGroupBehaviourParameterv(currentGroupBehaviour,groupIndex,paramFlag,array);
-};
+}
 
-
-mvEnum mvWorld::mvAddBehaviourToBody(mvIndex bodyIndex, mvEnum bType, mvIndex behaviourIndex, mvIndex groupIndex)
+mvErrorEnum mvWorld::mvAddBehaviourToBody(mvIndex bodyIndex, mvOptionEnum bType, mvIndex behaviourIndex, mvIndex groupIndex)
 {
    mvBody* tempBody = mvGetBody(bodyIndex);
 
    if (tempBody == NULL)
-      return MV_FALSE;
+      return MV_BODY_INDEX_IS_INVALID;
 
-   tempBody->addEntry(bType,behaviourIndex,groupIndex);
-   return MV_TRUE;
-};
+   return tempBody->addEntry(bType,behaviourIndex,groupIndex);
+}
 
-mvEnum mvWorld::mvInsertGroupIntoGroupBehaviour(mvIndex groupIndex, mvIndex groupBehaviour)
+mvErrorEnum mvWorld::mvInsertGroupIntoGroupBehaviour(mvIndex groupIndex, mvIndex groupBehaviour)
 {
   mvGroup* checkGroup = mvGetGroup(groupIndex);
   mvGroupBehaviour* tempGBehaviour = mvGetGroupBehaviour(groupBehaviour);
@@ -1739,66 +1743,65 @@ mvEnum mvWorld::mvInsertGroupIntoGroupBehaviour(mvIndex groupIndex, mvIndex grou
   }
   else
   {
-     return MV_FALSE;
+     return MV_GROUP_INDEX_IS_INVALID;
   }
-};
+}
 
-mvEnum mvWorld::mvInsertCurrentGroupIntoGroupBehaviour(mvIndex groupBehaviour)
+mvErrorEnum mvWorld::mvInsertCurrentGroupIntoGroupBehaviour(mvIndex groupBehaviour)
 {
    return mvInsertGroupIntoGroupBehaviour(currentGroup,groupBehaviour);
-};
+}
 
-mvEnum mvWorld::mvInsertGroupIntoCurrentGroupBehaviour(mvIndex groupIndex)
+mvErrorEnum mvWorld::mvInsertGroupIntoCurrentGroupBehaviour(mvIndex groupIndex)
 {
    return mvInsertGroupIntoGroupBehaviour(groupIndex,currentGroupBehaviour);
-};
+}
 
-mvEnum mvWorld::mvInsertCurrentGroupIntoCurrentGroupBehaviour()
+mvErrorEnum mvWorld::mvInsertCurrentGroupIntoCurrentGroupBehaviour()
 {
    return mvInsertGroupIntoGroupBehaviour(currentGroup,currentGroupBehaviour);
-};
+}
 
-mvEnum mvWorld::mvSetDefaultBehaviourFactorForBody(mvFloat factor, mvIndex bodyIndex)
+mvErrorEnum mvWorld::mvSetDefaultBehaviourFactorForBody(mvFloat factor, mvIndex bodyIndex)
 {
    mvBody* tempBody = mvGetBody(bodyIndex);
 
    if (tempBody == NULL)
    {
-      return MV_FALSE;
+      return MV_BODY_INDEX_IS_INVALID;
    }
    else
    {
-      tempBody->setDefaultBehaviourFactor(factor);
-      return MV_TRUE;
+      return tempBody->setDefaultBehaviourFactor(factor);
    }
-};
+}
 
-mvEnum mvWorld::mvSetDefaultWaypointForCurrentBody(mvIndex wpIndex)
+mvErrorEnum mvWorld::mvSetDefaultWaypointForCurrentBody(mvIndex wpIndex)
 {
    return mvSetDefaultWaypointForBody(wpIndex,currentBody);
-};
+}
 
-mvEnum mvWorld::mvSetDefaultPathwayForCurrentBody(mvIndex pwIndex)
+mvErrorEnum mvWorld::mvSetDefaultPathwayForCurrentBody(mvIndex pwIndex)
 {
    return mvSetDefaultPathwayForBody(pwIndex,currentBody);
-};
+}
 
-mvEnum mvWorld::mvSetDefaultBodyForCurrentBody(mvIndex bodyIndex)
+mvErrorEnum mvWorld::mvSetDefaultBodyForCurrentBody(mvIndex bodyIndex)
 {
    return mvSetDefaultBodyForBody(bodyIndex,currentBody);
-};
+}
 
-mvEnum mvWorld::mvSetDefaultBehaviourFactorForCurrentBody(mvFloat factor)
+mvErrorEnum mvWorld::mvSetDefaultBehaviourFactorForCurrentBody(mvFloat factor)
 {
    return mvSetDefaultBehaviourFactorForBody(factor,currentBody);
-};
+}
 
-mvEnum mvWorld::mvAddBehaviourToCurrentBody(mvEnum bType, mvIndex behaviourIndex, mvIndex groupIndex)
+mvErrorEnum mvWorld::mvAddBehaviourToCurrentBody(mvOptionEnum bType, mvIndex behaviourIndex, mvIndex groupIndex)
 {
    return mvAddBehaviourToBody(currentBody,bType,behaviourIndex,groupIndex);
-};
+}
 
-mvEnum mvWorld::mvSetBehaviourParameteri(mvIndex behaviourIndex,mvEnum paramFlag, mvIndex index)
+mvErrorEnum mvWorld::mvSetBehaviourParameteri(mvIndex behaviourIndex,mvParamEnum paramFlag, mvIndex index)
 {
    mvBehaviour* tempBehaviour = mvGetBehaviour(behaviourIndex);
 
@@ -1808,11 +1811,11 @@ mvEnum mvWorld::mvSetBehaviourParameteri(mvIndex behaviourIndex,mvEnum paramFlag
    }
    else
    {
-      return MV_FALSE;
+      return MV_BEHAVIOUR_INDEX_IS_INVALID;
    }
-};
+}
 
-mvEnum mvWorld::mvSetCurrentBehaviourParameteri(mvEnum paramFlag, mvIndex index)
+mvErrorEnum mvWorld::mvSetCurrentBehaviourParameteri(mvParamEnum paramFlag, mvIndex index)
 {
    return mvSetBehaviourParameteri(currentBehaviour,paramFlag,index);
-};
+}

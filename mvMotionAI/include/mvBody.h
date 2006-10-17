@@ -27,14 +27,14 @@
 #include <vector>
 
 #include "mvMotionAI-Types.h"
-#include "mvEnum.h"
+#include "mvEnums.h"
 #include "mvVec3.h"
 #include "mvBehaviour-List.h"
 
 /**
  *\class mvBody
  *
- * \brief
+ *\brief moving objects in the system
  *
  * Particle : An unidirectional moving object that does not require
  * rotation,
@@ -65,15 +65,23 @@
  *                     header and source file.
  *
  */
+// TODO : add string set/get parameter funcsions
+// TODO : add speed functions/methods to get current engine speed,actual speed. direction speed
+// TODO : implementation of VEHICLE
+// TODO : implementation of DUAL_TYPE
+// TODO : domains limiting
+// TODO : shapes and dimensions
+
+static const mvCount MV_MAX_NO_OF_BODY_DIMENSIONS = 3;
 
 class mvBody
 {
   private:
      void initialiseFloats();
-     mvEnum initialiseDomain(mvEnum option);
-     mvEnum initialiseDimensions(mvEnum option);
-     mvEnum initialiseType(mvEnum option);
-     mvEnum initialiseState(mvEnum option);
+     mvErrorEnum initialiseDomain(mvOptionEnum option);
+     mvErrorEnum initialiseDimensions(mvOptionEnum option);
+     mvErrorEnum initialiseType(mvOptionEnum option);
+     mvErrorEnum initialiseState(mvOptionEnum option);
      mvCount getNoOfDomainVariables() const;
 
   public:
@@ -90,43 +98,43 @@ class mvBody
     //mvFloat maxAcceleration;
     mvFloat mass;
     mvFloat* dimensions;
-    mvEnum bodyShape;
+    mvOptionEnum bodyShape;
     //std::vector<int> behaviours;
-    mvEnum domain; //< freedom of motion allowed
+    mvOptionEnum domain; //< freedom of motion allowed
     mvFloat* domainVariables;
     //int noOfBehaviours;
     //int behaviourIndex;
-    mvEnum type; //< body type i.e vehicle/particle/dual type
-    mvEnum state; //< motion to apply iteration
+    mvOptionEnum type; //< body type i.e vehicle/particle/dual type
+    mvOptionEnum state; //< motion to apply iteration
 
-    mvBody(mvEnum bType, mvEnum shape);
-    mvBody(mvEnum bType, mvEnum shape, mvFloat x, mvFloat y, mvFloat z);
+    mvBody(mvOptionEnum bType, mvOptionEnum shape);
+    mvBody(mvOptionEnum bType, mvOptionEnum shape, mvFloat x, mvFloat y, mvFloat z);
     //mvBody(mvFloat x, mvFloat y, mvFloat z);
     void setPosition(mvFloat x, mvFloat y, mvFloat z);
     void setDirection(mvFloat x, mvFloat y,mvFloat z);
     void setSpeed(mvFloat num);
     void setMaxSpeed(mvFloat num);
     void setMass(mvFloat num);
-    void setState(mvEnum bState);
+    void setState(mvOptionEnum bState);
     mvCount getNoOfDimensions() const;
 
-    mvEnum getType() const;
-    mvEnum getState() const;
-    mvEnum getDomain() const;
-    mvEnum getShape() const;
+    mvOptionEnum getType() const;
+    mvOptionEnum getState() const;
+    mvOptionEnum getDomain() const;
+    mvOptionEnum getShape() const;
     mvFloat getX() const;
     mvFloat getY() const;
     mvFloat getZ() const;
     //void setMaxAcceleration(mvFloat num);
     void setAcceleration(mvFloat accel);
-    mvEnum setParameter(mvEnum paramFlag, mvEnum option);
-    mvEnum setParameterf(mvEnum paramFlag, mvFloat num);
-    mvEnum setParameterv(mvEnum paramFlag, mvFloat* numArray);
+    mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+    mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
+    mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
     //
-    mvEnum addExistingGroupBehaviourEntry(mvIndex behaviourIndex, mvIndex groupIndex);
-    mvEnum addExistingBehaviourEntry(mvIndex behaviourIndex);
-    mvEnum addNewBehaviourEntry(mvEnum behaviourType);
-    mvEnum addEntry(mvEnum bType, mvIndex behaviourIndex, mvIndex groupIndex);
+    mvErrorEnum addExistingGroupBehaviourEntry(mvIndex behaviourIndex, mvIndex groupIndex);
+    mvErrorEnum addExistingBehaviourEntry(mvIndex behaviourIndex);
+    mvErrorEnum addNewBehaviourEntry(mvOptionEnum behaviourType);
+    mvErrorEnum addEntry(mvOptionEnum bType, mvIndex behaviourIndex, mvIndex groupIndex);
 
     //mvEnum addBehaviour(mvBehaviour* bItem, mvEnum* flagArray, mvFloat* varArray);
     mvCount getNoOfBehaviours();
@@ -139,8 +147,8 @@ class mvBody
     void setDefaultBody(mvIndex bodyIndex);
     void setDefaultWaypoint(mvIndex wpIndex);
     void setDefaultPathway(mvIndex pwIndex);
-    mvEnum setDefaultBehaviourFactor(mvFloat factor);
-    mvEnum checkGroupBehaviourExists(mvIndex behaviourIndex, mvIndex groupIndex);
+    mvErrorEnum setDefaultBehaviourFactor(mvFloat factor);
+    bool checkGroupBehaviourExists(mvIndex behaviourIndex, mvIndex groupIndex);
 };
 
 #endif

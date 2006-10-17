@@ -109,90 +109,90 @@ class mvWorld
       char* getWorldID() const; //< initialised
       ~mvWorld(); //< initialised
 
-      mvIndex mvAddWaypoint(mvEnum wType, mvEnum wShape); //< initialised
-      mvIndex mvAddWaypointWithPos(mvEnum wType, mvEnum wShape, mvFloat x, mvFloat y, mvFloat z);//< initialised
+      mvIndex mvAddWaypoint(mvOptionEnum wType, mvOptionEnum wShape); //< initialised
+      mvIndex mvAddWaypointWithPos(mvOptionEnum wType, mvOptionEnum wShape, mvFloat x, mvFloat y, mvFloat z);//< initialised
       mvWaypoint* mvGetWaypoint(mvIndex index);//< initialised
-      mvEnum mvRemoveWaypoint(mvIndex index);//< initialised
-      mvEnum mvRemoveCurrentWaypoint();//< initialised
+      mvErrorEnum mvRemoveWaypoint(mvIndex index);//< initialised
+      mvErrorEnum mvRemoveCurrentWaypoint();//< initialised
       mvIndex mvSetCurrentWaypoint(mvIndex index);//< initialised
       void mvRemoveAllWaypoints();//< initialised
-      mvEnum mvSetWaypointParameter(mvIndex index, mvEnum paramFlag, mvEnum option);//< initialised
-      mvEnum mvSetWaypointParameterf(mvIndex index, mvEnum paramFlag, mvFloat num);//< initialised
-      mvEnum mvSetWaypointParameterv(mvIndex index, mvEnum paramFlag, mvFloat* array);//< initialised
-      mvEnum mvSetCurrentWaypointParameter(mvEnum paramFlag, mvEnum option);//< initialised
-      mvEnum mvSetCurrentWaypointParameterf(mvEnum paramFlag, mvFloat num);//< initialised
-      mvEnum mvSetCurrentWaypointParameterv(mvEnum paramFlag, mvFloat* array);//< initialised
+      mvErrorEnum mvSetWaypointParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum option);//< initialised
+      mvErrorEnum mvSetWaypointParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat num);//< initialised
+      mvErrorEnum mvSetWaypointParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array);//< initialised
+      mvErrorEnum mvSetCurrentWaypointParameter(mvParamEnum paramFlag, mvOptionEnum option);//< initialised
+      mvErrorEnum mvSetCurrentWaypointParameterf(mvParamEnum paramFlag, mvFloat num);//< initialised
+      mvErrorEnum mvSetCurrentWaypointParameterv(mvParamEnum paramFlag, mvFloat* array);//< initialised
 
       mvIndex mvBeginPathway();//< initialised
       mvPathway* mvGetPathway(mvIndex index);//< initialised
-      mvEnum mvRemovePathway(mvIndex index);//< initialised
+      mvErrorEnum mvRemovePathway(mvIndex index);//< initialised
       //mvIndex mvEndPathway();
-      mvEnum mvRemoveCurrentPathway();//< initialised
+      mvErrorEnum mvRemoveCurrentPathway();//< initialised
       mvIndex mvSetCurrentPathway(mvIndex index);//< initialised
       void mvRemoveAllPathways();//< initialised
-      mvEnum mvSetPathwayParameter(mvIndex index, mvEnum paramFlag, mvEnum option); //< initialised
-      mvEnum mvSetPathwayParameterf(mvIndex index, mvEnum paramFlag, mvFloat num);//< initialised
-      mvEnum mvSetPathwayParameterv(mvIndex index, mvEnum paramFlag, mvFloat* array);//< initialised
-      mvEnum mvSetCurrentPathwayParameter(mvEnum paramFlag, mvEnum option);//< initialised
-      mvEnum mvSetCurrentPathwayParameterf(mvEnum paramFlag, mvFloat num);//< initialised
-      mvEnum mvSetCurrentPathwayParameterv(mvEnum paramFlag, mvFloat* array);//< initialised
+      mvErrorEnum mvSetPathwayParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum option); //< initialised
+      mvErrorEnum mvSetPathwayParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat num);//< initialised
+      mvErrorEnum mvSetPathwayParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array);//< initialised
+      mvErrorEnum mvSetCurrentPathwayParameter(mvParamEnum paramFlag, mvOptionEnum option);//< initialised
+      mvErrorEnum mvSetCurrentPathwayParameterf(mvParamEnum paramFlag, mvFloat num);//< initialised
+      mvErrorEnum mvSetCurrentPathwayParameterv(mvParamEnum paramFlag, mvFloat* array);//< initialised
       //
-      mvEnum mvAddWaypointToPathway(mvIndex wpIndex, mvIndex pIndex); //< initialised
-      mvEnum mvAddWaypointToCurrentPathway(mvIndex wpIndex);//< initialised
-      mvEnum mvAddCurrentWaypointToCurrentPathway();//< initialised
-      mvEnum mvAddCurrentWaypointToPathway(mvIndex pIndex);//< initialised
-      mvEnum mvRemoveWaypointFromPathway(mvIndex wpIndex, mvIndex pIndex); //< initialised
-      mvEnum mvRemoveWaypointFromCurrentPathway(mvIndex wpIndex);//< initialised
-      mvEnum mvRemoveCurrentWaypointFromPathway(mvIndex pIndex);//< initialised
-      mvEnum mvRemoveCurrentWaypointFromCurrentPathway();//< initialised
+      mvErrorEnum mvAddWaypointToPathway(mvIndex wpIndex, mvIndex pIndex); //< initialised
+      mvErrorEnum mvAddWaypointToCurrentPathway(mvIndex wpIndex);//< initialised
+      mvErrorEnum mvAddCurrentWaypointToCurrentPathway();//< initialised
+      mvErrorEnum mvAddCurrentWaypointToPathway(mvIndex pIndex);//< initialised
+      mvErrorEnum mvRemoveWaypointFromPathway(mvIndex wpIndex, mvIndex pIndex); //< initialised
+      mvErrorEnum mvRemoveWaypointFromCurrentPathway(mvIndex wpIndex);//< initialised
+      mvErrorEnum mvRemoveCurrentWaypointFromPathway(mvIndex pIndex);//< initialised
+      mvErrorEnum mvRemoveCurrentWaypointFromCurrentPathway();//< initialised
       //mvIndex mvAddNURBSWaypoint();
 
 
-      mvIndex mvAddBody(mvEnum bType, mvEnum bShape); //< initialised
-      mvIndex mvAddBodyWithPos(mvEnum bType, mvEnum bShape, mvFloat x, mvFloat y, mvFloat z); //< initialised
+      mvIndex mvAddBody(mvOptionEnum bType, mvOptionEnum bShape); //< initialised
+      mvIndex mvAddBodyWithPos(mvOptionEnum bType, mvOptionEnum bShape, mvFloat x, mvFloat y, mvFloat z); //< initialised
       mvBody* mvGetBody(mvIndex index); //< initialised
       mvIndex mvSetCurrentBody(mvIndex index); //< initialised
-      mvEnum mvRemoveCurrentBody(); //< initialised
-      mvEnum mvRemoveBody(mvIndex index); //< initialised
+      mvErrorEnum mvRemoveCurrentBody(); //< initialised
+      mvErrorEnum mvRemoveBody(mvIndex index); //< initialised
       void mvRemoveAllBodies();
-      mvEnum mvSetBodyParameter(mvIndex index, mvEnum paramFlag, mvEnum option); //< initialised
-      mvEnum mvSetBodyParameterf(mvIndex index, mvEnum paramFlag, mvFloat num); //< initialised
-      mvEnum mvSetBodyParameterv(mvIndex index, mvEnum paramFlag, mvFloat* array); //< initialised
-      mvEnum mvSetCurrentBodyParameter(mvEnum paramFlag, mvEnum option); //< initialised
-      mvEnum mvSetCurrentBodyParameterf(mvEnum paramFlag, mvFloat num); //< initialised
-      mvEnum mvSetCurrentBodyParameterv(mvEnum paramFlag, mvFloat* array); //< initialised
+      mvErrorEnum mvSetBodyParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum option); //< initialised
+      mvErrorEnum mvSetBodyParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat num); //< initialised
+      mvErrorEnum mvSetBodyParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array); //< initialised
+      mvErrorEnum mvSetCurrentBodyParameter(mvParamEnum paramFlag, mvOptionEnum option); //< initialised
+      mvErrorEnum mvSetCurrentBodyParameterf(mvParamEnum paramFlag, mvFloat num); //< initialised
+      mvErrorEnum mvSetCurrentBodyParameterv(mvParamEnum paramFlag, mvFloat* array); //< initialised
 
-      mvIndex mvAddObstacle(mvEnum oType, mvEnum oState); //< initialised
-      mvIndex mvAddObstacleWithPos(mvEnum oType, mvEnum oState,mvFloat x, mvFloat y, mvFloat z); //< initialised
+      mvIndex mvAddObstacle(mvOptionEnum oType, mvOptionEnum oState); //< initialised
+      mvIndex mvAddObstacleWithPos(mvOptionEnum oType, mvOptionEnum oState,mvFloat x, mvFloat y, mvFloat z); //< initialised
       mvObstacle* mvGetObstacle(mvIndex index); //< initialised
-      mvEnum mvRemoveCurrentObstacle(); //< initialised
-      mvEnum mvRemoveObstacle(mvIndex index); //< initialised
+      mvErrorEnum mvRemoveCurrentObstacle(); //< initialised
+      mvErrorEnum mvRemoveObstacle(mvIndex index); //< initialised
       mvIndex mvSetCurrentObstacle(mvIndex index); //< initialised
       void mvRemoveAllObstacles(); //< initialised
-      mvEnum mvSetCurrentObstacleParameter(mvEnum paramFlag, mvEnum option); //< initialised
-      mvEnum mvSetCurrentObstacleParameterf(mvEnum paramFlag, mvFloat num); //< initialised
-      mvEnum mvSetCurrentObstacleParameterv(mvEnum paramFlag, mvFloat* array); //< initialised
-      mvEnum mvSetObstacleParameter(mvIndex index,  mvEnum paramFlag, mvEnum option); //< initialised
-      mvEnum mvSetObstacleParameterf(mvIndex index, mvEnum paramFlag, mvFloat num); //< initialised
-      mvEnum mvSetObstacleParameterv(mvIndex index, mvEnum paramFlag, mvFloat* array); //< initialised
+      mvErrorEnum mvSetCurrentObstacleParameter(mvParamEnum paramFlag, mvOptionEnum option); //< initialised
+      mvErrorEnum mvSetCurrentObstacleParameterf(mvParamEnum paramFlag, mvFloat num); //< initialised
+      mvErrorEnum mvSetCurrentObstacleParameterv(mvParamEnum paramFlag, mvFloat* array); //< initialised
+      mvErrorEnum mvSetObstacleParameter(mvIndex index,  mvParamEnum paramFlag, mvOptionEnum option); //< initialised
+      mvErrorEnum mvSetObstacleParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat num); //< initialised
+      mvErrorEnum mvSetObstacleParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array); //< initialised
 
-      //mvIndex mvAddBehaviour(char* bName, mvEnum bType); //< initialised
-      mvIndex mvAddBehaviour(mvEnum bType);
+      //mvIndex mvAddBehaviour(char* bName, mvOptionEnum bType); //< initialised
+      mvIndex mvAddBehaviour(mvOptionEnum bType);
       mvBehaviour* mvGetBehaviour(mvIndex index); //< initialised
       //mvBehaviour* mvGetBehaviourByID(char* bID);//< initialised
       mvIndex mvGetBehaviourIndexByID(char* bID);//< initialised
-      mvEnum mvRemoveCurrentBehaviour();//< initialised
-      mvEnum mvRemoveBehaviour(mvIndex index);//< initialised
+      mvErrorEnum mvRemoveCurrentBehaviour();//< initialised
+      mvErrorEnum mvRemoveBehaviour(mvIndex index);//< initialised
       mvIndex mvSetCurrentBehaviour(mvIndex index);//< initialised
       void mvRemoveAllBehaviours();//< initialised
-      mvEnum mvSetBehaviourParameter(mvIndex index, mvEnum paramFlag, mvEnum option);//< initialised
-      mvEnum mvSetBehaviourParameterf(mvIndex index, mvEnum paramFlag, mvFloat num);//< initialised
-      mvEnum mvSetBehaviourParameterv(mvIndex index, mvEnum paramFlag, mvFloat* array);//< initialised
-      mvEnum mvSetCurrentBehaviourParameter(mvEnum paramFlag, mvEnum option);//< initialised
-      mvEnum mvSetCurrentBehaviourParameterf(mvEnum paramFlag, mvFloat num);//< initialised
-      mvEnum mvSetCurrentBehaviourParameterv(mvEnum paramFlag, mvFloat* array);//< initialised
+      mvErrorEnum mvSetBehaviourParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum option);//< initialised
+      mvErrorEnum mvSetBehaviourParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat num);//< initialised
+      mvErrorEnum mvSetBehaviourParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array);//< initialised
+      mvErrorEnum mvSetCurrentBehaviourParameter(mvParamEnum paramFlag, mvOptionEnum option);//< initialised
+      mvErrorEnum mvSetCurrentBehaviourParameterf(mvParamEnum paramFlag, mvFloat num);//< initialised
+      mvErrorEnum mvSetCurrentBehaviourParameterv(mvParamEnum paramFlag, mvFloat* array);//< initialised
 
-      /**
+      /*
       mvEnum mvAddBehaviourToBody(mvIndex behaviourIndex,mvIndex bodyIndex);//< initialised
       mvEnum mvAddCurrentBehaviourToBody(mvIndex bodyIndex);//< initialised
       mvEnum mvAddBehaviourToCurrentBody(mvIndex behaviourIndex);//< initialised
@@ -208,77 +208,77 @@ class mvWorld
       mvEnum mvAddBodyToCurrentBehaviour(mvIndex bodyIndex);//< initialised
       mvEnum mvAddCurrentBodyToCurrentBehaviour();//< initialised
 
-      **/
+      */
 
       mvIndex mvAddGroup(char* mvGroupID); //< initialised
       mvGroup* mvGetGroup(mvIndex index); //< initialised
       mvGroup* mvGetGroupByID(char* groupID);
       mvIndex mvGetGroupIndexByID(char* groupID);
-      mvEnum mvRemoveCurrentGroup(); //< initialised
-      mvEnum mvRemoveGroup(mvIndex index); //< initialised
+      mvErrorEnum mvRemoveCurrentGroup(); //< initialised
+      mvErrorEnum mvRemoveGroup(mvIndex index); //< initialised
       mvIndex mvSetCurrentGroup(mvIndex index);//< initialised
       void mvRemoveAllGroups(); //< initialised
-      mvEnum mvSetGroupParameter(mvIndex index, mvEnum paramFlag, mvEnum option); //< initialised
-      mvEnum mvSetGroupParameterf(mvIndex index, mvEnum paramFlag, mvFloat num); //< initialised
-      mvEnum mvSetGroupParameterv(mvIndex index, mvEnum paramFlag, mvFloat* array); //< initialised
-      mvEnum mvSetCurrentGroupParameter(mvEnum paramFlag, mvEnum option); //< initialised
-      mvEnum mvSetCurrentGroupParameterf(mvEnum paramFlag, mvFloat num); //< initialised
-      mvEnum mvSetCurrentGroupParameterv(mvEnum paramFlag, mvFloat* array); //< initialised
+      mvErrorEnum mvSetGroupParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum option); //< initialised
+      mvErrorEnum mvSetGroupParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat num); //< initialised
+      mvErrorEnum mvSetGroupParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array); //< initialised
+      mvErrorEnum mvSetCurrentGroupParameter(mvParamEnum paramFlag, mvOptionEnum option); //< initialised
+      mvErrorEnum mvSetCurrentGroupParameterf(mvParamEnum paramFlag, mvFloat num); //< initialised
+      mvErrorEnum mvSetCurrentGroupParameterv(mvParamEnum paramFlag, mvFloat* array); //< initialised
 
       //
-      mvEnum mvAddBodyToGroup(mvIndex bodyIndex, mvIndex groupIndex);//< initialised
-      mvEnum mvAddCurrentBodyToGroup(mvIndex groupIndex);//< initialised
-      mvEnum mvAddBodyToCurrentGroup(mvIndex bodyIndex);//< initialised
-      mvEnum mvAddCurrentBodyToCurrentGroup();//< initialised
-      mvEnum mvRemoveBodyFromGroup(mvIndex bodyIndex, mvIndex groupIndex);//< initialised
-      mvEnum mvRemoveCurrentBodyFromGroup(mvIndex groupIndex);//< initialised
-      mvEnum mvRemoveBodyFromCurrentGroup(mvIndex bodyIndex);//< initialised
-      mvEnum mvRemoveCurrentBodyFromCurrentGroup();//< initialised
+      mvErrorEnum mvAddBodyToGroup(mvIndex bodyIndex, mvIndex groupIndex);//< initialised
+      mvErrorEnum mvAddCurrentBodyToGroup(mvIndex groupIndex);//< initialised
+      mvErrorEnum mvAddBodyToCurrentGroup(mvIndex bodyIndex);//< initialised
+      mvErrorEnum mvAddCurrentBodyToCurrentGroup();//< initialised
+      mvErrorEnum mvRemoveBodyFromGroup(mvIndex bodyIndex, mvIndex groupIndex);//< initialised
+      mvErrorEnum mvRemoveCurrentBodyFromGroup(mvIndex groupIndex);//< initialised
+      mvErrorEnum mvRemoveBodyFromCurrentGroup(mvIndex bodyIndex);//< initialised
+      mvErrorEnum mvRemoveCurrentBodyFromCurrentGroup();//< initialised
 
-      mvIndex mvAddForce(mvEnum fType); //< initialised
+      mvIndex mvAddForce(mvOptionEnum fType); //< initialised
       mvForce* mvGetForce(mvIndex index);//< initialised
-      mvIndex mvAddForceVector(mvEnum fType, mvFloat x, mvFloat y, mvFloat z);//< initialised
-      mvEnum mvRemoveForce(mvIndex index);//< initialised
-      mvEnum mvRemoveCurrentForce();//< initialised
+      mvIndex mvAddForceVector(mvOptionEnum fType, mvFloat x, mvFloat y, mvFloat z);//< initialised
+      mvErrorEnum mvRemoveForce(mvIndex index);//< initialised
+      mvErrorEnum mvRemoveCurrentForce();//< initialised
       void mvRemoveAllForces();//< initialised
       mvIndex mvSetCurrentForce(mvIndex index);//< initialised
-      mvEnum mvSetForceParameter(mvIndex index, mvEnum paramFlag, mvEnum option);//< initialised
-      mvEnum mvSetForceParameterf(mvIndex index, mvEnum paramFlag, mvFloat num);//< initialised
-      mvEnum mvSetForceParameterv(mvIndex index, mvEnum paramFlag, mvFloat* array);//< initialised
-      mvEnum mvSetCurrentForceParameter(mvEnum paramFlag, mvEnum option);//< initialised
-      mvEnum mvSetCurrentForceParameterf(mvEnum paramFlag, mvFloat num);//< initialised
-      mvEnum mvSetCurrentForceParameterv(mvEnum paramFlag, mvFloat* array); //< initialised
+      mvErrorEnum mvSetForceParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum option);//< initialised
+      mvErrorEnum mvSetForceParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat num);//< initialised
+      mvErrorEnum mvSetForceParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array);//< initialised
+      mvErrorEnum mvSetCurrentForceParameter(mvParamEnum paramFlag, mvOptionEnum option);//< initialised
+      mvErrorEnum mvSetCurrentForceParameterf(mvParamEnum paramFlag, mvFloat num);//< initialised
+      mvErrorEnum mvSetCurrentForceParameterv(mvParamEnum paramFlag, mvFloat* array); //< initialised
 
       // mv group behaviours
-      mvIndex mvAddGroupBehaviour(mvEnum type); //< initialised
+      mvIndex mvAddGroupBehaviour(mvOptionEnum type); //< initialised
       mvGroupBehaviour* mvGetGroupBehaviour(mvIndex index); //< initialised
-      mvEnum mvRemoveGroupBehaviour(mvIndex index); //< initialised
-      mvEnum mvRemoveCurrentGroupBehaviour(); //< initialised
+      mvErrorEnum mvRemoveGroupBehaviour(mvIndex index); //< initialised
+      mvErrorEnum mvRemoveCurrentGroupBehaviour(); //< initialised
       void mvRemoveAllGroupBehaviours(); //< initialised
       mvIndex mvSetCurrentGroupBehaviour(mvIndex index); //< initialised
-      /**
+      /*
       mvEnum mvSetGroupBehaviourParameter(mvIndex index, mvEnum paramFlag, mvEnum option); //< initialised
       mvEnum mvSetGroupBehaviourParameterf(mvIndex index, mvEnum paramFlag, mvFloat num); //< initialised
       mvEnum mvSetGroupBehaviourParameterv(mvIndex index, mvEnum paramFlag, mvFloat* array); //< initialised
       mvEnum mvSetCurrentGroupBehaviourParameter(mvEnum paramFlag, mvEnum option); //< initialised
       mvEnum mvSetCurrentGroupBehaviourParameterf(mvEnum paramFlag, mvFloat num); //< initialised
       mvEnum mvSetCurrentGroupBehaviourParameterv(mvEnum paramFlag, mvFloat* array);  //< initialised
-      **/
+      */
 
-      mvEnum mvSetGroupBehaviourParameter(mvIndex gbIndex, mvIndex groupIndex, mvEnum paramFlag, mvEnum option);
-      mvEnum mvSetGroupBehaviourParameteri(mvIndex gbIndex, mvIndex groupIndex, mvEnum paramFlag, mvIndex option);
-      mvEnum mvSetGroupBehaviourParameterf(mvIndex gbIndex, mvIndex groupIndex, mvEnum paramFlag, mvFloat num);
-      mvEnum mvSetGroupBehaviourParameterv(mvIndex gbIndex, mvIndex groupIndex, mvEnum paramFlag, mvFloat* array);
+      mvErrorEnum mvSetGroupBehaviourParameter(mvIndex gbIndex, mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum mvSetGroupBehaviourParameteri(mvIndex gbIndex, mvIndex groupIndex, mvParamEnum paramFlag, mvIndex option);
+      mvErrorEnum mvSetGroupBehaviourParameterf(mvIndex gbIndex, mvIndex groupIndex, mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum mvSetGroupBehaviourParameterv(mvIndex gbIndex, mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* array);
 
-      mvEnum mvSetCurrentGroupBehaviourParameter(mvIndex groupIndex, mvEnum paramFlag, mvEnum option);
-      mvEnum mvSetCurrentGroupBehaviourParameteri(mvIndex groupIndex, mvEnum paramFlag, mvIndex option);
-      mvEnum mvSetCurrentGroupBehaviourParameterf(mvIndex groupIndex, mvEnum paramFlag, mvFloat num);
-      mvEnum mvSetCurrentGroupBehaviourParameterv(mvIndex groupIndex, mvEnum paramFlag, mvFloat* array);
+      mvErrorEnum mvSetCurrentGroupBehaviourParameter(mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum mvSetCurrentGroupBehaviourParameteri(mvIndex groupIndex, mvParamEnum paramFlag, mvIndex option);
+      mvErrorEnum mvSetCurrentGroupBehaviourParameterf(mvIndex groupIndex, mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum mvSetCurrentGroupBehaviourParameterv(mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* array);
 
-      mvEnum mvInsertGroupIntoGroupBehaviour(mvIndex groupIndex, mvIndex groupBehaviour);
-      mvEnum mvInsertCurrentGroupIntoGroupBehaviour(mvIndex groupBehaviour);
-      mvEnum mvInsertGroupIntoCurrentGroupBehaviour(mvIndex groupIndex);
-      mvEnum mvInsertCurrentGroupIntoCurrentGroupBehaviour();
+      mvErrorEnum mvInsertGroupIntoGroupBehaviour(mvIndex groupIndex, mvIndex groupBehaviour);
+      mvErrorEnum mvInsertCurrentGroupIntoGroupBehaviour(mvIndex groupBehaviour);
+      mvErrorEnum mvInsertGroupIntoCurrentGroupBehaviour(mvIndex groupIndex);
+      mvErrorEnum mvInsertCurrentGroupIntoCurrentGroupBehaviour();
 
 
       void mvWorldStep(mvFloat timeInSecs); //< initialised
@@ -287,21 +287,21 @@ class mvWorld
       void mvApplyToAllObstacles(void (someFunction)(mvObstacle*,void*),void* extraPtr);
       void mvApplyToAllWaypoints(void (someFunction)(mvWaypoint*,void*),void* extraPtr);
 
-      mvEnum mvSetDefaultWaypointForBody(mvIndex waypointIndex, mvIndex bodyIndex);  //< initialised
-      mvEnum mvSetDefaultPathwayForBody(mvIndex pathwayIndex, mvIndex bodyIndex);  //< initialised
-      mvEnum mvSetDefaultBodyForBody(mvIndex targetIndex,mvIndex bodyIndex); //< initialised
-      mvEnum mvSetDefaultBehaviourFactorForBody(mvFloat factor, mvIndex bodyIndex); //< initialised
+      mvErrorEnum mvSetDefaultWaypointForBody(mvIndex waypointIndex, mvIndex bodyIndex);  //< initialised
+      mvErrorEnum mvSetDefaultPathwayForBody(mvIndex pathwayIndex, mvIndex bodyIndex);  //< initialised
+      mvErrorEnum mvSetDefaultBodyForBody(mvIndex targetIndex,mvIndex bodyIndex); //< initialised
+      mvErrorEnum mvSetDefaultBehaviourFactorForBody(mvFloat factor, mvIndex bodyIndex); //< initialised
 
-      mvEnum mvSetDefaultWaypointForCurrentBody(mvIndex wpIndex); //< initialised
-      mvEnum mvSetDefaultPathwayForCurrentBody(mvIndex pwIndex);  //< initialised
-      mvEnum mvSetDefaultBodyForCurrentBody(mvIndex bodyIndex); //< initialised
-      mvEnum mvSetDefaultBehaviourFactorForCurrentBody(mvFloat factor); //< initialised
+      mvErrorEnum mvSetDefaultWaypointForCurrentBody(mvIndex wpIndex); //< initialised
+      mvErrorEnum mvSetDefaultPathwayForCurrentBody(mvIndex pwIndex);  //< initialised
+      mvErrorEnum mvSetDefaultBodyForCurrentBody(mvIndex bodyIndex); //< initialised
+      mvErrorEnum mvSetDefaultBehaviourFactorForCurrentBody(mvFloat factor); //< initialised
 
-      mvEnum mvAddBehaviourToBody(mvIndex bodyIndex, mvEnum bType, mvIndex behaviourIndex, mvIndex groupIndex);//< initialised
-      mvEnum mvAddBehaviourToCurrentBody(mvEnum bType, mvIndex behaviourIndex, mvIndex groupIndex);//< initialised
+      mvErrorEnum mvAddBehaviourToBody(mvIndex bodyIndex, mvOptionEnum bType, mvIndex behaviourIndex, mvIndex groupIndex);//< initialised
+      mvErrorEnum mvAddBehaviourToCurrentBody(mvOptionEnum bType, mvIndex behaviourIndex, mvIndex groupIndex);//< initialised
 
-      mvEnum mvSetBehaviourParameteri(mvIndex behaviourIndex,mvEnum paramFlag, mvIndex index);  //< initialised
-      mvEnum mvSetCurrentBehaviourParameteri(mvEnum paramFlag, mvIndex index);  //< initialised
+      mvErrorEnum mvSetBehaviourParameteri(mvIndex behaviourIndex,mvParamEnum paramFlag, mvIndex index);  //< initialised
+      mvErrorEnum mvSetCurrentBehaviourParameteri(mvParamEnum paramFlag, mvIndex index);  //< initialised
 };
 
 #endif

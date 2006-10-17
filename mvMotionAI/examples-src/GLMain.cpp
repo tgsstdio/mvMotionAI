@@ -21,6 +21,9 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
+ * Log
+ * 00-01-16    17/10/06    mvEnums enumerations changed to mvOptionEnum
  */
 
 #include <GL/glut.h>
@@ -199,7 +202,7 @@ void worldFunction(mvWorld* tempWorld, void* entry)
  */
 void displayBody(mvBody* p,void* extraPtr)
 {
-   mvEnum tempShape;
+   mvOptionEnum tempShape;
 
    if (p != NULL)
    {
@@ -256,7 +259,7 @@ void displayBody(mvBody* p,void* extraPtr)
 void displayObstacle(mvObstacle* o,void* extraPtr)
 {
    //const float offsetY = 0.5;
-   mvEnum tempShape;
+   mvOptionEnum tempShape;
 
    if (o != NULL)
    {
@@ -281,12 +284,12 @@ void displayObstacle(mvObstacle* o,void* extraPtr)
 }
 
 /**
- * Step 6a : this function draws the mvWaypoint type in the
+ * Step 6c : this function draws the mvWaypoint type in the
  * application
  */
 void displayWaypoint(mvWaypoint* wp,void* extraPtr)
 {
-   mvEnum tempShape;
+   mvOptionEnum tempShape;
 
    if (wp != NULL)
    {

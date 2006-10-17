@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE CodeBlocks_layout_file>
 <CodeBlocks_layout_file>
-	<Expand folder="/Sources/examples-src"/>
-	<Expand folder="/Sources"/>
-	<Expand folder="/Headers/examples-src"/>
-	<Expand folder="/Headers"/>
+	<File name="examples-src\GLMain.cpp" open="0" top="0">
+		<Cursor position="8187" topLine="357"/>
+	</File>
 </CodeBlocks_layout_file>

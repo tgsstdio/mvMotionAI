@@ -23,7 +23,7 @@
  */
 
 #include "mvBehaviour-SimpleFlock.h"
-#include "mvEnum.h"
+#include "mvEnums.h"
 
 enum mvBehaviour_SimpleFlock{
    MV_SIMPLE_FLOCK_TOTAL_POSITION = 0,
@@ -31,8 +31,14 @@ enum mvBehaviour_SimpleFlock{
    //MV_NO_OF_SIMPLE_FLOCK_POINTS,
    MV_NO_OF_SIMPLE_FLOCK_BODY_VARIABLES,
    MV_SIMPLE_FLOCK_NO_OF_MEMBERS = 0,
-   MV_SIMPLE_FLOCK_NO_OF_GROUP_VARIABLES,
+   MV_SIMPLE_FLOCK_NO_OF_GROUP_VARIABLES
 };
+
+static const mvIndex MV_SIMPLE_FLOCK_COHESION_FACTOR_INDEX = 0;
+static const mvIndex MV_SIMPLE_FLOCK_SEPARATION_FACTOR_INDEX = 1;
+static const mvIndex MV_SIMPLE_FLOCK_ALIGNMENT_FACTOR_INDEX = 2;
+static const mvIndex MV_SIMPLE_FLOCK_PERCEIVED_COHESION_FLAG_INDEX = 0;
+static const mvIndex MV_SIMPLE_FLOCK_PERCEIVED_ALIGNMENT_FLAG_INDEX = 1;
 
 void mvBehaviour_SimpleFlock_GroupOperations(mvWorld* worldPtr,
                                              mvGroup* flockGroup,
@@ -74,7 +80,7 @@ void mvBehaviour_SimpleFlock_GroupOperations(mvWorld* worldPtr,
           **/
       }
    }
-};
+}
 
 
 mvVec3 mvBehaviour_SimpleFlock_SingularOperation(mvBehaviourEntry* groupData, mvBody* currentBody,
@@ -84,23 +90,23 @@ mvVec3 mvBehaviour_SimpleFlock_SingularOperation(mvBehaviourEntry* groupData, mv
         totalVelocity, totalPosition, flockCentre, averageVelocity;
    mvFloat cohesionFactor, alignmentFactor, separationFactor,
          noOfBodies, flockNumber;
-   mvEnum perceivedAttractionFlag, perceivedCohensionFlag;
+   mvOptionEnum perceivedAttractionFlag, perceivedCohensionFlag;
 
    if (groupData != NULL && bodyData != NULL)
    {
-      /**
+      /*
        * Step Alpha init values
        *
       //puts("hello");
       bodyData->extraStates[MV_SIMPLE_FLOCK_PERCEIVED_COHESION_FLAG_INDEX] = MV_TRUE;
       bodyData->extraStates[MV_SIMPLE_FLOCK_PERCEIVED_ALIGNMENT_FLAG_INDEX] = MV_FALSE;
-      **/
-      bodyData->extraVariables[MV_SIMPLE_FLOCK_COHESION_FACTOR_INDEX] = 0.22f;
-      bodyData->extraVariables[MV_SIMPLE_FLOCK_SEPARATION_FACTOR_INDEX] = 0.05f;
-      bodyData->extraVariables[MV_SIMPLE_FLOCK_ALIGNMENT_FACTOR_INDEX] = 0.0f;
+      */
+      //bodyData->extraVariables[MV_SIMPLE_FLOCK_COHESION_FACTOR_INDEX] = 0.22f;
+      //bodyData->extraVariables[MV_SIMPLE_FLOCK_SEPARATION_FACTOR_INDEX] = 0.05f;
+      //bodyData->extraVariables[MV_SIMPLE_FLOCK_ALIGNMENT_FACTOR_INDEX] = 0.0f;
       /**/
 
-      /**
+      /*
        * Step 1 -  retrieve values from entries
        */
       noOfBodies = groupData->extraVariables[MV_SIMPLE_FLOCK_NO_OF_MEMBERS];
@@ -113,7 +119,7 @@ mvVec3 mvBehaviour_SimpleFlock_SingularOperation(mvBehaviourEntry* groupData, mv
       separationFactor = bodyData->extraVariables[MV_SIMPLE_FLOCK_SEPARATION_FACTOR_INDEX];
       alignmentFactor = bodyData->extraVariables[MV_SIMPLE_FLOCK_ALIGNMENT_FACTOR_INDEX];
 
-      /**
+      /*
        * Step 2 - calculate separation
        * [Away from other bodies]
        */
@@ -124,7 +130,7 @@ mvVec3 mvBehaviour_SimpleFlock_SingularOperation(mvBehaviourEntry* groupData, mv
       }
 
 
-      /**
+      /*
        * Step 3 - calculate cohesion (attraction)
        * [Towards the centre of the flock]
        * on if perceived flock (MV_TRUE) or actual flock (MV_FALSE) i.e included
@@ -145,11 +151,11 @@ mvVec3 mvBehaviour_SimpleFlock_SingularOperation(mvBehaviourEntry* groupData, mv
          cohesion = flockCentre - currentBody->position;
          cohesion *= cohesionFactor;
       }
-      /**
+      /*
       std::cout << "ATTRACTION :" << attraction << std::endl;
-      **/
+      */
 
-      /**
+      /*
        * Step 3 - calculate alignment (cohesion)
        * [How close is body's velocity to flock velocity]
        * on if perceived flock (MV_TRUE) or actual flock (MV_FALSE) i.e included
@@ -172,18 +178,18 @@ mvVec3 mvBehaviour_SimpleFlock_SingularOperation(mvBehaviourEntry* groupData, mv
       }
       /**/
 
-      /**
+      /*
        * Step 4 - sum all values for final velocity accord to
        * behaviour
        */
       finalVelocity = cohesion + alignment + separation;
       //finalVelocity = separation;
-      /**
+      /*
       std::cout  << "SINGLE " << std::endl
                   << totalPosition << std::endl
                    << totalVelocity << std::endl
                    << noOfBodies << std::endl;
-      **/
+      */
    }
    return finalVelocity;
-};
+}

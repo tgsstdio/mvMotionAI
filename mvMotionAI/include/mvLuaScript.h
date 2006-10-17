@@ -43,7 +43,6 @@ extern "C" {
 #undef MV_MOTIONAI_LUA_DEBUG
 
 
-
 void mvLoadLuaScriptFunctions(lua_State* L);
 
 const char** mvGetLuaMotionAIFunctions();

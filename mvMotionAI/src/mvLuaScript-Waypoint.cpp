@@ -23,7 +23,7 @@
  */
 
 #include "mvLuaScript-Waypoint.h"
-#include "mvEnum.h"
+#include "mvEnums.h"
 #include "mvMotionAI.h"
 #include "mvWorld.h"
 #include "mvScript-Utilities.h"
@@ -66,12 +66,12 @@ const char* mvLua_WaypointFunctions[] =
 const char** mvGetLuaWaypointFunctions()
 {
    return &mvLua_WaypointFunctions[0];
-};
+}
 
 mvCount mvGetNoOfLuaWaypointFunctions()
 {
    return sizeof(mvLua_WaypointFunctions)/sizeof(const char*);
-};
+}
 
 void mvLoadLuaWaypointFunctions(lua_State* L)
 {
@@ -81,7 +81,7 @@ void mvLoadLuaWaypointFunctions(lua_State* L)
    lua_register(L,mvLua_WaypointFunctions[3],mvLua_SetCurrentWaypoint);
    lua_register(L,mvLua_WaypointFunctions[4],mvLua_RemoveAllWaypoints);
    //lua_register(L,"mvAddWaypoint",mvLua_AddWaypoint);
-};
+}
 
 int mvLua_AddWaypoint(lua_State* L)
 {
@@ -94,7 +94,7 @@ int mvLua_AddWaypoint(lua_State* L)
    mvFloat x = (mvFloat) lua_tonumber(L,4);
    mvFloat y = (mvFloat) lua_tonumber(L,5);
    mvFloat z = (mvFloat) lua_tonumber(L,6);
-   mvEnum wType, wShape;
+   mvOptionEnum wType, wShape;
 
    mvWorld* tempWorld = NULL;
 
@@ -108,15 +108,15 @@ int mvLua_AddWaypoint(lua_State* L)
 #ifdef MV_LUA_SCRIPT_WAYPOINT_DEBUG_FLAG
       puts(shape);
 #endif
-      wType = mvScript_checkWaypointType(type);
-      wShape = mvScript_checkWaypointShape(shape);
+      mvScript_checkWaypointType(type,wType);
+      mvScript_checkWaypointShape(shape,wShape);
       result = tempWorld->mvAddWaypointWithPos(wType,wShape,x,y,z);
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
-/**
+/*
 int mvWaypoint::getNoOfPoints() const
 {
   switch (wayPointType)
@@ -148,7 +148,7 @@ int mvWaypoint::getNoOfDimensions() const
        return MV_INVALID_DIMENSIONS;
   }
 };
-**/
+*/
 
 int mvLua_RemoveCurrentWaypoint(lua_State* L)
 {
@@ -166,7 +166,7 @@ int mvLua_RemoveCurrentWaypoint(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_RemoveWaypoint(lua_State* L)
 {
@@ -185,7 +185,7 @@ int mvLua_RemoveWaypoint(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_SetCurrentWaypoint(lua_State* L)
 {
@@ -204,7 +204,7 @@ int mvLua_SetCurrentWaypoint(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_RemoveAllWaypoints(lua_State* L)
 {
@@ -221,5 +221,5 @@ int mvLua_RemoveAllWaypoints(lua_State* L)
       tempWorld->mvRemoveAllWaypoints();
    }
    return 0;
-};
+}
 

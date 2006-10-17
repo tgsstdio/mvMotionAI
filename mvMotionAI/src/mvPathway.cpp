@@ -48,13 +48,13 @@ void mvPathway::addWaypoint(mvWaypoint* pWaypoint)
 /**
  * removes the latest instance
  */
-mvEnum mvPathway::removeWaypoint(mvWaypoint* pWaypoint)
+mvErrorEnum mvPathway::removeWaypoint(mvWaypoint* pWaypoint)
 {
    std::vector<mvWaypoint*>::reverse_iterator i;
    mvWaypoint* currentWaypoint = NULL;
 
    if (pWaypoint == NULL)
-     return MV_FALSE;
+     return MV_ITEM_POINTER_IS_NULL;
 
    for (i = waypoints.rbegin(); i != waypoints.rend(); ++i)
    {
@@ -62,25 +62,25 @@ mvEnum mvPathway::removeWaypoint(mvWaypoint* pWaypoint)
      if (currentWaypoint != NULL && currentWaypoint == pWaypoint)
      {
         *i = NULL;
-        return MV_TRUE;
+        return MV_NO_ERROR;
      }
    }
-   return MV_FALSE;
+   return MV_ITEM_NOT_FOUND_IN_LIST;
 };
 
-mvEnum mvPathway::setParameter(mvEnum paramFlag, mvEnum option)
+mvErrorEnum mvPathway::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return MV_FALSE;
+   return MV_INVALID_PATHWAY_PARAMETER;
 };
 
-mvEnum mvPathway::setParameterf(mvEnum paramFlag, float num)
+mvErrorEnum mvPathway::setParameterf(mvParamEnum paramFlag, float num)
 {
-   return MV_FALSE;
+   return MV_INVALID_PATHWAY_PARAMETER;
 };
 
-mvEnum mvPathway::setParameterv(mvEnum paramFlag, float* numArray)
+mvErrorEnum mvPathway::setParameterv(mvParamEnum paramFlag, float* numArray)
 {
-   return MV_FALSE;
+   return MV_INVALID_PATHWAY_PARAMETER;
 };
 
 void mvPathway::removeAllWaypoints()

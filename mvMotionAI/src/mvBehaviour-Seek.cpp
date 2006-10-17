@@ -45,4 +45,4 @@ mvVec3 mvBehaviour_Calculate_Seek(mvBody* body, mvWaypoint* point)
       final_velocity -= body->finalVelocity;
    }
    return final_velocity;
-};
+}

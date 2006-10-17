@@ -27,7 +27,7 @@
 //#include "Vec3.h"
 #include <vector>
 //#include "mvBody.h"
-#include "mvEnum.h"
+#include "mvEnums.h"
 //#include "mvPathway.h"
 #include "mvMotionAI-Types.h"
 //#include "mvBehaviour.h"
@@ -44,7 +44,7 @@
 class mvBehaviourListNode
 {
   private:
-   mvEnum bNodeType; // key 1
+   mvOptionEnum bNodeType; // key 1
    mvIndex behaviourIndex; // key 2
    mvIndex groupIndex; // key 3
    mvFloat bNodeFactor;
@@ -54,20 +54,20 @@ class mvBehaviourListNode
   public:
    // undeclared
    mvBehaviourListNode();
-   mvBehaviourListNode(mvEnum nodeType, mvIndex behaviour, mvIndex group);
-   mvBehaviourListNode(mvEnum nodeType, mvIndex behaviour, mvIndex group,
+   mvBehaviourListNode(mvOptionEnum nodeType, mvIndex behaviour, mvIndex group);
+   mvBehaviourListNode(mvOptionEnum nodeType, mvIndex behaviour, mvIndex group,
       mvBehaviourEntry* defaultEntry);
    mvBehaviourListNode(const mvBehaviourListNode& rhs);
    const mvBehaviourListNode& operator=(const mvBehaviourListNode& rhs);
    ~mvBehaviourListNode();
    mvFloat getFactor() const;
-   mvEnum setFactor(mvFloat factor);
-   void initialiseEntry(mvEnum type);
+   mvErrorEnum setFactor(mvFloat factor);
+   void initialiseEntry(mvOptionEnum type);
 
-   mvEnum setBehaviourIndex(mvIndex bIndex);
-   mvEnum setGroupIndex(mvIndex gIndex);
+   mvErrorEnum setBehaviourIndex(mvIndex bIndex);
+   mvErrorEnum setGroupIndex(mvIndex gIndex);
 
-   mvEnum getType() const;
+   mvOptionEnum getType() const;
    mvIndex getBehaviourIndex() const;
    mvIndex getGroupIndex() const;
    mvBehaviourEntry* getBehavData() const;
@@ -100,15 +100,15 @@ class mvBehaviourList
       void removeAll();
       ~mvBehaviourList();
       mvBehaviourListNode* findExistingGroupEntry(mvIndex behaviourIndex, mvIndex groupIndex);
-      mvBehaviourListNode* getEntryByIndex(mvIndex index) const;
+      mvBehaviourListNode* getEntryByIndex(mvIndex index);
 
       // undeclared
       mvBehaviourList(const mvBehaviourList& rhs);
       const mvBehaviourList& operator=(const mvBehaviourList& rhs);
-      mvEnum addExistingGroupBehaviourEntry(mvIndex behaviourIndex, mvIndex groupIndex);
-      mvEnum addExistingBehaviourEntry(mvIndex behaviourIndex);
-      mvEnum addNewBehaviourEntry(mvEnum behaviourType);
-      mvEnum addEntry(mvEnum bType, mvIndex behaviourIndex, mvIndex groupIndex);
+      mvErrorEnum addExistingGroupBehaviourEntry(mvIndex behaviourIndex, mvIndex groupIndex);
+      mvErrorEnum addExistingBehaviourEntry(mvIndex behaviourIndex);
+      mvErrorEnum addNewBehaviourEntry(mvOptionEnum behaviourType);
+      mvErrorEnum addEntry(mvOptionEnum bType, mvIndex behaviourIndex, mvIndex groupIndex);
       mvFloat getListFactorTotal() const;
 
       //mvBehaviourEntry* entries;
@@ -118,7 +118,7 @@ class mvBehaviourList
       void setDefaultBody(mvIndex bodyIndex);
       void setDefaultWaypoint(mvIndex wpIndex);
       void setDefaultPathway(mvIndex pwIndex);
-      mvEnum setDefaultBehaviourFactor(mvFloat factor);
+      mvErrorEnum setDefaultBehaviourFactor(mvFloat factor);
 };
 
 #endif

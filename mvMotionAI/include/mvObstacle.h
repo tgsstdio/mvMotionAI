@@ -24,7 +24,7 @@
 
 #ifndef MOTIONAI_MVOBSTACLE_H_
 #define MOTIONAI_MVOBSTACLE_H_
-#include "mvEnum.h"
+#include "mvEnums.h"
 //#include "Vec3.h"
 #include "mvVec3.h"
 #include "mvMotionAI-Types.h"
@@ -36,6 +36,9 @@
  *Log
  *
  *version     date     comments
+ *00-01-16   14/10/06  - redefined single type of mvEnums to 3 enums,
+ *                     - changed type to shape, state to type.
+ *
  *00-01-05   23/8/06    - replaces Vec3 with mvVec3, types declared as
  *                      either mvFloat, mvIndex, mvCount.
  *
@@ -47,30 +50,32 @@
  *                     header and source files
  */
 
+static const mvCount MV_MAX_NO_OF_OBSTACLE_DIMENSIONS = 4;
+
 class mvObstacle
 {
    private:
-      mvEnum initialiseShapeDimensions(mvEnum shape);
-      mvEnum checkValidState(mvEnum oState);
+      mvErrorEnum initialiseShapeDimensions(mvOptionEnum shape);
+      mvErrorEnum checkValidType(mvOptionEnum oType);
       mvVec3 position; /**< Global position in world */
       mvFloat* dimensions;
-      mvEnum state;
-      mvEnum obstacleType;
+      mvOptionEnum obstacleType;
+      mvOptionEnum obstacleShape;
    public:
       //mvObstacle();
       //mvObstacle(mvEnum oType);
-      mvObstacle(mvEnum oType, mvEnum oState);
-      mvObstacle(mvEnum oType, mvEnum oState,mvFloat x, mvFloat y, mvFloat z);
-      mvEnum getType() const;
+      mvObstacle(mvOptionEnum oShape, mvOptionEnum oType);
+      mvObstacle(mvOptionEnum oShape, mvOptionEnum oType,mvFloat x, mvFloat y, mvFloat z);
+      mvOptionEnum getType() const;
       mvCount getNoOfDimensions() const;
       void setPosition(mvFloat x, mvFloat y, mvFloat z);
-      mvEnum getState() const;
+      mvOptionEnum getShape() const;
       mvFloat getX() const;
       mvFloat getY() const;
       mvFloat getZ() const;
-      mvEnum setParameter(mvEnum paramFlag, mvEnum option);
-      mvEnum setParameterf(mvEnum paramFlag, mvFloat num);
-      mvEnum setParameterv(mvEnum paramFlag, mvFloat* numArray);
+      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
       ~mvObstacle();
 };
 

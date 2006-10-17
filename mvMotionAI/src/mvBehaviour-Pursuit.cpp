@@ -57,6 +57,6 @@ mvVec3 mvBehaviour_Calculate_Pursuit(mvBody* currentBody, mvBody* targetBody)
       finalVelocity *= 0.5;
    }
    return finalVelocity;
-};
+}
 
 

@@ -69,4 +69,8 @@ typedef int mvIndex;
 typedef int mvCount;
 #endif
 
+static const mvIndex MV_OFFSET_TO_INDEX = -1;
+static const mvIndex MV_NO_CURRENT_INDEX = -0;
+static const mvCount MV_MAX_NO_OF_PARAMETERS = 3;
+
 #endif

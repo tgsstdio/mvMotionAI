@@ -42,13 +42,13 @@ int mvLua_AddWorld(lua_State* luaVM);
 int mvLua_GetWorldByID(lua_State* luaVM);
 int mvLua_AllWorldsStepForward(lua_State* luaVM);
 
-/**
+/*
 void mvLoadLuaScriptFile(char* fileName);
 void mvAllWorldsStepForward(mvFloat timeInSecs);
 mvWorld* mvGetWorldByID(char* id);
 mvWorld* mvAddWorld(char* id);
 void mvRemoveAllWorlds();
-**/
+*/
 
 // moved from mvMotionAI / decleared in mvMotionAI.h
 void mvLoadLuaScriptFile(char* fileName)
@@ -79,12 +79,12 @@ const char* mvLua_MotionAIFunctionNames[] =
 const char** mvGetLuaMotionAIFunctions()
 {
    return &mvLua_MotionAIFunctionNames[0];
-};
+}
 
 mvCount mvGetNoOfLuaMotionAIFunctions()
 {
    return sizeof(mvLua_MotionAIFunctionNames)/sizeof(const char*);
-};
+}
 
 void mvLoadLuaScriptFunctions(lua_State* L)
 {
@@ -104,7 +104,7 @@ void mvLoadLuaScriptFunctions(lua_State* L)
   mvLoadLuaWorldFunctions(L);
   mvLoadLuaForceFunctions(L);
   mvLoadLuaGroupBehaviourFunctions(L);
-};
+}
 
 int mvLua_AllWorldsStepForward(lua_State* L)
 {
@@ -112,7 +112,7 @@ int mvLua_AllWorldsStepForward(lua_State* L)
   mvAllWorldsStepForward(timeInSecs);
   lua_pushnumber(L,0);
   return 1;
-};
+}
 
 int mvLua_GetWorldByID(lua_State* luaVM)
 {
@@ -130,7 +130,7 @@ int mvLua_GetWorldByID(lua_State* luaVM)
   #else
     return __motionAI_Central_Module.getWorldIndex(worldID);
   #endif
-};
+}
 
 int mvLua_LoadLuaScriptFile(lua_State* luaVM)
 {
@@ -139,14 +139,14 @@ int mvLua_LoadLuaScriptFile(lua_State* luaVM)
   mvLoadLuaScriptFile(fileName);
   lua_pushnumber(luaVM,0);
   return 1;
-};
+}
 
 int mvLua_RemoveAllWorlds(lua_State* luaVM)
 {
   mvRemoveAllWorlds();
   lua_pushnumber(luaVM,0);
   return 1;
-};
+}
 
 
 int mvLua_AddWorld(lua_State* luaVM)
@@ -189,7 +189,7 @@ int mvLua_AddWorld(lua_State* luaVM)
 
    lua_pushnumber(luaVM,result);
    return 1;
-};
+}
 
 
 

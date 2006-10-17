@@ -23,7 +23,6 @@
  */
 
 #include "mvMotionAI-Utilities.h"
-#include "mvEnum.h"
 
 /**
  * Contains no code i.e empty file
