@@ -6,6 +6,7 @@
 		<Option title="mvMotionAI static library"/>
 		<Option makefile="Makefile"/>
 		<Option makefile_is_custom="0"/>
+		<Option active_target="0"/>
 		<Option compiler="0"/>
 		<Build>
 			<Target title="default">
@@ -16,6 +17,14 @@
 				<Option type="2"/>
 				<Option compiler="0"/>
 				<Option projectResourceIncludeDirsRelation="2"/>
+				<Compiler>
+					<Add option="-Os"/>
+					<Add option="-O3"/>
+					<Add option="-O2"/>
+					<Add option="-O1"/>
+					<Add option="-O"/>
+					<Add option="-Wall"/>
+				</Compiler>
 				<Linker>
 					<Add library="mingw32"/>
 				</Linker>
@@ -24,11 +33,34 @@
 		<Compiler>
 			<Add directory="include-other\mingw"/>
 			<Add directory="include"/>
+			<Add directory="experimental\include"/>
 		</Compiler>
 		<Linker>
 			<Add directory="lib-other"/>
 			<Add directory="lib-other\mingw"/>
 		</Linker>
+		<Unit filename="..\..\list.txt">
+			<Option compilerVar=""/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="default"/>
+		</Unit>
+		<Unit filename="experimental\include\mvBaseBehaviour.h">
+			<Option compilerVar=""/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="default"/>
+		</Unit>
+		<Unit filename="experimental\include\mvGlobalFunctions.h">
+			<Option compilerVar=""/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="default"/>
+		</Unit>
+		<Unit filename="experimental\src\mvBaseBehaviour.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="default"/>
+		</Unit>
 		<Unit filename="include\mvBehaviour-Central.h">
 			<Option compilerVar=""/>
 			<Option compile="0"/>
@@ -95,7 +127,7 @@
 			<Option link="0"/>
 			<Option target="default"/>
 		</Unit>
-		<Unit filename="include\mvEnum.h">
+		<Unit filename="include\mvEnums.h">
 			<Option compilerVar=""/>
 			<Option compile="0"/>
 			<Option link="0"/>
@@ -283,7 +315,7 @@
 			<Option compilerVar="CPP"/>
 			<Option target="default"/>
 		</Unit>
-		<Unit filename="src\mvEnum.cpp">
+		<Unit filename="src\mvEnums.cpp">
 			<Option compilerVar="CPP"/>
 			<Option target="default"/>
 		</Unit>

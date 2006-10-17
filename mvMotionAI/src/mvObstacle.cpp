@@ -33,91 +33,74 @@
  * partial completion for aabox, aacylinder (x,y,z), sphere,
  *
  */
-mvEnum mvObstacle::initialiseShapeDimensions(mvEnum shape)
+
+mvErrorEnum mvObstacle::initialiseShapeDimensions(mvOptionEnum shape)
 {
-  mvFloat tempDims[MV_MAX_NO_OF_OBSTACLE_DIMENSIONS];
-  mvIndex i;
-  mvCount noOfDims;
+   mvFloat tempDims[MV_MAX_NO_OF_OBSTACLE_DIMENSIONS];
+   mvIndex i;
+   mvCount noOfDims;
 
-  if (dimensions != NULL)
-  {
-    noOfDims = getNoOfDimensions();
+   // saving variables
+   if (dimensions != NULL)
+   {
+      noOfDims = getNoOfDimensions();
 
-    for (i = 0; i < noOfDims; ++i)
-    {
-       tempDims[i] = dimensions[i];
-    }
+      for (i = 0; i < noOfDims; ++i)
+      {
+         tempDims[i] = dimensions[i];
+      }
+      delete [] dimensions;
+      dimensions = NULL;
+   }
 
-    delete [] dimensions;
-    dimensions = NULL;
-  }
+   switch(shape)
+   {
+      // valid shapes
+      case MV_AABOX:
+      case MV_SPHERE:
+      case MV_X_AXIS_AA_CYLINDER:
+      case MV_Y_AXIS_AA_CYLINDER:
+      case MV_Z_AXIS_AA_CYLINDER:
+         obstacleShape = shape;
+         break;
+      default:
+         obstacleShape = MV_NON_SHAPE;
+         dimensions = NULL;
+         return MV_INVALID_OBSTACLE_SHAPE;
+   }
 
-  if (shape == MV_AABOX)
-  {
-     obstacleType = MV_AABOX;
-     dimensions = new mvFloat[MV_NO_OF_AABOX_DIMENSIONS];
-  }
-  else if (shape == MV_SPHERE)
-  {
-     obstacleType = MV_SPHERE;
-     dimensions = new mvFloat[MV_NO_OF_SPHERE_DIMENSIONS];
-  }
-  else if (shape == MV_X_AXIS_AA_CYLINDER)
-  {
-     obstacleType = MV_X_AXIS_AA_CYLINDER;
-     dimensions = new mvFloat[MV_NO_OF_AACYLINDER_DIMENSIONS];
-  }
-  else if (shape == MV_Y_AXIS_AA_CYLINDER)
-  {
-     obstacleType = MV_Y_AXIS_AA_CYLINDER;
-     dimensions = new mvFloat[MV_NO_OF_AACYLINDER_DIMENSIONS];
-  }
-  else if (shape == MV_Z_AXIS_AA_CYLINDER)
-  {
-     obstacleType = MV_Z_AXIS_AA_CYLINDER;
-     dimensions = new mvFloat[MV_NO_OF_AACYLINDER_DIMENSIONS];
-  }
-  else
-  {
-    obstacleType = MV_NO_SHAPE;
-    dimensions = NULL;
-  }
-
-  if (obstacleType == MV_NO_SHAPE)
-  {
-    return MV_FALSE;
-  }
-  else
-  {
-    noOfDims = getNoOfDimensions();
-    for (i = 0; i < noOfDims; ++i)
-    {
+   noOfDims = getNoOfDimensions();
+   if (noOfDims > 0)
+   {
+      dimensions = new mvFloat[noOfDims];
+   }
+   for (i = 0; i < noOfDims; ++i)
+   {
       dimensions[i] = tempDims[i];
-    }
-    return MV_TRUE;
-  }
+   }
+   return MV_NO_ERROR;
 };
 
-mvEnum mvObstacle::getState() const
+mvOptionEnum mvObstacle::getShape() const
 {
-  return state;
+  return obstacleShape;
 };
 
-mvEnum mvObstacle::checkValidState(mvEnum oState)
+mvErrorEnum mvObstacle::checkValidType(mvOptionEnum oType)
 {
-   switch(oState)
+   switch(oType)
    {
      case MV_SOLID_OBSTACLE:
      case MV_LIQUID_OBSTACLE:
      case MV_AIR_OBSTACLE:
-       state = oState;
-       break;
+       obstacleType = oType;
+       return MV_NO_ERROR;
      default:
-       state = MV_INVALID_OBSTACLE_STATE;
+       obstacleType = MV_NON_OBSTACLE_TYPE;
+       return MV_INVALID_OBSTACLE_TYPE;
    }
-   return (state != MV_INVALID_OBSTACLE_STATE) ? MV_TRUE : MV_FALSE;
 };
-/**
+/*
 mvObstacle::mvObstacle()
 {
   obstacleType = MV_NO_SHAPE;
@@ -130,22 +113,24 @@ mvObstacle::mvObstacle(mvEnum oType)
   obstacleType = MV_NO_SHAPE;
   initialiseShapeDimensions(oType);
 };
-**/
-mvObstacle::mvObstacle(mvEnum oType, mvEnum oState)
+*/
+mvObstacle::mvObstacle(mvOptionEnum oShape, mvOptionEnum oType)
 {
   dimensions = NULL;
-  obstacleType = MV_NO_SHAPE;
-  initialiseShapeDimensions(oType);
-  checkValidState(oState);
+  obstacleShape = MV_NON_SHAPE;
+  obstacleType = MV_NON_OBSTACLE_TYPE;
+  initialiseShapeDimensions(oShape);
+  checkValidType(oType);
 };
 
-mvObstacle::mvObstacle(mvEnum oType, mvEnum oState,mvFloat x, mvFloat y, mvFloat z)
+mvObstacle::mvObstacle(mvOptionEnum oShape, mvOptionEnum oType,mvFloat x, mvFloat y, mvFloat z)
 {
   dimensions = NULL;
   position.set(x,y,z);
-  obstacleType = MV_NO_SHAPE;
-  initialiseShapeDimensions(oType);
-  checkValidState(oState);
+  obstacleShape = MV_NON_SHAPE;
+  obstacleType = MV_NON_OBSTACLE_TYPE;
+  initialiseShapeDimensions(oShape);
+  checkValidType(oType);
 };
 
 mvObstacle::~mvObstacle()
@@ -162,18 +147,23 @@ mvObstacle::~mvObstacle()
  */
 mvCount mvObstacle::getNoOfDimensions() const
 {
-  switch(obstacleType)
-  {
-    case MV_SPHERE:
-      return MV_NO_OF_SPHERE_DIMENSIONS;
-    case MV_AABOX:
-      return MV_NO_OF_AABOX_DIMENSIONS;
-    case MV_X_AXIS_AA_CYLINDER:
-    case MV_Y_AXIS_AA_CYLINDER:
-    case MV_Z_AXIS_AA_CYLINDER:
-       return MV_NO_OF_AACYLINDER_DIMENSIONS;
-    default:
-       return MV_INVALID_DIMENSIONS;
+   static const mvCount MV_NO_OF_AABOX_DIMENSIONS = 3;
+   static const mvCount MV_NO_OF_AACYLINDER_DIMENSIONS = 2;
+   static const mvCount MV_NO_OF_SPHERE_DIMENSIONS = 1;
+   static const mvCount MV_INVALID_DIMENSIONS = 0;
+
+   switch(obstacleType)
+   {
+      case MV_SPHERE:
+         return MV_NO_OF_SPHERE_DIMENSIONS;
+      case MV_AABOX:
+         return MV_NO_OF_AABOX_DIMENSIONS;
+      case MV_X_AXIS_AA_CYLINDER:
+      case MV_Y_AXIS_AA_CYLINDER:
+      case MV_Z_AXIS_AA_CYLINDER:
+         return MV_NO_OF_AACYLINDER_DIMENSIONS;
+      default:
+         return MV_INVALID_DIMENSIONS;
   }
 };
 
@@ -182,30 +172,16 @@ mvCount mvObstacle::getNoOfDimensions() const
  *
  * NOTE : implementations for c
  */
-mvEnum mvObstacle::setParameter(mvEnum paramFlag, mvEnum option)
+mvErrorEnum mvObstacle::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
    switch (paramFlag)
    {
-     case MV_OBSTACLE_TYPE:
-        if (initialiseShapeDimensions(option) == MV_FALSE)
-        {
-          return MV_INVALID_OBSTACLE_TYPE;
-        }
-        else
-        {
-          return MV_TRUE;
-        }
-     case MV_OBSTACLE_STATE:
-        if (checkValidState(option) == MV_FALSE)
-        {
-          return MV_INVALID_OBSTACLE_STATE;
-        }
-        else
-        {
-          return MV_TRUE;
-        }
-     default:
-       return MV_INVALID_OBSTACLE_PARAMETER;
+      case MV_SHAPE:
+         return initialiseShapeDimensions(option);
+      case MV_TYPE:
+        return checkValidType(option);
+      default:
+         return MV_INVALID_OBSTACLE_PARAMETER;
    }
 };
 
@@ -214,14 +190,14 @@ void mvObstacle::setPosition(mvFloat x, mvFloat y, mvFloat z)
   position.set(x,y,z);
 };
 
-mvEnum mvObstacle::setParameterf(mvEnum paramFlag, mvFloat num)
+mvErrorEnum mvObstacle::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
-  return MV_FALSE;
+   return MV_INVALID_OBSTACLE_PARAMETER;
 };
 
-mvEnum mvObstacle::setParameterv(mvEnum paramFlag, mvFloat* numArray)
+mvErrorEnum mvObstacle::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 {
-  return MV_FALSE;
+   return MV_INVALID_OBSTACLE_PARAMETER;
 };
 
 mvFloat mvObstacle::getX() const
@@ -239,7 +215,7 @@ mvFloat mvObstacle::getZ() const
    return position.getZ();
 };
 
-mvEnum mvObstacle::getType() const
+mvOptionEnum mvObstacle::getType() const
 {
   return obstacleType;
 };

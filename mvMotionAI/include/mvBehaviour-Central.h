@@ -30,9 +30,10 @@
 #include "mvVec3.h"
 #include "mvBody.h"
 #include "mvWorld.h"
-#include "mvEnum.h"
+#include "mvEnums.h"
 #include "mvGroupBehaviour.h"
 #include "mvMotionAI-Types.h"
+
 
 void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBody* currentBody, mvFloat timeStep,
                              mvVec3& mvDirVector, mvVec3& mvVelocityVector,

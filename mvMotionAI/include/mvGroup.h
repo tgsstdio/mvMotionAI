@@ -28,7 +28,7 @@
 #include <vector>
 //#include <string>
 #include "mvMotionAI-Types.h"
-#include "mvEnum.h"
+#include "mvEnums.h"
 #include "mvBody.h"
 
 /**
@@ -39,6 +39,7 @@
  * Log
  *
  *version     date  comments
+ *00-01-16  15/10/06 - converted for new enums
  *
  *00-01-05  23/8/06  - types now declared by mvMotionAI-Types.h & mvVec3
  *
@@ -61,11 +62,11 @@ class mvGroup
      // void removeAllMembers();
       char* getID() const;
       mvBody* getMemberByIndex(mvIndex index);
-      mvEnum addMember(mvBody* tempBody);
-      mvEnum removeMember(mvBody* tempBody);
-      mvEnum setParameter(mvEnum paramFlag, mvEnum option);
-      mvEnum setParameterf(mvEnum paramFlag, mvFloat num);
-      mvEnum setParameterv(mvEnum paramFlag, mvFloat* numArray);
+      mvErrorEnum addMember(mvBody* tempBody);
+      mvErrorEnum removeMember(mvBody* tempBody);
+      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
       ~mvGroup();
 };
 

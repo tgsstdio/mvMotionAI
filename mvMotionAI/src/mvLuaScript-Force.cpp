@@ -25,7 +25,7 @@
 #include "mvLuaScript-Force.h"
 #include "mvScript-Utilities.h"
 #include "mvMotionAI-Types.h"
-#include "mvEnum.h"
+#include "mvEnums.h"
 #include "mvWorld.h"
 #include "mvMotionAI.h"
 
@@ -48,19 +48,19 @@ const char* mvLua_LuaForceFunctionNames[] =
 const char** mvGetLuaForceFunctions()
 {
    return &mvLua_LuaForceFunctionNames[0];
-};
+}
 
 mvCount mvGetNoOfLuaForceFunctions()
 {
    return sizeof(mvLua_LuaForceFunctionNames)/sizeof(const char*);
-};
+}
 
 void mvLoadLuaForceFunctions(lua_State* L)
 {
   lua_register(L,mvLua_LuaForceFunctionNames[0],mvLua_AddForce);
   lua_register(L,mvLua_LuaForceFunctionNames[1],mvLua_SetForceParameter);
   lua_register(L,mvLua_LuaForceFunctionNames[2],mvLua_SetCurrentForceParameter);
-};
+}
 
 int mvLua_AddForce(lua_State* L)
 {
@@ -70,7 +70,7 @@ int mvLua_AddForce(lua_State* L)
    mvFloat x = (mvFloat) lua_tonumber(L,3);
    mvFloat y = (mvFloat) lua_tonumber(L,4);
    mvFloat z = (mvFloat) lua_tonumber(L,5);
-   mvEnum fType;
+   mvOptionEnum fType;
 
    mvWorld* tempWorld = NULL;
 
@@ -80,21 +80,23 @@ int mvLua_AddForce(lua_State* L)
    {
       //puts(tempWorld->getWorldID());
       //puts(type);
-      fType = mvScript_checkForceType(type);
+      mvScript_checkForceType(type,fType);
       result = tempWorld->mvAddForceVector(fType,x,y,z);
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_SetForceParameter(lua_State* L)
 {
-   int result = 0;
+   int result = MV_INVALID_FORCE_PARAMETER;
    mvIndex worldID = (mvIndex) lua_tonumber(L,1);
    mvIndex forceIndex = (mvIndex) lua_tonumber(L,2);
    const char* params = lua_tostring(L,3);
    const char* option;
-   mvEnum checkParams, checkOption;
+   mvParamEnum checkParams;
+   mvOptionEnum checkOption;
+   mvErrorEnum checkError;
    mvIndex i;
    mvFloat numArray[MV_MAX_NO_OF_PARAMETERS];
    mvWorld* tempWorld = NULL;
@@ -103,22 +105,27 @@ int mvLua_SetForceParameter(lua_State* L)
    tempWorld = mvGetWorldByIndex(worldID);
    if (tempWorld != NULL && params != NULL)
    {
-      checkParams = mvScript_checkForceParamsFlag(params);
-      if (checkParams != MV_INVALID_FORCE_PARAMETER)
+      checkError = mvScript_checkForceParamsFlag(params,checkParams);
+      if (checkError == MV_NO_ERROR)
       {
          option = lua_tostring(L,4);
          if (option != NULL)
          {
-            checkOption = mvScript_checkForceParamsFlagOptions(option);
-            if (checkOption != MV_INVALID_FORCE_OPTION)
+            checkError = mvScript_checkForceParamsFlagOptions(option,checkOption);
+            if (checkError == MV_NO_ERROR)
             {
                result = tempWorld->mvSetForceParameter(forceIndex,checkParams,checkOption);
+               if (result == MV_NO_ERROR)
+               {
+                  lua_pushnumber(L,result);
+                  return 1;
+               }
             }
          }
       }
 
-      checkParams = mvScript_checkForceParamsv(params);
-      if (checkParams != MV_INVALID_FORCE_PARAMETER)
+      checkError = mvScript_checkForceParamsv(params,checkParams);
+      if (checkError == MV_NO_ERROR)
       {
          for (i = 0; i < MV_MAX_NO_OF_PARAMETERS; i++)
          {
@@ -129,15 +136,17 @@ int mvLua_SetForceParameter(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_SetCurrentForceParameter(lua_State* L)
 {
-   int result = 0;
+   int result = MV_INVALID_FORCE_PARAMETER;
    mvIndex worldID = (mvIndex) lua_tonumber(L,1);
    const char* params = lua_tostring(L,2);
    const char* option;
-   mvEnum checkParams, checkOption;
+   mvParamEnum checkParams;
+   mvOptionEnum checkOption;
+   mvErrorEnum checkError;
    mvIndex i;
    mvFloat numArray[MV_MAX_NO_OF_PARAMETERS];
    mvWorld* tempWorld = NULL;
@@ -146,22 +155,27 @@ int mvLua_SetCurrentForceParameter(lua_State* L)
    tempWorld = mvGetWorldByIndex(worldID);
    if (tempWorld != NULL && params != NULL)
    {
-      checkParams = mvScript_checkForceParamsFlag(params);
-      if (checkParams != MV_INVALID_FORCE_PARAMETER)
+      checkError = mvScript_checkForceParamsFlag(params,checkParams);
+      if (checkError == MV_NO_ERROR)
       {
          option = lua_tostring(L,3);
          if (option != NULL)
          {
-            checkOption = mvScript_checkForceParamsFlagOptions(option);
-            if (checkOption != MV_INVALID_FORCE_OPTION)
+            checkError = mvScript_checkForceParamsFlagOptions(option,checkOption);
+            if (checkError == MV_NO_ERROR)
             {
                result = tempWorld->mvSetCurrentForceParameter(checkParams,checkOption);
+               if (result == MV_NO_ERROR)
+               {
+                  lua_pushnumber(L,result);
+                  return 1;
+               }
             }
          }
       }
 
-      checkParams = mvScript_checkForceParamsv(params);
-      if (checkParams != MV_INVALID_FORCE_PARAMETER)
+      checkError = mvScript_checkForceParamsv(params,checkParams);
+      if (checkError == MV_NO_ERROR)
       {
          for (i = 0; i < MV_MAX_NO_OF_PARAMETERS; i++)
          {
@@ -172,5 +186,5 @@ int mvLua_SetCurrentForceParameter(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 

@@ -36,23 +36,23 @@ mvGroup::~mvGroup()
      delete [] groupID;
      groupID = NULL;
   }
-};
+}
 
 mvCount mvGroup::getNoOfMembers()
 {
   return noOfMembers;
-};
-/**
+}
+/*
 void mvGroup::removeAllMembers()
 {
    std::vector<mvBody*>::iterator i;
    mvBody* tempBody = NULL;
 
-   /**
+   **
    for (i = members.begin(); i != members.end(); ++i)
    {
       members.erase(i);
-      /**
+      **
       if (tempBody != NULL)
       {
          delete tempBody;
@@ -64,7 +64,7 @@ void mvGroup::removeAllMembers()
    members.clear();
    noOfMembers = 0;
 };
-**/
+*/
 
 void mvGroup::clearAllMembers()
 {
@@ -81,7 +81,7 @@ void mvGroup::clearAllMembers()
    }
    members.clear();
    noOfMembers = 0;
-};
+}
 
 mvGroup::mvGroup(char* mBodyGroupID)
 {
@@ -98,11 +98,11 @@ mvGroup::mvGroup(char* mBodyGroupID)
       groupID = NULL;
    }
   noOfMembers = 0;
-};
+}
 
 mvBody* mvGroup::getMemberByIndex(mvIndex index)
 {
-/**
+   /*
   if (index > 1 && index <= noOfMembers)
   {
     return members[index - 1];
@@ -111,17 +111,16 @@ mvBody* mvGroup::getMemberByIndex(mvIndex index)
   {
     return NULL;
   }
-  **/
-  return mvGetClassPtr<mvBody>(members,index, noOfMembers);
-};
+  */
+   return mvGetClassPtr<mvBody>(members,index, noOfMembers);
+}
 
 /**
  * adds members by mvBody pointers.
  */
-
-mvEnum mvGroup::addMember(mvBody* tempBody)
+mvErrorEnum mvGroup::addMember(mvBody* tempBody)
 {
-   /**
+   /*
    std::vector<mvBody*>::iterator i;
    mvBody* currentBody = NULL;
 
@@ -138,13 +137,13 @@ mvEnum mvGroup::addMember(mvBody* tempBody)
    members.push_back(tempBody);
    noOfMembers++;
    return MV_TRUE;
-   **/
+   */
    return mvAddUniqueItemInVector<mvBody>(members,tempBody,noOfMembers);
-};
+}
 
-mvEnum mvGroup::removeMember(mvBody* tempBody)
+mvErrorEnum mvGroup::removeMember(mvBody* tempBody)
 {
-   /**
+   /*
    std::vector<mvBody*>::iterator i;
    mvBody* currentBody = NULL;
 
@@ -163,27 +162,27 @@ mvEnum mvGroup::removeMember(mvBody* tempBody)
    }
    --noOfMembers;
    return MV_FALSE;
-   **/
+   */
    return mvRemoveUniqueItemInVector<mvBody>(members,tempBody,noOfMembers);
-};
+}
 
-mvEnum mvGroup::setParameter(mvEnum paramFlag, mvEnum option)
+mvErrorEnum mvGroup::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
-  return MV_FALSE;
-};
+  return MV_INVALID_GROUP_PARAMETER;
+}
 
-mvEnum mvGroup::setParameterf(mvEnum paramFlag, mvFloat num)
+mvErrorEnum mvGroup::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
-  return MV_FALSE;
-};
+  return MV_INVALID_GROUP_PARAMETER;
+}
 
-mvEnum mvGroup::setParameterv(mvEnum paramFlag, mvFloat* numArray)
+mvErrorEnum mvGroup::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 {
-  return MV_FALSE;
-};
+  return MV_INVALID_GROUP_PARAMETER;
+}
 
 char* mvGroup::getID() const
 {
    return groupID;
-};
+}
 

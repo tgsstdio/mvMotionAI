@@ -23,6 +23,7 @@
  */
 
 #include "mvBehaviour-List.h"
+#include "mvMotionAI-Utilities.h"
 
 #define MV_BEHAVIOUR_LIST_DEBUG_FLAG 1
 #undef MV_BEHAVIOUR_LIST_DEBUG_FLAG
@@ -32,22 +33,24 @@ enum mvBehaviour_ListCPPEnums
    MV_BEHAVIOUR_LIST_DEFAULT_BODY_INDEX = 0,
    MV_BEHAVIOUR_LIST_DEFAULT_PATHWAY_INDEX = 0,
    MV_BEHAVIOUR_LIST_DEFAULT_WAYPOINT_INDEX = 0,
+   MV_BEHAVIOUR_LIST_INVALID_GROUP_INDEX = 0,
+   MV_BEHAVIOUR_LIST_INVALID_BEHAVIOUR_INDEX = 0
 };
 
 void mvBehaviourList::setDefaultBody(mvIndex bodyIndex)
 {
    defaultBody = bodyIndex;
-};
+}
 
 void mvBehaviourList::setDefaultWaypoint(mvIndex wpIndex)
 {
    defaultWaypoint = wpIndex;
-};
+}
 
 void mvBehaviourList::setDefaultPathway(mvIndex pwIndex)
 {
    defaultPathway = pwIndex;
-};
+}
 
 mvBehaviourList::mvBehaviourList()
 {
@@ -57,7 +60,7 @@ mvBehaviourList::mvBehaviourList()
    defaultWaypoint = MV_BEHAVIOUR_LIST_DEFAULT_WAYPOINT_INDEX;
    nodeFactorTotal = 0.0;
    defaultFactor = 1.0;
-};
+}
 
 void mvBehaviourList::removeAll()
 {
@@ -76,13 +79,13 @@ void mvBehaviourList::removeAll()
       }
    }
    noOfEntries = 0;
-};
+}
 
 mvBehaviourList::~mvBehaviourList()
 {
   removeAll();
   noOfEntries = 0;
-};
+}
 
 mvBehaviourListNode* mvBehaviourList::findExistingGroupEntry(mvIndex bIndex, mvIndex gIndex)
 {
@@ -99,10 +102,11 @@ mvBehaviourListNode* mvBehaviourList::findExistingGroupEntry(mvIndex bIndex, mvI
       }
    }
    return NULL;
-};
+}
 
-mvBehaviourListNode* mvBehaviourList::getEntryByIndex(mvIndex index) const
+mvBehaviourListNode* mvBehaviourList::getEntryByIndex(mvIndex index)
 {
+   /*
    if (index > 0 && index <= noOfEntries)
    {
       return entries[index + MV_OFFSET_TO_INDEX];
@@ -111,12 +115,14 @@ mvBehaviourListNode* mvBehaviourList::getEntryByIndex(mvIndex index) const
    {
       return NULL;
    }
-};
+   */
+   return mvGetClassPtr<mvBehaviourListNode>(entries, index, noOfEntries);
+}
 
 mvCount mvBehaviourList::getNoOfEntries() const
 {
    return noOfEntries;
-};
+}
 
 mvBehaviourList::mvBehaviourList(const mvBehaviourList& rhs)
 {
@@ -133,14 +139,14 @@ mvBehaviourList::mvBehaviourList(const mvBehaviourList& rhs)
 
   for (i = 1; i <= noOfEntries; ++i)
   {
-     currentNode = rhs.getEntryByIndex(i);
+     currentNode = rhs.entries.at(i);
      if (currentNode != NULL)
      {
         copyNode = new mvBehaviourListNode(*currentNode);
         entries.push_back(copyNode);
      }
   }
-};
+}
 
 const mvBehaviourList& mvBehaviourList::operator=(const mvBehaviourList& rhs)
 {
@@ -157,7 +163,7 @@ const mvBehaviourList& mvBehaviourList::operator=(const mvBehaviourList& rhs)
 
   for (i = 1; i <= noOfEntries; ++i)
   {
-     currentNode = rhs.getEntryByIndex(i);
+     currentNode = rhs.entries.at(i);
      if (currentNode != NULL)
      {
         copyNode = new mvBehaviourListNode(*currentNode);
@@ -166,29 +172,29 @@ const mvBehaviourList& mvBehaviourList::operator=(const mvBehaviourList& rhs)
   }
 
   return *this;
-};
+}
 
-mvEnum mvBehaviourList::addExistingGroupBehaviourEntry(mvIndex behaviourIndex, mvIndex groupIndex)
+mvErrorEnum mvBehaviourList::addExistingGroupBehaviourEntry(mvIndex behaviourIndex, mvIndex groupIndex)
 {
   return addEntry(MV_EXISTING_GROUP_BEHAVIOUR,behaviourIndex,groupIndex);
-};
+}
 
-mvEnum mvBehaviourList::addExistingBehaviourEntry(mvIndex behaviourIndex)
+mvErrorEnum mvBehaviourList::addExistingBehaviourEntry(mvIndex behaviourIndex)
 {
-  return addEntry(MV_EXISTING_GROUP_BEHAVIOUR,behaviourIndex,MV_INVALID_GROUP_INDEX);
-};
+  return addEntry(MV_EXISTING_GROUP_BEHAVIOUR,behaviourIndex,MV_BEHAVIOUR_LIST_INVALID_GROUP_INDEX);
+}
 
-mvEnum mvBehaviourList::addNewBehaviourEntry(mvEnum behaviourType)
+mvErrorEnum mvBehaviourList::addNewBehaviourEntry(mvOptionEnum behaviourType)
 {
-  return addEntry(behaviourType,MV_INVALID_BEHAVIOUR_INDEX,MV_INVALID_GROUP_INDEX);
-};
+  return addEntry(behaviourType,MV_BEHAVIOUR_LIST_INVALID_BEHAVIOUR_INDEX,MV_BEHAVIOUR_LIST_INVALID_GROUP_INDEX);
+}
 
 mvFloat mvBehaviourList::getListFactorTotal() const
 {
    return nodeFactorTotal;
-};
+}
 
-mvEnum mvBehaviourList::addEntry(mvEnum bType, mvIndex behaviourIndex, mvIndex groupIndex)
+mvErrorEnum mvBehaviourList::addEntry(mvOptionEnum bType, mvIndex behaviourIndex, mvIndex groupIndex)
 {
    mvBehaviourListNode* tempNode = NULL;
 
@@ -220,12 +226,12 @@ mvEnum mvBehaviourList::addEntry(mvEnum bType, mvIndex behaviourIndex, mvIndex g
    }
    entries.push_back(tempNode);
    ++noOfEntries;
-   if (tempNode->getType() != MV_INVALID_BEHAVIOUR_ENTRY_TYPE)
+   if (tempNode->getType() != MV_NON_BEHAVIOUR_TYPE)
    {
       nodeFactorTotal += tempNode->getFactor();
    }
-   return MV_TRUE;
-};
+   return MV_NO_ERROR;
+}
 
 //mvBehaviourListNode
 
@@ -259,9 +265,9 @@ mvBehaviourListNode::mvBehaviourListNode(const mvBehaviourListNode& rhs)
          break;
    }
 
-};
+}
 
-void mvBehaviourListNode::initialiseEntry(mvEnum type)
+void mvBehaviourListNode::initialiseEntry(mvOptionEnum type)
 {
   if (behaveData != NULL)
   {
@@ -269,24 +275,25 @@ void mvBehaviourListNode::initialiseEntry(mvEnum type)
      behaveData = NULL;
   }
   behaveData = new mvBehaviourEntry(type);
-};
+}
 
 mvFloat mvBehaviourListNode::getFactor() const
 {
    return bNodeFactor;
-};
-mvEnum mvBehaviourListNode::setFactor(mvFloat factor)
+}
+
+mvErrorEnum mvBehaviourListNode::setFactor(mvFloat factor)
 {
   if (factor >= 0.0)
   {
      bNodeFactor = factor;
-     return MV_TRUE;
+     return MV_NO_ERROR;
   }
   else
   {
-     return MV_FALSE;
+     return MV_FLOAT_VALUE_IS_NOT_POSITIVE;
   }
-};
+}
 
 const mvBehaviourListNode& mvBehaviourListNode::operator=(const mvBehaviourListNode& rhs)
 {
@@ -319,17 +326,17 @@ const mvBehaviourListNode& mvBehaviourListNode::operator=(const mvBehaviourListN
    }
 
    return *this;
-};
+}
 
 void mvBehaviourListNode::initDefault()
 {
    behaveData = NULL;
-   groupIndex = MV_INVALID_GROUP_INDEX;
-   behaviourIndex = MV_INVALID_BEHAVIOUR_INDEX;
+   groupIndex = MV_BEHAVIOUR_LIST_INVALID_GROUP_INDEX;
+   behaviourIndex = MV_BEHAVIOUR_LIST_INVALID_BEHAVIOUR_INDEX;
    bNodeFactor = 1.0f;
-};
+}
 
-mvBehaviourListNode::mvBehaviourListNode(mvEnum nodeType, mvIndex behaviour, mvIndex group)
+mvBehaviourListNode::mvBehaviourListNode(mvOptionEnum nodeType, mvIndex behaviour, mvIndex group)
 {
    initDefault();
 
@@ -347,9 +354,9 @@ mvBehaviourListNode::mvBehaviourListNode(mvEnum nodeType, mvIndex behaviour, mvI
          break;
    }
 
-};
+}
 
-mvBehaviourListNode::mvBehaviourListNode(mvEnum nodeType, mvIndex behaviour, mvIndex group,
+mvBehaviourListNode::mvBehaviourListNode(mvOptionEnum nodeType, mvIndex behaviour, mvIndex group,
       mvBehaviourEntry* defaultEntry)
 {
    initDefault();
@@ -372,12 +379,12 @@ mvBehaviourListNode::mvBehaviourListNode(mvEnum nodeType, mvIndex behaviour, mvI
    }
 
 
-};
+}
 
 mvBehaviourListNode::mvBehaviourListNode()
 {
    initDefault();
-};
+}
 
 mvBehaviourListNode::~mvBehaviourListNode()
 {
@@ -386,68 +393,68 @@ mvBehaviourListNode::~mvBehaviourListNode()
       delete behaveData;
       behaveData = NULL;
    }
-};
+}
 
-mvEnum mvBehaviourListNode::getType() const
+mvOptionEnum mvBehaviourListNode::getType() const
 {
    return bNodeType;
-};
+}
 
 mvIndex mvBehaviourListNode::getBehaviourIndex() const
 {
    return behaviourIndex;
-};
+}
 
 mvIndex mvBehaviourListNode::getGroupIndex() const
 {
    return groupIndex;
-};
+}
 
 mvBehaviourEntry* mvBehaviourListNode::getBehavData() const
 {
    return behaveData;
-};
+}
 
-mvEnum mvBehaviourListNode::setBehaviourIndex(mvIndex bIndex)
+mvErrorEnum mvBehaviourListNode::setBehaviourIndex(mvIndex bIndex)
 {
    if (bIndex > 0)
    {
       behaviourIndex = bIndex;
-      return MV_TRUE;
+      return MV_NO_ERROR;
    }
    else
    {
-      return MV_FALSE;
+      return MV_INDEX_VALUE_IS_INVALID;
    }
-};
+}
 
-mvEnum mvBehaviourListNode::setGroupIndex(mvIndex gIndex)
+mvErrorEnum mvBehaviourListNode::setGroupIndex(mvIndex gIndex)
 {
    if (gIndex > 0)
    {
       groupIndex = gIndex;
-      return MV_TRUE;
+      return MV_NO_ERROR;
    }
    else
    {
-      return MV_FALSE;
+      return MV_INDEX_VALUE_IS_INVALID;
    }
-};
+}
 
-mvEnum mvBehaviourList::setDefaultBehaviourFactor(mvFloat factor)
+mvErrorEnum mvBehaviourList::setDefaultBehaviourFactor(mvFloat factor)
 {
    if (factor < 0.0)
    {
-      return MV_FALSE;
+      return MV_FLOAT_VALUE_IS_NOT_POSITIVE;
    }
    else
    {
       defaultFactor = factor;
-      return MV_TRUE;
+      return MV_NO_ERROR;
    }
-};
+}
 
-/**
+/*
 mvBehaviourEntry* mvBehaviour_List::findEntryByKey(mvBehaviour* bEntry)
 {
    std::vector<mvBehaviourEntry*>::iterator i;
@@ -486,9 +493,9 @@ mvBehaviourEntry* mvBehaviour_List::findEntryByName(char* bName)
    }
    return NULL;
 };
-**/
+*/
 
-/**
+/*
 mvEnum mvBehaviourList::addNewEntry(mvBehaviour* behaviourKey)
 {
    mvBehaviourEntry* tempEntry = NULL;
@@ -535,4 +542,4 @@ mvEnum mvBehaviourList::addNewEntryPtr(mvBehaviourEntry* bEntryPtr)
    ++noOfEntries;
    return MV_TRUE;
 };
-**/
+*/

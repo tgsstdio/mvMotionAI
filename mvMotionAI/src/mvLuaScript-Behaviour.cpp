@@ -25,7 +25,7 @@
 #include "mvLuaScript-Behaviour.h"
 #include "mvMotionAI-Types.h"
 #include "mvScript-Utilities.h"
-#include "mvEnum.h"
+#include "mvEnums.h"
 #include "mvMotionAI.h"
 #include "mvWorld.h"
 /**
@@ -50,7 +50,7 @@ int mvLua_RemoveAllBehaviours(lua_State* L);
 int mvLua_SetBehaviourParameter(lua_State* L);
 int mvLua_SetCurrentBehaviourParameter(lua_State* L);
 
-/**
+/*
 Not longer valid
 int mvLua_AddBehaviourToBody(lua_State* L);
 int mvLua_AddCurrentBehaviourToBody(lua_State* L);
@@ -70,7 +70,7 @@ int mvLua_AddBodyToBehaviour(lua_State* L);
 int mvLua_AddCurrentBodyToBehaviour(lua_State* L);
 int mvLua_AddBodyToCurrentBehaviour(lua_State* L);
 int mvLua_AddCurrentBodyToCurrentBehaviour(lua_State* L);
-**/
+*/
 
 //mvEnum mvAddBehaviourToBody(int bodyIndex, mvEnum bType, int behaviourIndex, int groupIndex);
 int mvLua_AddBehaviourToBody(lua_State* L);
@@ -91,12 +91,12 @@ const char* mvLua_BehaviourFunctionNames[] =
 const char** mvGetLuaBehaviourFunctions()
 {
   return &mvLua_BehaviourFunctionNames[0];
-};
+}
 
 mvCount mvGetNoOfLuaBehaviourFunctions()
 {
    return sizeof(mvLua_BehaviourFunctionNames)/sizeof(const char*);
-};
+}
 
 void mvLoadLuadBehaviourFunctions(lua_State* L)
 {
@@ -112,7 +112,7 @@ void mvLoadLuadBehaviourFunctions(lua_State* L)
     */
    lua_register(L,mvLua_BehaviourFunctionNames[6],mvLua_SetBehaviourParameter);
    lua_register(L,mvLua_BehaviourFunctionNames[7],mvLua_SetCurrentBehaviourParameter);
-/**
+/*
    lua_register(L,"mvAddBehaviourToBody",mvLua_AddBehaviourToBody);
    lua_register(L,"mvAddCurrentBehaviourToBody",mvLua_AddCurrentBehaviourToBody);
    lua_register(L,"mvAddBehaviourToCurrentBody",mvLua_AddBehaviourToCurrentBody);
@@ -127,8 +127,8 @@ void mvLoadLuadBehaviourFunctions(lua_State* L)
    lua_register(L,"mvAddCurrentBodyToBehaviour",mvLua_AddCurrentBodyToBehaviour);
    lua_register(L,"mvAddBodyToCurrentBehaviour",mvLua_AddBodyToCurrentBehaviour);
    lua_register(L,"mvAddCurrentBodyToCurrentBehaviour",mvLua_AddCurrentBodyToCurrentBehaviour);
-**/
-};
+*/
+}
 
 int mvLua_AddBehaviour(lua_State* L)
 {
@@ -137,7 +137,7 @@ int mvLua_AddBehaviour(lua_State* L)
    //const char* behaviourName = lua_tostring(L,2);
    const char* type = lua_tostring(L,2);
    mvWorld* tempWorld = NULL;
-   mvEnum bType;
+   mvOptionEnum bType;
 
    tempWorld = mvGetWorldByIndex(worldID);
    if (tempWorld != NULL)
@@ -146,7 +146,7 @@ int mvLua_AddBehaviour(lua_State* L)
       //puts(type);
       if (type != NULL)
       {
-         bType = mvScript_checkBehaviourType(type);
+         mvScript_checkBehaviourType(type,bType);
 #ifdef MV_LUA_SCRIPT_BEHAVIOUR_DEBUG_FLAG
          puts(mvGetEnumString(bType));
 #endif
@@ -155,7 +155,7 @@ int mvLua_AddBehaviour(lua_State* L)
    };
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_RemoveCurrentBehaviour(lua_State* L)
 {
@@ -171,7 +171,7 @@ int mvLua_RemoveCurrentBehaviour(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_RemoveBehaviour(lua_State* L)
 {
@@ -188,7 +188,7 @@ int mvLua_RemoveBehaviour(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_SetCurrentBehaviour(lua_State* L)
 {
@@ -205,7 +205,7 @@ int mvLua_SetCurrentBehaviour(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_RemoveAllBehaviours(lua_State* L)
 {
@@ -220,7 +220,7 @@ int mvLua_RemoveAllBehaviours(lua_State* L)
       tempWorld->mvRemoveAllBehaviours();
    }
    return 0;
-};
+}
 
 //mvEnum mvAddBehaviourToBody(int bodyIndex, mvEnum bType, int behaviourIndex, int groupIndex);
 int mvLua_AddBehaviourToBody(lua_State* L)
@@ -230,9 +230,10 @@ int mvLua_AddBehaviourToBody(lua_State* L)
    const char* bTypeString = (char*) lua_tostring(L,3);
    mvIndex behaviourIndex = (mvIndex) lua_tonumber(L,4);
    mvIndex groupIndex = (mvIndex) lua_tonumber(L,5);
-   int result = 0;
+   int result = MV_INVALID_BEHAVIOUR_TYPE;
    mvWorld* tempWorld = NULL;
-   mvEnum bType;
+   mvOptionEnum bType;
+   mvErrorEnum error;
 
    tempWorld = mvGetWorldByIndex(worldID);
    if (tempWorld != NULL)
@@ -242,24 +243,26 @@ int mvLua_AddBehaviourToBody(lua_State* L)
                 << behaviourIndex  << "/"
                 << groupIndex << "/" << bTypeString << std::endl;
 #endif
-      bType = mvScript_checkAddBehaviourParams(bTypeString);
-      if (bType != MV_INVALID_BEHAVIOUR_TYPE)
+      error = mvScript_checkAddBehaviourOption(bTypeString,bType);
+      if (error == MV_NO_ERROR)
       {
          result = tempWorld->mvAddBehaviourToBody(bodyIndex,bType,behaviourIndex,groupIndex);
       }
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_SetBehaviourParameter(lua_State* L)
 {
-   int result = 0;
+   int result = MV_INVALID_BEHAVIOUR_TYPE;
    mvIndex worldID = (mvIndex) lua_tonumber(L,1);
    mvIndex behaviourIndex = (mvIndex) lua_tonumber(L,2);
    const char* params = lua_tostring(L,3);
    const char* option;
-   mvEnum checkParams, checkOption;
+   mvParamEnum checkParams;
+   mvOptionEnum checkOption;
+   mvErrorEnum checkError;
    mvIndex i;
    mvIndex indexValue;
    mvFloat numArray[MV_MAX_NO_OF_PARAMETERS];
@@ -269,34 +272,40 @@ int mvLua_SetBehaviourParameter(lua_State* L)
    tempWorld = mvGetWorldByIndex(worldID);
    if (tempWorld != NULL && params != NULL)
    {
-      checkParams = mvScript_checkBehaviourParamsFlag(params);
-      if (checkParams != MV_INVALID_BEHAVIOUR_PARAMETER)
+      checkError = mvScript_checkBehaviourParamsFlag(params,checkParams);
+      if (checkError == MV_NO_ERROR)
       {
          option = lua_tostring(L,4);
          if (option != NULL)
          {
-            checkOption = mvScript_checkBehaviourParamsFlagOptions(option);
-            if (checkOption != MV_INVALID_BEHAVIOUR_PARAM_OPTION)
+            checkError = mvScript_checkBehaviourParamsFlagOptions(option,checkOption);
+            if (checkError == MV_NO_ERROR)
             {
                result = tempWorld->mvSetBehaviourParameter(behaviourIndex,checkParams,checkOption);
-               lua_pushnumber(L,result);
-               return 1;
+               if (result == MV_NO_ERROR)
+               {
+                  lua_pushnumber(L,result);
+                  return 1;
+               }
             }
          }
       }
 
-      checkParams = mvScript_checkBehaviourParamsIndex(params);
-      if (checkParams != MV_INVALID_BEHAVIOUR_PARAMETER)
+      checkError = mvScript_checkBehaviourParamsIndex(params,checkParams);
+      if (checkError == MV_NO_ERROR)
       {
-          indexValue = (mvIndex) lua_tonumber(L,4);
-          result = tempWorld->mvSetBehaviourParameteri(behaviourIndex,checkParams,indexValue);
-          lua_pushnumber(L,result);
-          return 1;
+         indexValue = (mvIndex) lua_tonumber(L,4);
+         result = tempWorld->mvSetBehaviourParameteri(behaviourIndex,checkParams,indexValue);
+         if (result == MV_NO_ERROR)
+         {
+            lua_pushnumber(L,result);
+            return 1;
+         }
       }
 
 
-      checkParams = mvScript_checkBehaviourParamsv(params);
-      if (checkParams != MV_INVALID_BEHAVIOUR_PARAMETER)
+      checkError = mvScript_checkBehaviourParamsv(params,checkParams);
+      if (checkError == MV_NO_ERROR)
       {
          for (i = 0; i < MV_MAX_NO_OF_PARAMETERS; i++)
          {
@@ -313,15 +322,17 @@ int mvLua_SetBehaviourParameter(lua_State* L)
       lua_pushnumber(L,result);
       return 1;
    }
-};
+}
 
 int mvLua_SetCurrentBehaviourParameter(lua_State* L)
 {
-   int result = 0;
+   int result = MV_INVALID_BEHAVIOUR_TYPE;
    mvIndex worldID = (mvIndex) lua_tonumber(L,1);
    const char* params = lua_tostring(L,2);
    const char* option;
-   mvEnum checkParams, checkOption;
+   mvParamEnum checkParams;
+   mvOptionEnum checkOption;
+   mvErrorEnum checkError;
    mvIndex i;
    mvIndex indexValue;
    mvFloat numArray[MV_MAX_NO_OF_PARAMETERS];
@@ -331,32 +342,37 @@ int mvLua_SetCurrentBehaviourParameter(lua_State* L)
    tempWorld = mvGetWorldByIndex(worldID);
    if (tempWorld != NULL && params != NULL)
    {
-      checkParams = mvScript_checkBehaviourParamsFlag(params);
-      if (checkParams != MV_INVALID_BEHAVIOUR_PARAMETER)
+      checkError = mvScript_checkBehaviourParamsFlag(params,checkParams);
+      if (checkError == MV_NO_ERROR)
       {
          option = lua_tostring(L,3);
          if (option != NULL)
          {
-            checkOption = mvScript_checkBehaviourParamsFlagOptions(option);
-            if (checkOption !=   MV_INVALID_BEHAVIOUR_PARAM_OPTION)
+            checkError = mvScript_checkBehaviourParamsFlagOptions(option,checkOption);
+            if (checkError == MV_NO_ERROR)
             {
-               result = tempWorld->mvSetCurrentBehaviourParameter(checkParams,checkOption);
-               lua_pushnumber(L,result);
-               return 1;
+               if (result == MV_NO_ERROR)
+               {
+                  lua_pushnumber(L,result);
+                  return 1;
+               }
             }
          }
       }
-      checkParams = mvScript_checkBehaviourParamsIndex(params);
-      if (checkParams != MV_INVALID_BEHAVIOUR_PARAMETER)
+      checkError = mvScript_checkBehaviourParamsIndex(params,checkParams);
+      if (checkError == MV_NO_ERROR)
       {
-          indexValue = (mvIndex) lua_tonumber(L,4);
-          result = tempWorld->mvSetCurrentBehaviourParameteri(checkParams,indexValue);
-          lua_pushnumber(L,result);
-          return 1;
+         indexValue = (mvIndex) lua_tonumber(L,4);
+         result = tempWorld->mvSetCurrentBehaviourParameteri(checkParams,indexValue);
+         if (result == MV_NO_ERROR)
+         {
+            lua_pushnumber(L,result);
+            return 1;
+         }
       }
 
-      checkParams = mvScript_checkBehaviourParamsv(params);
-      if (checkParams != MV_INVALID_BEHAVIOUR_PARAMETER)
+      checkError = mvScript_checkBehaviourParamsv(params,checkParams);
+      if (checkError == MV_NO_ERROR)
       {
          for (i = 0; i < MV_MAX_NO_OF_PARAMETERS; i++)
          {
@@ -374,8 +390,8 @@ int mvLua_SetCurrentBehaviourParameter(lua_State* L)
       return 1;
    }
 
-};
-/**
+}
+/*
 int mvLua_AddBehaviourToBody(lua_State* L)
 {
    int worldID = (int) lua_tonumber(L,1);
@@ -571,5 +587,5 @@ int mvLua_AddCurrentBodyToCurrentBehaviour(lua_State* L)
    lua_pushnumber(L,result);
    return 1;
 };
-**/
+*/
 

@@ -27,36 +27,44 @@
 
 /**/
 
+static const mvIndex MV_BEHAVIOUR_CLONE_BODY_TARGET_INDEX = 0;
+static const mvIndex MV_BEHAVIOUR_PURSUIT_BODY_TARGET_INDEX = 0;
+static const mvIndex MV_SIMPLE_FLOCK_COHESION_FACTOR_INDEX = 0;
+static const mvIndex MV_SIMPLE_FLOCK_SEPARATION_FACTOR_INDEX = 1;
+static const mvIndex MV_SIMPLE_FLOCK_ALIGNMENT_FACTOR_INDEX = 2;
+static const mvIndex MV_SIMPLE_FLOCK_PERCEIVED_COHESION_FLAG_INDEX = 0;
+static const mvIndex MV_SIMPLE_FLOCK_PERCEIVED_ALIGNMENT_FLAG_INDEX = 1;
+static const mvIndex MV_BEHAVIOUR_SEEK_WAYPOINT_INDEX = 0;
+
 void mvBehaviourEntry::initDefault()
 {
    extraVariables = NULL;
    extraStates = NULL;
    extraPoints = NULL;
    indexes = NULL;
-   bType = MV_INVALID_BEHAVIOUR_ENTRY_TYPE;
+   bType = MV_NON_BEHAVIOUR_TYPE;
    //groupIndex = MV_INVALID_GROUP_INDEX;
    //behaviourIndex = MV_INVALID_BEHAVIOUR_INDEX;
-};
-/**/
+}
 
 mvBehaviourEntry::mvBehaviourEntry()
 {
    initDefault();
-};
+}
 
-mvBehaviourEntry::mvBehaviourEntry(mvEnum type)
+mvBehaviourEntry::mvBehaviourEntry(mvOptionEnum type)
 {
    initDefault();
    //mvBehaviour_InitialiseType(type,bType,indexes,extraVariables,extraStates,extraPoints);
    mvBehaviour_InitialiseType2(type);
-};
+}
 
-/**
+/*
 mvBehaviourEntry::mvBehaviourEntry(mvEnum type, mvIndex bIndex, mvIndex gIndex)
 {
    initDefault();
    mvBehaviour_InitialiseType(type,bType,indexes,extraVariables,extraStates,extraPoints);
-   /**
+   **
    if (mvBehaviour_InitialiseType(type,bType,indexes) == MV_FALSE)
    {
       switch(type)
@@ -73,7 +81,7 @@ mvBehaviourEntry::mvBehaviourEntry(mvEnum type, mvIndex bIndex, mvIndex gIndex)
    }
    **
 };
-**/
+*/
 
 mvBehaviourEntry::~mvBehaviourEntry()
 {
@@ -100,57 +108,55 @@ mvBehaviourEntry::~mvBehaviourEntry()
      delete [] indexes;
      indexes = NULL;
   }
-};
-/**
-
+}
+/*
 mvIndex mvBehaviourEntry::getBehaviourIndex()
 {
    return behaviourIndex;
 };
-
-**/
-mvEnum mvBehaviourEntry::getType() const
+*/
+mvOptionEnum mvBehaviourEntry::getType() const
 {
    return bType;
-};
-/**
+}
+/*
 mvIndex mvBehaviourEntry::getGroupIndex()
 {
    return groupIndex;
 };
-**/
+*/
 
-mvEnum mvBehaviourEntry::getParameter(mvEnum paramFlag, mvEnum* dest) const
+mvErrorEnum mvBehaviourEntry::getParameter(mvParamEnum paramFlag, mvOptionEnum* dest) const
 {
-  return MV_FALSE;
-};
+   return MV_INVALID_BEHAVIOUR_PARAMETER;
+}
 
-mvEnum mvBehaviourEntry::getParameterf(mvEnum paramFlag, mvFloat* dest) const
+mvErrorEnum mvBehaviourEntry::getParameterf(mvParamEnum paramFlag, mvFloat* dest) const
 {
-  return MV_FALSE;
-};
+   return MV_INVALID_BEHAVIOUR_PARAMETER;
+}
 
-mvEnum mvBehaviourEntry::getParameterv(mvEnum paramFlag, mvFloat* dest, mvCount* size) const
+mvErrorEnum mvBehaviourEntry::getParameterv(mvParamEnum paramFlag, mvFloat* dest, mvCount* size) const
 {
-  return MV_FALSE;
-};
+  return MV_INVALID_BEHAVIOUR_PARAMETER;
+}
 
-mvEnum mvBehaviourEntry::setParameteri(mvEnum paramFlag, mvIndex option)
+mvErrorEnum mvBehaviourEntry::setParameteri(mvParamEnum paramFlag, mvIndex option)
 {
    switch(paramFlag)
    {
-      case MV_BEHAVIOUR_WAYPOINT_TARGET:
+      case MV_WAYPOINT_TARGET:
          return addWaypoint(option);
-      case MV_BEHAVIOUR_BODY_TARGET:
+      case MV_BODY_TARGET:
          return addBody(option);
-      case MV_BEHAVIOUR_PATHWAY_TARGET:
+      case MV_PATHWAY_TARGET:
          return addPathway(option);
       default:
-         return MV_FALSE;
+         return MV_INVALID_BEHAVIOUR_PARAMETER;
    }
-};
+}
 
-mvEnum mvBehaviourEntry::setParameter(mvEnum paramFlag, mvEnum option)
+mvErrorEnum mvBehaviourEntry::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
    bool isValid = false;
 
@@ -171,44 +177,45 @@ mvEnum mvBehaviourEntry::setParameter(mvEnum paramFlag, mvEnum option)
          }
          break;
       default:
-         isValid = false;
+         return MV_INVALID_BEHAVIOUR_PARAMETER;
    }
-   return (isValid) ? MV_TRUE : MV_FALSE;
-};
+   return (isValid) ? MV_NO_ERROR : MV_INVALID_BEHAVIOUR_TYPE;
+}
 
-mvEnum mvBehaviourEntry::setParameterf(mvEnum paramFlag, mvFloat num)
+mvErrorEnum mvBehaviourEntry::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
+
    bool isValid = false;
    switch(paramFlag)
    {
       case MV_COHESION_FACTOR:
          if (bType == MV_SIMPLE_FLOCK)
          {
-            extraVariables[MV_SIMPLE_FLOCK_PERCEIVED_COHESION_FLAG_INDEX] = num;
+            extraVariables[MV_SIMPLE_FLOCK_COHESION_FACTOR_INDEX] = num;
             isValid = true;
          }
          break;
       case MV_SEPARATION_FACTOR:
          if (bType == MV_SIMPLE_FLOCK)
          {
-            extraVariables[MV_SIMPLE_FLOCK_PERCEIVED_ALIGNMENT_FLAG_INDEX] = num,
+            extraVariables[MV_SIMPLE_FLOCK_SEPARATION_FACTOR_INDEX] = num,
             isValid = true;
          }
          break;
       case MV_ALIGNMENT_FACTOR:
          if (bType == MV_SIMPLE_FLOCK)
          {
-            extraVariables[MV_SIMPLE_FLOCK_PERCEIVED_ALIGNMENT_FLAG_INDEX] = num,
+            extraVariables[MV_SIMPLE_FLOCK_ALIGNMENT_FACTOR_INDEX] = num,
             isValid = true;
          }
          break;
       default:
-         isValid = false;
+         return MV_INVALID_BEHAVIOUR_PARAMETER;
    }
-   return (isValid) ? MV_TRUE : MV_FALSE;
-};
+   return (isValid) ? MV_NO_ERROR : MV_INVALID_BEHAVIOUR_TYPE;
+}
 
-mvEnum mvBehaviourEntry::setParameterv(mvEnum paramFlag, mvFloat* numArray)
+mvErrorEnum mvBehaviourEntry::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 {
    if (numArray != NULL)
    {
@@ -216,9 +223,9 @@ mvEnum mvBehaviourEntry::setParameterv(mvEnum paramFlag, mvFloat* numArray)
    }
    else
    {
-      return MV_FALSE;
+      return MV_PARAMETER_ARRAY_IS_NULL;
    }
-};
+}
 
 const mvBehaviourEntry& mvBehaviourEntry::operator=(const mvBehaviourEntry& rhs)
 {
@@ -249,11 +256,11 @@ const mvBehaviourEntry& mvBehaviourEntry::operator=(const mvBehaviourEntry& rhs)
    if (extraStates != NULL)
    {
       noOfElements = mvBehaviour_GetStateArraySize(bType);
-      mvBehaviour_CopyArrayContents<mvEnum>(extraStates,rhs.extraStates,noOfElements);
+      mvBehaviour_CopyArrayContents<mvOptionEnum>(extraStates,rhs.extraStates,noOfElements);
    }
 
    return *this;
-};
+}
 
 mvBehaviourEntry::mvBehaviourEntry(const mvBehaviourEntry& rhs)
 {
@@ -284,57 +291,61 @@ mvBehaviourEntry::mvBehaviourEntry(const mvBehaviourEntry& rhs)
    if (extraStates != NULL)
    {
       noOfElements = mvBehaviour_GetStateArraySize(bType);
-      mvBehaviour_CopyArrayContents<mvEnum>(extraStates,rhs.extraStates,noOfElements);
+      mvBehaviour_CopyArrayContents<mvOptionEnum>(extraStates,rhs.extraStates,noOfElements);
    }
-};
+}
+
 
 mvIndex mvBehaviourEntry::getBody() const
 {
-  if (indexes != NULL)
-  {
-     switch(bType)
-     {
-        case MV_CLONE:
-           return indexes[MV_BEHAVIOUR_CLONE_BODY_TARGET_INDEX];
-        case MV_PURSUIT:
-        case MV_EVASION:
-           return indexes[MV_BEHAVIOUR_PURSUIT_BODY_TARGET_INDEX];
-        default:
-           return MV_INVALID_BEHAVIOUR_INDEX_VALUE;
-     }
-  }
-  else
-  {
-     return MV_INVALID_BEHAVIOUR_INDEX_VALUE;
-  }
-};
 
-mvEnum mvBehaviourEntry::addBody(mvIndex bBody)
+
+   if (indexes != NULL)
+   {
+      switch(bType)
+      {
+         case MV_CLONE:
+            return indexes[MV_BEHAVIOUR_CLONE_BODY_TARGET_INDEX];
+         case MV_PURSUIT:
+         case MV_EVASION:
+            return indexes[MV_BEHAVIOUR_PURSUIT_BODY_TARGET_INDEX];
+         default:
+            return MV_INVALID_BEHAVIOUR_TYPE;
+      }
+   }
+   else
+   {
+      return MV_INVALID_BEHAVIOUR_TYPE;
+   }
+}
+
+mvErrorEnum mvBehaviourEntry::addBody(mvIndex bBody)
 {
+
   if (indexes != NULL)
   {
      switch(bType)
      {
         case MV_CLONE:
            indexes[MV_BEHAVIOUR_CLONE_BODY_TARGET_INDEX] = bBody;
-           return MV_TRUE;
+           return MV_NO_ERROR;
         case MV_PURSUIT:
         case MV_EVASION:
            indexes[MV_BEHAVIOUR_PURSUIT_BODY_TARGET_INDEX] = bBody;
-           return MV_TRUE;
+           return MV_NO_ERROR;
         default:
-           return MV_FALSE;
+           return MV_INVALID_BEHAVIOUR_TYPE;
      }
   }
   else
-     return MV_FALSE;
-};
+     return MV_INVALID_BEHAVIOUR_TYPE;
+}
 
 mvIndex mvBehaviourEntry::getWaypoint() const
 {
    //return bWaypoints;
-  switch(bType)
-  {
+   switch(bType)
+   {
      case MV_SEEK:
      case MV_FLEE:
         if (indexes != NULL)
@@ -343,42 +354,47 @@ mvIndex mvBehaviourEntry::getWaypoint() const
            return indexes[MV_BEHAVIOUR_SEEK_WAYPOINT_INDEX];
         }
      default:
-        return MV_INVALID_BEHAVIOUR_INDEX_VALUE;
-  }
-};
+        return 0; // 0 means no value
+   }
+}
 
-mvEnum mvBehaviourEntry::addPathway(mvIndex bPathway)
+mvErrorEnum mvBehaviourEntry::addPathway(mvIndex bPathway)
 {
    //bPaths = bPathway;
-   return MV_FALSE;
-};
+   return MV_PATHWAY_CANNOT_ADDED;
+}
 
 mvIndex mvBehaviourEntry::getPathway() const
 {
    //bPaths = bPathway;
    return 0;
-};
+}
 
-mvEnum mvBehaviourEntry::addWaypoint(mvIndex bWaypoint)
+mvErrorEnum mvBehaviourEntry::addWaypoint(mvIndex bWaypoint)
 {
-  //bWaypoints = bWaypoint;
-  switch(bType)
-  {
-     case MV_SEEK:
-     case MV_FLEE:
-      //  puts("Hello Add WP");
-     if (indexes != NULL)
-     {
-        indexes[MV_BEHAVIOUR_SEEK_WAYPOINT_INDEX] = bWaypoint;
-        return MV_TRUE;
-     }
-     default:
-        return MV_FALSE;
+   static const mvIndex MV_BEHAVIOUR_SEEK_WAYPOINT_INDEX = 0;
+   //bWaypoints = bWaypoint;
+   switch(bType)
+   {
+      case MV_SEEK:
+      case MV_FLEE:
+         //  puts("Hello Add WP");
+         if (indexes != NULL)
+         {
+            indexes[MV_BEHAVIOUR_SEEK_WAYPOINT_INDEX] = bWaypoint;
+            return MV_NO_ERROR;
+         }
+         else
+         {
+            return MV_WAYPOINT_CANNOT_ADDED;
+         }
+      default:
+         return MV_INVALID_BEHAVIOUR_TYPE;
   }
-};
+}
 /**/
 
-mvEnum mvBehaviourEntry::mvBehaviour_InitialiseType2(mvEnum type)
+mvErrorEnum mvBehaviourEntry::mvBehaviour_InitialiseType2(mvOptionEnum type)
 {
    mvCount indexSize = 0;
    mvCount statesSize = 0;
@@ -438,7 +454,7 @@ mvEnum mvBehaviourEntry::mvBehaviour_InitialiseType2(mvEnum type)
 
          if (statesSize > 0)
          {
-            extraStates = new mvEnum[statesSize];
+            extraStates = new mvOptionEnum[statesSize];
          }
 
          if (pointsSize > 0)
@@ -452,8 +468,8 @@ mvEnum mvBehaviourEntry::mvBehaviour_InitialiseType2(mvEnum type)
          }
          break;
       default:
-         bType = MV_INVALID_BEHAVIOUR_TYPE;
-         return MV_FALSE;
+         bType = MV_NON_BEHAVIOUR_TYPE;
+         return MV_INVALID_BEHAVIOUR_TYPE;
    }
 
    /**
@@ -467,5 +483,5 @@ mvEnum mvBehaviourEntry::mvBehaviour_InitialiseType2(mvEnum type)
       }
    }
    **/
-   return MV_TRUE;
-};
+   return MV_NO_ERROR;
+}

@@ -25,8 +25,13 @@
 #include "mvBehaviour-Type.h"
 #include <iostream>
 
-mvCount mvBehaviour_GetIndexesArraySize(mvEnum type)
+mvCount mvBehaviour_GetIndexesArraySize(mvOptionEnum type)
 {
+   static const mvCount MV_BEHAVIOUR_SEEK_INDEX_SIZE = 1;
+   static const mvCount MV_INVALID_BEHAVIOUR_INDEX_SIZE = 0;
+   static const mvCount MV_BEHAVIOUR_CLONE_INDEX_SIZE = 1;
+   static const mvCount MV_BEHAVIOUR_PURSUIT_INDEX_SIZE = 1;
+
    switch(type)
    {
       case MV_SEEK:
@@ -40,10 +45,10 @@ mvCount mvBehaviour_GetIndexesArraySize(mvEnum type)
       default:
          return MV_INVALID_BEHAVIOUR_INDEX_SIZE;
    }
-};
+}
 
-mvEnum mvBehaviour_InitialiseType(mvEnum type, mvEnum& bType, mvIndex* indexes,
-                                  mvFloat* variables, mvEnum* states, mvVec3* points)
+mvErrorEnum mvBehaviour_InitialiseType(mvOptionEnum type, mvOptionEnum& bType, mvIndex* indexes,
+                                  mvFloat* variables, mvOptionEnum* states, mvVec3* points)
 {
    mvCount indexSize = 0;
    mvCount statesSize = 0;
@@ -100,7 +105,7 @@ mvEnum mvBehaviour_InitialiseType(mvEnum type, mvEnum& bType, mvIndex* indexes,
 
          if (statesSize > 0)
          {
-            states = new mvEnum[statesSize];
+            states = new mvOptionEnum[statesSize];
          }
 
          if (pointsSize > 0)
@@ -114,11 +119,11 @@ mvEnum mvBehaviour_InitialiseType(mvEnum type, mvEnum& bType, mvIndex* indexes,
          }
          break;
       default:
-         bType = MV_INVALID_BEHAVIOUR_TYPE;
-         return MV_FALSE;
+         bType = MV_NON_BEHAVIOUR_TYPE;
+         return MV_INVALID_BEHAVIOUR_INITIALIZATION;
    }
 
-   /**
+   /*
    if (indexes != NULL)
    {
       indexSize = mvBehaviour_GetIndexesArraySize(bType);
@@ -128,12 +133,15 @@ mvEnum mvBehaviour_InitialiseType(mvEnum type, mvEnum& bType, mvIndex* indexes,
          indexes[i] = tempIndexArray[i];
       }
    }
-   **/
-   return MV_TRUE;
-};
+   */
+   return MV_NO_ERROR;
+}
 
-mvCount mvBehaviour_GetPointsArraySize(mvEnum type)
+mvCount mvBehaviour_GetPointsArraySize(mvOptionEnum type)
 {
+   static const int MV_NO_OF_SIMPLE_FLOCK_POINTS = 0;
+   static const int MV_NO_OF_SIMPLE_FLOCK_GROUP_POINTS = 2;
+
    switch(type)
    {
       case MV_SIMPLE_FLOCK:
@@ -143,10 +151,13 @@ mvCount mvBehaviour_GetPointsArraySize(mvEnum type)
       default:
          return 0;
    }
-};
+}
 
-mvCount mvBehaviour_GetVariablesArraySize(mvEnum type)
+mvCount mvBehaviour_GetVariablesArraySize(mvOptionEnum type)
 {
+   static const int MV_NO_OF_SIMPLE_FLOCK_GROUP_VARIABLES = 1;
+   static const int MV_NO_OF_SIMPLE_FLOCK_VARIABLES = 3;
+
    switch(type)
    {
       case MV_SIMPLE_FLOCK:
@@ -156,10 +167,13 @@ mvCount mvBehaviour_GetVariablesArraySize(mvEnum type)
       default:
          return 0;
    }
-};
+}
 
-mvCount mvBehaviour_GetStateArraySize(mvEnum type)
+mvCount mvBehaviour_GetStateArraySize(mvOptionEnum type)
 {
+   static const int MV_NO_OF_SIMPLE_FLOCK_GROUP_STATES = 2;
+   static const int MV_NO_OF_SIMPLE_FLOCK_STATES = 0;
+
    switch(type)
    {
       case MV_SIMPLE_FLOCK:
@@ -169,45 +183,45 @@ mvCount mvBehaviour_GetStateArraySize(mvEnum type)
       default:
          return 0;
    }
-};
+}
 
-mvEnum singleNodeArray[] =
+mvOptionEnum singleNodeArray[] =
 {
   MV_SIMPLE_FLOCK,
 };
 
-mvEnum groupNodeArray[] =
+mvOptionEnum groupNodeArray[] =
 {
   MV_SIMPLE_FLOCK_GROUP_ENTRY,
 };
 
-const mvCount MV_NO_OF_GROUP_BEHAVIOUR_TYPES = sizeof(groupNodeArray)/sizeof(mvEnum);
-
-mvEnum selectBodyToGroupEntryType(mvEnum type)
+mvOptionEnum selectBodyToGroupEntryType(mvOptionEnum type)
 {
    mvIndex i;
+   static const mvCount size = sizeof(groupNodeArray)/sizeof(mvOptionEnum);
 
-   for (i = 0; i < MV_NO_OF_GROUP_BEHAVIOUR_TYPES; i++)
+   for (i = 0; i < size; i++)
    {
       if (singleNodeArray[i] == type)
       {
          return groupNodeArray[i];
       }
    }
-   return MV_INVALID_BEHAVIOUR_ENTRY_TYPE;
-};
+   return MV_NON_BEHAVIOUR_TYPE;
+}
 
-mvEnum selectGroupToBodyEntryType(mvEnum type)
+mvOptionEnum selectGroupToBodyEntryType(mvOptionEnum type)
 {
    mvIndex i;
+   static const mvCount size = sizeof(singleNodeArray)/sizeof(mvOptionEnum);
 
-   for (i = 0; i < MV_NO_OF_GROUP_BEHAVIOUR_TYPES; i++)
+   for (i = 0; i < size; i++)
    {
       if (groupNodeArray[i] == type)
       {
          return singleNodeArray[i];
       }
    }
-   return MV_INVALID_BEHAVIOUR_ENTRY_TYPE;
-};
+   return MV_NON_BEHAVIOUR_TYPE;
+}
 

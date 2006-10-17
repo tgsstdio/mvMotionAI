@@ -28,7 +28,7 @@
 #include "mvMotionAI-Types.h"
 #include "mvVec3.h"
 //#include "mvBody.h"
-#include "mvEnum.h"
+#include "mvEnums.h"
 //#include "mvPathway.h"
 //#include "mvBehaviour.h"
 
@@ -37,60 +37,74 @@
  * Log
  *
  * Version     Date     Comments
+ * 00-01-16   23/7/06   - enumerations now split into 3 categories
+ *
  * 00-01-05   23/7/06   - re implememting file
  *
  * 00-01-03   21/6/06   - created behaviour entry
  *
  */
-
 class mvBehaviourEntry
 {
    private:
       void initDefault();
-      mvEnum mvBehaviour_InitialiseType2(mvEnum type);
+      mvErrorEnum mvBehaviour_InitialiseType2(mvOptionEnum type);
 
    public:
       //mvIndex behaviourIndex; // key 2
-      mvEnum bType; // key 1
+      mvOptionEnum bType; // key 1
       //mvIndex groupIndex; // key 3
 
       mvFloat* extraVariables;
       mvVec3* extraPoints;
-      mvEnum* extraStates;
+      mvOptionEnum * extraStates;
       mvIndex* indexes;
 
    //mvIndex currentGroup;
    //mvPathway* currentPathway;
    //mvIndex currentWaypoint;
 //   mvBody* currentBody;
-   mvBehaviourEntry();
-   mvBehaviourEntry(mvEnum type);
+      mvBehaviourEntry();
+      mvBehaviourEntry(mvOptionEnum type);
   //vBehaviourEntry(mvEnum type, mvIndex behaviourIndex, mvIndex groupIndex);
-   ~mvBehaviourEntry();
-   mvBehaviourEntry(const mvBehaviourEntry& rhs);
-   const mvBehaviourEntry& operator=(const mvBehaviourEntry& rhs);
+      ~mvBehaviourEntry();
+      mvBehaviourEntry(const mvBehaviourEntry& rhs);
+      const mvBehaviourEntry& operator=(const mvBehaviourEntry& rhs);
    //mvIndex getBehaviourIndex();
-   mvEnum getType() const;
+      mvOptionEnum getType() const;
    //mvIndex getGroupIndex();
-   mvEnum getParameter(mvEnum paramFlag, mvEnum* dest) const;
-   mvEnum getParameterf(mvEnum paramFlag, mvFloat* dest) const;
-   mvEnum getParameterv(mvEnum paramFlag, mvFloat* dest, mvCount* size) const;
-   mvEnum setParameter(mvEnum paramFlag, mvEnum option);
-   mvEnum setParameteri(mvEnum paramFlag, mvIndex option);
-   mvEnum setParameterf(mvEnum paramFlag, mvFloat num);
-   mvEnum setParameterv(mvEnum paramFlag, mvFloat* numArray);
 
-   mvEnum addPathway(mvIndex bPathway);
-   mvEnum addWaypoint(mvIndex bWaypoint);
-   mvIndex getWaypoint() const;
-   mvIndex getPathway() const ;
+      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum * dest) const;
+      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvFloat* dest) const;
+      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* dest) const;
+      mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* dest, mvCount* size) const;
 
-   mvIndex getWaypointIndexAt(mvIndex num) const;
-   mvIndex getPathwayIndexAt(mvIndex num) const;
+      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex option);
+      mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
 
-   mvIndex getBodyIndexAt(mvIndex num) const;
-   mvIndex getBody() const;
-   mvEnum addBody(mvIndex bBody);
+      mvErrorEnum getParameters(const char* paramFlag, const char* dest) const;
+      mvErrorEnum getParametersi(const char* paramFlag, mvFloat* dest) const;
+      mvErrorEnum getParametersf(const char* paramFlag, mvFloat* dest) const;
+      mvErrorEnum getParametersv(const char* paramFlag, mvFloat* dest, mvCount* size) const;
+
+      mvErrorEnum setParameters(const char* paramFlag, const char* option);
+      mvErrorEnum setParametersi(const char* paramFlag, mvIndex option);
+      mvErrorEnum setParametersf(const char* paramFlag, mvFloat num);
+      mvErrorEnum setParametersv(const char* paramFlag, mvFloat* numArray);
+
+      mvErrorEnum addPathway(mvIndex bPathway);
+      mvErrorEnum addWaypoint(mvIndex bWaypoint);
+      mvIndex getWaypoint() const;
+      mvIndex getPathway() const;
+
+      mvIndex getWaypointIndexAt(mvIndex num) const;
+      mvIndex getPathwayIndexAt(mvIndex num) const;
+
+      mvIndex getBodyIndexAt(mvIndex num) const;
+      mvIndex getBody() const;
+      mvErrorEnum addBody(mvIndex bBody);
 };
 
 #endif

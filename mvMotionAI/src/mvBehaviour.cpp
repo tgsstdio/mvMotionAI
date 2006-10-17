@@ -28,13 +28,13 @@
 void mvBehaviour::initDefault()
 {
    behavData = NULL;
-};
+}
 
-mvBehaviour::mvBehaviour(mvEnum type)
+mvBehaviour::mvBehaviour(mvOptionEnum type)
 {
    initDefault();
    behavData = new mvBehaviourEntry(type);
-};
+}
 
 mvBehaviour::mvBehaviour(const mvBehaviour& rhs)
 {
@@ -46,7 +46,7 @@ mvBehaviour::mvBehaviour(const mvBehaviour& rhs)
 
    behavData = new mvBehaviourEntry();
    *behavData = *rhs.behavData;
-};
+}
 
 const mvBehaviour& mvBehaviour::operator=(const mvBehaviour& rhs)
 {
@@ -59,24 +59,24 @@ const mvBehaviour& mvBehaviour::operator=(const mvBehaviour& rhs)
    behavData = new mvBehaviourEntry();
    *behavData = *rhs.behavData;
    return *this;
-};
+}
 
 mvBehaviourEntry* mvBehaviour::getData() const
 {
    return behavData;
-};
+}
 
-mvEnum mvBehaviour::getType() const
+mvOptionEnum mvBehaviour::getType() const
 {
    if (behavData == NULL)
    {
-      return MV_INVALID_BEHAVIOUR_TYPE;
+      return MV_NON_BEHAVIOUR_TYPE;
    }
    else
    {
       return behavData->getType();
    }
-};
+}
 
 mvBehaviour::~mvBehaviour()
 {
@@ -85,29 +85,29 @@ mvBehaviour::~mvBehaviour()
       delete behavData;
       behavData = NULL;
    }
-};
+}
 
-mvEnum mvBehaviour::getParameteri(mvEnum paramFlag, mvIndex* index) const
+mvErrorEnum mvBehaviour::getParameteri(mvParamEnum paramFlag, mvIndex* index)
 {
-   return MV_FALSE;
-};
+   return MV_INVALID_BEHAVIOUR_PARAMETER;
+}
 
-mvEnum mvBehaviour::getParameter(mvEnum paramFlag, mvEnum* option) const
+mvErrorEnum mvBehaviour::getParameter(mvParamEnum paramFlag, mvOptionEnum* option)
 {
-   return MV_FALSE;
-};
+   return MV_INVALID_BEHAVIOUR_PARAMETER;
+}
 
-mvEnum mvBehaviour::getParameterf(mvEnum paramFlag, mvFloat* num) const
+mvErrorEnum mvBehaviour::getParameterf(mvParamEnum paramFlag, mvFloat* num)
 {
-   return MV_FALSE;
-};
+   return MV_INVALID_BEHAVIOUR_PARAMETER;
+}
 
-mvEnum mvBehaviour::getParameterv(mvEnum paramFlag, mvFloat* numArray) const
+mvErrorEnum mvBehaviour::getParameterv(mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfElements)
 {
-   return MV_FALSE;
-};
+   return MV_INVALID_BEHAVIOUR_PARAMETER;
+}
 
-mvEnum mvBehaviour::setParameteri(mvEnum paramFlag, mvIndex index)
+mvErrorEnum mvBehaviour::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
    if (behavData != NULL)
    {
@@ -115,38 +115,38 @@ mvEnum mvBehaviour::setParameteri(mvEnum paramFlag, mvIndex index)
    }
    else
    {
-      return MV_FALSE;
+      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
    }
-};
+}
 
-mvEnum mvBehaviour::setParameter(mvEnum paramFlag, mvEnum option)
+mvErrorEnum mvBehaviour::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return MV_FALSE;
-};
+   return MV_INVALID_BEHAVIOUR_PARAMETER;
+}
 
-mvEnum mvBehaviour::setParameterf(mvEnum paramFlag, mvFloat num)
+mvErrorEnum mvBehaviour::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
-   return MV_FALSE;
-};
+   return MV_INVALID_BEHAVIOUR_PARAMETER;
+}
 
-mvEnum mvBehaviour::setParameterv(mvEnum paramFlag, mvFloat* numArray)
+mvErrorEnum mvBehaviour::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 {
-   return MV_FALSE;
-};
+   return MV_INVALID_BEHAVIOUR_PARAMETER;
+}
 
 //#include "mvBehaviour-Seek.h"
 
 //mvIndex mvBehaviour_GetIndexesArraySize(mvEnum type);
 //mvEnum mvBehaviour_CheckPathwayIndexIsValid(mvEnum type);
 
-/**
+/*
 mvEnum mvBehaviour::initialiseVectors(mvEnum type)
 {
    Vec3 tempVectors[MV_MAX_BEHAVIOUR_VECTORS];
 
    return MV_FALSE;
 };
-**
+*
 
 mvBehaviour::~mvBehaviour()
 {
@@ -283,5 +283,5 @@ mvEnum mvBehaviour::setParameterv(mvEnum paramFlag, mvFloat* numArray)
 //mvIndex getWaypointIndexAt(mvIndex num);
 //mvIndex getPathwayIndexAt(mvIndex num);
 //mvIndex mvBehaviour::getBodyIndexAt(mvIndex num);
-**/
+*/
 

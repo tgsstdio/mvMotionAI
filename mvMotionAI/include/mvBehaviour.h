@@ -28,7 +28,7 @@
 //#include "mvPathway.h"
 //#include "mvWaypoint.h"
 #include "mvBehaviour-Entry.h"
-#include "mvEnum.h"
+#include "mvEnums.h"
 #include "mvMotionAI-Types.h"
 //#include "Vec3.h"
 //#include <vector>
@@ -56,7 +56,6 @@
  *
  *00-01-00  22/5/06  - initialised behaviours
  */
-
 class mvBehaviour
 {
   private:
@@ -79,22 +78,22 @@ class mvBehaviour
 
   public:
      // undecleared
-    mvBehaviour(mvEnum type);
+    mvBehaviour(mvOptionEnum type);
     mvBehaviour(const mvBehaviour& rhs);
     const mvBehaviour& operator=(const mvBehaviour& rhs);
     mvBehaviourEntry* getData() const;
-    mvEnum getType() const;
+    mvOptionEnum getType() const;
 
     ~mvBehaviour();
-    mvEnum getParameteri(mvEnum paramFlag, mvIndex* index) const;
-    mvEnum getParameter(mvEnum paramFlag, mvEnum* option) const;
-    mvEnum getParameterf(mvEnum paramFlag, mvFloat* num) const;
-    mvEnum getParameterv(mvEnum paramFlag, mvFloat* numArray) const;
+    mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
+    mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
+    mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num);
+    mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfElements);
 
-    mvEnum setParameteri(mvEnum paramFlag, mvIndex index);
-    mvEnum setParameter(mvEnum paramFlag, mvEnum option);
-    mvEnum setParameterf(mvEnum paramFlag, mvFloat num);
-    mvEnum setParameterv(mvEnum paramFlag, mvFloat* numArray);
+    mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
+    mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+    mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
+    mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
 
     //mvBehaviour(char* bName, mvEnum type);
     //char* getName();

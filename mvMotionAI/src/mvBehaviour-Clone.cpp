@@ -34,5 +34,5 @@ mvVec3 mvBehaviour_Calculate_Clone(mvBody* currentBody, mvBody* targetBody,
       finalVelocity = targetBody->speed * targetBody->direction;
    }
    return finalVelocity;
-};
+}
 

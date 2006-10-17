@@ -24,47 +24,47 @@
 
 #ifndef MV_SCRIPT_UTILITIES_H_
 #define MV_SCRIPT_UTILITIES_H_
-#include "mvEnum.h"
+#include "mvEnums.h"
 
 // mv obstacle enums functions check
-mvEnum mvScript_checkObstacleType(const char* shape);
-mvEnum mvScript_checkObstacleState(const char* state);
-mvEnum mvScript_checkObstacleParamsFlag(const char* params);
-mvEnum mvScript_checkObstacleParamsv(const char* params);
-mvEnum mvScript_checkObstacleParamsFlagOptions(const char* option);
+mvErrorEnum mvScript_checkObstacleShape(const char* shape, mvOptionEnum& dest);
+mvErrorEnum mvScript_checkObstacleType(const char* type, mvOptionEnum& dest);
+mvErrorEnum mvScript_checkObstacleParamsFlag(const char* params, mvParamEnum& dest);
+mvErrorEnum mvScript_checkObstacleParamsv(const char* params, mvParamEnum& dest);
+mvErrorEnum mvScript_checkObstacleParamsFlagOptions(const char* option, mvOptionEnum& dest);
 // mv waypoints enums functions check
-mvEnum mvScript_checkWaypointType(const char* type);
-mvEnum mvScript_checkWaypointShape(const char* shape);
-mvEnum mvScript_checkWaypointParamsFlag(const char* params);
-mvEnum mvScript_checkWaypointParamsv(const char* params);
-mvEnum mvScript_checkWaypointParamsFlagOptions(const char* option);
+mvErrorEnum mvScript_checkWaypointType(const char* type, mvOptionEnum& dest);
+mvErrorEnum mvScript_checkWaypointShape(const char* shape, mvOptionEnum& dest);
+mvErrorEnum mvScript_checkWaypointParamsFlag(const char* params, mvParamEnum& dest);
+mvErrorEnum mvScript_checkWaypointParamsv(const char* params, mvParamEnum& dest);
+mvErrorEnum mvScript_checkWaypointParamsFlagOptions(const char* option, mvOptionEnum& dest);
 // mv body script enums functions check
-mvEnum mvScript_checkBodyType(const char* type);
-mvEnum mvScript_checkBodyShape(const char* shape);
-mvEnum mvScript_checkBodyParamsFlag(const char* params);
-mvEnum mvScript_checkBodyParamsv(const char* params);
-mvEnum mvScript_checkBodyParamsFlagOptions(const char* option);
+mvErrorEnum mvScript_checkBodyType(const char* type, mvOptionEnum& dest);
+mvErrorEnum mvScript_checkBodyShape(const char* shape, mvOptionEnum& dest);
+mvErrorEnum mvScript_checkBodyParamsFlag(const char* params, mvParamEnum& dest);
+mvErrorEnum mvScript_checkBodyParamsv(const char* params, mvParamEnum& dest);
+mvErrorEnum mvScript_checkBodyParamsFlagOptions(const char* option, mvOptionEnum& dest);
 // mv force type enum functions check
-mvEnum mvScript_checkForceType(const char* type);
-mvEnum mvScript_checkForceParamsFlag(const char* params);
-mvEnum mvScript_checkForceParamsFlagOptions(const char* option);
-mvEnum mvScript_checkForceParamsv(const char* params);
+mvErrorEnum mvScript_checkForceType(const char* type, mvOptionEnum& dest);
+mvErrorEnum mvScript_checkForceParamsFlag(const char* params, mvParamEnum& dest);
+mvErrorEnum mvScript_checkForceParamsFlagOptions(const char* option, mvOptionEnum& dest);
+mvErrorEnum mvScript_checkForceParamsv(const char* params, mvParamEnum& dest);
 // mv behaviour type enum validators
-mvEnum mvScript_checkBehaviourType(const char* type);
-mvEnum mvScript_checkBehaviourParamsIndex(const char* params);
-mvEnum mvScript_checkBehaviourParamsFlag(const char* params);
-mvEnum mvScript_checkBehaviourParamsv(const char* params);
-mvEnum mvScript_checkBehaviourParamsFlagOptions(const char* option);
+mvErrorEnum mvScript_checkBehaviourType(const char* type, mvOptionEnum& dest);
+mvErrorEnum mvScript_checkBehaviourParamsIndex(const char* params, mvParamEnum& dest);
+mvErrorEnum mvScript_checkBehaviourParamsFlag(const char* params, mvParamEnum& dest);
+mvErrorEnum mvScript_checkBehaviourParamsv(const char* params, mvParamEnum& dest);
+mvErrorEnum mvScript_checkBehaviourParamsFlagOptions(const char* option, mvOptionEnum& dest);
 
 //mv adding behaviours
-mvEnum mvScript_checkAddBehaviourParams(const char* params);
+mvErrorEnum mvScript_checkAddBehaviourOption(const char* params, mvOptionEnum& dest);
 
 // mv group behaviour
-mvEnum mvScript_checkGroupBehaviourType(const char* type);
-mvEnum mvScript_checkGroupBehaviourParamsIndex(const char* params);
-mvEnum mvScript_checkGroupBehaviourParamsFlag(const char* params);
-mvEnum mvScript_checkGroupBehaviourParamsv(const char* params);
-mvEnum mvScript_checkGroupBehaviourParamsFlagOptions(const char* option);
+mvErrorEnum mvScript_checkGroupBehaviourType(const char* type, mvOptionEnum& dest);
+mvErrorEnum mvScript_checkGroupBehaviourParamsIndex(const char* params, mvParamEnum& dest);
+mvErrorEnum mvScript_checkGroupBehaviourParamsFlag(const char* params, mvParamEnum& dest);
+mvErrorEnum mvScript_checkGroupBehaviourParamsv(const char* params, mvParamEnum& dest);
+mvErrorEnum mvScript_checkGroupBehaviourParamsFlagOptions(const char* option, mvOptionEnum& dest);
 #endif
 
 

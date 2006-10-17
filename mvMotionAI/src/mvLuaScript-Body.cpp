@@ -27,7 +27,7 @@
 #include "mvBody.h"
 #include "mvMotionAI.h"
 #include "mvWorld.h"
-#include "mvEnum.h"
+#include "mvEnums.h"
 
 #define MV_LUA_SCRIPT_BODY_DEBUG_FLAG 1
 #undef MV_LUA_SCRIPT_BODY_DEBUG_FLAG
@@ -76,12 +76,12 @@ const char* mvLua_BodyFunctionNames[] =
 const char** mvGetLuaBodyFunctions()
 {
    return &mvLua_BodyFunctionNames[0];
-};
+}
 
 mvCount mvGetNoOfLuaBodyFunctions()
 {
    return sizeof(mvLua_BodyFunctionNames)/sizeof(const char*);
-};
+}
 
 void mvLoadLuaBodyFunctions(lua_State* L)
 {
@@ -91,14 +91,14 @@ void mvLoadLuaBodyFunctions(lua_State* L)
   lua_register(L,mvLua_BodyFunctionNames[3],mvLua_RemoveAllBodies);
   lua_register(L,mvLua_BodyFunctionNames[4],mvLua_SetCurrentBody);
 
-  /**
+  /*
    * New default behaviours
    */
   lua_register(L,mvLua_BodyFunctionNames[5],mvLua_SetDefaultWaypointForBody);
   lua_register(L,mvLua_BodyFunctionNames[6],mvLua_SetDefaultPathwayForBody);
   lua_register(L,mvLua_BodyFunctionNames[7],mvLua_SetDefaultBodyForBody);
 
-  /**
+  /*
    * 00-01-07
    */
   lua_register(L,mvLua_BodyFunctionNames[8],mvLua_SetDefaultBehaviourFactorForBody);
@@ -106,7 +106,7 @@ void mvLoadLuaBodyFunctions(lua_State* L)
   lua_register(L,mvLua_BodyFunctionNames[10],mvLua_SetDefaultPathwayForCurrentBody);
   lua_register(L,mvLua_BodyFunctionNames[11],mvLua_SetDefaultBodyForCurrentBody);
   lua_register(L,mvLua_BodyFunctionNames[12],mvLua_SetDefaultBehaviourFactorForCurrentBody);
-};
+}
 
 int mvLua_AddBody(lua_State* L)
 {
@@ -117,7 +117,7 @@ int mvLua_AddBody(lua_State* L)
    mvFloat x = (mvFloat) lua_tonumber(L,4);
    mvFloat y = (mvFloat) lua_tonumber(L,5);
    mvFloat z = (mvFloat) lua_tonumber(L,6);
-   mvEnum bType, bShape;
+   mvOptionEnum bType, bShape;
 
    mvWorld* tempWorld = NULL;
 
@@ -127,13 +127,13 @@ int mvLua_AddBody(lua_State* L)
    {
       //puts(tempWorld->getWorldID());
       //puts(type);
-      bType = mvScript_checkBodyType(type);
-      bShape = mvScript_checkBodyShape(shape);
+      mvScript_checkBodyType(type,bType);
+      mvScript_checkBodyShape(shape,bShape);
       result = tempWorld->mvAddBodyWithPos(bType,bShape,x,y,z);
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_RemoveCurrentBody(lua_State* L)
 {
@@ -151,7 +151,7 @@ int mvLua_RemoveCurrentBody(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_RemoveBody(lua_State* L)
 {
@@ -170,7 +170,7 @@ int mvLua_RemoveBody(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_SetCurrentBody(lua_State* L)
 {
@@ -189,7 +189,7 @@ int mvLua_SetCurrentBody(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_RemoveAllBodies(lua_State* L)
 {
@@ -206,7 +206,7 @@ int mvLua_RemoveAllBodies(lua_State* L)
       tempWorld->mvRemoveAllBodies();
    }
    return 0;
-};
+}
 
 int mvLua_SetDefaultWaypointForBody(lua_State* L)
 {
@@ -225,7 +225,7 @@ int mvLua_SetDefaultWaypointForBody(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_SetDefaultPathwayForBody(lua_State* L)
 {
@@ -243,7 +243,7 @@ int mvLua_SetDefaultPathwayForBody(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_SetDefaultBodyForBody(lua_State* L)
 {
@@ -261,7 +261,7 @@ int mvLua_SetDefaultBodyForBody(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_SetDefaultBehaviourFactorForBody(lua_State* L)
 {
@@ -278,7 +278,7 @@ int mvLua_SetDefaultBehaviourFactorForBody(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_SetDefaultWaypointForCurrentBody(lua_State* L)
 {
@@ -294,7 +294,7 @@ int mvLua_SetDefaultWaypointForCurrentBody(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_SetDefaultPathwayForCurrentBody(lua_State* L)
 {
@@ -310,7 +310,7 @@ int mvLua_SetDefaultPathwayForCurrentBody(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_SetDefaultBodyForCurrentBody(lua_State* L)
 {
@@ -326,7 +326,7 @@ int mvLua_SetDefaultBodyForCurrentBody(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_SetDefaultBehaviourFactorForCurrentBody(lua_State* L)
 {
@@ -342,7 +342,7 @@ int mvLua_SetDefaultBehaviourFactorForCurrentBody(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 //additional code
 
 

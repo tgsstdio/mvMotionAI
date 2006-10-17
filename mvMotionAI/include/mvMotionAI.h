@@ -83,6 +83,7 @@ void mvApplyToAllWorlds(void (someFunction)(mvWorld*,void*),void* extraPtr);
  *                     into project
  *
  */
+// TODO: dynamic behaviour loading by array of derived function objects.
 
 class mvMotionAI
 {

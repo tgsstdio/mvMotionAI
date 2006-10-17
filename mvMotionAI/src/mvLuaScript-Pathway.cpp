@@ -46,15 +46,15 @@ int mvLua_AddNURBSWaypoint(lua_State* L);
 const char** mvGetLuaPathwayFunctions()
 {
    return NULL;
-};
+}
 
 mvCount mvGetNoOfLuaPathwayFunctions()
 {
    return 0;
-};
+}
 
 void mvLoadLuaPathwayFunctions(lua_State* L)
 {
 
-};
+}
 

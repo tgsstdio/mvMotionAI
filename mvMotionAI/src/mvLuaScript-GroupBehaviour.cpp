@@ -28,7 +28,7 @@
 #include "mvScript-Utilities.h"
 #include "mvMotionAI.h"
 #include "mvWorld.h"
-#include "mvEnum.h"
+#include "mvEnums.h"
 
 #define MV_LUA_SCRIPT_GROUP_BEHAVIOUR_DEBUG_FLAG 1
 #undef MV_LUA_SCRIPT_GROUP_BEHAVIOUR_DEBUG_FLAG
@@ -67,12 +67,12 @@ const char* mvLua_GroupBehaviourFunctionNames[] =
 const char** mvGetLuaGroupBehaviourFunctions()
 {
    return &mvLua_GroupBehaviourFunctionNames[0];
-};
+}
 
 mvCount mvGetNoOfLuaGroupBehaviourFunctions()
 {
    return sizeof(mvLua_GroupBehaviourFunctionNames)/sizeof(const char*);
-};
+}
 
 void mvLoadLuaGroupBehaviourFunctions(lua_State* L)
 {
@@ -89,7 +89,7 @@ void mvLoadLuaGroupBehaviourFunctions(lua_State* L)
 // set parameters
    lua_register(L,mvLua_GroupBehaviourFunctionNames[9],mvLua_SetGroupBehaviourParameter);
    lua_register(L,mvLua_GroupBehaviourFunctionNames[10],mvLua_SetCurrentGroupBehaviourParameter);
-};
+}
 
 // unchceked
 int mvLua_AddGroupBehaviour(lua_State* L)
@@ -99,7 +99,7 @@ int mvLua_AddGroupBehaviour(lua_State* L)
    //const char* behaviourName = lua_tostring(L,2);
    const char* type = lua_tostring(L,2);
    mvWorld* tempWorld = NULL;
-   mvEnum bType;
+   mvOptionEnum bType;
 
    tempWorld = mvGetWorldByIndex(worldID);
    if (tempWorld != NULL)
@@ -108,7 +108,7 @@ int mvLua_AddGroupBehaviour(lua_State* L)
       //puts(type);
       if (type != NULL)
       {
-         bType = mvScript_checkGroupBehaviourType(type);
+         mvScript_checkGroupBehaviourType(type,bType);
 #ifdef MV_LUA_SCRIPT_GROUP_BEHAVIOUR_DEBUG_FLAG
          puts(mvGetEnumString(bType));
 #endif
@@ -117,7 +117,7 @@ int mvLua_AddGroupBehaviour(lua_State* L)
    };
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 // unchecked
 int mvLua_RemoveCurrentGroupBehaviour(lua_State* L)
@@ -134,7 +134,7 @@ int mvLua_RemoveCurrentGroupBehaviour(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 // unchecked
 int mvLua_RemoveGroupBehaviour(lua_State* L)
@@ -152,7 +152,7 @@ int mvLua_RemoveGroupBehaviour(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 // unchecked
 int mvLua_SetCurrentGroupBehaviour(lua_State* L)
@@ -170,7 +170,7 @@ int mvLua_SetCurrentGroupBehaviour(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 // unchecked
 int mvLua_RemoveAllGroupBehaviours(lua_State* L)
@@ -186,7 +186,7 @@ int mvLua_RemoveAllGroupBehaviours(lua_State* L)
       tempWorld->mvRemoveAllGroupBehaviours();
    }
    return 0;
-};
+}
 
 int mvLua_InsertGroupIntoGroupBehaviour(lua_State* L)
 {
@@ -204,7 +204,7 @@ int mvLua_InsertGroupIntoGroupBehaviour(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_InsertCurrentGroupIntoGroupBehaviour(lua_State* L)
 {
@@ -222,7 +222,7 @@ int mvLua_InsertCurrentGroupIntoGroupBehaviour(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_InsertGroupIntoCurrentGroupBehaviour(lua_State* L)
 {
@@ -240,13 +240,13 @@ int mvLua_InsertGroupIntoCurrentGroupBehaviour(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_InsertCurrentGroupIntoCurrentBehaviour(lua_State* L)
 {
    int result = 0;
    mvIndex worldID = (mvIndex) lua_tonumber(L,1);
-   mvIndex bIndex = (mvIndex) lua_tonumber(L,2);
+  // mvIndex bIndex = (mvIndex) lua_tonumber(L,2);
    mvWorld* tempWorld = NULL;
 
    tempWorld = mvGetWorldByIndex(worldID);
@@ -257,17 +257,19 @@ int mvLua_InsertCurrentGroupIntoCurrentBehaviour(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_SetGroupBehaviourParameter(lua_State* L)
 {
-   int result = 0;
+   int result = MV_INVALID_GROUP_BEHAVIOUR_PARAMETER;
    mvIndex worldID = (mvIndex) lua_tonumber(L,1);
    mvIndex gbIndex = (mvIndex) lua_tonumber(L,2);
    mvIndex groupIndex = (mvIndex) lua_tonumber(L,3);
    const char* params = lua_tostring(L,4);
    const char* option;
-   mvEnum checkParams, checkOption;
+   mvParamEnum checkParams;
+   mvOptionEnum checkOption;
+   mvErrorEnum checkError;
    mvIndex i;
    mvIndex indexValue;
    mvFloat numArray[MV_MAX_NO_OF_PARAMETERS];
@@ -277,34 +279,40 @@ int mvLua_SetGroupBehaviourParameter(lua_State* L)
    tempWorld = mvGetWorldByIndex(worldID);
    if (tempWorld != NULL && params != NULL)
    {
-      checkParams = mvScript_checkGroupBehaviourParamsFlag(params);
-      if (checkParams != MV_INVALID_BEHAVIOUR_PARAMETER)
+      checkError = mvScript_checkGroupBehaviourParamsFlag(params,checkParams);
+      if (checkError == MV_NO_ERROR)
       {
          option = lua_tostring(L,5);
          if (option != NULL)
          {
-            checkOption = mvScript_checkGroupBehaviourParamsFlagOptions(option);
-            if (checkOption != MV_INVALID_BEHAVIOUR_PARAM_OPTION)
+            checkError = mvScript_checkGroupBehaviourParamsFlagOptions(option, checkOption);
+            if (checkError == MV_NO_ERROR)
             {
                result = tempWorld->mvSetGroupBehaviourParameter(gbIndex,groupIndex,checkParams,checkOption);
-               lua_pushnumber(L,result);
-               return 1;
+               if (result == MV_NO_ERROR)
+               {
+                  lua_pushnumber(L,result);
+                  return 1;
+               }
             }
          }
       }
 
-      checkParams = mvScript_checkGroupBehaviourParamsIndex(params);
-      if (checkParams != MV_INVALID_BEHAVIOUR_PARAMETER)
+      checkError = mvScript_checkGroupBehaviourParamsIndex(params,checkParams);
+      if (checkError == MV_NO_ERROR)
       {
-          indexValue = (mvIndex) lua_tonumber(L,5);
-          result = tempWorld->mvSetGroupBehaviourParameteri(gbIndex,groupIndex,checkParams,indexValue);
-          lua_pushnumber(L,result);
-          return 1;
+         indexValue = (mvIndex) lua_tonumber(L,5);
+         result = tempWorld->mvSetGroupBehaviourParameteri(gbIndex,groupIndex,checkParams,indexValue);
+         if (result == MV_NO_ERROR)
+         {
+            lua_pushnumber(L,result);
+            return 1;
+         }
       }
 
 
-      checkParams = mvScript_checkGroupBehaviourParamsv(params);
-      if (checkParams != MV_INVALID_BEHAVIOUR_PARAMETER)
+      checkError = mvScript_checkGroupBehaviourParamsv(params,checkParams);
+      if (checkError == MV_NO_ERROR)
       {
          for (i = 0; i < MV_MAX_NO_OF_PARAMETERS; i++)
          {
@@ -321,16 +329,18 @@ int mvLua_SetGroupBehaviourParameter(lua_State* L)
       lua_pushnumber(L,result);
       return 1;
    }
-};
+}
 
 int mvLua_SetCurrentGroupBehaviourParameter(lua_State* L)
 {
-   int result = 0;
+   int result = MV_INVALID_GROUP_BEHAVIOUR_PARAMETER;
    mvIndex worldID = (mvIndex) lua_tonumber(L,1);
    mvIndex groupIndex = (mvIndex) lua_tonumber(L,2);
    const char* params = lua_tostring(L,3);
    const char* option;
-   mvEnum checkParams, checkOption;
+   mvParamEnum checkParams;
+   mvOptionEnum checkOption;
+   mvErrorEnum checkError;
    mvIndex i;
    mvIndex indexValue;
    mvFloat numArray[MV_MAX_NO_OF_PARAMETERS];
@@ -340,32 +350,38 @@ int mvLua_SetCurrentGroupBehaviourParameter(lua_State* L)
    tempWorld = mvGetWorldByIndex(worldID);
    if (tempWorld != NULL && params != NULL)
    {
-      checkParams = mvScript_checkGroupBehaviourParamsFlag(params);
-      if (checkParams != MV_INVALID_BEHAVIOUR_PARAMETER)
+      checkError = mvScript_checkGroupBehaviourParamsFlag(params,checkParams);
+      if (checkError == MV_NO_ERROR)
       {
          option = lua_tostring(L,4);
          if (option != NULL)
          {
-            checkOption = mvScript_checkGroupBehaviourParamsFlagOptions(option);
-            if (checkOption !=   MV_INVALID_BEHAVIOUR_PARAM_OPTION)
+            checkError = mvScript_checkGroupBehaviourParamsFlagOptions(option,checkOption);
+            if (checkError == MV_NO_ERROR)
             {
                result = tempWorld->mvSetCurrentGroupBehaviourParameter(groupIndex,checkParams,checkOption);
-               lua_pushnumber(L,result);
-               return 1;
+               if (result == MV_NO_ERROR)
+               {
+                  lua_pushnumber(L,result);
+                  return 1;
+               }
             }
          }
       }
-      checkParams = mvScript_checkGroupBehaviourParamsIndex(params);
-      if (checkParams != MV_INVALID_BEHAVIOUR_PARAMETER)
+      checkError = mvScript_checkGroupBehaviourParamsIndex(params,checkParams);
+      if (checkError == MV_NO_ERROR)
       {
-          indexValue = (mvIndex) lua_tonumber(L,4);
-          result = tempWorld->mvSetCurrentGroupBehaviourParameteri(groupIndex,checkParams,indexValue);
-          lua_pushnumber(L,result);
-          return 1;
+         indexValue = (mvIndex) lua_tonumber(L,4);
+         result = tempWorld->mvSetCurrentGroupBehaviourParameteri(groupIndex,checkParams,indexValue);
+         if (result == MV_NO_ERROR)
+         {
+            lua_pushnumber(L,result);
+            return 1;
+         }
       }
 
-      checkParams = mvScript_checkGroupBehaviourParamsv(params);
-      if (checkParams != MV_INVALID_BEHAVIOUR_PARAMETER)
+      checkError = mvScript_checkGroupBehaviourParamsv(params,checkParams);
+      if (checkError == MV_NO_ERROR)
       {
          for (i = 0; i < MV_MAX_NO_OF_PARAMETERS; i++)
          {
@@ -382,4 +398,4 @@ int mvLua_SetCurrentGroupBehaviourParameter(lua_State* L)
       lua_pushnumber(L,result);
       return 1;
    }
-};
+}

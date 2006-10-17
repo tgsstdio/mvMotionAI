@@ -19,6 +19,11 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
+ * Log
+ * version
+ *
+ * 00-02    edited to deal with new enums
  */
 //#include <cstdio>
 #include <cstdlib>
@@ -29,7 +34,9 @@ int main(void)
 {
    std::cout << "mvMotionAI Type Sizes in bytes" << std::endl
              << "Size of mvMotionAI : " << sizeof(mvMotionAI)  << std::endl
-             << "Size of mvEnum : " << sizeof(mvEnum)  << std::endl
+             << "Size of mvParamEnum : " << sizeof(mvParamEnum)  << std::endl
+             << "Size of mvErrorEnum : " << sizeof(mvErrorEnum)  << std::endl
+             << "Size of mvOptionEnum : " << sizeof(mvOptionEnum)  << std::endl
              << "Size of mvFloat : " << sizeof(mvFloat)  << std::endl
              << "Size of mvIndex : " << sizeof(mvIndex)  << std::endl
              << "Size of mvCount : " << sizeof(mvCount)  << std::endl

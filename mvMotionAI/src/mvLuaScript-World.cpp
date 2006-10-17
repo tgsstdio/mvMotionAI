@@ -30,15 +30,15 @@ int mvLua_mvNudgeBody(lua_State* L);
 const char** mvGetLuaWorldFunctions()
 {
    return NULL;
-};
+}
 
 mvCount mvGetNoOfLuaWorldFunctions()
 {
    return 0;
-};
+}
 
 void mvLoadLuaWorldFunctions(lua_State* L)
 {
 
-};
+}
 

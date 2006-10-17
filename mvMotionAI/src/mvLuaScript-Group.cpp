@@ -25,7 +25,7 @@
 #include "mvLuaScript-Group.h"
 #include "mvMotionAI-Types.h"
 #include "mvMotionAI.h"
-#include "mvEnum.h"
+#include "mvEnums.h"
 #include "mvGroup.h"
 
 #define MV_LUA_SCRIPT_GROUP_DEBUG_FLAG 1
@@ -74,12 +74,12 @@ const char* mvLua_GroupFunctionNames[] =
 const char** mvGetLuaGroupFunctions()
 {
    return &mvLua_GroupFunctionNames[0];
-};
+}
 
 mvCount mvGetNoOfLuaGroupFunctions()
 {
   return sizeof(mvLua_GroupFunctionNames)/sizeof(const char*);
-};
+}
 
 void mvLoadLuaGroupFunctions(lua_State* L)
 {
@@ -99,7 +99,7 @@ void mvLoadLuaGroupFunctions(lua_State* L)
    lua_register(L,mvLua_GroupFunctionNames[11],mvLua_RemoveCurrentBodyFromGroup);
    lua_register(L,mvLua_GroupFunctionNames[12],mvLua_RemoveBodyFromCurrentGroup);
    lua_register(L,mvLua_GroupFunctionNames[13],mvLua_RemoveCurrentBodyFromCurrentGroup);
-};
+}
 
 int mvLua_AddGroup(lua_State* L)
 {
@@ -121,7 +121,7 @@ int mvLua_AddGroup(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_GetGroup(lua_State* L)
 {
@@ -138,7 +138,7 @@ int mvLua_GetGroup(lua_State* L)
    lua_pushnumber(L,result);
    return 1;
 
-};
+}
 
 int mvLua_RemoveCurrentGroup(lua_State* L)
 {
@@ -153,7 +153,7 @@ int mvLua_RemoveCurrentGroup(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_RemoveGroup(lua_State* L)
 {
@@ -169,7 +169,7 @@ int mvLua_RemoveGroup(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_SetCurrentGroup(lua_State* L)
 {
@@ -185,7 +185,7 @@ int mvLua_SetCurrentGroup(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_RemoveAllGroups(lua_State* L)
 {
@@ -200,7 +200,7 @@ int mvLua_RemoveAllGroups(lua_State* L)
    }
    //lua_pushnumber(L,result);
    return 0;
-};
+}
 
 int mvLua_AddBodyToGroup(lua_State* L)
 {
@@ -217,7 +217,7 @@ int mvLua_AddBodyToGroup(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_AddCurrentBodyToGroup(lua_State* L)
 {
@@ -234,7 +234,7 @@ int mvLua_AddCurrentBodyToGroup(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_AddBodyToCurrentGroup(lua_State* L)
 {
@@ -251,7 +251,7 @@ int mvLua_AddBodyToCurrentGroup(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_AddCurrentBodyToCurrentGroup(lua_State* L)
 {
@@ -268,7 +268,7 @@ int mvLua_AddCurrentBodyToCurrentGroup(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_RemoveBodyFromGroup(lua_State* L)
 {
@@ -285,7 +285,7 @@ int mvLua_RemoveBodyFromGroup(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_RemoveCurrentBodyFromGroup(lua_State* L)
 {
@@ -302,7 +302,7 @@ int mvLua_RemoveCurrentBodyFromGroup(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_RemoveBodyFromCurrentGroup(lua_State* L)
 {
@@ -319,14 +319,14 @@ int mvLua_RemoveBodyFromCurrentGroup(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 
 int mvLua_RemoveCurrentBodyFromCurrentGroup(lua_State* L)
 {
    mvWorld* tempWorld = NULL;
    mvIndex worldID = (mvIndex) lua_tonumber(L,1);
-   mvIndex bodyIndex = (mvIndex) lua_tonumber(L,2);
-   mvIndex groupIndex = (mvIndex) lua_tonumber(L,3);
+   //mvIndex bodyIndex = (mvIndex) lua_tonumber(L,2);
+   //mvIndex groupIndex = (mvIndex) lua_tonumber(L,3);
    int result = 0;
 
    tempWorld = mvGetWorldByIndex(worldID);
@@ -336,5 +336,5 @@ int mvLua_RemoveCurrentBodyFromCurrentGroup(lua_State* L)
    }
    lua_pushnumber(L,result);
    return 1;
-};
+}
 

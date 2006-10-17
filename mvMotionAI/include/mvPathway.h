@@ -25,7 +25,7 @@
 #ifndef MOTIONAI_MVPATHWAY_H_
 #define MOTIONAI_MVPATHWAY_H_
 #include <vector>
-#include "mvEnum.h"
+#include "mvEnums.h"
 #include "mvWaypoint.h"
 #include "mvMotionAI-Types.h"
 //#include "Vec3.h"
@@ -37,6 +37,7 @@
  * Log
  *
  *version		date		comments
+ *00-01-16     15/10/06    - converted mvenums to 3 enums
  *
  *00-01-00     22/5/06     - renamed pathways to mvPathway
  *
@@ -45,7 +46,6 @@
  *                         - created simple array of waypoints which can be loaded via scripts
  *
  */
-
 class mvPathway
 {
    private:
@@ -55,10 +55,10 @@ class mvPathway
    public:
       mvPathway();
       void addWaypoint(mvWaypoint* pWaypoint);
-      mvEnum removeWaypoint(mvWaypoint* pWaypoint);
-      mvEnum setParameter(mvEnum paramFlag, mvEnum option);
-      mvEnum setParameterf(mvEnum paramFlag, float num);
-      mvEnum setParameterv(mvEnum paramFlag, float* numArray);
+      mvErrorEnum removeWaypoint(mvWaypoint* pWaypoint);
+      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setParameterf(mvParamEnum paramFlag, float num);
+      mvErrorEnum setParameterv(mvParamEnum paramFlag, float* numArray);
       void removeAllWaypoints();
       ~mvPathway();
 };

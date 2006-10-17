@@ -23,9 +23,8 @@
  */
 
 #include "mvScript-Utilities.h"
-#include "mvEnum.h"
-#include "mvWorld.h"
-#include "mvMotionAI.h"
+//#include "mvWorld.h"
+//#include "mvMotionAI.h"
 #include "mvMotionAI-Types.h"
 #include <cstdlib>
 #include <cstring>
@@ -36,7 +35,7 @@
 
 //mvIndex iterativeSearch(const char* key, const char** array, mvCount noOfItems);
 //mvIndex binarySearch(const char* key, char** array, mvCount noOfItems);
-
+/*
 mvEnum checkIterativeArray(const char* key, const char** strArray, mvCount noOfStrings, mvEnum invalidOption,
                            const mvEnum* enumArray);
 
@@ -129,7 +128,8 @@ mvEnum mvScript_checkEnumArrayBinarySearch(const char* key, const mvEnum* array,
 #endif
    return (index == -1) ? invalidOption : array[index];
 };
-/**
+*/
+/*
 mvIndex binarySearch(const char* key, char** array, mvCount noOfItems)
 {
    mvIndex mid = noOfItems / 2;
@@ -156,9 +156,9 @@ mvIndex binarySearch(const char* key, char** array, mvCount noOfItems)
    }
    return -1;
 };
-**/
+*/
 
-/**
+/*
 mvIndex iterativeSearch(const char* key, const char** array, mvCount noOfItems)
 {
    mvIndex i;
@@ -172,16 +172,16 @@ mvIndex iterativeSearch(const char* key, const char** array, mvCount noOfItems)
    }
    return -1;
 };
-**/
-/**
+*/
+/*
 mvEnum checkIterativeArray(const char* key, const char** strArray, mvCount noOfStrings, mvEnum invalidOption, const mvEnum* enumArray)
 {
    mvIndex index = iterativeSearch(key,strArray,noOfStrings);
 
    return (index == -1) ? invalidOption : enumArray[index];
 };
-**/
-/**
+*/
+/*
 static const char* mvScript_ObstacleTypeStringEnums[] = {
    mvEnumString[MV_AABOX],
    mvEnumString[MV_SPHERE],
@@ -189,9 +189,9 @@ static const char* mvScript_ObstacleTypeStringEnums[] = {
    mvEnumString[MV_Y_AXIS_AA_CYLINDER],
    mvEnumString[MV_Z_AXIS_AA_CYLINDER],
 };
-**/
-
-static const mvEnum mvScript_ObstacleTypeEnums[] =
+*/
+/*
+static const mvEnum mvScript_ObstacleShapeEnums[] =
 {
   MV_AABOX,
   MV_SPHERE,
@@ -199,38 +199,84 @@ static const mvEnum mvScript_ObstacleTypeEnums[] =
   MV_Y_AXIS_AA_CYLINDER,
   MV_Z_AXIS_AA_CYLINDER,
 };
-static const mvCount MVSCRIPT_NO_OF_OBSTACLE_TYPES = sizeof(mvScript_ObstacleTypeEnums)/sizeof(mvEnum);
-
-/**
+static const mvCount MVSCRIPT_NO_OF_OBSTACLE_SHAPES = sizeof(mvScript_ObstacleShapeEnums)/sizeof(mvEnum);
+*/
+/*
 static const char* mvScript_ObstacleStateStringEnums[] = {
    mvEnumString[MV_AIR_OBSTACLE],
    mvEnumString[MV_LIQUID_OBSTACLE],
    mvEnumString[MV_SOLID_OBSTACLE],
 };
-**/
-
-static const mvEnum mvScript_ObstacleStateEnums[] =
+*/
+/*
+static const mvEnum mvScript_ObstacleTypeEnums[] =
 {
    MV_AIR_OBSTACLE,
    MV_LIQUID_OBSTACLE,
    MV_SOLID_OBSTACLE,
 };
 
-static const mvCount MVSCRIPT_NO_OF_OBSTACLE_STATES = sizeof(mvScript_ObstacleStateEnums)/sizeof(mvEnum);
-
-
-mvEnum mvScript_checkObstacleType(const char* shape)
+static const mvCount MVSCRIPT_NO_OF_OBSTACLE_TYPES = sizeof(mvScript_ObstacleTypeEnums)/sizeof(mvEnum);
+*/
+mvErrorEnum CheckAllOptionEnumsForString(const char* item, mvOptionEnum& dest, mvOptionEnum failedOption, mvErrorEnum failedError)
 {
-  /**
-  return checkIterativeArray(shape, mvScript_ObstacleTypeStringEnums, MVSCRIPT_NO_OF_OBSTACLE_TYPES,
-     MV_NO_SHAPE,  mvScript_ObstacleTypeEnums);
-  **/
-  return mvScript_checkEnumArrayBinarySearch(shape, &mvScript_ObstacleTypeEnums[0], MVSCRIPT_NO_OF_OBSTACLE_TYPES, MV_NO_SHAPE);
+   mvOptionEnum option;
+
+   if (mvCheckAllOptionEnumsForString(item, &option))
+   {
+      dest = option;
+      return MV_NO_ERROR;
+   }
+   else
+   {
+      dest = failedOption;
+      return failedError;
+   }
 };
 
-mvEnum mvScript_checkObstacleState(const char* state)
+mvErrorEnum CheckAllParamEnumsForString(const char* item, mvParamEnum& dest,mvParamEnum failedParam, mvErrorEnum failedError)
 {
-  /**
+   mvParamEnum paramFlag;
+
+   if (mvCheckAllParamEnumsForString(item, &paramFlag))
+   {
+      dest = paramFlag;
+      return MV_NO_ERROR;
+   }
+   else
+   {
+      dest = failedParam;
+      return failedError;
+   }
+};
+
+mvErrorEnum mvScript_checkObstacleShape(const char* shape, mvOptionEnum& dest)
+{
+  /*
+  return checkIterativeArray(shape, mvScript_ObstacleTypeStringEnums, MVSCRIPT_NO_OF_OBSTACLE_TYPES,
+     MV_NO_SHAPE,  mvScript_ObstacleTypeEnums);
+  *
+  //return mvScript_checkEnumArrayBinarySearch(shape, &mvScript_ObstacleShapeEnums[0], MVSCRIPT_NO_OF_OBSTACLE_TYPES, MV_NO_SHAPE);
+   *
+   mvOptionEnum option;
+
+   if (mvCheckAllOptionEnumsForString(shape, &option))
+   {
+      dest = option;
+      return MV_NO_ERROR;
+   }
+   else
+   {
+      dest = MV_NON_SHAPE;
+      return MV_INVALID_OBSTACLE_SHAPE;
+   }
+   */
+   return CheckAllOptionEnumsForString(shape, dest, MV_NON_SHAPE, MV_INVALID_OBSTACLE_SHAPE);
+};
+
+mvErrorEnum mvScript_checkObstacleType(const char* type, mvOptionEnum& dest)
+{
+  /*
   int index = iterativeSearch(state,mvScript_ObstacleStateStringEnums,MVSCRIPT_NO_OF_OBSTACLE_STATES);
 
 #ifdef MV_SCRIPT_DEBUG_STDOUT
@@ -250,24 +296,41 @@ mvEnum mvScript_checkObstacleState(const char* state)
 
      return mvScript_ObstacleStateEnums[index];
   }
-  **/
+  */
+  /*
   return mvScript_checkEnumArrayBinarySearch(state, &mvScript_ObstacleStateEnums[0],
      MVSCRIPT_NO_OF_OBSTACLE_STATES, MV_INVALID_OBSTACLE_STATE);
+  */
+  /*
+   mvOptionEnum option;
+
+   if (mvCheckAllOptionEnumsForString(shape, &option))
+   {
+      dest = option;
+      return MV_NO_ERROR;
+   }
+   else
+   {
+      dest = MV_NON_OBSTACLE_TYPE;
+      return MV_INVALID_OBSTACLE_TYPE;
+   }
+   */
+   return CheckAllOptionEnumsForString(type, dest, MV_NON_OBSTACLE_TYPE, MV_INVALID_OBSTACLE_TYPE);
 };
 
-mvEnum mvScript_checkObstacleParamsFlag(const char* params);
-mvEnum mvScript_checkObstacleParamsv(const char* params);
-mvEnum mvScript_checkObstacleParamsFlagOptions(const char* option);
+mvErrorEnum mvScript_checkObstacleParamsFlag(const char* params, mvParamEnum& dest);
+mvErrorEnum mvScript_checkObstacleParamsv(const char* params, mvParamEnum& dest);
+mvErrorEnum mvScript_checkObstacleParamsFlagOptions(const char* option, mvOptionEnum& dest);
 
 // waypoints
-/**
+/*
 static const char* mvScript_WaypointTypeEnumStrings[] =
 {
    mvEnumString[MV_GROUP_WAYPOINT],
    mvEnumString[MV_SINGLE_WAYPOINT],
 };
-**/
-
+*/
+/*
 static const mvEnum mvScript_WaypointTypeEnums[] =
 {
 MV_GROUP_WAYPOINT,
@@ -275,8 +338,8 @@ MV_SINGLE_WAYPOINT,
 };
 
 static const mvCount MVSCRIPT_NO_OF_WAYPOINT_TYPES = sizeof(mvScript_WaypointTypeEnums)/sizeof(mvEnum);
-
-/**
+*/
+/*
 static const char* mvScript_WaypointShapeEnumStrings[] =
 {
    mvEnumString[MV_AABOX],
@@ -285,8 +348,8 @@ static const char* mvScript_WaypointShapeEnumStrings[] =
    mvEnumString[MV_Y_AXIS_AA_CYLINDER],
    mvEnumString[MV_Z_AXIS_AA_CYLINDER],
 };
-**/
-
+*/
+/*
 static const mvEnum mvScript_WaypointShapeEnums[] =
 {
 MV_AABOX,
@@ -297,10 +360,10 @@ MV_Z_AXIS_AA_CYLINDER,
 };
 
 static const mvCount MVSCRIPT_NO_OF_WAYPOINT_SHAPES = sizeof(mvScript_WaypointShapeEnums)/sizeof(mvEnum);
-
-mvEnum mvScript_checkWaypointType(const char* type)
+*/
+mvErrorEnum mvScript_checkWaypointType(const char* type, mvOptionEnum& dest)
 {
-   /**
+   /*
    int index = iterativeSearch(type, mvScript_WaypointTypeEnumStrings, MVSCRIPT_NO_OF_WAYPOINT_TYPES);
 
 #ifdef MV_SCRIPT_DEBUG_STDOUT
@@ -315,14 +378,18 @@ mvEnum mvScript_checkWaypointType(const char* type)
    {
       return mvScript_WaypointTypeEnums[index];
    }
-   **/
+   */
+   /*
    return  mvScript_checkEnumArrayBinarySearch(type, &mvScript_WaypointTypeEnums[0],
       MVSCRIPT_NO_OF_WAYPOINT_TYPES, MV_INVALID_WAYPOINT_TYPE);
+   */
+
+   return CheckAllOptionEnumsForString(type, dest, MV_NON_WAYPOINT_TYPE, MV_INVALID_WAYPOINT_TYPE);
 };
 
-mvEnum mvScript_checkWaypointShape(const char* shape)
+mvErrorEnum mvScript_checkWaypointShape(const char* shape, mvOptionEnum& dest)
 {
-   /**
+   /*
    int index = iterativeSearch(shape, mvScript_WaypointShapeEnumStrings, MVSCRIPT_NO_OF_WAYPOINT_SHAPES);
    //std::cout << "mv script size = " << MVSCRIPT_NO_OF_WAYPOINT_SHAPES << std::endl;
    if (index == -1)
@@ -333,34 +400,36 @@ mvEnum mvScript_checkWaypointShape(const char* shape)
    {
       return mvScript_WaypointShapeEnums[index];
    }
-   **/
+   */
+   /*
    return mvScript_checkEnumArrayBinarySearch(shape, &mvScript_WaypointShapeEnums[0],
-      MVSCRIPT_NO_OF_WAYPOINT_SHAPES, MV_INVALID_SHAPE_TYPE);
+      MVSCRIPT_NO_OF_WAYPOINT_SHAPES, );
+   */
 
+   return CheckAllOptionEnumsForString(shape, dest, MV_NON_SHAPE, MV_INVALID_WAYPOINT_SHAPE);
 };
 
 // body script functions
-
+/*
 static const mvEnum mvScript_BodyTypeEnums[] =
 {
 MV_DUAL_TYPE,
 MV_PARTICLE,
 MV_VEHICLE,
 };
-/**
+*
 static const char* mvScript_BodyTypeEnumStrings[] =
 {
 mvEnumString[MV_DUAL_TYPE],
 mvEnumString[MV_PARTICLE],
 mvEnumString[MV_VEHICLE],
 };
-**/
-
+*
 static const mvCount MVSCRIPT_NO_OF_BODY_TYPES = sizeof(mvScript_BodyTypeEnums)/sizeof(mvEnum); //3;
-
-mvEnum mvScript_checkBodyType(const char* type)
+*/
+mvErrorEnum mvScript_checkBodyType(const char* type, mvOptionEnum& dest)
 {
-   /**
+   /*
    int index = iterativeSearch(type,mvScript_BodyTypeEnumStrings,MVSCRIPT_NO_OF_BODY_TYPES);
 
    if (index == -1)
@@ -374,12 +443,14 @@ mvEnum mvScript_checkBodyType(const char* type)
    **
    return checkIterativeArray(type,mvScript_BodyTypeEnumStrings,MVSCRIPT_NO_OF_BODY_TYPES,
       MV_INVALID_BODY_TYPE,mvScript_BodyTypeEnums);
-   **/
-
+   */
+/*
    return mvScript_checkEnumArrayBinarySearch(type, &mvScript_BodyTypeEnums[0],
       MVSCRIPT_NO_OF_BODY_TYPES, MV_INVALID_BODY_TYPE);
+*/
+   return CheckAllOptionEnumsForString(type, dest, MV_NON_BODY_TYPE, MV_INVALID_BODY_TYPE);
 };
-
+/*
 static const mvEnum mvScript_BodyShapeEnums[] =
 {
 MV_AABOX,
@@ -389,7 +460,7 @@ MV_Y_AXIS_AA_CYLINDER,
 MV_Z_AXIS_AA_CYLINDER,
 };
 
-/**
+*
 static const char* mvScript_BodyShapeEnumStrings[] =
 {
 mvEnumString[MV_AABOX],
@@ -398,13 +469,11 @@ mvEnumString[MV_X_AXIS_AA_CYLINDER],
 mvEnumString[MV_Y_AXIS_AA_CYLINDER],
 mvEnumString[MV_Z_AXIS_AA_CYLINDER],
 };
-**/
-
 static const mvCount MVSCRIPT_NO_OF_BODY_SHAPES = sizeof(mvScript_BodyShapeEnums)/sizeof(mvEnum);
-
-mvEnum mvScript_checkBodyShape(const char* shape)
+*/
+mvErrorEnum mvScript_checkBodyShape(const char* shape, mvOptionEnum& dest)
 {
-   /**
+   /*
    int index = iterativeSearch(shape,mvScript_BodyShapeEnumStrings,MVSCRIPT_NO_OF_BODY_SHAPES);
 
    if (index == -1)
@@ -418,10 +487,11 @@ mvEnum mvScript_checkBodyShape(const char* shape)
    **
    return checkIterativeArray(shape,mvScript_BodyShapeEnumStrings,
       MVSCRIPT_NO_OF_BODY_SHAPES,MV_NO_SHAPE,mvScript_BodyShapeEnums);
-   **/
-   return mvScript_checkEnumArrayBinarySearch(shape, &mvScript_BodyShapeEnums[0], MVSCRIPT_NO_OF_BODY_SHAPES, MV_NO_SHAPE);
+      //return mvScript_checkEnumArrayBinarySearch(shape, &mvScript_BodyShapeEnums[0], MVSCRIPT_NO_OF_BODY_SHAPES, MV_NO_SHAPE);
+   */
+   return CheckAllOptionEnumsForString(shape, dest, MV_NON_SHAPE, MV_INVALID_BODY_SHAPE);
 };
-
+/*
 static const mvEnum mvScript_ForceTypeEnums[] =
 {
 MV_DIRECTION_FORCE_TO_POINT,
@@ -445,7 +515,7 @@ MV_UNIFORM_ACCELERATION,
 MV_UNIFORM_FORCE,
 MV_UNIFORM_SHIFT,
 };
-/**
+*
 static const char* mvScript_ForceTypeEnumStrings[] =
 {
 mvEnumString[MV_DIRECTION_FORCE_TO_POINT],
@@ -469,12 +539,12 @@ mvEnumString[MV_UNIFORM_ACCELERATION],
 mvEnumString[MV_UNIFORM_FORCE],
 mvEnumString[MV_UNIFORM_SHIFT],
 };
-**/
+*
 static const mvCount MVSCRIPT_NO_OF_FORCE_TYPES = sizeof(mvScript_ForceTypeEnums)/sizeof(mvEnum);
-
-mvEnum mvScript_checkForceType(const char* type)
+*/
+mvErrorEnum mvScript_checkForceType(const char* type, mvOptionEnum& dest)
 {
-   /**
+   /*
    int index = iterativeSearch(type,mvScript_ForceTypeEnumStrings,MVSCRIPT_NO_OF_FORCE_TYPES);
 
    if (index == -1)
@@ -488,10 +558,11 @@ mvEnum mvScript_checkForceType(const char* type)
    **
    return checkIterativeArray(type,mvScript_ForceTypeEnumStrings,MVSCRIPT_NO_OF_FORCE_TYPES,
       MV_INVALID_FORCE_TYPE,mvScript_ForceTypeEnums);
-   **/
-   return mvScript_checkEnumArrayBinarySearch(type,&mvScript_ForceTypeEnums[0], MVSCRIPT_NO_OF_FORCE_TYPES, MV_INVALID_FORCE_TYPE);
+   //return mvScript_checkEnumArrayBinarySearch(type,&mvScript_ForceTypeEnums[0], MVSCRIPT_NO_OF_FORCE_TYPES, MV_INVALID_FORCE_TYPE);
+   */
+   return CheckAllOptionEnumsForString(type,dest,MV_NON_FORCE_TYPE,MV_INVALID_FORCE_TYPE);
 };
-
+/*
 static const mvEnum mvScript_ForceParamsvEnums[] =
 {
 MV_ACCELERATION,
@@ -505,7 +576,7 @@ MV_POSITION,
 MV_SPEED,
 MV_VELOCITY,
 };
-/**
+*
 static const char* mvScript_ForceParamsvEnumStrings[] =
 {
 mvEnumString[MV_ACCELERATION],
@@ -519,13 +590,12 @@ mvEnumString[MV_POSITION],
 mvEnumString[MV_SPEED],
 mvEnumString[MV_VELOCITY],
 };
-**/
-
+*
 static const mvCount MVSCRIPT_NO_OF_FORCE_PARAMSV = sizeof(mvScript_ForceParamsvEnums)/sizeof(mvEnum);
-
-mvEnum mvScript_checkForceParamsv(const char* params)
+*/
+mvErrorEnum mvScript_checkForceParamsv(const char* params, mvParamEnum& dest)
 {
-   /**
+   /*
    int index = iterativeSearch(type,mvScript_ForceParamsvEnumStrings,MVSCRIPT_NO_OF_FORCE_PARAMSV);
 
    if (index == -1)
@@ -539,38 +609,42 @@ mvEnum mvScript_checkForceParamsv(const char* params)
    **
    return checkIterativeArray(params,mvScript_ForceParamsvEnumStrings,MVSCRIPT_NO_OF_FORCE_PARAMSV,
        MV_INVALID_FORCE_PARAMETER,mvScript_ForceParamsvEnums);
-   **/
+   */
+/*
    return mvScript_checkEnumArrayBinarySearch(params, &mvScript_ForceParamsvEnums[0],
       MVSCRIPT_NO_OF_FORCE_PARAMSV, MV_INVALID_FORCE_PARAMETER);
+*/
+   return CheckAllParamEnumsForString(params,dest,MV_NO_PARAMETER,MV_INVALID_FORCE_PARAMETER);
 };
-
+/*
 static const mvEnum mvScript_ForceParamsFlagEnums[] =
 {
 MV_ENABLE_FORCE,
 MV_FORCE_TYPE,
 };
-
-/**
+*
 static const char* mvScript_ForceParamsFlagEnumStrings[] =
 {
 mvEnumString[MV_ENABLE_FORCE],
 mvEnumString[MV_FORCE_TYPE],
 };
-**/
-
+*
 static const mvCount MVSCRIPT_NO_OF_FORCE_FLAGPARAMS = sizeof(mvScript_ForceParamsFlagEnums)/sizeof(mvEnum);
-
-mvEnum mvScript_checkForceParamsFlag(const char* params)
+*/
+mvErrorEnum mvScript_checkForceParamsFlag(const char* params, mvParamEnum& dest)
 {
-   /**
+   /*
   return checkIterativeArray(params, mvScript_ForceParamsFlagEnumStrings, MVSCRIPT_NO_OF_FORCE_FLAGPARAMS,
             MV_INVALID_FORCE_PARAMETER, mvScript_ForceParamsFlagEnums);
-   **/
+   */
+/*
    return mvScript_checkEnumArrayBinarySearch(params, &mvScript_ForceParamsFlagEnums[0],
       MVSCRIPT_NO_OF_FORCE_FLAGPARAMS, MV_INVALID_FORCE_PARAMETER);
+*/
+   return CheckAllParamEnumsForString(params,dest,MV_NO_PARAMETER, MV_INVALID_FORCE_PARAMETER);
 };
 
-
+/*
 static const mvEnum mvScript_ForceFlagParamsOptionsEnums[] =
 {
 MV_DIRECTION_FORCE_TO_POINT,
@@ -596,7 +670,7 @@ MV_UNIFORM_ACCELERATION,
 MV_UNIFORM_FORCE,
 MV_UNIFORM_SHIFT,
 };
-/**
+*
 static const char* mvScript_ForceFlagParamsOptionsStrings[] =
 {
 mvEnumString[MV_DIRECTION_FORCE_TO_POINT],
@@ -622,20 +696,22 @@ mvEnumString[MV_UNIFORM_ACCELERATION],
 mvEnumString[MV_UNIFORM_FORCE],
 mvEnumString[MV_UNIFORM_SHIFT],
 };
-**/
-
+*
 static const mvCount MVSCRIPT_NO_OF_FORCE_FLAGPARAMOPTIONS = sizeof(mvScript_ForceFlagParamsOptionsEnums)/sizeof(mvEnum);
-
-mvEnum mvScript_checkForceParamsFlagOptions(const char* option)
+*/
+mvErrorEnum mvScript_checkForceParamsFlagOptions(const char* option, mvOptionEnum& dest)
 {
-/**
+/*
   return checkIterativeArray(option,mvScript_ForceFlagParamsOptionsStrings,MVSCRIPT_NO_OF_FORCE_FLAGPARAMOPTIONS,
          MV_INVALID_FORCE_OPTION,mvScript_ForceFlagParamsOptionsEnums);
-  **/
+  */
+  /*
   return mvScript_checkEnumArrayBinarySearch(option,mvScript_ForceFlagParamsOptionsEnums,
-     MVSCRIPT_NO_OF_FORCE_FLAGPARAMOPTIONS,MV_INVALID_FORCE_OPTION);
+     MVSCRIPT_NO_OF_FORCE_FLAGPARAMOPTIONS,MV_INVALID_FORCE_OPTION);\
+*/
+   return CheckAllOptionEnumsForString(option,dest,MV_NON_OPTION_ENUM,MV_INVALID_FORCE_PARAMETER);
 };
-
+/*
 static const mvEnum mvScript_BehaviourTypes[] =
 {
 MV_CLONE,
@@ -647,16 +723,18 @@ MV_SEEK,
 MV_SPIN,
 MV_WANDER,
 };
-
 static const mvCount MVSCRIPT_NO_OF_BEHAVIOUR_TYPES = sizeof(mvScript_BehaviourTypes)/sizeof(mvEnum);
+*/
 
-mvEnum mvScript_checkBehaviourType(const char* type)
+mvErrorEnum mvScript_checkBehaviourType(const char* type, mvOptionEnum& dest)
 {
-   //return mvScript_checkEnumArrayIteratively(type, &mvScript_BehaviourTypes[0],MVSCRIPT_NO_OF_BEHAVIOUR_TYPES,MV_INVALID_BEHAVIOUR_TYPE);
-
+   /*
+   return mvScript_checkEnumArrayIteratively(type, &mvScript_BehaviourTypes[0],MVSCRIPT_NO_OF_BEHAVIOUR_TYPES,MV_INVALID_BEHAVIOUR_TYPE);
    return mvScript_checkEnumArrayBinarySearch(type, &mvScript_BehaviourTypes[0],MVSCRIPT_NO_OF_BEHAVIOUR_TYPES,MV_INVALID_BEHAVIOUR_TYPE);
+   */
+   return CheckAllOptionEnumsForString(type, dest, MV_NON_BEHAVIOUR_TYPE,MV_INVALID_BEHAVIOUR_TYPE);
 };
-
+/*
 static const mvEnum mvScript_AddBehaviourParams[] =
 {
 MV_EXISTING_BEHAVIOUR,
@@ -664,106 +742,117 @@ MV_EXISTING_GROUP_BEHAVIOUR,
 };
 
 static const mvCount MVSCRIPT_NO_OF_ADD_BEHAVIOUR_PARAMS = sizeof(mvScript_AddBehaviourParams)/sizeof(mvEnum);
-
-mvEnum mvScript_checkAddBehaviourParams(const char* params)
+*/
+mvErrorEnum mvScript_checkAddBehaviourOption(const char* params, mvOptionEnum& dest)
 {
+   /*
    mvEnum paramsCheck = mvScript_checkEnumArrayBinarySearch(params, &mvScript_AddBehaviourParams[0],MVSCRIPT_NO_OF_ADD_BEHAVIOUR_PARAMS,MV_FALSE);
    if (paramsCheck == MV_FALSE)
    {
       paramsCheck = mvScript_checkEnumArrayBinarySearch(params, &mvScript_BehaviourTypes[0],MVSCRIPT_NO_OF_BEHAVIOUR_TYPES,MV_INVALID_BEHAVIOUR_TYPE);
    }
    return paramsCheck;
+   */
+   return CheckAllOptionEnumsForString(params, dest, MV_NON_BEHAVIOUR_TYPE,MV_INVALID_BEHAVIOUR_TYPE);
 };
-
+/*
 const mvEnum mvScript_GroupBehaviourTypes[] =
 {
 MV_SIMPLE_FLOCK,
 };
-
 const mvCount MVSCRIPT_NO_OF_GROUP_BEHAVIOUR_TYPES = sizeof(mvScript_GroupBehaviourTypes)/sizeof(mvEnum);
-
-mvEnum mvScript_checkGroupBehaviourType(const char* type)
+*/
+mvErrorEnum mvScript_checkGroupBehaviourType(const char* type, mvOptionEnum& dest)
 {
+/*
    return mvScript_checkEnumArrayBinarySearch(type, &mvScript_GroupBehaviourTypes[0],
                                      MVSCRIPT_NO_OF_GROUP_BEHAVIOUR_TYPES,MV_INVALID_BEHAVIOUR_TYPE);
+*/
+   return CheckAllOptionEnumsForString(type, dest, MV_NON_BEHAVIOUR_TYPE,MV_INVALID_BEHAVIOUR_TYPE);
 };
-
+/*
 const mvEnum mvScript_BehaviourParamsIndex[] =
 {
 MV_BEHAVIOUR_BODY_TARGET,
 MV_BEHAVIOUR_PATHWAY_TARGET,
 MV_BEHAVIOUR_WAYPOINT_TARGET,
 };
-
 const mvCount MVSCRIPT_NO_OF_BEHAVIOUR_PARAMS_INDEXES = sizeof(mvScript_BehaviourParamsIndex)/sizeof(mvEnum);
-
-
-mvEnum mvScript_checkBehaviourParamsIndex(const char* params)
+*/
+mvErrorEnum mvScript_checkBehaviourParamsIndex(const char* params, mvParamEnum& dest)
 {
+/*
     return mvScript_checkEnumArrayBinarySearch(params,&mvScript_BehaviourParamsIndex[0],
        MVSCRIPT_NO_OF_BEHAVIOUR_PARAMS_INDEXES,MV_INVALID_BEHAVIOUR_PARAMETER);
+*/
+   return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_BEHAVIOUR_PARAMETER);
 };
 
-mvEnum mvScript_checkBehaviourParamsFlag(const char* params)
+mvErrorEnum mvScript_checkBehaviourParamsFlag(const char* params, mvParamEnum& dest)
 {
-   return MV_INVALID_BEHAVIOUR_PARAMETER;
+   return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_BEHAVIOUR_PARAMETER);
 };
 
-mvEnum mvScript_checkBehaviourParamsv(const char* params)
+mvErrorEnum mvScript_checkBehaviourParamsv(const char* params, mvParamEnum& dest)
 {
-   return MV_INVALID_BEHAVIOUR_PARAMETER;
+   return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_BEHAVIOUR_PARAMETER);
 };
 
-mvEnum mvScript_checkBehaviourParamsFlagOptions(const char* option)
+mvErrorEnum mvScript_checkBehaviourParamsFlagOptions(const char* option, mvOptionEnum& dest)
 {
-   return MV_INVALID_BEHAVIOUR_PARAM_OPTION;
+   return CheckAllOptionEnumsForString(option, dest, MV_NON_OPTION_ENUM,MV_INVALID_BEHAVIOUR_TYPE);
 };
-
-
+/*
 const mvEnum mvScript_GroupBehaviourParamsFlagsEnums[] =
 {
 MV_PERCEIVED_ALIGNMENT_FLAG,
 MV_PERCEIVED_COHESION_FLAG,
 };
-
 const mvCount MVSCRIPT_NO_OF_GROUP_BEHAVIOUR_PARAMS_FLAGS = sizeof(mvScript_GroupBehaviourParamsFlagsEnums)/sizeof(mvEnum);
-
-mvEnum mvScript_checkGroupBehaviourParamsFlag(const char* params)
+*/
+mvErrorEnum mvScript_checkGroupBehaviourParamsFlag(const char* params, mvParamEnum& dest)
 {
+   /*
    return mvScript_checkEnumArrayBinarySearch(params,&mvScript_GroupBehaviourParamsFlagsEnums[0],
       MVSCRIPT_NO_OF_GROUP_BEHAVIOUR_PARAMS_FLAGS,MV_INVALID_BEHAVIOUR_PARAMETER);
+   */
+   return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_BEHAVIOUR_PARAMETER);
 };
-
+/*
 const mvEnum mvScript_GroupBehaviourParamsvEnums[] =
 {
 MV_ALIGNMENT_FACTOR,
 MV_COHESION_FACTOR,
 MV_SEPARATION_FACTOR,
 };
-
 const mvCount MVSCRIPT_NO_OF_GROUP_BEHAVIOUR_PARAMSV = sizeof(mvScript_GroupBehaviourParamsvEnums)/sizeof(mvEnum);
-
-mvEnum mvScript_checkGroupBehaviourParamsv(const char* params)
+*/
+mvErrorEnum mvScript_checkGroupBehaviourParamsv(const char* params, mvParamEnum& dest)
 {
+   /*
     return mvScript_checkEnumArrayBinarySearch(params,&mvScript_GroupBehaviourParamsvEnums[0],
           MVSCRIPT_NO_OF_GROUP_BEHAVIOUR_PARAMSV,MV_INVALID_BEHAVIOUR_PARAMETER);
+   */
+   return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_BEHAVIOUR_PARAMETER);
 };
-
+/*
 const mvEnum mvScript_GroupBehaviourParamsFlagOptions[] =
 {
 MV_TRUE,
 MV_FALSE,
 };
-
 const mvCount MVSCRIPT_NO_OF_GROUP_BEHAVIOUR_PARAMS_FLAG_OPTIONS = sizeof(mvScript_GroupBehaviourParamsFlagOptions)/sizeof(mvEnum);
-
-mvEnum mvScript_checkGroupBehaviourParamsFlagOptions(const char* option)
+*/
+mvErrorEnum mvScript_checkGroupBehaviourParamsFlagOptions(const char* option, mvOptionEnum& dest)
 {
+   /*
    return mvScript_checkEnumArrayBinarySearch(option,&mvScript_GroupBehaviourParamsFlagOptions[0],
       MVSCRIPT_NO_OF_GROUP_BEHAVIOUR_PARAMS_FLAG_OPTIONS,MV_INVALID_BEHAVIOUR_PARAM_OPTION);
+   */
+   return CheckAllOptionEnumsForString(option, dest, MV_NON_OPTION_ENUM,MV_INVALID_BEHAVIOUR_TYPE);
 };
 
-mvEnum mvScript_checkGroupBehaviourParamsIndex(const char* params)
+mvErrorEnum mvScript_checkGroupBehaviourParamsIndex(const char* params, mvParamEnum& dest)
 {
-   return MV_INVALID_BEHAVIOUR_PARAMETER;
+   return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_BEHAVIOUR_PARAMETER);
 };
