@@ -218,6 +218,11 @@ static const mvEnum mvScript_ObstacleTypeEnums[] =
 
 static const mvCount MVSCRIPT_NO_OF_OBSTACLE_TYPES = sizeof(mvScript_ObstacleTypeEnums)/sizeof(mvEnum);
 */
+
+/**
+ * obstacle functions
+ */
+
 mvErrorEnum CheckAllOptionEnumsForString(const char* item, mvOptionEnum& dest, mvOptionEnum failedOption, mvErrorEnum failedError)
 {
    mvOptionEnum option;
@@ -232,7 +237,7 @@ mvErrorEnum CheckAllOptionEnumsForString(const char* item, mvOptionEnum& dest, m
       dest = failedOption;
       return failedError;
    }
-};
+}
 
 mvErrorEnum CheckAllParamEnumsForString(const char* item, mvParamEnum& dest,mvParamEnum failedParam, mvErrorEnum failedError)
 {
@@ -248,7 +253,7 @@ mvErrorEnum CheckAllParamEnumsForString(const char* item, mvParamEnum& dest,mvPa
       dest = failedParam;
       return failedError;
    }
-};
+}
 
 mvErrorEnum mvScript_checkObstacleShape(const char* shape, mvOptionEnum& dest)
 {
@@ -272,7 +277,7 @@ mvErrorEnum mvScript_checkObstacleShape(const char* shape, mvOptionEnum& dest)
    }
    */
    return CheckAllOptionEnumsForString(shape, dest, MV_NON_SHAPE, MV_INVALID_OBSTACLE_SHAPE);
-};
+}
 
 mvErrorEnum mvScript_checkObstacleType(const char* type, mvOptionEnum& dest)
 {
@@ -316,13 +321,32 @@ mvErrorEnum mvScript_checkObstacleType(const char* type, mvOptionEnum& dest)
    }
    */
    return CheckAllOptionEnumsForString(type, dest, MV_NON_OBSTACLE_TYPE, MV_INVALID_OBSTACLE_TYPE);
-};
+}
 
-mvErrorEnum mvScript_checkObstacleParamsFlag(const char* params, mvParamEnum& dest);
-mvErrorEnum mvScript_checkObstacleParamsv(const char* params, mvParamEnum& dest);
-mvErrorEnum mvScript_checkObstacleParamsFlagOptions(const char* option, mvOptionEnum& dest);
+mvErrorEnum mvScript_checkObstacleParamsIndex(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params,dest,MV_NO_PARAMETER,MV_INVALID_OBSTACLE_PARAMETER);
+}
 
-// waypoints
+mvErrorEnum mvScript_checkObstacleParamsFlag(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params,dest,MV_NO_PARAMETER,MV_INVALID_OBSTACLE_PARAMETER);
+}
+
+mvErrorEnum mvScript_checkObstacleParamsv(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params,dest,MV_NO_PARAMETER,MV_INVALID_OBSTACLE_PARAMETER);
+}
+
+mvErrorEnum mvScript_checkObstacleParamsFlagOptions(const char* option, mvOptionEnum& dest)
+{
+   return CheckAllOptionEnumsForString(option,dest,MV_NON_OPTION_ENUM,MV_INVALID_OBSTACLE_TYPE);
+}
+
+/**
+ * waypoints functions
+ */
+
 /*
 static const char* mvScript_WaypointTypeEnumStrings[] =
 {
@@ -385,7 +409,7 @@ mvErrorEnum mvScript_checkWaypointType(const char* type, mvOptionEnum& dest)
    */
 
    return CheckAllOptionEnumsForString(type, dest, MV_NON_WAYPOINT_TYPE, MV_INVALID_WAYPOINT_TYPE);
-};
+}
 
 mvErrorEnum mvScript_checkWaypointShape(const char* shape, mvOptionEnum& dest)
 {
@@ -407,9 +431,32 @@ mvErrorEnum mvScript_checkWaypointShape(const char* shape, mvOptionEnum& dest)
    */
 
    return CheckAllOptionEnumsForString(shape, dest, MV_NON_SHAPE, MV_INVALID_WAYPOINT_SHAPE);
-};
+}
 
-// body script functions
+mvErrorEnum mvScript_checkWaypointParamsIndex(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params,dest,MV_NO_PARAMETER,MV_INVALID_WAYPOINT_PARAMETER);
+}
+
+mvErrorEnum mvScript_checkWaypointParamsFlag(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params,dest,MV_NO_PARAMETER,MV_INVALID_WAYPOINT_PARAMETER);
+}
+
+mvErrorEnum mvScript_checkWaypointParamsv(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params,dest,MV_NO_PARAMETER,MV_INVALID_WAYPOINT_PARAMETER);
+}
+
+mvErrorEnum mvScript_checkWaypointParamsFlagOptions(const char* option, mvOptionEnum& dest)
+{
+   return CheckAllOptionEnumsForString(option,dest,MV_NON_OPTION_ENUM,MV_INVALID_WAYPOINT_TYPE);
+}
+
+/**
+ * body functions
+ */
+
 /*
 static const mvEnum mvScript_BodyTypeEnums[] =
 {
@@ -449,7 +496,7 @@ mvErrorEnum mvScript_checkBodyType(const char* type, mvOptionEnum& dest)
       MVSCRIPT_NO_OF_BODY_TYPES, MV_INVALID_BODY_TYPE);
 */
    return CheckAllOptionEnumsForString(type, dest, MV_NON_BODY_TYPE, MV_INVALID_BODY_TYPE);
-};
+}
 /*
 static const mvEnum mvScript_BodyShapeEnums[] =
 {
@@ -490,7 +537,7 @@ mvErrorEnum mvScript_checkBodyShape(const char* shape, mvOptionEnum& dest)
       //return mvScript_checkEnumArrayBinarySearch(shape, &mvScript_BodyShapeEnums[0], MVSCRIPT_NO_OF_BODY_SHAPES, MV_NO_SHAPE);
    */
    return CheckAllOptionEnumsForString(shape, dest, MV_NON_SHAPE, MV_INVALID_BODY_SHAPE);
-};
+}
 /*
 static const mvEnum mvScript_ForceTypeEnums[] =
 {
@@ -542,6 +589,30 @@ mvEnumString[MV_UNIFORM_SHIFT],
 *
 static const mvCount MVSCRIPT_NO_OF_FORCE_TYPES = sizeof(mvScript_ForceTypeEnums)/sizeof(mvEnum);
 */
+
+mvErrorEnum mvScript_checkBodyParamsIndex(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params,dest,MV_NO_PARAMETER,MV_INVALID_BODY_PARAMETER);
+}
+
+mvErrorEnum mvScript_checkBodyParamsFlag(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params,dest,MV_NO_PARAMETER,MV_INVALID_BODY_PARAMETER);
+}
+
+mvErrorEnum mvScript_checkBodyParamsv(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params,dest,MV_NO_PARAMETER,MV_INVALID_BODY_PARAMETER);
+}
+
+mvErrorEnum mvScript_checkBodyParamsFlagOptions(const char* option, mvOptionEnum& dest)
+{
+   return CheckAllOptionEnumsForString(option,dest,MV_NON_OPTION_ENUM,MV_INVALID_BODY_TYPE);
+}
+
+/*
+ * force functions
+ */
 mvErrorEnum mvScript_checkForceType(const char* type, mvOptionEnum& dest)
 {
    /*
@@ -560,8 +631,14 @@ mvErrorEnum mvScript_checkForceType(const char* type, mvOptionEnum& dest)
       MV_INVALID_FORCE_TYPE,mvScript_ForceTypeEnums);
    //return mvScript_checkEnumArrayBinarySearch(type,&mvScript_ForceTypeEnums[0], MVSCRIPT_NO_OF_FORCE_TYPES, MV_INVALID_FORCE_TYPE);
    */
-   return CheckAllOptionEnumsForString(type,dest,MV_NON_FORCE_TYPE,MV_INVALID_FORCE_TYPE);
-};
+   return CheckAllOptionEnumsForString(type,dest,MV_NON_OPTION_ENUM,MV_INVALID_FORCE_TYPE);
+}
+
+mvErrorEnum mvScript_checkForceParamsIndex(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params,dest,MV_NO_PARAMETER,MV_INVALID_FORCE_PARAMETER);
+}
+
 /*
 static const mvEnum mvScript_ForceParamsvEnums[] =
 {
@@ -615,7 +692,7 @@ mvErrorEnum mvScript_checkForceParamsv(const char* params, mvParamEnum& dest)
       MVSCRIPT_NO_OF_FORCE_PARAMSV, MV_INVALID_FORCE_PARAMETER);
 */
    return CheckAllParamEnumsForString(params,dest,MV_NO_PARAMETER,MV_INVALID_FORCE_PARAMETER);
-};
+}
 /*
 static const mvEnum mvScript_ForceParamsFlagEnums[] =
 {
@@ -642,7 +719,7 @@ mvErrorEnum mvScript_checkForceParamsFlag(const char* params, mvParamEnum& dest)
       MVSCRIPT_NO_OF_FORCE_FLAGPARAMS, MV_INVALID_FORCE_PARAMETER);
 */
    return CheckAllParamEnumsForString(params,dest,MV_NO_PARAMETER, MV_INVALID_FORCE_PARAMETER);
-};
+}
 
 /*
 static const mvEnum mvScript_ForceFlagParamsOptionsEnums[] =
@@ -710,7 +787,7 @@ mvErrorEnum mvScript_checkForceParamsFlagOptions(const char* option, mvOptionEnu
      MVSCRIPT_NO_OF_FORCE_FLAGPARAMOPTIONS,MV_INVALID_FORCE_OPTION);\
 */
    return CheckAllOptionEnumsForString(option,dest,MV_NON_OPTION_ENUM,MV_INVALID_FORCE_PARAMETER);
-};
+}
 /*
 static const mvEnum mvScript_BehaviourTypes[] =
 {
@@ -726,6 +803,10 @@ MV_WANDER,
 static const mvCount MVSCRIPT_NO_OF_BEHAVIOUR_TYPES = sizeof(mvScript_BehaviourTypes)/sizeof(mvEnum);
 */
 
+/**
+ * behaviour functions
+ */
+
 mvErrorEnum mvScript_checkBehaviourType(const char* type, mvOptionEnum& dest)
 {
    /*
@@ -733,7 +814,7 @@ mvErrorEnum mvScript_checkBehaviourType(const char* type, mvOptionEnum& dest)
    return mvScript_checkEnumArrayBinarySearch(type, &mvScript_BehaviourTypes[0],MVSCRIPT_NO_OF_BEHAVIOUR_TYPES,MV_INVALID_BEHAVIOUR_TYPE);
    */
    return CheckAllOptionEnumsForString(type, dest, MV_NON_BEHAVIOUR_TYPE,MV_INVALID_BEHAVIOUR_TYPE);
-};
+}
 /*
 static const mvEnum mvScript_AddBehaviourParams[] =
 {
@@ -754,22 +835,8 @@ mvErrorEnum mvScript_checkAddBehaviourOption(const char* params, mvOptionEnum& d
    return paramsCheck;
    */
    return CheckAllOptionEnumsForString(params, dest, MV_NON_BEHAVIOUR_TYPE,MV_INVALID_BEHAVIOUR_TYPE);
-};
-/*
-const mvEnum mvScript_GroupBehaviourTypes[] =
-{
-MV_SIMPLE_FLOCK,
-};
-const mvCount MVSCRIPT_NO_OF_GROUP_BEHAVIOUR_TYPES = sizeof(mvScript_GroupBehaviourTypes)/sizeof(mvEnum);
-*/
-mvErrorEnum mvScript_checkGroupBehaviourType(const char* type, mvOptionEnum& dest)
-{
-/*
-   return mvScript_checkEnumArrayBinarySearch(type, &mvScript_GroupBehaviourTypes[0],
-                                     MVSCRIPT_NO_OF_GROUP_BEHAVIOUR_TYPES,MV_INVALID_BEHAVIOUR_TYPE);
-*/
-   return CheckAllOptionEnumsForString(type, dest, MV_NON_BEHAVIOUR_TYPE,MV_INVALID_BEHAVIOUR_TYPE);
-};
+}
+
 /*
 const mvEnum mvScript_BehaviourParamsIndex[] =
 {
@@ -786,22 +853,43 @@ mvErrorEnum mvScript_checkBehaviourParamsIndex(const char* params, mvParamEnum& 
        MVSCRIPT_NO_OF_BEHAVIOUR_PARAMS_INDEXES,MV_INVALID_BEHAVIOUR_PARAMETER);
 */
    return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_BEHAVIOUR_PARAMETER);
-};
+}
 
 mvErrorEnum mvScript_checkBehaviourParamsFlag(const char* params, mvParamEnum& dest)
 {
    return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_BEHAVIOUR_PARAMETER);
-};
+}
 
 mvErrorEnum mvScript_checkBehaviourParamsv(const char* params, mvParamEnum& dest)
 {
    return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_BEHAVIOUR_PARAMETER);
-};
+}
 
 mvErrorEnum mvScript_checkBehaviourParamsFlagOptions(const char* option, mvOptionEnum& dest)
 {
    return CheckAllOptionEnumsForString(option, dest, MV_NON_OPTION_ENUM,MV_INVALID_BEHAVIOUR_TYPE);
+}
+
+/**
+ * group behaviour functions
+ */
+
+/*
+const mvEnum mvScript_GroupBehaviourTypes[] =
+{
+MV_SIMPLE_FLOCK,
 };
+const mvCount MVSCRIPT_NO_OF_GROUP_BEHAVIOUR_TYPES = sizeof(mvScript_GroupBehaviourTypes)/sizeof(mvEnum);
+*/
+mvErrorEnum mvScript_checkGroupBehaviourType(const char* type, mvOptionEnum& dest)
+{
+/*
+   return mvScript_checkEnumArrayBinarySearch(type, &mvScript_GroupBehaviourTypes[0],
+                                     MVSCRIPT_NO_OF_GROUP_BEHAVIOUR_TYPES,MV_INVALID_BEHAVIOUR_TYPE);
+*/
+   return CheckAllOptionEnumsForString(type, dest, MV_NON_BEHAVIOUR_TYPE,MV_INVALID_BEHAVIOUR_TYPE);
+}
+
 /*
 const mvEnum mvScript_GroupBehaviourParamsFlagsEnums[] =
 {
@@ -817,7 +905,7 @@ mvErrorEnum mvScript_checkGroupBehaviourParamsFlag(const char* params, mvParamEn
       MVSCRIPT_NO_OF_GROUP_BEHAVIOUR_PARAMS_FLAGS,MV_INVALID_BEHAVIOUR_PARAMETER);
    */
    return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_BEHAVIOUR_PARAMETER);
-};
+}
 /*
 const mvEnum mvScript_GroupBehaviourParamsvEnums[] =
 {
@@ -834,7 +922,7 @@ mvErrorEnum mvScript_checkGroupBehaviourParamsv(const char* params, mvParamEnum&
           MVSCRIPT_NO_OF_GROUP_BEHAVIOUR_PARAMSV,MV_INVALID_BEHAVIOUR_PARAMETER);
    */
    return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_BEHAVIOUR_PARAMETER);
-};
+}
 /*
 const mvEnum mvScript_GroupBehaviourParamsFlagOptions[] =
 {
@@ -850,9 +938,94 @@ mvErrorEnum mvScript_checkGroupBehaviourParamsFlagOptions(const char* option, mv
       MVSCRIPT_NO_OF_GROUP_BEHAVIOUR_PARAMS_FLAG_OPTIONS,MV_INVALID_BEHAVIOUR_PARAM_OPTION);
    */
    return CheckAllOptionEnumsForString(option, dest, MV_NON_OPTION_ENUM,MV_INVALID_BEHAVIOUR_TYPE);
-};
+}
 
 mvErrorEnum mvScript_checkGroupBehaviourParamsIndex(const char* params, mvParamEnum& dest)
 {
    return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_BEHAVIOUR_PARAMETER);
-};
+}
+
+mvErrorEnum mvScript_checkMainGroupBehaviourParamsIndex(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_GROUP_BEHAVIOUR_PARAMETER);
+}
+
+mvErrorEnum mvScript_checkMainGroupBehaviourParamsFlag(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_GROUP_BEHAVIOUR_PARAMETER);
+}
+
+mvErrorEnum mvScript_checkMainGroupBehaviourParamsv(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_GROUP_BEHAVIOUR_PARAMETER);
+}
+
+mvErrorEnum mvScript_checkMainGroupBehaviourParamsFlagOptions(const char* option, mvOptionEnum& dest)
+{
+   return CheckAllOptionEnumsForString(option, dest, MV_NON_OPTION_ENUM,MV_INVALID_BEHAVIOUR_TYPE);
+}
+
+/**
+ * pathway parameter
+ */
+
+mvErrorEnum mvScript_checkPathwayParamsIndex(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_PATHWAY_PARAMETER);
+}
+
+mvErrorEnum mvScript_checkPathwayParamsFlag(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_PATHWAY_PARAMETER);
+}
+
+mvErrorEnum mvScript_checkPathwayParamsv(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_PATHWAY_PARAMETER);
+}
+
+mvErrorEnum mvScript_checkPathwayParamsFlagOptions(const char* option, mvOptionEnum& dest)
+{
+   return CheckAllOptionEnumsForString(option, dest, MV_NON_OPTION_ENUM, MV_INVALID_OPTION_ENUM_STRING);
+}
+
+mvErrorEnum mvScript_checkWorldParamsIndex(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_PATHWAY_PARAMETER);
+}
+
+mvErrorEnum mvScript_checkWorldParamsFlag(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_PATHWAY_PARAMETER);
+}
+
+mvErrorEnum mvScript_checkWorldParamsv(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_PATHWAY_PARAMETER);
+}
+
+mvErrorEnum mvScript_checkWorldParamsFlagOptions(const char* option, mvOptionEnum& dest)
+{
+   return CheckAllOptionEnumsForString(option, dest, MV_NON_OPTION_ENUM, MV_INVALID_OPTION_ENUM_STRING);
+}
+
+mvErrorEnum mvScript_checkGroupParamsIndex(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_PATHWAY_PARAMETER);
+}
+
+mvErrorEnum mvScript_checkGroupParamsFlag(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_PATHWAY_PARAMETER);
+}
+
+mvErrorEnum mvScript_checkGroupParamsv(const char* params, mvParamEnum& dest)
+{
+   return CheckAllParamEnumsForString(params, dest, MV_NO_PARAMETER,MV_INVALID_PATHWAY_PARAMETER);
+}
+
+mvErrorEnum mvScript_checkGroupParamsFlagOptions(const char* option, mvOptionEnum& dest)
+{
+   return CheckAllOptionEnumsForString(option, dest, MV_NON_OPTION_ENUM, MV_INVALID_OPTION_ENUM_STRING);
+}
+

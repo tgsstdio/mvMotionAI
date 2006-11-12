@@ -126,19 +126,29 @@ mvIndex mvBehaviourEntry::getGroupIndex()
 };
 */
 
-mvErrorEnum mvBehaviourEntry::getParameter(mvParamEnum paramFlag, mvOptionEnum* dest) const
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvBehaviourEntry::getParameteri(mvParamEnum paramFlag, mvIndex* index)
 {
-   return MV_INVALID_BEHAVIOUR_PARAMETER;
-}
+   if (index == NULL)
+      return MV_INDEX_VALUE_IS_INVALID;
 
-mvErrorEnum mvBehaviourEntry::getParameterf(mvParamEnum paramFlag, mvFloat* dest) const
-{
-   return MV_INVALID_BEHAVIOUR_PARAMETER;
-}
-
-mvErrorEnum mvBehaviourEntry::getParameterv(mvParamEnum paramFlag, mvFloat* dest, mvCount* size) const
-{
-  return MV_INVALID_BEHAVIOUR_PARAMETER;
+   switch(paramFlag)
+   {
+      case MV_WAYPOINT_TARGET:
+         *index = getWaypoint();
+         return MV_NO_ERROR;
+      case MV_BODY_TARGET:
+         *index = getBody();
+         return MV_NO_ERROR;
+      case MV_PATHWAY_TARGET:
+         *index = getPathway();
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_BEHAVIOUR_PARAMETER;
+   }
 }
 
 mvErrorEnum mvBehaviourEntry::setParameteri(mvParamEnum paramFlag, mvIndex option)
@@ -154,6 +164,38 @@ mvErrorEnum mvBehaviourEntry::setParameteri(mvParamEnum paramFlag, mvIndex optio
       default:
          return MV_INVALID_BEHAVIOUR_PARAMETER;
    }
+}
+
+mvErrorEnum mvBehaviourEntry::getParameter(mvParamEnum paramFlag, mvOptionEnum* dest)
+{
+   bool isValid = false;
+
+   if (dest == NULL)
+      return MV_OPTION_ENUM_DEST_IS_NULL;
+
+   switch(paramFlag)
+   {
+      case MV_TYPE:
+         *dest = getType();
+         return MV_NO_ERROR;
+      case MV_PERCEIVED_COHESION_FLAG:
+         if (bType == MV_SIMPLE_FLOCK_GROUP_ENTRY)
+         {
+            *dest = extraStates[MV_SIMPLE_FLOCK_PERCEIVED_COHESION_FLAG_INDEX];
+            isValid = true;
+         }
+         break;
+      case MV_PERCEIVED_ALIGNMENT_FLAG:
+         if (bType == MV_SIMPLE_FLOCK_GROUP_ENTRY)
+         {
+            *dest = extraStates[MV_SIMPLE_FLOCK_PERCEIVED_ALIGNMENT_FLAG_INDEX];
+            isValid = true;
+         }
+         break;
+      default:
+         return MV_INVALID_BEHAVIOUR_PARAMETER;
+   }
+   return (isValid) ? MV_NO_ERROR : MV_INVALID_BEHAVIOUR_TYPE;
 }
 
 mvErrorEnum mvBehaviourEntry::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
@@ -172,7 +214,45 @@ mvErrorEnum mvBehaviourEntry::setParameter(mvParamEnum paramFlag, mvOptionEnum o
       case MV_PERCEIVED_ALIGNMENT_FLAG:
          if (bType == MV_SIMPLE_FLOCK_GROUP_ENTRY)
          {
-            extraStates[MV_SIMPLE_FLOCK_PERCEIVED_ALIGNMENT_FLAG_INDEX] = option,
+            extraStates[MV_SIMPLE_FLOCK_PERCEIVED_ALIGNMENT_FLAG_INDEX] = option;
+            isValid = true;
+         }
+         break;
+      default:
+         return MV_INVALID_BEHAVIOUR_PARAMETER;
+   }
+   return (isValid) ? MV_NO_ERROR : MV_INVALID_BEHAVIOUR_TYPE;
+}
+
+mvErrorEnum mvBehaviourEntry::getParameterf(mvParamEnum paramFlag, mvFloat* dest)
+{
+   bool isValid = false;
+
+   if (dest == NULL)
+   {
+      return MV_FLOAT_DEST_IS_NULL;
+   }
+
+   switch(paramFlag)
+   {
+      case MV_COHESION_FACTOR:
+         if (bType == MV_SIMPLE_FLOCK)
+         {
+            *dest = extraVariables[MV_SIMPLE_FLOCK_COHESION_FACTOR_INDEX];
+            isValid = true;
+         }
+         break;
+      case MV_SEPARATION_FACTOR:
+         if (bType == MV_SIMPLE_FLOCK)
+         {
+            *dest = extraVariables[MV_SIMPLE_FLOCK_SEPARATION_FACTOR_INDEX];
+            isValid = true;
+         }
+         break;
+      case MV_ALIGNMENT_FACTOR:
+         if (bType == MV_SIMPLE_FLOCK)
+         {
+            *dest = extraVariables[MV_SIMPLE_FLOCK_ALIGNMENT_FACTOR_INDEX];
             isValid = true;
          }
          break;
@@ -184,7 +264,6 @@ mvErrorEnum mvBehaviourEntry::setParameter(mvParamEnum paramFlag, mvOptionEnum o
 
 mvErrorEnum mvBehaviourEntry::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
-
    bool isValid = false;
    switch(paramFlag)
    {
@@ -198,14 +277,14 @@ mvErrorEnum mvBehaviourEntry::setParameterf(mvParamEnum paramFlag, mvFloat num)
       case MV_SEPARATION_FACTOR:
          if (bType == MV_SIMPLE_FLOCK)
          {
-            extraVariables[MV_SIMPLE_FLOCK_SEPARATION_FACTOR_INDEX] = num,
+            extraVariables[MV_SIMPLE_FLOCK_SEPARATION_FACTOR_INDEX] = num;
             isValid = true;
          }
          break;
       case MV_ALIGNMENT_FACTOR:
          if (bType == MV_SIMPLE_FLOCK)
          {
-            extraVariables[MV_SIMPLE_FLOCK_ALIGNMENT_FACTOR_INDEX] = num,
+            extraVariables[MV_SIMPLE_FLOCK_ALIGNMENT_FACTOR_INDEX] = num;
             isValid = true;
          }
          break;
@@ -217,14 +296,38 @@ mvErrorEnum mvBehaviourEntry::setParameterf(mvParamEnum paramFlag, mvFloat num)
 
 mvErrorEnum mvBehaviourEntry::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 {
-   if (numArray != NULL)
-   {
-      return setParameterf(paramFlag,numArray[0]);
-   }
-   else
+   if (numArray == NULL)
    {
       return MV_PARAMETER_ARRAY_IS_NULL;
    }
+
+   return setParameterf(paramFlag,numArray[0]);
+}
+
+mvErrorEnum mvBehaviourEntry::getParameterv(mvParamEnum paramFlag, mvFloat* numArray, mvCount* size)
+{
+   mvErrorEnum error;
+
+   if (numArray == NULL)
+   {
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
+   if (size == NULL)
+   {
+      return MV_COUNT_DEST_IS_NULL;
+   }
+
+   error = getParameterf(paramFlag,numArray);
+   if (error == MV_NO_ERROR)
+   {
+      *size = 1;
+   }
+   else
+   {
+      *size = 0;
+   }
+   return error;
 }
 
 const mvBehaviourEntry& mvBehaviourEntry::operator=(const mvBehaviourEntry& rhs)
@@ -298,8 +401,6 @@ mvBehaviourEntry::mvBehaviourEntry(const mvBehaviourEntry& rhs)
 
 mvIndex mvBehaviourEntry::getBody() const
 {
-
-
    if (indexes != NULL)
    {
       switch(bType)
@@ -310,12 +411,12 @@ mvIndex mvBehaviourEntry::getBody() const
          case MV_EVASION:
             return indexes[MV_BEHAVIOUR_PURSUIT_BODY_TARGET_INDEX];
          default:
-            return MV_INVALID_BEHAVIOUR_TYPE;
+            return MV_NO_CURRENT_INDEX;
       }
    }
    else
    {
-      return MV_INVALID_BEHAVIOUR_TYPE;
+      return MV_NO_CURRENT_INDEX;
    }
 }
 
@@ -334,7 +435,7 @@ mvErrorEnum mvBehaviourEntry::addBody(mvIndex bBody)
            indexes[MV_BEHAVIOUR_PURSUIT_BODY_TARGET_INDEX] = bBody;
            return MV_NO_ERROR;
         default:
-           return MV_INVALID_BEHAVIOUR_TYPE;
+           return MV_BODY_CANNOT_ADDED;
      }
   }
   else
@@ -354,7 +455,7 @@ mvIndex mvBehaviourEntry::getWaypoint() const
            return indexes[MV_BEHAVIOUR_SEEK_WAYPOINT_INDEX];
         }
      default:
-        return 0; // 0 means no value
+        return MV_NO_CURRENT_INDEX;
    }
 }
 
@@ -367,7 +468,7 @@ mvErrorEnum mvBehaviourEntry::addPathway(mvIndex bPathway)
 mvIndex mvBehaviourEntry::getPathway() const
 {
    //bPaths = bPathway;
-   return 0;
+   return MV_NO_CURRENT_INDEX;
 }
 
 mvErrorEnum mvBehaviourEntry::addWaypoint(mvIndex bWaypoint)
@@ -472,7 +573,7 @@ mvErrorEnum mvBehaviourEntry::mvBehaviour_InitialiseType2(mvOptionEnum type)
          return MV_INVALID_BEHAVIOUR_TYPE;
    }
 
-   /**
+   /*
    if (indexes != NULL)
    {
       indexSize = mvBehaviour_GetIndexesArraySize(bType);
@@ -482,6 +583,6 @@ mvErrorEnum mvBehaviourEntry::mvBehaviour_InitialiseType2(mvOptionEnum type)
          indexes[i] = tempIndexArray[i];
       }
    }
-   **/
+   */
    return MV_NO_ERROR;
 }

@@ -175,24 +175,81 @@ void mvGroupBehaviour::removeAllGroups()
    groupsList.clear();
 }
 
-mvErrorEnum mvGroupBehaviour::getParameteri(mvIndex groupIndex, mvParamEnum paramFlag, mvIndex* index) const
+mvErrorEnum mvGroupBehaviour::getParameteri(mvIndex groupIndex, mvParamEnum paramFlag, mvIndex* index)
 {
+   mvGroupBehaviourNode* tempNode = findGroupNodeByIndex(groupIndex);
+   mvBehaviourEntry* tempEntry = NULL;
+
+   if (tempNode != NULL)
+   {
+      tempEntry = tempNode->getBehavData();
+      if (tempEntry != NULL)
+         return tempEntry->getParameteri(paramFlag,index);
+   }
    return MV_INVALID_GROUP_BEHAVIOUR_PARAMETER;
 }
 
-mvErrorEnum mvGroupBehaviour::getParameter(mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum* option) const
+mvErrorEnum mvGroupBehaviour::getParameter(mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum* option)
 {
-   return MV_INVALID_GROUP_BEHAVIOUR_PARAMETER;
+   mvGroupBehaviourNode* tempNode = findGroupNodeByIndex(groupIndex);
+   mvBehaviourEntry* tempEntry = NULL;
+
+   if (tempNode != NULL)
+   {
+      return MV_GROUP_INDEX_IS_INVALID;
+   }
+
+   tempEntry = tempNode->getBehavData();
+   if (tempEntry != NULL)
+   {
+      return tempEntry->getParameter(paramFlag,option);
+   }
+   else
+   {
+      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+   }
 }
 
-mvErrorEnum mvGroupBehaviour::getParameterf(mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* num) const
+mvErrorEnum mvGroupBehaviour::getParameterf(mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* num)
 {
-   return MV_INVALID_GROUP_BEHAVIOUR_PARAMETER;
+   mvGroupBehaviourNode* tempNode = findGroupNodeByIndex(groupIndex);
+   mvBehaviourEntry* tempEntry = NULL;
+
+   if (tempNode != NULL)
+   {
+      return MV_GROUP_INDEX_IS_INVALID;
+   }
+
+   tempEntry = tempNode->getBehavData();
+   if (tempEntry != NULL)
+   {
+      return tempEntry->getParameterf(paramFlag,num);
+   }
+   else
+   {
+      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+   }
 }
 
-mvErrorEnum mvGroupBehaviour::getParameterv(mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* numArray) const
+mvErrorEnum mvGroupBehaviour::getParameterv(mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters)
 {
-   return MV_INVALID_GROUP_BEHAVIOUR_PARAMETER;
+   mvGroupBehaviourNode* tempNode = findGroupNodeByIndex(groupIndex);
+   mvBehaviourEntry* tempEntry = NULL;
+
+   if (tempNode != NULL)
+   {
+      return MV_GROUP_INDEX_IS_INVALID;
+   }
+
+   tempEntry = tempNode->getBehavData();
+   if (tempEntry != NULL)
+   {
+         return tempEntry->getParameterv(paramFlag,numArray,noOfParameters);
+   }
+   else
+   {
+      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+   }
 }
 
 mvErrorEnum mvGroupBehaviour::setParameteri(mvIndex groupIndex, mvParamEnum paramFlag, mvIndex index)
@@ -202,11 +259,18 @@ mvErrorEnum mvGroupBehaviour::setParameteri(mvIndex groupIndex, mvParamEnum para
 
    if (tempNode != NULL)
    {
-      tempEntry = tempNode->getBehavData();
-      if (tempEntry != NULL)
+      return MV_GROUP_INDEX_IS_INVALID;
+   }
+
+   tempEntry = tempNode->getBehavData();
+   if (tempEntry != NULL)
+   {
          return tempEntry->setParameteri(paramFlag,index);
    }
-   return MV_INVALID_GROUP_BEHAVIOUR_PARAMETER;
+   else
+   {
+      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+   }
 }
 
 mvErrorEnum mvGroupBehaviour::setParameter(mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum option)
@@ -216,11 +280,18 @@ mvErrorEnum mvGroupBehaviour::setParameter(mvIndex groupIndex, mvParamEnum param
 
    if (tempNode != NULL)
    {
-      tempEntry = tempNode->getBehavData();
-      if (tempEntry != NULL)
+      return MV_GROUP_INDEX_IS_INVALID;
+   }
+
+   tempEntry = tempNode->getBehavData();
+   if (tempEntry != NULL)
+   {
          return tempEntry->setParameter(paramFlag,option);
    }
-   return MV_INVALID_GROUP_BEHAVIOUR_PARAMETER;
+   else
+   {
+      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+   }
 }
 
 mvErrorEnum mvGroupBehaviour::setParameterf(mvIndex groupIndex, mvParamEnum paramFlag, mvFloat num)
@@ -230,11 +301,18 @@ mvErrorEnum mvGroupBehaviour::setParameterf(mvIndex groupIndex, mvParamEnum para
 
    if (tempNode != NULL)
    {
-      tempEntry = tempNode->getBehavData();
-      if (tempEntry != NULL)
+      return MV_GROUP_INDEX_IS_INVALID;
+   }
+
+   tempEntry = tempNode->getBehavData();
+   if (tempEntry != NULL)
+   {
          return tempEntry->setParameterf(paramFlag,num);
    }
-   return MV_INVALID_GROUP_BEHAVIOUR_PARAMETER;
+   else
+   {
+      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+   }
 }
 
 mvErrorEnum mvGroupBehaviour::setParameterv(mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* numArray)
@@ -244,11 +322,18 @@ mvErrorEnum mvGroupBehaviour::setParameterv(mvIndex groupIndex, mvParamEnum para
 
    if (tempNode != NULL)
    {
-      tempEntry = tempNode->getBehavData();
-      if (tempEntry != NULL)
-         return tempEntry->setParameterv(paramFlag,numArray);
+      return MV_GROUP_INDEX_IS_INVALID;
    }
-   return MV_INVALID_GROUP_BEHAVIOUR_PARAMETER;
+
+   tempEntry = tempNode->getBehavData();
+   if (tempEntry != NULL)
+   {
+      return tempEntry->setParameterv(paramFlag,numArray);
+   }
+   else
+   {
+      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+   }
 }
 
 mvGroupBehaviourNode* mvGroupBehaviour::findGroupNodeByIndex(mvIndex groupIndex)
@@ -305,6 +390,133 @@ mvOptionEnum mvGroupBehaviour::getType() const
    return groupBehaviourType;
 }
 
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvGroupBehaviour::getMainParameteri(mvParamEnum paramFlag, mvIndex* index)
+{
+   if (defaultEntries != NULL)
+   {
+      return defaultEntries->getParameteri(paramFlag,index);
+   }
+   else
+   {
+      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+   }
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvGroupBehaviour::getMainParameter(mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   if (defaultEntries != NULL)
+   {
+      return defaultEntries->getParameter(paramFlag,option);
+   }
+   else
+   {
+      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+   }
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvGroupBehaviour::getMainParameterf(mvParamEnum paramFlag, mvFloat* num)
+{
+   if (defaultEntries != NULL)
+   {
+      return defaultEntries->getParameterf(paramFlag,num);
+   }
+   else
+   {
+      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+   }
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvGroupBehaviour::getMainParameterv(mvParamEnum paramFlag, mvFloat* numArray,mvCount* noOfParameters)
+{
+   if (defaultEntries != NULL)
+   {
+      return defaultEntries->getParameterv(paramFlag,numArray,noOfParameters);
+   }
+   else
+   {
+      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+   }
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvGroupBehaviour::setMainParameteri(mvParamEnum paramFlag, mvIndex index)
+{
+   if (defaultEntries != NULL)
+   {
+      return defaultEntries->setParameteri(paramFlag,index);
+   }
+   else
+   {
+      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+   }
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvGroupBehaviour::setMainParameter(mvParamEnum paramFlag, mvOptionEnum option)
+{
+   if (defaultEntries != NULL)
+   {
+      return defaultEntries->setParameteri(paramFlag,option);
+   }
+   else
+   {
+      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+   }
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvGroupBehaviour::setMainParameterf(mvParamEnum paramFlag, mvFloat num)
+{
+   if (defaultEntries != NULL)
+   {
+      return defaultEntries->setParameterf(paramFlag,num);
+   }
+   else
+   {
+      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+   }
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvGroupBehaviour::setMainParameterv(mvParamEnum paramFlag, mvFloat* numArray)
+{
+   if (defaultEntries != NULL)
+   {
+      return defaultEntries->setParameterv(paramFlag,numArray);
+   }
+   else
+   {
+      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+   }
+}
 
 // group beh list node
 
@@ -402,35 +614,7 @@ mvGroupBehaviourNode::~mvGroupBehaviourNode()
    }
 }
 
-/*
-mvGroupBehaviour::mvGroupBehaviour(mvBehaviour* groupBeh)
-{
-   currentBehaviour = groupBeh;
-   noOfGroups = 0;
-};
 
-mvEnum mvGroupBehaviour::addGroup(mvGroup* groupPtr)
-{
-  return mvAddUniqueItemInVector<mvGroup>(groups,groupPtr,noOfGroups);
-};
 
-mvEnum mvGroupBehaviour::removeGroup(mvGroup* groupPtr)
-{
-  return mvRemoveUniqueItemInVector<mvGroup>(groups,groupPtr,noOfGroups);
-};
 
-mvGroup* mvGroupBehaviour::getGroupByIndex(mvIndex index)
-{
-   return mvGetClassPtr<mvGroup>(groups, index, noOfGroups);
-};
 
-mvCount mvGroupBehaviour::getNoOfGroups()
-{
-   return noOfGroups;
-};
-
-mvBehaviour* mvGroupBehaviour::getBehaviour()
-{
-   return currentBehaviour;
-};
-*/

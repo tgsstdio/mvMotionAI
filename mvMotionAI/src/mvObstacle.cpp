@@ -34,6 +34,12 @@
  *
  */
 
+static const mvIndex MV_CIRCULAR_RADIUS_INDEX = 0;
+static const mvIndex MV_AACYLINDER_LENGTH_INDEX = 1;
+static const mvIndex MV_AABOX_X_INDEX = 0;
+static const mvIndex MV_AABOX_Y_INDEX = 1;
+static const mvIndex MV_AABOX_Z_INDEX = 2;
+
 mvErrorEnum mvObstacle::initialiseShapeDimensions(mvOptionEnum shape)
 {
    mvFloat tempDims[MV_MAX_NO_OF_OBSTACLE_DIMENSIONS];
@@ -79,12 +85,12 @@ mvErrorEnum mvObstacle::initialiseShapeDimensions(mvOptionEnum shape)
       dimensions[i] = tempDims[i];
    }
    return MV_NO_ERROR;
-};
+}
 
 mvOptionEnum mvObstacle::getShape() const
 {
   return obstacleShape;
-};
+}
 
 mvErrorEnum mvObstacle::checkValidType(mvOptionEnum oType)
 {
@@ -99,7 +105,7 @@ mvErrorEnum mvObstacle::checkValidType(mvOptionEnum oType)
        obstacleType = MV_NON_OBSTACLE_TYPE;
        return MV_INVALID_OBSTACLE_TYPE;
    }
-};
+}
 /*
 mvObstacle::mvObstacle()
 {
@@ -121,7 +127,7 @@ mvObstacle::mvObstacle(mvOptionEnum oShape, mvOptionEnum oType)
   obstacleType = MV_NON_OBSTACLE_TYPE;
   initialiseShapeDimensions(oShape);
   checkValidType(oType);
-};
+}
 
 mvObstacle::mvObstacle(mvOptionEnum oShape, mvOptionEnum oType,mvFloat x, mvFloat y, mvFloat z)
 {
@@ -131,7 +137,7 @@ mvObstacle::mvObstacle(mvOptionEnum oShape, mvOptionEnum oType,mvFloat x, mvFloa
   obstacleType = MV_NON_OBSTACLE_TYPE;
   initialiseShapeDimensions(oShape);
   checkValidType(oType);
-};
+}
 
 mvObstacle::~mvObstacle()
 {
@@ -139,10 +145,10 @@ mvObstacle::~mvObstacle()
   {
      delete [] dimensions;
   }
-};
+}
 
 /**
- * returns no of dimensions required for current
+ * \brief returns no of dimensions required for current
  * obstacle shape
  */
 mvCount mvObstacle::getNoOfDimensions() const
@@ -165,12 +171,38 @@ mvCount mvObstacle::getNoOfDimensions() const
       default:
          return MV_INVALID_DIMENSIONS;
   }
-};
+}
+
+mvFloat mvObstacle::getX() const
+{
+   return position.getX();
+}
+
+mvFloat mvObstacle::getY() const
+{
+   return position.getY();
+}
+
+mvFloat mvObstacle::getZ() const
+{
+   return position.getZ();
+}
+
+void mvObstacle::setPosition(mvFloat x, mvFloat y, mvFloat z)
+{
+  position.set(x,y,z);
+}
+
+mvOptionEnum mvObstacle::getType() const
+{
+  return obstacleType;
+}
 
 /**
- * set flag parameters of obstacle
+ * \brief set state of obstacle by parameter
  *
- * NOTE : implementations for c
+ * returns mvErrorEnum enum. If successful, MV_NO_ERROR is returned else
+ * other error value (! 0) is returned.
  */
 mvErrorEnum mvObstacle::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
@@ -183,39 +215,284 @@ mvErrorEnum mvObstacle::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
       default:
          return MV_INVALID_OBSTACLE_PARAMETER;
    }
-};
+}
 
-void mvObstacle::setPosition(mvFloat x, mvFloat y, mvFloat z)
+/**
+ * \brief get state of obstacle by parameter
+ *
+ * returns mvErrorEnum enum. If successful, MV_NO_ERROR is returned else
+ * other error value (! 0) is returned.
+ */
+mvErrorEnum mvObstacle::getParameter(mvParamEnum paramFlag, mvOptionEnum* option)
 {
-  position.set(x,y,z);
-};
+   if (option == NULL)
+      return MV_OPTION_ENUM_DEST_IS_NULL;
 
+   switch (paramFlag)
+   {
+      case MV_SHAPE:
+         *option = obstacleShape;
+         return MV_NO_ERROR;
+      case MV_TYPE:
+         *option = obstacleType;
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_OBSTACLE_PARAMETER;
+   }
+}
+/*
+   MV_POSITION,
+   MV_LENGTH,
+   MV_RADIUS,
+   MV_X_WIDTH,
+   MV_Y_LENGTH,
+   MV_Z_DEPTH,
+*/
+
+/** @brief get single floating point value from this obstacle
+  *
+  * returns mvErrorEnum enum. If successful, MV_NO_ERROR is returned else
+  * other error value (! 0) is returned.
+  */
+mvErrorEnum mvObstacle::getParameterf(mvParamEnum paramFlag, mvFloat* num)
+{
+   mvIndex tempIndex;
+
+   if (num == NULL)
+      return  MV_FLOAT_DEST_IS_NULL;
+
+   switch(paramFlag)
+   {
+      case MV_LENGTH:
+         switch(obstacleShape)
+         {
+            case MV_X_AXIS_AA_CYLINDER:
+            case MV_Z_AXIS_AA_CYLINDER:
+            case MV_Y_AXIS_AA_CYLINDER:
+               *num = dimensions[MV_AACYLINDER_LENGTH_INDEX];
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_OBSTACLE_SHAPE;
+         }
+      case MV_RADIUS:
+         switch(obstacleShape)
+         {
+            case MV_SPHERE:
+            case MV_X_AXIS_AA_CYLINDER:
+            case MV_Z_AXIS_AA_CYLINDER:
+            case MV_Y_AXIS_AA_CYLINDER:
+               *num = dimensions[MV_CIRCULAR_RADIUS_INDEX];
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_OBSTACLE_SHAPE;
+         }
+      case MV_X_WIDTH:
+         switch(obstacleShape)
+         {
+            case MV_AABOX:
+               tempIndex = MV_AABOX_X_INDEX;
+               *num = dimensions[tempIndex];
+               return MV_NO_ERROR;
+            case MV_X_AXIS_AA_CYLINDER:
+               tempIndex = MV_AACYLINDER_LENGTH_INDEX;
+               *num = dimensions[tempIndex];
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_OBSTACLE_SHAPE;
+         }
+      case MV_Y_LENGTH:
+         switch(obstacleShape)
+         {
+            case MV_AABOX:
+               tempIndex = MV_AABOX_Y_INDEX;
+               return MV_NO_ERROR;
+            case MV_Y_AXIS_AA_CYLINDER:
+               tempIndex = MV_AACYLINDER_LENGTH_INDEX;
+               *num = dimensions[tempIndex];
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_OBSTACLE_SHAPE;
+         }
+      case MV_Z_DEPTH:
+         switch(obstacleShape)
+         {
+            case MV_AABOX:
+               tempIndex = MV_AABOX_Z_INDEX;
+               *num = dimensions[tempIndex];
+               return MV_NO_ERROR;
+            case MV_Z_AXIS_AA_CYLINDER:
+               tempIndex = MV_AACYLINDER_LENGTH_INDEX;
+               *num = dimensions[tempIndex];
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_OBSTACLE_SHAPE;
+         }
+      default:
+         return MV_INVALID_OBSTACLE_PARAMETER;
+   }
+}
+
+/** @brief set single floating point value of this obstacle
+  *
+  * returns mvErrorEnum enum. If successful, MV_NO_ERROR is returned else
+  * other error value (! 0) is returned.
+  */
 mvErrorEnum mvObstacle::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
-   return MV_INVALID_OBSTACLE_PARAMETER;
-};
+   mvIndex tempIndex;
+
+   switch(paramFlag)
+   {
+      case MV_LENGTH:
+         switch(obstacleShape)
+         {
+            case MV_X_AXIS_AA_CYLINDER:
+            case MV_Z_AXIS_AA_CYLINDER:
+            case MV_Y_AXIS_AA_CYLINDER:
+               dimensions[MV_AACYLINDER_LENGTH_INDEX] = num;
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_OBSTACLE_SHAPE;
+         }
+      case MV_RADIUS:
+         switch(obstacleShape)
+         {
+            case MV_SPHERE:
+            case MV_X_AXIS_AA_CYLINDER:
+            case MV_Z_AXIS_AA_CYLINDER:
+            case MV_Y_AXIS_AA_CYLINDER:
+               dimensions[MV_CIRCULAR_RADIUS_INDEX] = num;
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_OBSTACLE_SHAPE;
+         }
+      case MV_X_WIDTH:
+         switch(obstacleShape)
+         {
+            case MV_AABOX:
+               tempIndex = MV_AABOX_X_INDEX;
+               dimensions[tempIndex] = num;
+               return MV_NO_ERROR;
+            case MV_X_AXIS_AA_CYLINDER:
+               tempIndex = MV_AACYLINDER_LENGTH_INDEX;
+               dimensions[tempIndex] = num;
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_OBSTACLE_SHAPE;
+         }
+      case MV_Y_LENGTH:
+         switch(obstacleShape)
+         {
+            case MV_AABOX:
+               tempIndex = MV_AABOX_Y_INDEX;
+               dimensions[tempIndex] = num;
+               return MV_NO_ERROR;
+            case MV_Y_AXIS_AA_CYLINDER:
+               tempIndex = MV_AACYLINDER_LENGTH_INDEX;
+               dimensions[tempIndex] = num;
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_OBSTACLE_SHAPE;
+         }
+      case MV_Z_DEPTH:
+         switch(obstacleShape)
+         {
+            case MV_AABOX:
+               tempIndex = MV_AABOX_Z_INDEX;
+               dimensions[tempIndex] = num;
+               return MV_NO_ERROR;
+            case MV_Z_AXIS_AA_CYLINDER:
+               tempIndex = MV_AACYLINDER_LENGTH_INDEX;
+               dimensions[tempIndex] = num;
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_OBSTACLE_SHAPE;
+         }
+      default:
+         return MV_INVALID_OBSTACLE_PARAMETER;
+   }
+}
 
 mvErrorEnum mvObstacle::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 {
-   return MV_INVALID_OBSTACLE_PARAMETER;
-};
+   mvVec3 tempVector;
 
-mvFloat mvObstacle::getX() const
-{
-   return position.getX();
-};
+   if (numArray == NULL)
+   {
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
 
-mvFloat mvObstacle::getY() const
-{
-   return position.getY();
+   switch(paramFlag)
+   {
+      case MV_POSITION:
+         position.setXYZ(numArray[0],numArray[1],numArray[2]);
+         return MV_NO_ERROR;
+      default:
+         return setParameterf(paramFlag,numArray[0]);
+   }
 }
 
-mvFloat mvObstacle::getZ() const
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvObstacle::getParameterv(mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters)
 {
-   return position.getZ();
-};
+   mvErrorEnum error;
+   if (noOfParameters == NULL)
+   {
+      return MV_COUNT_DEST_IS_NULL;
+   }
 
-mvOptionEnum mvObstacle::getType() const
+   if (numArray == NULL)
+   {
+      *noOfParameters = 0;
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
+   switch (paramFlag)
+   {
+      case MV_POSITION:
+         numArray[0] = position.getX();
+         numArray[1] = position.getY();
+         numArray[2] = position.getZ();
+         *noOfParameters = 3;
+         return MV_NO_ERROR;
+      default:
+         error = getParameterf(paramFlag,&numArray[0]);
+         if (error == MV_NO_ERROR)
+         {
+            *noOfParameters = 1;
+         }
+         else
+         {
+            *noOfParameters = 0;
+         }
+         return error;
+   }
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvObstacle::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
-  return obstacleType;
-};
+   return MV_INVALID_OBSTACLE_PARAMETER;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvObstacle::getParameteri(mvParamEnum paramFlag, mvIndex* index)
+{
+   if (index == NULL)
+      return MV_INDEX_VALUE_IS_INVALID;
+
+   return MV_INVALID_OBSTACLE_PARAMETER;
+}
+
+
+
+

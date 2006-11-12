@@ -20,6 +20,14 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
+ * Log
+ * Version     Date     Comments
+ * 00-01-17   31/10/06  - conversion from lua pop magic index number to named constants
+ *                      - LUA remove force
+ *                      - LUA remove all forces
+ *                      - LUA remove current force
+ *                      - LUA set current force
  */
 
 #include "mvLuaScript-Force.h"
@@ -30,12 +38,13 @@
 #include "mvMotionAI.h"
 
 int mvLua_AddForce(lua_State* L);
-int mvLua_GetForce(lua_State* L);
-int mvLua_AddForceVector(lua_State* L);
+
+//int mvLua_AddForceVector(lua_State* L);
 int mvLua_RemoveForce(lua_State* L);
 int mvLua_RemoveCurrentForce(lua_State* L);
 int mvLua_RemoveAllForces(lua_State* L);
 int mvLua_SetForceParameter(lua_State* L);
+int mvLua_SetCurrentForce(lua_State* L);
 int mvLua_SetCurrentForceParameter(lua_State* L);
 
 const char* mvLua_LuaForceFunctionNames[] =
@@ -43,6 +52,10 @@ const char* mvLua_LuaForceFunctionNames[] =
 "mvAddForce",
 "mvSetForceParameter",
 "mvSetCurrentForceParameter",
+"mvRemoveCurrentForce",
+"mvRemoveForce",
+"mvSetCurrentForce",
+"mvRemoveAllForces",
 };
 
 const char** mvGetLuaForceFunctions()
@@ -57,19 +70,39 @@ mvCount mvGetNoOfLuaForceFunctions()
 
 void mvLoadLuaForceFunctions(lua_State* L)
 {
-  lua_register(L,mvLua_LuaForceFunctionNames[0],mvLua_AddForce);
-  lua_register(L,mvLua_LuaForceFunctionNames[1],mvLua_SetForceParameter);
-  lua_register(L,mvLua_LuaForceFunctionNames[2],mvLua_SetCurrentForceParameter);
+   const char** ptr = &mvLua_LuaForceFunctionNames[0];
+   mvIndex counter = 0;
+
+   lua_register(L,ptr[counter++],mvLua_AddForce);
+   lua_register(L,ptr[counter++],mvLua_SetForceParameter);
+   lua_register(L,ptr[counter++],mvLua_SetCurrentForceParameter);
+
+/*
+ * 00-01-17
+"mvRemoveCurrentForce",
+"mvRemoveForce",
+"mvSetCurrentForce",
+"mvRemoveAllForces",
+*/
+   lua_register(L,ptr[counter++],mvLua_RemoveCurrentForce);
+   lua_register(L,ptr[counter++],mvLua_RemoveForce);
+   lua_register(L,ptr[counter++],mvLua_SetCurrentForce);
+   lua_register(L,ptr[counter++],mvLua_RemoveAllForces);
 }
 
 int mvLua_AddForce(lua_State* L)
 {
+   static const mvIndex MV_LUA_ADDFORCE_TYPE_INDEX = 2;
+   static const mvIndex MV_LUA_ADDFORCE_X_INDEX = 3;
+   static const mvIndex MV_LUA_ADDFORCE_Y_INDEX = 4;
+   static const mvIndex MV_LUA_ADDFORCE_Z_INDEX = 5;
+
    int result = 0;
-   mvIndex worldID = (mvIndex) lua_tonumber(L,1);
-   const char* type = lua_tostring(L,2);
-   mvFloat x = (mvFloat) lua_tonumber(L,3);
-   mvFloat y = (mvFloat) lua_tonumber(L,4);
-   mvFloat z = (mvFloat) lua_tonumber(L,5);
+   mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
+   const char* type = lua_tostring(L,MV_LUA_ADDFORCE_TYPE_INDEX);
+   mvFloat x = (mvFloat) lua_tonumber(L,MV_LUA_ADDFORCE_X_INDEX);
+   mvFloat y = (mvFloat) lua_tonumber(L,MV_LUA_ADDFORCE_Y_INDEX);
+   mvFloat z = (mvFloat) lua_tonumber(L,MV_LUA_ADDFORCE_Z_INDEX);
    mvOptionEnum fType;
 
    mvWorld* tempWorld = NULL;
@@ -84,20 +117,20 @@ int mvLua_AddForce(lua_State* L)
       result = tempWorld->mvAddForceVector(fType,x,y,z);
    }
    lua_pushnumber(L,result);
-   return 1;
+   return MV_LUA_RETURNED_ERROR_COUNT;
 }
 
 int mvLua_SetForceParameter(lua_State* L)
 {
    int result = MV_INVALID_FORCE_PARAMETER;
-   mvIndex worldID = (mvIndex) lua_tonumber(L,1);
-   mvIndex forceIndex = (mvIndex) lua_tonumber(L,2);
-   const char* params = lua_tostring(L,3);
+   mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
+   mvIndex forceIndex = (mvIndex) lua_tonumber(L,MV_LUA_SET_PARAMETER_ITEM_INDEX);
+   const char* params = lua_tostring(L,MV_LUA_SET_PARAMETER_PARAM_ENUM_INDEX);
    const char* option;
    mvParamEnum checkParams;
    mvOptionEnum checkOption;
    mvErrorEnum checkError;
-   mvIndex i;
+   mvIndex i, indexValue;
    mvFloat numArray[MV_MAX_NO_OF_PARAMETERS];
    mvWorld* tempWorld = NULL;
 
@@ -108,7 +141,7 @@ int mvLua_SetForceParameter(lua_State* L)
       checkError = mvScript_checkForceParamsFlag(params,checkParams);
       if (checkError == MV_NO_ERROR)
       {
-         option = lua_tostring(L,4);
+         option = lua_tostring(L,MV_LUA_SET_PARAMETER_OPTION_ENUM_INDEX);
          if (option != NULL)
          {
             checkError = mvScript_checkForceParamsFlagOptions(option,checkOption);
@@ -118,9 +151,21 @@ int mvLua_SetForceParameter(lua_State* L)
                if (result == MV_NO_ERROR)
                {
                   lua_pushnumber(L,result);
-                  return 1;
+                  return MV_LUA_RETURNED_ERROR_COUNT;
                }
             }
+         }
+      }
+
+      checkError = mvScript_checkForceParamsIndex(params,checkParams);
+      if (checkError == MV_NO_ERROR)
+      {
+         indexValue = (mvIndex) lua_tonumber(L,MV_LUA_SET_PARAMETER_PARAM_INDEX_NO);
+         result = tempWorld->mvSetForceParameteri(forceIndex,checkParams,indexValue);
+         if (result == MV_NO_ERROR)
+         {
+            lua_pushnumber(L,result);
+            return MV_LUA_RETURNED_ERROR_COUNT;
          }
       }
 
@@ -129,25 +174,25 @@ int mvLua_SetForceParameter(lua_State* L)
       {
          for (i = 0; i < MV_MAX_NO_OF_PARAMETERS; i++)
          {
-            numArray[i] = (mvFloat) lua_tonumber(L,4 + i);
+            numArray[i] = (mvFloat) lua_tonumber(L,MV_LUA_SET_PARAMETER_START_OF_VECTOR_INDEX + i);
          }
          result = tempWorld->mvSetForceParameterv(forceIndex,checkParams,numArray);
       }
    }
    lua_pushnumber(L,result);
-   return 1;
+   return MV_LUA_RETURNED_ERROR_COUNT;
 }
 
 int mvLua_SetCurrentForceParameter(lua_State* L)
 {
    int result = MV_INVALID_FORCE_PARAMETER;
-   mvIndex worldID = (mvIndex) lua_tonumber(L,1);
-   const char* params = lua_tostring(L,2);
+   mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
+   const char* params = lua_tostring(L,MV_LUA_SET_CURRENT_PARAMETER_PARAM_ENUM_INDEX);
    const char* option;
    mvParamEnum checkParams;
    mvOptionEnum checkOption;
    mvErrorEnum checkError;
-   mvIndex i;
+   mvIndex i, indexValue;
    mvFloat numArray[MV_MAX_NO_OF_PARAMETERS];
    mvWorld* tempWorld = NULL;
 
@@ -158,7 +203,7 @@ int mvLua_SetCurrentForceParameter(lua_State* L)
       checkError = mvScript_checkForceParamsFlag(params,checkParams);
       if (checkError == MV_NO_ERROR)
       {
-         option = lua_tostring(L,3);
+         option = lua_tostring(L,MV_LUA_SET_CURRENT_PARAMETER_OPTION_ENUM_INDEX);
          if (option != NULL)
          {
             checkError = mvScript_checkForceParamsFlagOptions(option,checkOption);
@@ -168,9 +213,21 @@ int mvLua_SetCurrentForceParameter(lua_State* L)
                if (result == MV_NO_ERROR)
                {
                   lua_pushnumber(L,result);
-                  return 1;
+                  return MV_LUA_RETURNED_ERROR_COUNT;
                }
             }
+         }
+      }
+
+      checkError = mvScript_checkForceParamsIndex(params,checkParams);
+      if (checkError == MV_NO_ERROR)
+      {
+         indexValue = (mvIndex) lua_tonumber(L,MV_LUA_SET_CURRENT_PARAMETER_PARAM_INDEX_NO);
+         result = tempWorld->mvSetCurrentForceParameteri(checkParams,indexValue);
+         if (result == MV_NO_ERROR)
+         {
+            lua_pushnumber(L,result);
+            return MV_LUA_RETURNED_ERROR_COUNT;
          }
       }
 
@@ -179,12 +236,85 @@ int mvLua_SetCurrentForceParameter(lua_State* L)
       {
          for (i = 0; i < MV_MAX_NO_OF_PARAMETERS; i++)
          {
-            numArray[i] = (mvFloat) lua_tonumber(L,3 + i);
+            numArray[i] = (mvFloat) lua_tonumber(L,MV_LUA_SET_CURRENT_PARAMETER_START_OF_VECTOR_INDEX + i);
          }
          result = tempWorld->mvSetCurrentForceParameterv(checkParams,numArray);
       }
    }
    lua_pushnumber(L,result);
-   return 1;
+   return MV_LUA_RETURNED_ERROR_COUNT;
+}
+
+int mvLua_RemoveCurrentForce(lua_State* L)
+{
+   int result = MV_NO_ERROR;
+   int worldID = (int) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
+   mvWorld* tempWorld = NULL;
+
+   tempWorld = mvGetWorldByIndex(worldID);
+   if (tempWorld != NULL)
+   {
+#ifdef MV_LUA_SCRIPT_WAYPOINT_DEBUG_FLAG
+      puts(tempWorld->getWorldID());
+#endif
+      result = tempWorld->mvRemoveCurrentForce();
+   }
+   lua_pushnumber(L,result);
+   return MV_LUA_RETURNED_ERROR_COUNT;
+}
+
+int mvLua_RemoveForce(lua_State* L)
+{
+   int result = MV_NO_ERROR;
+   int worldID = (int) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
+   int fIndex = (int) lua_tonumber(L,MV_LUA_REMOVE_ITEM_INDEX_NO);
+   mvWorld* tempWorld = NULL;
+
+   tempWorld = mvGetWorldByIndex(worldID);
+   if (tempWorld != NULL)
+   {
+#ifdef MV_LUA_SCRIPT_WAYPOINT_DEBUG_FLAG
+      puts(tempWorld->getWorldID());
+#endif
+      result = tempWorld->mvRemoveForce(fIndex);
+   }
+   lua_pushnumber(L,result);
+   return MV_LUA_RETURNED_ERROR_COUNT;
+}
+
+int mvLua_SetCurrentForce(lua_State* L)
+{
+   int result = MV_NO_ERROR;
+   int worldID = (int) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
+   int fIndex = (int) lua_tonumber(L,MV_LUA_SET_CURRENT_ITEM_INDEX_NO);
+   mvWorld* tempWorld = NULL;
+
+   tempWorld = mvGetWorldByIndex(worldID);
+   if (tempWorld != NULL)
+   {
+#ifdef MV_LUA_SCRIPT_WAYPOINT_DEBUG_FLAG
+      puts(tempWorld->getWorldID());
+#endif
+      result = tempWorld->mvSetCurrentForce(fIndex);
+   }
+   lua_pushnumber(L,result);
+   return MV_LUA_RETURNED_ERROR_COUNT;
+}
+
+int mvLua_RemoveAllForces(lua_State* L)
+{
+   //int result = 0;
+   int worldID = (int) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
+   mvWorld* tempWorld = NULL;
+
+   tempWorld = mvGetWorldByIndex(worldID);
+   if (tempWorld != NULL)
+   {
+#ifdef MV_LUA_SCRIPT_WAYPOINT_DEBUG_FLAG
+      puts(tempWorld->getWorldID());
+#endif
+      tempWorld->mvRemoveAllForces();
+   }
+   return MV_LUA_REMOVE_ALL_ITEMS_COUNT;
 }
 

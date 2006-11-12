@@ -20,6 +20,11 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
+ * Log
+ *
+ * version     date        comments
+ * 00-01-17    2/11/06     - conversion to named constants for lua index values
  */
 
 #include "mvMotionAI.h"
@@ -68,13 +73,13 @@ void mvLoadLuaScriptFile(char* fileName)
 }
 
 const char* mvLua_MotionAIFunctionNames[] =
-{
-"mvLoadLuaScriptFile",
-"mvRemoveAllWorlds",
-"mvAddWorld",
-"mvGetWorldByID",
-"mvAllWorldsStepForward",
-};
+   {
+      "mvLoadLuaScriptFile",
+      "mvRemoveAllWorlds",
+      "mvAddWorld",
+      "mvGetWorldByID",
+      "mvAllWorldsStepForward",
+   };
 
 const char** mvGetLuaMotionAIFunctions()
 {
@@ -88,107 +93,115 @@ mvCount mvGetNoOfLuaMotionAIFunctions()
 
 void mvLoadLuaScriptFunctions(lua_State* L)
 {
-  // mvMotionAI main functions
-  lua_register(L,mvLua_MotionAIFunctionNames[0],mvLua_LoadLuaScriptFile);
-  lua_register(L,mvLua_MotionAIFunctionNames[1],mvLua_RemoveAllWorlds);
-  lua_register(L,mvLua_MotionAIFunctionNames[2],mvLua_AddWorld);
-  lua_register(L,mvLua_MotionAIFunctionNames[3],mvLua_GetWorldByID);
-  lua_register(L,mvLua_MotionAIFunctionNames[4],mvLua_AllWorldsStepForward);
+   // mvMotionAI main functions
+   lua_register(L,mvLua_MotionAIFunctionNames[0],mvLua_LoadLuaScriptFile);
+   lua_register(L,mvLua_MotionAIFunctionNames[1],mvLua_RemoveAllWorlds);
+   lua_register(L,mvLua_MotionAIFunctionNames[2],mvLua_AddWorld);
+   lua_register(L,mvLua_MotionAIFunctionNames[3],mvLua_GetWorldByID);
+   lua_register(L,mvLua_MotionAIFunctionNames[4],mvLua_AllWorldsStepForward);
 
-  mvLoadLuadBehaviourFunctions(L);
-  mvLoadLuaBodyFunctions(L);
-  mvLoadLuaGroupFunctions(L);
-  mvLoadLuaObstacleFunctions(L);
-  mvLoadLuaPathwayFunctions(L);
-  mvLoadLuaWaypointFunctions(L);
-  mvLoadLuaWorldFunctions(L);
-  mvLoadLuaForceFunctions(L);
-  mvLoadLuaGroupBehaviourFunctions(L);
+   mvLoadLuadBehaviourFunctions(L);
+   mvLoadLuaBodyFunctions(L);
+   mvLoadLuaGroupFunctions(L);
+   mvLoadLuaObstacleFunctions(L);
+   mvLoadLuaPathwayFunctions(L);
+   mvLoadLuaWaypointFunctions(L);
+   mvLoadLuaWorldFunctions(L);
+   mvLoadLuaForceFunctions(L);
+   mvLoadLuaGroupBehaviourFunctions(L);
 }
 
 int mvLua_AllWorldsStepForward(lua_State* L)
 {
-  mvFloat timeInSecs = (mvFloat) lua_tonumber(L, 1);
-  mvAllWorldsStepForward(timeInSecs);
-  lua_pushnumber(L,0);
-  return 1;
+   static const mvIndex MV_LUA_ALLWORLDSSTEPFORWARD_TIME_IN_SECS_INDEX = 1;
+
+   mvFloat timeInSecs = (mvFloat) lua_tonumber(L, MV_LUA_ALLWORLDSSTEPFORWARD_TIME_IN_SECS_INDEX);
+   mvAllWorldsStepForward(timeInSecs);
+   lua_pushnumber(L,0);
+   return MV_LUA_RETURNED_ERROR_COUNT;
 }
 
 int mvLua_GetWorldByID(lua_State* luaVM)
 {
-  char* worldID = (char*) lua_tostring(luaVM, 1);
+   static const mvIndex MV_LUA_GETWORLDBYID_WORLD_ID_INDEX = 1;
 
-  #ifdef __MV_MOTIONAI_CENTRAL_MODULE_PTR
-    if (__motionAI_Central_Module != NULL)
-    {
+   char* worldID = (char*) lua_tostring(luaVM, MV_LUA_GETWORLDBYID_WORLD_ID_INDEX);
+
+#ifdef __MV_MOTIONAI_CENTRAL_MODULE_PTR
+   if (__motionAI_Central_Module != NULL)
+   {
       return __motionAI_Central_Module->getWorldIndex(worldID);
-    }
-    else
-    {
+   }
+   else
+   {
       return NULL;
-    }
-  #else
-    return __motionAI_Central_Module.getWorldIndex(worldID);
-  #endif
+   }
+#else
+   return __motionAI_Central_Module.getWorldIndex(worldID);
+#endif
 }
 
 int mvLua_LoadLuaScriptFile(lua_State* luaVM)
 {
-  char* fileName = (char*) lua_tostring(luaVM, 1);
+   static const mvIndex MV_LUA_LOADLUASCRIPTFILE_FILENAME_INDEX = 1;
 
-  mvLoadLuaScriptFile(fileName);
-  lua_pushnumber(luaVM,0);
-  return 1;
+   char* fileName = (char*) lua_tostring(luaVM, MV_LUA_LOADLUASCRIPTFILE_FILENAME_INDEX);
+
+   mvLoadLuaScriptFile(fileName);
+   lua_pushnumber(luaVM,0);
+   return MV_LUA_RETURNED_ERROR_COUNT;
 }
 
 int mvLua_RemoveAllWorlds(lua_State* luaVM)
 {
-  mvRemoveAllWorlds();
-  lua_pushnumber(luaVM,0);
-  return 1;
+   mvRemoveAllWorlds();
+   lua_pushnumber(luaVM,0);
+   return MV_LUA_RETURNED_ERROR_COUNT;
 }
 
 
 int mvLua_AddWorld(lua_State* luaVM)
 {
-   int result = 0;
-   char* worldID = (char*) lua_tostring(luaVM, 1);
+   static const mvIndex MV_LUA_ADDWORLD_WORLD_ID_INDEX = 1;
 
- #ifdef MV_MOTIONAI_LUA_DEBUG
+   int result = 0;
+   char* worldID = (char*) lua_tostring(luaVM, MV_LUA_ADDWORLD_WORLD_ID_INDEX);
+
+#ifdef MV_MOTIONAI_LUA_DEBUG
    if (worldID != NULL)
       std::cout << worldID << std::endl;
    else
       std::cout << "NULL" << std::endl;
- #endif
+#endif
 
-   #ifdef __MV_MOTIONAI_CENTRAL_MODULE_PTR
-     if (__motionAI_Central_Module != NULL)
-     {
-       result = __motionAI_Central_Module->addWorld(worldID);
-     }
-     #ifdef MV_MOTIONAI_LUA_DEBUG
-     else
-     {
-       std::cout << "AI Module not declared" << std::endl;
-     }
-     #endif
+#ifdef __MV_MOTIONAI_CENTRAL_MODULE_PTR
+   if (__motionAI_Central_Module != NULL)
+   {
+      result = __motionAI_Central_Module->addWorld(worldID);
+   }
+#ifdef MV_MOTIONAI_LUA_DEBUG
+   else
+   {
+      std::cout << "AI Module not declared" << std::endl;
+   }
+#endif
    #else
-     result = __motionAI_Central_Module.addWorld(worldID);
-   #endif
+   result = __motionAI_Central_Module.addWorld(worldID);
+#endif
 
-   #ifdef MV_MOTIONAI_LUA_DEBUG
-     if (result == 0)
-     {
-        std::cout << "Add mvWorld Error " << std::endl;
-     }
-     else
-     {
-       std::cout << "No of Motion AI worlds : " << result << std::endl;
-     }
-   #endif
+#ifdef MV_MOTIONAI_LUA_DEBUG
+   if (result == 0)
+   {
+      std::cout << "Add mvWorld Error " << std::endl;
+   }
+   else
+   {
+      std::cout << "No of Motion AI worlds : " << result << std::endl;
+   }
+#endif
 
    lua_pushnumber(luaVM,result);
-   return 1;
+   return MV_LUA_RETURNED_ERROR_COUNT;
 }
 
 

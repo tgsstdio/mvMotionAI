@@ -37,17 +37,27 @@ int mvLua_SetPathwayParameterv(lua_State* L);
 int mvLua_SetCurrentPathwayParameter(lua_State* L);
 int mvLua_SetCurrentPathwayParameterf(lua_State* L);
 int mvLua_SetCurrentPathwayParameterv(lua_State* L);
-      //
+
 int mvLua_AddCurrentWaypointToCurrentPathway(lua_State* L);
 int mvLua_AddCurrentWaypointToPathway(lua_State* L);
 int mvLua_AddWaypointToPathway(lua_State* L);
 int mvLua_AddNURBSWaypoint(lua_State* L);
 
+// TODO: add pathway
+// TODO: set current pathway
+// TODO: remove all pathways
+// TODO: remove current pathway
+// TODO: set pathway parameter
+// TODO: set current parameter parameter
+// TODO: add waypoint to pathway
+// TODO: remove waypoint to pathway
+// TODO: remove all waypoints from pathway
+
 const char** mvGetLuaPathwayFunctions()
 {
    return NULL;
 }
-
+// TODO: conversion from lua pop magic index number to named constants
 mvCount mvGetNoOfLuaPathwayFunctions()
 {
    return 0;
