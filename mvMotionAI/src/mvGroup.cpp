@@ -186,3 +186,48 @@ char* mvGroup::getID() const
    return groupID;
 }
 
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvGroup::getParameter(mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   return MV_INVALID_GROUP_PARAMETER;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvGroup::getParameteri(mvParamEnum paramFlag, mvIndex* index)
+{
+   return MV_INVALID_GROUP_PARAMETER;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvGroup::getParameterf(mvParamEnum paramFlag, mvFloat* num)
+{
+   return MV_INVALID_GROUP_PARAMETER;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvGroup::getParameterv(mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters)
+{
+   return MV_INVALID_GROUP_PARAMETER;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvGroup::setParameteri(mvParamEnum paramFlag, mvIndex index)
+{
+   return MV_INVALID_GROUP_PARAMETER;
+}
+

@@ -20,6 +20,13 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ * Log
+ *
+ * version     date     comments
+ * 00-01-17    1/11/06  - lua mvSetCurrentBodyParameter
+ *                      - lua mvSetBodyParameter
+ *                      - conversion from lua pop magic index number to named constants
+ *
  */
 
 #include "mvLuaScript-Body.h"
@@ -30,7 +37,7 @@
 #include "mvEnums.h"
 
 #define MV_LUA_SCRIPT_BODY_DEBUG_FLAG 1
-#undef MV_LUA_SCRIPT_BODY_DEBUG_FLAG
+//#undef MV_LUA_SCRIPT_BODY_DEBUG_FLAG
 
 int mvLua_AddBody(lua_State* L);
 int mvLua_GetBody(lua_State* L);
@@ -40,12 +47,6 @@ int mvLua_RemoveBody(lua_State* L);
 int mvLua_RemoveAllBodies(lua_State* L);
 int mvLua_SetBodyParameter(lua_State* L);
 int mvLua_SetCurrentBodyParameter(lua_State* L);
-
-/**
- * mvEnum mvSetDefaultWaypointForBody(int waypointIndex, int bodyIndex);
- * mvEnum mvSetDefaultPathwayForBody(int pathwayIndex, int bodyIndex);
- * mvEnum mvSetDefaultBodyForBody(int targetIndex,int bodyIndex);
- */
 int mvLua_SetDefaultWaypointForBody(lua_State* L);
 int mvLua_SetDefaultPathwayForBody(lua_State* L);
 int mvLua_SetDefaultBodyForBody(lua_State* L);
@@ -55,6 +56,9 @@ int mvLua_SetDefaultWaypointForCurrentBody(lua_State* L);
 int mvLua_SetDefaultPathwayForCurrentBody(lua_State* L);
 int mvLua_SetDefaultBodyForCurrentBody(lua_State* L);
 int mvLua_SetDefaultBehaviourFactorForCurrentBody(lua_State* L);
+
+static const mvIndex MV_LUA_SET_DEFAULT_ITEM_BODY_INDEX = 3;
+static const mvIndex MV_LUA_SETDEFAULTITEMFORBODY_INDEX_NO = 2;
 
 const char* mvLua_BodyFunctionNames[] =
 {
@@ -71,6 +75,8 @@ const char* mvLua_BodyFunctionNames[] =
 "mvSetDefaultPathwayForCurrentBody",
 "mvSetDefaultBodyForCurrentBody",
 "mvSetDefaultBehaviourFactorForCurrentBody",
+"mvSetBodyParameter",
+"mvSetCurrentBodyParameter",
 };
 
 const char** mvGetLuaBodyFunctions()
@@ -85,38 +91,61 @@ mvCount mvGetNoOfLuaBodyFunctions()
 
 void mvLoadLuaBodyFunctions(lua_State* L)
 {
-  lua_register(L,mvLua_BodyFunctionNames[0],mvLua_AddBody);
-  lua_register(L,mvLua_BodyFunctionNames[1],mvLua_RemoveCurrentBody);
-  lua_register(L,mvLua_BodyFunctionNames[2],mvLua_RemoveBody);
-  lua_register(L,mvLua_BodyFunctionNames[3],mvLua_RemoveAllBodies);
-  lua_register(L,mvLua_BodyFunctionNames[4],mvLua_SetCurrentBody);
+   const char** ptr = &mvLua_BodyFunctionNames[0];
+   mvIndex counter = 0;
 
-  /*
-   * New default behaviours
-   */
-  lua_register(L,mvLua_BodyFunctionNames[5],mvLua_SetDefaultWaypointForBody);
-  lua_register(L,mvLua_BodyFunctionNames[6],mvLua_SetDefaultPathwayForBody);
-  lua_register(L,mvLua_BodyFunctionNames[7],mvLua_SetDefaultBodyForBody);
+//   puts(ptr[counter]);
+   lua_register(L,ptr[counter++],mvLua_AddBody);
+//   puts(ptr[counter]);
+   lua_register(L,ptr[counter++],mvLua_RemoveCurrentBody);
+//   puts(ptr[counter]);
+   lua_register(L,ptr[counter++],mvLua_RemoveBody);
+//   puts(ptr[counter]);
+   lua_register(L,ptr[counter++],mvLua_RemoveAllBodies);
+//   puts(ptr[counter]);
+   lua_register(L,ptr[counter++],mvLua_SetCurrentBody);
 
-  /*
-   * 00-01-07
-   */
-  lua_register(L,mvLua_BodyFunctionNames[8],mvLua_SetDefaultBehaviourFactorForBody);
-  lua_register(L,mvLua_BodyFunctionNames[9],mvLua_SetDefaultWaypointForCurrentBody);
-  lua_register(L,mvLua_BodyFunctionNames[10],mvLua_SetDefaultPathwayForCurrentBody);
-  lua_register(L,mvLua_BodyFunctionNames[11],mvLua_SetDefaultBodyForCurrentBody);
-  lua_register(L,mvLua_BodyFunctionNames[12],mvLua_SetDefaultBehaviourFactorForCurrentBody);
+   /*
+    * New default behaviours
+    */
+//   puts(ptr[counter]);
+   lua_register(L,ptr[counter++],mvLua_SetDefaultWaypointForBody);
+//   puts(ptr[counter]);
+   lua_register(L,ptr[counter++],mvLua_SetDefaultPathwayForBody);
+//   puts(ptr[counter]);
+   lua_register(L,ptr[counter++],mvLua_SetDefaultBodyForBody);
+
+   /*
+    * 00-01-07
+    */
+   lua_register(L,ptr[counter++],mvLua_SetDefaultBehaviourFactorForBody);
+   lua_register(L,ptr[counter++],mvLua_SetDefaultWaypointForCurrentBody);
+   lua_register(L,ptr[counter++],mvLua_SetDefaultPathwayForCurrentBody);
+   lua_register(L,ptr[counter++],mvLua_SetDefaultBodyForCurrentBody);
+   lua_register(L,ptr[counter++],mvLua_SetDefaultBehaviourFactorForCurrentBody);
+
+   /*
+    * 00-01-17
+    */
+   lua_register(L,ptr[counter++],mvLua_SetBodyParameter);
+   lua_register(L,ptr[counter++],mvLua_SetCurrentBodyParameter);
 }
 
 int mvLua_AddBody(lua_State* L)
 {
+   static const mvIndex MV_LUA_ADDBODY_TYPE_INDEX = 2;
+   static const mvIndex MV_LUA_ADDBODY_SHAPE_INDEX = 3;
+   static const mvIndex MV_LUA_ADDBODY_X_INDEX = 4;
+   static const mvIndex MV_LUA_ADDBODY_Y_INDEX = 5;
+   static const mvIndex MV_LUA_ADDBODY_Z_INDEX = 6;
+
    int result = 0;
-   int worldID = (int) lua_tonumber(L,1);
-   const char* type = lua_tostring(L,2);
-   const char* shape = lua_tostring(L,3);
-   mvFloat x = (mvFloat) lua_tonumber(L,4);
-   mvFloat y = (mvFloat) lua_tonumber(L,5);
-   mvFloat z = (mvFloat) lua_tonumber(L,6);
+   int worldID = (int) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
+   const char* type = lua_tostring(L,MV_LUA_ADDBODY_TYPE_INDEX);
+   const char* shape = lua_tostring(L,MV_LUA_ADDBODY_SHAPE_INDEX);
+   mvFloat x = (mvFloat) lua_tonumber(L,MV_LUA_ADDBODY_X_INDEX);
+   mvFloat y = (mvFloat) lua_tonumber(L,MV_LUA_ADDBODY_Y_INDEX);
+   mvFloat z = (mvFloat) lua_tonumber(L,MV_LUA_ADDBODY_Z_INDEX);
    mvOptionEnum bType, bShape;
 
    mvWorld* tempWorld = NULL;
@@ -132,13 +161,13 @@ int mvLua_AddBody(lua_State* L)
       result = tempWorld->mvAddBodyWithPos(bType,bShape,x,y,z);
    }
    lua_pushnumber(L,result);
-   return 1;
+   return MV_LUA_RETURNED_ERROR_COUNT;
 }
 
 int mvLua_RemoveCurrentBody(lua_State* L)
 {
    int result = 0;
-   mvIndex worldID = (mvIndex) lua_tonumber(L,1);
+   mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvWorld* tempWorld = NULL;
 
    tempWorld = mvGetWorldByIndex(worldID);
@@ -150,14 +179,14 @@ int mvLua_RemoveCurrentBody(lua_State* L)
       result = tempWorld->mvRemoveCurrentBody();
    }
    lua_pushnumber(L,result);
-   return 1;
+   return MV_LUA_RETURNED_ERROR_COUNT;
 }
 
 int mvLua_RemoveBody(lua_State* L)
 {
    int result = 0;
-   mvIndex worldID = (mvIndex) lua_tonumber(L,1);
-   mvIndex bIndex = (mvIndex) lua_tonumber(L,2);
+   mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
+   mvIndex bIndex = (mvIndex) lua_tonumber(L,MV_LUA_REMOVE_ITEM_INDEX_NO);
    mvWorld* tempWorld = NULL;
 
    tempWorld = mvGetWorldByIndex(worldID);
@@ -169,14 +198,14 @@ int mvLua_RemoveBody(lua_State* L)
       result = tempWorld->mvRemoveBody(bIndex);
    }
    lua_pushnumber(L,result);
-   return 1;
+   return MV_LUA_RETURNED_ERROR_COUNT;
 }
 
 int mvLua_SetCurrentBody(lua_State* L)
 {
    int result = 0;
-   mvIndex worldID = (mvIndex) lua_tonumber(L,1);
-   mvIndex bIndex = (mvIndex) lua_tonumber(L,2);
+   mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
+   mvIndex bIndex = (mvIndex) lua_tonumber(L,MV_LUA_SET_CURRENT_ITEM_INDEX_NO);
    mvWorld* tempWorld = NULL;
 
    tempWorld = mvGetWorldByIndex(worldID);
@@ -188,13 +217,13 @@ int mvLua_SetCurrentBody(lua_State* L)
       result = tempWorld->mvSetCurrentBody(bIndex);
    }
    lua_pushnumber(L,result);
-   return 1;
+   return MV_LUA_RETURNED_ERROR_COUNT;
 }
 
 int mvLua_RemoveAllBodies(lua_State* L)
 {
    //int result = 0;
-   mvIndex worldID = (mvIndex) lua_tonumber(L,1);
+   mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvWorld* tempWorld = NULL;
 
    tempWorld = mvGetWorldByIndex(worldID);
@@ -211,9 +240,9 @@ int mvLua_RemoveAllBodies(lua_State* L)
 int mvLua_SetDefaultWaypointForBody(lua_State* L)
 {
    int result = 0;
-   mvIndex worldID = (mvIndex) lua_tonumber(L,1);
-   mvIndex waypointIndex = (mvIndex) lua_tonumber(L,2);
-   mvIndex bodyIndex = (mvIndex) lua_tonumber(L,3);
+   mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
+   mvIndex waypointIndex = (mvIndex) lua_tonumber(L,MV_LUA_SETDEFAULTITEMFORBODY_INDEX_NO);
+   mvIndex bodyIndex = (mvIndex) lua_tonumber(L,MV_LUA_SET_DEFAULT_ITEM_BODY_INDEX);
 
    mvWorld* tempWorld = NULL;
 
@@ -224,51 +253,51 @@ int mvLua_SetDefaultWaypointForBody(lua_State* L)
       result = tempWorld->mvSetDefaultWaypointForBody(waypointIndex,bodyIndex);
    }
    lua_pushnumber(L,result);
-   return 1;
+   return MV_LUA_RETURNED_ERROR_COUNT;
 }
 
 int mvLua_SetDefaultPathwayForBody(lua_State* L)
 {
    int result = 0;
-   mvIndex worldID = (mvIndex) lua_tonumber(L,1);
-   mvIndex pathwayIndex =  (mvIndex) lua_tonumber(L,2);
-   mvIndex bodyIndex = (mvIndex) lua_tonumber(L,3);
+   mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
+   mvIndex pathwayIndex =  (mvIndex) lua_tonumber(L,MV_LUA_SETDEFAULTITEMFORBODY_INDEX_NO);
+   mvIndex bodyIndex = (mvIndex) lua_tonumber(L,MV_LUA_SET_DEFAULT_ITEM_BODY_INDEX);
    mvWorld* tempWorld = NULL;
 
    tempWorld = mvGetWorldByIndex(worldID);
    if (tempWorld != NULL)
    {
-     // puts(tempWorld->getWorldID());
+      // puts(tempWorld->getWorldID());
       result = tempWorld->mvSetDefaultPathwayForBody(pathwayIndex,bodyIndex);
    }
    lua_pushnumber(L,result);
-   return 1;
+   return MV_LUA_RETURNED_ERROR_COUNT;
 }
 
 int mvLua_SetDefaultBodyForBody(lua_State* L)
 {
    int result = 0;
-   mvIndex worldID = (mvIndex) lua_tonumber(L,1);
-   mvIndex targetIndex = (mvIndex) lua_tonumber(L,2);
-   mvIndex bodyIndex = (mvIndex) lua_tonumber(L,3);
+   mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
+   mvIndex targetIndex = (mvIndex) lua_tonumber(L,MV_LUA_SETDEFAULTITEMFORBODY_INDEX_NO);
+   mvIndex bodyIndex = (mvIndex) lua_tonumber(L,MV_LUA_SET_DEFAULT_ITEM_BODY_INDEX);
    mvWorld* tempWorld = NULL;
 
    tempWorld = mvGetWorldByIndex(worldID);
    if (tempWorld != NULL)
    {
-     // puts(tempWorld->getWorldID());
+      // puts(tempWorld->getWorldID());
       result = tempWorld->mvSetDefaultBodyForBody(targetIndex,bodyIndex);
    }
    lua_pushnumber(L,result);
-   return 1;
+   return MV_LUA_RETURNED_ERROR_COUNT;
 }
 
 int mvLua_SetDefaultBehaviourFactorForBody(lua_State* L)
 {
    int result = 0;
-   mvIndex worldID = (mvIndex) lua_tonumber(L,1);
-   mvFloat bFactor = (mvFloat) lua_tonumber(L,2);
-   mvIndex bodyIndex = (mvIndex) lua_tonumber(L,3);
+   mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
+   mvFloat bFactor = (mvFloat) lua_tonumber(L,MV_LUA_SETDEFAULTITEMFORBODY_INDEX_NO);
+   mvIndex bodyIndex = (mvIndex) lua_tonumber(L,MV_LUA_SET_DEFAULT_ITEM_BODY_INDEX);
    mvWorld* tempWorld = NULL;
 
    tempWorld = mvGetWorldByIndex(worldID);
@@ -277,14 +306,14 @@ int mvLua_SetDefaultBehaviourFactorForBody(lua_State* L)
       result = tempWorld->mvSetDefaultBehaviourFactorForBody(bFactor,bodyIndex);
    }
    lua_pushnumber(L,result);
-   return 1;
+   return MV_LUA_RETURNED_ERROR_COUNT;
 }
 
 int mvLua_SetDefaultWaypointForCurrentBody(lua_State* L)
 {
    int result = 0;
-   mvIndex worldID = (mvIndex) lua_tonumber(L,1);
-   mvIndex wpIndex = (mvIndex) lua_tonumber(L,2);
+   mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
+   mvIndex wpIndex = (mvIndex) lua_tonumber(L,MV_LUA_SETDEFAULTITEMFORBODY_INDEX_NO);
    mvWorld* tempWorld = NULL;
 
    tempWorld = mvGetWorldByIndex(worldID);
@@ -293,14 +322,14 @@ int mvLua_SetDefaultWaypointForCurrentBody(lua_State* L)
       result = tempWorld->mvSetDefaultWaypointForCurrentBody(wpIndex);
    }
    lua_pushnumber(L,result);
-   return 1;
+   return MV_LUA_RETURNED_ERROR_COUNT;
 }
 
 int mvLua_SetDefaultPathwayForCurrentBody(lua_State* L)
 {
    int result = 0;
-   mvIndex worldID = (mvIndex) lua_tonumber(L,1);
-   mvIndex pwIndex = (mvIndex) lua_tonumber(L,2);
+   mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
+   mvIndex pwIndex = (mvIndex) lua_tonumber(L,MV_LUA_SETDEFAULTITEMFORBODY_INDEX_NO);
    mvWorld* tempWorld = NULL;
 
    tempWorld = mvGetWorldByIndex(worldID);
@@ -309,14 +338,14 @@ int mvLua_SetDefaultPathwayForCurrentBody(lua_State* L)
       result = tempWorld->mvSetDefaultPathwayForCurrentBody(pwIndex);
    }
    lua_pushnumber(L,result);
-   return 1;
+   return MV_LUA_RETURNED_ERROR_COUNT;
 }
 
 int mvLua_SetDefaultBodyForCurrentBody(lua_State* L)
 {
    int result = 0;
-   mvIndex worldID = (mvIndex) lua_tonumber(L,1);
-   mvIndex bodyIndex = (mvIndex) lua_tonumber(L,2);
+   mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
+   mvIndex bodyIndex = (mvIndex) lua_tonumber(L,MV_LUA_SETDEFAULTITEMFORBODY_INDEX_NO);
    mvWorld* tempWorld = NULL;
 
    tempWorld = mvGetWorldByIndex(worldID);
@@ -325,14 +354,14 @@ int mvLua_SetDefaultBodyForCurrentBody(lua_State* L)
       result = tempWorld->mvSetDefaultBodyForCurrentBody(bodyIndex);
    }
    lua_pushnumber(L,result);
-   return 1;
+   return MV_LUA_RETURNED_ERROR_COUNT;
 }
 
 int mvLua_SetDefaultBehaviourFactorForCurrentBody(lua_State* L)
 {
    int result = 0;
-   mvIndex worldID = (mvIndex) lua_tonumber(L,1);
-   mvFloat bFactor = (mvFloat) lua_tonumber(L,2);
+   mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
+   mvFloat bFactor = (mvFloat) lua_tonumber(L,MV_LUA_SETDEFAULTITEMFORBODY_INDEX_NO);
    mvWorld* tempWorld = NULL;
 
    tempWorld = mvGetWorldByIndex(worldID);
@@ -341,8 +370,149 @@ int mvLua_SetDefaultBehaviourFactorForCurrentBody(lua_State* L)
       result = tempWorld->mvSetDefaultBehaviourFactorForCurrentBody(bFactor);
    }
    lua_pushnumber(L,result);
-   return 1;
+   return MV_LUA_RETURNED_ERROR_COUNT;
 }
 //additional code
+
+int mvLua_SetBodyParameter(lua_State* L)
+{
+   /*
+    * cut + paste from mvLuaScript_Force.cpp + mvLuaScript_Behaviour.cpp
+    */
+
+   int result = MV_INVALID_BODY_TYPE;
+   mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
+   mvIndex bIndex = (mvIndex) lua_tonumber(L,MV_LUA_SET_PARAMETER_ITEM_INDEX);
+   const char* params = lua_tostring(L,MV_LUA_SET_PARAMETER_PARAM_ENUM_INDEX);
+   const char* option;
+   mvParamEnum checkParams;
+   mvOptionEnum checkOption;
+   mvErrorEnum checkError;
+   mvIndex i, indexValue;
+   mvFloat numArray[MV_MAX_NO_OF_PARAMETERS];
+   mvWorld* tempWorld = NULL;
+
+   // check single parameter first
+   tempWorld = mvGetWorldByIndex(worldID);
+   if (tempWorld != NULL && params != NULL)
+   {
+      checkError = mvScript_checkBodyParamsFlag(params,checkParams);
+      if (checkError == MV_NO_ERROR)
+      {
+         option = lua_tostring(L,MV_LUA_SET_PARAMETER_OPTION_ENUM_INDEX);
+         if (option != NULL)
+         {
+            checkError = mvScript_checkBodyParamsFlagOptions(option,checkOption);
+            if (checkError == MV_NO_ERROR)
+            {
+               result = tempWorld->mvSetBodyParameter(bIndex,checkParams,checkOption);
+               if (result == MV_NO_ERROR)
+               {
+                  lua_pushnumber(L,result);
+                  return MV_LUA_RETURNED_ERROR_COUNT;
+               }
+            }
+         }
+      }
+
+      /*
+       * check index parameters next
+       */
+      checkError = mvScript_checkBodyParamsIndex(params,checkParams);
+      if (checkError == MV_NO_ERROR)
+      {
+         indexValue = (mvIndex) lua_tonumber(L,MV_LUA_SET_PARAMETER_PARAM_INDEX_NO);
+         result = tempWorld->mvSetBodyParameteri(bIndex,checkParams,indexValue);
+         if (result == MV_NO_ERROR)
+         {
+            lua_pushnumber(L,result);
+            return MV_LUA_RETURNED_ERROR_COUNT;
+         }
+      }
+
+      /*
+       * finally test vector (& single float value) parameter
+       */
+      checkError = mvScript_checkBodyParamsv(params,checkParams);
+      if (checkError == MV_NO_ERROR)
+      {
+         for (i = 0; i < MV_MAX_NO_OF_PARAMETERS; i++)
+         {
+            numArray[i] = (mvFloat) lua_tonumber(L,MV_LUA_SET_PARAMETER_START_OF_VECTOR_INDEX + i);
+         }
+         result = tempWorld->mvSetBodyParameterv(bIndex,checkParams,numArray);
+      }
+   }
+   lua_pushnumber(L,result);
+   return MV_LUA_RETURNED_ERROR_COUNT;
+}
+
+int mvLua_SetCurrentBodyParameter(lua_State* L)
+{
+   int result = MV_INVALID_BODY_TYPE;
+   mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
+   const char* params = lua_tostring(L,MV_LUA_SET_CURRENT_PARAMETER_PARAM_ENUM_INDEX);
+   const char* option;
+   mvParamEnum checkParams;
+   mvOptionEnum checkOption;
+   mvErrorEnum checkError;
+   mvIndex i;
+   mvIndex indexValue;
+   mvFloat numArray[MV_MAX_NO_OF_PARAMETERS];
+   mvWorld* tempWorld = NULL;
+
+   // check single parameter first
+   tempWorld = mvGetWorldByIndex(worldID);
+   if (tempWorld != NULL && params != NULL)
+   {
+      checkError = mvScript_checkBodyParamsFlag(params,checkParams);
+      if (checkError == MV_NO_ERROR)
+      {
+         option = lua_tostring(L,MV_LUA_SET_CURRENT_PARAMETER_OPTION_ENUM_INDEX);
+         if (option != NULL)
+         {
+            checkError = mvScript_checkBodyParamsFlagOptions(option,checkOption);
+            if (checkError == MV_NO_ERROR)
+            {
+               if (result == MV_NO_ERROR)
+               {
+                  lua_pushnumber(L,result);
+                  return MV_LUA_RETURNED_ERROR_COUNT;
+               }
+            }
+         }
+      }
+      checkError = mvScript_checkBodyParamsIndex(params,checkParams);
+      if (checkError == MV_NO_ERROR)
+      {
+         indexValue = (mvIndex) lua_tonumber(L,MV_LUA_SET_CURRENT_PARAMETER_PARAM_INDEX_NO);
+         result = tempWorld->mvSetCurrentBodyParameteri(checkParams,indexValue);
+         if (result == MV_NO_ERROR)
+         {
+            lua_pushnumber(L,result);
+            return MV_LUA_RETURNED_ERROR_COUNT;
+         }
+      }
+
+      checkError = mvScript_checkBodyParamsv(params,checkParams);
+      if (checkError == MV_NO_ERROR)
+      {
+         for (i = 0; i < MV_MAX_NO_OF_PARAMETERS; i++)
+         {
+            numArray[i] = (mvFloat) lua_tonumber(L,MV_LUA_SET_CURRENT_PARAMETER_START_OF_VECTOR_INDEX + i);
+         }
+         result = tempWorld->mvSetCurrentBodyParameterv(checkParams,numArray);
+      }
+
+      lua_pushnumber(L,result);
+      return MV_LUA_RETURNED_ERROR_COUNT;
+   }
+   else
+   {
+      lua_pushnumber(L,result);
+      return MV_LUA_RETURNED_ERROR_COUNT;
+   }
+
+}
 
 

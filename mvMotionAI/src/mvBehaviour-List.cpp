@@ -454,6 +454,55 @@ mvErrorEnum mvBehaviourList::setDefaultBehaviourFactor(mvFloat factor)
    }
 }
 
+/** \brief returns default index value of the body target.
+  *
+  * returns default index value of the body target, either positive index or 0.
+  * This index value represents the initial body target of any new behaviour
+  * added to the behaviour list.
+  */
+mvIndex mvBehaviourList::getDefaultBody() const
+{
+   return defaultBody;
+}
+
+/** \brief returns default index value of the waypoint target.
+  *
+  * returns default index value of the waypoint target, either positive index or 0.
+  * This index value represents the initial waypoint target of any new behaviour
+  * added to the mvBehaviourList.
+  */
+mvIndex mvBehaviourList::getDefaultWaypoint() const
+{
+   return defaultWaypoint;
+}
+
+/** \brief returns default index value of the pathway target.
+  *
+  * returns default index value of the pathway target, either positive index or 0.
+  * This index value represents the initial pathway target of any new behaviour
+  * added to the mvBehaviourList.
+  */
+mvIndex mvBehaviourList::getDefaultPathway() const
+{
+   return defaultPathway;
+}
+
+/** \brief returns default float value for any new behaviour.
+  *
+  * returns default float value of the waypoint target, either positive index or 0.
+  *
+  * This floating point represents the initial factor of any new behaviour
+  * added to the mvBehaviourList. Each behaviour's effect on composite motion is
+  * proportional or 'limited' by factor compared to overall total of all motions in the
+  * list
+  */
+mvFloat mvBehaviourList::getDefaultBehaviourFactor() const
+{
+   return defaultFactor;
+}
+
+
+
 /*
 mvBehaviourEntry* mvBehaviour_List::findEntryByKey(mvBehaviour* bEntry)
 {

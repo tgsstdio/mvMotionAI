@@ -26,13 +26,18 @@
 
 static const mvCount MV_MAX_NO_OF_BODY_DOMAIN_VARIABLES = 3;
 static const mvCount MV_BODY_NO_DIMENSIONS = 1;
+static const mvIndex MV_CIRCULAR_RADIUS_INDEX = 0;
+static const mvIndex MV_AACYLINDER_LENGTH_INDEX = 1;
+static const mvIndex MV_AABOX_X_INDEX = 0;
+static const mvIndex MV_AABOX_Y_INDEX = 1;
+static const mvIndex MV_AABOX_Z_INDEX = 2;
 
 void mvBody::initialiseFloats()
 {
    direction.set(0,0,1);
    mass = 1.0f;
    maxSpeed = 6.0f;
-  // maxForce = 1.0f;
+   // maxForce = 1.0f;
    speed = 3.0f;
    acceleration = 2.0f;
    deceleration = 0.3f;
@@ -91,107 +96,50 @@ void mvBody::setAcceleration(mvFloat accel)
    acceleration = accel;
 }
 
-mvErrorEnum mvBody::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
-{
-   switch(paramFlag)
-   {
-     case MV_TYPE:
-        return initialiseType(option);
-     case MV_DOMAIN:
-        return initialiseDomain(option);
-     case MV_SHAPE:
-        return initialiseDimensions(option);
-     case MV_STATE:
-        return initialiseState(option);
-     default:
-        return MV_INVALID_BODY_PARAMETER;
-   }
-}
-
-/**
- *  NOTE : declarations for acceleration, deceleration,
- * max speed, speed, mass
- */
-mvErrorEnum mvBody::setParameterf(mvParamEnum paramFlag, mvFloat num)
-{
-  switch (paramFlag)
-  {
-    case MV_SPEED:
-       speed = num;
-       return MV_NO_ERROR;
-    case MV_MAX_SPEED:
-       maxSpeed = num;
-       return MV_NO_ERROR;
-    case MV_ACCELERATION:
-       acceleration = num;
-       return MV_NO_ERROR;
-    case MV_DECELERATION:
-       deceleration = num;
-       return MV_NO_ERROR;
-    case MV_MASS:
-       mass = num;
-       return MV_NO_ERROR;
-    default:
-      return MV_INVALID_BODY_PARAMETER;
-  }
-}
-
-mvErrorEnum mvBody::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
-{
-   if (numArray != NULL)
-   {
-      return setParameterf(paramFlag,numArray[0]);
-   }
-   else
-   {
-      return MV_PARAMETER_ARRAY_IS_NULL;
-   }
-}
-
 mvOptionEnum mvBody::getType() const
 {
-  return type;
+   return type;
 }
 
 mvOptionEnum mvBody::getState() const
 {
-  return state;
+   return state;
 }
 
 mvOptionEnum mvBody::getDomain() const
 {
-  return domain;
+   return domain;
 }
 
 mvBody::~mvBody()
 {
-  if (dimensions != NULL)
-  {
-    delete [] dimensions;
-  }
+   if (dimensions != NULL)
+   {
+      delete [] dimensions;
+   }
 
-  if (domainVariables != NULL)
-  {
-    delete [] domainVariables;
-  }
+   if (domainVariables != NULL)
+   {
+      delete [] domainVariables;
+   }
 }
 
 mvErrorEnum mvBody::initialiseDimensions(mvOptionEnum shape)
 {
-  mvFloat tempDims[MV_MAX_NO_OF_BODY_DIMENSIONS];
-  mvIndex i;
-  mvCount noOfDimensions;
+   mvFloat tempDims[MV_MAX_NO_OF_BODY_DIMENSIONS];
+   mvIndex i;
+   mvCount noOfDimensions;
 
-  if (dimensions != NULL)
-  {
-    noOfDimensions = getNoOfDimensions();
-    for (i = 0; i < noOfDimensions; i++)
-    {
-      tempDims[i] = dimensions[i];
-    }
-    delete [] dimensions;
-    dimensions = NULL;
-  }
+   if (dimensions != NULL)
+   {
+      noOfDimensions = getNoOfDimensions();
+      for (i = 0; i < noOfDimensions; i++)
+      {
+         tempDims[i] = dimensions[i];
+      }
+      delete [] dimensions;
+      dimensions = NULL;
+   }
 
    switch(shape)
    {
@@ -242,59 +190,59 @@ mvCount mvBody::getNoOfDimensions() const
          return MV_NO_OF_AACYLINDER_DIMENSIONS;
       default:
          return MV_BODY_NO_DIMENSIONS;
-  }
+   }
 }
 
 mvErrorEnum mvBody::initialiseType(mvOptionEnum option)
 {
-  switch(option)
-  {
-    case MV_PARTICLE:
-    case MV_DUAL_TYPE:
-    case MV_VEHICLE:
-      type = option;
-      return MV_NO_ERROR;
-    default:
-      type = MV_NON_BODY_TYPE;
-      return MV_INVALID_BODY_TYPE;
-  }
+   switch(option)
+   {
+      case MV_PARTICLE:
+      case MV_DUAL_TYPE:
+      case MV_VEHICLE:
+         type = option;
+         return MV_NO_ERROR;
+      default:
+         type = MV_NON_BODY_TYPE;
+         return MV_INVALID_BODY_TYPE;
+   }
 }
 
 mvErrorEnum mvBody::initialiseState(mvOptionEnum option)
 {
-  switch(option)
-  {
-    case MV_APPLY_NO_FORCES_STATE:
-    case MV_USER_MOTION_STATE:
-    case MV_NO_MOTION_STATE:
-    case MV_APPLY_MOTIONAI_STATE:
-      state = option;
-      return MV_NO_ERROR;
-    default:
-      state = MV_NON_BODY_STATE;
-      return MV_INVALID_BODY_STATE;
-  }
+   switch(option)
+   {
+      case MV_APPLY_NO_FORCES_STATE:
+      case MV_USER_MOTION_STATE:
+      case MV_NO_MOTION_STATE:
+      case MV_APPLY_MOTIONAI_STATE:
+         state = option;
+         return MV_NO_ERROR;
+      default:
+         state = MV_NON_BODY_STATE;
+         return MV_INVALID_BODY_STATE;
+   }
 }
 
 mvErrorEnum mvBody::initialiseDomain(mvOptionEnum option)
 {
-  mvFloat tempDomVars[MV_MAX_NO_OF_BODY_DOMAIN_VARIABLES];
-  mvIndex i;
-  mvCount noOfVariables;
+   mvFloat tempDomVars[MV_MAX_NO_OF_BODY_DOMAIN_VARIABLES];
+   mvIndex i;
+   mvCount noOfVariables;
 
-  if (domainVariables != NULL)
-  {
-    noOfVariables = getNoOfDomainVariables();
-    for (i = 0; i < noOfVariables; ++i)
-    {
-      tempDomVars[i] = domainVariables[i];
-    }
-    delete [] domainVariables;
-    domainVariables = NULL;
-  }
+   if (domainVariables != NULL)
+   {
+      noOfVariables = getNoOfDomainVariables();
+      for (i = 0; i < noOfVariables; ++i)
+      {
+         tempDomVars[i] = domainVariables[i];
+      }
+      delete [] domainVariables;
+      domainVariables = NULL;
+   }
 
-  switch(option)
-  {
+   switch(option)
+   {
       case MV_ANY_PLANE_DOMAIN:
       case MV_ANY_LINE_DOMAIN:
       case MV_FULL_3D_DOMAIN:
@@ -339,26 +287,26 @@ mvCount mvBody::getNoOfDomainVariables() const
 
    switch (domain)
    {
-     case MV_FULL_3D_DOMAIN:
-       return MV_NO_OF_FULL_3D_VARIABLES;
-     case MV_XY_PLANE_DOMAIN:
-       return MV_NO_OF_XY_PLANE_VARIABLES;
-     case MV_XZ_PLANE_DOMAIN:
-       return MV_NO_OF_XZ_PLANE_VARIABLES;
-     case MV_YZ_PLANE_DOMAIN:
-       return MV_NO_OF_YZ_PLANE_VARIABLES;
-     case MV_X_AXIS_ONLY_DOMAIN:
-        return MV_NO_OF_X_AXIS_ONLY_VARIABLES;
-     case MV_Y_AXIS_ONLY_DOMAIN:
-        return MV_NO_OF_Y_AXIS_ONLY_VARIABLES;
-     case MV_Z_AXIS_ONLY_DOMAIN:
-        return MV_NO_OF_Z_AXIS_ONLY_VARIABLES;
-     case MV_ANY_PLANE_DOMAIN:
-        return MV_NO_OF_ANY_PLANE_VARIABLES;
-     case MV_ANY_LINE_DOMAIN:
-        return MV_NO_OF_ANY_LINE_VARIABLES;
-     default:
-       return MV_INVALID_DOMAIN_NO_OF_VARIABLES;
+      case MV_FULL_3D_DOMAIN:
+         return MV_NO_OF_FULL_3D_VARIABLES;
+      case MV_XY_PLANE_DOMAIN:
+         return MV_NO_OF_XY_PLANE_VARIABLES;
+      case MV_XZ_PLANE_DOMAIN:
+         return MV_NO_OF_XZ_PLANE_VARIABLES;
+      case MV_YZ_PLANE_DOMAIN:
+         return MV_NO_OF_YZ_PLANE_VARIABLES;
+      case MV_X_AXIS_ONLY_DOMAIN:
+         return MV_NO_OF_X_AXIS_ONLY_VARIABLES;
+      case MV_Y_AXIS_ONLY_DOMAIN:
+         return MV_NO_OF_Y_AXIS_ONLY_VARIABLES;
+      case MV_Z_AXIS_ONLY_DOMAIN:
+         return MV_NO_OF_Z_AXIS_ONLY_VARIABLES;
+      case MV_ANY_PLANE_DOMAIN:
+         return MV_NO_OF_ANY_PLANE_VARIABLES;
+      case MV_ANY_LINE_DOMAIN:
+         return MV_NO_OF_ANY_LINE_VARIABLES;
+      default:
+         return MV_INVALID_DOMAIN_NO_OF_VARIABLES;
    }
 }
 
@@ -471,3 +419,413 @@ mvErrorEnum mvBody::setDefaultBehaviourFactor(mvFloat factor)
 {
    return bList.setDefaultBehaviourFactor(factor);
 }
+
+/** @brief get body's index parameters
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvBody::getParameteri(mvParamEnum paramFlag, mvIndex* index)
+{
+   if (index == NULL)
+      return MV_INDEX_VALUE_IS_INVALID;
+
+   switch (paramFlag)
+   {
+      case MV_WAYPOINT_TARGET:
+         *index = getDefaultWaypoint();
+         return MV_NO_ERROR;
+      case MV_BODY_TARGET:
+         *index = getDefaultBody();
+         return MV_NO_ERROR;
+      case MV_PATHWAY_TARGET:
+         *index = getDefaultPathway();
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_BODY_PARAMETER;
+   }
+}
+
+mvErrorEnum mvBody::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
+{
+   switch(paramFlag)
+   {
+      case MV_TYPE:
+         return initialiseType(option);
+      case MV_DOMAIN:
+         return initialiseDomain(option);
+      case MV_SHAPE:
+         return initialiseDimensions(option);
+      case MV_STATE:
+         return initialiseState(option);
+      default:
+         return MV_INVALID_BODY_PARAMETER;
+   }
+}
+
+/** \brief get body's state parameter
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvBody::getParameter(mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   if (option == NULL)
+      return MV_OPTION_ENUM_DEST_IS_NULL;
+
+   switch (paramFlag)
+   {
+      case MV_SHAPE:
+         *option = getShape();
+         return MV_NO_ERROR;
+      case MV_STATE:
+         *option = getState();
+         return MV_NO_ERROR;
+      case MV_TYPE:
+         *option = getType();
+         return MV_NO_ERROR;
+      case MV_DOMAIN:
+         *option = getDomain();
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_BODY_PARAMETER;
+   }
+}
+
+/**
+  *\brief get body's parameters single float values
+  *
+  */
+mvErrorEnum mvBody::getParameterf(mvParamEnum paramFlag, mvFloat* num)
+{
+   mvIndex tempIndex;
+
+   if (num == NULL)
+      return MV_FLOAT_DEST_IS_NULL;
+
+   switch (paramFlag)
+   {
+      case MV_LENGTH:
+         switch(bodyShape)
+         {
+            case MV_X_AXIS_AA_CYLINDER:
+            case MV_Z_AXIS_AA_CYLINDER:
+            case MV_Y_AXIS_AA_CYLINDER:
+               *num = dimensions[MV_AACYLINDER_LENGTH_INDEX];
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_BODY_SHAPE;
+         }
+      case MV_RADIUS:
+         switch(bodyShape)
+         {
+            case MV_SPHERE:
+            case MV_X_AXIS_AA_CYLINDER:
+            case MV_Z_AXIS_AA_CYLINDER:
+            case MV_Y_AXIS_AA_CYLINDER:
+               *num = dimensions[MV_CIRCULAR_RADIUS_INDEX];
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_BODY_SHAPE;
+         }
+      case MV_X_WIDTH:
+         switch(bodyShape)
+         {
+            case MV_AABOX:
+               tempIndex = MV_AABOX_X_INDEX;
+               *num = dimensions[tempIndex];
+               return MV_NO_ERROR;
+            case MV_X_AXIS_AA_CYLINDER:
+               tempIndex = MV_AACYLINDER_LENGTH_INDEX;
+               *num = dimensions[tempIndex];
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_BODY_SHAPE;
+         }
+      case MV_Y_LENGTH:
+         switch(bodyShape)
+         {
+            case MV_AABOX:
+               tempIndex = MV_AABOX_Y_INDEX;
+               return MV_NO_ERROR;
+            case MV_Y_AXIS_AA_CYLINDER:
+               tempIndex = MV_AACYLINDER_LENGTH_INDEX;
+               *num = dimensions[tempIndex];
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_BODY_SHAPE;
+         }
+      case MV_Z_DEPTH:
+         switch(bodyShape)
+         {
+            case MV_AABOX:
+               tempIndex = MV_AABOX_Z_INDEX;
+               *num = dimensions[tempIndex];
+               return MV_NO_ERROR;
+            case MV_Z_AXIS_AA_CYLINDER:
+               tempIndex = MV_AACYLINDER_LENGTH_INDEX;
+               *num = dimensions[tempIndex];
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_BODY_SHAPE;
+         }
+      case MV_SPEED:
+         *num = speed;
+         return MV_NO_ERROR;
+      case MV_MAX_SPEED:
+         *num = maxSpeed;
+         return MV_NO_ERROR;
+      case MV_ACCELERATION:
+         *num = acceleration;
+         return MV_NO_ERROR;
+      case MV_DECELERATION:
+         *num = deceleration;
+         return MV_NO_ERROR;
+      case MV_MASS:
+         *num = mass;
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_BODY_PARAMETER;
+   }
+}
+
+/**
+ * \brief get body's parameters single float values
+ *
+ * NOTE : declarations for acceleration, deceleration,
+ * max speed, speed, mass
+ */
+mvErrorEnum mvBody::setParameterf(mvParamEnum paramFlag, mvFloat num)
+{
+   mvIndex tempIndex;
+
+   switch (paramFlag)
+   {
+      case MV_LENGTH:
+         switch(bodyShape)
+         {
+            case MV_X_AXIS_AA_CYLINDER:
+            case MV_Z_AXIS_AA_CYLINDER:
+            case MV_Y_AXIS_AA_CYLINDER:
+               dimensions[MV_AACYLINDER_LENGTH_INDEX] = num;
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_BODY_SHAPE;
+         }
+      case MV_RADIUS:
+         switch(bodyShape)
+         {
+            case MV_SPHERE:
+            case MV_X_AXIS_AA_CYLINDER:
+            case MV_Z_AXIS_AA_CYLINDER:
+            case MV_Y_AXIS_AA_CYLINDER:
+               dimensions[MV_CIRCULAR_RADIUS_INDEX] = num;
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_BODY_SHAPE;
+         }
+      case MV_X_WIDTH:
+         switch(bodyShape)
+         {
+            case MV_AABOX:
+               tempIndex = MV_AABOX_X_INDEX;
+               dimensions[tempIndex] = num;
+               return MV_NO_ERROR;
+            case MV_X_AXIS_AA_CYLINDER:
+               tempIndex = MV_AACYLINDER_LENGTH_INDEX;
+               dimensions[tempIndex] = num;
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_BODY_SHAPE;
+         }
+      case MV_Y_LENGTH:
+         switch(bodyShape)
+         {
+            case MV_AABOX:
+               tempIndex = MV_AABOX_Y_INDEX;
+               dimensions[tempIndex] = num;
+               return MV_NO_ERROR;
+            case MV_Y_AXIS_AA_CYLINDER:
+               tempIndex = MV_AACYLINDER_LENGTH_INDEX;
+               dimensions[tempIndex] = num;
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_BODY_SHAPE;
+         }
+      case MV_Z_DEPTH:
+         switch(bodyShape)
+         {
+            case MV_AABOX:
+               tempIndex = MV_AABOX_Z_INDEX;
+               dimensions[tempIndex] = num;
+               return MV_NO_ERROR;
+            case MV_Z_AXIS_AA_CYLINDER:
+               tempIndex = MV_AACYLINDER_LENGTH_INDEX;
+               dimensions[tempIndex] = num;
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_BODY_SHAPE;
+         }
+      case MV_SPEED:
+         speed = num;
+         return MV_NO_ERROR;
+      case MV_MAX_SPEED:
+         maxSpeed = num;
+         return MV_NO_ERROR;
+      case MV_ACCELERATION:
+         acceleration = num;
+         return MV_NO_ERROR;
+      case MV_DECELERATION:
+         deceleration = num;
+         return MV_NO_ERROR;
+      case MV_MASS:
+         mass = num;
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_BODY_PARAMETER;
+   }
+}
+
+/**
+  * \brief set body's floating point vector parameters
+  *
+  * NOTE : setParameterv also calls setParameterf
+  */
+mvErrorEnum mvBody::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
+{
+   mvVec3 tempVector;
+   mvFloat vectorLength;
+
+   if (numArray == NULL)
+   {
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
+   switch(paramFlag)
+   {
+      case MV_DIRECTION:
+         tempVector.setXYZ(numArray[0],numArray[1],numArray[2]);
+         direction = tempVector.normalize();
+         return MV_NO_ERROR;
+      case MV_POSITION:
+         position.setXYZ(numArray[0],numArray[1],numArray[2]);
+         return MV_NO_ERROR;
+      case MV_VELOCITY:
+         tempVector.setXYZ(numArray[0],numArray[1],numArray[2]);
+         vectorLength = tempVector.length();
+         speed = vectorLength;
+         direction = tempVector.normalize();
+         return MV_NO_ERROR;
+      default:
+         return setParameterf(paramFlag,numArray[0]);
+   }
+}
+
+/** \brief get body's vector parameters
+  *
+  * NOTE : getParameterv also calls getParameterf
+  */
+mvErrorEnum mvBody::getParameterv(mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters)
+{
+   mvErrorEnum error;
+   if (noOfParameters == NULL)
+   {
+      return MV_COUNT_DEST_IS_NULL;
+   }
+
+
+   if (numArray == NULL)
+   {
+      *noOfParameters = 0;
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
+   switch (paramFlag)
+   {
+      case MV_DIRECTION:
+         numArray[0] = direction.getX();
+         numArray[1] = direction.getY();
+         numArray[2] = direction.getZ();
+         *noOfParameters = 3;
+         return MV_NO_ERROR;
+      case MV_POSITION:
+         numArray[0] = position.getX();
+         numArray[1] = position.getY();
+         numArray[2] = position.getZ();
+         *noOfParameters = 3;
+         return MV_NO_ERROR;
+      case MV_VELOCITY:
+         numArray[0] = speed * direction.getX();
+         numArray[1] = speed * direction.getY();
+         numArray[2] = speed * direction.getZ();
+         *noOfParameters = 3;
+         return MV_NO_ERROR;
+      default:
+         error = getParameterf(paramFlag,&numArray[0]);
+         if (error == MV_NO_ERROR)
+         {
+            *noOfParameters = 1;
+         }
+         else
+         {
+            *noOfParameters = 0;
+         }
+         return error;
+   }
+}
+
+/** @brief set body's index parameters
+  *
+  */
+mvErrorEnum mvBody::setParameteri(mvParamEnum paramFlag, mvIndex index)
+{
+   switch (paramFlag)
+   {
+      case MV_WAYPOINT_TARGET:
+         setDefaultWaypoint(index);
+         return MV_NO_ERROR;
+      case MV_BODY_TARGET:
+         setDefaultBody(index);
+         return MV_NO_ERROR;
+      case MV_PATHWAY_TARGET:
+         setDefaultPathway(index);
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_BODY_PARAMETER;
+   }
+
+}
+
+/** @brief returns body's initial (default) body target of all
+  * new behaviours added to the body.
+  */
+mvIndex mvBody::getDefaultBody() const
+{
+   return bList.getDefaultBody();
+}
+
+/** @brief returns body's initial (default) waypoint target of all
+  * new behaviours added to the body.
+  */
+mvIndex mvBody::getDefaultWaypoint() const
+{
+   return bList.getDefaultWaypoint();
+}
+
+/** @brief returns body's initial (default) pathway target of all
+  * new behaviours added to the body.
+  */
+mvIndex mvBody::getDefaultPathway() const
+{
+   return bList.getDefaultPathway();
+}
+
+/** @brief returns body's initial (default) behaviour factor of all
+  * new behaviours added to the body.
+  */
+mvFloat mvBody::getDefaultBehaviourFactor() const
+{
+   return bList.getDefaultBehaviourFactor();
+}
+
+
+
+

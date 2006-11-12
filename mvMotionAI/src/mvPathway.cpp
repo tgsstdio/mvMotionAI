@@ -23,16 +23,18 @@
  */
 
 #include "mvPathway.h"
+#include "mvMotionAI-Utilities.h"
 
 mvPathway::mvPathway()
 {
   noOfWaypoints = 0;
-};
+  currentWPIndex = MV_NO_CURRENT_INDEX;
+}
 
 mvPathway::~mvPathway()
 {
   removeAllWaypoints();
-};
+}
 
 /**
  * adds a waypoint to this pathway
@@ -42,8 +44,11 @@ mvPathway::~mvPathway()
 void mvPathway::addWaypoint(mvWaypoint* pWaypoint)
 {
   if (pWaypoint != NULL)
+  {
      waypoints.push_back(pWaypoint);
-};
+     ++noOfWaypoints;
+  }
+}
 
 /**
  * removes the latest instance
@@ -52,36 +57,29 @@ mvErrorEnum mvPathway::removeWaypoint(mvWaypoint* pWaypoint)
 {
    std::vector<mvWaypoint*>::reverse_iterator i;
    mvWaypoint* currentWaypoint = NULL;
+   mvIndex wpIndex;
 
    if (pWaypoint == NULL)
      return MV_ITEM_POINTER_IS_NULL;
 
+   wpIndex = noOfWaypoints;
    for (i = waypoints.rbegin(); i != waypoints.rend(); ++i)
    {
      currentWaypoint = *i;
      if (currentWaypoint != NULL && currentWaypoint == pWaypoint)
      {
         *i = NULL;
+        --noOfWaypoints;
+        if (wpIndex == currentWPIndex)
+        {
+            currentWPIndex = MV_NO_CURRENT_INDEX;
+        }
         return MV_NO_ERROR;
      }
+     --wpIndex;
    }
    return MV_ITEM_NOT_FOUND_IN_LIST;
-};
-
-mvErrorEnum mvPathway::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
-{
-   return MV_INVALID_PATHWAY_PARAMETER;
-};
-
-mvErrorEnum mvPathway::setParameterf(mvParamEnum paramFlag, float num)
-{
-   return MV_INVALID_PATHWAY_PARAMETER;
-};
-
-mvErrorEnum mvPathway::setParameterv(mvParamEnum paramFlag, float* numArray)
-{
-   return MV_INVALID_PATHWAY_PARAMETER;
-};
+}
 
 void mvPathway::removeAllWaypoints()
 {
@@ -97,4 +95,216 @@ void mvPathway::removeAllWaypoints()
          *i = NULL;
       }
    }
-};
+   noOfWaypoints = 0;
+}
+
+mvErrorEnum mvPathway::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
+{
+   return MV_INVALID_PATHWAY_PARAMETER;
+}
+
+mvErrorEnum mvPathway::setParameterf(mvParamEnum paramFlag, mvFloat num)
+{
+   return MV_INVALID_PATHWAY_PARAMETER;
+}
+
+mvErrorEnum mvPathway::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
+{
+   if (numArray == NULL)
+   {
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
+   return MV_INVALID_PATHWAY_PARAMETER;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvPathway::setParameteri(mvParamEnum paramFlag, mvIndex index)
+{
+   return MV_INVALID_PATHWAY_PARAMETER;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvPathway::getParameteri(mvParamEnum paramFlag, mvIndex* index)
+{
+   return MV_INVALID_PATHWAY_PARAMETER;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvPathway::getParameter(mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   return MV_INVALID_PATHWAY_PARAMETER;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvPathway::getParameterf(mvParamEnum paramFlag, mvFloat* num)
+{
+   return MV_INVALID_PATHWAY_PARAMETER;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvPathway::getParameterv(mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters)
+{
+   return MV_INVALID_PATHWAY_PARAMETER;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvPathway::setNodeParameteri(mvIndex wpIndex, mvParamEnum paramFlag, mvIndex index)
+{
+   return MV_INVALID_PATHWAY_PARAMETER;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvPathway::setNodeParameter(mvIndex wpIndex, mvParamEnum paramFlag, mvOptionEnum option)
+{
+   return mvSetClassParameter<mvWaypoint>(waypoints,wpIndex,noOfWaypoints,paramFlag,option);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvPathway::setNodeParameterf(mvIndex wpIndex, mvParamEnum paramFlag, mvFloat num)
+{
+   return mvSetClassParameterf<mvWaypoint>(waypoints,wpIndex,noOfWaypoints,paramFlag,num);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvPathway::setNodeParameterv(mvIndex wpIndex, mvParamEnum paramFlag, mvFloat* numArray)
+{
+   return mvSetClassParameterv<mvWaypoint>(waypoints,wpIndex,noOfWaypoints,paramFlag,numArray);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvPathway::getNodeParameteri(mvIndex wpIndex, mvParamEnum paramFlag, mvIndex* index)
+{
+   return mvGetClassParameteri<mvWaypoint>(waypoints,wpIndex,noOfWaypoints,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvPathway::getNodeParameter(mvIndex wpIndex, mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   return mvGetClassParameter<mvWaypoint>(waypoints,wpIndex,noOfWaypoints,paramFlag,option);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvPathway::getNodeParameterf(mvIndex wpIndex, mvParamEnum paramFlag, mvFloat* num)
+{
+   return mvGetClassParameterf<mvWaypoint>(waypoints,wpIndex,noOfWaypoints,paramFlag,num);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvPathway::getNodeParameterv(mvIndex wpIndex, mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters)
+{
+   return mvGetClassParameterv<mvWaypoint>(waypoints,wpIndex,noOfWaypoints,paramFlag,numArray, noOfParameters);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvPathway::setCurrentNodeParameteri(mvParamEnum paramFlag, mvIndex index)
+{
+   return mvSetClassParameteri<mvWaypoint>(waypoints,currentWPIndex,noOfWaypoints,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvPathway::setCurrentNodeParameter(mvParamEnum paramFlag, mvOptionEnum option)
+{
+   return mvSetClassParameter<mvWaypoint>(waypoints,currentWPIndex,noOfWaypoints,paramFlag,option);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvPathway::setCurrentNodeParameterf(mvParamEnum paramFlag, mvFloat num)
+{
+   return mvSetClassParameterf<mvWaypoint>(waypoints,currentWPIndex,noOfWaypoints,paramFlag,num);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvPathway::setCurrentNodeParameterv(mvParamEnum paramFlag, mvFloat* numArray)
+{
+   return mvSetClassParameterv<mvWaypoint>(waypoints,currentWPIndex,noOfWaypoints,paramFlag,numArray);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvPathway::getCurrentNodeParameteri(mvParamEnum paramFlag, mvIndex* index)
+{
+   return mvGetClassParameteri<mvWaypoint>(waypoints,currentWPIndex,noOfWaypoints,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvPathway::getCurrentNodeParameter(mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   return mvGetClassParameter<mvWaypoint>(waypoints,currentWPIndex,noOfWaypoints,paramFlag,option);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvPathway::getCurrentNodeParameterf(mvParamEnum paramFlag, mvFloat* num)
+{
+   return mvGetClassParameterf<mvWaypoint>(waypoints,currentWPIndex,noOfWaypoints,paramFlag,num);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvPathway::getCurrentNodeParameterv(mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters)
+{
+   return mvGetClassParameterv<mvWaypoint>(waypoints,currentWPIndex,noOfWaypoints,paramFlag,numArray, noOfParameters);
+}
+
+

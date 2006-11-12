@@ -568,6 +568,178 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
    }
 }
 
+/**
+ * \brief moves a single body in the system forward by timeInSecs seconds
+ *
+ * NOTE : does not include forces in calculation
+ */
+mvErrorEnum mvWorld::mvNudgeBody(mvIndex bodyIndex, mvFloat timeInSecs)
+{
+   /**/
+   mvFloat c1,c2;
+   mvFloat pos[2][3];
+   mvFloat vel[2][3];
+   /**/
+   mvFloat h, maxSpeed, extraVelocity;
+   // force variables
+//   mvFloat globalDragForceQuantity, globalDragAccel, globalDragShift;
+   mvVec3 globalUniformForce, globalUniformAccel, globalUniformShift,
+      totalForce, totalAccel, totalVelocity, bodyDirection,
+      bodyAccel, bodyVelocity, bodyForce;
+   mvOptionEnum bodyState;
+   mvVec3 tempVector;
+   //mvFloat totalMass;
+   mvFloat speed[2], dir[3];
+   mvIndex j;
+
+   mvBody* tempBody = mvGetBody(bodyIndex);
+
+   if (tempBody != NULL)
+   {
+      h = timeInSecs;
+      bodyState = tempBody->getState();
+      /*
+       * 5.1.2 (b) apply forces to body straight line integration
+       * eular
+       */
+      if (bodyState != MV_NO_MOTION_STATE && bodyState != MV_NON_BODY_STATE)
+      {
+         maxSpeed = tempBody->maxSpeed;
+         // body directions, forces, velocity, accel
+         bodyForce.resetXYZ();
+         bodyAccel.resetXYZ();
+         bodyVelocity.resetXYZ();
+
+
+         mvProcessBodyBehaviours(this, tempBody, h,
+            bodyDirection, bodyVelocity,bodyAccel,bodyForce);
+
+         /*
+          * final integration
+          */
+         /*
+          * force(mvForce) => accel (a = f/m)
+          */
+         totalAccel += ((1.0f/tempBody->mass) * totalForce);
+         bodyAccel += ((1.0f/tempBody->mass) * bodyForce);
+         /*
+          * accel to velocity <> change in v =  a * h
+          */
+         totalVelocity += (h * totalAccel);
+         bodyVelocity += (h * bodyAccel);
+
+
+         /*
+          * 5.1.2.1: initialise initial position
+          */
+         pos[0][0] = tempBody->getX();
+         pos[0][1] = tempBody->getY();
+         pos[0][2] = tempBody->getZ();
+
+         /*
+          * 5.1.2.2: set velocity direction to total velocity (as in unit vector direction)
+          */
+
+         vel[0][0] = tempBody->finalVelocity.getX();
+         vel[0][1] = tempBody->finalVelocity.getY();
+         vel[0][2] = tempBody->finalVelocity.getZ();
+
+         vel[1][0] = totalVelocity.getX() + tempBody->finalVelocity.getX();
+         vel[1][1] = totalVelocity.getY() + tempBody->finalVelocity.getY();
+         vel[1][2] = totalVelocity.getZ() + tempBody->finalVelocity.getZ();
+
+         /*
+          * 5.1.2.3 realign direction
+          */
+         tempBody->direction = bodyVelocity.normalize();
+
+         dir[0] = tempBody->direction.getX();
+         dir[1] = tempBody->direction.getY();
+         dir[2] = tempBody->direction.getZ();
+
+         /*
+          * 5.1.2.3: calculate the new speed using constant
+          * acceleration
+          */
+         speed[0] = tempBody->speed;
+         speed[1] = bodyVelocity.length();
+
+         /*
+          * limits change in velocity by max velocity
+          *change per frame
+          */
+         /**/
+         if (speed[0] < speed[1])
+         {
+            extraVelocity = tempBody->acceleration * h;
+
+            if ((speed[1] - speed[0]) > extraVelocity)
+            {
+               //puts("LIMIT");
+               speed[1] = speed[0] + extraVelocity;
+            }
+         }
+         else
+         {
+            extraVelocity = tempBody->deceleration * h;
+            if ((speed[0] - speed[1]) > extraVelocity)
+            {
+              // puts("LIMIT 2");
+               speed[1] = speed[1] + extraVelocity;
+            }
+         }
+
+
+         /*
+          * 5.1.2.4: clipping speed to max speed
+          */
+         speed[0] = (speed[0] < maxSpeed) ? speed[0] : maxSpeed;
+         speed[1] = (speed[1] < maxSpeed) ? speed[1] : maxSpeed;
+
+         /*
+          * 5.1.2.6: for each calculate new position
+          * with improved euler.
+          */
+         for (j = 0; j < 3; j++)
+         {
+            /*
+             * 5.1.2.6.1 calculate the velocity
+             * for all
+             */
+            vel[0][j] += dir[j] * speed[0];
+            vel[1][j] += dir[j] * speed[1];
+            //vel[0][j] *= speed[0];
+            //vel[1][j] *= speed[1];
+
+            /*
+             * 5.1.2.6.2 calculate the position
+             */
+            c1 = h * vel[0][j];
+            c2 = h * vel[1][j];
+            pos[1][j] = pos[0][j] + 0.5 * (c1 + c2);
+
+         }
+         /*
+          * 5.1.2.7: set new position
+          * and new speed
+          */
+         tempBody->finalVelocity.set(vel[1][0],vel[1][1],vel[1][2]);
+         tempBody->position.set(pos[1][0],pos[1][1],pos[1][2]);
+         tempBody->speed = speed[1];
+      }
+      return MV_NO_ERROR;
+   }
+   else
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+}
+
+mvErrorEnum mvWorld::mvNudgeCurrentBody(mvFloat timeInSecs)
+{
+   return mvNudgeBody(currentBody,timeInSecs);
+}
+
 void mvWorld::mvApplyToAllBodies(void (someFunction)(mvBody*,void*),void* extraPtr)
 {
    /*
@@ -1819,3 +1991,916 @@ mvErrorEnum mvWorld::mvSetCurrentBehaviourParameteri(mvParamEnum paramFlag, mvIn
 {
    return mvSetBehaviourParameteri(currentBehaviour,paramFlag,index);
 }
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetBodyParameteri(mvIndex bIndex, mvParamEnum paramFlag, mvIndex index)
+{
+   return mvSetClassParameteri<mvBody>(bodies,bIndex,noOfBodies,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetPathwayParameteri(mvIndex pIndex, mvParamEnum paramFlag, mvIndex index)
+{
+   return mvSetClassParameteri<mvPathway>(pathways,pIndex,noOfPathways,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetWaypointParameteri(mvIndex wpIndex, mvParamEnum paramFlag, mvIndex index)
+{
+   return mvSetClassParameteri<mvWaypoint>(waypoints,wpIndex,noOfWaypoints,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetObstacleParameteri(mvIndex oIndex, mvParamEnum paramFlag, mvIndex index)
+{
+   return mvSetClassParameteri<mvObstacle>(obstacles,oIndex,noOfObstacles,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetGroupParameteri(mvIndex gIndex, mvParamEnum paramFlag, mvIndex index)
+{
+   return mvSetClassParameteri<mvGroup>(groups,gIndex,noOfGroups,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetCurrentBodyParameteri(mvParamEnum paramFlag, mvIndex index)
+{
+   return mvSetClassParameteri<mvBody>(bodies,currentBody,noOfBodies,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetCurrentPathwayParameteri(mvParamEnum paramFlag, mvIndex index)
+{
+   return mvSetClassParameteri<mvPathway>(pathways,currentPathway,noOfPathways,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetCurrentWaypointParameteri(mvParamEnum paramFlag, mvIndex index)
+{
+   return mvSetClassParameteri<mvWaypoint>(waypoints,currentWaypoint,noOfWaypoints,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetCurrentObstacleParameteri(mvParamEnum paramFlag, mvIndex index)
+{
+   return mvSetClassParameteri<mvObstacle>(obstacles,currentObstacle,noOfObstacles,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetCurrentGroupParameteri(mvParamEnum paramFlag, mvIndex index)
+{
+   return mvSetClassParameteri<mvGroup>(groups,currentGroup,noOfGroups,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetBodyParameteri(mvIndex bIndex, mvParamEnum paramFlag, mvIndex* index)
+{
+   return mvGetClassParameteri<mvBody>(bodies,bIndex,noOfBodies,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetPathwayParameteri(mvIndex pIndex, mvParamEnum paramFlag, mvIndex* index)
+{
+   return mvGetClassParameteri<mvPathway>(pathways,pIndex,noOfPathways,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetWaypointParameteri(mvIndex wpIndex, mvParamEnum paramFlag, mvIndex* index)
+{
+   return mvGetClassParameteri<mvWaypoint>(waypoints,wpIndex,noOfWaypoints,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetObstacleParameteri(mvIndex oIndex, mvParamEnum paramFlag, mvIndex* index)
+{
+   return mvGetClassParameteri<mvObstacle>(obstacles,oIndex,noOfObstacles,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetGroupParameteri(mvIndex gIndex, mvParamEnum paramFlag, mvIndex* index)
+{
+   return mvGetClassParameteri<mvGroup>(groups,gIndex,noOfGroups,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentBodyParameteri(mvParamEnum paramFlag, mvIndex* index)
+{
+   return mvGetClassParameteri<mvBody>(bodies,currentBody,noOfBodies,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentPathwayParameteri(mvParamEnum paramFlag, mvIndex* index)
+{
+   return mvGetClassParameteri<mvPathway>(pathways,currentPathway,noOfPathways,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentWaypointParameteri(mvParamEnum paramFlag, mvIndex* index)
+{
+   return mvGetClassParameteri<mvWaypoint>(waypoints,currentWaypoint,noOfWaypoints,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentObstacleParameteri(mvParamEnum paramFlag, mvIndex* index)
+{
+   return mvGetClassParameteri<mvObstacle>(obstacles,currentObstacle,noOfObstacles,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentGroupParameteri(mvParamEnum paramFlag, mvIndex* index)
+{
+   return mvGetClassParameteri<mvGroup>(groups,currentGroup,noOfGroups,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetBodyParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   return mvGetClassParameter<mvBody>(bodies,index,noOfBodies,paramFlag,option);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetBodyParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat* num)
+{
+   return mvGetClassParameterf<mvBody>(bodies,index,noOfBodies,paramFlag,num);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetBodyParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+{
+   return mvGetClassParameterv<mvBody>(bodies,index,noOfBodies,paramFlag,array,noOfParameters);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentBodyParameter(mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   return mvGetClassParameter<mvBody>(bodies,currentBody,noOfBodies,paramFlag,option);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentBodyParameterf(mvParamEnum paramFlag, mvFloat* num)
+{
+   return mvGetClassParameterf<mvBody>(bodies,currentBody,noOfBodies,paramFlag,num);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentBodyParameterv(mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+{
+   return mvGetClassParameterv<mvBody>(bodies,currentBody,noOfBodies,paramFlag,array,noOfParameters);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetObstacleParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   return mvGetClassParameter<mvObstacle>(obstacles,index,noOfObstacles,paramFlag,option);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetObstacleParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat* num)
+{
+   return mvGetClassParameterf<mvObstacle>(obstacles,index,noOfObstacles,paramFlag,num);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetObstacleParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+{
+   return mvGetClassParameterv<mvObstacle>(obstacles,index,noOfObstacles,paramFlag,array,noOfParameters);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentObstacleParameter(mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   return mvGetClassParameter<mvObstacle>(obstacles,currentObstacle,noOfObstacles,paramFlag,option);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentObstacleParameterf(mvParamEnum paramFlag, mvFloat* num)
+{
+   return mvGetClassParameterf<mvObstacle>(obstacles,currentObstacle,noOfObstacles,paramFlag,num);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentObstacleParameterv(mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+{
+   return mvGetClassParameterv<mvObstacle>(obstacles,currentObstacle,noOfObstacles,paramFlag,array,noOfParameters);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetWaypointParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   return mvGetClassParameter<mvWaypoint>(waypoints,index,noOfWaypoints,paramFlag,option);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetWaypointParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat* num)
+{
+   return mvGetClassParameterf<mvWaypoint>(waypoints,index,noOfWaypoints,paramFlag,num);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetWaypointParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+{
+   return mvGetClassParameterv<mvWaypoint>(waypoints,index,noOfWaypoints,paramFlag,array,noOfParameters);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentWaypointParameter(mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   return mvGetClassParameter<mvWaypoint>(waypoints,currentWaypoint,noOfWaypoints,paramFlag,option);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentWaypointParameterf(mvParamEnum paramFlag, mvFloat* num)
+{
+   return mvGetClassParameterf<mvWaypoint>(waypoints,currentWaypoint,noOfWaypoints,paramFlag,num);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentWaypointParameterv(mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+{
+   return mvGetClassParameterv<mvWaypoint>(waypoints,currentWaypoint,noOfWaypoints,paramFlag,array,noOfParameters);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetPathwayParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   return mvGetClassParameter<mvPathway>(pathways,index,noOfPathways,paramFlag,option);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetPathwayParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat* num)
+{
+   return mvGetClassParameterf<mvPathway>(pathways,index,noOfPathways,paramFlag,num);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetPathwayParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+{
+   return mvGetClassParameterv<mvPathway>(pathways,index,noOfPathways,paramFlag,array,noOfParameters);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentPathwayParameter(mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   return mvGetClassParameter<mvPathway>(pathways,currentPathway,noOfPathways,paramFlag,option);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentPathwayParameterf(mvParamEnum paramFlag, mvFloat* num)
+{
+   return mvGetClassParameterf<mvPathway>(pathways,currentPathway,noOfPathways,paramFlag,num);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentPathwayParameterv(mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+{
+   return mvGetClassParameterv<mvPathway>(pathways,currentPathway,noOfPathways,paramFlag,array,noOfParameters);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetGroupParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   return mvGetClassParameter<mvGroup>(groups,index,noOfGroups,paramFlag,option);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetGroupParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat* num)
+{
+   return mvGetClassParameterf<mvGroup>(groups,index,noOfGroups,paramFlag,num);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetGroupParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+{
+   return mvGetClassParameterv<mvGroup>(groups,index,noOfGroups,paramFlag,array,noOfParameters);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentGroupParameter(mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   return mvGetClassParameter<mvGroup>(groups,currentGroup,noOfGroups,paramFlag,option);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentGroupParameterf(mvParamEnum paramFlag, mvFloat* num)
+{
+   return mvGetClassParameterf<mvGroup>(groups,currentGroup,noOfGroups,paramFlag,num);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentGroupParameterv(mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+{
+   return mvGetClassParameterv<mvGroup>(groups,currentGroup,noOfGroups,paramFlag,array,noOfParameters);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetBehaviourParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   return mvGetClassParameter<mvBehaviour>(behaviours,index,noOfBehaviours,paramFlag,option);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetBehaviourParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat* num)
+{
+   return mvGetClassParameterf<mvBehaviour>(behaviours,index,noOfBehaviours,paramFlag,num);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetBehaviourParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+{
+   return mvGetClassParameterv<mvBehaviour>(behaviours,index,noOfBehaviours,paramFlag,array,noOfParameters);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentBehaviourParameter(mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   return mvGetClassParameter<mvBehaviour>(behaviours,currentBehaviour,noOfBehaviours,paramFlag,option);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentBehaviourParameterf(mvParamEnum paramFlag, mvFloat* num)
+{
+   return mvGetClassParameterf<mvBehaviour>(behaviours,currentBehaviour,noOfBehaviours,paramFlag,num);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentBehaviourParameterv(mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+{
+return mvGetClassParameterv<mvBehaviour>(behaviours,currentBehaviour,noOfBehaviours,paramFlag,array,noOfParameters);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetGroupBehaviourParameter(mvIndex gbIndex, mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(gbIndex);
+
+   if (tempGroupBehav != NULL)
+   {
+      return tempGroupBehav->getParameter(groupIndex,paramFlag,option);
+   }
+   else
+   {
+      return MV_GROUP_BEHAVIOUR_INDEX_IS_INVALID;
+   }
+}
+
+/** @brief (one liner)
+  *
+  *
+  */
+mvErrorEnum mvWorld::mvGetGroupBehaviourParameterf(mvIndex gbIndex, mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* num)
+{
+//   return mvGetClassParameterf<mvGroupBehaviour>(groupBehaviours,index,noOfGroupBehaviours,paramFlag,num);
+   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(gbIndex);
+
+   if (tempGroupBehav != NULL)
+   {
+      return tempGroupBehav->getParameterf(groupIndex,paramFlag,num);
+   }
+   else
+   {
+      return MV_GROUP_BEHAVIOUR_INDEX_IS_INVALID;
+   }
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetGroupBehaviourParameterv(mvIndex gbIndex, mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+{
+   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(gbIndex);
+
+   if (tempGroupBehav != NULL)
+   {
+      return tempGroupBehav->getParameterv(groupIndex,paramFlag,array,noOfParameters);
+   }
+   else
+   {
+      return MV_GROUP_BEHAVIOUR_INDEX_IS_INVALID;
+   }
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentGroupBehaviourParameter(mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   return mvGetGroupBehaviourParameter(currentGroupBehaviour,groupIndex,paramFlag,option);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentGroupBehaviourParameterf(mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* num)
+{
+   return mvGetGroupBehaviourParameterf(currentGroupBehaviour,groupIndex,paramFlag,num);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentGroupBehaviourParameterv(mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+{
+   return mvGetGroupBehaviourParameterv(currentGroupBehaviour,groupIndex,paramFlag,array,noOfParameters);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetMainGroupBehaviourParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum option)
+{
+   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(index);
+
+   if (tempGroupBehav != NULL)
+   {
+      return tempGroupBehav->setMainParameter(paramFlag,option);
+   }
+   else
+   {
+      return MV_GROUP_BEHAVIOUR_INDEX_IS_INVALID;
+   }
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetMainGroupBehaviourParameteri(mvIndex index, mvParamEnum paramFlag, mvIndex paramIndex)
+{
+   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(index);
+
+   if (tempGroupBehav != NULL)
+   {
+      return tempGroupBehav->setMainParameteri(paramFlag,paramIndex);
+   }
+   else
+   {
+      return MV_GROUP_BEHAVIOUR_INDEX_IS_INVALID;
+   }
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetMainGroupBehaviourParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat num)
+{
+   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(index);
+
+   if (tempGroupBehav != NULL)
+   {
+      return tempGroupBehav->setMainParameterf(paramFlag,num);
+   }
+   else
+   {
+      return MV_GROUP_BEHAVIOUR_INDEX_IS_INVALID;
+   }
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetMainGroupBehaviourParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array)
+{
+   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(index);
+
+   if (tempGroupBehav != NULL)
+   {
+      return tempGroupBehav->setMainParameterv(paramFlag,array);
+   }
+   else
+   {
+      return MV_GROUP_BEHAVIOUR_INDEX_IS_INVALID;
+   }
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetCurrentMainGroupBehaviourParameter(mvParamEnum paramFlag, mvOptionEnum option)
+{
+   return mvSetMainGroupBehaviourParameter(currentGroupBehaviour,paramFlag,option);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetCurrentMainGroupBehaviourParameteri(mvParamEnum paramFlag, mvIndex index)
+{
+   return mvSetMainGroupBehaviourParameteri(currentGroupBehaviour,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetCurrentMainGroupBehaviourParameterf(mvParamEnum paramFlag, mvFloat num)
+{
+   return mvSetMainGroupBehaviourParameterf(currentGroupBehaviour,paramFlag,num);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetCurrentMainGroupBehaviourParameterv(mvParamEnum paramFlag, mvFloat* array)
+{
+   return mvSetMainGroupBehaviourParameterv(currentGroupBehaviour,paramFlag,array);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetMainGroupBehaviourParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(index);
+
+   if (tempGroupBehav != NULL)
+   {
+      return tempGroupBehav->getMainParameter(paramFlag,option);
+   }
+   else
+   {
+      return MV_GROUP_BEHAVIOUR_INDEX_IS_INVALID;
+   }
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetMainGroupBehaviourParameteri(mvIndex index, mvParamEnum paramFlag, mvIndex* paramIndex)
+{
+   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(index);
+
+   if (tempGroupBehav != NULL)
+   {
+      return tempGroupBehav->getMainParameteri(paramFlag,paramIndex);
+   }
+   else
+   {
+      return MV_GROUP_BEHAVIOUR_INDEX_IS_INVALID;
+   }
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetMainGroupBehaviourParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat* num)
+{
+   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(index);
+
+   if (tempGroupBehav != NULL)
+   {
+      return tempGroupBehav->getMainParameterf(paramFlag,num);
+   }
+   else
+   {
+      return MV_GROUP_BEHAVIOUR_INDEX_IS_INVALID;
+   }
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetMainGroupBehaviourParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+{
+   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(index);
+
+   if (tempGroupBehav != NULL)
+   {
+      return tempGroupBehav->getMainParameterv(paramFlag,array,noOfParameters);
+   }
+   else
+   {
+      return MV_GROUP_BEHAVIOUR_INDEX_IS_INVALID;
+   }
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentMainGroupBehaviourParameter(mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   return mvGetMainGroupBehaviourParameter(currentGroupBehaviour, paramFlag, option);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentMainGroupBehaviourParameteri(mvParamEnum paramFlag, mvIndex* index)
+{
+   return mvGetMainGroupBehaviourParameteri(currentGroupBehaviour,paramFlag,index);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentMainGroupBehaviourParameterf(mvParamEnum paramFlag, mvFloat* num)
+{
+   return mvGetMainGroupBehaviourParameterf(currentGroupBehaviour,paramFlag,num);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentMainGroupBehaviourParameterv(mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+{
+   return mvGetMainGroupBehaviourParameterv(currentGroupBehaviour,paramFlag,array,noOfParameters);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetWorldParameter(mvParamEnum paramFlag, mvOptionEnum option)
+{
+   return MV_NO_ERROR;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetWorldParameteri(mvParamEnum paramFlag, mvIndex paramIndex)
+{
+   return MV_NO_ERROR;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetWorldParameterf(mvParamEnum paramFlag, mvFloat num)
+{
+   return MV_NO_ERROR;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetWorldParameterv(mvParamEnum paramFlag, mvFloat* array)
+{
+   return MV_NO_ERROR;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetWorldParameter(mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   return MV_NO_ERROR;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetWorldParameteri(mvParamEnum paramFlag, mvIndex* paramIndex)
+{
+   return MV_NO_ERROR;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetWorldParameterf(mvParamEnum paramFlag, mvFloat* num)
+{
+   return MV_NO_ERROR;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetWorldParameterv(mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+{
+   return MV_NO_ERROR;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetForceParameteri(mvIndex index, mvParamEnum paramFlag, mvIndex paramIndex)
+{
+   return mvSetClassParameteri<mvForce>(forces,index,noOfForces,paramFlag,paramIndex);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetForceParameteri(mvIndex index, mvParamEnum paramFlag, mvIndex* paramIndex)
+{
+   return mvGetClassParameteri<mvForce>(forces,index,noOfForces,paramFlag,paramIndex);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvSetCurrentForceParameteri(mvParamEnum paramFlag, mvIndex paramIndex)
+{
+   return mvSetClassParameteri<mvForce>(forces,currentForce,noOfForces,paramFlag,paramIndex);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::mvGetCurrentForceParameteri(mvParamEnum paramFlag, mvIndex* paramIndex)
+{
+   return mvGetClassParameteri<mvForce>(forces,currentForce,noOfForces,paramFlag,paramIndex);
+}
+
+
+
