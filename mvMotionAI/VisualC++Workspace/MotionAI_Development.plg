@@ -1,0 +1,70 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: MotionAI_Development - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Build : warning : failed to (or don't know how to) build 'D:\mvMotionAI\mvMotionAI\src\mvEnum.cpp'
+
+Creating temporary file "C:\DOCUME~1\WHITE2~1\LOCALS~1\Temp\RSP8.tmp" with contents
+[
+freeglut-debug.lib lua50.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/MotionAI_Development.pdb" /debug /machine:I386 /out:"Debug/MotionAI_Development.exe" /pdbtype:sept /libpath:"../lib" /libpath:"../lib-other" 
+".\Debug\mvBody.obj"
+".\Debug\mvEnum.obj"
+".\Debug\mvForce.obj"
+".\Debug\mvGroup.obj"
+".\Debug\mvGroupBehaviour.obj"
+".\Debug\mvMotionAI-Utilities.obj"
+".\Debug\mvMotionAI.obj"
+".\Debug\mvObstacle.obj"
+".\Debug\mvPathway.obj"
+".\Debug\mvVec3.obj"
+".\Debug\mvWaypoint.obj"
+".\Debug\mvWorld.obj"
+".\Debug\mvLuaScript-Behaviour.obj"
+".\Debug\mvLuaScript-Body.obj"
+".\Debug\mvLuaScript-Force.obj"
+".\Debug\mvLuaScript-Group.obj"
+".\Debug\mvLuaScript-GroupBehaviour.obj"
+".\Debug\mvLuaScript-Obstacle.obj"
+".\Debug\mvLuaScript-Pathway.obj"
+".\Debug\mvLuaScript-Utilities.obj"
+".\Debug\mvLuaScript-Waypoint.obj"
+".\Debug\mvLuaScript-World.obj"
+".\Debug\mvLuaScript.obj"
+".\Debug\Camera.obj"
+".\Debug\GLMain.obj"
+".\Debug\mvScript-Utilities.obj"
+".\Debug\mvBehaviour-Central.obj"
+".\Debug\mvBehaviour-Clone.obj"
+".\Debug\mvBehaviour-Entry.obj"
+".\Debug\mvBehaviour-Flee.obj"
+".\Debug\mvBehaviour-List.obj"
+".\Debug\mvBehaviour-Pursuit.obj"
+".\Debug\mvBehaviour-Seek.obj"
+".\Debug\mvBehaviour-SimpleFlock.obj"
+".\Debug\mvBehaviour-Type.obj"
+".\Debug\mvBehaviour.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\WHITE2~1\LOCALS~1\Temp\RSP8.tmp"
+<h3>Output Window</h3>
+Linking...
+LINK : LNK6004: Debug/MotionAI_Development.exe not found or not built by the last incremental link; performing full link
+LINK : warning LNK4098: defaultlib "LIBC" conflicts with use of other libs; use /NODEFAULTLIB:library
+GLMain.obj : error LNK2001: unresolved external symbol "public: enum mvEnum __thiscall mvBody::getShape(void)const " (?getShape@mvBody@@QBE?AW4mvEnum@@XZ)
+GLMain.obj : error LNK2001: unresolved external symbol "public: enum mvEnum __thiscall mvObstacle::getType(void)const " (?getType@mvObstacle@@QBE?AW4mvEnum@@XZ)
+GLMain.obj : error LNK2001: unresolved external symbol "public: enum mvEnum __thiscall mvWaypoint::getShape(void)" (?getShape@mvWaypoint@@QAE?AW4mvEnum@@XZ)
+mvScript-Utilities.obj : error LNK2001: unresolved external symbol "bool __cdecl mvCheckAllOptionEnumsForString(char const *,enum mvOptionEnum *)" (?mvCheckAllOptionEnumsForString@@YA_NPBDPAW4mvOptionEnum@@@Z)
+mvScript-Utilities.obj : error LNK2001: unresolved external symbol "bool __cdecl mvCheckAllParamEnumsForString(char const *,enum mvParamEnum *)" (?mvCheckAllParamEnumsForString@@YA_NPBDPAW4mvParamEnum@@@Z)
+Debug/MotionAI_Development.exe : fatal error LNK1120: 5 unresolved externals
+Error executing link.exe.
+
+
+
+<h3>Results</h3>
+MotionAI_Development.exe - 6 error(s), 2 warning(s)
+</pre>
+</body>
+</html>
