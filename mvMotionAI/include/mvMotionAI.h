@@ -84,7 +84,7 @@ void mvApplyToAllWorlds(void (someFunction)(mvWorld*,void*),void* extraPtr);
  *
  */
 // TODO: dynamic behaviour loading by array of derived function objects.
-
+// TODO: add single class to handle shapes.
 class mvMotionAI
 {
    private:

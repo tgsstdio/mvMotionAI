@@ -43,7 +43,6 @@
  */
 // MS VC++ compiler warnings are annoying
 //#define mvGroupBehaviourNode gn
-
 class mvGroupBehaviourNode
 {
    private:
@@ -60,15 +59,7 @@ class mvGroupBehaviourNode
       mvIndex getGroup() const;
       mvBehaviourEntry* getBehavData() const;
       ~mvGroupBehaviourNode();
-      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
-      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option) const;
-      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num) const;
-      mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray) const;
 
-      mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
-      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
-      mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
-      mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
       bool operator<(const mvGroupBehaviourNode& rhs) const;
 };
 
@@ -78,34 +69,16 @@ class mvGroupBehaviourNode
  *
  * Version     Date     Comments
  *
+ * 00-01-17   24/10/06  - added get/set parameters + main functions
+ *
  * 00-01-05   15/8/06   - considered using stl::sets - now back to vector.
  *
  *            26/7/06   - created mvGroupBehaviourNode vector for simplicity
  */
-//TODO : add get/set main parameters
-/*
-struct CompareGroupNodes
-{
-   bool operator()(const mvGroupBehaviourNode* lhs, const mvGroupBehaviourNode* rhs) const
-   {  **
-      if (lhs != NULL && rhs != NULL)
-      {
-         return (lhs->getGroup() < rhs->getGroup());
-      }
-      else
-      {
-         return false;
-      }
-      **
-      return true;
-   };
-};
-*/
 
 class mvGroupBehaviour
 {
    private:
-      //std::set<mvGroupBehaviourNode*,CompareGroupNodes> groupsList2;
       void initDefault();
       mvBehaviourEntry* defaultEntries;
       std::vector<mvGroupBehaviourNode*> groupsList;
@@ -113,11 +86,6 @@ class mvGroupBehaviour
       mvCount noOfGroups;
 
    public:
-      //mvBehaviour* currentBehaviour;
-      //std::vector<mvGroup*> groups;
-      //std::vector<mvFloat*> groupVariables;
-      //std::vector<mvIndex*> groupIndexes;
-      //std::vector<mvEnum*> groupStates;
 
       mvGroupBehaviour();
       mvGroupBehaviour(mvOptionEnum bType);
@@ -126,17 +94,24 @@ class mvGroupBehaviour
       void removeAllGroups();
       mvGroupBehaviourNode* getGroupNodeByIndex(mvIndex index);
       mvGroupBehaviourNode* findGroupNodeByIndex(mvIndex groupIndex);
-      // mvGroupBehaviourNode* findGroupNodeByPtr(mvGroup* groupPtr);
-      //mvGroupBehaviourNode* findGroupNodeByPtr(mvIndex groupNo);
       mvCount getNoOfGroups() const;
       mvOptionEnum getType() const;
       ~mvGroupBehaviour();
-      // const mvGroupBehaviour& operator=(const mvGroupBehaviour& rhs);
 
-      mvErrorEnum getParameteri(mvIndex groupIndex, mvParamEnum paramFlag, mvIndex* index) const;
-      mvErrorEnum getParameter(mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum* option) const;
-      mvErrorEnum getParameterf(mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* num) const;
-      mvErrorEnum getParameterv(mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* numArray) const;
+      mvErrorEnum getMainParameteri(mvParamEnum paramFlag, mvIndex* index);
+      mvErrorEnum getMainParameter(mvParamEnum paramFlag, mvOptionEnum* option);
+      mvErrorEnum getMainParameterf(mvParamEnum paramFlag, mvFloat* num);
+      mvErrorEnum getMainParameterv(mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters);
+
+      mvErrorEnum setMainParameteri(mvParamEnum paramFlag, mvIndex index);
+      mvErrorEnum setMainParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setMainParameterf(mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum setMainParameterv(mvParamEnum paramFlag, mvFloat* numArray);
+
+      mvErrorEnum getParameteri(mvIndex groupIndex, mvParamEnum paramFlag, mvIndex* index);
+      mvErrorEnum getParameter(mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum* option);
+      mvErrorEnum getParameterf(mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* num);
+      mvErrorEnum getParameterv(mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters);
 
       mvErrorEnum setParameteri(mvIndex groupIndex, mvParamEnum paramFlag, mvIndex index);
       mvErrorEnum setParameter(mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum option);

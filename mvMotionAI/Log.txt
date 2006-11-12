@@ -1,3 +1,25 @@
+version 00-01-17
+- implemented more set and get functionality for
+    -mvWorld
+    -mvBody
+    -mvObstacle
+    -mvGroup
+    -mvGroupBehaviour
+    -mvBehaviour
+- changed magic lua pop index numbers for named constants for debugging purposes
+- implement world nudge body + lua functions
+- implemented Lua equivalent functions for set/get functions
+- updated MVC6 workspace : some errors (behaviours not operating correctly)
+- TODO : pathway functions
+
+version 00-01-16
+- enumeration mvEnum split into 3 different enumeration types
+     - mvParamEnum - parameter query enum type for retrieving / setting values
+     - mvErrorEnum - error return values
+     - mvOptionEnum - state and type values
+- update function type
+- updated sample programs for new enumerations
+
 version 00-01-15
 - added MIT licenses to headers and source files
 - added + implemented, Lua support functions, application in headers & sources,
@@ -6,8 +28,7 @@ Code::Blocks project files, shows a list of implemented Lua functions.
 - added documentation.
 - added Log.txt
 
-
-version 00-01-14 
+version 00-01-14
 -Code::Blocks with MinGW workspace and application projects files now included.
 -New script file Flee.lua shows body moving away from target.
 -MinGW application, mvMotion-mingw.exe included (WIN XP, openGL, glut, Lua, AMD XP).
@@ -23,10 +44,10 @@ NEW PROGRAM ARGS are [$(PROGRAM_NAME) $(LUA_SCRIPT_FILE)]
 version 00-01-12
 - First repository copy of mvMotionAI on SourceForge.org
 - other way to commit stuff to source forge
-- Moved files remotely to backup (Collision.cpp,GLTest.cpp) as they 
+- Moved files remotely to backup (Collision.cpp,GLTest.cpp) as they
 contains CVS tags
 - Removed header file/folders in include-other - redundant headers
-- Removed library file/folder in 
+- Removed library file/folder in
 - Vec3.h/.cpp & Utilities.h moved to backup - obsolete
 - bin (binaries) contains sample program, mvMotionAI.exe
 
@@ -53,10 +74,10 @@ version 00-01-08 (incomplete)
 
 version 00-01-07
 - mvSetParamteri, mvSetCurrentParameteri declared and initialised
-  MV_BEHAVIOUR_BODY_TARGET, 
+  MV_BEHAVIOUR_BODY_TARGET,
   MV_BEHAVIOUR_PATHWAY_TARGET
   MV_BEHAVIOUR_WAYPOINT_TARGET options are possible
-- mvSetDefaultBehaviourFactorForBody, mvSetDefaultBehaviourFactorForCurrentBody 
+- mvSetDefaultBehaviourFactorForBody, mvSetDefaultBehaviourFactorForCurrentBody
 declared and initialised
 - associated scrip functions now declared and initialised
 
@@ -66,88 +87,88 @@ version 00-01-06
 - all data types are now using settings declared in mvMotionAI-Types.h
 - mvVec3 has superseded OpenSteer's Vec3 as vector class in Motion AI, therefore
 Vec3 is now redundant.
-- Simple Flock Behaviour is found to be incorrect. 
+- Simple Flock Behaviour is found to be incorrect.
       The separation part of the flocking is the main reason.
-- Next step is to variable adjust of behaviours at least for the 
+- Next step is to variable adjust of behaviours at least for the
 following behaviours i.e. MV_SIMPLE_FLOCK, MV_SEEK, MV_FLEE, MV_CLONE, MV_PURSUIT.
 
-version 00-01-05s (VERSION FROZEN until group behaviour task completed) 
+version 00-01-05s (VERSION FROZEN until group behaviour task completed)
 - added new types headers mvMotionAI-Types.h
 - created new class called mvVec3 (mvVec3.cpp, mvVec3.h) to replace Vec3
 - modified executable GLMain.cpp
 - modified simple flock behaviour
 - GOAL to version 00-01-05+
-   - allow variables changes to behaviour, group behaviour, 
+   - allow variables changes to behaviour, group behaviour,
    - allow most fine tuning to behaviour list
    - web based SVN storage
    - finish behaviours flee, evade, pursuit, seek, clone, simple flock.
 
-version 00-01-05r (VERSION FROZEN) 
+version 00-01-05r (VERSION FROZEN)
 - global behaviours work
    - bug : Need to be able to change variables
 - group behaviours work
    - bug : need to correct simple flock behaviour
 - personal behaviours work
 - system works
-POSSIBLE bugs 
+POSSIBLE bugs
   - return pointer are not correct for most classes
   - check forces
 
-version 00-01-05q (VERSION FROZEN) 
+version 00-01-05q (VERSION FROZEN)
 - working on group behaviours lua script functions
 - need to work out the changing parameters for group, shared behaviours
 
-version 00-01-05p (VERSION FROZEN) 
-- system executable works 
+version 00-01-05p (VERSION FROZEN)
+- system executable works
 - progress : implementing group behaviours
            - simple flock
 
-version 00-01-05o (VERSION FROZEN) 
+version 00-01-05o (VERSION FROZEN)
 - iterator & system executable now work
 - SEEK, FLEE, PURSUIT now work
 - group behaviour incomplete
 - changes to mvBehaviour-Type.cpp
 
-version 00-01-05n (VERSION FROZEN) 
+version 00-01-05n (VERSION FROZEN)
 - executable now works
 - bug in seek variable / set waypoints
 - script code changes
 
-version 00-01-05m (VERSION FROZEN) 
+version 00-01-05m (VERSION FROZEN)
 - behaviour list changes/ header file missing
-- group behaviour 
+- group behaviour
 - integrator changed to allow new changes
 
-version 00-01-05l (VERSION FROZEN) 
+version 00-01-05l (VERSION FROZEN)
 - implemented mvBehaviour, and started working on mvGroupBehaviour.
 - simple flock algorithm sort of finished
 - system/library still does not work
 
-version 00-01-05k (VERSION FROZEN) 
+version 00-01-05k (VERSION FROZEN)
 - added new code behaviour list node, list, type.h
 - system still does not works
 
-Version 00-01-05j (VERSION FROZEN) 
+Version 00-01-05j (VERSION FROZEN)
 - added simple flock files, mvBehaviour-SimpleFlock.cpp & .h
 - added implementation of simple flock group and singular body
 - system still does not work
 - behaviour list is changed, moved around functions.
 
-Version 00-01-05i (VERSION FROZEN) 
+Version 00-01-05i (VERSION FROZEN)
 - Moving target, waypoint, body get and set functions to mvBehaviour-Entry
 Code still doesn't work
 
-Version 00-01-05h (VERSION FROZEN) 
+Version 00-01-05h (VERSION FROZEN)
 - Declared header files for behaviour list node, group behaviour nodes
 - Modified (mv) group behaviour, behaviour, behaviour list to use behaviour entry
 System still does not work
 
-Version 00-01-05g (VERSION FROZEN) 
+Version 00-01-05g (VERSION FROZEN)
 -Writing code from central behaviour entry for mvBehaviour, mvBehaviour-ListNode,
 mvGroupBehaviour
 -Non working version
 
-Version 00-01-05f (VERSION FROZEN) 
+Version 00-01-05f (VERSION FROZEN)
 - created/finished class code for mvGroupBehaviour.cpp
 declared headers for mvWorld group behaviour class
 added two template functions to mvMotionAI-Utilities.h
@@ -157,7 +178,7 @@ Version 00-01-05e (VERSION FROZEN)
 - Initialised mvGroupBehaviour.h to add grouped body for easier group behaviour.
 
 version 00-01-05d (VERSION FROZEN)
-- Created Behaviour Entry, Behaviour Node, and mvBehaviour-Type 
+- Created Behaviour Entry, Behaviour Node, and mvBehaviour-Type
 - The system is not working at this moment to allow group (boids) behaviours
 
 version 00-01-05c (VERSION FROZEN)
@@ -194,7 +215,7 @@ version 00-01-05a (VERSION FROZEN)
 
 00-01-01 24/5/06 Massive overhaul of class names and functions Should progress into creating the first actual behaviour types. Behaviours types likely to be added shortly are CLONE, SEEK, FLEE and PATH FOLLOWING & started work to accommediate SEEK, FLEE, CLONE & FOLLOW PATH support functions
 
-00-01-00 22/5/06 
+00-01-00 22/5/06
     - rename mWorld into mvWorld, allowed forces and groups
 
     * initialised behaviours

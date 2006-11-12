@@ -23,9 +23,6 @@
 				<Linker>
 					<Add library="glu32"/>
 					<Add library="glut32"/>
-					<Add library="mvMotionAI"/>
-					<Add library="lualib5"/>
-					<Add library="lua5"/>
 					<Add library="opengl32"/>
 					<Add directory="lib"/>
 					<Add directory="lib-other\mingw"/>
@@ -33,6 +30,11 @@
 				</Linker>
 			</Target>
 		</Build>
+		<Linker>
+			<Add library="mvMotionAI"/>
+			<Add library="lua5"/>
+			<Add library="lualib5"/>
+		</Linker>
 		<Unit filename="examples-src\Camera.cpp">
 			<Option compilerVar="CPP"/>
 			<Option target="default"/>

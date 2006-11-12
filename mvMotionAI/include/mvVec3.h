@@ -21,6 +21,9 @@
  * DEALINGS IN THE SOFTWARE.
  *
  * (2006) Code based on Vec3.h + Vec3.cpp from OpenSteer Steering Module (2001-2006)
+ *
+ * Log
+ * 00-01-17    add new functions setAll for setting the vector
  */
 
 #ifndef MV_MVVEC3_H_
@@ -193,6 +196,7 @@ class mvVec3
      * \brief set XYZ coordinates to given three floats
      */
    void setXYZ (const mvFloat& x,const mvFloat& y,const mvFloat& z);
+   void setAll(const mvVec3& rhs);
 
    void setAsXUnitVector (void);
    void setAsYUnitVector (void);

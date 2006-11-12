@@ -46,8 +46,17 @@
  * travel along any direction instead of travelling along a single unit
  * vector.
  *
+// TODO : add speed functions/methods to get current engine speed, \
+// actual speed. direction speed
+// TODO : implementation of VEHICLE
+// TODO : implementation of DUAL_TYPE
+// TODO : domains limiting
+// TODO : shapes and dimensions
+ *
  * Log
  * Version		date		comments
+ * 00-01-17   22/8/06   - add get/set parameters
+ *
  * 00-01-05   22/8/06   - using types headers and mvVec3.
  *
  * 00-01-03   21/6/06   - added behaviour list to mvBody class
@@ -65,12 +74,6 @@
  *                     header and source file.
  *
  */
-// TODO : add string set/get parameter funcsions
-// TODO : add speed functions/methods to get current engine speed,actual speed. direction speed
-// TODO : implementation of VEHICLE
-// TODO : implementation of DUAL_TYPE
-// TODO : domains limiting
-// TODO : shapes and dimensions
 
 static const mvCount MV_MAX_NO_OF_BODY_DIMENSIONS = 3;
 
@@ -127,6 +130,12 @@ class mvBody
     mvFloat getZ() const;
     //void setMaxAcceleration(mvFloat num);
     void setAcceleration(mvFloat accel);
+    mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
+    mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
+    mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num);
+    mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters);
+
+    mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
     mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
     mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
     mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
@@ -147,6 +156,10 @@ class mvBody
     void setDefaultBody(mvIndex bodyIndex);
     void setDefaultWaypoint(mvIndex wpIndex);
     void setDefaultPathway(mvIndex pwIndex);
+    mvIndex getDefaultBody() const;
+    mvIndex getDefaultWaypoint() const;
+    mvIndex getDefaultPathway() const;
+    mvFloat getDefaultBehaviourFactor() const;
     mvErrorEnum setDefaultBehaviourFactor(mvFloat factor);
     bool checkGroupBehaviourExists(mvIndex behaviourIndex, mvIndex groupIndex);
 };

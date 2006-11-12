@@ -46,7 +46,6 @@
  *
  *00-01-00  22/5/06  - initialised forces
  */
-// TODO: get/set parameteri functions
 
 static const mvCount MV_MAX_NO_OF_FORCE_VARIABLES = 3;
 class mvForce
@@ -74,10 +73,12 @@ class mvForce
       void incrementCount();
       void decrementCount();
       bool isGlobalForce();
+      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
       mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* dest);
       mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* dest);
       mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* dest, mvCount* size);
       mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
       mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
       mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
       ~mvForce();

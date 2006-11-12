@@ -78,6 +78,8 @@ class mvBehaviourListNode
  * Log
  *
  * Version     Date     Comments
+ * 00-01-17   21/10/06   - add functions get Default behaviour factor , pathway,
+ *                      body, waypoint targets
  *
  * 00-01-05   26/7/06   - use node instead of entry for consistency and code reuse
  *
@@ -119,6 +121,11 @@ class mvBehaviourList
       void setDefaultWaypoint(mvIndex wpIndex);
       void setDefaultPathway(mvIndex pwIndex);
       mvErrorEnum setDefaultBehaviourFactor(mvFloat factor);
+
+      mvIndex getDefaultBody() const;
+      mvIndex getDefaultWaypoint() const;
+      mvIndex getDefaultPathway() const;
+      mvFloat getDefaultBehaviourFactor() const;
 };
 
 #endif

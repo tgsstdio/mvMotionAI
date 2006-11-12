@@ -130,8 +130,8 @@ enum mvParamEnum
    MV_DOMAIN,
    MV_FORCE_VECTOR,
    MV_FORCE_ON,
-   MV_FORCE_OFF,
-   MV_ENABLE_FORCE,
+   MV_FORCE_OFF, // redundant
+   MV_ENABLE_FORCE, // combine together ?? to is_enabled
    MV_VELOCITY,
    MV_ACCELERATION_VECTOR,
    MV_FORCE_QUANTITY,
@@ -155,6 +155,8 @@ enum mvParamEnum
    MV_NO_OF_PARAM_ENUMS
 };
 
+// TODO: error of index dest is null
+// TODO: error of world index is null
 enum mvErrorEnum
 {
    MV_NO_ERROR = 0,

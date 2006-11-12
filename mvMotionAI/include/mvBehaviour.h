@@ -37,9 +37,12 @@
  *
  * \brief behaviour states
  *
+ *
  * Log
  *
  *version     date  comments
+ *
+ *00-01-17  25/10/06 - added get/set parameter functions
  *
  *00-01-05  26/7/06  - removed variables, added code reuse in mvBehaviourEntry
  *
@@ -56,6 +59,8 @@
  *
  *00-01-00  22/5/06  - initialised behaviours
  */
+
+
 class mvBehaviour
 {
   private:

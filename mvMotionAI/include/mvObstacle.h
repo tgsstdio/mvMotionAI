@@ -36,6 +36,8 @@
  *Log
  *
  *version     date     comments
+ *00-01-17   21/10/06  - adding and implementions get/set parameter functions
+ *
  *00-01-16   14/10/06  - redefined single type of mvEnums to 3 enums,
  *                     - changed type to shape, state to type.
  *
@@ -73,6 +75,12 @@ class mvObstacle
       mvFloat getX() const;
       mvFloat getY() const;
       mvFloat getZ() const;
+      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
+      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
+      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num);
+      mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters);
+
+      mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
       mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
       mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
       mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
