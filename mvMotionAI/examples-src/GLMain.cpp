@@ -112,7 +112,7 @@ int main(int argc, char** argv)
 
    glutMainLoop();
    return EXIT_SUCCESS;
-};
+}
 
 const char* animateFlag = NULL;
 const char no_animation[] = "a : Start animation";
@@ -165,7 +165,7 @@ void display(void)
    drawText(5, windowHeight - 13, buffer ,windowWidth,windowHeight, 1.0, 1.0, 1.0);
    glFlush();
    glutSwapBuffers();
-};
+}
 
 void displayMotionAI()
 {
@@ -312,7 +312,7 @@ void displayWaypoint(mvWaypoint* wp,void* extraPtr)
         }
      glPopMatrix();
    }
-};
+}
 
 void animate(void)
 {
@@ -335,7 +335,7 @@ void animate(void)
    displayFrameRate(noOfFrames);
    glutPostRedisplay();
    noOfFrames++;
-};
+}
 
 void displayFrameRate(long int frameNo)
 {
@@ -366,7 +366,7 @@ void displayFrameRate(long int frameNo)
 void cleanup()
 {
    mvFreeMotionAI();
-};
+}
 
 /* ARGSUSED1 */
 void keyboard (unsigned char key, int x, int y)
@@ -438,7 +438,7 @@ void keyboard (unsigned char key, int x, int y)
       default:
          break;
    }
-};
+}
 
 void init(void)
 {
@@ -454,7 +454,7 @@ void init(void)
   // refresh screen
   displayFrameRate(noOfFrames);
   glutPostRedisplay();
-};
+}
 
 void drawText(GLint x, GLint y, char* s, int windowWidth,
               int windowHeight, GLfloat r, GLfloat g, GLfloat b)
@@ -502,7 +502,7 @@ void drawText(GLint x, GLint y, char* s, int windowWidth,
   glMatrixMode(GL_PROJECTION);
   glPopMatrix();
   glMatrixMode(GL_MODELVIEW);
-};
+}
 
 void reshape (int w, int h)
 {
@@ -517,9 +517,9 @@ void reshape (int w, int h)
    glMatrixMode(GL_MODELVIEW);
    glLoadIdentity();
    glTranslatef (0.0, 0.0, -3.0);
-};
+}
 
-/**
+/*
 void displayParticle(Particle* p)
 {
    if (p != NULL)

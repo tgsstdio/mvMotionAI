@@ -37,6 +37,10 @@
  * Log
  *
  *version		date		comments
+ *00-01-17     26/10/06    -  add get/set parameter functions
+ *
+ *                         -  add node get/set node parameters functions
+ *
  *00-01-16     15/10/06    - converted mvenums to 3 enums
  *
  *00-01-00     22/5/06     - renamed pathways to mvPathway
@@ -50,15 +54,44 @@ class mvPathway
 {
    private:
       std::vector<mvWaypoint*> waypoints;
+      mvIndex currentWPIndex;
       mvCount noOfWaypoints;
 
    public:
       mvPathway();
       void addWaypoint(mvWaypoint* pWaypoint);
       mvErrorEnum removeWaypoint(mvWaypoint* pWaypoint);
+
+      mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
       mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
-      mvErrorEnum setParameterf(mvParamEnum paramFlag, float num);
-      mvErrorEnum setParameterv(mvParamEnum paramFlag, float* numArray);
+      mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
+
+      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
+      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
+      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num);
+      mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters);
+
+      mvErrorEnum setNodeParameteri(mvIndex wpIndex, mvParamEnum paramFlag, mvIndex index);
+      mvErrorEnum setNodeParameter(mvIndex wpIndex, mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setNodeParameterf(mvIndex wpIndex, mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum setNodeParameterv(mvIndex wpIndex, mvParamEnum paramFlag, mvFloat* numArray);
+
+      mvErrorEnum getNodeParameteri(mvIndex wpIndex, mvParamEnum paramFlag, mvIndex* index);
+      mvErrorEnum getNodeParameter(mvIndex wpIndex, mvParamEnum paramFlag, mvOptionEnum* option);
+      mvErrorEnum getNodeParameterf(mvIndex wpIndex, mvParamEnum paramFlag, mvFloat* num);
+      mvErrorEnum getNodeParameterv(mvIndex wpIndex, mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters);
+
+      mvErrorEnum setCurrentNodeParameteri(mvParamEnum paramFlag, mvIndex index);
+      mvErrorEnum setCurrentNodeParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setCurrentNodeParameterf(mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum setCurrentNodeParameterv(mvParamEnum paramFlag, mvFloat* numArray);
+
+      mvErrorEnum getCurrentNodeParameteri(mvParamEnum paramFlag, mvIndex* index);
+      mvErrorEnum getCurrentNodeParameter(mvParamEnum paramFlag, mvOptionEnum* option);
+      mvErrorEnum getCurrentNodeParameterf(mvParamEnum paramFlag, mvFloat* num);
+      mvErrorEnum getCurrentNodeParameterv(mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters);
+
       void removeAllWaypoints();
       ~mvPathway();
 };

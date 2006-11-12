@@ -39,6 +39,8 @@
  * Log
  *
  *version     date  comments
+ *00-01-17  18/10/06 - including get/set parameters
+ *
  *00-01-16  15/10/06 - converted for new enums
  *
  *00-01-05  23/8/06  - types now declared by mvMotionAI-Types.h & mvVec3
@@ -64,7 +66,13 @@ class mvGroup
       mvBody* getMemberByIndex(mvIndex index);
       mvErrorEnum addMember(mvBody* tempBody);
       mvErrorEnum removeMember(mvBody* tempBody);
+      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
+      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
+      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num);
+      mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters);
+
       mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
       mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
       mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
       ~mvGroup();

@@ -100,7 +100,7 @@ mvClass* mvGetClassPtr(std::vector<mvClass*>& mvClassList, mvIndex index, mvCoun
 }
 
 template<class mvClass>
-mvErrorEnum mvGetClassParameterByIndex(std::vector<mvClass*>& mvClassList, mvIndex index, mvCount& noOfItems, mvParamEnum paramFlag, mvOptionEnum* option)
+mvErrorEnum mvGetClassParameter(std::vector<mvClass*>& mvClassList, mvIndex index, mvCount& noOfItems, mvParamEnum paramFlag, mvOptionEnum* option)
 {
    mvClass* tempClass = NULL;
    mvIndex classIndex = index + MV_OFFSET_TO_INDEX;
@@ -355,7 +355,7 @@ mvErrorEnum mvRemoveUniqueItemInVector(std::vector<mvClass*>& itemVector, mvClas
 }
 
 template<class mvClass>
-mvErrorEnum mvGetClassParameteri(std::vector<mvClass*>& mvClassList, mvCount& noOfItems, mvIndex index, mvParamEnum paramFlag, mvIndex itemIndex)
+mvErrorEnum mvGetClassParameteri(std::vector<mvClass*>& mvClassList, mvCount& noOfItems, mvIndex index, mvParamEnum paramFlag, mvIndex* itemIndex)
 {
    mvIndex classIndex = index + MV_OFFSET_TO_INDEX;
    mvClass* tempClass = NULL;

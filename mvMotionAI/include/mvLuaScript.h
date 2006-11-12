@@ -42,6 +42,32 @@ extern "C" {
 #define MV_MOTIONAI_LUA_DEBUG 1
 #undef MV_MOTIONAI_LUA_DEBUG
 
+/*
+ * 00-01-17 number indexes (instead magic numbers) are
+ *          pain to debug
+ */
+// TODO: convert all files to new named constant indexes for lua
+static const mvCount MV_LUA_RETURNED_ERROR_COUNT = 1;
+
+static const mvIndex MV_LUA_SET_CURRENT_ITEM_INDEX_NO = 2;
+
+static const mvIndex MV_LUA_REMOVE_ITEM_INDEX_NO = 2;
+
+static const mvIndex MV_LUA_WORLD_INDEX_VALUE = 1;
+
+static const mvIndex MV_LUA_SET_PARAMETER_ITEM_INDEX = 2;
+static const mvIndex MV_LUA_SET_PARAMETER_PARAM_ENUM_INDEX = 3;
+static const mvIndex MV_LUA_SET_PARAMETER_OPTION_ENUM_INDEX = 4;
+static const mvIndex MV_LUA_SET_PARAMETER_PARAM_INDEX_NO = 4;
+static const mvIndex MV_LUA_SET_PARAMETER_START_OF_VECTOR_INDEX = 4;
+
+static const mvIndex MV_LUA_SET_CURRENT_PARAMETER_PARAM_ENUM_INDEX = 2;
+static const mvIndex MV_LUA_SET_CURRENT_PARAMETER_OPTION_ENUM_INDEX = 3;
+static const mvIndex MV_LUA_SET_CURRENT_PARAMETER_PARAM_INDEX_NO = 3;
+static const mvIndex MV_LUA_SET_CURRENT_PARAMETER_START_OF_VECTOR_INDEX = 3;
+
+static const mvCount MV_LUA_REMOVE_ALL_ITEMS_COUNT = 0;
+
 
 void mvLoadLuaScriptFunctions(lua_State* L);
 

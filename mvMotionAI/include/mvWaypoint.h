@@ -35,9 +35,11 @@
  * \class mvWaypoint
  * \brief Immediate class between Motion AI objects and gloabl world points
  *
+ *
  * Log
  *
  * Version		Date		Comments
+ * 00-01-17  26/10/06 - add get/set parameter functions
  *
  * 00-01-02  31/5/06  - removing groups from system until better solution
  *                     arrives.
@@ -68,9 +70,6 @@ class mvWaypoint
       //mvWaypoint(mvEnum targetType);
       mvWaypoint(mvOptionEnum targetType, mvOptionEnum targetShape);
       mvWaypoint(mvOptionEnum targetType, mvOptionEnum targetShape, mvFloat x, mvFloat y, mvFloat z);
-      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
-      mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
-      mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
       mvErrorEnum addForce(mvForce* forcePtr);
       mvErrorEnum removeForce(mvForce* forcePtr);
       void removeAllForces();
@@ -83,7 +82,20 @@ class mvWaypoint
       mvFloat getX() const;
       mvFloat getY() const;
       mvFloat getZ() const;
+      void setX(mvFloat x);
+      void setY(mvFloat y);
+      void setZ(mvFloat z);
       ~mvWaypoint();
+
+      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
+      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
+      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num);
+      mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters);
+
+      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
+      mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
 };
 
 #endif

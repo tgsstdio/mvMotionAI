@@ -37,6 +37,8 @@
  * Log
  *
  * Version     Date     Comments
+ * 00-01-17   25/10/06  - added get/parameters functions
+ *
  * 00-01-16   23/7/06   - enumerations now split into 3 categories
  *
  * 00-01-05   23/7/06   - re implememting file
@@ -74,16 +76,16 @@ class mvBehaviourEntry
       mvOptionEnum getType() const;
    //mvIndex getGroupIndex();
 
-      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum * dest) const;
-      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvFloat* dest) const;
-      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* dest) const;
-      mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* dest, mvCount* size) const;
+      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum * dest);
+      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
+      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* dest);
+      mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* dest, mvCount* size);
 
       mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
-      mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex option);
+      mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
       mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
       mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
-
+/*
       mvErrorEnum getParameters(const char* paramFlag, const char* dest) const;
       mvErrorEnum getParametersi(const char* paramFlag, mvFloat* dest) const;
       mvErrorEnum getParametersf(const char* paramFlag, mvFloat* dest) const;
@@ -93,7 +95,7 @@ class mvBehaviourEntry
       mvErrorEnum setParametersi(const char* paramFlag, mvIndex option);
       mvErrorEnum setParametersf(const char* paramFlag, mvFloat num);
       mvErrorEnum setParametersv(const char* paramFlag, mvFloat* numArray);
-
+*/
       mvErrorEnum addPathway(mvIndex bPathway);
       mvErrorEnum addWaypoint(mvIndex bWaypoint);
       mvIndex getWaypoint() const;
