@@ -1,0 +1,15 @@
+These are example programs that run on a ubuntu desktop
+environment.
+
+mv-GLmain-ubuntu
+* requires lua 5.0 OpenGL, Glut, GLU, libraries and binaries
+mv-luafunc-ubuntu
+* requires lua 5.0 libraries and binaries
+mv-typesizes-ubuntu
+* requires lua 5.0 libraries and binaries
+
+Their source code of these example functions can be found in the examples-src
+directory.
+
+David Young
+15th November 2006

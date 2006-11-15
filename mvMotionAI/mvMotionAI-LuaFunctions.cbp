@@ -1,44 +1,80 @@
-<?xml version="1.0"?>
-<!DOCTYPE CodeBlocks_project_file>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_project_file>
-	<FileVersion major="1" minor="1"/>
+	<FileVersion major="1" minor="5" />
 	<Project>
-		<Option title="mvMotionAI Lua Functions Test"/>
-		<Option makefile="Makefile"/>
-		<Option makefile_is_custom="0"/>
-		<Option compiler="0"/>
+		<Option title="mvMotionAI Lua Functions Test" />
+		<Option pch_mode="0" />
+		<Option default_target="" />
+		<Option compiler="gcc" />
+		<Option virtualFolders="" />
 		<Build>
 			<Target title="default">
-				<Option output="bin\mvMotionAI-LuaFunctions.exe"/>
-				<Option working_dir="."/>
-				<Option object_output=".objs"/>
-				<Option deps_output=".deps"/>
-				<Option type="1"/>
-				<Option compiler="0"/>
-				<Option projectResourceIncludeDirsRelation="1"/>
+				<Option output="bin/mvMotionAI-LuaFunctions.exe" prefix_auto="0" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option projectResourceIncludeDirsRelation="1" />
+				<Linker>
+					<Add library="mvMotionAI" />
+					<Add directory="lib" />
+					<Add directory="lib-other/mingw" />
+				</Linker>
+			</Target>
+			<Target title="mingw-winXP">
+				<Option output="bin/mvMotionAI-LuaFunctions.exe" prefix_auto="0" extension_auto="0" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option projectResourceIncludeDirsRelation="1" />
 				<Compiler>
-					<Add directory="include"/>
-					<Add directory="include-other"/>
-					<Add directory="include-other\mingw"/>
+					<Add directory="include" />
+					<Add directory="include-other" />
+					<Add directory="include-other/mingw" />
 				</Compiler>
 				<Linker>
-					<Add library="mvMotionAI"/>
-					<Add library="lualib5"/>
-					<Add library="lua5"/>
-					<Add directory="lib"/>
-					<Add directory="lib-other\mingw"/>
+					<Add library="lualib5" />
+					<Add library="lua5" />
+					<Add directory="lib" />
+					<Add directory="lib-other/mingw" />
+				</Linker>
+			</Target>
+			<Target title="ubuntu">
+				<Option output="bin/mvMotionAI-lf-u" prefix_auto="1" extension_auto="1" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option projectResourceIncludeDirsRelation="1" />
+				<Compiler>
+					<Add directory="include-other" />
+				</Compiler>
+				<Linker>
+					<Add library="mvMotionAI-ubuntu" />
+					<Add library="lualib50" />
+					<Add library="lua50" />
+					<Add directory="lib" />
 				</Linker>
 			</Target>
 		</Build>
-		<Unit filename="examples-src\LuaFuncTest.cpp">
-			<Option compilerVar="CPP"/>
-			<Option target="default"/>
+		<VirtualTargets>
+			<Add alias="All" targets="default;" />
+		</VirtualTargets>
+		<Compiler>
+			<Add directory="include" />
+		</Compiler>
+		<Linker>
+			<Add directory="lib" />
+		</Linker>
+		<Unit filename="examples-src/LuaFuncTest.cpp">
+			<Option compilerVar="CPP" />
+			<Option target="default" />
+			<Option target="mingw-winXP" />
+			<Option target="ubuntu" />
 		</Unit>
-		<Unit filename="include\mvLuaScript.h">
-			<Option compilerVar=""/>
-			<Option compile="0"/>
-			<Option link="0"/>
-			<Option target="default"/>
+		<Unit filename="include/mvLuaScript.h">
+			<Option compilerVar="" />
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="default" />
+			<Option target="mingw-winXP" />
+			<Option target="ubuntu" />
 		</Unit>
+		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

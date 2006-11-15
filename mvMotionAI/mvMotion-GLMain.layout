@@ -1,4 +1,10 @@
-<?xml version="1.0"?>
-<!DOCTYPE CodeBlocks_layout_file>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
+	<ActiveTarget name="ubuntu" />
+	<File name="examples-src/Camera.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="3795" topLine="161" />
+	</File>
+	<File name="examples-src/GLMain.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1518" topLine="39" />
+	</File>
 </CodeBlocks_layout_file>
