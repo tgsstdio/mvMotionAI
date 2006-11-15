@@ -1,0 +1,10 @@
+For the ubuntu Lua 5.0 libraries and binaries, please install them
+through Add & Remove/apt-get/synaptic package manager.
+
+Also one of the example application, GL-main.cpp requires OpenGL, GLUT & glu
+libraries and binaries.  So they should be installed on the system itself. 
+
+The workstation used for development is i386 ubuntu dapper drake.  
+
+David Young
+15 November 2006.

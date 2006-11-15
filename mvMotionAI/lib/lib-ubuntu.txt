@@ -1,0 +1,7 @@
+This static library file need for ubuntu (i386 dapper drake)
+development is 
+
+mvMotionAI-ubuntu.a
+
+David Young
+15 November 2006
