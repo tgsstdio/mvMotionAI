@@ -1,0 +1,10 @@
+This ubuntu include folder is deliberately empty as it uses /usr/include 
+directory instead.
+
+Therefore you should install lua5.0 (or lua50) binaries + libraries via 
+apt-get/synaptic package manager/Add & Remove
+
+The ubuntu enviroment used for development is i386 dapper drake.
+
+David Young
+15 November 2006.

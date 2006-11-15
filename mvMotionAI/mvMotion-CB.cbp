@@ -43,11 +43,8 @@
 					<Add option="-O" />
 					<Add option="-W" />
 					<Add option="-Wall" />
-					<Add directory="../../../../../usr/include/lua50" />
+					<Add directory="/usr/include/lua50" />
 				</Compiler>
-				<Linker>
-					<Add directory="lib-other/ubuntu" />
-				</Linker>
 			</Target>
 			<Target title="mingw-winXP">
 				<Option output="lib/libmvMotionAI.a" prefix_auto="1" extension_auto="1" />

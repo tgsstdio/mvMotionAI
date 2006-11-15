@@ -9,14 +9,10 @@
 		<Option virtualFolders="" />
 		<Build>
 			<Target title="default">
-				<Option output="bin/mvMotion-mingw.exe" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/mvMotion-mingw" prefix_auto="1" extension_auto="1" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option projectResourceIncludeDirsRelation="1" />
-				<Compiler>
-					<Add directory="include" />
-					<Add directory="include-other/mingw" />
-				</Compiler>
 				<Linker>
 					<Add library="glu32" />
 					<Add library="glut32" />
@@ -25,13 +21,15 @@
 					<Add library="lua5" />
 					<Add library="lualib5" />
 					<Add directory="lib" />
-					<Add directory="lib-other" />
 				</Linker>
 			</Target>
 			<Target title="mingw-winXP">
 				<Option output="mvMotion-mingw" prefix_auto="1" extension_auto="1" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Compiler>
+					<Add directory="include-other/mingw" />
+				</Compiler>
 				<Linker>
 					<Add library="mvMotionAI" />
 					<Add library="lua5" />
@@ -45,12 +43,12 @@
 				</Linker>
 			</Target>
 			<Target title="ubuntu">
-				<Option output="bin/mvMotion-ubuntu" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/mv-GLmain-ubuntu" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="bin" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add directory="include-other" />
+					<Add directory="/usr/include/lua50" />
 				</Compiler>
 				<Linker>
 					<Add library="mvMotionAI-ubuntu" />
@@ -59,8 +57,7 @@
 					<Add library="glut" />
 					<Add library="GLU" />
 					<Add library="GL" />
-					<Add directory="lib" />
-					<Add directory="lib-other" />
+					<Add directory="/usr/lib" />
 				</Linker>
 			</Target>
 		</Build>
@@ -72,7 +69,6 @@
 		</Compiler>
 		<Linker>
 			<Add directory="lib" />
-			<Add directory="lib-other" />
 		</Linker>
 		<Unit filename="examples-src/Camera.cpp">
 			<Option compilerVar="CPP" />
