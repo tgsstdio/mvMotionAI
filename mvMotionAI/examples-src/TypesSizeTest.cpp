@@ -51,4 +51,4 @@ int main(void)
              << "Size of mvBody: " << sizeof(mvBody)  << std::endl;
 
    return EXIT_SUCCESS;
-};
+}

@@ -43,7 +43,7 @@ void displayLuaFunctions(char* stringTitle,const char** arrayPtr, mvCount noOfEl
 	   std::cout << arrayPtr[i] << std::endl;
     }
     std::cout << std::endl;
-};
+}
 
 int main()
 {

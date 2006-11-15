@@ -1,4 +1,10 @@
-<?xml version="1.0"?>
-<!DOCTYPE CodeBlocks_layout_file>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
+	<ActiveTarget name="ubuntu" />
+	<File name="include/mvLuaScript.h" open="0" top="0" tabpos="1">
+		<Cursor position="1271" topLine="9" />
+	</File>
+	<File name="src/mvMotionAI.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="4932" topLine="180" />
+	</File>
 </CodeBlocks_layout_file>

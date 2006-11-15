@@ -43,7 +43,7 @@ void mvInitMotionAI()
 
    }
 #endif
-};
+}
 
 void mvFreeMotionAI()
 {
@@ -54,7 +54,7 @@ void mvFreeMotionAI()
       __motionAI_Central_Module = NULL;
    }
 #endif
-};
+}
 
 void mvAllWorldsStepForward(mvFloat timeInSecs)
 {
@@ -66,7 +66,7 @@ void mvAllWorldsStepForward(mvFloat timeInSecs)
 #else
    __motionAI_Central_Module.allWorldsStepForward(timeInSecs);
 #endif
-};
+}
 
 mvWorld* mvGetWorldPtrByID(char* id)
 {
@@ -82,7 +82,7 @@ mvWorld* mvGetWorldPtrByID(char* id)
 #else
    return __motionAI_Central_Module.getWorldByID(id);
 #endif
-};
+}
 
 mvWorld* mvAddWorld(char* id)
 {
@@ -98,7 +98,7 @@ mvWorld* mvAddWorld(char* id)
 #else
    return __motionAI_Central_Module.getWorldByIndex(__motionAI_Central_Module.addWorld(id));
 #endif
-};
+}
 
 void mvRemoveAllWorlds()
 {
@@ -110,7 +110,7 @@ void mvRemoveAllWorlds()
 #else
    __motionAI_Central_Module.removeAllWorlds();
 #endif
-};
+}
 
 mvWorld* mvGetWorldByIndex(mvIndex index)
 {
@@ -126,7 +126,7 @@ mvWorld* mvGetWorldByIndex(mvIndex index)
 #else
    return __motionAI_Central_Module.getWorldByIndex(index);
 #endif
-};
+}
 
 mvWorld* mvGetWorldByID(char* worldID)
 {
@@ -142,7 +142,7 @@ mvWorld* mvGetWorldByID(char* worldID)
 #else
    return __motionAI_Central_Module.getWorldByID(worldID);
 #endif
-};
+}
 
 void mvApplyToAllWorlds(void (someFunction)(mvWorld*,void*),void* extraPtr)
 {
@@ -154,12 +154,12 @@ void mvApplyToAllWorlds(void (someFunction)(mvWorld*,void*),void* extraPtr)
 #else
       __motionAI_Central_Module.applyToAllWorlds(someFunction,extraPtr);
 #endif
-};
+}
 
 mvMotionAI::mvMotionAI()
 {
   noOfWorlds = 0;
-};
+}
 
 mvIndex mvMotionAI::addWorld(char* worldID)
 {
@@ -170,7 +170,7 @@ mvIndex mvMotionAI::addWorld(char* worldID)
    ++noOfWorlds;
 
    return noOfWorlds;
-};
+}
 
 mvIndex mvMotionAI::getWorldIndex(char* worldID)
 {
@@ -193,16 +193,14 @@ mvIndex mvMotionAI::getWorldIndex(char* worldID)
       ++count;
    }
    return 0;
-};
+}
 
 mvCount mvMotionAI::getNoOfWorlds()
 {
    return noOfWorlds;
-};
-
-mvWorld* mvMotionAI::getWorldByIndex(mvIndex index)
+}mvWorld* mvMotionAI::getWorldByIndex(mvIndex index)
 {
-   /**
+   /*
    if (index < 1 || index > noOfWorlds)
    {
       return NULL;
@@ -211,12 +209,12 @@ mvWorld* mvMotionAI::getWorldByIndex(mvIndex index)
    {
       return mvWorlds[index-1];
    }
-   **/
+   */
    /**
     * 00-01-10 Now using mv utilities declarations
     */
    return mvGetClassPtr<mvWorld>(mvWorlds,index, noOfWorlds);
-};
+}
 
 mvWorld* mvMotionAI::getWorldByID(char* worldID)
 {
@@ -237,11 +235,11 @@ mvWorld* mvMotionAI::getWorldByID(char* worldID)
       }
    }
    return NULL;
-};
+}
 
 void mvMotionAI::removeAllWorlds()
 {
-   /**
+   /*
    std::vector<mvWorld*>::iterator i;
    mvWorld* temp = NULL;
 
@@ -255,9 +253,9 @@ void mvMotionAI::removeAllWorlds()
       }
    }
    noOfWorlds = 0;
-   **/
+   */
 
-   /**
+   /*
     * 00-01-10 Now using mv utilities declarations
     */
    mvIndex dummyNum = 0;
@@ -267,7 +265,7 @@ void mvMotionAI::removeAllWorlds()
 mvMotionAI::~mvMotionAI()
 {
   removeAllWorlds();
-};
+}
 
 void mvMotionAI::allWorldsStepForward(mvFloat timeInSecs)
 {
@@ -282,9 +280,9 @@ void mvMotionAI::allWorldsStepForward(mvFloat timeInSecs)
          temp->mvWorldStep(timeInSecs);
       }
    }
-};
+}
 
 void mvMotionAI::applyToAllWorlds(void (someFunction)(mvWorld*,void*),void* extraPtr)
 {
    mvApplyFunctionToAllItemsInListVector<mvWorld>(mvWorlds,someFunction, extraPtr);
-};
+}
