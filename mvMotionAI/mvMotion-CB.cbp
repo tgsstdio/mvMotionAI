@@ -9,7 +9,7 @@
 		<Option virtualFolders="" />
 		<Build>
 			<Target title="default">
-				<Option output="lib/libmvMotionAI.a" prefix_auto="0" extension_auto="0" />
+				<Option output="lib\libmvMotionAI.a" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option type="2" />
 				<Option compiler="gcc" />
@@ -22,15 +22,15 @@
 					<Add option="-O" />
 					<Add option="-Wall" />
 					<Add directory="include" />
-					<Add directory="experimental/include" />
+					<Add directory="experimental\include" />
 				</Compiler>
 				<Linker>
 					<Add directory="lib-other" />
-					<Add directory="lib-other/mingw" />
+					<Add directory="lib-other\mingw" />
 				</Linker>
 			</Target>
 			<Target title="ubuntu">
-				<Option output="lib/libmvMotionAI-ubuntu.a" prefix_auto="1" extension_auto="1" />
+				<Option output="lib\libmvMotionAI-ubuntu.a" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option type="2" />
 				<Option compiler="gcc" />
@@ -43,20 +43,26 @@
 					<Add option="-O" />
 					<Add option="-W" />
 					<Add option="-Wall" />
-					<Add directory="/usr/include/lua50" />
+					<Add directory="\usr\include\lua50" />
 				</Compiler>
 			</Target>
 			<Target title="mingw-winXP">
-				<Option output="lib/libmvMotionAI.a" prefix_auto="1" extension_auto="1" />
+				<Option output="lib\libmvMotionAI-mingw.a" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option type="2" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
 				<Compiler>
-					<Add directory="include-other/mingw" />
+					<Add option="-Os" />
+					<Add option="-O3" />
+					<Add option="-O2" />
+					<Add option="-O1" />
+					<Add option="-O" />
+					<Add directory="include-other" />
+					<Add directory="include-other\mingw" />
 				</Compiler>
 				<Linker>
-					<Add directory="lib-other/mingw" />
+					<Add directory="lib-other\mingw" />
 				</Linker>
 			</Target>
 		</Build>
@@ -65,49 +71,44 @@
 		</VirtualTargets>
 		<Compiler>
 			<Add directory="include" />
-			<Add directory="experimental/include" />
+			<Add directory="experimental\include" />
 		</Compiler>
 		<Linker>
 			<Add directory="lib-other" />
-			<Add directory="lib-other/mingw" />
+			<Add directory="lib-other\mingw" />
 		</Linker>
-		<Unit filename="../../list.txt">
+		<Unit filename="..\..\list.txt">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
-			<Option target="default" />
 		</Unit>
 		<Unit filename="Log.txt">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
-			<Option target="default" />
 		</Unit>
-		<Unit filename="experimental/include/mvBaseBehaviour.h">
+		<Unit filename="experimental\include\mvBaseBehaviour.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
-			<Option target="default" />
 		</Unit>
-		<Unit filename="experimental/include/mvGlobalFunctions.h">
+		<Unit filename="experimental\include\mvGlobalFunctions.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
-			<Option target="default" />
 		</Unit>
-		<Unit filename="experimental/include/mvList.h">
+		<Unit filename="experimental\include\mvList.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
-			<Option target="default" />
 		</Unit>
-		<Unit filename="experimental/src/mvBaseBehaviour.cpp">
+		<Unit filename="experimental\src\mvBaseBehaviour.cpp">
 			<Option compilerVar="CPP" />
 			<Option compile="0" />
 			<Option link="0" />
 			<Option target="default" />
 		</Unit>
-		<Unit filename="include/mvBehaviour-Central.h">
+		<Unit filename="include\mvBehaviour-Central.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -115,7 +116,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvBehaviour-Clone.h">
+		<Unit filename="include\mvBehaviour-Clone.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -123,7 +124,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvBehaviour-Entry.h">
+		<Unit filename="include\mvBehaviour-Entry.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -131,7 +132,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvBehaviour-Flee.h">
+		<Unit filename="include\mvBehaviour-Flee.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -139,7 +140,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvBehaviour-List.h">
+		<Unit filename="include\mvBehaviour-List.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -147,7 +148,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvBehaviour-Pursuit.h">
+		<Unit filename="include\mvBehaviour-Pursuit.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -155,7 +156,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvBehaviour-Seek.h">
+		<Unit filename="include\mvBehaviour-Seek.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -163,7 +164,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvBehaviour-SimpleFlock.h">
+		<Unit filename="include\mvBehaviour-SimpleFlock.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -171,7 +172,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvBehaviour-Type.h">
+		<Unit filename="include\mvBehaviour-Type.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -179,7 +180,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvBehaviour.h">
+		<Unit filename="include\mvBehaviour.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -187,7 +188,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvBody.h">
+		<Unit filename="include\mvBody.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -195,7 +196,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvEnums.h">
+		<Unit filename="include\mvEnums.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -203,7 +204,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvForce.h">
+		<Unit filename="include\mvForce.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -211,7 +212,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvGroup.h">
+		<Unit filename="include\mvGroup.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -219,7 +220,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvGroupBehaviour.h">
+		<Unit filename="include\mvGroupBehaviour.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -227,7 +228,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvLuaScript-Behaviour.h">
+		<Unit filename="include\mvLuaScript-Behaviour.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -235,7 +236,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvLuaScript-Body.h">
+		<Unit filename="include\mvLuaScript-Body.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -243,7 +244,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvLuaScript-Force.h">
+		<Unit filename="include\mvLuaScript-Force.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -251,7 +252,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvLuaScript-Group.h">
+		<Unit filename="include\mvLuaScript-Group.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -259,7 +260,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvLuaScript-GroupBehaviour.h">
+		<Unit filename="include\mvLuaScript-GroupBehaviour.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -267,7 +268,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvLuaScript-Obstacle.h">
+		<Unit filename="include\mvLuaScript-Obstacle.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -275,7 +276,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvLuaScript-Pathway.h">
+		<Unit filename="include\mvLuaScript-Pathway.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -283,7 +284,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvLuaScript-Utilities.h">
+		<Unit filename="include\mvLuaScript-Utilities.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -291,7 +292,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvLuaScript-Waypoint.h">
+		<Unit filename="include\mvLuaScript-Waypoint.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -299,7 +300,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvLuaScript-World.h">
+		<Unit filename="include\mvLuaScript-World.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -307,7 +308,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvLuaScript.h">
+		<Unit filename="include\mvLuaScript.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -315,7 +316,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvMotionAI-Types.h">
+		<Unit filename="include\mvMotionAI-Types.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -323,7 +324,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvMotionAI-Utilities.h">
+		<Unit filename="include\mvMotionAI-Utilities.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -331,7 +332,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvMotionAI.h">
+		<Unit filename="include\mvMotionAI.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -339,7 +340,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvObstacle.h">
+		<Unit filename="include\mvObstacle.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -347,7 +348,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvPathway.h">
+		<Unit filename="include\mvPathway.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -355,7 +356,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvScript-Utilities.h">
+		<Unit filename="include\mvScript-Utilities.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -363,7 +364,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvVec3.h">
+		<Unit filename="include\mvVec3.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -371,7 +372,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvWaypoint.h">
+		<Unit filename="include\mvWaypoint.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -379,7 +380,7 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="include/mvWorld.h">
+		<Unit filename="include\mvWorld.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
@@ -387,205 +388,205 @@
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvBehaviour-Central.cpp">
+		<Unit filename="src\mvBehaviour-Central.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvBehaviour-Clone.cpp">
+		<Unit filename="src\mvBehaviour-Clone.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvBehaviour-Entry.cpp">
+		<Unit filename="src\mvBehaviour-Entry.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvBehaviour-Flee.cpp">
+		<Unit filename="src\mvBehaviour-Flee.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvBehaviour-List.cpp">
+		<Unit filename="src\mvBehaviour-List.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvBehaviour-Pursuit.cpp">
+		<Unit filename="src\mvBehaviour-Pursuit.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvBehaviour-Seek.cpp">
+		<Unit filename="src\mvBehaviour-Seek.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvBehaviour-SimpleFlock.cpp">
+		<Unit filename="src\mvBehaviour-SimpleFlock.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvBehaviour-Type.cpp">
+		<Unit filename="src\mvBehaviour-Type.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvBehaviour.cpp">
+		<Unit filename="src\mvBehaviour.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvBody.cpp">
+		<Unit filename="src\mvBody.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvEnums.cpp">
+		<Unit filename="src\mvEnums.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvForce.cpp">
+		<Unit filename="src\mvForce.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvGroup.cpp">
+		<Unit filename="src\mvGroup.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvGroupBehaviour.cpp">
+		<Unit filename="src\mvGroupBehaviour.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvLuaScript-Behaviour.cpp">
+		<Unit filename="src\mvLuaScript-Behaviour.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvLuaScript-Body.cpp">
+		<Unit filename="src\mvLuaScript-Body.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvLuaScript-Force.cpp">
+		<Unit filename="src\mvLuaScript-Force.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvLuaScript-Group.cpp">
+		<Unit filename="src\mvLuaScript-Group.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvLuaScript-GroupBehaviour.cpp">
+		<Unit filename="src\mvLuaScript-GroupBehaviour.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvLuaScript-Obstacle.cpp">
+		<Unit filename="src\mvLuaScript-Obstacle.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvLuaScript-Pathway.cpp">
+		<Unit filename="src\mvLuaScript-Pathway.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvLuaScript-Utilities.cpp">
+		<Unit filename="src\mvLuaScript-Utilities.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvLuaScript-Waypoint.cpp">
+		<Unit filename="src\mvLuaScript-Waypoint.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvLuaScript-World.cpp">
+		<Unit filename="src\mvLuaScript-World.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvLuaScript.cpp">
+		<Unit filename="src\mvLuaScript.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvMotionAI-Utilities.cpp">
+		<Unit filename="src\mvMotionAI-Utilities.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvMotionAI.cpp">
+		<Unit filename="src\mvMotionAI.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvObstacle.cpp">
+		<Unit filename="src\mvObstacle.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvPathway.cpp">
+		<Unit filename="src\mvPathway.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvScript-Utilities.cpp">
+		<Unit filename="src\mvScript-Utilities.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvVec3.cpp">
+		<Unit filename="src\mvVec3.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvWaypoint.cpp">
+		<Unit filename="src\mvWaypoint.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
 			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="src/mvWorld.cpp">
+		<Unit filename="src\mvWorld.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />

@@ -24,7 +24,12 @@
 
 #include "mvVec3.h"
 #include "mvMotionAI-Utilities.h"
-
+// TODO (White 2#1#): Doxygen documentation
+/**
+ * \brief constructor
+ *
+ * default value of vector is (0,0,0)
+ */
 mvVec3::mvVec3(void)
 {
   components[MV_VEC3_X_COMPONENT] = 0;
@@ -32,6 +37,14 @@ mvVec3::mvVec3(void)
   components[MV_VEC3_Z_COMPONENT] = 0;
 }
 
+/**
+ * \brief constructor
+ * \param[in] X x value of vector
+ * \param[in] Y y value of vector
+ * \param[in] Z z value of vector
+ *
+ * value of vector will be (X,Y,Z)
+ */
 mvVec3::mvVec3(const mvFloat& X, const mvFloat& Y, const mvFloat& Z)
 {
   components[MV_VEC3_X_COMPONENT] = X;
@@ -39,6 +52,12 @@ mvVec3::mvVec3(const mvFloat& X, const mvFloat& Y, const mvFloat& Z)
   components[MV_VEC3_Z_COMPONENT] = Z;
 }
 
+/**
+ * \brief constructor
+ * \param[in] array pointer to a mvFloat array of length 3 (or MV_VEC3_NO_OF_COMPONENTS)
+ *
+ * value of mvVec3 should be (array[0],array[1],array[2])
+ */
 mvVec3::mvVec3(const mvFloat* array)
 {
   components[MV_VEC3_X_COMPONENT] = array[MV_VEC3_X_COMPONENT];
@@ -46,6 +65,12 @@ mvVec3::mvVec3(const mvFloat* array)
   components[MV_VEC3_Z_COMPONENT] = array[MV_VEC3_Z_COMPONENT];
 }
 
+/**
+ * \brief constructor
+ * \param[in] rhs another mvVec3
+ *
+ * value of mvVec3 should be equal to rhs
+ */
 mvVec3::mvVec3(const mvVec3& rhs)
 {
   components[MV_VEC3_X_COMPONENT] = rhs.components[MV_VEC3_X_COMPONENT];
@@ -53,31 +78,80 @@ mvVec3::mvVec3(const mvVec3& rhs)
   components[MV_VEC3_Z_COMPONENT] = rhs.components[MV_VEC3_Z_COMPONENT];
 }
 
+/**
+ * \brief vector addition through + operator
+ * \param[in] v Vector on right hand side of + operator
+ * \return new instance of mvVec3
+ *
+ * Returns new instance of mvVec3 that is the result of two mvVec3 vectors
+ * (C++ reference or instance) alongside the + operator added together
+ * and does not change either vectors. Can be nested with more operations.
+ */
 mvVec3 mvVec3::operator+ (const mvVec3& v) const
 {
    return mvVec3(getX() + v.getX(), getY() + v.getY(), getZ() + v.getZ());
 }
 
+/**
+ * \brief vector subtraction through - operator
+ * \param[in] v Vector on right hand side of - operator
+ * \return new instance of mvVec3
+ *
+ * Returns new instance of mvVec3 that is the result of left hand mvVec3 vector
+ * (C++ reference or instance) subtract right side vector (v) of the - operator
+ * and does not change either vectors. Can be nested with more operations.
+ */
 mvVec3 mvVec3::operator- (const mvVec3& v) const
 {
    return mvVec3(getX() - v.getX(), getY() - v.getY(), getZ() - v.getZ());
 }
 
+/**
+ * \brief unary minus or negates vector (-v)
+ * \return new instance of mvVec3
+ *
+ * Returns the current vector's v(a,b,c) negation, which is
+ * (-a,-b,-c), as a new mvVec instance. Original vector v is unchanged.
+ */
 mvVec3 mvVec3::operator- (void) const
 {
    return mvVec3(-getX(), -getY(), -getZ());
 }
-
+/**
+ * \brief vector times scalar product (scale length of vector times argument)
+ * \param[in] s Scalar value as a mvFloat value.
+ * \return new instance of mvVec3
+ *
+ * Returns the vector (x * s,y * s,z * s) as a new instance of mvVec3.
+ * Original vector v is unchanged and can be nested with more operations.
+ */
 mvVec3 mvVec3::operator* (const mvFloat s) const
 {
    return mvVec3(s * getX(), s * getY(), s * getZ());
 }
-
+/**
+ * \brief vector divided by a scalar (divide length of vector by argument)
+ * \param[in] s Scalar value as a mvFloat value.
+ * \return new instance of mvVec3
+ *
+ * Returns the vector (x/s,y/s,z/s) as a new instance of mvVec3.
+ * Original vector v is unchanged and can be nested with more operations.
+ * Does not handle division by zero errors.
+ */
 mvVec3 mvVec3::operator/ (const mvFloat s) const
 {
    return mvVec3(getX()/s, getY()/s, getZ()/s);
 }
 
+/**
+ * \brief dot product
+ * \param[in] v Vector to multiplied with current vector
+ * \return result as a mvFloat.
+ *
+ * Returns the total of the dot product of the two vectors a & v as a mvFloat.
+ * Dot product is calculated by result = a.x * v.x + a.y * v.y + a.z * v.z
+ * Original vectors v & a is unchanged by dot function.
+ */
 mvFloat mvVec3::dot (const mvVec3& v) const
 {
    mvFloat temp = dotXY(v);
@@ -166,11 +240,13 @@ void mvVec3::AcrossB(const mvVec3& a,const mvVec3& b)
 
 mvVec3 mvVec3::cross(const mvVec3& rhs) const
 {
-   /**/
+   /*
+   */
    return mvVec3((getX() * rhs.getZ()) - (getZ() * rhs.getY()),
                (getZ() * rhs.getX()) - (getX() * rhs.getZ()),
                (getX() * rhs.getY()) - (getY() * rhs.getX()));
-   /**/
+   /*
+   */
 }
 
 const mvVec3& mvVec3::operator= (const mvVec3& rhs)

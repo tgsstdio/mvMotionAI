@@ -31,7 +31,7 @@
 
 1163224044 haviour.h"
 
-1161009460 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
+1163773476 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
 
 1161757406 d:\mvmotionai\mvmotionai\include\mvbody.h
 	<vector>
@@ -47,7 +47,7 @@
 
 1157174374 
 
-1161403306 d:\mvmotionai\mvmotionai\include\mvvec3.h
+1163777828 d:\mvmotionai\mvmotionai\include\mvvec3.h
 	"mvMotionAI-Types.h"
 	<iostream>
 
@@ -126,7 +126,7 @@
 	<stdio.h>
 	"lua.h"
 
-1162271928 d:\mvmotionai\mvmotionai\include\mvenums.h
+1163224724 d:\mvmotionai\mvmotionai\include\mvenums.h
 	<cstdlib>
 
 1163463381 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/LuaFuncTest.cpp
@@ -251,4 +251,9 @@
 	<stddef.h>
 	<stdio.h>
 	"lua.h"
+
+1163568810 source:d:\mvmotionai\mvmotionai\examples-src\luafunctest.cpp
+	<iostream>
+	"mvMotionAI.h"
+	"mvLuaScript.h"
 
