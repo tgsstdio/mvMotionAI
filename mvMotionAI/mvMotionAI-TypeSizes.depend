@@ -18,7 +18,7 @@
 
 1161842434 >
 
-1162450454 d:\mvmotionai\mvmotionai\include\mvworld.h
+1163224044 d:\mvmotionai\mvmotionai\include\mvworld.h
 	"mvMotionAI-Types.h"
 	"mvBody.h"
 	"mvWaypoint.h"
@@ -31,7 +31,7 @@
 
 1162450454 haviour.h"
 
-1161009460 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
+1163773476 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
 
 1161757406 d:\mvmotionai\mvmotionai\include\mvbody.h
 	<vector>
@@ -45,13 +45,11 @@
 1158766068 d:\mvmotionai\mvmotionai\include\mvenum.h
 	<cstdlib>
 
-1162271928 
+1157174374 
 
-1161403306 d:\mvmotionai\mvmotionai\include\mvvec3.h
+1163777828 d:\mvmotionai\mvmotionai\include\mvvec3.h
 	"mvMotionAI-Types.h"
 	<iostream>
-
-1157174374 
 
 1162533962 d:\mvmotionai\mvmotionai\include\mvbehaviour-list.h
 	<vector>
@@ -122,7 +120,7 @@
 	<stdio.h>
 	"lua.h"
 
-1162271928 d:\mvmotionai\mvmotionai\include\mvenums.h
+1163224724 d:\mvmotionai\mvmotionai\include\mvenums.h
 	<cstdlib>
 
 1163462427 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/TypesSizeTest.cpp
@@ -229,4 +227,9 @@
 	<stddef.h>
 	<stdio.h>
 	"lua.h"
+
+1163568810 source:d:\mvmotionai\mvmotionai\examples-src\typessizetest.cpp
+	<cstdlib>
+	<iostream>
+	"mvMotionAI.h"
 

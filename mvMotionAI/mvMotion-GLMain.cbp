@@ -9,46 +9,41 @@
 		<Option virtualFolders="" />
 		<Build>
 			<Target title="default">
-				<Option output="bin/mvMotion-mingw" prefix_auto="1" extension_auto="1" />
+				<Option output="bin\mvMotion-mingw.exe" prefix_auto="1" extension_auto="1" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option projectResourceIncludeDirsRelation="1" />
 				<Linker>
-					<Add library="glu32" />
-					<Add library="glut32" />
-					<Add library="opengl32" />
-					<Add library="mvMotionAI" />
-					<Add library="lua5" />
-					<Add library="lualib5" />
 					<Add directory="lib" />
 				</Linker>
 			</Target>
 			<Target title="mingw-winXP">
-				<Option output="mvMotion-mingw" prefix_auto="1" extension_auto="1" />
+				<Option output="bin\mvMotion-mingw.exe" prefix_auto="1" extension_auto="1" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add directory="include-other/mingw" />
+					<Add directory="include-other\mingw" />
+					<Add directory="include-other" />
 				</Compiler>
 				<Linker>
-					<Add library="mvMotionAI" />
+					<Add library="mvMotionAI-mingw" />
 					<Add library="lua5" />
 					<Add library="lualib5" />
 					<Add library="glu32" />
 					<Add library="glut32" />
 					<Add library="opengl32" />
 					<Add directory="lib" />
-					<Add directory="lib-other/mingw" />
+					<Add directory="lib-other\mingw" />
 					<Add directory="lib-other" />
 				</Linker>
 			</Target>
 			<Target title="ubuntu">
-				<Option output="bin/mv-GLmain-ubuntu" prefix_auto="1" extension_auto="1" />
+				<Option output="bin\mv-GLmain-ubuntu.exe" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="bin" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add directory="/usr/include/lua50" />
+					<Add directory="\usr\include\lua50" />
 				</Compiler>
 				<Linker>
 					<Add library="mvMotionAI-ubuntu" />
@@ -57,7 +52,7 @@
 					<Add library="glut" />
 					<Add library="GLU" />
 					<Add library="GL" />
-					<Add directory="/usr/lib" />
+					<Add directory="\usr\lib" />
 				</Linker>
 			</Target>
 		</Build>
@@ -70,22 +65,25 @@
 		<Linker>
 			<Add directory="lib" />
 		</Linker>
-		<Unit filename="examples-src/Camera.cpp">
+		<Unit filename="examples-src\Camera.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
+			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="examples-src/Camera.h">
+		<Unit filename="examples-src\Camera.h">
 			<Option compilerVar="" />
 			<Option compile="0" />
 			<Option link="0" />
 			<Option target="default" />
 			<Option target="ubuntu" />
+			<Option target="mingw-winXP" />
 		</Unit>
-		<Unit filename="examples-src/GLMain.cpp">
+		<Unit filename="examples-src\GLMain.cpp">
 			<Option compilerVar="CPP" />
 			<Option target="default" />
 			<Option target="ubuntu" />
+			<Option target="mingw-winXP" />
 		</Unit>
 		<Extensions />
 	</Project>

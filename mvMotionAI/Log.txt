@@ -1,3 +1,15 @@
+version 00-01-20
+- changed libmvMotionAI to libmvMotion-mingw.a 
+- added more Doxygen documentation
+- checked updated Code::Blocks workspace
+
+version 00-01-19
+- added more readme .txt files in include-other, lib-other, lib, bin
+
+version 00-01-18
+- added ubuntu Code::Blocks project options
+- added ubuntu dapper drake i386 example applications
+
 version 00-01-17
 - implemented more set and get functionality for
     -mvWorld

@@ -39,7 +39,7 @@
 
 1163224044 haviour.h"
 
-1161009460 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
+1163773476 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
 
 1161757406 d:\mvmotionai\mvmotionai\include\mvbody.h
 	<vector>
@@ -55,7 +55,7 @@
 
 1139597046 
 
-1161403306 d:\mvmotionai\mvmotionai\include\mvvec3.h
+1163777828 d:\mvmotionai\mvmotionai\include\mvvec3.h
 	"mvMotionAI-Types.h"
 	<iostream>
 
@@ -305,4 +305,42 @@
 	<stddef.h>
 	<stdio.h>
 	"lua.h"
+
+1161577904 source:d:\mvmotionai\mvmotionai\examples-src\glmain.cpp
+	<GL/glut.h>
+	<iostream>
+	"Camera.h"
+	<cstdlib>
+	"mvMotionAI.h"
+
+1157174374 d:\mvmotionai\mvmotionai\include-other\gl\glut.h
+	"freeglut_std.h"
+
+1157174374 d:\mvmotionai\mvmotionai\include-other\gl\freeglut_std.h
+	<windows.h>
+	<windowsx.h>
+	<mmsystem.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1157174374 d:\mvmotionai\mvmotionai\include-other\gl\gl.h
+
+1157174374 d:\mvmotionai\mvmotionai\include-other\gl\glu.h
+	<GL/gl.h>
+
+1157174374 d:\mvmotionai\mvmotionai\include-other\lua.h
+	<stdarg.h>
+	<stddef.h>
+
+1157174374 d:\mvmotionai\mvmotionai\include-other\lualib.h
+	"lua.h"
+
+1157174374 d:\mvmotionai\mvmotionai\include-other\lauxlib.h
+	<stddef.h>
+	<stdio.h>
+	"lua.h"
+
+1163568810 source:d:\mvmotionai\mvmotionai\examples-src\camera.cpp
+	"Camera.h"
+	<GL/glut.h>
 

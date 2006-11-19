@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="ubuntu" />
-	<File name="include/mvLuaScript.h" open="0" top="0" tabpos="1">
-		<Cursor position="1271" topLine="9" />
+	<ActiveTarget name="mingw-winXP" />
+	<File name="include\mvEnums.h" open="1" top="1" tabpos="1">
+		<Cursor position="3892" topLine="145" />
 	</File>
-	<File name="src/mvMotionAI.cpp" open="0" top="0" tabpos="2">
+	<File name="include\mvLuaScript-Behaviour.h" open="0" top="0" tabpos="0">
+		<Cursor position="1276" topLine="0" />
+	</File>
+	<File name="include\mvLuaScript.h" open="0" top="0" tabpos="1">
+		<Cursor position="1456" topLine="65" />
+	</File>
+	<File name="src\mvGroup.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="5147" topLine="201" />
+	</File>
+	<File name="src\mvMotionAI.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="4932" topLine="180" />
 	</File>
 </CodeBlocks_layout_file>
