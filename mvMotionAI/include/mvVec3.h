@@ -23,7 +23,10 @@
  * (2006) Code based on Vec3.h + Vec3.cpp from OpenSteer Steering Module (2001-2006)
  *
  * Log
- * 00-01-17    - add new functions setAll for setting the vector
+ *
+ * 00-01-21  23/11/06  - added cosine measure
+ *
+ * 00-01-17   -       - add new functions setAll for setting the vector
  */
 
 #ifndef MV_MVVEC3_H_
@@ -78,6 +81,11 @@ class mvVec3
       mvVec3 operator- (void) const;
       mvVec3 operator* (const mvFloat s) const;
       mvVec3 operator/ (const mvFloat s) const;
+      // rename dot => dot product of normalized values
+      mvFloat cosineMeasure(const mvVec3& v) const;
+      mvFloat normalisedDotProduct(const mvVec3& v) const;
+
+      // leaves values same
       mvFloat dot (const mvVec3& v) const;
       mvFloat dotX (const mvVec3& v) const;
       mvFloat dotY (const mvVec3& v) const;
@@ -86,102 +94,24 @@ class mvVec3
       mvFloat dotXZ (const mvVec3& v) const;
       mvFloat dotYZ (const mvVec3& v) const;
 
-      /**
-       * \brief length
-       */
       mvFloat length (void) const;
-
-      /**
-       * \brief length squared
-       */
       mvFloat lengthSquared (void) const;
 
-      /**
-       * \brief normalize: returns normalized version (parallel to this, length = 1)
-       */
       mvVec3 normalize (void) const;
-      /*
-      {
-        // skip divide if length is zero
-           const mvFloat len = length ();
-           return (len>0) ? (*this)/len : (*this);
-      }
-      */
+      void AcrossB(const mvVec3& a,const mvVec3& b);
+      mvVec3 cross(const mvVec3& rhs) const;
+      const mvVec3& operator= (const mvVec3& v);
 
+      const mvVec3&  set (const mvFloat _x, const mvFloat _y, const mvFloat _z);
 
-      /**
-       * \brief cross product (modify "*this" to be A x B)
-       *
-       * [XXX  side effecting -- deprecate this function?  XXX]
-       */
-       void AcrossB(const mvVec3& a,const mvVec3& b);
-
-      /**
-       * \brief cross product
-       *
-       */
-       mvVec3 cross(const mvVec3& rhs) const;
-       /*
-       {
-         **
-          *this = mvVec3 ((a.y * b.z) - (a.z * b.y),
-                   (a.z * b.x) - (a.x * b.z),
-                 (a.x * b.y) - (a.y * b.x));
-          **
-       };
-       */
-
-       /**
-         * \brief assignment
-         */
-       const mvVec3& operator= (const mvVec3& v);
-
-       /**
-         * \brief set XYZ coordinates to given three floats
-         */
-       const mvVec3&  set (const mvFloat _x, const mvFloat _y, const mvFloat _z);
-
-       /**
-         * \brief +=
-         */
-       const mvVec3& operator+= (const mvVec3& v);
-
-       /**
-         * \brief -=
-         */
-       const mvVec3& operator-= (const mvVec3& v);
-
-       /**
-         * \brief  *=
-         */
-       const mvVec3& operator*= (const mvFloat& s);
-
-       /**
-         * \brief  +=
-         * adds constant float to all members
-         */
-       const mvVec3& operator+= (const mvFloat& s);
-
-       /**
-         * \brief  -=
-         * subtracts constant float to all members
-         */
-       const mvVec3& operator-= (const mvFloat& s);
-
-       /**
-        * \brief  /=
-        * divides constant float to all members
-        */
-       const mvVec3& operator/= (const mvFloat& s);
-
-       /**
-         * \brief equality
-         */
-       bool operator== (const mvVec3& v) const;
-       /**
-         * \brief inequality
-         */
-       bool operator!= (const mvVec3& v) const;
+      const mvVec3& operator+= (const mvVec3& v);
+      const mvVec3& operator-= (const mvVec3& v);
+      const mvVec3& operator*= (const mvFloat& s);
+      const mvVec3& operator+= (const mvFloat& s);
+      const mvVec3& operator-= (const mvFloat& s);
+      const mvVec3& operator/= (const mvFloat& s);
+      bool operator== (const mvVec3& v) const;
+      bool operator!= (const mvVec3& v) const;
 
       void resetX (void);
       void resetY (void);
@@ -191,9 +121,7 @@ class mvVec3
       void setX (const mvFloat& x);
       void setY (const mvFloat& y);
       void setZ (const mvFloat& z);
-       /**
-        * \brief set XYZ coordinates to given three floats
-        */
+
       void setXYZ (const mvFloat& x,const mvFloat& y,const mvFloat& z);
       void setAll(const mvVec3& rhs);
 
@@ -207,31 +135,24 @@ class mvVec3
       void timesVec3(const mvVec3& rhs);
       void divideVec3(const mvVec3& rhs);
 
-       /**
-        * \brief returns X
-        */
       mvFloat getX() const;
-       /**
-        * \brief returns Y
-        */
       mvFloat getY() const;
-          /**
-        * \brief returns Z
-        */
       mvFloat getZ() const;
-       /**
-        * \brief returns XYZ array pointer
-        */
+
       const mvFloat* getXYZ() const;
 
-       /*
-        * --------------------------------------------------------------------------
-        *  scalar times vector product ("float * Vec3")
-        */
+      /*
+      * --------------------------------------------------------------------------
+      *  scalar times vector product ("float * Vec3")
+      */
 
-     // void matrixMultiply(const mvFloat* matrix, int noOfValues, int order);
-     friend mvVec3 operator* (float s, const mvVec3& v);
-     friend std::ostream& operator<< (std::ostream& o, const mvVec3& v);
+      // void matrixMultiply(const mvFloat* matrix, int noOfValues, int order);
+      friend mvVec3 operator* (float s, const mvVec3& v);
+      friend std::ostream& operator<< (std::ostream& o, const mvVec3& v);
+
+// TODO (White 2#1#): Distance function between to two points
+// TODO (White 2#1#): Distance sqaured between two points
+
 };
 
 

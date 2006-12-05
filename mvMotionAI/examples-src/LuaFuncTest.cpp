@@ -47,9 +47,11 @@ void displayLuaFunctions(char* stringTitle,const char** arrayPtr, mvCount noOfEl
 
 int main()
 {
+   /*
     const char** arrayPtr = NULL;
     int i;
     mvCount noOfElements = 0;
+    */
 
 	std::cout << "mvMotionAI Lua Functions" << std::endl;
     displayLuaFunctions("mvMotionAI",mvGetLuaMotionAIFunctions(),mvGetNoOfLuaMotionAIFunctions());

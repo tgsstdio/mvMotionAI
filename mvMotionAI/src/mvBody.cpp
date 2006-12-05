@@ -51,7 +51,7 @@ mvBody::mvBody(mvOptionEnum bType, mvOptionEnum shape)
    initialiseFloats();
    initialiseDimensions(shape);
    initialiseType(bType);
-   domain = MV_FULL_3D_DOMAIN;
+   domain = MV_FULL_3D;
 }
 
 mvBody::mvBody(mvOptionEnum bType, mvOptionEnum shape, mvFloat x, mvFloat y, mvFloat z)
@@ -62,7 +62,7 @@ mvBody::mvBody(mvOptionEnum bType, mvOptionEnum shape, mvFloat x, mvFloat y, mvF
    initialiseFloats();
    initialiseDimensions(shape);
    initialiseType(bType);
-   domain = MV_FULL_3D_DOMAIN;
+   domain = MV_FULL_3D;
 }
 
 void mvBody::setPosition(mvFloat x, mvFloat y, mvFloat z)
@@ -243,15 +243,15 @@ mvErrorEnum mvBody::initialiseDomain(mvOptionEnum option)
 
    switch(option)
    {
-      case MV_ANY_PLANE_DOMAIN:
-      case MV_ANY_LINE_DOMAIN:
-      case MV_FULL_3D_DOMAIN:
-      case MV_XY_PLANE_DOMAIN:
-      case MV_XZ_PLANE_DOMAIN:
-      case MV_YZ_PLANE_DOMAIN:
-      case MV_X_AXIS_ONLY_DOMAIN:
-      case MV_Y_AXIS_ONLY_DOMAIN:
-      case MV_Z_AXIS_ONLY_DOMAIN:
+      case MV_ANY_PLANE:
+      case MV_ANY_LINE:
+      case MV_FULL_3D:
+      case MV_XY_PLANE:
+      case MV_XZ_PLANE:
+      case MV_YZ_PLANE:
+      case MV_X_AXIS_ONLY:
+      case MV_Y_AXIS_ONLY:
+      case MV_Z_AXIS_ONLY:
          domain = option;
          break;
       default:
@@ -287,23 +287,23 @@ mvCount mvBody::getNoOfDomainVariables() const
 
    switch (domain)
    {
-      case MV_FULL_3D_DOMAIN:
+      case MV_FULL_3D:
          return MV_NO_OF_FULL_3D_VARIABLES;
-      case MV_XY_PLANE_DOMAIN:
+      case MV_XY_PLANE:
          return MV_NO_OF_XY_PLANE_VARIABLES;
-      case MV_XZ_PLANE_DOMAIN:
+      case MV_XZ_PLANE:
          return MV_NO_OF_XZ_PLANE_VARIABLES;
-      case MV_YZ_PLANE_DOMAIN:
+      case MV_YZ_PLANE:
          return MV_NO_OF_YZ_PLANE_VARIABLES;
-      case MV_X_AXIS_ONLY_DOMAIN:
+      case MV_X_AXIS_ONLY:
          return MV_NO_OF_X_AXIS_ONLY_VARIABLES;
-      case MV_Y_AXIS_ONLY_DOMAIN:
+      case MV_Y_AXIS_ONLY:
          return MV_NO_OF_Y_AXIS_ONLY_VARIABLES;
-      case MV_Z_AXIS_ONLY_DOMAIN:
+      case MV_Z_AXIS_ONLY:
          return MV_NO_OF_Z_AXIS_ONLY_VARIABLES;
-      case MV_ANY_PLANE_DOMAIN:
+      case MV_ANY_PLANE:
          return MV_NO_OF_ANY_PLANE_VARIABLES;
-      case MV_ANY_LINE_DOMAIN:
+      case MV_ANY_LINE:
          return MV_NO_OF_ANY_LINE_VARIABLES;
       default:
          return MV_INVALID_DOMAIN_NO_OF_VARIABLES;
@@ -421,9 +421,11 @@ mvErrorEnum mvBody::setDefaultBehaviourFactor(mvFloat factor)
 }
 
 /** @brief get body's index parameters
-  *
-  * (documentation goes here)
-  */
+ * \param[in] paramFlag Parameter type to be retrieve
+ * \param[out] index mvIndex pointer to memory location
+ * \return If no problems has occured then MV_NO_ERROR ( or 0 ) is returned,
+ * Any non zero return value means an error has occured.
+ */
 mvErrorEnum mvBody::getParameteri(mvParamEnum paramFlag, mvIndex* index)
 {
    if (index == NULL)
@@ -444,7 +446,13 @@ mvErrorEnum mvBody::getParameteri(mvParamEnum paramFlag, mvIndex* index)
          return MV_INVALID_BODY_PARAMETER;
    }
 }
-
+/**
+ * \brief set body's state parameters
+ * \param[in] paramFlag Parameter type to be set
+ * \param[in] option mvOptionEnum value to be set
+ * \return If no problems has occured then MV_NO_ERROR ( or 0 ) is returned,
+ * Any non zero return value means an error has occured.
+ */
 mvErrorEnum mvBody::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
    switch(paramFlag)
@@ -463,9 +471,11 @@ mvErrorEnum mvBody::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
 }
 
 /** \brief get body's state parameter
-  *
-  * (documentation goes here)
-  */
+ * \param[in] paramFlag Parameter type to be retrieve
+ * \param[out] option mvOptionEnum pointer to memory location
+ * \return If no problems has occured then MV_NO_ERROR ( or 0 ) is returned,
+ * Any non zero return value means an error has occured.
+ */
 mvErrorEnum mvBody::getParameter(mvParamEnum paramFlag, mvOptionEnum* option)
 {
    if (option == NULL)
@@ -491,9 +501,12 @@ mvErrorEnum mvBody::getParameter(mvParamEnum paramFlag, mvOptionEnum* option)
 }
 
 /**
-  *\brief get body's parameters single float values
-  *
-  */
+ * \brief get body's parameters single float values
+ * \param[in] paramFlag Parameter type to be retrieve
+ * \param[out] num mvFloat pointer location
+ * \return If no problems has occured then MV_NO_ERROR ( or 0 ) is returned,
+ * Any non zero return value means an error has occured.
+ */
 mvErrorEnum mvBody::getParameterf(mvParamEnum paramFlag, mvFloat* num)
 {
    mvIndex tempIndex;
@@ -588,7 +601,11 @@ mvErrorEnum mvBody::getParameterf(mvParamEnum paramFlag, mvFloat* num)
 }
 
 /**
- * \brief get body's parameters single float values
+ * \brief set body's parameters single float values
+ * \param[in] paramFlag Parameter type to be set
+ * \param[in] num Single mvFloat value
+ * \return If no problems has occured then MV_NO_ERROR ( or 0 ) is returned,
+ * Any non zero return value means an error has occured.
  *
  * NOTE : declarations for acceleration, deceleration,
  * max speed, speed, mass
@@ -685,14 +702,20 @@ mvErrorEnum mvBody::setParameterf(mvParamEnum paramFlag, mvFloat num)
 }
 
 /**
-  * \brief set body's floating point vector parameters
-  *
-  * NOTE : setParameterv also calls setParameterf
-  */
+ * \brief set body's floating point vector parameters
+ * \param[in] paramFlag Parameter type to be set
+ * \param[in] numArray mvFloat array pointer
+ * \return If no problems has occured then MV_NO_ERROR ( or 0 ) is returned,
+ * Any non zero return value means an error has occured.
+ *
+ * NOTE : setParameterv also calls setParameterf
+ */
 mvErrorEnum mvBody::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 {
    mvVec3 tempVector;
    mvFloat vectorLength;
+   mvCount noOfDimensions;
+   mvIndex i;
 
    if (numArray == NULL)
    {
@@ -701,6 +724,23 @@ mvErrorEnum mvBody::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 
    switch(paramFlag)
    {
+      case MV_SHAPE_DIMENSIONS:
+         switch(bodyShape)
+         {
+            case MV_AABOX:
+            case MV_SPHERE:
+            case MV_X_AXIS_AA_CYLINDER:
+            case MV_Y_AXIS_AA_CYLINDER:
+            case MV_Z_AXIS_AA_CYLINDER:
+               noOfDimensions = this->getNoOfDimensions();
+               for (i = 0; i < noOfDimensions; i++)
+               {
+                  dimensions[i] = numArray[i];
+               }
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_BODY_SHAPE;
+         }
       case MV_DIRECTION:
          tempVector.setXYZ(numArray[0],numArray[1],numArray[2]);
          direction = tempVector.normalize();
@@ -720,12 +760,20 @@ mvErrorEnum mvBody::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 }
 
 /** \brief get body's vector parameters
-  *
-  * NOTE : getParameterv also calls getParameterf
-  */
+ * \param[in] paramFlag Parameter type to be retrieve
+ * \param[out] numArray mvFloat array pointer
+ * \param[out] noOfParameters No of items in parameter array after function
+ * \return If no problems has occured then MV_NO_ERROR ( or 0 ) is returned,
+ * Any non zero return value means an error has occured.
+ *
+ * NOTE : getParameterv also calls getParameterf
+ */
 mvErrorEnum mvBody::getParameterv(mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters)
 {
    mvErrorEnum error;
+   mvCount noOfDimensions;
+   mvIndex i;
+
    if (noOfParameters == NULL)
    {
       return MV_COUNT_DEST_IS_NULL;
@@ -740,6 +788,24 @@ mvErrorEnum mvBody::getParameterv(mvParamEnum paramFlag, mvFloat* numArray, mvCo
 
    switch (paramFlag)
    {
+      case MV_SHAPE_DIMENSIONS:
+         switch(bodyShape)
+         {
+            case MV_AABOX:
+            case MV_SPHERE:
+            case MV_X_AXIS_AA_CYLINDER:
+            case MV_Y_AXIS_AA_CYLINDER:
+            case MV_Z_AXIS_AA_CYLINDER:
+               noOfDimensions = this->getNoOfDimensions();
+               for (i = 0; i < noOfDimensions; i++)
+               {
+                  numArray[i] = dimensions[i];
+               }
+               *noOfParameters = noOfDimensions;
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_BODY_SHAPE;
+         }
       case MV_DIRECTION:
          numArray[0] = direction.getX();
          numArray[1] = direction.getY();
@@ -772,9 +838,12 @@ mvErrorEnum mvBody::getParameterv(mvParamEnum paramFlag, mvFloat* numArray, mvCo
    }
 }
 
-/** @brief set body's index parameters
-  *
-  */
+/** @brief get body's index parameters
+ * \param[in] paramFlag Parameter type to be retrieve
+ * \param[in] index mvIndex value
+ * \return If no problems has occured then MV_NO_ERROR ( or 0 ) is returned,
+ * Any non zero return value means an error has occured.
+ */
 mvErrorEnum mvBody::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
    switch (paramFlag)
@@ -796,6 +865,8 @@ mvErrorEnum mvBody::setParameteri(mvParamEnum paramFlag, mvIndex index)
 
 /** @brief returns body's initial (default) body target of all
   * new behaviours added to the body.
+  * \return if valid then non-zero index value is
+  *  returned else 0 is returned.for error.
   */
 mvIndex mvBody::getDefaultBody() const
 {
@@ -804,6 +875,8 @@ mvIndex mvBody::getDefaultBody() const
 
 /** @brief returns body's initial (default) waypoint target of all
   * new behaviours added to the body.
+ * \return if valid then non-zero index value is
+  *  returned else 0 is returned.for error.
   */
 mvIndex mvBody::getDefaultWaypoint() const
 {
@@ -812,6 +885,8 @@ mvIndex mvBody::getDefaultWaypoint() const
 
 /** @brief returns body's initial (default) pathway target of all
   * new behaviours added to the body.
+ * \return if valid then non-zero index value is
+  *  returned else 0 is returned.for error.
   */
 mvIndex mvBody::getDefaultPathway() const
 {
@@ -820,6 +895,8 @@ mvIndex mvBody::getDefaultPathway() const
 
 /** @brief returns body's initial (default) behaviour factor of all
   * new behaviours added to the body.
+ * \return if valid then non-zero index value is
+  *  returned else 0 is returned.for error.
   */
 mvFloat mvBody::getDefaultBehaviourFactor() const
 {

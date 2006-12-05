@@ -20,6 +20,31 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  *
+ *Log
+ *
+ *version     date     comments
+ *00-01-21     25/11/06
+ * - implemented MV_SHAPE_DIMENSIONS
+ *
+ *00-01-17     21/10/06
+ * - adding and implementions get/set parameter functions
+ *
+ *00-01-16   14/10/06
+ *  - redefined single type of mvEnums to 3 enums,
+ *  - changed type to shape, state to type.
+ *
+ *00-01-05   23/8/06
+ * - replaces Vec3 with mvVec3, types declared as
+ * either mvFloat, mvIndex, mvCount.
+ *
+ *00-01-00   22/5/06
+ * - renamed Obstacles into mvObstacle
+ *
+ *00-00-05    4/3/06
+ * - introducing shapes in obstacle
+ *
+ *00-00-02    8/2/06
+ *- separated obstacle and vehicle into their own header and source files
  */
 
 #ifndef MOTIONAI_MVOBSTACLE_H_
@@ -32,24 +57,6 @@
 /**
  * \class mvObstacle
  * \brief immoveable objects that are avoided.
- *
- *Log
- *
- *version     date     comments
- *00-01-17   21/10/06  - adding and implementions get/set parameter functions
- *
- *00-01-16   14/10/06  - redefined single type of mvEnums to 3 enums,
- *                     - changed type to shape, state to type.
- *
- *00-01-05   23/8/06    - replaces Vec3 with mvVec3, types declared as
- *                      either mvFloat, mvIndex, mvCount.
- *
- *00-01-00   22/5/06    - renamed Obstacles into mvObstacle
- *
- *00-00-05    4/3/06    - introducing shapes in obstacle
- *
- *00-00-02    8/2/06    - separated obstacle and vehicle into their own
- *                     header and source files
  */
 
 static const mvCount MV_MAX_NO_OF_OBSTACLE_DIMENSIONS = 4;

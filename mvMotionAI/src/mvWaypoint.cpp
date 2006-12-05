@@ -38,6 +38,9 @@ static const mvIndex MV_AABOX_X_INDEX = 0;
 static const mvIndex MV_AABOX_Y_INDEX = 1;
 static const mvIndex MV_AABOX_Z_INDEX = 2;
 
+/**
+ * \brief returns the no of points in waypoints
+ */
 mvCount mvWaypoint::getNoOfPoints() const
 {
   // static const mvCount MV_NO_OF_NURBS_POINTS = 3;
@@ -61,7 +64,7 @@ mvCount mvWaypoint::getNoOfPoints() const
 }
 
 /**
- * initialises the points accordingly to the waypoint
+ * \brief initialises the points accordingly to the waypoint
  * type given.
  *
  * NOTE : completed for single, nurbs and group waypoints
@@ -192,7 +195,16 @@ mvErrorEnum mvWaypoint::initialiseShapeDimensions(mvOptionEnum shape)
    }
    return MV_NO_ERROR;
 }
-
+/**
+ * \param[in] targetType valid types
+ * - MV_SINGLE_WAYPOINT
+ * \param[in] targetShape valid shapes
+ * - MV_SPHERE
+ * - MV_AABOX
+ * - MV_X_AXIS_AA_CYLINDER:
+ * - MV_Y_AXIS_AA_CYLINDER:
+ * - MV_Z_AXIS_AA_CYLINDER:
+ */
 mvWaypoint::mvWaypoint(mvOptionEnum targetType, mvOptionEnum targetShape)
 {
   points = NULL;
@@ -202,7 +214,19 @@ mvWaypoint::mvWaypoint(mvOptionEnum targetType, mvOptionEnum targetShape)
   initialisePoints(targetType);
   initialiseShapeDimensions(targetShape);
 }
-
+/**
+ * \param[in] targetType valid types
+ * - MV_SINGLE_WAYPOINT
+ * \param[in] targetShape valid shapes
+ * - MV_SPHERE
+ * - MV_AABOX
+ * - MV_X_AXIS_AA_CYLINDER:
+ * - MV_Y_AXIS_AA_CYLINDER:
+ * - MV_Z_AXIS_AA_CYLINDER:
+ * \param[in] x X Component of the waypoint's initial position
+ * \param[in] y Y Component of the waypoint's initial position
+ * \param[in] z Z Component of the waypoint's initial position
+ */
 mvWaypoint::mvWaypoint(mvOptionEnum targetType, mvOptionEnum targetShape, mvFloat x, mvFloat y, mvFloat z)
 {
   points = NULL;
@@ -216,7 +240,9 @@ mvWaypoint::mvWaypoint(mvOptionEnum targetType, mvOptionEnum targetShape, mvFloa
      points[MV_WAYPOINT_MAIN_POSITION_INDEX].set(x,y,z);
   }
 }
-
+/**
+ * \brief add a force, via its pointer, to this waypoint
+ */
 mvErrorEnum mvWaypoint::addForce(mvForce* forcePtr)
 {
    std::vector<mvForce*>::iterator i;
@@ -239,7 +265,9 @@ mvErrorEnum mvWaypoint::addForce(mvForce* forcePtr)
    ++noOfForces;
    return MV_NO_ERROR;
 }
-
+/**
+ * \brief removes this  force, using its pointer, from this waypoint
+ */
 mvErrorEnum mvWaypoint::removeForce(mvForce* forcePtr)
 {
    std::vector<mvForce*>::iterator i;
@@ -265,7 +293,9 @@ mvErrorEnum mvWaypoint::removeForce(mvForce* forcePtr)
    }
    return MV_ITEM_NOT_FOUND_IN_LIST;
 }
-
+/**
+ * \brief removes all associatated forces from this waypoint
+ */
 void mvWaypoint::removeAllForces()
 {
    std::vector<mvForce*>::iterator i;
@@ -284,6 +314,9 @@ void mvWaypoint::removeAllForces()
    noOfForces = 0;
 }
 
+/**
+ * \brief returns no of forces linked to this waypoint
+ */
 mvCount mvWaypoint::getNoOfForces() const
 {
    return noOfForces;
@@ -305,10 +338,12 @@ mvOptionEnum mvWaypoint::getShape()
   return wayPointShape;
 }
 
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
+/** @brief get state paramter from the waypoint
+ * \param[in] paramFlag Parameter to be retrieved
+ * \param[out] option OptionEnum pointer to memory location
+ * \return if valid, returns MV_NO_ERROR or 0 and if an error has occured then
+ * a non-zero value is returned
+ */
 mvErrorEnum mvWaypoint::getParameter(mvParamEnum paramFlag, mvOptionEnum* option)
 {
    if (option == NULL)
@@ -331,13 +366,15 @@ mvErrorEnum mvWaypoint::getParameter(mvParamEnum paramFlag, mvOptionEnum* option
 
 /**
  * \brief set flag parameters of this waypoint
- *
+ * \return if valid, returns MV_NO_ERROR or 0 and if an error has occured then
+ * a non-zero value is returned
  * NOTE : arguments accepted
  *
- *  MV_WAYPOINT_TYPE - single ,nurbs, group
+ *  MV_WAYPOINT_TYPE
+ * - single ,nurbs, group
  *
- *  MV_WAYPOINT_SHAPE - aabox, aacylinder, sphere
- *
+ *  MV_WAYPOINT_SHAPE
+ * - aabox, aacylinder, sphere
  */
 mvErrorEnum mvWaypoint::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
@@ -356,13 +393,17 @@ mvErrorEnum mvWaypoint::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
 }
 
 /**
- * set a dimensional parameter of this waypoint
+ * \brief set the waypoint vector parameter with a array of values
+ * \return if valid, returns MV_NO_ERROR or 0 and if an error has occured then
+ * a non-zero value is returned
  *
  * NOTE : arguments accepted
  *
- *  MV_RADIUS - aacylinder, sphere
+ *  MV_RADIUS
+ * - aacylinder, sphere
  *
- *  MV_LENGTH - aacylinder, sphere
+ *  MV_LENGTH
+ * - aacylinder, sphere
  *
  */
 mvErrorEnum mvWaypoint::setParameterf(mvParamEnum paramFlag, mvFloat num)
@@ -424,9 +465,9 @@ mvErrorEnum mvWaypoint::setParameterf(mvParamEnum paramFlag, mvFloat num)
 }
 
 /** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
+ * \return if valid, returns MV_NO_ERROR or 0 and if an error has occured then
+ * a non-zero value is returned
+ */
 mvErrorEnum mvWaypoint::getParameterf(mvParamEnum paramFlag, mvFloat* num)
 {
    mvIndex tempIndex;
@@ -503,7 +544,8 @@ mvErrorEnum mvWaypoint::getParameterf(mvParamEnum paramFlag, mvFloat* num)
 }
 /** @brief (one liner)
   *
-  * (documentation goes here)
+ * \return if valid, returns MV_NO_ERROR or 0 and if an error has occured then
+ * a non-zero value is returned
   */
 mvErrorEnum mvWaypoint::getParameteri(mvParamEnum paramFlag, mvIndex* index)
 {
@@ -519,7 +561,8 @@ mvErrorEnum mvWaypoint::getParameteri(mvParamEnum paramFlag, mvIndex* index)
 
 /** @brief (one liner)
   *
-  * (documentation goes here)
+ * \return if valid, returns MV_NO_ERROR or 0 and if an error has occured then
+ * a non-zero value is returned
   */
 mvErrorEnum mvWaypoint::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
@@ -530,8 +573,15 @@ mvErrorEnum mvWaypoint::setParameteri(mvParamEnum paramFlag, mvIndex index)
    }
 }
 
+/**
+ * \return if valid, returns MV_NO_ERROR or 0 and if an error has occured then
+ * a non-zero value is returned
+ */
 mvErrorEnum mvWaypoint::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 {
+   mvCount noOfDimensions;
+   mvIndex i;
+
    if (numArray == NULL)
    {
       return MV_PARAMETER_ARRAY_IS_NULL;
@@ -539,6 +589,23 @@ mvErrorEnum mvWaypoint::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 
    switch (paramFlag)
    {
+      case MV_SHAPE_DIMENSIONS:
+         switch(wayPointShape)
+         {
+            case MV_SPHERE:
+            case MV_AABOX:
+            case MV_X_AXIS_AA_CYLINDER:
+            case MV_Z_AXIS_AA_CYLINDER:
+            case MV_Y_AXIS_AA_CYLINDER:
+               noOfDimensions = getNoOfDimensions();
+               for (i = 0; i < noOfDimensions; i++)
+               {
+                  dimensions[i] = numArray[i];
+               }
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_WAYPOINT_SHAPE;
+         }
       case MV_POSITION:
          setX(numArray[0]);
          setY(numArray[1]);
@@ -551,10 +618,14 @@ mvErrorEnum mvWaypoint::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 
 /** @brief (one liner)
   *
-  * (documentation goes here)
+ * \return if valid, returns MV_NO_ERROR or 0 and if an error has occured then
+ * a non-zero value is returned
   */
 mvErrorEnum mvWaypoint::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,mvCount* noOfParameters)
 {
+   mvCount noOfDimensions;
+   mvIndex i;
+
    if (numArray == NULL)
    {
       return MV_PARAMETER_ARRAY_IS_NULL;
@@ -567,6 +638,24 @@ mvErrorEnum mvWaypoint::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,m
 
    switch (paramFlag)
    {
+      case MV_SHAPE_DIMENSIONS:
+         switch(wayPointShape)
+         {
+            case MV_SPHERE:
+            case MV_AABOX:
+            case MV_X_AXIS_AA_CYLINDER:
+            case MV_Z_AXIS_AA_CYLINDER:
+            case MV_Y_AXIS_AA_CYLINDER:
+               noOfDimensions = getNoOfDimensions();
+               for (i = 0; i < noOfDimensions; i++)
+               {
+                  numArray[i] = dimensions[i];
+               }
+               *noOfParameters = noOfDimensions;
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_WAYPOINT_SHAPE;
+         }
       case MV_POSITION:
          numArray[0] = getX();
          numArray[1] = getY();
@@ -579,7 +668,7 @@ mvErrorEnum mvWaypoint::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,m
 }
 
 /**
- * deconstructor
+ * \brief deconstructor
  */
 mvWaypoint::~mvWaypoint()
 {
@@ -594,6 +683,9 @@ mvWaypoint::~mvWaypoint()
   }
 }
 
+/**
+ * \brief returns the x component of the waypoint's position
+ */
 mvFloat mvWaypoint::getX() const
 {
    if (points != NULL)
@@ -602,6 +694,9 @@ mvFloat mvWaypoint::getX() const
       return 0;
 }
 
+/**
+ * \brief returns the y component of the waypoint's position
+ */
 mvFloat mvWaypoint::getY() const
 {
    if (points != NULL)
@@ -610,6 +705,9 @@ mvFloat mvWaypoint::getY() const
       return 0;
 }
 
+/**
+ * \brief returns the z component of the waypoint's position
+ */
 mvFloat mvWaypoint::getZ() const
 {
    if (points != NULL)
@@ -618,18 +716,27 @@ mvFloat mvWaypoint::getZ() const
       return 0;
 }
 
+/**
+ * \brief sets the x component of the waypoint's position
+ */
 void mvWaypoint::setX(mvFloat x)
 {
    if (points != NULL)
       points[0].setX(x);
 }
 
+/**
+ * \brief sets the y component of the waypoint's position
+ */
 void mvWaypoint::setY(mvFloat y)
 {
    if (points != NULL)
       points[0].setY(y);
 }
 
+/**
+ * \brief sets the z component of the waypoint's position
+ */
 void mvWaypoint::setZ(mvFloat z)
 {
    if (points != NULL)

@@ -255,7 +255,7 @@ mvErrorEnum mvForce::getParameter(mvParamEnum paramFlag, mvOptionEnum* dest)
       switch(paramFlag)
       {
             //case MV_TYPE:
-         case MV_ENABLE_FORCE:
+         case MV_IS_ENABLED:
             *dest = getEnableFlag();
             return MV_NO_ERROR;
          case MV_TYPE:

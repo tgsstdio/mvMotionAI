@@ -55,26 +55,9 @@ mvWorld* mvAddWorld(char* id);
 void mvRemoveAllWorlds();
 */
 
-// moved from mvMotionAI / decleared in mvMotionAI.h
-void mvLoadLuaScriptFile(char* fileName)
-{
-   if (fileName != NULL)
-   {
-      lua_State *L = lua_open();
-      luaopen_base(L);
-      luaopen_table(L);
-      luaopen_string(L);
-      luaopen_math(L);
-      luaopen_io(L);
-      mvLoadLuaScriptFunctions(L);
-      lua_dofile(L, fileName);
-      lua_close(L);
-   }
-}
-
 const char* mvLua_MotionAIFunctionNames[] =
    {
-      "mvLoadLuaScriptFile",
+      "mvLuaLoadScriptFile",
       "mvRemoveAllWorlds",
       "mvAddWorld",
       "mvGetWorldByID",
@@ -91,6 +74,14 @@ mvCount mvGetNoOfLuaMotionAIFunctions()
    return sizeof(mvLua_MotionAIFunctionNames)/sizeof(const char*);
 }
 
+/**
+ * \brief load or  implemented mvMotionAI Lua functions to Lua state object pointer
+ * \param[in] L Persistent Lua State object pointer which is already initialised
+ *
+ * Registers all lua functions through the various with sub functions.
+ *
+ * NOTE: if NULL pointer passed to function, functional behaviour is unknown
+ */
 void mvLoadLuaScriptFunctions(lua_State* L)
 {
    // mvMotionAI main functions
@@ -143,12 +134,13 @@ int mvLua_GetWorldByID(lua_State* luaVM)
 
 int mvLua_LoadLuaScriptFile(lua_State* luaVM)
 {
+   int result;
    static const mvIndex MV_LUA_LOADLUASCRIPTFILE_FILENAME_INDEX = 1;
 
    char* fileName = (char*) lua_tostring(luaVM, MV_LUA_LOADLUASCRIPTFILE_FILENAME_INDEX);
 
-   mvLoadLuaScriptFile(fileName);
-   lua_pushnumber(luaVM,0);
+   result = mvLua_LoadScriptFile(fileName);
+   lua_pushnumber(luaVM,result);
    return MV_LUA_RETURNED_ERROR_COUNT;
 }
 
@@ -204,5 +196,235 @@ int mvLua_AddWorld(lua_State* luaVM)
    return MV_LUA_RETURNED_ERROR_COUNT;
 }
 
+// code adapted from mvLuaLoadScriptFromFile
 
 
+/**
+ * \brief loads lua script inside C type string
+ * \param[in] statement Constant C String containing lua script (terminated with NULL or '\\0')
+ * \return If correct MV_NO_ERROR (or 0) is returned. Any else (non zero) and an error has occured.
+ *
+ * During operation, it opens & closes a temporary instance of lua state,
+ * automatically loads all implemented lua function in this function,
+ * then parses the script string pointed by statement
+ *
+ */
+mvErrorEnum mvLua_LoadScriptFromCString(const char* statement)
+{
+   lua_State *L = NULL;
+   int luaError;
+
+   if (statement == NULL)
+   {
+      return MV_C_STRING_PTR_IS_NULL;
+   }
+
+   L = lua_open();
+   luaopen_base(L);
+   luaopen_table(L);
+   luaopen_string(L);
+   luaopen_math(L);
+   luaopen_io(L);
+   mvLoadLuaScriptFunctions(L);
+   luaError = lua_dostring(L,statement);
+   lua_close(L);
+   if (luaError) // 1 is error found
+   {
+      return MV_SCRIPT_MODULE_PARSING_ERROR;
+   }
+   else
+   {
+      return MV_NO_ERROR;
+   }
+}
+
+/**
+ * \brief loads lua script inside C type string, using initialised Lua state
+ * \param[in] cState Persistent Pointer to Lua State
+ * \param[in] luaString Constant C String containing lua script (terminated with NULL or '\\0')
+ * \return If correct MV_NO_ERROR (or 0) is returned. Any else (non zero) and an error has occured.
+ *
+ * It assumes that the Lua state, cState, has been already initialised (such as Lua's base libraries,
+ * AND mvMotionAI functions), and parses and runs the C type string
+ *
+ */
+mvErrorEnum mvLua_LoadCStringWithLuaState(lua_State* cState, const char* luaString)
+{
+   int luaError;
+
+   if (cState == NULL)
+   {
+      return MV_SCRIPT_MODULE_PTR_IS_NULL;
+   }
+
+   if (luaString == NULL)
+   {
+      return MV_C_STRING_PTR_IS_NULL;
+   }
+
+   luaError = lua_dostring(cState,luaString);
+   if (luaError) // 1 is error found
+   {
+      return MV_SCRIPT_MODULE_PARSING_ERROR;
+   }
+   else
+   {
+      return MV_NO_ERROR;
+   }
+}
+
+// moved from mvMotionAI / decleared in mvMotionAI.h
+/**
+ * \brief loads lua and runs script file
+ * \param[in] fileName File Name of Lua script file
+ * \return If correct MV_NO_ERROR (or 0) is returned. Any else (non zero) and an error has occured.
+ *
+ * During operation, it opens & closes a temporary instance of lua state,
+ * automatically loads all implemented lua function in this function,
+ * then parses & runs the file 'fileName'
+ *
+ */
+mvErrorEnum mvLua_LoadScriptFile(char* fileName)
+{
+   lua_State *L = NULL;
+   int luaError;
+
+   if (fileName == NULL)
+   {
+      return MV_FILENAME_POINTER_IS_NULL;
+   }
+
+   L = lua_open();
+   // load all functions
+   luaopen_base(L);
+   luaopen_table(L);
+   luaopen_string(L);
+   luaopen_math(L);
+   luaopen_io(L);
+   mvLoadLuaScriptFunctions(L);
+   luaError = lua_dofile(L, fileName);
+   lua_close(L);
+
+   if (luaError) // 1 is error found
+   {
+      return MV_SCRIPT_MODULE_PARSING_ERROR;
+   }
+   else
+   {
+      return MV_NO_ERROR;
+   }
+}
+
+/**
+ * \brief loads lua and runs script file using initialised Lua state
+ * \param[in] cState Persistent Pointer to Lua State
+ * \param[in] fileName File Name of Lua script file
+ * \return If correct MV_NO_ERROR (or 0) is returned. Any else (non zero) and an error has occured.
+ *
+ * It assumes that the Lua state, cState, has been already initialised (such as Lua's base libraries,
+ * AND mvMotionAI functions), and parses and runs the file 'fileName'
+ *
+ */
+mvErrorEnum mvLua_LoadScriptFileWithLuaState(lua_State* cState, const char* fileName)
+{
+   int luaError;
+
+   if (cState == NULL)
+   {
+      return MV_SCRIPT_MODULE_PTR_IS_NULL;
+   }
+
+   if (fileName == NULL)
+   {
+      return MV_FILENAME_POINTER_IS_NULL;
+   }
+
+   luaError = lua_dofile(cState, fileName);
+
+   if (luaError) // 1 is error found
+   {
+      return MV_SCRIPT_MODULE_PARSING_ERROR;
+   }
+   else
+   {
+      return MV_NO_ERROR;
+   }
+}
+
+/*
+ * ignore comment
+ NOTE : MV_NO_ERROR is still returned if invalid lua code is located inside the statement
+ * variable
+ */
+
+/*
+ // NO C BUFFER ARRAY LOADING
+
+ * \brief loads lua script inside C char buffer of length n, using initialised Lua state
+ * \param[in] cState Persistent Pointer to Lua State
+ * \param[in] buffer Constant C String containing lua script (terminated with '\\0')
+ * \param[in] bufferSize Buffer Length in mvCount
+ * \return If correct MV_NO_ERROR (or 0) is returned. Any else (non zero) and an error has occured.
+ *
+ * It assumes that the Lua state, cState, has been already initialised (such as Lua's base libraries,
+ * AND mvMotionAI functions), and parses and runs the C char buffer of length
+ *
+ * NOTE : MV_NO_ERROR is still returned if invalid lua code is located inside the statement
+ * variable
+ *
+mvErrorEnum mvLua_LoadCBufferWithLuaState(lua_State* cState, const char* buffer, const mvCount bufferSize)
+{
+   if (cState == NULL)
+   {
+      return MV_SCRIPT_MODULE_PTR_IS_NULL;
+   }
+
+   if (buffer == NULL)
+   {
+      return MV_C_BUFFER_ARRAY_IS_NULL;
+   }
+
+   if (bufferSize > 0)
+   {
+      return MV_C_BUFFER_SIZE_IS_LESS_THAN_ZERO;
+   }
+
+   lua_dostring(cState,luaString);
+   return MV_NO_ERROR;
+}
+
+**
+ * \brief loads lua script inside C char buffer array of length n
+ * \param[in] buffer Constant C String containing lua script
+ * \param[in] bufferSize Buffer Length in mvCount
+ * \return If correct MV_NO_ERROR (or 0) is returned. Any else (non zero) and an error has occured.
+ *
+ * During operation, it opens & closes a temporary instance of lua state,
+ * automatically loads all implemented lua function in this function,
+ * then parses the script string pointed by statement
+ *
+ * NOTE : MV_NO_ERROR is still returned if invalid lua code is located inside the buffer
+ * variable
+ *
+mvErrorEnum mvLua_LoadScriptFromCBuffer(const char* buffer, const mvCount bufferSize)
+{
+   lua_State *L = NULL;
+
+   if (buffer == NULL)
+      return MV_C_BUFFER_ARRAY_IS_NULL;
+
+   if (bufferSize > 0)
+      return MV_C_BUFFER_SIZE_IS_LESS_THAN_ZERO;
+
+   L = lua_open();
+   luaopen_base(L);
+   luaopen_table(L);
+   luaopen_string(L);
+   luaopen_math(L);
+   luaopen_io(L);
+   mvLoadLuaScriptFunctions(L);
+   lua_dobuffer(L,buffer,bufferSize);
+   lua_close(L);
+   return MV_NO_ERROR;
+}
+*/

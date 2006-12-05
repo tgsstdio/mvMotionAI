@@ -1,3 +1,9 @@
+version 00-01-21
+= add more lua script loading functions   
+- changed naming conventions
+- added more documentation
+- changed/added/merged enumerations in mvEnums.h
+
 version 00-01-20
 - changed libmvMotionAI to libmvMotion-mingw.a 
 - added more Doxygen documentation

@@ -55,22 +55,34 @@
  *
  * Log
  * Version		date		comments
- * 00-01-17   22/8/06   - add get/set parameters
  *
- * 00-01-05   22/8/06   - using types headers and mvVec3.
+ * 00-01-21    25/11/06
+ * - add parameter option MV_SHAPE_DIMENSIONS, MV_DOMAIN_VARIABLES
  *
- * 00-01-03   21/6/06   - added behaviour list to mvBody class
+ * 00-01-17   22/8/06
+ * - add get/set parameters
  *
- * 00-01-02   31/5/06   - added behaviour / removing groups from body & system
+ * 00-01-05   22/8/06
+ * - using types headers and mvVec3.
  *
- * 00-01-00   19/5/06   - renamed particles and vehicles, grouped them into a group
- *                     under the name of mvBody.
+ * 00-01-03   21/6/06
+ * - added behaviour list to mvBody class
  *
- * 00-00-06		6/3/06	- initialised particle
+ * 00-01-02   31/5/06
+ * - added behaviour / removing groups from body & system
  *
- * 00-00-05    3/3/06   - intergration for motion.
+ * 00-01-00   19/5/06
+ * - renamed particles and vehicles, grouped them into a group
+ * under the name of mvBody.
  *
- * 00-00-02    8/2/06   - separated from MotionAI.h, created new
+ * 00-00-06		6/3/06
+ * - initialised particle
+ *
+ * 00-00-05    3/3/06
+ * - intergration for motion.
+ *
+ * 00-00-02    8/2/06
+ *  - separated from MotionAI.h, created new
  *                     header and source file.
  *
  */

@@ -24,15 +24,6 @@
 
 #include "mvObstacle.h"
 
-/**
- * initialises the shape dimensions accordingly to the obstacle
- * shape given.
- *
- * NOTE : inomplete - as it does not carry- over of parameters
- *
- * partial completion for aabox, aacylinder (x,y,z), sphere,
- *
- */
 
 static const mvIndex MV_CIRCULAR_RADIUS_INDEX = 0;
 static const mvIndex MV_AACYLINDER_LENGTH_INDEX = 1;
@@ -40,6 +31,13 @@ static const mvIndex MV_AABOX_X_INDEX = 0;
 static const mvIndex MV_AABOX_Y_INDEX = 1;
 static const mvIndex MV_AABOX_Z_INDEX = 2;
 
+/**
+ * \brief initialises the shape dimensions accordingly to the obstacle
+ * shape given.
+ *
+ * NOTE : inomplete - as it does not carry- over of parameters.
+ * Partial completion for aabox, aacylinder (x,y,z), sphere.
+ */
 mvErrorEnum mvObstacle::initialiseShapeDimensions(mvOptionEnum shape)
 {
    mvFloat tempDims[MV_MAX_NO_OF_OBSTACLE_DIMENSIONS];
@@ -172,17 +170,25 @@ mvCount mvObstacle::getNoOfDimensions() const
          return MV_INVALID_DIMENSIONS;
   }
 }
-
+/**
+ * \brief get x component of the obstacle's position
+ */
 mvFloat mvObstacle::getX() const
 {
    return position.getX();
 }
 
+/**
+ * \brief get y component of the obstacle's position
+ */
 mvFloat mvObstacle::getY() const
 {
    return position.getY();
 }
 
+/**
+ * \brief get z component of the obstacle's position
+ */
 mvFloat mvObstacle::getZ() const
 {
    return position.getZ();
@@ -200,8 +206,9 @@ mvOptionEnum mvObstacle::getType() const
 
 /**
  * \brief set state of obstacle by parameter
- *
- * returns mvErrorEnum enum. If successful, MV_NO_ERROR is returned else
+ * \param[in] paramFlag parameter to be set
+ * \param[in] option Option value to be used
+ * \return mvErrorEnum enum. If successful, MV_NO_ERROR is returned else
  * other error value (! 0) is returned.
  */
 mvErrorEnum mvObstacle::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
@@ -219,8 +226,9 @@ mvErrorEnum mvObstacle::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
 
 /**
  * \brief get state of obstacle by parameter
- *
- * returns mvErrorEnum enum. If successful, MV_NO_ERROR is returned else
+ * \param[in] paramFlag parameter to be retrieved
+ * \param[out] option mvOptionEnum pointer to memory location
+ * \return mvErrorEnum enum. If successful, MV_NO_ERROR is returned else
  * other error value (! 0) is returned.
  */
 mvErrorEnum mvObstacle::getParameter(mvParamEnum paramFlag, mvOptionEnum* option)
@@ -250,10 +258,11 @@ mvErrorEnum mvObstacle::getParameter(mvParamEnum paramFlag, mvOptionEnum* option
 */
 
 /** @brief get single floating point value from this obstacle
-  *
-  * returns mvErrorEnum enum. If successful, MV_NO_ERROR is returned else
-  * other error value (! 0) is returned.
-  */
+ * \param[in] paramFlag Parameter option to retrieve
+ * \param[in] num mvFloat pointer to memory location
+ * \return mvErrorEnum enum. If successful, MV_NO_ERROR is returned else
+ * other error value (! 0) is returned.
+ */
 mvErrorEnum mvObstacle::getParameterf(mvParamEnum paramFlag, mvFloat* num)
 {
    mvIndex tempIndex;
@@ -333,10 +342,12 @@ mvErrorEnum mvObstacle::getParameterf(mvParamEnum paramFlag, mvFloat* num)
 }
 
 /** @brief set single floating point value of this obstacle
-  *
-  * returns mvErrorEnum enum. If successful, MV_NO_ERROR is returned else
-  * other error value (! 0) is returned.
-  */
+ * \param[in] paramFlag parameter option to be set
+ * \param[in] num mvFloat value to be used
+ *
+ * \return mvErrorEnum enum. If successful, MV_NO_ERROR is returned else
+ * other error value (! 0) is returned.
+ */
 mvErrorEnum mvObstacle::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
    mvIndex tempIndex;
@@ -412,10 +423,20 @@ mvErrorEnum mvObstacle::setParameterf(mvParamEnum paramFlag, mvFloat num)
          return MV_INVALID_OBSTACLE_PARAMETER;
    }
 }
-
+/**
+ * \brief set obstacle's vector paramters
+ * \param[in] paramFlag parameter option
+ * \param[in] numArray mvFloat array pointer
+ * \return mvErrorEnum enum. If successful, MV_NO_ERROR is returned else
+ * other error value (! 0) is returned.
+ *
+ * Also call getParameterf using the numArray as one of the parameters
+ */
 mvErrorEnum mvObstacle::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 {
    mvVec3 tempVector;
+   mvIndex i;
+   mvCount noOfDimensions;
 
    if (numArray == NULL)
    {
@@ -424,6 +445,23 @@ mvErrorEnum mvObstacle::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 
    switch(paramFlag)
    {
+      case MV_SHAPE_DIMENSIONS:
+         switch(obstacleShape)
+         {
+            case MV_SPHERE:
+            case MV_X_AXIS_AA_CYLINDER:
+            case MV_Z_AXIS_AA_CYLINDER:
+            case MV_Y_AXIS_AA_CYLINDER:
+            case MV_AABOX:
+               noOfDimensions = getNoOfDimensions();
+               for (i = 0; i < noOfDimensions; i++)
+               {
+                  dimensions[i] = numArray[i];
+               }
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_OBSTACLE_SHAPE;
+         }
       case MV_POSITION:
          position.setXYZ(numArray[0],numArray[1],numArray[2]);
          return MV_NO_ERROR;
@@ -432,13 +470,21 @@ mvErrorEnum mvObstacle::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
    }
 }
 
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
+/** @brief get obstacle's vector parameter
+ * \param[in] paramFlag parameter option
+ * \param[out] numArray mvFloat array pointer to memory location
+ * \param[out] noOfParameters mvCount array to memery location
+ * \return mvErrorEnum enum. If successful, MV_NO_ERROR is returned else
+ * other error value (! 0) is returned.
+ *
+ * Also call getParameterf using the numArray as one of the parameters
+ */
 mvErrorEnum mvObstacle::getParameterv(mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters)
 {
    mvErrorEnum error;
+   mvIndex i;
+   mvCount noOfDimensions;
+
    if (noOfParameters == NULL)
    {
       return MV_COUNT_DEST_IS_NULL;
@@ -452,6 +498,24 @@ mvErrorEnum mvObstacle::getParameterv(mvParamEnum paramFlag, mvFloat* numArray, 
 
    switch (paramFlag)
    {
+      case MV_SHAPE_DIMENSIONS:
+         switch(obstacleShape)
+         {
+            case MV_SPHERE:
+            case MV_X_AXIS_AA_CYLINDER:
+            case MV_Z_AXIS_AA_CYLINDER:
+            case MV_Y_AXIS_AA_CYLINDER:
+            case MV_AABOX:
+               noOfDimensions = getNoOfDimensions();
+               for (i = 0; i < noOfDimensions; i++)
+               {
+                  numArray[i] = dimensions[i];
+               }
+               *noOfParameters = noOfDimensions;
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_OBSTACLE_SHAPE;
+         }
       case MV_POSITION:
          numArray[0] = position.getX();
          numArray[1] = position.getY();
@@ -472,19 +536,25 @@ mvErrorEnum mvObstacle::getParameterv(mvParamEnum paramFlag, mvFloat* numArray, 
    }
 }
 
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
+/** @brief set obstacle's index parameter
+ * \param[in] paramFlag parameter option
+ * \param[in] index Index value
+ *
+ * \return mvErrorEnum enum. If successful, MV_NO_ERROR is returned else
+ * other error value (! 0) is returned.
+ */
 mvErrorEnum mvObstacle::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
    return MV_INVALID_OBSTACLE_PARAMETER;
 }
 
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
+/** @brief get obstacle's index parameter
+ * \param[in] paramFlag parameter option
+ * \param[out] index mvIndex pointer address to memory location
+ *
+ * \return mvErrorEnum enum. If successful, MV_NO_ERROR is returned else
+ * other error value (! 0) is returned.
+ */
 mvErrorEnum mvObstacle::getParameteri(mvParamEnum paramFlag, mvIndex* index)
 {
    if (index == NULL)

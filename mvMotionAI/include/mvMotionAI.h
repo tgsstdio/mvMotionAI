@@ -20,6 +20,27 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  *
+ *Log:
+ *
+ *version    date      changes
+ *00-01-21   24/11/06  - changed  void mvLoadLuaScriptFile to mvErrorEnum mvLua_LoadScriptFile
+ *
+ *00-01-00   10/04/06   - new naming conventions - mv(blah)
+ *
+ *00-00-04   22/02/06   - Hopefully created a overall central module
+ *                      and many world objects
+ *
+ *00-00-01   7/2/06    created header file based on Opensteer
+ *                     - created a overall AI module called
+ *                       MotionAI
+ *
+ *                     - stubs of vehicles and obstacles
+ *
+ *                     - To use library, declare global instance of
+ *                     aiModule.
+ *
+ *                     - introduced Vec3 and Utilities from OpenSteer
+ *                     into project
  */
 
 #ifndef MV_MOTION_AI_H_
@@ -45,7 +66,7 @@ extern "C" {
 //static const mvCount MAX_NO_OF_WORLDS = 10;
 
 void mvInitMotionAI();
-void mvLoadLuaScriptFile(char* fileName);
+mvErrorEnum mvLua_LoadScriptFile(char* fileName);
 void mvFreeMotionAI();
 void mvAllWorldsStepForward(mvFloat timeInSecs);
 mvWorld* mvGetWorldByID(char* id);
@@ -59,28 +80,6 @@ void mvApplyToAllWorlds(void (someFunction)(mvWorld*,void*),void* extraPtr);
  * \class mvMotionAI
  * \brief movement or direction steering for 3D objects based, copied and
  * translated from source code of OpenSteer AI steering 2006.
- *
- *
- *Log:
- *
- *version    date      changes
- *
- *00-01-00   10/04/06   - new naming conventions - mv(blah)
- *
- *00-00-04   22/02/06   - Hopefully created a overall central module
- *                      and many world objects
- *
- *00-00-01   7/2/06    created header file based on Opensteer
- *                     - created a overall AI module called
- *                       MotionAI
- *
- *                     - stubs of vehicles and obstacles
- *
- *                     - To use library, declare global instance of
- *                     aiModule.
- *
- *                     - introduced Vec3 and Utilities from OpenSteer
- *                     into project
  *
  */
 // TODO: dynamic behaviour loading by array of derived function objects.
