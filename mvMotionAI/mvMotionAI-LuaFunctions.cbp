@@ -24,6 +24,9 @@
 				<Option compiler="gcc" />
 				<Option projectResourceIncludeDirsRelation="1" />
 				<Compiler>
+					<Add option="-pedantic" />
+					<Add option="-Wall" />
+					<Add option="-ansi" />
 					<Add directory="include-other" />
 					<Add directory="include-other\mingw" />
 				</Compiler>

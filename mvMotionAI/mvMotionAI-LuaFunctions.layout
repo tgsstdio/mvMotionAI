@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-winXP" />
-	<File name="include\mvLuaScript.h" open="1" top="0" tabpos="0">
+	<File name="examples-src\LuaFuncTest.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1815" topLine="9" />
+	</File>
+	<File name="include\mvLuaScript.h" open="0" top="0" tabpos="1">
 		<Cursor position="1736" topLine="36" />
 	</File>
 </CodeBlocks_layout_file>

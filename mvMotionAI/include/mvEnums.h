@@ -61,6 +61,12 @@ enum mvOptionEnum
    MV_X_AXIS_AA_CYLINDER,
    MV_Y_AXIS_AA_CYLINDER,
    MV_Z_AXIS_AA_CYLINDER,
+   // new enumerations
+   MV_MINUS_AABOX,
+   MV_MINUS_SPHERE,
+   MV_MINUS_X_AXIS_AA_CYLINDER,
+   MV_MINUS_Y_AXIS_AA_CYLINDER,
+   MV_MINUS_Z_AXIS_AA_CYLINDER,
    MV_NON_SHAPE,
 
    // waypoints types
@@ -100,15 +106,15 @@ enum mvOptionEnum
    MV_NON_FORCE_TYPE,
 
    // DOMAINS
-   MV_FULL_3D_DOMAIN, //< default
-   MV_XY_PLANE_DOMAIN,
-   MV_XZ_PLANE_DOMAIN,
-   MV_YZ_PLANE_DOMAIN,
-   MV_X_AXIS_ONLY_DOMAIN,
-   MV_Y_AXIS_ONLY_DOMAIN,
-   MV_Z_AXIS_ONLY_DOMAIN,
-   MV_ANY_PLANE_DOMAIN,
-   MV_ANY_LINE_DOMAIN,
+   MV_FULL_3D, //< default
+   MV_XY_PLANE, // used in shapes
+   MV_XZ_PLANE, // used in shapes
+   MV_YZ_PLANE, // used in shapes
+   MV_X_AXIS_ONLY,
+   MV_Y_AXIS_ONLY,
+   MV_Z_AXIS_ONLY,
+   MV_ANY_PLANE, // used in shapes
+   MV_ANY_LINE,
    MV_NO_DOMAIN_APPLIED,
 
    MV_NON_OPTION_ENUM, // default failed enum value : do not use
@@ -129,9 +135,11 @@ enum mvParamEnum
    MV_TYPE,
    MV_DOMAIN,
    MV_FORCE_VECTOR,
-   MV_FORCE_ON,
+   /*
+   MV_FORCE_ON, // redundant
    MV_FORCE_OFF, // redundant
    MV_ENABLE_FORCE, // combine together ?? to is_enabled
+   */
    MV_VELOCITY,
    MV_ACCELERATION_VECTOR,
    MV_FORCE_QUANTITY,
@@ -152,11 +160,22 @@ enum mvParamEnum
    MV_COHESION_FACTOR,
    MV_SEPARATION_FACTOR,
    MV_ALIGNMENT_FACTOR,
+   // new enums
+   MV_SHAPE_DIMENSIONS,
+   MV_IS_ENABLED,
+   MV_DOMAIN_VARIABLES,
+   MV_NO_OF_BODIES,
+   MV_NO_OF_GROUPS,
+   MV_NO_OF_FORCES,
+   MV_NO_OF_WAYPOINTS,
+   MV_NO_OF_OBSTACLES,
+   MV_NO_OF_GROUP_BEHAVIOURS,
+   MV_NO_OF_BEHAVIOURS,
+   MV_WIDTH,
+   MV_DEPTH,
    MV_NO_OF_PARAM_ENUMS
 };
 
-// TODO: error of index dest is null
-// TODO: error of world index is null
 enum mvErrorEnum
 {
    MV_NO_ERROR = 0,
@@ -208,6 +227,14 @@ enum mvErrorEnum
    MV_GROUP_INDEX_IS_INVALID,
    MV_SRC_ARRAY_IS_NULL,
    MV_DST_ARRAY_IS_NULL,
+   MV_INVALID_WORLD_INDEX,
+   MV_INDEX_DEST_IS_INVALID,
+   MV_SCRIPT_MODULE_PTR_IS_NULL,
+   MV_SCRIPT_MODULE_PARSING_ERROR,
+   MV_C_BUFFER_ARRAY_IS_NULL,
+   MV_C_STRING_PTR_IS_NULL,
+   MV_FILENAME_POINTER_IS_NULL,
+   MV_C_BUFFER_SIZE_IS_LESS_THAN_ZERO,
    MV_ERROR_ENUM_IS_NOT_FOUND, // odd error
    MV_NO_OF_ERROR_ENUMS
 };

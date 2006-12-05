@@ -23,7 +23,12 @@
  * DEALINGS IN THE SOFTWARE.
  *
  * Log
- * 00-01-16    17/10/06    mvEnums enumerations changed to mvOptionEnum
+ *
+ * 00-01-21    25/11/06
+ * - updated file duer to function name change
+ *
+ * 00-01-16    17/10/06
+ * - mvEnums enumerations changed to mvOptionEnum
  */
 
 #include <GL/glut.h>
@@ -31,7 +36,7 @@
 #include "Camera.h"
 #include <cstdlib>
 
-/**
+/*
  * Step 1.0 : include header to use library
  */
 #include "mvMotionAI.h"
@@ -86,12 +91,12 @@ int main(int argc, char** argv)
    glutInitWindowPosition (100, 100);
    glutCreateWindow (argv[0]);
 
-   /**
+   /*
     * Step 2 : initialise mvMotionAI library
     */
    mvInitMotionAI();
 
-   /**
+   /*
     * Step 3: load lua file
     */
    std::cout << "Arg Count : " << argc << std::endl;
@@ -103,7 +108,7 @@ int main(int argc, char** argv)
    {
       scriptFileName = defaultLuaFileName;
    }
-   mvLoadLuaScriptFile(scriptFileName);
+   mvLua_LoadScriptFile(scriptFileName);
    init ();
 
    glutDisplayFunc(display);
@@ -137,7 +142,7 @@ void display(void)
        glVertex3f(20,0,20);
      glEnd();
 
-     /**
+     /*
       * MISC: Use teapot to see if animation is on.
       */
 
@@ -147,7 +152,7 @@ void display(void)
        glutSolidTeapot(1.0);
      glPopMatrix();
 
-     /**
+     /*
       * Step 4: Add the user defined function
       * application to interact with mvMotionAI library
       * displayMotionAI;
@@ -155,7 +160,7 @@ void display(void)
      displayMotionAI();
 
    glPopMatrix();
-   /**
+   /*
     * MISC : draw frame rate
     */
 
@@ -169,7 +174,7 @@ void display(void)
 
 void displayMotionAI()
 {
-   /**
+   /*
     * Step 5: For all worlds, we apply the function 'worldFunction'
     * as a function pointer. By passing the function name to mvApplyToAllWorlds
     * and some other parameter. Here we used NULL but you could pass
@@ -180,7 +185,7 @@ void displayMotionAI()
 
 void worldFunction(mvWorld* tempWorld, void* entry)
 {
-   /**
+   /*
     * Step 6: Here we call other functions to draw the classes
     * inside the mvWorld instance such as mvBody, mvObstacles
     * & mvWaypoints. Each of these functions below take a void function
@@ -196,7 +201,7 @@ void worldFunction(mvWorld* tempWorld, void* entry)
 
 
 
-/**
+/*
  * Step 6a : this function draws the mvBody type in the
  * application
  */
@@ -252,7 +257,7 @@ void displayBody(mvBody* p,void* extraPtr)
    }
 }
 
-/**
+/*
  * Step 6b : this function draws the mvObstacle type in the
  * application
  */
@@ -283,7 +288,7 @@ void displayObstacle(mvObstacle* o,void* extraPtr)
    }
 }
 
-/**
+/*
  * Step 6c : this function draws the mvWaypoint type in the
  * application
  */
@@ -326,7 +331,7 @@ void animate(void)
      timeInSecs = diffTime/1000.0;
 	  angle += (float) 25.0 * (timeInSecs);
      previousTime = temp;
-     /**
+     /*
       * Step 7 : To animate mvMotionAI, add elapsed time in seconds to step
       * the worlds forward.
       */
@@ -359,7 +364,7 @@ void displayFrameRate(long int frameNo)
   }
 }
 
-/**
+/*
  * Ignore these function below
  */
 
@@ -668,4 +673,4 @@ void displayPathway(Pathway *p)
       glPopMatrix();
    }
 };
-**/
+*/

@@ -20,6 +20,14 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  *
+ * Log        Date      Comments
+ *
+ *00-01-21  22/11/06    - added arc cos/tan/tan to mvMotionAI-Utilities
+ *
+ *00-01-16  22/05/06    - edit functions to include new enumerations of mvEnums.h
+ *
+ *00-01-00  22/05/06    - Headers file : Template functions are hard to split
+ *
  */
 #ifndef MV_MOTIONAI_UTILITIES_H_
 #define MV_MOTIONAI_UTILITIES_H_
@@ -28,13 +36,7 @@
 #include "mvMotionAI-Types.h"
 #include <cmath>
 
-/**
- * Log        Date      Comments
- *00-01-16  22/05/06    - edit functions to include new enumerations of mvEnums.h
- *
- *00-01-00  22/05/06    - Headers file : Template functions are hard to split
- *
- */
+
 
 template<class mvClass>
 mvErrorEnum removeItemFromVectorByIndex(std::vector<mvClass*>& mvClassList, mvIndex index, int& currentIndex, int& noOfItems)
@@ -702,24 +704,32 @@ mvErrorEnum mvGetClassParametersv(std::vector<mvClass*>& mvClassList,
  */
 
 #ifdef _WIN32
-inline float mvFloor (mvFloat x)          {return floor (x);}
-inline float mvSqrt (mvFloat x)           {return sqrt (x);}
-inline float mvSin (mvFloat x)          {return sin (x);}
-inline float mvCos (mvFloat x)           {return cos (x);}
+inline mvFloat mvFloor (mvFloat x)          {return floor (x);}
+inline mvFloat mvSqrt (mvFloat x)           {return sqrt (x);}
+inline mvFloat mvSin (mvFloat x)          {return sin (x);}
+inline mvFloat mvCos (mvFloat x)           {return cos (x);}
 //inline float mvAbs (mvFloat x)           {return abs (x);}
 inline int   mvAbs (int x)            {return abs (x);}
-inline float mvMax (mvFloat x, mvFloat y) {if (x > y) return x; else return y;}
-inline float mvMin (mvFloat x, mvFloat y) {if (x < y) return x; else return y;}
+inline mvFloat mvMax (mvFloat x, mvFloat y) {if (x > y) return x; else return y;}
+inline mvFloat mvMin (mvFloat x, mvFloat y) {if (x < y) return x; else return y;}
+
+inline mvFloat mvArcCos(mvFloat theta) { return acos(theta);}
+inline mvFloat mvArcSin(mvFloat theta) { return asin(theta);}
+inline mvFloat mvArcTan(mvFloat theta) { return atan(theta);}
 
 #else
-inline float mvFloor (mvFloat x)         {return std::floor (x);}
-inline float mvSqrt (mvFloat x)           {return std::sqrt (x);}
-inline float mvSin (mvFloat x)         {return std::sin (x);}
-inline float mvCos (mvFloat x)          {return std::cos (x);}
-inline float mvAbs (mvFloat x)          {return std::abs (x);}
+inline mvFloat mvFloor (mvFloat x)         {return std::floor (x);}
+inline mvFloat mvSqrt (mvFloat x)           {return std::sqrt (x);}
+inline mvFloat mvSin (mvFloat x)         {return std::sin (x);}
+inline mvFloat mvCos (mvFloat x)          {return std::cos (x);}
+inline mvFloat mvAbs (mvFloat x)          {return std::abs (x);}
 inline int   mvAbs (int x)            {return std::abs (x);}
-inline float mvMax (mvFloat x, mvFloat y) {return std::max (x, y);}
-inline float mvMin (mvFloat x, mvFloat y) {return std::min (x, y);}
+inline mvFloat mvMax (mvFloat x, mvFloat y) {return std::max (x, y);}
+inline mvFloat mvMin (mvFloat x, mvFloat y) {return std::min (x, y);}
+
+inline mvFloat mvArcCos(mvFloat theta) { return std::acos(theta);}
+inline mvFloat mvArcSin(mvFloat theta) { return std::asin(theta);}
+inline mvFloat mvArcTan(mvFloat theta) { return std::atan(theta);}
 #endif
 
 #endif

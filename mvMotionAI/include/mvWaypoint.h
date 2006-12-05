@@ -19,6 +19,26 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
+ * Log
+ *
+ * Version		Date		Comments
+ *
+ * 00-01-21 27/11/06
+ * - implementing MV_SHAPE
+ *
+ * 00-01-17  26/10/06
+ * - add get/set parameter functions
+ *
+ * 00-01-02  31/5/06
+ * - removing groups from system until better solution
+ *                     arrives.
+ *
+ * 00-01-00   16/5/06
+ * - renamed target to mvWaypoint.
+ *
+ * 00-00-07		9/3/06
+ * - initialised Target Object,
  */
 
 #ifndef MOTIONAI_MVWAYPOINT_H_
@@ -34,20 +54,8 @@
 /**
  * \class mvWaypoint
  * \brief Immediate class between Motion AI objects and gloabl world points
- *
- *
- * Log
- *
- * Version		Date		Comments
- * 00-01-17  26/10/06 - add get/set parameter functions
- *
- * 00-01-02  31/5/06  - removing groups from system until better solution
- *                     arrives.
- *
- * 00-01-00   16/5/06      - renamed target to mvWaypoint.
- *
- * 00-00-07		9/3/06		- initialised Target Object,
  */
+// TODO (White 2#1#): doygen documentation
 
 static const mvCount MV_MAX_NO_OF_WAYPOINT_DIMENSIONS = 3;
 
