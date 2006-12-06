@@ -35,8 +35,12 @@
 #include "mvEnums.h"
 #include "mvGroup.h"
 
+#ifdef MV_MOTIONAI_LUA_DEBUG
+#define MV_LUA_SCRIPT_GROUP_DEBUG_FLAG 1
+#else
 #define MV_LUA_SCRIPT_GROUP_DEBUG_FLAG 1
 #undef MV_LUA_SCRIPT_GROUP_DEBUG_FLAG
+#endif
 
 int mvLua_AddGroup(lua_State* L);
 int mvLua_GetGroup(lua_State* L);

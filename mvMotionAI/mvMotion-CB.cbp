@@ -77,16 +77,6 @@
 			<Add directory="lib-other" />
 			<Add directory="lib-other\mingw" />
 		</Linker>
-		<Unit filename="..\..\list.txt">
-			<Option compilerVar="" />
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
-		<Unit filename="Log.txt">
-			<Option compilerVar="" />
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
 		<Unit filename="experimental\include\mvBaseBehaviour.h">
 			<Option compilerVar="" />
 			<Option compile="0" />

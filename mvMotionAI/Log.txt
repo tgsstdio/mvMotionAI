@@ -1,5 +1,9 @@
+version 00-01-22
+- debugging flag changes
+- added new README files
+
 version 00-01-21
-= add more lua script loading functions   
+- add more lua script loading functions   
 - changed naming conventions
 - added more documentation
 - changed/added/merged enumerations in mvEnums.h

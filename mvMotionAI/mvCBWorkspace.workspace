@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_workspace_file>
 	<Workspace title="mvMotionAI Code Blocks Workspace">
-		<Project filename="mvMotionAI-LuaFunctions.cbp" active="1" />
-		<Project filename="mvMotion-GLMain.cbp" />
+		<Project filename="mvMotionAI-LuaFunctions.cbp" />
+		<Project filename="mvMotion-GLMain.cbp" active="1" />
 		<Project filename="mvMotionAI-TypeSizes.cbp" />
 		<Project filename="mvMotion-CB.cbp" />
 	</Workspace>

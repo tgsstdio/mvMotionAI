@@ -7,7 +7,7 @@
 	<File name="include\mvBody.h" open="0" top="0" tabpos="0">
 		<Cursor position="2627" topLine="104" />
 	</File>
-	<File name="include\mvEnums.h" open="1" top="1" tabpos="1">
+	<File name="include\mvEnums.h" open="1" top="0" tabpos="1">
 		<Cursor position="4335" topLine="108" />
 	</File>
 	<File name="include\mvLuaScript-Behaviour.h" open="0" top="0" tabpos="0">
@@ -58,7 +58,7 @@
 	<File name="src\mvVec3.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="7897" topLine="16" />
 	</File>
-	<File name="src\mvWaypoint.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="18746" topLine="455" />
+	<File name="src\mvWaypoint.cpp" open="1" top="1" tabpos="5">
+		<Cursor position="15343" topLine="693" />
 	</File>
 </CodeBlocks_layout_file>

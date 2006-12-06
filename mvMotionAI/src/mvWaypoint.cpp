@@ -551,12 +551,15 @@ mvErrorEnum mvWaypoint::getParameteri(mvParamEnum paramFlag, mvIndex* index)
 {
    if (index == NULL)
       return MV_INDEX_VALUE_IS_INVALID;
-
+   else
+      return MV_INVALID_WAYPOINT_PARAMETER;
+   /*
    switch(paramFlag)
    {
       default:
          return MV_INVALID_WAYPOINT_PARAMETER;
    }
+   */
 }
 
 /** @brief (one liner)
@@ -566,11 +569,14 @@ mvErrorEnum mvWaypoint::getParameteri(mvParamEnum paramFlag, mvIndex* index)
   */
 mvErrorEnum mvWaypoint::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
+   /*
    switch(paramFlag)
    {
       default:
          return MV_INVALID_WAYPOINT_PARAMETER;
    }
+   */
+   return MV_INVALID_WAYPOINT_PARAMETER;
 }
 
 /**

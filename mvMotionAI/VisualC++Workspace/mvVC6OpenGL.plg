@@ -3,14 +3,147 @@
 <pre>
 <h1>Build Log</h1>
 <h3>
+--------------------Configuration: mvStaticLibVC6 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\WHITE2~1\LOCALS~1\Temp\RSPA6.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /I "../include" /I "../include-other" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\mvMotionAI\mvMotionAI\src\mvBehaviour-Central.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvBehaviour-Clone.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvBehaviour-Entry.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvBehaviour-Flee.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvBehaviour-List.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvBehaviour-Pursuit.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvBehaviour-Seek.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvBehaviour-SimpleFlock.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvBehaviour-Type.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvBehaviour.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvBody.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvEnums.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvForce.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvGroup.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvGroupBehaviour.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvLuaScript-Behaviour.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvLuaScript-Body.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvLuaScript-Force.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvLuaScript-Group.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvLuaScript-GroupBehaviour.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvLuaScript-Obstacle.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvLuaScript-Pathway.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvLuaScript-Utilities.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvLuaScript-Waypoint.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvLuaScript-World.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvLuaScript.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvMotionAI-Utilities.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvMotionAI.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvObstacle.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvPathway.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvScript-Utilities.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvVec3.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvWaypoint.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvWorld.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\WHITE2~1\LOCALS~1\Temp\RSPA6.tmp" 
+Creating temporary file "C:\DOCUME~1\WHITE2~1\LOCALS~1\Temp\RSPA7.tmp" with contents
+[
+/nologo /out:"Debug\mvStaticLibVC6.lib" 
+".\Debug\mvBehaviour-Central.obj"
+".\Debug\mvBehaviour-Clone.obj"
+".\Debug\mvBehaviour-Entry.obj"
+".\Debug\mvBehaviour-Flee.obj"
+".\Debug\mvBehaviour-List.obj"
+".\Debug\mvBehaviour-Pursuit.obj"
+".\Debug\mvBehaviour-Seek.obj"
+".\Debug\mvBehaviour-SimpleFlock.obj"
+".\Debug\mvBehaviour-Type.obj"
+".\Debug\mvBehaviour.obj"
+".\Debug\mvBody.obj"
+".\Debug\mvEnums.obj"
+".\Debug\mvForce.obj"
+".\Debug\mvGroup.obj"
+".\Debug\mvGroupBehaviour.obj"
+".\Debug\mvLuaScript-Behaviour.obj"
+".\Debug\mvLuaScript-Body.obj"
+".\Debug\mvLuaScript-Force.obj"
+".\Debug\mvLuaScript-Group.obj"
+".\Debug\mvLuaScript-GroupBehaviour.obj"
+".\Debug\mvLuaScript-Obstacle.obj"
+".\Debug\mvLuaScript-Pathway.obj"
+".\Debug\mvLuaScript-Utilities.obj"
+".\Debug\mvLuaScript-Waypoint.obj"
+".\Debug\mvLuaScript-World.obj"
+".\Debug\mvLuaScript.obj"
+".\Debug\mvMotionAI-Utilities.obj"
+".\Debug\mvMotionAI.obj"
+".\Debug\mvObstacle.obj"
+".\Debug\mvPathway.obj"
+".\Debug\mvScript-Utilities.obj"
+".\Debug\mvVec3.obj"
+".\Debug\mvWaypoint.obj"
+".\Debug\mvWorld.obj"
+]
+Creating command line "link.exe -lib @C:\DOCUME~1\WHITE2~1\LOCALS~1\Temp\RSPA7.tmp"
+<h3>Output Window</h3>
+Compiling...
+mvBehaviour-Central.cpp
+mvBehaviour-Clone.cpp
+mvBehaviour-Entry.cpp
+mvBehaviour-Flee.cpp
+mvBehaviour-List.cpp
+mvBehaviour-Pursuit.cpp
+mvBehaviour-Seek.cpp
+mvBehaviour-SimpleFlock.cpp
+mvBehaviour-Type.cpp
+mvBehaviour.cpp
+mvBody.cpp
+mvEnums.cpp
+mvForce.cpp
+mvGroup.cpp
+mvGroupBehaviour.cpp
+mvLuaScript-Behaviour.cpp
+mvLuaScript-Body.cpp
+mvLuaScript-Force.cpp
+mvLuaScript-Group.cpp
+mvLuaScript-GroupBehaviour.cpp
+Generating Code...
+Compiling...
+mvLuaScript-Obstacle.cpp
+mvLuaScript-Pathway.cpp
+mvLuaScript-Utilities.cpp
+mvLuaScript-Waypoint.cpp
+mvLuaScript-World.cpp
+mvLuaScript.cpp
+mvMotionAI-Utilities.cpp
+mvMotionAI.cpp
+mvObstacle.cpp
+mvPathway.cpp
+mvScript-Utilities.cpp
+mvVec3.cpp
+mvWaypoint.cpp
+mvWorld.cpp
+Generating Code...
+Creating library...
+<h3>
 --------------------Configuration: mvVC6OpenGL - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\WHITE2~1\LOCALS~1\Temp\RSPA8.tmp" with contents
+[
+lua50.lib freeglut-debug.lib /nologo /subsystem:console /incremental:yes /pdb:"mvVC6OpenGL___Win32_Debug/mvVC6OpenGL.pdb" /debug /machine:I386 /out:"mvVC6OpenGL___Win32_Debug/mvVC6OpenGL.exe" /pdbtype:sept /libpath:"../lib-other" 
+".\mvVC6OpenGL___Win32_Debug\Camera.obj"
+".\mvVC6OpenGL___Win32_Debug\GLMain.obj"
+".\Debug\mvStaticLibVC6.lib"
+]
+Creating command line "link.exe @C:\DOCUME~1\WHITE2~1\LOCALS~1\Temp\RSPA8.tmp"
+<h3>Output Window</h3>
+Linking...
+LIBCD.lib(crt0init.obj) : warning LNK4098: defaultlib "libc.lib" conflicts with use of other libs; use /NODEFAULTLIB:library
 
 
 
 <h3>Results</h3>
-mvVC6OpenGL.exe - 0 error(s), 0 warning(s)
+mvVC6OpenGL.exe - 0 error(s), 1 warning(s)
 </pre>
 </body>
 </html>
