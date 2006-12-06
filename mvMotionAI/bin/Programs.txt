@@ -1,7 +1,7 @@
-All binaries were compiled to work on WIndows XP.
+All binaries were compiled to work on Windows XP.
 
-mvMotionAI & mvMotionAI-mingw require a OpenGL compatiable (sp?)
-system.
+mvMotionAI & mvMotionAI-mingw require a installation of OpenGL
+on the system.
 
 Various DLLs found in bin directory are required for mvMotionAI.exe.
 
@@ -9,3 +9,4 @@ Other than mvMotionAI.exe, the other programs were compiled
 on a mingW32 compiler.
 
 David Young 2006.
+

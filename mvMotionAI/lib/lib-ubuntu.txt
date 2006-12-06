@@ -1,5 +1,5 @@
-This static library file need for ubuntu (i386 dapper drake)
-development is 
+This static library file for ubuntu development for i386 dapper drake,
+compiled under g++(gcc), 
 
 Latest:
 file: mvMotionAI-ubuntu.a
@@ -8,3 +8,4 @@ Created: Wednesday, 15 November 2006, 4:33:30 PM
 
 David Young
 15 November 2006
+

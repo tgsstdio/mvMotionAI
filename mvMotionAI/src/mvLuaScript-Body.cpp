@@ -36,8 +36,12 @@
 #include "mvWorld.h"
 #include "mvEnums.h"
 
+#ifdef MV_MOTIONAI_LUA_DEBUG
 #define MV_LUA_SCRIPT_BODY_DEBUG_FLAG 1
-//#undef MV_LUA_SCRIPT_BODY_DEBUG_FLAG
+#else
+#define MV_LUA_SCRIPT_BODY_DEBUG_FLAG 1
+#undef MV_LUA_SCRIPT_BODY_DEBUG_FLAG
+#endif
 
 int mvLua_AddBody(lua_State* L);
 int mvLua_GetBody(lua_State* L);
@@ -158,6 +162,10 @@ int mvLua_AddBody(lua_State* L)
       //puts(type);
       mvScript_checkBodyType(type,bType);
       mvScript_checkBodyShape(shape,bShape);
+#ifdef MV_LUA_SCRIPT_BODY_DEBUG_FLAG
+   puts(mvGetOptionString(bType));
+   puts(mvGetOptionString(bShape));
+#endif
       result = tempWorld->mvAddBodyWithPos(bType,bShape,x,y,z);
    }
    lua_pushnumber(L,result);

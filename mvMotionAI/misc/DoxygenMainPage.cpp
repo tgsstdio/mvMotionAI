@@ -43,7 +43,7 @@
  * etc...
  *
  * \section progress Current Progress in library module
- * (ver 00-01-21 : date 21/9/06)  
+ * (ver 00-01-22 : date 21/9/06)  
  * documentation and Lua script support
  * 
  * \section otherpages Other Pages
@@ -55,8 +55,12 @@
  * \section mvMotionAI Log
  * \subsection log_columns Version     Date     Comments
  * 
+ * version 00-01-22
+ * - debugging flag changes
+ * - added new README files
+ * 
  * version 00-01-21
- * = add more lua script loading functions   
+ * - add more lua script loading functions   
  * - changed naming conventions
  * - added more documentation
  * - changed/added/merged enumerations in mvEnums.h

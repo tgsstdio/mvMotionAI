@@ -37,8 +37,14 @@
 #include "mvWorld.h"
 #include "mvMotionAI.h"
 
-int mvLua_AddForce(lua_State* L);
+#ifdef MV_MOTIONAI_LUA_DEBUG
+#define MV_LUA_SCRIPT_FORCE_DEBUG_FLAG 1
+#else
+#define MV_LUA_SCRIPT_FORCE_DEBUG_FLAG 1
+#undef MV_LUA_SCRIPT_FORCE_DEBUG_FLAG
+#endif
 
+int mvLua_AddForce(lua_State* L);
 //int mvLua_AddForceVector(lua_State* L);
 int mvLua_RemoveForce(lua_State* L);
 int mvLua_RemoveCurrentForce(lua_State* L);
@@ -114,6 +120,9 @@ int mvLua_AddForce(lua_State* L)
       //puts(tempWorld->getWorldID());
       //puts(type);
       mvScript_checkForceType(type,fType);
+#ifdef MV_LUA_SCRIPT_FORCE_DEBUG_FLAG
+   puts(mvGetOptionString(fType));
+#endif
       result = tempWorld->mvAddForceVector(fType,x,y,z);
    }
    lua_pushnumber(L,result);
@@ -254,7 +263,7 @@ int mvLua_RemoveCurrentForce(lua_State* L)
    tempWorld = mvGetWorldByIndex(worldID);
    if (tempWorld != NULL)
    {
-#ifdef MV_LUA_SCRIPT_WAYPOINT_DEBUG_FLAG
+#ifdef MV_LUA_SCRIPT_FORCE_DEBUG_FLAG
       puts(tempWorld->getWorldID());
 #endif
       result = tempWorld->mvRemoveCurrentForce();
@@ -273,7 +282,7 @@ int mvLua_RemoveForce(lua_State* L)
    tempWorld = mvGetWorldByIndex(worldID);
    if (tempWorld != NULL)
    {
-#ifdef MV_LUA_SCRIPT_WAYPOINT_DEBUG_FLAG
+#ifdef MV_LUA_SCRIPT_FORCE_DEBUG_FLAG
       puts(tempWorld->getWorldID());
 #endif
       result = tempWorld->mvRemoveForce(fIndex);
@@ -292,7 +301,7 @@ int mvLua_SetCurrentForce(lua_State* L)
    tempWorld = mvGetWorldByIndex(worldID);
    if (tempWorld != NULL)
    {
-#ifdef MV_LUA_SCRIPT_WAYPOINT_DEBUG_FLAG
+#ifdef MV_LUA_SCRIPT_FORCE_DEBUG_FLAG
       puts(tempWorld->getWorldID());
 #endif
       result = tempWorld->mvSetCurrentForce(fIndex);
@@ -310,7 +319,7 @@ int mvLua_RemoveAllForces(lua_State* L)
    tempWorld = mvGetWorldByIndex(worldID);
    if (tempWorld != NULL)
    {
-#ifdef MV_LUA_SCRIPT_WAYPOINT_DEBUG_FLAG
+#ifdef MV_LUA_SCRIPT_FORCE_DEBUG_FLAG
       puts(tempWorld->getWorldID());
 #endif
       tempWorld->mvRemoveAllForces();

@@ -29,8 +29,10 @@
 #include "mvBehaviour-Central.h"
 //#include "Utilities.h"
 
+#ifndef MV_WORLD_DEBUG_OUTPUT_FLAG
 #define MV_WORLD_DEBUG_OUTPUT_FLAG 1
 #undef MV_WORLD_DEBUG_OUTPUT_FLAG
+#endif
 
 void applyImprovEuler(mvFloat h,mvVec3* position, mvVec3* direction, mvFloat* currentSpeed,
                       mvFloat maxSpeed, mvFloat currentAcceleration);
@@ -418,7 +420,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
          {
             maxSpeed = tempBody->maxSpeed;
             currentAcceleration = tempBody->acceleration;
-// TO_DO : motion integration of MV_APPLY_NO_FORCES_STATE not correct
+// TODO : motion integration of MV_APPLY_NO_FORCES_STATE not correct
             applyImprovEuler(h,&(tempBody->position),&(tempBody->direction), &(tempBody->speed),
                       maxSpeed,currentAcceleration);
          }
@@ -502,12 +504,12 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
             if (speed[0] < speed[1])
             {
                extraVelocity = tempBody->acceleration * h;
-               /*
+#ifdef MV_WORLD_DEBUG_OUTPUT_FLAG
                std::cout << "Acceleration : " << tempBody->acceleration << std::endl
                          << "Extra velocity : " << extraVelocity << std::endl
                          << "Speed[0] : " << speed[0] << std::endl
                          << "Speed[1] : " << speed[1] << std::endl;
-               **/
+#endif               
                if ((speed[1] - speed[0]) > extraVelocity)
                {
                   //puts("LIMIT");
@@ -563,6 +565,11 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
             tempBody->finalVelocity.set(vel[1][0],vel[1][1],vel[1][2]);
             tempBody->position.set(pos[1][0],pos[1][1],pos[1][2]);
             tempBody->speed = speed[1];
+#ifdef MV_WORLD_DEBUG_OUTPUT_FLAG
+            std::cout << "Final Velocity : " << tempBody->finalVelocity << std::endl
+               << "Position : "  << tempBody->position << std::endl
+               << "Speed : " << tempBody->speed << std::endl;
+#endif
          }
       }
    }

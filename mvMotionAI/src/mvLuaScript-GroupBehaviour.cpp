@@ -37,8 +37,12 @@
 #include "mvWorld.h"
 #include "mvEnums.h"
 
+#ifdef MV_MOTIONAI_LUA_DEBUG
+#define MV_LUA_SCRIPT_GROUP_BEHAVIOUR_DEBUG_FLAG 1
+#else
 #define MV_LUA_SCRIPT_GROUP_BEHAVIOUR_DEBUG_FLAG 1
 #undef MV_LUA_SCRIPT_GROUP_BEHAVIOUR_DEBUG_FLAG
+#endif
 
 int mvLua_AddGroupBehaviour(lua_State* L);
 int mvLua_GetGroupBehaviour(lua_State* L);
@@ -137,7 +141,7 @@ int mvLua_AddGroupBehaviour(lua_State* L)
       {
          mvScript_checkGroupBehaviourType(type,bType);
 #ifdef MV_LUA_SCRIPT_GROUP_BEHAVIOUR_DEBUG_FLAG
-         puts(mvGetEnumString(bType));
+         puts(mvGetOptionString(bType));
 #endif
          result = tempWorld->mvAddGroupBehaviour(bType);
       }

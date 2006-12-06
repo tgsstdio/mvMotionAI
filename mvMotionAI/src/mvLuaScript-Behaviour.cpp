@@ -40,9 +40,12 @@
  *00-01-03    21/6/06   - added lua behaviour functions for get, remove, add waypoint, add to body
  *                      functions
  */
-
+#ifdef MV_MOTIONAI_LUA_DEBUG
+#define MV_LUA_SCRIPT_BEHAVIOUR_DEBUG_FLAG 1
+#else
 #define MV_LUA_SCRIPT_BEHAVIOUR_DEBUG_FLAG 1
 #undef MV_LUA_SCRIPT_BEHAVIOUR_DEBUG_FLAG
+#endif
 
 int mvLua_AddBehaviour(lua_State* L);
 int mvLua_GetBehaviour(lua_State* L);
@@ -124,7 +127,7 @@ int mvLua_AddBehaviour(lua_State* L)
       {
          mvScript_checkBehaviourType(type,bType);
 #ifdef MV_LUA_SCRIPT_BEHAVIOUR_DEBUG_FLAG
-         puts(mvGetEnumString(bType));
+         puts(mvGetOptionString(bType));
 #endif
          result = tempWorld->mvAddBehaviour(bType);
       }
@@ -256,8 +259,7 @@ int mvLua_AddBehaviourToCurrentBody(lua_State* L)
    if (tempWorld != NULL)
    {
 #ifdef MV_LUA_SCRIPT_BEHAVIOUR_DEBUG_FLAG
-      std::cout << bodyIndex << "/"
-                << behaviourIndex  << "/"
+      std::cout << behaviourIndex  << "/"
                 << groupIndex << "/" << bTypeString << std::endl;
 #endif
       error = mvScript_checkAddBehaviourOption(bTypeString,bType);
