@@ -4,7 +4,7 @@
 	"mvMotionAI.h"
 	"mvLuaScript.h"
 
-1158801458 pt.h"
+1164422220 pt.h"
 
 1164379790 d:\mvmotionai\mvmotionai\include\mvmotionai.h
 	<cstdlib>
@@ -16,7 +16,7 @@
 	<lualib.h>
 	<lauxlib.h>
 
-1162271154 >
+1163427371 >
 
 1163224044 d:\mvmotionai\mvmotionai\include\mvworld.h
 	"mvMotionAI-Types.h"
@@ -29,7 +29,7 @@
 	"mvForce.h"
 	"mvGroupBehaviour.h"
 
-1163224044 haviour.h"
+1163427371 haviour.h"
 
 1164425912 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
 
@@ -40,16 +40,18 @@
 	"mvVec3.h"
 	"mvBehaviour-List.h"
 
-1161757406 ur-List.h"
+1163427371 ur-List.h"
 
 1158766068 d:\mvmotionai\mvmotionai\include\mvenum.h
 	<cstdlib>
 
-1157174374 
+1132921120 
 
 1164206054 d:\mvmotionai\mvmotionai\include\mvvec3.h
 	"mvMotionAI-Types.h"
 	<iostream>
+
+1132921120 
 
 1162533962 d:\mvmotionai\mvmotionai\include\mvbehaviour-list.h
 	<vector>
@@ -57,14 +59,14 @@
 	"mvMotionAI-Types.h"
 	"mvBehaviour-Entry.h"
 
-1162533962 ur-Entry.h"
+1163427371 ur-Entry.h"
 
 1161756880 d:\mvmotionai\mvmotionai\include\mvbehaviour-entry.h
 	"mvMotionAI-Types.h"
 	"mvVec3.h"
 	"mvEnums.h"
 
-1161577972 "
+1163427371 "
 
 1164635366 d:\mvmotionai\mvmotionai\include\mvwaypoint.h
 	<vector>
@@ -83,7 +85,7 @@
 	"mvEnums.h"
 	"mvMotionAI-Types.h"
 
-1161590054 I-Types.h"
+1163427371 I-Types.h"
 
 1161845658 d:\mvmotionai\mvmotionai\include\mvpathway.h
 	<vector>
@@ -257,4 +259,116 @@
 	<iostream>
 	"mvMotionAI.h"
 	"mvLuaScript.h"
+
+1165495303 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/LuaFuncTest.cpp
+	<iostream>
+	"mvMotionAI.h"
+	"mvLuaScript.h"
+
+1165495317 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mvMotionAI.h
+	<cstdlib>
+	<iostream>
+	<vector>
+	"mvWorld.h"
+	"mvMotionAI-Types.h"
+	<lua.h>
+	<lualib.h>
+	<lauxlib.h>
+
+1163427371 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mvWorld.h
+	"mvMotionAI-Types.h"
+	"mvBody.h"
+	"mvWaypoint.h"
+	"mvBehaviour.h"
+	"mvPathway.h"
+	"mvGroup.h"
+	"mvObstacle.h"
+	"mvForce.h"
+	"mvGroupBehaviour.h"
+
+1165495317 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mvMotionAI-Types.h
+
+1165495317 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mvBody.h
+	<vector>
+	"mvMotionAI-Types.h"
+	"mvEnums.h"
+	"mvVec3.h"
+	"mvBehaviour-List.h"
+
+1165495317 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mvEnums.h
+	<cstdlib>
+
+1165495317 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mvVec3.h
+	"mvMotionAI-Types.h"
+	<iostream>
+
+1163427371 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mvBehaviour-List.h
+	<vector>
+	"mvEnums.h"
+	"mvMotionAI-Types.h"
+	"mvBehaviour-Entry.h"
+
+1163427371 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mvBehaviour-Entry.h
+	"mvMotionAI-Types.h"
+	"mvVec3.h"
+	"mvEnums.h"
+
+1165495317 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mvWaypoint.h
+	<vector>
+	"mvMotionAI-Types.h"
+	"mvVec3.h"
+	"mvEnums.h"
+	"mvForce.h"
+
+1163427371 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mvForce.h
+	"mvVec3.h"
+	"mvMotionAI-Types.h"
+	"mvEnums.h"
+
+1163427371 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mvBehaviour.h
+	"mvBehaviour-Entry.h"
+	"mvEnums.h"
+	"mvMotionAI-Types.h"
+
+1163427371 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mvPathway.h
+	<vector>
+	"mvEnums.h"
+	"mvWaypoint.h"
+	"mvMotionAI-Types.h"
+
+1163427371 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mvGroup.h
+	<vector>
+	"mvMotionAI-Types.h"
+	"mvEnums.h"
+	"mvBody.h"
+
+1165495317 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mvObstacle.h
+	"mvEnums.h"
+	"mvVec3.h"
+	"mvMotionAI-Types.h"
+
+1163427371 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mvGroupBehaviour.h
+	"mvMotionAI-Types.h"
+	"mvBehaviour-Entry.h"
+	"mvEnums.h"
+	<vector>
+
+1132921120 /usr/include/lua50/lua.h
+	<stdarg.h>
+	<stddef.h>
+
+1132921120 /usr/include/lua50/lualib.h
+	"lua.h"
+
+1132921120 /usr/include/lua50/lauxlib.h
+	<stddef.h>
+	<stdio.h>
+	"lua.h"
+
+1165495317 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mvLuaScript.h
+	"mvMotionAI-Types.h"
+	"mvEnums.h"
+	<lua.h>
+	<lualib.h>
+	<lauxlib.h>
 

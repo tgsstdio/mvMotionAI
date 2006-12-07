@@ -3,7 +3,7 @@
 	"Camera.h"
 	<GL/glut.h>
 
-1161842434 >
+1163568810 >
 
 1158767306 d:\mvmotionai\mvmotionai\examples-src\camera.h
 
@@ -14,7 +14,7 @@
 	<cstdlib>
 	"mvMotionAI.h"
 
-1161577904 I.h"
+1164422138 I.h"
 
 1164379790 d:\mvmotionai\mvmotionai\include\mvmotionai.h
 	<cstdlib>
@@ -37,7 +37,7 @@
 	"mvForce.h"
 	"mvGroupBehaviour.h"
 
-1163224044 haviour.h"
+1163427371 haviour.h"
 
 1164425912 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
 
@@ -48,16 +48,18 @@
 	"mvVec3.h"
 	"mvBehaviour-List.h"
 
-1161757406 ur-List.h"
+1163427371 ur-List.h"
 
 1158766068 d:\mvmotionai\mvmotionai\include\mvenum.h
 	<cstdlib>
 
-1139597046 
+1157174374 
 
 1164206054 d:\mvmotionai\mvmotionai\include\mvvec3.h
 	"mvMotionAI-Types.h"
 	<iostream>
+
+1157174374 
 
 1162533962 d:\mvmotionai\mvmotionai\include\mvbehaviour-list.h
 	<vector>
@@ -65,14 +67,14 @@
 	"mvMotionAI-Types.h"
 	"mvBehaviour-Entry.h"
 
-1162533962 ur-Entry.h"
+1163427371 ur-Entry.h"
 
 1161756880 d:\mvmotionai\mvmotionai\include\mvbehaviour-entry.h
 	"mvMotionAI-Types.h"
 	"mvVec3.h"
 	"mvEnums.h"
 
-1136901012 "
+1149262440 "
 
 1164635366 d:\mvmotionai\mvmotionai\include\mvwaypoint.h
 	<vector>
@@ -91,7 +93,7 @@
 	"mvEnums.h"
 	"mvMotionAI-Types.h"
 
-1161590054 I-Types.h"
+1163427371 I-Types.h"
 
 1161845658 d:\mvmotionai\mvmotionai\include\mvpathway.h
 	<vector>
@@ -249,6 +251,8 @@
 1163427377 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include-other/GL/glut.h
 	"freeglut_std.h"
 
+1157174374 std.h"
+
 1163427377 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include-other/GL/freeglut_std.h
 	<windows.h>
 	<windowsx.h>
@@ -343,4 +347,10 @@
 1163568810 source:d:\mvmotionai\mvmotionai\examples-src\camera.cpp
 	"Camera.h"
 	<GL/glut.h>
+
+1163429576 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/Camera.cpp
+	"Camera.h"
+	<GL/glut.h>
+
+1163427377 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/Camera.h
 

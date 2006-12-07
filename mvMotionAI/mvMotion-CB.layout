@@ -1,64 +1,64 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="mingw-winXP" />
-	<File name="experimental\include\mvGlobalFunctions.h" open="0" top="0" tabpos="0">
+	<ActiveTarget name="ubuntu" />
+	<File name="experimental/include/mvGlobalFunctions.h" open="0" top="0" tabpos="0">
 		<Cursor position="4020" topLine="30" />
 	</File>
-	<File name="include\mvBody.h" open="0" top="0" tabpos="0">
+	<File name="include/mvBody.h" open="0" top="0" tabpos="0">
 		<Cursor position="2627" topLine="104" />
 	</File>
-	<File name="include\mvEnums.h" open="1" top="0" tabpos="1">
+	<File name="include/mvEnums.h" open="1" top="0" tabpos="1">
 		<Cursor position="4335" topLine="108" />
 	</File>
-	<File name="include\mvLuaScript-Behaviour.h" open="0" top="0" tabpos="0">
+	<File name="include/mvLuaScript-Behaviour.h" open="0" top="0" tabpos="0">
 		<Cursor position="1276" topLine="0" />
 	</File>
-	<File name="include\mvLuaScript.h" open="0" top="0" tabpos="1">
+	<File name="include/mvLuaScript.h" open="0" top="0" tabpos="1">
 		<Cursor position="1621" topLine="110" />
 	</File>
-	<File name="include\mvMotionAI-Types.h" open="0" top="0" tabpos="0">
+	<File name="include/mvMotionAI-Types.h" open="0" top="0" tabpos="0">
 		<Cursor position="2215" topLine="60" />
 	</File>
-	<File name="include\mvMotionAI-Utilities.h" open="0" top="0" tabpos="0">
+	<File name="include/mvMotionAI-Utilities.h" open="0" top="0" tabpos="0">
 		<Cursor position="18994" topLine="678" />
 	</File>
-	<File name="include\mvMotionAI.h" open="0" top="0" tabpos="4">
+	<File name="include/mvMotionAI.h" open="0" top="0" tabpos="4">
 		<Cursor position="1985" topLine="22" />
 	</File>
-	<File name="include\mvObstacle.h" open="0" top="0" tabpos="5">
+	<File name="include/mvObstacle.h" open="0" top="0" tabpos="5">
 		<Cursor position="1580" topLine="0" />
 	</File>
-	<File name="include\mvVec3.h" open="0" top="0" tabpos="3">
+	<File name="include/mvVec3.h" open="0" top="0" tabpos="3">
 		<Cursor position="4249" topLine="0" />
 	</File>
-	<File name="include\mvWaypoint.h" open="0" top="0" tabpos="6">
+	<File name="include/mvWaypoint.h" open="0" top="0" tabpos="6">
 		<Cursor position="1759" topLine="36" />
 	</File>
-	<File name="src\mvBody.cpp" open="1" top="0" tabpos="4">
+	<File name="src/mvBody.cpp" open="1" top="0" tabpos="4">
 		<Cursor position="7908" topLine="253" />
 	</File>
-	<File name="src\mvEnums.cpp" open="1" top="0" tabpos="3">
+	<File name="src/mvEnums.cpp" open="1" top="0" tabpos="3">
 		<Cursor position="6415" topLine="232" />
 	</File>
-	<File name="src\mvForce.cpp" open="0" top="0" tabpos="0">
+	<File name="src/mvForce.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="7448" topLine="230" />
 	</File>
-	<File name="src\mvGroup.cpp" open="0" top="0" tabpos="0">
+	<File name="src/mvGroup.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="5147" topLine="201" />
 	</File>
-	<File name="src\mvLuaScript.cpp" open="0" top="0" tabpos="5">
+	<File name="src/mvLuaScript.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="7599" topLine="207" />
 	</File>
-	<File name="src\mvMotionAI.cpp" open="0" top="0" tabpos="2">
+	<File name="src/mvMotionAI.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="4932" topLine="180" />
 	</File>
-	<File name="src\mvObstacle.cpp" open="0" top="0" tabpos="6">
+	<File name="src/mvObstacle.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="1161" topLine="0" />
 	</File>
-	<File name="src\mvVec3.cpp" open="1" top="0" tabpos="2">
+	<File name="src/mvVec3.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="7897" topLine="16" />
 	</File>
-	<File name="src\mvWaypoint.cpp" open="1" top="1" tabpos="5">
-		<Cursor position="15343" topLine="693" />
+	<File name="src/mvWaypoint.cpp" open="1" top="1" tabpos="5">
+		<Cursor position="15343" topLine="700" />
 	</File>
 </CodeBlocks_layout_file>
