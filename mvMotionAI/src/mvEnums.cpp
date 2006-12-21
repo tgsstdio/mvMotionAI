@@ -20,7 +20,13 @@
  * DEALINGS IN THE SOFTWARE.
  *
  * NOTE : Due to implementation, any new enum means this file must be updated
- * File version 00-01-21 30/11/06
+ * File version 00-01-23 11/12/06
+ * Log
+ *
+ * version     date
+ * 00-01-23    11/12/06
+ * - incorrect function signature;
+ *   was mvGetEnumString not mvGetErrorString
  */
 
 #include "mvEnums.h"
@@ -219,7 +225,7 @@ const char* mvErrorEnumStrings[] =
 "MV_NO_OF_ERROR_ENUMS",
 };
 
-const char* mvGetEnumString(mvErrorEnum enumValue)
+const char* mvGetErrorString(mvErrorEnum enumValue)
 {
    if (enumValue >= 0 && enumValue <= MV_NO_OF_ERROR_ENUMS)
    {

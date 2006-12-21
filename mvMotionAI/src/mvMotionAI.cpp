@@ -32,7 +32,7 @@ mvMotionAI* __motionAI_Central_Module = NULL;
 mvMotionAI __motionAI_Central_Module;
 #endif
 
-void mvInitMotionAI()
+void mvMotionAI_INIT()
 {
 #ifdef __MV_MOTIONAI_CENTRAL_MODULE_PTR
    if (__motionAI_Central_Module == NULL)
@@ -45,7 +45,7 @@ void mvInitMotionAI()
 #endif
 }
 
-void mvFreeMotionAI()
+void mvMotionAI_FREE()
 {
 #ifdef __MV_MOTIONAI_CENTRAL_MODULE_PTR
    if (__motionAI_Central_Module != NULL)
@@ -56,7 +56,7 @@ void mvFreeMotionAI()
 #endif
 }
 
-void mvAllWorldsStepForward(mvFloat timeInSecs)
+void mvMotionAI_ALLWORLDSSTEPFORWARD(mvFloat timeInSecs)
 {
 #ifdef __MV_MOTIONAI_CENTRAL_MODULE_PTR
    if (__motionAI_Central_Module != NULL)
@@ -68,23 +68,7 @@ void mvAllWorldsStepForward(mvFloat timeInSecs)
 #endif
 }
 
-mvWorld* mvGetWorldPtrByID(char* id)
-{
-#ifdef __MV_MOTIONAI_CENTRAL_MODULE_PTR
-   if (__motionAI_Central_Module != NULL)
-   {
-      return __motionAI_Central_Module->getWorldByID(id);
-   }
-   else
-   {
-      return NULL;
-   }
-#else
-   return __motionAI_Central_Module.getWorldByID(id);
-#endif
-}
-
-mvWorld* mvAddWorld(char* id)
+mvWorld* mvMotionAI_CREATEWORLD(char* id)
 {
 #ifdef __MV_MOTIONAI_CENTRAL_MODULE_PTR
    if (__motionAI_Central_Module != NULL)
@@ -100,7 +84,7 @@ mvWorld* mvAddWorld(char* id)
 #endif
 }
 
-void mvRemoveAllWorlds()
+void mvMotionAI_REMOVEALLWORLDS()
 {
 #ifdef __MV_MOTIONAI_CENTRAL_MODULE_PTR
    if (__motionAI_Central_Module != NULL)
@@ -112,7 +96,23 @@ void mvRemoveAllWorlds()
 #endif
 }
 
-mvWorld* mvGetWorldByIndex(mvIndex index)
+mvIndex mvMotionAI_GETWORLDBYID(char* id);
+{
+#ifdef __MV_MOTIONAI_CENTRAL_MODULE_PTR
+   if (__motionAI_Central_Module != NULL)
+   {
+      return __motionAI_Central_Module->getWorldIndex(id);
+   }
+   else
+   {
+      return 0;
+   }
+#else
+   return __motionAI_Central_Module.getWorldIndex(id);
+#endif
+}
+
+mvWorld* mvMotionAI_GETWORLDPTR(mvIndex index)
 {
 #ifdef __MV_MOTIONAI_CENTRAL_MODULE_PTR
    if (__motionAI_Central_Module != NULL)
@@ -128,7 +128,7 @@ mvWorld* mvGetWorldByIndex(mvIndex index)
 #endif
 }
 
-mvWorld* mvGetWorldByID(char* worldID)
+mvWorld* mvMotionAI_GETWORLDPTRBYID(char* worldID)
 {
 #ifdef __MV_MOTIONAI_CENTRAL_MODULE_PTR
    if (__motionAI_Central_Module != NULL)
@@ -144,7 +144,7 @@ mvWorld* mvGetWorldByID(char* worldID)
 #endif
 }
 
-void mvApplyToAllWorlds(void (someFunction)(mvWorld*,void*),void* extraPtr)
+void mvMotionAI_APPLYTOALLWORLDS(void (someFunction)(mvWorld*,void*),void* extraPtr)
 {
 #ifdef __MV_MOTIONAI_CENTRAL_MODULE_PTR
    if (__motionAI_Central_Module != NULL)
@@ -155,6 +155,8 @@ void mvApplyToAllWorlds(void (someFunction)(mvWorld*,void*),void* extraPtr)
       __motionAI_Central_Module.applyToAllWorlds(someFunction,extraPtr);
 #endif
 }
+
+// mvMotionAI class module implementation
 
 mvMotionAI::mvMotionAI()
 {
@@ -198,7 +200,9 @@ mvIndex mvMotionAI::getWorldIndex(char* worldID)
 mvCount mvMotionAI::getNoOfWorlds()
 {
    return noOfWorlds;
-}mvWorld* mvMotionAI::getWorldByIndex(mvIndex index)
+}
+
+mvWorld* mvMotionAI::getWorldByIndex(mvIndex index)
 {
    /*
    if (index < 1 || index > noOfWorlds)
