@@ -91,7 +91,7 @@ mvErrorEnum mvBaseBehaviour::setParameterv(mvParamEnum paramFlag, mvFloat* numAr
    return MV_INVALID_BEHAVIOUR_PARAMETER;
 }
 
-
+/*
 mvBaseBehaviour* mvBaseBehaviour::createGroupEntry(mvBaseBehaviour* options)
 {
    return NULL;
@@ -101,7 +101,8 @@ mvBaseBehaviour* mvBaseBehaviour::createBodyEntry(mvBaseBehaviour* options)
 {
    return NULL;
 }
-
+*/
+/*
 void mvBaseBehaviour::groupOperation(mvWorld* world, mvGroup* groupPtr)
 {
    // empty code
@@ -112,8 +113,10 @@ void mvBaseBehaviour::bodyOperation(mvWorld* world, mvBody* b,
 {
    // empty code
 }
+*/
 
 mvBaseBehaviour::~mvBaseBehaviour()
 {
    // empty code
 }
+
