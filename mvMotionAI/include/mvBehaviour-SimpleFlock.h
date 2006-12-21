@@ -35,7 +35,7 @@ void mvBehaviour_SimpleFlock_GroupOperations(mvWorld* worldPtr, mvGroup* flockGr
 
 mvVec3 mvBehaviour_SimpleFlock_SingularOperation(mvBehaviourEntry* groupData, mvBody* currentBody,
                                                mvBehaviourEntry* bodyData);
-
+/*
 class mvSimpleFlock
 {
    public:
@@ -45,4 +45,5 @@ class mvSimpleFlock
       mvBehaviourEntry* createBodyEntry(mvBehaviourEntry* defaultEntry);
       mvBehaviourEntry* createGroupEntry(mvBehaviourEntry* defaultEntry);
 };
+*/
 #endif

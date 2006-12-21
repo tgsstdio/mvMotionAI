@@ -23,7 +23,11 @@
 #ifndef MV_ENUMERATIONS_H_
 #define MV_ENUMERATIONS_H_
 #include <cstdlib>
-
+// TODO : change enums from MV_WAYPOINT_TARGET to MV_WAYPOINT
+// TODO : change enums from MV_BODY_TARGET to MV_BODY
+// TODO : change enums from MV_INDEX_DEST_IS_INVALID to MV_INDEX_DEST_IS_NULL
+// TODO : add PLANE_NORMAL, LINE_VECTOR to enum parameters
+// TODO : error STRING NOT FOUND type error
 enum mvOptionEnum
 {
    MV_FALSE = 0,
