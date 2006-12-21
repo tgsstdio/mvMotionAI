@@ -903,6 +903,134 @@ mvFloat mvBody::getDefaultBehaviourFactor() const
    return bList.getDefaultBehaviourFactor();
 }
 
+mvVec3 mvBody::getFinalDirection() const
+{
+   mvVec3 temp = finalVelocity.normalize();
+   return temp;
+}
 
+mvVec3 mvBody::getFinalVelocity() const
+{
+   return finalVelocity;
+}
 
+mvVec3 mvBody::getFaceDirection() const
+{
+   if (getType() == MV_PARTICLE)
+   {
+      return direction;
+   }
+   else
+   {  // for VEHICLE + DUAL TYPE - later
+      return direction;
+   }
+}
 
+mvVec3 mvBody::getVelocity() const
+{
+   mvVec3 temp(direction);
+   temp *= speed;
+   return temp;
+}
+
+mvFloat mvBody::getSpeed() const
+{
+   return speed;
+}
+
+mvFloat mvBody::getFinalSpeed() const
+{
+   return finalVelocity.length();
+}
+
+mvVec3 mvBody::predictPosition(mvFloat timeInSecs) const
+{
+   // using s = u  + v * t or s = pos + direction * speed * timeInSecs
+   mvVec3 nextPos(direction);
+   nextPos *= speed;
+   nextPos *= timeInSecs;
+   nextPos.addVec3(position);
+   return nextPos;
+}
+
+mvVec3 mvBody::predictFinalPosition(mvFloat timeInSecs) const
+{
+   mvVec3 nextPos(finalVelocity);
+   nextPos *= timeInSecs;
+   nextPos.addVec3(position);
+   return nextPos;
+}
+
+mvVec3 mvBody::confineVector(const mvVec3& v) const
+{
+   mvOptionEnum bodyDomain = getDomain();
+   mvVec3 resultVector(v);
+   mvVec3 a_vector, b_vector, normal;
+   mvFloat dotProduct;
+   mvFloat planeDiff = 0;
+
+   switch(bodyDomain)
+   {
+      /*         >A v = original vector
+      *         / |
+      * normal /  |
+      *    A  /   | b = dot(a,normal) * normal
+      *    | /    |
+      *  __|----->|________________Plane
+      *       c = planar component
+      *
+      */
+      case MV_ANY_PLANE:
+         // using position + plane normal
+         // map vector c to resultVector
+         normal.set(domainVariables[0], domainVariables[1], domainVariables[2]);
+         planeDiff -= normal.dot(resultVector);
+         // inverse b_vector
+         b_vector *= planeDiff;
+         // c = v - b
+         resultVector += b_vector;
+         break;
+      case MV_ANY_LINE:
+         // using position + line vector
+         // map vector
+         normal.set(domainVariables[0], domainVariables[1], domainVariables[2]);
+         dotProduct = normal.dot(resultVector);
+         resultVector.setAll(normal);
+         // c = dot(normal,v) * normal
+         resultVector *= dotProduct;
+         break;
+      case MV_XY_PLANE:
+         // no z directional movement
+         resultVector.resetZ();
+         break;
+      case MV_XZ_PLANE:
+         // no y directional movement
+         resultVector.resetY();
+         break;
+      case MV_YZ_PLANE:
+         resultVector.resetX();
+         break;
+      case MV_X_AXIS_ONLY:
+         resultVector.resetY();
+         resultVector.resetZ();
+         break;
+      case MV_Y_AXIS_ONLY:
+         resultVector.resetX();
+         resultVector.resetZ();
+         break;
+      case MV_Z_AXIS_ONLY:
+         resultVector.resetX();
+         resultVector.resetY();
+         break;
+      case MV_FULL_3D: //< default - DO NOTHING
+      default:
+         break;
+   }
+
+   return resultVector;
+}
+
+mvFloat mvBody::getMaxSpeed() const
+{
+   return maxSpeed;
+}
