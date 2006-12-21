@@ -65,16 +65,16 @@ extern "C" {
 
 //static const mvCount MAX_NO_OF_WORLDS = 10;
 
-void mvInitMotionAI();
-mvErrorEnum mvLua_LoadScriptFile(char* fileName);
-void mvFreeMotionAI();
-void mvAllWorldsStepForward(mvFloat timeInSecs);
-mvWorld* mvGetWorldByID(char* id);
-mvWorld* mvAddWorld(char* id);
-void mvRemoveAllWorlds();
-mvWorld* mvGetWorldPtrByID(char* id);
-mvWorld* mvGetWorldByIndex(mvIndex index);
-void mvApplyToAllWorlds(void (someFunction)(mvWorld*,void*),void* extraPtr);
+void mvMotionAI_INIT();
+//mvErrorEnum mvLua_LoadScriptFile(char* fileName);
+void mvMotionAI_FREE();
+void mvMotionAI_ALLWORLDSSTEPFORWARD(mvFloat timeInSecs);
+mvWorld* mvMotionAI_CREATEWORLD(char* id);
+void mvMotionAI_REMOVEALLWORLDS();
+mvIndex mvMotionAI_GETWORLDBYID(char* id);
+mvWorld* mvMotionAI_GETWORLDPTRBYID(char* id);
+mvWorld* mvMotionAI_GETWORLDPTR(mvIndex index);
+void mvMotionAI_APPLYTOALLWORLDS(void (someFunction)(mvWorld*,void*),void* extraPtr);
 
 /**
  * \class mvMotionAI

@@ -55,6 +55,7 @@
  *
  * Log
  * Version		date		comments
+ * 00-01-23     - todo
  *
  * 00-01-21    25/11/06
  * - add parameter option MV_SHAPE_DIMENSIONS, MV_DOMAIN_VARIABLES
@@ -174,6 +175,18 @@ class mvBody
     mvFloat getDefaultBehaviourFactor() const;
     mvErrorEnum setDefaultBehaviourFactor(mvFloat factor);
     bool checkGroupBehaviourExists(mvIndex behaviourIndex, mvIndex groupIndex);
+
+// TODO : new functions for retriving values
+    mvVec3 getFinalDirection() const;
+    mvVec3 getFinalVelocity() const;
+    mvVec3 getFaceDirection() const;
+    mvVec3 getVelocity() const;
+    mvFloat getSpeed() const;
+    mvFloat getFinalSpeed() const;
+    mvVec3 predictPosition(mvFloat timeInSecs) const;
+    mvVec3 predictFinalPosition(mvFloat timeInSecs) const;
+    mvVec3 confineVector(const mvVec3& v) const;
+    mvFloat getMaxSpeed() const;
 };
 
 #endif
