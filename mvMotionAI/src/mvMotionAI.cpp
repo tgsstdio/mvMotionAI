@@ -68,23 +68,23 @@ void mvMotionAI_ALLWORLDSSTEPFORWARD(mvFloat timeInSecs)
 #endif
 }
 
-mvWorld* mvMotionAI_CREATEWORLD(char* id)
+mvIndex mvMotionAI_CREATEWORLD(const char* id)
 {
 #ifdef __MV_MOTIONAI_CENTRAL_MODULE_PTR
    if (__motionAI_Central_Module != NULL)
    {
-      return __motionAI_Central_Module->getWorldByIndex(__motionAI_Central_Module->addWorld(id));
+      return __motionAI_Central_Module->addWorld(id));
    }
    else
    {
-      return NULL;
+      return 0;
    }
 #else
-   return __motionAI_Central_Module.getWorldByIndex(__motionAI_Central_Module.addWorld(id));
+   return __motionAI_Central_Module.addWorld(id);
 #endif
 }
 
-void mvMotionAI_REMOVEALLWORLDS()
+void mvMotionAI_DELETEALLWORLDS()
 {
 #ifdef __MV_MOTIONAI_CENTRAL_MODULE_PTR
    if (__motionAI_Central_Module != NULL)
@@ -96,7 +96,7 @@ void mvMotionAI_REMOVEALLWORLDS()
 #endif
 }
 
-mvIndex mvMotionAI_GETWORLDBYID(char* id);
+mvIndex mvMotionAI_GETWORLDBYID(const char* id)
 {
 #ifdef __MV_MOTIONAI_CENTRAL_MODULE_PTR
    if (__motionAI_Central_Module != NULL)
@@ -163,7 +163,7 @@ mvMotionAI::mvMotionAI()
   noOfWorlds = 0;
 }
 
-mvIndex mvMotionAI::addWorld(char* worldID)
+mvIndex mvMotionAI::addWorld(const char* worldID)
 {
    mvWorld* temp = NULL;
 
@@ -174,7 +174,7 @@ mvIndex mvMotionAI::addWorld(char* worldID)
    return noOfWorlds;
 }
 
-mvIndex mvMotionAI::getWorldIndex(char* worldID)
+mvIndex mvMotionAI::getWorldIndex(const char* worldID)
 {
    std::vector<mvWorld*>::iterator i;
    mvCount count = 1;
@@ -220,7 +220,7 @@ mvWorld* mvMotionAI::getWorldByIndex(mvIndex index)
    return mvGetClassPtr<mvWorld>(mvWorlds,index, noOfWorlds);
 }
 
-mvWorld* mvMotionAI::getWorldByID(char* worldID)
+mvWorld* mvMotionAI::getWorldByID(const char* worldID)
 {
    std::vector<mvWorld*>::iterator i;
    mvWorld* temp = NULL;

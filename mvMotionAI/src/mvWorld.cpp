@@ -71,7 +71,7 @@ mvWorld::mvWorld()
 /**
  * \brief constructor
  */
-mvWorld::mvWorld(char* worldID)
+mvWorld::mvWorld(const char* worldID)
 {
    mvCount strLen;
    //idString = NULL;
@@ -509,7 +509,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
                          << "Extra velocity : " << extraVelocity << std::endl
                          << "Speed[0] : " << speed[0] << std::endl
                          << "Speed[1] : " << speed[1] << std::endl;
-#endif               
+#endif
                if ((speed[1] - speed[0]) > extraVelocity)
                {
                   //puts("LIMIT");
