@@ -69,10 +69,10 @@ void mvMotionAI_INIT();
 //mvErrorEnum mvLua_LoadScriptFile(char* fileName);
 void mvMotionAI_FREE();
 void mvMotionAI_ALLWORLDSSTEPFORWARD(mvFloat timeInSecs);
-mvWorld* mvMotionAI_CREATEWORLD(char* id);
-void mvMotionAI_REMOVEALLWORLDS();
-mvIndex mvMotionAI_GETWORLDBYID(char* id);
-mvWorld* mvMotionAI_GETWORLDPTRBYID(char* id);
+mvIndex mvMotionAI_CREATEWORLD(const char* id);
+void mvMotionAI_DELETEALLWORLDS();
+mvIndex mvMotionAI_GETWORLDBYID(const char* id);
+mvWorld* mvMotionAI_GETWORLDPTRBYID(const char* id);
 mvWorld* mvMotionAI_GETWORLDPTR(mvIndex index);
 void mvMotionAI_APPLYTOALLWORLDS(void (someFunction)(mvWorld*,void*),void* extraPtr);
 
@@ -89,21 +89,23 @@ class mvMotionAI
    private:
      //mvIndex searchWorldByName(char* worldID);
      //mvIndex currentWorld;
-     mvCount noOfWorlds;
+      mvCount noOfWorlds;
+      std::vector<mvWorld*> mvWorlds;
 
    public:
-     std::vector<mvWorld*> mvWorlds;
 
-     mvMotionAI();
-     mvIndex addWorld(char* worldID);
-     mvIndex getWorldIndex(char* worldID);
-     mvCount getNoOfWorlds();
-     mvWorld* getWorldByIndex(mvIndex index);
-     mvWorld* getWorldByID(char* worldID);
-     void removeAllWorlds();
-     void allWorldsStepForward(mvFloat timeInSecs);
-     ~mvMotionAI();
-     void applyToAllWorlds(void (someFunction)(mvWorld*,void*),void* extraPtr);
+      mvMotionAI();
+      mvIndex addWorld(const char* worldID);
+      mvIndex getWorldIndex(const char* worldID);
+      mvCount getNoOfWorlds();
+      mvWorld* getWorldByIndex(mvIndex index);
+      mvWorld* getWorldByID(const char* worldID);
+      void removeAllWorlds();
+      void allWorldsStepForward(mvFloat timeInSecs);
+      ~mvMotionAI();
+      void applyToAllWorlds(void (someFunction)(mvWorld*,void*),void* extraPtr);
+      void applyToAllWorldsByIndex(void (someFunction)(mvIndex,void*),\
+         void* extraPtr);
 };
 
 

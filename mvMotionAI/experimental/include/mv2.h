@@ -1,4 +1,6 @@
 /**
+ * \file mv2.h
+ *
  * Copyright (c) 2006 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -18,6 +20,17 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
+ * Log
+ * version
+ *
+ * 00-01-25    23/12/06
+ *
+ * changed function signature
+ * Permanent removing item from world  = Remove to Delete
+ * - mvRemoveAllWorlds to mvDeleteAllWorlds
+ * Create instead of Add
+ * - mvAddWorld to mvCreateAllWorlds
  */
 
 #ifndef MV_GLOBAL_FUNCTIONS_H_
@@ -25,10 +38,11 @@
 #include "mvMotionAI.h"
 #include "mvMotionAI-Types.h"
 #include "mvEnums.h"
+
 #ifdef BUILD_DLL
 #define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
 #else
-#define MV_GLOBAL_FUNC_PREFIX __declspec(dllimport)
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
 #endif
 
 // mvMotionAI functions
@@ -45,8 +59,8 @@ MV_GLOBAL_FUNC_PREFIX mvWorld* mvGetWorldPtrByID(const char* worldID);
 MV_GLOBAL_FUNC_PREFIX mvWorld* mvGetWorldPtr(mvIndex index);
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetWorldByID(const char* worldID);
 MV_GLOBAL_FUNC_PREFIX void mvAllWorldsStepForward(mvFloat timeInSecs);
-MV_GLOBAL_FUNC_PREFIX void mvApplyToAllWorlds(void (someFunction)(mvWorld*,void*),\
-                      void* extraPtr);
+MV_GLOBAL_FUNC_PREFIX void mvApplyToAllWorlds(\
+   void (someFunction)(mvWorld*,void*), void* extraPtr);
 
 // 506 functions + 2 + 2 + 4 + 8(13/10/06)
 // // Lua fucntions
@@ -55,51 +69,55 @@ MV_GLOBAL_FUNC_PREFIX void mvApplyToAllWorlds(void (someFunction)(mvWorld*,void*
 #define MV_ENABLE_LUA_SCRIPTING_FLAG 1
 #include "mvLuaScript.h"
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLua_LoadScriptFile(\
-		char* fileName);
+   char* fileName);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLua_LoadScriptFromCString(\
-		const char* statement);
+   const char* statement);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLua_LoadCStringWithLuaState(\
-		lua_State* cState, const char* luaString);
+   lua_State* cState, const char* luaString);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLua_LoadScriptFileWithLuaState(\
-		lua_State* cState,const char* fileName);
+   lua_State* cState,const char* fileName);
 #endif
 
-MV_GLOBAL_FUNC_PREFIX void mvWorldStep(mvIndex worldIndex, mvFloat timeInSecs);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvWorldStep(mvIndex worldIndex,\
+   mvFloat timeInSecs);
 // C pointer
-MV_GLOBAL_FUNC_PREFIX void mvApplyToAllBodies(mvIndex worldIndex,\
-		void (someFunction)(mvBody*,void*),void* extraPtr);
-MV_GLOBAL_FUNC_PREFIX void mvApplyToAllObstacles(mvIndex worldIndex,\
-		void (someFunction)(mvObstacle*,void*),void* extraPtr);
-MV_GLOBAL_FUNC_PREFIX void mvApplyToAllWaypoints(mvIndex worldIndex,\
-		void (someFunction)(mvWaypoint*,void*),void* extraPtr);
-MV_GLOBAL_FUNC_PREFIX void mvApplyToAllPathways(mvIndex worldIndex,\
-		void (someFunction)(mvPathway*,void*),void* extraPtr);
-MV_GLOBAL_FUNC_PREFIX void mvApplyToAllGroups(mvIndex worldIndex,\
-		void (someFunction)(mvGroup*,void*),void* extraPtr);
-MV_GLOBAL_FUNC_PREFIX void mvApplyToAllBehaviours(mvIndex worldIndex,\
-		void (someFunction)(mvBehaviour*,void*),void* extraPtr);
-MV_GLOBAL_FUNC_PREFIX void mvApplyToAllGroupBehaviours(mvIndex worldIndex,\
-		void (someFunction)(mvGroupBehaviour*,void*),void* extraPtr);
-
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBodies(mvIndex worldIndex,\
+   void (someFunction)(mvBody*,void*),void* extraPtr);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllObstacles(mvIndex worldIndex,\
+   void (someFunction)(mvObstacle*,void*),void* extraPtr);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWaypoints(mvIndex worldIndex,\
+   void (someFunction)(mvWaypoint*,void*),void* extraPtr);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllPathways(mvIndex worldIndex,\
+   void (someFunction)(mvPathway*,void*),void* extraPtr);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroups(mvIndex worldIndex,\
+   void (someFunction)(mvGroup*,void*),void* extraPtr);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllBehaviours(mvIndex worldIndex,\
+   void (someFunction)(mvBehaviour*,void*),void* extraPtr);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehaviours(\
+   mvIndex worldIndex, void (someFunction)(mvGroupBehaviour*,void*),\
+   void* extraPtr);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllForces(mvIndex worldIndex,\
+   void (someFunction)(mvForce*,void*),void* extraPtr);
 // mvIndex
 
-MV_GLOBAL_FUNC_PREFIX void mvApplyToAllWorldsByIndex(\
-		void (someFunction)(mvIndex,void*),void* extraPtr);
-MV_GLOBAL_FUNC_PREFIX void mvApplyToAllBodiesByIndex(mvIndex worldIndex,\
-		void (someFunction)(mvIndex,void*),void* extraPtr)
-MV_GLOBAL_FUNC_PREFIX void mvApplyToAllObstaclesByIndex(mvIndex worldIndex,\
-		void (someFunction)(mvIndex,void*),void* extraPtr);
-MV_GLOBAL_FUNC_PREFIX void mvApplyToAllWaypointsByIndex(mvIndex worldIndex,\
-		void (someFunction)(mvIndex,void*),void* extraPtr);
-MV_GLOBAL_FUNC_PREFIX void mvApplyToAllPathwaysByIndex(mvIndex worldIndex,\
-		void (someFunction)(mvIndex,void*),void* extraPtr);
-MV_GLOBAL_FUNC_PREFIX void mvApplyToAllGroupsByIndex(mvIndex worldIndex,\
-		void (someFunction)(mvIndex,void*),void* extraPtr);
-MV_GLOBAL_FUNC_PREFIX void mvApplyToAllBehavioursByIndex(mvIndex worldIndex,\
-		void (someFunction)(mvIndex,void*),void* extraPtr);
-MV_GLOBAL_FUNC_PREFIX void mvApplyToAllGroupBehavioursByIndex(mvIndex worldIndex,\
-		void (someFunction)(mvIndex,void*),void* extraPtr);
-
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorldsByIndex(\
+   void (someFunction)(mvIndex,void*),void* extraPtr);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBodiesByIndex(\
+   mvIndex worldIndex, void (someFunction)(mvIndex,void*),void* extraPtr);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllObstaclesByIndex(\
+   mvIndex worldIndex, void (someFunction)(mvIndex,void*),void* extraPtr);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWaypointsByIndex(\
+   mvIndex worldIndex, void (someFunction)(mvIndex,void*),void* extraPtr);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllPathwaysByIndex(\
+   mvIndex worldIndex, void (someFunction)(mvIndex,void*),void* extraPtr);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupsByIndex(\
+   mvIndex worldIndex, void (someFunction)(mvIndex,void*),void* extraPtr);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBehavioursByIndex(\
+   mvIndex worldIndex, void (someFunction)(mvIndex,void*),void* extraPtr);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehavioursByIndex(\
+   mvIndex worldIndex, void (someFunction)(mvIndex,void*),void* extraPtr);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllForcesByIndex(mvIndex worldIndex,\
+   void (someFunction)(mvIndex,void*),void* extraPtr);
 //GET
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameter(mvIndex worldIndex,\
@@ -128,15 +146,15 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameteri(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameterf(mvIndex worldIndex,\
 	mvParamEnum param, mvFloat num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameterv(mvIndex worldIndex,\
-        mvParamEnum param, mvFloat* array);
+   mvParamEnum param, mvFloat* array);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameters(mvIndex worldIndex,\
-        const char* param, const char* option);
+   const char* param, const char* option);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParametersi(mvIndex worldIndex,\
-        const char* param, mvIndex index);
+   const char* param, mvIndex index);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParametersf(mvIndex worldIndex,\
-        const char* param, mvFloat num);
+   const char* param, mvFloat num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParametersv(mvIndex worldIndex,\
-        const char* param, mvFloat* array);
+   const char* param, mvFloat* array);
 // TODO (White 2#1#): Global functions for mvMotionAI doing world and lua script functions
 
 //// body functions 44 functions = 6 + 16 + 16 + 16//
@@ -233,7 +251,7 @@ mvErrorEnum mvSetBodyParametersv(mvIndex worldIndex, mvIndex index,\
             const char* param, mvFloat* array);
 mvErrorEnum mvSetCurrentBodyParametersv(mvIndex worldIndex,\
             const char* param, mvFloat* array);
-            
+
 ////mvObstacle 41 functions =  9 + 16 + 16
 mvIndex mvAddObstacle(mvIndex worldIndex, mvOptionEnum oShape, mvOptionEnum oState);
 mvIndex mvAddObstacleWithPos(mvIndex worldIndex, mvOptionEnum oShape,\
@@ -320,8 +338,8 @@ mvErrorEnum mvSetCurrentObstacleParametersv(mvIndex worldIndex,\
  * No Of Functions : 46 = 6 + 16 + 16 + 8
  */
 
-mvIndex mvAddWaypoint(mvIndex worldIndex mvOptionEnum wType,\
-        mvOptionEnum wShape,);
+mvIndex mvAddWaypoint(mvIndex worldIndex, mvOptionEnum wType,\
+        mvOptionEnum wShape);
 mvIndex mvAddWaypointWithPos(mvIndex worldIndex, mvOptionEnum wType,\
         mvOptionEnum wShape, mvFloat x, mvFloat y, mvFloat z);
 mvErrorEnum mvRemoveWaypoint(mvIndex worldIndex, mvIndex index);
@@ -409,7 +427,7 @@ mvErrorEnum mvSetWaypointParametersv(mvIndex worldIndex, mvIndex index,\
             const char* param, mvFloat* array);
 mvErrorEnum mvSetCurrentWaypointParametersv(mvIndex worldIndex,\
             const char* param, mvFloat* array);
-            
+
 /*
  *mvBehaviour
  *No Of Functions : 39 = 5 + 2 + 16 + 16
@@ -424,8 +442,8 @@ void mvRemoveAllBehaviours(mvIndex worldIndex);
 // change format later.
 
 mvErrorEnum mvAddBehaviourToBody(mvIndex worldIndex, mvIndex bodyIndex,\
-mvOptionType bType, mvIndex behaviourIndex, mvIndex groupIndex);
-mvErrorEnum mvAddBehaviourToCurrentBody(mvIndex worldIndex, mvOptionType bType,\
+   mvOptionEnum bType, mvIndex behaviourIndex, mvIndex groupIndex);
+mvErrorEnum mvAddBehaviourToCurrentBody(mvIndex worldIndex, mvOptionEnum bType,\
             mvIndex behaviourIndex, mvIndex groupIndex);
 
 // GET
@@ -461,7 +479,7 @@ mvErrorEnum mvGetBehaviourParametersv(mvIndex worldIndex, mvIndex index,\
             const char* param, mvFloat* array, mvCount* noOfParameters);
 mvErrorEnum mvGetCurrentBehaviourParametersv(mvIndex worldIndex,\
             const char* param, mvFloat* array, mvCount* noOfParameters);
-            
+
 // SET
 mvErrorEnum mvSetBehaviourParameter(mvIndex worldIndex, mvIndex index,\
             mvParamEnum param, mvOptionEnum option);
@@ -495,7 +513,7 @@ mvErrorEnum mvSetBehaviourParametersv(mvIndex worldIndex, mvIndex index,\
             const char* param, mvFloat* array);
 mvErrorEnum mvSetCurrentBehaviourParametersv(mvIndex worldIndex,\
             const char* param, mvFloat* array);
-            
+
 //=============
 //mvForce
 //No Of Functions : 37 = 5 + 16 + 16
@@ -905,4 +923,4 @@ mvErrorEnum mvSetBehaviourEntryParametersv(mvIndex worldIndex, mvIndex index,   
 mvErrorEnum mvSetCurrentBehaviourEntryParametersv(mvIndex worldIndex,        const char* param, mvFloat* array);
 
 #endif
- 
+

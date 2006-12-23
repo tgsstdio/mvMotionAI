@@ -110,7 +110,7 @@ class mvWorld
 
    public:
       mvWorld(); //< initialised
-      mvWorld(char* worldID); //< initialised
+      mvWorld(const char* worldID); //< initialised
       char* getWorldID() const; //< initialised
       ~mvWorld(); //< initialised
 
@@ -419,7 +419,22 @@ class mvWorld
       mvErrorEnum mvNudgeBody(mvIndex index, mvFloat timeInSecs);
       mvErrorEnum mvNudgeCurrentBody(mvFloat timeInSecs);
 
+// TODO (White 2#1#): implement these functions below\
+      void mvApplyToAllGroupsByIndex(void (someFunction)(mvIndex,void*), void* extraPtr);
+      void mvApplyToAllBodiesByIndex(void (someFunction)(mvIndex,void*), void* extraPtr);
+      void mvApplyToAllObstaclesByIndex(void (someFunction)(mvIndex,void*), void* extraPtr);
+      void mvApplyToAllBehavioursByIndex(void (someFunction)(mvIndex,void*), void* extraPtr);
 
+      void mvApplyToAllWaypointsByIndex(void (someFunction)(mvIndex,void*), void* extraPtr);
+      void mvApplyToAllPathwaysByIndex(void (someFunction)(mvIndex,void*), void* extraPtr);
+      void mvApplyToAllForcesByIndex(void (someFunction)(mvIndex,void*), void* extraPtr);
+      void mvApplyToAllGroupBehavioursByIndex(void (someFunction)(mvIndex,void*), void* extraPtr);
+
+      void mvApplyToAllBehaviours(void (someFunction)(mvBehaviour*, void*), void* extraPtr);
+      void mvApplyToAllWaypoints(void (someFunction)(mvBehaviour*, void*), void* extraPtr);
+      void mvApplyToAllPathways(void (someFunction)(mvBehaviour*, void*), void* extraPtr);
+      void mvApplyToAllForces(void (someFunction)(mvBehaviour*, void*), void* extraPtr);
+      void mvApplyToAllGroups(void (someFunction)(mvBehaviour*, void*), void* extraPtr);
 };
 
 #endif
