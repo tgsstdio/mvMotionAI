@@ -1,0 +1,175 @@
+# depslib dependency file v1.0
+1166450568 source:d:\mvmotionai\mvmotionai\experimental\src\mvbasebehaviour.cpp
+	"mvBaseBehaviour.h"
+
+1166450474 d:\mvmotionai\mvmotionai\experimental\include\mvbasebehaviour.h
+	"mvWorld.h"
+	"mvVec3.h"
+	"mvBody.h"
+	"mvEnums.h"
+	"mvGroup.h"
+	"mvMotionAI-Types.h"
+
+1166797132 d:\mvmotionai\mvmotionai\include\mvworld.h
+	"mvMotionAI-Types.h"
+	"mvBody.h"
+	"mvWaypoint.h"
+	"mvBehaviour.h"
+	"mvPathway.h"
+	"mvGroup.h"
+	"mvObstacle.h"
+	"mvForce.h"
+	"mvGroupBehaviour.h"
+
+1164425912 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
+
+1166248706 d:\mvmotionai\mvmotionai\include\mvbody.h
+	<vector>
+	"mvMotionAI-Types.h"
+	"mvEnums.h"
+	"mvVec3.h"
+	"mvBehaviour-List.h"
+
+1166934756 d:\mvmotionai\mvmotionai\include\mvenums.h
+	<cstdlib>
+
+1164206054 d:\mvmotionai\mvmotionai\include\mvvec3.h
+	"mvMotionAI-Types.h"
+	<iostream>
+
+1162533962 d:\mvmotionai\mvmotionai\include\mvbehaviour-list.h
+	<vector>
+	"mvEnums.h"
+	"mvMotionAI-Types.h"
+	"mvBehaviour-Entry.h"
+
+1161756880 d:\mvmotionai\mvmotionai\include\mvbehaviour-entry.h
+	"mvMotionAI-Types.h"
+	"mvVec3.h"
+	"mvEnums.h"
+
+1164635366 d:\mvmotionai\mvmotionai\include\mvwaypoint.h
+	<vector>
+	"mvMotionAI-Types.h"
+	"mvVec3.h"
+	"mvEnums.h"
+	"mvForce.h"
+
+1167541360 d:\mvmotionai\mvmotionai\include\mvforce.h
+	"mvVec3.h"
+	"mvMotionAI-Types.h"
+	"mvEnums.h"
+
+1161757352 d:\mvmotionai\mvmotionai\include\mvbehaviour.h
+	"mvBehaviour-Entry.h"
+	"mvEnums.h"
+	"mvMotionAI-Types.h"
+
+1161845658 d:\mvmotionai\mvmotionai\include\mvpathway.h
+	<vector>
+	"mvEnums.h"
+	"mvWaypoint.h"
+	"mvMotionAI-Types.h"
+
+1161845912 d:\mvmotionai\mvmotionai\include\mvgroup.h
+	<vector>
+	"mvMotionAI-Types.h"
+	"mvEnums.h"
+	"mvBody.h"
+
+1164628632 d:\mvmotionai\mvmotionai\include\mvobstacle.h
+	"mvEnums.h"
+	"mvVec3.h"
+	"mvMotionAI-Types.h"
+
+1161757520 d:\mvmotionai\mvmotionai\include\mvgroupbehaviour.h
+	"mvMotionAI-Types.h"
+	"mvBehaviour-Entry.h"
+	"mvEnums.h"
+	<vector>
+
+1166451020 source:d:\mvmotionai\mvmotionai\experimental\examples-src\mvtestbehaviours.cpp
+	"mvBaseBehaviour.h"
+	"mvEnums.h"
+	<iostream>
+	<cstdlib>
+	<cstdio>
+	<map>
+	<utility>
+	"mvSeek.h"
+	"mvFlee.h"
+	"mvClone.h"
+	"mvPursuit.h"
+	"mvBehavFuncList.h"
+
+1166450828 source:d:\mvmotionai\mvmotionai\experimental\src\mvseek.cpp
+	"mvSeek.h"
+
+1166450696 d:\mvmotionai\mvmotionai\experimental\include\mvseek.h
+	"mvBaseBehaviour.h"
+
+1165983006 source:d:\mvmotionai\mvmotionai\experimental\src\mvbehavfunclist.cpp
+	"mvBehavFuncList.h"
+	<cstdlib>
+
+1165981776 d:\mvmotionai\mvmotionai\experimental\include\mvbehavfunclist.h
+	<map>
+	"mvBaseBehaviour.h"
+	"mvEnums.h"
+
+1166450816 source:d:\mvmotionai\mvmotionai\experimental\src\mvpursuit.cpp
+	"mvPursuit.h"
+
+1166450654 d:\mvmotionai\mvmotionai\experimental\include\mvpursuit.h
+	"mvBaseBehaviour.h"
+
+1166450770 source:d:\mvmotionai\mvmotionai\experimental\src\mvclone.cpp
+	"mvClone.h"
+
+1166450728 d:\mvmotionai\mvmotionai\experimental\include\mvclone.h
+	"mvBaseBehaviour.h"
+
+1166450798 source:d:\mvmotionai\mvmotionai\experimental\src\mvflee.cpp
+	"mvFlee.h"
+
+1166450696 d:\mvmotionai\mvmotionai\experimental\include\mvflee.h
+	"mvBaseBehaviour.h"
+
+1166451280 source:d:\mvmotionai\mvmotionai\experimental\src\mvsimpleflock.cpp
+	"mvSimpleFlock.h"
+
+1166450696 d:\mvmotionai\mvmotionai\experimental\include\mvsimpleflock.h
+	"mvBaseBehaviour.h"
+
+1167541276 source:d:\mvmotionai\mvmotionai\experimental\examples-src\mvitemlist-test.cpp
+	"mvList.h"
+	"mvForce.h"
+	<cstdlib>
+	<iostream>
+
+1167541774 d:\mvmotionai\mvmotionai\experimental\include\mvlist.h
+	<vector>
+	"mvEnums.h"
+	"mvMotionAI-Types.h"
+	"mvList.cpp"
+
+1167310864 source:d:\mvmotionai\mvmotionai\experimental\src\mvlist.cpp
+	"mvList.h"
+
+1167545808 d:\mvmotionai\mvmotionai\experimental\src\mvlist.cpp
+
+1167542066 source:d:\mvmotionai\mvmotionai\experimental\examples-src\mvworld2-test.cpp
+	"mvWorld2.h"
+	<cstdlib>
+
+1167545288 d:\mvmotionai\mvmotionai\experimental\include\mvworld2.h
+	"mvList.h"
+	"mvForce.h"
+	"mvBody.h"
+	"mvObstacle.h"
+	"mvWaypoint.h"
+	"mvPathway.h"
+	"mvGroup.h"
+	"mvGroupBehaviour.h"
+	"mvBehaviour.h"
+

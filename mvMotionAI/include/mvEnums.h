@@ -181,7 +181,7 @@ enum mvParamEnum
 };
 // TODO (White 2#1#): MV_PARAM_STRING_IS_NULL has two possible errors - combine them
 // TODO (White 2#1#): MV_OPTION_STRING_IS_NULL
-
+// TODO  : duplicate invalid index range & index is invalid
 enum mvErrorEnum
 {
    MV_NO_ERROR = 0,
