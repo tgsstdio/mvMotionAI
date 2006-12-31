@@ -1,3 +1,12 @@
+version 00-01-23+
+EXPERIMENTAL (Should not compile)
+- template class mvItemList 
+- mvWorld_V2 world instance
+- new behaviour creation functions
+- new inheritable mvBaseBehaviour superclass
+
+ 
+
 version 00-01-22
 - debugging flag changes
 - added new README files

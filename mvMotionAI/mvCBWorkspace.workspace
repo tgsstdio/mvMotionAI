@@ -4,7 +4,7 @@
 		<Project filename="mvMotionAI-LuaFunctions.cbp" />
 		<Project filename="mvMotion-GLMain.cbp" />
 		<Project filename="mvMotionAI-TypeSizes.cbp" />
-		<Project filename="mvMotion-CB.cbp" active="1" />
-		<Project filename="mvBaseBehaviours.cbp" />
+		<Project filename="mvMotion-CB.cbp" />
+		<Project filename="mvBaseBehaviours.cbp" active="1" />
 	</Workspace>
 </CodeBlocks_workspace_file>

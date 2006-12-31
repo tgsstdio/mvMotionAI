@@ -446,7 +446,7 @@
 	<cstring>
 	"mvMotionAI-Types.h"
 
-1166710130 d:\mvmotionai\mvmotionai\include\mvenums.h
+1166934756 d:\mvmotionai\mvmotionai\include\mvenums.h
 	<cstdlib>
 
 1161096100 d:\mvmotionai\mvmotionai\src\mvenums.cpp
@@ -1041,12 +1041,20 @@
 	<stdio.h>
 	"lua.h"
 
-1166711164 source:d:\mvmotionai\mvmotionai\experimental\src\mv.cpp
+1166798074 source:d:\mvmotionai\mvmotionai\experimental\src\mv.cpp
 	"mv2.h"
 
-1166795432 d:\mvmotionai\mvmotionai\experimental\include\mv2.h
+1166799522 d:\mvmotionai\mvmotionai\experimental\include\mv2.h
 	"mvMotionAI.h"
 	"mvMotionAI-Types.h"
 	"mvEnums.h"
 	"mvLuaScript.h"
+
+1167201808 source:d:\mvmotionai\mvmotionai\experimental\src\mvlist.cpp
+	"mvList.h"
+
+1167140282 d:\mvmotionai\mvmotionai\experimental\include\mvlist.h
+	<vector>
+	"mvEnums.h"
+	"mvMotionAI-Types.h"
 
