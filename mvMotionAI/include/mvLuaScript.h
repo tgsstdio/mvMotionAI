@@ -132,7 +132,8 @@ static const mvCount MV_LUA_REMOVE_ALL_ITEMS_COUNT = 0;
 
 void mvLoadLuaScriptFunctions(lua_State* L);
 
-// 00-01-21 new lua functions
+// 00-01-21 to 01-01-26 new lua functions + function prototype
+mvErrorEnum mvLua_LoadScriptFile(char* fileName);
 mvErrorEnum mvLua_LoadScriptFromCString(const char* statement);
 mvErrorEnum mvLua_LoadCStringWithLuaState(lua_State* cState, const char* luaString);
 mvErrorEnum mvLua_LoadScriptFileWithLuaState(lua_State* cState, const char* fileName);

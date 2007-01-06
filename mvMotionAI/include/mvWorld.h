@@ -115,7 +115,7 @@ class mvWorld
       ~mvWorld(); //< initialised
 
       mvIndex mvAddWaypoint(mvOptionEnum wType, mvOptionEnum wShape); //< initialised
-      mvIndex mvAddWaypointWithPos(mvOptionEnum wType, mvOptionEnum wShape, mvFloat x, mvFloat y, mvFloat z);//< initialised
+      mvIndex mvAddWaypointWithPosmvIndex mvAddWaypointWithPos(mvOptionEnum wType, mvOptionEnum wShape, mvFloat x, mvFloat y, mvFloat z);//< initialised
       mvWaypoint* mvGetWaypoint(mvIndex index);//< initialised
       mvErrorEnum mvRemoveWaypoint(mvIndex index);//< initialised
       mvErrorEnum mvRemoveCurrentWaypoint();//< initialised

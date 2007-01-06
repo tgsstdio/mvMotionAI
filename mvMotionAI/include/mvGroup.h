@@ -1,6 +1,6 @@
 /**
  *\file mvGroup.h
- * Copyright (c) 2006 David Young.
+ * Copyright (c) 2006,2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -39,6 +39,8 @@
  * Log
  *
  *version     date  comments
+ *00-01-25  1/11/07  - changed to const char* in constructor
+ *
  *00-01-17  18/10/06 - including get/set parameters
  *
  *00-01-16  15/10/06 - converted for new enums
@@ -58,7 +60,7 @@ class mvGroup
 
    public:
       mvGroup();
-      mvGroup(char* mBodyGroupID);
+      mvGroup(const char* mBodyGroupID);
       mvCount getNoOfMembers();
       void clearAllMembers();
      // void removeAllMembers();

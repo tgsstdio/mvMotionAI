@@ -116,7 +116,7 @@ int mvLua_AddObstacle(lua_State* L)
    mvWorld* tempWorld = NULL;
 
    // check if world exist
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
       //std::cout << worldID << std::endl;
@@ -136,7 +136,7 @@ int mvLua_RemoveCurrentObstacle(lua_State* L)
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvWorld* tempWorld = NULL;
 
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
 #ifdef MV_LUA_SCRIPT_OBSTACLE_DEBUG_FLAG
@@ -155,7 +155,7 @@ int mvLua_RemoveObstacle(lua_State* L)
    mvIndex oIndex = (mvIndex) lua_tonumber(L,MV_LUA_REMOVE_ITEM_INDEX_NO);
    mvWorld* tempWorld = NULL;
 
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
 #ifdef MV_LUA_SCRIPT_OBSTACLE_DEBUG_FLAG
@@ -174,7 +174,7 @@ int mvLua_SetCurrentObstacle(lua_State* L)
    mvIndex oIndex = (mvIndex) lua_tonumber(L,MV_LUA_SET_CURRENT_ITEM_INDEX_NO);
    mvWorld* tempWorld = NULL;
 
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
 #ifdef MV_LUA_SCRIPT_OBSTACLE_DEBUG_FLAG
@@ -192,7 +192,7 @@ int mvLua_RemoveAllObstacles(lua_State* L)
    mvIndex worldID = (int) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvWorld* tempWorld = NULL;
 
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
 #ifdef MV_LUA_SCRIPT_OBSTACLE_DEBUG_FLAG
@@ -223,7 +223,7 @@ int mvLua_SetObstacleParameter(lua_State* L)
    mvWorld* tempWorld = NULL;
 
    // check single parameter first
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL && params != NULL)
    {
       checkError = mvScript_checkObstacleParamsFlag(params,checkParams);
@@ -292,7 +292,7 @@ int mvLua_SetCurrentObstacleParameter(lua_State* L)
    mvWorld* tempWorld = NULL;
 
    // check single parameter first
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL && params != NULL)
    {
       checkError = mvScript_checkObstacleParamsFlag(params,checkParams);

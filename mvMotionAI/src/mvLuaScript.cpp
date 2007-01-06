@@ -107,7 +107,7 @@ int mvLua_AllWorldsStepForward(lua_State* L)
    static const mvIndex MV_LUA_ALLWORLDSSTEPFORWARD_TIME_IN_SECS_INDEX = 1;
 
    mvFloat timeInSecs = (mvFloat) lua_tonumber(L, MV_LUA_ALLWORLDSSTEPFORWARD_TIME_IN_SECS_INDEX);
-   mvAllWorldsStepForward(timeInSecs);
+   mvMotionAI_ALLWORLDSSTEPFORWARD(timeInSecs);
    lua_pushnumber(L,0);
    return MV_LUA_RETURNED_ERROR_COUNT;
 }
@@ -146,7 +146,7 @@ int mvLua_LoadLuaScriptFile(lua_State* luaVM)
 
 int mvLua_RemoveAllWorlds(lua_State* luaVM)
 {
-   mvRemoveAllWorlds();
+   mvMotionAI_DELETEALLWORLDS();
    lua_pushnumber(luaVM,0);
    return MV_LUA_RETURNED_ERROR_COUNT;
 }

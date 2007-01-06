@@ -114,7 +114,7 @@ int mvLua_AddForce(lua_State* L)
    mvWorld* tempWorld = NULL;
 
    // check if world exist
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
       //puts(tempWorld->getWorldID());
@@ -144,7 +144,7 @@ int mvLua_SetForceParameter(lua_State* L)
    mvWorld* tempWorld = NULL;
 
    // check single parameter first
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL && params != NULL)
    {
       checkError = mvScript_checkForceParamsFlag(params,checkParams);
@@ -206,7 +206,7 @@ int mvLua_SetCurrentForceParameter(lua_State* L)
    mvWorld* tempWorld = NULL;
 
    // check single parameter first
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL && params != NULL)
    {
       checkError = mvScript_checkForceParamsFlag(params,checkParams);
@@ -260,7 +260,7 @@ int mvLua_RemoveCurrentForce(lua_State* L)
    int worldID = (int) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvWorld* tempWorld = NULL;
 
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
 #ifdef MV_LUA_SCRIPT_FORCE_DEBUG_FLAG
@@ -279,7 +279,7 @@ int mvLua_RemoveForce(lua_State* L)
    int fIndex = (int) lua_tonumber(L,MV_LUA_REMOVE_ITEM_INDEX_NO);
    mvWorld* tempWorld = NULL;
 
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
 #ifdef MV_LUA_SCRIPT_FORCE_DEBUG_FLAG
@@ -298,7 +298,7 @@ int mvLua_SetCurrentForce(lua_State* L)
    int fIndex = (int) lua_tonumber(L,MV_LUA_SET_CURRENT_ITEM_INDEX_NO);
    mvWorld* tempWorld = NULL;
 
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
 #ifdef MV_LUA_SCRIPT_FORCE_DEBUG_FLAG
@@ -316,7 +316,7 @@ int mvLua_RemoveAllForces(lua_State* L)
    int worldID = (int) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvWorld* tempWorld = NULL;
 
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
 #ifdef MV_LUA_SCRIPT_FORCE_DEBUG_FLAG
