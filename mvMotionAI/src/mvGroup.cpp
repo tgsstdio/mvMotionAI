@@ -83,7 +83,7 @@ void mvGroup::clearAllMembers()
    noOfMembers = 0;
 }
 
-mvGroup::mvGroup(char* mBodyGroupID)
+mvGroup::mvGroup(const char* mBodyGroupID)
 {
    mvCount strLen;
 

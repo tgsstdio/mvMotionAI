@@ -82,7 +82,7 @@ int mvLua_WorldStep(lua_State* L)
    mvWorld* tempWorld = NULL;
 
    // check if world exist
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
       tempWorld->mvWorldStep(timeInSecs);
@@ -103,7 +103,7 @@ int mvLua_NudgeBody(lua_State* L)
    mvWorld* tempWorld = NULL;
 
    // check if world exist
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
       result = tempWorld->mvNudgeBody(bodyIndex,timeInSecs);
@@ -122,7 +122,7 @@ int mvLua_NudgeCurrentBody(lua_State* L)
    mvWorld* tempWorld = NULL;
 
    // check if world exist
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
       result = tempWorld->mvNudgeCurrentBody(timeInSecs);
@@ -150,7 +150,7 @@ int mvLua_SetWorldParameter(lua_State* L)
    mvWorld* tempWorld = NULL;
 
    // check single parameter first
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL && params != NULL)
    {
       checkError = mvScript_checkWorldParamsFlag(params,checkParams);

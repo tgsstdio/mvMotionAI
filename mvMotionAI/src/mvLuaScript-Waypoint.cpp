@@ -120,7 +120,7 @@ int mvLua_AddWaypoint(lua_State* L)
    mvWorld* tempWorld = NULL;
 
    // check if world exist
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
       //std::cout << worldID << std::endl;
@@ -143,7 +143,7 @@ int mvLua_RemoveCurrentWaypoint(lua_State* L)
    int worldID = (int) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvWorld* tempWorld = NULL;
 
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
 #ifdef MV_LUA_SCRIPT_WAYPOINT_DEBUG_FLAG
@@ -162,7 +162,7 @@ int mvLua_RemoveWaypoint(lua_State* L)
    int wIndex = (int) lua_tonumber(L,MV_LUA_REMOVE_ITEM_INDEX_NO);
    mvWorld* tempWorld = NULL;
 
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
 #ifdef MV_LUA_SCRIPT_WAYPOINT_DEBUG_FLAG
@@ -181,7 +181,7 @@ int mvLua_SetCurrentWaypoint(lua_State* L)
    int wIndex = (int) lua_tonumber(L,MV_LUA_SET_CURRENT_ITEM_INDEX_NO);
    mvWorld* tempWorld = NULL;
 
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
 #ifdef MV_LUA_SCRIPT_WAYPOINT_DEBUG_FLAG
@@ -199,7 +199,7 @@ int mvLua_RemoveAllWaypoints(lua_State* L)
    int worldID = (int) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvWorld* tempWorld = NULL;
 
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
 #ifdef MV_LUA_SCRIPT_WAYPOINT_DEBUG_FLAG
@@ -229,7 +229,7 @@ int mvLua_SetWaypointParameter(lua_State* L)
    mvWorld* tempWorld = NULL;
 
    // check single parameter first
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL && params != NULL)
    {
       checkError = mvScript_checkWaypointParamsFlag(params,checkParams);
@@ -298,7 +298,7 @@ int mvLua_SetCurrentWaypointParameter(lua_State* L)
    mvWorld* tempWorld = NULL;
 
    // check single parameter first
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL && params != NULL)
    {
       checkError = mvScript_checkWaypointParamsFlag(params,checkParams);

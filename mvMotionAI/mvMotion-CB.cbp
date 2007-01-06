@@ -114,9 +114,6 @@
 		</Unit>
 		<Unit filename="experimental\src\mvList.cpp">
 			<Option compilerVar="CPP" />
-			<Option target="default" />
-			<Option target="ubuntu" />
-			<Option target="mingw-winXP" />
 		</Unit>
 		<Unit filename="include\mvBehaviour-Central.h">
 			<Option compilerVar="" />

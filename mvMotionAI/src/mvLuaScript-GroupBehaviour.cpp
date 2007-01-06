@@ -132,7 +132,7 @@ int mvLua_AddGroupBehaviour(lua_State* L)
    mvWorld* tempWorld = NULL;
    mvOptionEnum bType;
 
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
       //puts(behaviourName);
@@ -157,7 +157,7 @@ int mvLua_RemoveCurrentGroupBehaviour(lua_State* L)
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvWorld* tempWorld = NULL;
 
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
      // puts(tempWorld->getWorldID());
@@ -175,7 +175,7 @@ int mvLua_RemoveGroupBehaviour(lua_State* L)
    mvIndex bIndex = (mvIndex) lua_tonumber(L,MV_LUA_REMOVE_ITEM_INDEX_NO);
    mvWorld* tempWorld = NULL;
 
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
      // puts(tempWorld->getWorldID());
@@ -193,7 +193,7 @@ int mvLua_SetCurrentGroupBehaviour(lua_State* L)
    mvIndex bIndex = (mvIndex) lua_tonumber(L,MV_LUA_SET_CURRENT_ITEM_INDEX_NO);
    mvWorld* tempWorld = NULL;
 
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
    //  puts(tempWorld->getWorldID());
@@ -210,7 +210,7 @@ int mvLua_RemoveAllGroupBehaviours(lua_State* L)
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvWorld* tempWorld = NULL;
 
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
      // puts(tempWorld->getWorldID());
@@ -230,7 +230,7 @@ int mvLua_InsertGroupIntoGroupBehaviour(lua_State* L)
    mvIndex groupBehIndex = (mvIndex) lua_tonumber(L,MV_LUA_INSERTGROUPINTOGROUPBEHAV_GROUP_BEHAV_INDEX);
    mvWorld* tempWorld = NULL;
 
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
    //  puts(tempWorld->getWorldID());
@@ -250,7 +250,7 @@ int mvLua_InsertCurrentGroupIntoGroupBehaviour(lua_State* L)
    mvIndex groupBehIndex = (mvIndex) lua_tonumber(L,MV_LUA_INSERTCURRENTGROUPINTOGROUPBEHAV_GROUP_BEH_INDEX);
    mvWorld* tempWorld = NULL;
 
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
    //  puts(tempWorld->getWorldID());
@@ -270,7 +270,7 @@ int mvLua_InsertGroupIntoCurrentGroupBehaviour(lua_State* L)
    //mvIndex groupBehIndex = (mvIndex) lua_tonumber(L,3);
    mvWorld* tempWorld = NULL;
 
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
    //  puts(tempWorld->getWorldID());
@@ -287,7 +287,7 @@ int mvLua_InsertCurrentGroupIntoCurrentBehaviour(lua_State* L)
   // mvIndex bIndex = (mvIndex) lua_tonumber(L,2);
    mvWorld* tempWorld = NULL;
 
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
    //  puts(tempWorld->getWorldID());
@@ -321,7 +321,7 @@ int mvLua_SetGroupBehaviourParameter(lua_State* L)
    mvWorld* tempWorld = NULL;
 
    // check single parameter first
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL && params != NULL)
    {
       checkError = mvScript_checkGroupBehaviourParamsFlag(params,checkParams);
@@ -398,7 +398,7 @@ int mvLua_SetCurrentGroupBehaviourParameter(lua_State* L)
    mvWorld* tempWorld = NULL;
 
    // check single parameter first
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL && params != NULL)
    {
       checkError = mvScript_checkGroupBehaviourParamsFlag(params,checkParams);
@@ -471,7 +471,7 @@ int mvLua_SetMainGroupBehaviourParameter(lua_State* L)
    mvWorld* tempWorld = NULL;
 
    // check single parameter first
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL && params != NULL)
    {
       checkError = mvScript_checkMainGroupBehaviourParamsFlag(params,checkParams);
@@ -540,7 +540,7 @@ int mvLua_SetCurrentMainGroupBehaviourParameter(lua_State* L)
    mvWorld* tempWorld = NULL;
 
    // check single parameter first
-   tempWorld = mvGetWorldByIndex(worldID);
+   tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL && params != NULL)
    {
       checkError = mvScript_checkMainGroupBehaviourParamsFlag(params,checkParams);
