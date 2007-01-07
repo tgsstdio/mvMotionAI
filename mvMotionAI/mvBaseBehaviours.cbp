@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_project_file>
-	<FileVersion major="1" minor="5" />
+	<FileVersion major="1" minor="6" />
 	<Project>
 		<Option title="mvBaseBehaviours" />
 		<Option pch_mode="2" />
-		<Option default_target="" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="" />
 		<Build>
 			<Target title="Debug">
-				<Option output=".\mvBaseBehaviours.exe" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Debug\" />
+				<Option output="./mvBaseBehaviours" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="experimental\include" />
+					<Add directory="experimental/include" />
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
@@ -24,8 +22,8 @@
 				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output=".\mvBaseBehaviours.exe" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Release\" />
+				<Option output="./mvBaseBehaviours" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -37,7 +35,7 @@
 				</Linker>
 			</Target>
 			<Target title="mvItemList-Debug">
-				<Option output=".\mvItemList.exe" prefix_auto="1" extension_auto="1" />
+				<Option output="./mvItemList" prefix_auto="1" extension_auto="1" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -45,19 +43,19 @@
 					<Add option="-Wall" />
 					<Add option="-ansi" />
 					<Add option="-g" />
-					<Add directory="experimental\src" />
+					<Add directory="experimental/src" />
 				</Compiler>
 				<Linker>
 					<Add library="mvMotionAI-mingw" />
 				</Linker>
 			</Target>
 			<Target title="mvWorld2-Debug">
-				<Option output="mvBaseBehaviours.exe" prefix_auto="1" extension_auto="1" />
+				<Option output="mvBaseBehaviours" prefix_auto="1" extension_auto="1" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="experimental\src" />
+					<Add directory="experimental/src" />
 				</Compiler>
 				<Linker>
 					<Add library="mvMotionAI-mingw" />
@@ -67,152 +65,105 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add directory="experimental\include" />
+			<Add directory="experimental/include" />
 			<Add directory="include" />
 		</Compiler>
 		<Linker>
 			<Add directory="lib" />
 		</Linker>
-		<Unit filename="experimental\examples-src\mvItemList-Test.cpp">
-			<Option compilerVar="CPP" />
+		<Unit filename="experimental/examples-src/mvItemList-Test.cpp">
 			<Option target="mvItemList-Debug" />
 		</Unit>
-		<Unit filename="experimental\examples-src\mvTestBehaviours.cpp">
-			<Option compilerVar="CPP" />
+		<Unit filename="experimental/examples-src/mvTestBehaviours.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="experimental\examples-src\mvWorld2-Test.cpp">
-			<Option compilerVar="CPP" />
+		<Unit filename="experimental/examples-src/mvWorld2-Test.cpp">
 			<Option target="mvWorld2-Debug" />
 		</Unit>
-		<Unit filename="experimental\include\mv.h">
-			<Option compilerVar="CPP" />
-			<Option compile="0" />
-			<Option link="0" />
+		<Unit filename="experimental/include/mv.h">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="experimental\include\mvBaseBehaviour.h">
-			<Option compilerVar="CPP" />
-			<Option compile="0" />
-			<Option link="0" />
+		<Unit filename="experimental/include/mvBaseBehaviour.h">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="experimental\include\mvBehavFuncList.h">
-			<Option compilerVar="CPP" />
-			<Option compile="0" />
-			<Option link="0" />
+		<Unit filename="experimental/include/mvBehavFuncList.h">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="experimental\include\mvClone.h">
-			<Option compilerVar="CPP" />
-			<Option compile="0" />
-			<Option link="0" />
+		<Unit filename="experimental/include/mvClone.h">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="experimental\include\mvEvade.h">
-			<Option compilerVar="CPP" />
-			<Option compile="0" />
-			<Option link="0" />
+		<Unit filename="experimental/include/mvEvade.h">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="experimental\include\mvFlee.h">
-			<Option compilerVar="CPP" />
-			<Option compile="0" />
-			<Option link="0" />
+		<Unit filename="experimental/include/mvFlee.h">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="experimental\include\mvList.h">
-			<Option compilerVar="CPP" />
-			<Option compile="0" />
-			<Option link="0" />
+		<Unit filename="experimental/include/mvList.h">
 			<Option target="mvItemList-Debug" />
 		</Unit>
-		<Unit filename="experimental\include\mvPursuit.h">
-			<Option compilerVar="CPP" />
+		<Unit filename="experimental/include/mvPursuit.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="experimental/include/mvSeek.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="experimental/include/mvSimpleFlock.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="experimental/include/mvWorld2.h" />
+		<Unit filename="experimental/src/mv.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="experimental/src/mvBaseBehaviour.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="experimental/src/mvBehavFuncList.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="experimental/src/mvClone.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="experimental/src/mvFlee.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="experimental/src/mvList.cpp">
 			<Option compile="0" />
 			<Option link="0" />
+		</Unit>
+		<Unit filename="experimental/src/mvPursuit.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="experimental\include\mvSeek.h">
-			<Option compilerVar="CPP" />
-			<Option compile="0" />
-			<Option link="0" />
+		<Unit filename="experimental/src/mvSeek.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="experimental\include\mvSimpleFlock.h">
-			<Option compilerVar="CPP" />
-			<Option compile="0" />
-			<Option link="0" />
+		<Unit filename="experimental/src/mvSimpleFlock.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="experimental\include\mvWorld2.h">
-			<Option compilerVar="CPP" />
-			<Option compile="0" />
-			<Option link="0" />
-			<Option target="Debug" />
-			<Option target="Release" />
-			<Option target="mvItemList-Debug" />
-			<Option target="mvWorld2-Debug" />
-		</Unit>
-		<Unit filename="experimental\src\mv.cpp">
-			<Option compilerVar="CPP" />
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="experimental\src\mvBaseBehaviour.cpp">
-			<Option compilerVar="CPP" />
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="experimental\src\mvBehavFuncList.cpp">
-			<Option compilerVar="CPP" />
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="experimental\src\mvClone.cpp">
-			<Option compilerVar="CPP" />
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="experimental\src\mvFlee.cpp">
-			<Option compilerVar="CPP" />
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="experimental\src\mvList.cpp">
-			<Option compilerVar="CPP" />
-		</Unit>
-		<Unit filename="experimental\src\mvPursuit.cpp">
-			<Option compilerVar="CPP" />
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="experimental\src\mvSeek.cpp">
-			<Option compilerVar="CPP" />
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="experimental\src\mvSimpleFlock.cpp">
-			<Option compilerVar="CPP" />
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
-		<Unit filename="experimental\src\mvWorld2.cpp">
-			<Option compilerVar="CPP" />
+		<Unit filename="experimental/src/mvWorld2.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
 			<Option target="mvWorld2-Debug" />
 		</Unit>
-		<Extensions />
+		<Extensions>
+			<code_completion />
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
