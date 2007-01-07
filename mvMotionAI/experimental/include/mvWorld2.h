@@ -45,12 +45,18 @@ class mvWorld_V2
       void applyToAllBodiesByIndex(mvIndex worldIndex,\
          void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
 
+
+      mvErrorEnum setBodyParameteri(mvIndex index, mvParamEnum paramFlag,\
+         mvIndex paramIndex);
       mvErrorEnum setBodyParameter(mvIndex index, mvParamEnum paramFlag,\
          mvOptionEnum option);
       mvErrorEnum setBodyParameterf(mvIndex index, mvParamEnum paramFlag,\
          mvFloat num);
       mvErrorEnum setBodyParameterv(mvIndex index, mvParamEnum paramFlag,\
          mvFloat* array);
+
+      mvErrorEnum setCurrentBodyParameteri(mvParamEnum paramFlag,\
+         mvIndex paramIndex);
       mvErrorEnum setCurrentBodyParameter(mvParamEnum paramFlag,\
          mvOptionEnum option);
       mvErrorEnum setCurrentBodyParameterf(mvParamEnum paramFlag,\
@@ -58,12 +64,17 @@ class mvWorld_V2
       mvErrorEnum setCurrentBodyParameterv(mvParamEnum paramFlag,\
          mvFloat* array);
 
+      mvErrorEnum setBodyParametersi(mvIndex index, const char* param,\
+         mvFloat paramIndex);
       mvErrorEnum setBodyParameters(mvIndex index, const char* param,\
          const char* option);
       mvErrorEnum setBodyParametersf(mvIndex index, const char* param,\
          mvFloat num);
       mvErrorEnum setBodyParametersv(mvIndex index, const char* param,\
          mvFloat* array);
+
+      mvErrorEnum setCurrentBodyParametersi(const char* param,\
+         mvFloat paramIndex);
       mvErrorEnum setCurrentBodyParameters(const char* param,\
          const char* option);
       mvErrorEnum setCurrentBodyParametersf(const char* param,\
@@ -71,12 +82,17 @@ class mvWorld_V2
       mvErrorEnum setCurrentBodyParametersv(const char* param,\
          mvFloat* array);
 
+      mvErrorEnum getBodyParameteri(mvIndex index, mvParamEnum paramFlag,\
+         mvFloat* outIndex);
       mvErrorEnum getBodyParameter(mvIndex index, mvParamEnum paramFlag,\
          mvOptionEnum* option);
       mvErrorEnum getBodyParameterf(mvIndex index, mvParamEnum paramFlag,\
          mvFloat* num);
       mvErrorEnum getBodyParameterv(mvIndex index, mvParamEnum paramFlag,\
          mvFloat* array, mvCount* noOfParameters);
+
+      mvErrorEnum getCurrentBodyParameteri(mvParamEnum paramFlag,\
+         mvFloat* outIndex);
       mvErrorEnum getCurrentBodyParameter(mvParamEnum paramFlag,\
          mvOptionEnum* option);
       mvErrorEnum getCurrentBodyParameterf(mvParamEnum paramFlag,\
@@ -84,12 +100,16 @@ class mvWorld_V2
       mvErrorEnum getCurrentBodyParameterv(mvParamEnum paramFlag,\
          mvFloat* array, mvCount* noOfParameters);
 
+      mvErrorEnum getBodyParametersi(mvIndex index, const char* param,\
+         mvFloat* outIndex);
       mvErrorEnum getBodyParameters(mvIndex index, const char* param,\
          const char** option);
       mvErrorEnum getBodyParametersf(mvIndex index, const char* param,\
          mvFloat* num);
       mvErrorEnum getBodyParametersv(mvIndex index, const char* param,\
          mvFloat* array, mvCount* noOfParameters);
+
+      mvErrorEnum getCurrentBodyParametersi(const char* param, mvIndex* outIndex);
       mvErrorEnum getCurrentBodyParameters(const char* param,\
          const char** option);
       mvErrorEnum getCurrentBodyParametersf(const char* param, mvFloat* num);
@@ -110,6 +130,9 @@ class mvWorld_V2
       void applyToAllObstaclesByIndex(mvIndex worldIndex,\
          void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
 
+
+      mvErrorEnum setObstacleParameteri(mvIndex index, mvParamEnum paramFlag,\
+         mvIndex paramIndex);
       mvErrorEnum setObstacleParameter(mvIndex index, mvParamEnum paramFlag,\
          mvOptionEnum option);
       mvErrorEnum setObstacleParameterf(mvIndex index, mvParamEnum paramFlag,\
@@ -126,7 +149,6 @@ class mvWorld_V2
       mvErrorEnum setCurrentObstacleParameterv(mvParamEnum paramFlag,\
          mvFloat* array);
 
-/* TODO (White 2#1#): changed header going up */
       mvErrorEnum setObstacleParameters(mvIndex index, const char* param,\
          const char* option);
       mvErrorEnum setObstacleParametersf(mvIndex index, const char* param,\
@@ -696,6 +718,15 @@ class mvWorld_V2
 
       mvErrorEnum nudgeBody(mvIndex index, mvFloat timeInSecs);
       mvErrorEnum nudgeCurrentBody(mvFloat timeInSecs);
+
+      mvErrorEnum setDefaultWaypointForBody(mvIndex waypointIndex,\
+         mvIndex bodyIndex);
+      mvErrorEnum setDefaultPathwayForBody(mvIndex pathwayIndex,\
+         mvIndex bodyIndex);
+      mvErrorEnum setDefaultBodyForBody(mvIndex targetIndex,\
+         mvIndex bodyIndex);
+      mvErrorEnum setDefaultWeightForBody(mvFloat factor,\
+         mvIndex bodyIndex);
 
       mvErrorEnum setDefaultWaypointForCurrentBody(mvIndex wpIndex);
       mvErrorEnum setDefaultPathwayForCurrentBody(mvIndex pwIndex);
