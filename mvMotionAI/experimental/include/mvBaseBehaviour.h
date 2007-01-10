@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2006 David Young.
+ * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -18,6 +18,12 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
+ * Log
+ * Version     Date
+ * 00-01-29    11/1/07
+ * - changing bodyOperation signature to 5+ parameters & return type to only one
+ *   super class for result and input
  */
 #ifndef MV_BASE_BEHAVIOUR_H_
 #define MV_BASE_BEHAVIOUR_H_

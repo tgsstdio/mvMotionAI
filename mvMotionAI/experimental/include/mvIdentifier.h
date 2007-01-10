@@ -19,12 +19,19 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-#include "mvWorld2.h"
-#include <cstdlib>
+#ifndef MVIDENTIFIER_H_INCLUDED
+#define MVIDENTIFIER_H_INCLUDED
 
-int main(void)
+class mvIdentifier
 {
-   puts("HELLO WORLD");
+   public:
+      const char* idString;
+      mvIndex indexValue;
 
-   return EXIT_SUCCESS;
-}
+      mvIdentifier(char* objectID, mvIndex objectIndex);
+      const char* getID() const;
+      mvIndex getIndex();
+      ~mvIdentifier();
+};
+
+#endif // MVIDENTIFIER_H_INCLUDED

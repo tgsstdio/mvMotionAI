@@ -1,5 +1,26 @@
-#ifndef MV_MOTIONAI_WORLD_H_
-#define MV_MOTIONAI_WORLD_H_
+/**
+ * Copyright (c) 2006, 2007 David Young.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
+#ifndef MV_MOTIONAI_WORLD_V2_H_
+#define MV_MOTIONAI_WORLD_V2_H_
 #include "mvList.h"
 
 #include "mvForce.h"
@@ -65,7 +86,7 @@ class mvWorld_V2
          mvFloat* array);
 
       mvErrorEnum setBodyParametersi(mvIndex index, const char* param,\
-         mvFloat paramIndex);
+         mvIndex paramIndex);
       mvErrorEnum setBodyParameters(mvIndex index, const char* param,\
          const char* option);
       mvErrorEnum setBodyParametersf(mvIndex index, const char* param,\
@@ -74,7 +95,7 @@ class mvWorld_V2
          mvFloat* array);
 
       mvErrorEnum setCurrentBodyParametersi(const char* param,\
-         mvFloat paramIndex);
+         mvIndex paramIndex);
       mvErrorEnum setCurrentBodyParameters(const char* param,\
          const char* option);
       mvErrorEnum setCurrentBodyParametersf(const char* param,\
@@ -83,7 +104,7 @@ class mvWorld_V2
          mvFloat* array);
 
       mvErrorEnum getBodyParameteri(mvIndex index, mvParamEnum paramFlag,\
-         mvFloat* outIndex);
+         mvIndex* outIndex);
       mvErrorEnum getBodyParameter(mvIndex index, mvParamEnum paramFlag,\
          mvOptionEnum* option);
       mvErrorEnum getBodyParameterf(mvIndex index, mvParamEnum paramFlag,\
@@ -92,7 +113,7 @@ class mvWorld_V2
          mvFloat* array, mvCount* noOfParameters);
 
       mvErrorEnum getCurrentBodyParameteri(mvParamEnum paramFlag,\
-         mvFloat* outIndex);
+         mvIndex* outIndex);
       mvErrorEnum getCurrentBodyParameter(mvParamEnum paramFlag,\
          mvOptionEnum* option);
       mvErrorEnum getCurrentBodyParameterf(mvParamEnum paramFlag,\
@@ -101,7 +122,7 @@ class mvWorld_V2
          mvFloat* array, mvCount* noOfParameters);
 
       mvErrorEnum getBodyParametersi(mvIndex index, const char* param,\
-         mvFloat* outIndex);
+         mvIndex* outIndex);
       mvErrorEnum getBodyParameters(mvIndex index, const char* param,\
          const char** option);
       mvErrorEnum getBodyParametersf(mvIndex index, const char* param,\
@@ -149,6 +170,8 @@ class mvWorld_V2
       mvErrorEnum setCurrentObstacleParameterv(mvParamEnum paramFlag,\
          mvFloat* array);
 
+      mvErrorEnum setObstacleParametersi(mvIndex index, const char* param,\
+         mvIndex paramIndex);
       mvErrorEnum setObstacleParameters(mvIndex index, const char* param,\
          const char* option);
       mvErrorEnum setObstacleParametersf(mvIndex index, const char* param,\
@@ -156,9 +179,8 @@ class mvWorld_V2
       mvErrorEnum setObstacleParametersv(mvIndex index, const char* param,\
          mvFloat* array);
 
-
       mvErrorEnum setCurrentObstacleParametersi(const char* param,\
-         mvIndex paramFlag);
+         mvIndex paramIndex);
       mvErrorEnum setCurrentObstacleParameters(const char* param,\
          const char* option);
       mvErrorEnum setCurrentObstacleParametersf(const char* param,\
@@ -387,7 +409,7 @@ class mvWorld_V2
       void applyToAllBehavioursByIndex(mvIndex worldIndex,\
          void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
 
-      mvErrorEnum setBehaviourParameter(mvIndex index,\
+      mvErrorEnum setBehaviourParameteri(mvIndex index,\
          mvParamEnum paramFlag, mvIndex paramIndex);
       mvErrorEnum setBehaviourParameter(mvIndex index,\
          mvParamEnum paramFlag, mvOptionEnum option);
@@ -472,7 +494,7 @@ class mvWorld_V2
       void applyToAllGroupsByIndex(mvIndex worldIndex,\
          void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
 
-      mvErrorEnum setGroupParameter(mvIndex index, mvParamEnum paramFlag,\
+      mvErrorEnum setGroupParameteri(mvIndex index, mvParamEnum paramFlag,\
          mvIndex paramIndex);
       mvErrorEnum setGroupParameter(mvIndex index, mvParamEnum paramFlag,\
          mvOptionEnum option);
