@@ -335,7 +335,7 @@ mvErrorEnum mvItemList<mvClass>::setItemParameteri(mvIndex itemIndex,\
 {
    mvIndex listIndex = itemIndex;
    mvErrorEnum error = checkIndex(listIndex);
-   mvClass classPtr = NULL;
+   mvClass* classPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -426,7 +426,7 @@ mvErrorEnum mvItemList<mvClass>::getItemParameteri(mvIndex itemIndex,\
 {
    mvIndex listIndex = itemIndex;
    mvErrorEnum error = checkIndex(listIndex);
-   mvClass classPtr = NULL;
+   mvClass* classPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -541,7 +541,7 @@ mvErrorEnum mvItemList<mvClass>::setItemParametersi(mvIndex itemIndex,\
    mvIndex listIndex = itemIndex;
    mvParamEnum paramFlag;
    mvErrorEnum error = checkParamStringAndIndex(listIndex,param,&paramFlag);
-   mvClass classPtr = NULL;
+   mvClass* classPtr = NULL;
 
    // check if index is valid
    if (error != MV_NO_ERROR)
@@ -663,7 +663,7 @@ mvErrorEnum mvItemList<mvClass>::getItemParametersi(mvIndex itemIndex,\
    mvIndex listIndex = itemIndex;
    mvParamEnum paramFlag;
    mvErrorEnum error = checkParamStringAndIndex(listIndex,param,&paramFlag);
-   mvClass classPtr = NULL;
+   mvClass* classPtr = NULL;
 
    // check if index is valid
    if (error != MV_NO_ERROR)
@@ -678,7 +678,7 @@ mvErrorEnum mvItemList<mvClass>::getItemParametersi(mvIndex itemIndex,\
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
 
-   return classPtr->getParameter(paramFlag, index);
+   return classPtr->getParameteri(paramFlag, index);
 }
 
 template <class mvClass>
@@ -774,7 +774,7 @@ mvErrorEnum mvItemList<mvClass>::setCurrentItemParametersi(const char* param,\
    mvIndex listIndex = currentIndex;
    mvParamEnum paramFlag;
    mvErrorEnum error = checkParamStringAndIndex(listIndex,param,&paramFlag);
-   mvClass classPtr = NULL;
+   mvClass* classPtr = NULL;
 
    // check if index is valid
    if (error != MV_NO_ERROR)
@@ -888,7 +888,7 @@ mvErrorEnum mvItemList<mvClass>::getCurrentItemParametersi(const char* param,\
    mvIndex listIndex = currentIndex;
    mvParamEnum paramFlag;
    mvErrorEnum error = checkParamStringAndIndex(listIndex,param,&paramFlag);
-   mvClass classPtr = NULL;
+   mvClass* classPtr = NULL;
 
    // check if index is valid
    if (error != MV_NO_ERROR)
@@ -987,7 +987,7 @@ mvErrorEnum mvItemList<mvClass>::setCurrentItemParameteri(\
 {
    mvIndex listIndex = currentIndex;
    mvErrorEnum error = checkIndex(listIndex);
-   mvClass classPtr = NULL;
+   mvClass* classPtr = NULL;
 
    // check if index is valid
    if (error != MV_NO_ERROR)
@@ -1084,7 +1084,7 @@ mvErrorEnum mvItemList<mvClass>::getCurrentItemParameteri(mvParamEnum paramFlag,
 {
    mvIndex listIndex = currentIndex;
    mvErrorEnum error = checkIndex(listIndex);
-   mvClass classPtr = NULL;
+   mvClass* classPtr = NULL;
 
    // check if index is valid
    if (error != MV_NO_ERROR)

@@ -115,7 +115,7 @@ class mvWorld
       ~mvWorld(); //< initialised
 
       mvIndex mvAddWaypoint(mvOptionEnum wType, mvOptionEnum wShape); //< initialised
-      mvIndex mvAddWaypointWithPosmvIndex mvAddWaypointWithPos(mvOptionEnum wType, mvOptionEnum wShape, mvFloat x, mvFloat y, mvFloat z);//< initialised
+      mvIndex mvAddWaypointWithPos(mvOptionEnum wType, mvOptionEnum wShape, mvFloat x, mvFloat y, mvFloat z);//< initialised
       mvWaypoint* mvGetWaypoint(mvIndex index);//< initialised
       mvErrorEnum mvRemoveWaypoint(mvIndex index);//< initialised
       mvErrorEnum mvRemoveCurrentWaypoint();//< initialised
@@ -419,7 +419,7 @@ class mvWorld
       mvErrorEnum mvNudgeBody(mvIndex index, mvFloat timeInSecs);
       mvErrorEnum mvNudgeCurrentBody(mvFloat timeInSecs);
 
-// TODO (White 2#1#): implement these functions below\
+// TODO (White 2#1#): implement these functions below
       void mvApplyToAllGroupsByIndex(void (someFunction)(mvIndex,void*), void* extraPtr);
       void mvApplyToAllBodiesByIndex(void (someFunction)(mvIndex,void*), void* extraPtr);
       void mvApplyToAllObstaclesByIndex(void (someFunction)(mvIndex,void*), void* extraPtr);

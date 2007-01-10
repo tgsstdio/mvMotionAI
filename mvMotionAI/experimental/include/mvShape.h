@@ -19,12 +19,29 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-#include "mvWorld2.h"
-#include <cstdlib>
+#ifndef MVSHAPE_H_INCLUDED
+#define MVSHAPE_H_INCLUDED
 
-int main(void)
+class mvShape
 {
-   puts("HELLO WORLD");
+   public:
+      mvOptionEnum shapeFlag;
+      mvFloat* dimensions;
 
-   return EXIT_SUCCESS;
-}
+      mvShape(mvOptionEnum sType);
+      mvOptionEnum getType() const;
+
+      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
+      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
+      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num);
+      mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
+         mvCount* noOfParameters);
+
+      mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
+      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
+
+};
+
+#endif // MVSHAPE_H_INCLUDED
