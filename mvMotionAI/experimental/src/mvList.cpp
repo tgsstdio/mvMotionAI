@@ -1149,3 +1149,47 @@ mvErrorEnum mvItemList<mvClass>::getCurrentItemParameterv(mvParamEnum paramFlag,
 
    return classPtr->getParameterv(paramFlag,array,noOfParameters);
 }
+
+template <class mvClass>
+mvClass* mvItemList<mvClass>::findItemPtrInList(bool (someFunction)(mvClass*, void*),\
+   void* extraPtr)
+{
+   class std::vector<mvClass*>::iterator i;
+   mvClass* currentPtr = NULL;
+   class std::vector<mvClass*>::iterator listEnd = listItems.end();
+
+   for (i = listItems.begin(); i != listEnd; ++i)
+   {
+      currentPtr = *i;
+      if (someFunction(currentPtr, extraPtr))
+      {
+         return currentPtr;
+      }
+   }
+   // if failed
+   return NULL;
+}
+
+template <class mvClass>
+mvIndex mvItemList<mvClass>::findItemInList(bool (someFunction)(mvClass*, void*),\
+   void* extraPtr)
+{
+   class std::vector<mvClass*>::iterator i;
+   mvClass* currentPtr = NULL;
+   class std::vector<mvClass*>::iterator listEnd = listItems.end();
+   mvIndex count = 1;
+
+   for (i = listItems.begin(); i != listEnd; ++i)
+   {
+      currentPtr = *i;
+      // if true
+      if (someFunction(currentPtr, extraPtr))
+      {
+         return count;
+      }
+      ++count;
+   }
+   // if failed
+   return MV_NO_CURRENT_INDEX;
+
+}

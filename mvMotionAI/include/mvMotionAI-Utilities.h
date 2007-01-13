@@ -63,7 +63,7 @@ mvErrorEnum removeItemFromVectorByIndex(std::vector<mvClass*>& mvClassList, mvIn
        return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
     }
   }
-  return MV_INVALID_INDEX_RANGE;
+  return MV_INDEX_VALUE_IS_INVALID;
 }
 /*
 template<class mvClass>
@@ -119,7 +119,7 @@ mvErrorEnum mvGetClassParameter(std::vector<mvClass*>& mvClassList, mvIndex inde
    }
    else
    {
-      return MV_INVALID_INDEX_RANGE;
+      return MV_INDEX_VALUE_IS_INVALID;
    }
 }
 
@@ -141,7 +141,7 @@ mvErrorEnum mvSetClassParameter(std::vector<mvClass*>& mvClassList, mvIndex inde
    }
    else
    {
-      return MV_INVALID_INDEX_RANGE;
+      return MV_INDEX_VALUE_IS_INVALID;
    }
 }
 
@@ -180,7 +180,7 @@ mvErrorEnum mvGetClassParameterf(std::vector<mvClass*>& mvClassList, mvCount& no
    }
    else
    {
-      return MV_INVALID_INDEX_RANGE;
+      return MV_INDEX_VALUE_IS_INVALID;
    }
 }
 
@@ -200,7 +200,7 @@ mvErrorEnum mvSetClassParameterf(std::vector<mvClass*>& mvClassList, mvCount& no
    }
    else
    {
-      return MV_INVALID_INDEX_RANGE;
+      return MV_INDEX_VALUE_IS_INVALID;
    }
 }
 
@@ -223,7 +223,7 @@ mvErrorEnum mvGetClassParameterv(std::vector<mvClass*>& mvClassList, mvCount& no
    }
    else
    {
-      return MV_INVALID_INDEX_RANGE;
+      return MV_INDEX_VALUE_IS_INVALID;
    }
 }
 
@@ -245,33 +245,33 @@ mvErrorEnum mvSetClassParameterv(std::vector<mvClass*>& mvClassList, mvCount& no
    }
    else
    {
-      return MV_INVALID_INDEX_RANGE;
+      return MV_INDEX_VALUE_IS_INVALID;
    }
 }
 
 template<class mvClass>
 mvIndex mvSetCurrentIndexOfClassList(std::vector<mvClass*>& mvClassList, mvIndex index, mvIndex& currentIndex, mvCount& noOfItems)
 {
-  mvIndex classIndex = index + MV_OFFSET_TO_INDEX;
+     mvIndex classIndex = index + MV_OFFSET_TO_INDEX;
 
-  if (classIndex >= 0 && classIndex < noOfItems)
-  {
-     if (mvClassList[classIndex] == NULL)
-     {
+   if (classIndex >= 0 && classIndex < noOfItems)
+   {
+      if (mvClassList[classIndex] == NULL)
+      {
         classIndex = MV_NO_CURRENT_INDEX;
         return MV_NO_CURRENT_INDEX;
-     }
-     else
-     {
+      }
+      else
+      {
         currentIndex = index;
         return currentIndex;
-     }
-  }
-  else
-  {
-     currentIndex = MV_NO_CURRENT_INDEX;
-     return MV_INVALID_INDEX_RANGE;
-  }
+      }
+   }
+   else
+   {
+      currentIndex = MV_NO_CURRENT_INDEX;
+      return MV_INDEX_VALUE_IS_INVALID;
+   }
 }
 
 template <class mvClass>
@@ -372,7 +372,7 @@ mvErrorEnum mvGetClassParameteri(std::vector<mvClass*>& mvClassList, mvCount& no
    }
    else
    {
-      return MV_INVALID_INDEX_RANGE;
+      return MV_INDEX_VALUE_IS_INVALID;
    }
 }
 
@@ -392,7 +392,7 @@ mvErrorEnum mvSetClassParameteri(std::vector<mvClass*>& mvClassList, mvCount& no
    }
    else
    {
-      return MV_INVALID_INDEX_RANGE;
+      return MV_INDEX_VALUE_IS_INVALID;
    }
 }
 
@@ -434,7 +434,7 @@ mvErrorEnum mvSetClassParameters(std::vector<mvClass*>& mvClassList,
    }
    else
    {
-      return MV_INVALID_INDEX_RANGE;
+      return MV_INDEX_VALUE_IS_INVALID;
    }
 }
 
@@ -482,7 +482,7 @@ mvErrorEnum mvGetClassParameters(std::vector<mvClass*>& mvClassList,
    }
    else
    {
-      return MV_INVALID_INDEX_RANGE;
+      return MV_INDEX_VALUE_IS_INVALID;
    }
 }
 
@@ -516,7 +516,7 @@ mvErrorEnum mvSetClassParametersi(std::vector<mvClass*>& mvClassList,
    }
    else
    {
-      return MV_INVALID_INDEX_RANGE;
+      return MV_INDEX_VALUE_IS_INVALID;
    }
 }
 
@@ -550,7 +550,7 @@ mvErrorEnum mvGetClassParametersi(std::vector<mvClass*>& mvClassList,
    }
    else
    {
-      return MV_INVALID_INDEX_RANGE;
+      return MV_INDEX_VALUE_IS_INVALID;
    }
 }
 
@@ -584,7 +584,7 @@ mvErrorEnum mvSetClassParametersf(std::vector<mvClass*>& mvClassList,
    }
    else
    {
-      return MV_INVALID_INDEX_RANGE;
+      return MV_INDEX_VALUE_IS_INVALID;
    }
 }
 
@@ -618,7 +618,7 @@ mvErrorEnum mvGetClassParametersf(std::vector<mvClass*>& mvClassList,
    }
    else
    {
-      return MV_INVALID_INDEX_RANGE;
+      return MV_INDEX_VALUE_IS_INVALID;
    }
 }
 
@@ -652,7 +652,7 @@ mvErrorEnum mvSetClassParametersv(std::vector<mvClass*>& mvClassList,
    }
    else
    {
-      return MV_INVALID_INDEX_RANGE;
+      return MV_INDEX_VALUE_IS_INVALID;
    }
 }
 
@@ -687,49 +687,26 @@ mvErrorEnum mvGetClassParametersv(std::vector<mvClass*>& mvClassList,
    }
    else
    {
-      return MV_INVALID_INDEX_RANGE;
+      return MV_INDEX_VALUE_IS_INVALID;
    }
 }
 
 /*
- * Code taken from OpenSteer Utilities.h (2002-2004)
- * on the 20/06/2006
- * ----------------------------------------------------------------------------
- * Functions to encapsulate cross-platform differences for several cmath
- * functions.  Specifically, the C++ standard says that these functions are
- * in the std namespace (std::sqrt, etc.)  Apparently the MS VC6 compiler (or
- * its header files) do not implement this correctly and the function names
- * are in the global namespace.  We hope these -XXX versions are a temporary
- * expedient, to be removed later.
+ * Math functions
  */
+inline mvFloat mvFloor (mvFloat x);
+inline mvFloat mvSqrt (mvFloat x);
+inline mvFloat mvSin (mvFloat x);
+inline mvFloat mvCos (mvFloat x);
+inline mvFloat mvAbs (mvFloat x);
+//inline int   mvAbs (int x);
+inline mvFloat mvMax (mvFloat x, mvFloat y);
+inline mvFloat mvMin (mvFloat x, mvFloat y);
 
-#ifdef _WIN32
-inline mvFloat mvFloor (mvFloat x)          {return floor (x);}
-inline mvFloat mvSqrt (mvFloat x)           {return sqrt (x);}
-inline mvFloat mvSin (mvFloat x)          {return sin (x);}
-inline mvFloat mvCos (mvFloat x)           {return cos (x);}
-//inline float mvAbs (mvFloat x)           {return abs (x);}
-inline int   mvAbs (int x)            {return abs (x);}
-inline mvFloat mvMax (mvFloat x, mvFloat y) {if (x > y) return x; else return y;}
-inline mvFloat mvMin (mvFloat x, mvFloat y) {if (x < y) return x; else return y;}
-
-inline mvFloat mvArcCos(mvFloat theta) { return acos(theta);}
-inline mvFloat mvArcSin(mvFloat theta) { return asin(theta);}
-inline mvFloat mvArcTan(mvFloat theta) { return atan(theta);}
-
-#else
-inline mvFloat mvFloor (mvFloat x)         {return std::floor (x);}
-inline mvFloat mvSqrt (mvFloat x)           {return std::sqrt (x);}
-inline mvFloat mvSin (mvFloat x)         {return std::sin (x);}
-inline mvFloat mvCos (mvFloat x)          {return std::cos (x);}
-inline mvFloat mvAbs (mvFloat x)          {return std::abs (x);}
-inline int   mvAbs (int x)            {return std::abs (x);}
-inline mvFloat mvMax (mvFloat x, mvFloat y) {return std::max (x, y);}
-inline mvFloat mvMin (mvFloat x, mvFloat y) {return std::min (x, y);}
-
-inline mvFloat mvArcCos(mvFloat theta) { return std::acos(theta);}
-inline mvFloat mvArcSin(mvFloat theta) { return std::asin(theta);}
-inline mvFloat mvArcTan(mvFloat theta) { return std::atan(theta);}
-#endif
+inline mvFloat mvArcCos(mvFloat theta);
+inline mvFloat mvArcSin(mvFloat theta);
+inline mvFloat mvArcTan(mvFloat theta);
+inline mvFloat mvFMod(mvFloat num, mvFloat denom);
+inline mvFloat mvModf(mvFloat x, mvFloat* intPart);
 
 #endif

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2006 David Young.
+ * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -23,11 +23,7 @@
 #ifndef MV_ENUMERATIONS_H_
 #define MV_ENUMERATIONS_H_
 #include <cstdlib>
-// TODO : change enums from MV_WAYPOINT_TARGET to MV_WAYPOINT
-// TODO : change enums from MV_BODY_TARGET to MV_BODY
-// TODO : change enums from MV_INDEX_DEST_IS_INVALID to MV_INDEX_DEST_IS_NULL
-// TODO : add PLANE_NORMAL, LINE_VECTOR to enum parameters
-// TODO : error STRING NOT FOUND type error
+// TODO : reimplement enum strings
 enum mvOptionEnum
 {
    MV_FALSE = 0,
@@ -41,7 +37,7 @@ enum mvOptionEnum
    MV_PURSUIT,
    MV_EVASION,
    MV_SIMPLE_FLOCK,
-   MV_SIMPLE_FLOCK_GROUP_ENTRY,
+   MV_GROUP_ENTRY, // unify all group behaviorus objects
    MV_EXISTING_GROUP_BEHAVIOUR,
    MV_EXISTING_BEHAVIOUR,
    MV_NON_GROUP_BEHAVIOUR_TYPE,
@@ -121,11 +117,19 @@ enum mvOptionEnum
    MV_ANY_LINE,
    MV_NO_DOMAIN_APPLIED,
 
+   // integration mode
+   MV_WEIGHTED,
+   MV_XOR,
+   MV_PROTIZED_DITHERED,
+   MV_RANDOM,
+   MV_RANDOMIZED_WEIGHTED,
+   MV_LIST_TREE,
+
    MV_NON_OPTION_ENUM, // default failed enum value : do not use
 
    MV_NO_OF_OPTION_ENUMS
 };
-
+// TODO : reimplement param strings
 enum mvParamEnum
 {
    MV_NO_PARAMETER = 0,
@@ -139,16 +143,12 @@ enum mvParamEnum
    MV_TYPE,
    MV_DOMAIN,
    MV_FORCE_VECTOR,
-   /*
-   MV_FORCE_ON, // redundant
-   MV_FORCE_OFF, // redundant
-   MV_ENABLE_FORCE, // combine together ?? to is_enabled
-   */
+
    MV_VELOCITY,
    MV_ACCELERATION_VECTOR,
    MV_FORCE_QUANTITY,
-   MV_GRAVITIONAL_MASS,
-   MV_GRAVITY_CONSTANT,
+   //MV_GRAVITIONAL_MASS,  duplicate
+   MV_CONSTANT, // renamed
    MV_POSITION,
    MV_LENGTH,
    MV_RADIUS,
@@ -156,9 +156,9 @@ enum mvParamEnum
    MV_Y_LENGTH,
    MV_Z_DEPTH,
    MV_DIRECTION,
-   MV_WAYPOINT_TARGET,
-   MV_BODY_TARGET,
-   MV_PATHWAY_TARGET,
+   MV_WAYPOINT,
+   MV_BODY,
+   MV_PATHWAY,
    MV_PERCEIVED_COHESION_FLAG,
    MV_PERCEIVED_ALIGNMENT_FLAG,
    MV_COHESION_FACTOR,
@@ -177,26 +177,47 @@ enum mvParamEnum
    MV_NO_OF_BEHAVIOURS,
    MV_WIDTH,
    MV_DEPTH,
+   // new enums behaviour list
+   MV_MODE,
+   MV_CURRENT_INDEX,
+   MV_WEIGHT,
+   MV_FINAL_VELOCITY,
+   MV_FINAL_SPEED,
+   MV_FINAL_DIRECTION,
+   MV_PLANE_NORMAL,
+   MV_LINE_VECTOR,
+   MV_ELAPSED_TIME,
+   MV_PERIOD,
+   MV_IS_TIMED,
+   // user defined parameters
+   MV_USER_PARAM_0,
+   MV_USER_PARAM_1,
+   MV_USER_PARAM_2,
+   MV_USER_PARAM_3,
+   MV_USER_PARAM_5,
+
    MV_NO_OF_PARAM_ENUMS
 };
-// TODO (White 2#1#): MV_PARAM_STRING_IS_NULL has two possible errors - combine them
-// TODO (White 2#1#): MV_OPTION_STRING_IS_NULL
 // TODO  : duplicate invalid index range & index is invalid
+// TODO : reimplement error strings
+// TODO : unify all invalid ___ parameter together ??
 enum mvErrorEnum
 {
    MV_NO_ERROR = 0,
    MV_ITEM_POINTER_IS_NULL,
    MV_ITEM_LIST_IS_EMPTY,
-   MV_INVALID_INDEX_RANGE,
+   //MV_INVALID_INDEX_RANGE, // duplicate removed
    MV_UNIQUE_ITEM_ALREADY_IN_LIST,
    MV_ITEM_NOT_FOUND_IN_LIST,
    MV_ITEM_AT_INDEX_NO_LONGER_EXISTS,
-   MV_INVALID_BEHAVIOUR_INITIALIZATION,
+   MV_INVALID_BEHAVIOUR_INITIALIZATION, // questions - need it
    MV_INVALID_BEHAVIOUR_PARAMETER,
    MV_INVALID_BEHAVIOUR_ENTRY_INITIALIZATION,
    MV_INVALID_OPTION_ENUM_STRING,
    MV_INVALID_PARAM_ENUM_STRING,
+
    MV_INPUT_PARAM_STRING_IS_NULL, // duplicated
+
    MV_FLOAT_VALUE_IS_NOT_POSITIVE,
    MV_INDEX_VALUE_IS_INVALID,
    MV_INVALID_BODY_SHAPE,
@@ -216,7 +237,7 @@ enum mvErrorEnum
    MV_INVALID_WAYPOINT_TYPE,
    MV_INVALID_WAYPOINT_SHAPE,
    MV_INVALID_WAYPOINT_PARAMETER,
-   MV_PARAM_POINTER_IS_NULL, // duplicated
+
    MV_INVALID_GROUP_PARAMETER,
    MV_INVALID_GROUP_BEHAVIOUR_PARAMETER,
    MV_INVALID_PATHWAY_PARAMETER,
@@ -234,13 +255,22 @@ enum mvErrorEnum
    MV_SRC_ARRAY_IS_NULL,
    MV_DST_ARRAY_IS_NULL,
    MV_INVALID_WORLD_INDEX,
-   MV_INDEX_DEST_IS_INVALID,
+   MV_INDEX_DEST_IS_NULL, // changed from ...INVALID to NULL
    MV_SCRIPT_MODULE_PTR_IS_NULL,
    MV_SCRIPT_MODULE_PARSING_ERROR,
    MV_C_BUFFER_ARRAY_IS_NULL,
    MV_C_STRING_PTR_IS_NULL,
    MV_FILENAME_POINTER_IS_NULL,
-   MV_C_BUFFER_SIZE_IS_LESS_THAN_ZERO,
+   MV_C_BUFFER_SIZE_IS_LESS_THAN_ZERO, // qurestion need it
+   // new error enums
+   MV_FUNCTION_NOT_IMPLEMENTED,
+   MV_OPTION_STRING_PARAM_IS_NULL,
+   MV_OPTION_STRING_DEST_IS_NULL,
+   MV_INVALID_BEHAVIOUR_LIST_PARAMETER,
+   MV_NOT_ENOUGH_FLOATS_IN_ARRAY,
+   MV_STRING_NOT_FOUND,
+   MV_INVALID_TIMER_PARAMETER,
+
    MV_ERROR_ENUM_IS_NOT_FOUND, // odd error
    MV_NO_OF_ERROR_ENUMS
 };

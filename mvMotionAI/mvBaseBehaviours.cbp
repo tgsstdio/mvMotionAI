@@ -86,7 +86,9 @@
 			<Option target="Release" />
 		</Unit>
 		<Unit filename="experimental\include\mvBEntry.h" />
-		<Unit filename="experimental\include\mvBEntryList.h" />
+		<Unit filename="experimental\include\mvBEntryList.h">
+			<Option target="mvWorld2-Debug" />
+		</Unit>
 		<Unit filename="experimental\include\mvBEntryListNode.h" />
 		<Unit filename="experimental\include\mvBEntryTimer.h" />
 		<Unit filename="experimental\include\mvBEntryTreeNode.h" />
@@ -120,6 +122,10 @@
 		<Unit filename="experimental\include\mvList.h">
 			<Option target="mvItemList-Debug" />
 		</Unit>
+		<Unit filename="experimental\include\mvNullLoader.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="experimental\include\mvPursuit.h">
 			<Option target="Debug" />
 			<Option target="Release" />
@@ -138,7 +144,12 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="experimental\src\mvBEntryList.cpp" />
+		<Unit filename="experimental\src\mvBEntryList.cpp">
+			<Option target="mvWorld2-Debug" />
+		</Unit>
+		<Unit filename="experimental\src\mvBEntryListNode.cpp" />
+		<Unit filename="experimental\src\mvBEntryTimer.cpp" />
+		<Unit filename="experimental\src\mvBEntryTreeNode.cpp" />
 		<Unit filename="experimental\src\mvBaseBehaviour.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
@@ -146,6 +157,9 @@
 		<Unit filename="experimental\src\mvBehavFuncList.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
+		</Unit>
+		<Unit filename="experimental\src\mvBehaviourResult.cpp">
+			<Option target="mvWorld2-Debug" />
 		</Unit>
 		<Unit filename="experimental\src\mvClone.cpp">
 			<Option target="Debug" />

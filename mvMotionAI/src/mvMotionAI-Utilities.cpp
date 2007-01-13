@@ -28,3 +28,115 @@
  * Contains no code i.e empty file
  */
 
+ /*
+ * Code taken from OpenSteer Utilities.h (2002-2004)
+ * on the 20/06/2006
+ * ----------------------------------------------------------------------------
+ * Functions to encapsulate cross-platform differences for several cmath
+ * functions.  Specifically, the C++ standard says that these functions are
+ * in the std namespace (std::sqrt, etc.)  Apparently the MS VC6 compiler (or
+ * its header files) do not implement this correctly and the function names
+ * are in the global namespace.  We hope these -XXX versions are a temporary
+ * expedient, to be removed later.
+ *
+ * moved these functions out into .cpp function
+ */
+
+/* TODO (White 2#1#): Include high precision as well */
+// #ifdef WIN32 is MVC++ 6 tag
+
+inline mvFloat mvFloor (mvFloat x)
+{
+#ifdef WIN32
+   return floor (x);
+#else
+   return std::floor(x);
+#endif
+}
+
+inline mvFloat mvSqrt (mvFloat x)
+{
+#ifdef WIN32
+   return sqrt (x);
+#else
+   return std::sqrt(x);
+#endif
+}
+
+inline mvFloat mvSin (mvFloat x)
+{
+#ifdef WIN32
+   return sin (x);
+#else
+   return std::sin(x);
+#endif
+}
+
+inline mvFloat mvCos (mvFloat x)
+{
+#ifdef WIN32
+   return cos (x);
+#else
+   return std::cos(x);
+#endif
+}
+
+//inline float mvAbs (mvFloat x)           {return abs (x);}
+//inline int mvAbs (int x)            {return abs (x);}
+
+inline mvFloat mvMax (mvFloat x, mvFloat y)
+{
+   return (x > y) ? x : y;
+}
+
+inline mvFloat mvMin (mvFloat x, mvFloat y)
+{
+   return (x < y) ? x : y;
+}
+
+inline mvFloat mvArcCos(mvFloat theta)
+{
+#ifdef WIN32
+   return acos(theta);
+#else
+   return std::acos(theta);
+#endif
+}
+
+inline mvFloat mvArcSin(mvFloat theta)
+{
+#ifdef WIN32
+   return asin(theta);
+#else
+   return std::asin(theta);
+#endif
+}
+
+inline mvFloat mvArcTan(mvFloat theta)
+{
+#ifdef WIN32
+   return atan(theta);
+#else
+   return std::atan(theta);
+#endif
+}
+
+inline mvFloat mvFMod(mvFloat num, mvFloat denom)
+{
+#ifdef WIN32
+   return fmod(num, denom);
+#else
+   return std::fmod(num, denom);
+#endif
+}
+
+inline mvFloat mvModf(mvFloat x, mvFloat* intPart);
+{
+#ifdef WIN32
+   return modf(x, intPart);
+#else
+   return std::modf(x, intPart);
+#endif
+}
+
+

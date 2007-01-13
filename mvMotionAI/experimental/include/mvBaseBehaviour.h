@@ -27,17 +27,23 @@
  */
 #ifndef MV_BASE_BEHAVIOUR_H_
 #define MV_BASE_BEHAVIOUR_H_
+
+#include "mvMotionAI-Types.h"
 #include "mvWorld.h"
 #include "mvVec3.h"
 #include "mvBody.h"
 #include "mvEnums.h"
 #include "mvGroup.h"
-#include "mvMotionAI-Types.h"
 
-/**
+#include "mvBaseBehaviour.h"
+#include "mvBehaviourResult.h"
+
+
+/*
+ *
  * for optimization purposes
  * less operations performed...
- */
+ *
 enum mvBehaviourReturnType
 {
    MV_NO_OPERATION,
@@ -49,6 +55,7 @@ enum mvBehaviourReturnType
    MV_ACCELERATION_AND_VELOCITY,
    MV_ALL_OPERATIONS,
 };
+*/
 
 class mvBaseBehaviour
 {
@@ -91,10 +98,12 @@ class mvBaseBehaviour
       //virtual mvBaseBehaviour* createGroupEntry(mvBaseBehaviour* options);
 	   //virtual mvBaseBehaviour* createBodyEntry(mvBaseBehaviour* options);
 
-	   virtual void groupOperation(mvWorld* world, mvGroup* groupPtr) = 0;
-
+	   virtual void groupOp(mvWorld* world, mvGroup* groupPtr) = 0;
+      /*
 	   virtual mvBehaviourReturnType bodyOperation(mvWorld* world, mvBody* b, mvBaseBehaviour* groupNodeBehaviour,
                mvVec3& forceVector, mvVec3& accelVector, mvVec3& velocity) = 0;
+      */
+      virtual void bodyOp(mvBehaviourResult* resultModule) = 0;
 
       virtual ~mvBaseBehaviour();
 };

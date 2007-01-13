@@ -129,7 +129,7 @@ class mvBEntryList
       mvErrorEnum setEntryParametersi(mvIndex entryIndex,const char* param,\
          mvIndex paramIndex);
       mvErrorEnum setEntryParameters(mvIndex entryIndex,const char* param,\
-         mvOptionEnum option);
+         const char* option);
       mvErrorEnum setEntryParametersf(mvIndex entryIndex,const char* param,\
          mvFloat num);
       mvErrorEnum setEntryParametersv(mvIndex entryIndex,const char* param,\
@@ -147,7 +147,7 @@ class mvBEntryList
       mvErrorEnum setCurrentEntryParametersi(const char* param,\
          mvIndex paramIndex);
       mvErrorEnum setCurrentEntryParameters(const char* param,\
-         mvOptionEnum option);
+         const char* option);
       mvErrorEnum setCurrentEntryParametersf(const char* param,\
          mvFloat num);
       mvErrorEnum setCurrentEntryParametersv(const char* param,\

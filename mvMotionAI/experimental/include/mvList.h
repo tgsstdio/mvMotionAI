@@ -53,6 +53,14 @@ class mvItemList
       mvCount getNoOfItems() const;
       mvIndex getCurrentIndex() const;
       mvIndex setCurrentIndex(mvIndex index);
+
+      // TODO : implement this function
+      mvClass* findItemPtrInList(bool (someFunction)(mvClass*, void*),\
+         void* extraPtr);
+
+      mvIndex findItemInList(bool (someFunction)(mvClass*, void*),\
+         void* extraPtr);
+
       void applyToAllItems(void (someFunction)(mvClass*, void*),\
          void* extraPtr);
       void applyToAllItemsByIndex(mvIndex worldIndex,\
