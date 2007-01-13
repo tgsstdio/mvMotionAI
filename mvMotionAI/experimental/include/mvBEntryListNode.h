@@ -13,10 +13,14 @@ class mvBEntryListNode
       mvFloat weight;
       mvBEntryTimer timer;
 
-      mvBEntryListNode();
+      mvBEntryListNode(mvFloat bNodeWeight, mvBEntry* behEntry, mvFloat period,\
+         mvFloat elaspedTime);
       mvBEntry* getEntryPtr();
       mvBEntryTimer* getTimer();
       mvFloat getWeight() const;
+
+      mvErrorEnum setEntryPtr(mvBEntry* behEntry);
+      mvErrorEnum setWeight(mvFloat bNodeWeight);
 
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
       mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);

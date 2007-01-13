@@ -735,7 +735,6 @@ class mvWorld_V2
       mvErrorEnum getCurrentForceParametersv(const char* param,\
          mvFloat* array, mvCount* noOfParameters);
 
-/* TODO (White 2#1#): implement these funcitons below */
       void worldStep(mvFloat timeInSecs);
 
       mvErrorEnum nudgeBody(mvIndex index, mvFloat timeInSecs);

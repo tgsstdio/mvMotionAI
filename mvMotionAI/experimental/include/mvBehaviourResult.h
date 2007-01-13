@@ -24,30 +24,32 @@
 #define MVBEHAVIOURRESULT_H_INCLUDED
 
 #include "mvMotionAI-Types.h"
+#include "mvVec3.h"
 #include "mvEnums.h"
 #include "mvWorld.h"
+#include "mvBody.h"
 
 #define MV_QUATERNION_LENGTH 4
 
 class mvBehaviourResult
 {
-   private:
-      void resetResult();
-
    public:
       mvWorld* currentWorld;
       mvBody* currentBody;
-      mvBaseBehaviour* currentGroupNode;
+//      mvBaseBehaviour* currentGroupBehNode;
+      mvIndex behaviourIndex;
+      mvIndex groupIndex;
 
       bool isSteering;
       bool applyAccel;
-      bool applyVecel;
+      bool applyVelocity;
       bool applyDirection;
       bool applyForce;
       bool applyTorque;
       // rotation change
       bool applyOmega;
       bool applyQuaternion;
+      bool omegaInDegrees;
 
       mvVec3 force;
       mvVec3 acceleration;
@@ -60,9 +62,10 @@ class mvBehaviourResult
       mvBehaviourResult();
       void setWorld(mvWorld* worldPtr);
       void setBody(mvBody* bodyPtr);
-      void setGroupBehaviourNode(mvBaseBehaviour* groupBehPtr);
+//      void setGroupBehaviourNode(mvBaseBehaviour* groupBehPtr);
 
-      void setGroup(mvGroup* groupPtr);
+      void setBehaviourIndex(mvIndex bIndex);
+      void setGroupIndex(mvIndex gIndex);
 
       void setForce(const mvVec3& value);
       void setAcceleration(const mvVec3& value);
@@ -70,13 +73,18 @@ class mvBehaviourResult
       void setTorque(const mvVec3& value);
       void setDirection(const mvVec3& value);
       void setQuaternion(const mvFloat* quatArray);
+      void setOmega(const mvVec3& value);
+      void setOmegaInDegrees(const mvVec3& value);
+      void setOmegaInRadians(const mvVec3& value);
       void resetAll();
       void setToDirectional();
       void setToSteering();
 
       mvWorld* getWorld();
-      mvBaseBehaviour* getGroupBehaviourNode();
+//      mvBaseBehaviour* getGroupBehaviourNode();
       mvBody*  getBody();
+      mvIndex getBehaviourIndex();
+      mvIndex getGroupIndex();
 };
 
 #endif // MVBEHAVIOURRESULT_H_INCLUDED
