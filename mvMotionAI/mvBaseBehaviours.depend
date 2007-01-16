@@ -40,7 +40,7 @@
 
 1166248706 ur-List.h"
 
-1168523368 d:\mvmotionai\mvmotionai\include\mvenums.h
+1168929086 d:\mvmotionai\mvmotionai\include\mvenums.h
 	<cstdlib>
 
 1167310864 
@@ -296,13 +296,14 @@
 1168581394 source:d:\mvmotionai\mvmotionai\experimental\src\mvbentrylist.cpp
 	"mvBEntryList.h"
 
-1168522424 d:\mvmotionai\mvmotionai\experimental\include\mvbentrylist.h
+1168872560 d:\mvmotionai\mvmotionai\experimental\include\mvbentrylist.h
 	"mvMotionAI-Types.h"
 	"mvEnums.h"
 	"mvBaseBehaviour.h"
 	"mvList.h"
 	"mvBEntryListNode.h"
 	"mvBEntryTreeNode.h"
+	"mvBEntryTree.h"
 
 1168523236 d:\mvmotionai\mvmotionai\experimental\include\mvbehaviourresult.h
 	"mvMotionAI-Types.h"
@@ -321,11 +322,11 @@
 	"mvMotionAI-Types.h"
 	"mvBaseBehaviour.h"
 
-1168582646 d:\mvmotionai\mvmotionai\experimental\include\mvbentrytimer.h
+1168867250 d:\mvmotionai\mvmotionai\experimental\include\mvbentrytimer.h
 	"mvMotionAI-Types.h"
 	"mvEnums.h"
 
-1168436408 d:\mvmotionai\mvmotionai\experimental\include\mvbentrytreenode.h
+1168930044 d:\mvmotionai\mvmotionai\experimental\include\mvbentrytreenode.h
 	"mvMotionAI-Types.h"
 	"mvEnums.h"
 	"mvBEntryTimer.h"
@@ -345,4 +346,9 @@
 	"mvEnums.h"
 	"mvMotionAI-Types.h"
 	<cmath>
+
+1168871826 d:\mvmotionai\mvmotionai\experimental\include\mvbentrytree.h
+	"mvMotionAI-Types.h"
+	"mvEnums.h"
+	"mvBEntryTreeNode.h"
 

@@ -28,6 +28,7 @@
 #include "mvList.h"
 #include "mvBEntryListNode.h"
 #include "mvBEntryTreeNode.h"
+#include "mvBEntryTree.h"
 /* TODO (White 2#1#): Implement all these functions */
 
 class mvBEntryList
@@ -39,7 +40,7 @@ class mvBEntryList
       mvIndex defaultBody;
       mvIndex defaultWaypoint;
       mvIndex defaultPathway;
-      mvBEntryTreeNode* treeRoot;
+      mvBEntryTree entryNodeTree;
 
    public:
       mvBEntryList(mvFloat dWeight, mvIndex dBody, mvIndex dWaypoint,\
@@ -152,6 +153,49 @@ class mvBEntryList
          mvFloat num);
       mvErrorEnum setCurrentEntryParametersv(const char* param,\
          mvFloat* numArray);
+
+      // TODO : tree functions
+      mvErrorEnum addNewTreeNode(mvOptionEnum tMode, mvIndex entryIndex);
+      mvErrorEnum addNewTreeLevel(mvOptionEnum tMode, mvIndex entryIndex);
+      void deleteEntryTree();
+      mvBEntryTree* getEntryTree();
+      mvBEntryTreeNode* getCurrentNode();
+
+      mvErrorEnum setCurrentTreeEntryParameter(mvParamEnum param,\
+         mvOptionEnum option);
+      mvErrorEnum setCurrentTreeEntryParameteri(mvParamEnum param,\
+         mvIndex paramIndex);
+      mvErrorEnum setCurrentTreeEntryParameterf(mvParamEnum param,\
+         mvFloat num);
+      mvErrorEnum setCurrentTreeEntryParameterv(mvParamEnum param,\
+         mvFloat* numArray);
+
+      mvErrorEnum getCurrentTreeEntryParameter(mvParamEnum param,\
+         mvOptionEnum* option);
+      mvErrorEnum getCurrentTreeEntryParameteri(mvParamEnum param,\
+         mvIndex* outIndex);
+      mvErrorEnum getCurrentTreeEntryParameterf(mvParamEnum param,\
+         mvFloat* num);
+      mvErrorEnum getCurrentTreeEntryParameterv(mvParamEnum param,\
+         mvFloat* numArray, mvCount* noOfParameters);
+
+      mvErrorEnum setCurrentTreeEntryParameters(const char* param,\
+         mvOptionEnum option);
+      mvErrorEnum setCurrentTreeEntryParametersi(const char* param,\
+         mvIndex paramIndex);
+      mvErrorEnum setCurrentTreeEntryParametersf(const char* param,\
+         mvFloat num);
+      mvErrorEnum setCurrentTreeEntryParametersv(const char* param,\
+         mvFloat* numArray);
+
+      mvErrorEnum getCurrentTreeEntryParameters(const char* param,\
+         const char** option);
+      mvErrorEnum getCurrentTreeEntryParametersi(const char* param,\
+         mvIndex* outIndex);
+      mvErrorEnum getCurrentTreeEntryParametersf(const char* param,\
+         mvFloat* num);
+      mvErrorEnum getCurrentTreeEntryParametersv(const char* param,\
+         mvFloat* numArray, mvCount* noOfParameters);
 
       ~mvBEntryList();
 

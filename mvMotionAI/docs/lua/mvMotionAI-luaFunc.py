@@ -1,20 +1,53 @@
-## 
-# \mainpage Implemented Lua Functions for version 00-01-22
-# \section Lua Functions Documentation
-
-
 ##
-# \brief loads a file of Lua code
+# \mainpage Implemented Lua Functions for version 00-01-22
+# \section lua Lua Functions Documentation
+# 
+# Hleo fkdsajjfel
+
+## \fn mvLoadLuaScriptFile(filename)
 #
-# @param filename c type string
-# \return error value either 0 if passed, non-zero for failure
-def mvLoadLuaScriptFile(filename):
-	pass
+#  More details.
+def func():
+    pass
+
+## Documentation for a class.
+#
+#  More details.
+class PyClass:
+   
+    ## The constructor.
+    def __init__(self):
+        self._memVar = 0;
+   
+    ## Documentation for a method.
+    #  @param self The object pointer.
+    def PyMethod(self):
+        pass
+     
+    ## A class variable.
+    classVar = 0;
+
+    ## @var _memVar
+    #  a member variable
+
+## Documentation for this module.
+#
+#  More details.
+class mvMotionAI:
+  
+   # \brief loads a file of Lua code
+   #
+   # @param filename c type string
+   # \return error value either 0 if passed, non-zero for failure
+   #
+   def mvLoadLuaScriptFile(filename):
+      pass
 	
 ##
 # \brief loads a file 
 #
 # \return error value either 0 if passed, non-zero for failure	
+##
 def mvRemoveAllWorlds():
 	pass
 	

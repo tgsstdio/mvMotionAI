@@ -19,50 +19,29 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-#ifndef MVBENTRYTREENODE_H_INCLUDED
-#define MVBENTRYTREENODE_H_INCLUDED
+#ifndef MVBENTRYTREE_H_INCLUDED
+#define MVBENTRYTREE_H_INCLUDED
 
 #include "mvMotionAI-Types.h"
 #include "mvEnums.h"
+#include "mvBEntryTreeNode.h"
 #include "mvBEntryTimer.h"
 
-/* TODO : implement functions tree node */
-
-class mvBEntryTreeNode
+class mvBEntryTree
 {
+   private:
+      mvCount noOfNodes;
+      mvBEntryTreeNode* root;
+      mvBEntryTreeNode* currentNode;
+
    public:
-      mvIndex bEntryNode;
-      mvOptionEnum mode;
-      mvBEntryTimer timer;
-      mvBEntryTreeNode* prevNode;
-      mvBEntryTreeNode* nextLevel;
-      mvBEntryTreeNode* prevLevel;
-      mvBEntryTreeNode* nextNode;
-      mvFloat weight;
+      mvBEntryTree();
+      mvErrorEnum addNewNode(mvOptionEnum beMode, mvIndex entryIndex,\
+         mvFloat weight, mvBEntryTimer* timer);
+      mvErrorEnum addNewLevel(mvOptionEnum beMode, mvIndex entryIndex,\
+         mvFloat weight, mvBEntryTimer* timer);
 
-      mvBEntryTreeNode(mvIndex bEntryIndex = MV_NO_CURRENT_INDEX,\
-         mvOptionEnum bNodeMode = MV_WEIGHTED,\
-         mvFloat bEWeight = 1.0,\
-         mvBEntryTreeNode* beNextNode = NULL,\
-         mvBEntryTreeNode* beNextLevel = NULL,
-         mvBEntryTreeNode* bePrevNode = NULL,\
-         mvBEntryTreeNode* bePrevLevel = NULL,\
-         mvFloat period = 1.0,\
-         mvFloat elapsedTime = 0.0
-         );
-      mvFloat getWeight() const;
-      mvBEntryTimer* getTimer();
-      mvErrorEnum setWeight(mvFloat bWeight);
-      mvBEntryTreeNode* getNextNode();
-      mvBEntryTreeNode* getNextLevel();
-      mvBEntryTreeNode* getPrevNode();
-      mvBEntryTreeNode* getPrevLevel();
-
-      void setNextNode(mvBEntryTreeNode* node);
-      void setNextLevel(mvBEntryTreeNode* node);
-      void setPrevNode(mvBEntryTreeNode* node);
-      void setPrevLevel(mvBEntryTreeNode* node);
-
+      // does current node after
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
       mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
       mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num);
@@ -74,7 +53,15 @@ class mvBEntryTreeNode
       mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
       mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
 
-     // ~mvBEntryTreeNode();
+      mvErrorEnum moveCurrentNodeUp(mvCount moves);
+      mvErrorEnum moveCurrentNodeDown(mvCount moves);
+      mvErrorEnum moveCurrentNodeBack(mvCount moves);
+      mvErrorEnum moveCurrentNodeForward(mvCount moves);
+
+      mvErrorEnum deleteCurrentNode();
+
+      void deleteAllNodes();
+      ~mvBEntryTree();
 };
 
-#endif // MVBENTRYTREENODE_H_INCLUDED
+#endif // MVBENTRYTREE_H_INCLUDED

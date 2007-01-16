@@ -18,11 +18,21 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
+ * Log
+ * Version     Date
+ * 00-01-31    16/01/06
+ *
+ * - completed timer and doxygen documentation
  */
 #include "mvMotionAI-Utilities.h"
 #include "mvBEntryTimer.h"
 
-/** @brief (one liner)
+/** @brief set vector variable of the timer
+  * \param[in] paramFlag mvParamEnum query option
+  * \param[in] numArray mvFloat array pointer to memory location
+  * \return either MV_NO_ERROR (0) or any non zero (ie.
+  * MV_INVALID_TIMER_PARAMETER)
   *
   * Automatically calls setParameterf as well
   */
@@ -37,9 +47,11 @@ mvErrorEnum mvBEntryTimer::setParameterv(mvParamEnum paramFlag, mvFloat* numArra
    return setParameterf(paramFlag, numArray[0]);
 }
 
-/** @brief (one liner)
-  *
-  * (documentation goes here)
+/** @brief set floating point variable of the timer
+  * \param[in] paramFlag mvParamEnum query option
+  * \param[in] num mvFloat value
+  * \return either MV_NO_ERROR (0) or any non zero (ie.
+  * MV_INVALID_TIMER_PARAMETER)
   */
 mvErrorEnum mvBEntryTimer::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
@@ -54,9 +66,11 @@ mvErrorEnum mvBEntryTimer::setParameterf(mvParamEnum paramFlag, mvFloat num)
    }
 }
 
-/** @brief (one liner)
-  *
-  * (documentation goes here)
+/** @brief set the state parameter of the timer
+  * \param[in] paramFlag mvParamEnum query option
+  * \param[in] option mvOptionEnum state value
+  * \return either MV_NO_ERROR (0) or any non zero (ie.
+  * MV_INVALID_TIMER_PARAMETER)
   */
 mvErrorEnum mvBEntryTimer::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
@@ -73,9 +87,8 @@ mvErrorEnum mvBEntryTimer::setParameter(mvParamEnum paramFlag, mvOptionEnum opti
    }
 }
 
-/* TODO (White 2#1#): Doxgen Documentation */
 
-/** @brief (one liner)
+/** @brief set an index parameter of the timer
   * \param[in] paramFlag mvParamEnum query option
   * \param[in] index
   * \return either MV_NO_ERROR (0) or any non zero (ie.
@@ -180,16 +193,14 @@ mvErrorEnum mvBEntryTimer::getParameteri(mvParamEnum paramFlag, mvIndex* index)
 }
 
 /** @brief set timer to timed
-  *
-  */
+ */
 void mvBEntryTimer::toTimed()
 {
    isTimed = true;
 }
 
-/**
-  * @brief set timer to always perform
-  */
+/** @brief set timer to always perform
+ */
 void mvBEntryTimer::toAlways()
 {
    isTimed = false;
@@ -276,7 +287,6 @@ mvFloat mvBEntryTimer::getElaspedTime() const
   */
 mvCount mvBEntryTimer::update(mvFloat timeInSecs)
 {
-   //TODO : implement these functions
    mvFloat intPart;
    mvFloat total;
 
@@ -309,13 +319,26 @@ mvCount mvBEntryTimer::update(mvFloat timeInSecs)
 }
 
 /** @brief timer constructor
+  * \param[in] periodInSecs time when the action is performed
+  * \param[in] eTime elaspedTime
   *
-  * default timer mode is set to always
+  * If period or elapsed time is invalid, the period will be 1.0 second
+  * and elapsed time will be 0.0
+  *
+  * Default timer mode is set to always.
   */
 mvBEntryTimer::mvBEntryTimer(mvFloat periodInSecs, mvFloat eTime)
 {
-   period = periodInSecs;
-   elapsedTime = eTime;
+   if (setPeriod(periodInSecs) != MV_NO_ERROR)
+   {
+      period = 1.0;
+   }
+
+   if (setElapsedTime(eTime) != MV_NO_ERROR)
+   {
+      elapsedTime = 0.0;
+   }
+
    isTimed = false;
 }
 
