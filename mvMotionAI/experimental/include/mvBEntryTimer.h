@@ -24,8 +24,6 @@
 
 #include "mvMotionAI-Types.h"
 #include "mvEnums.h"
-/* TODO (White 2#1#): implement these functions */
-
 
 class mvBEntryTimer
 {

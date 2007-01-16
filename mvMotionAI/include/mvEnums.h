@@ -189,6 +189,16 @@ enum mvParamEnum
    MV_ELAPSED_TIME,
    MV_PERIOD,
    MV_IS_TIMED,
+   MV_INDEX,
+
+   // tree movement functions
+   MV_NEW_NODE,
+   MV_NEW_LEVEL,
+   MV_NEXT_NODE,
+   MV_PREV_NODE,
+   MV_UP_LEVEL,
+   MV_DOWN_LEVEL,
+
    // user defined parameters
    MV_USER_PARAM_0,
    MV_USER_PARAM_1,
@@ -270,6 +280,7 @@ enum mvErrorEnum
    MV_NOT_ENOUGH_FLOATS_IN_ARRAY,
    MV_STRING_NOT_FOUND,
    MV_INVALID_TIMER_PARAMETER,
+   MV_INVALID_BEHAVIOUR_ENTRY_TREE_PARAMETER,
 
    MV_ERROR_ENUM_IS_NOT_FOUND, // odd error
    MV_NO_OF_ERROR_ENUMS

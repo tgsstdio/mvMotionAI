@@ -10,8 +10,8 @@
 	<File name="experimental\include\mvGlobalFunctions.h" open="0" top="0" tabpos="0">
 		<Cursor position="4020" topLine="30" />
 	</File>
-	<File name="experimental\include\mvList.h" open="1" top="0" tabpos="1">
-		<Cursor position="1174" topLine="12" />
+	<File name="experimental\include\mvList.h" open="0" top="0" tabpos="1">
+		<Cursor position="1174" topLine="6" />
 	</File>
 	<File name="experimental\src\mv.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="16495" topLine="671" />
@@ -34,8 +34,8 @@
 	<File name="include\mvBody.h" open="0" top="0" tabpos="3">
 		<Cursor position="6326" topLine="137" />
 	</File>
-	<File name="include\mvEnums.h" open="1" top="0" tabpos="2">
-		<Cursor position="4973" topLine="193" />
+	<File name="include\mvEnums.h" open="1" top="0" tabpos="1">
+		<Cursor position="4719" topLine="171" />
 	</File>
 	<File name="include\mvForce.h" open="0" top="0" tabpos="0">
 		<Cursor position="1758" topLine="30" />
@@ -55,8 +55,8 @@
 	<File name="include\mvMotionAI-Types.h" open="0" top="0" tabpos="0">
 		<Cursor position="2215" topLine="60" />
 	</File>
-	<File name="include\mvMotionAI-Utilities.h" open="1" top="0" tabpos="6">
-		<Cursor position="18976" topLine="652" />
+	<File name="include\mvMotionAI-Utilities.h" open="0" top="0" tabpos="6">
+		<Cursor position="18976" topLine="663" />
 	</File>
 	<File name="include\mvMotionAI.h" open="0" top="0" tabpos="3">
 		<Cursor position="3204" topLine="70" />
@@ -136,8 +136,8 @@
 	<File name="src\mvLuaScript.cpp" open="0" top="0" tabpos="17">
 		<Cursor position="8533" topLine="264" />
 	</File>
-	<File name="src\mvMotionAI-Utilities.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="3428" topLine="82" />
+	<File name="src\mvMotionAI-Utilities.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="3428" topLine="93" />
 	</File>
 	<File name="src\mvMotionAI.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="2451" topLine="54" />

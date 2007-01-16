@@ -91,6 +91,7 @@
 		</Unit>
 		<Unit filename="experimental\include\mvBEntryListNode.h" />
 		<Unit filename="experimental\include\mvBEntryTimer.h" />
+		<Unit filename="experimental\include\mvBEntryTree.h" />
 		<Unit filename="experimental\include\mvBEntryTreeNode.h" />
 		<Unit filename="experimental\include\mvBaseBehaviour.h">
 			<Option target="Debug" />
