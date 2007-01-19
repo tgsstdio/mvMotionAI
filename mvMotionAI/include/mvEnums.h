@@ -24,6 +24,7 @@
 #define MV_ENUMERATIONS_H_
 #include <cstdlib>
 // TODO : reimplement enum strings
+// TODO : alignment , cohension & separation behaviours
 enum mvOptionEnum
 {
    MV_FALSE = 0,
@@ -76,6 +77,7 @@ enum mvOptionEnum
    MV_NON_WAYPOINT_TYPE,
 
    //STATE
+   // TODO : remove states from body => to paramEnums
    MV_APPLY_MOTIONAI_STATE,
    MV_NO_MOTION_STATE,
    MV_USER_MOTION_STATE,
@@ -120,10 +122,11 @@ enum mvOptionEnum
    // integration mode
    MV_WEIGHTED,
    MV_XOR,
-   MV_PROTIZED_DITHERED,
+   MV_PRORITIZED_DITHERING,
    MV_RANDOM,
    MV_RANDOMIZED_WEIGHTED,
    MV_LIST_TREE,
+   MV_NON_BEHAVIOUR_ENTRY_MODE,
 
    MV_NON_OPTION_ENUM, // default failed enum value : do not use
 
@@ -159,8 +162,8 @@ enum mvParamEnum
    MV_WAYPOINT,
    MV_BODY,
    MV_PATHWAY,
-   MV_PERCEIVED_COHESION_FLAG,
-   MV_PERCEIVED_ALIGNMENT_FLAG,
+   MV_PERCEIVED_COHESION_FLAG, // remove flag
+   MV_PERCEIVED_ALIGNMENT_FLAG, // remove flag
    MV_COHESION_FACTOR,
    MV_SEPARATION_FACTOR,
    MV_ALIGNMENT_FACTOR,
@@ -281,6 +284,11 @@ enum mvErrorEnum
    MV_STRING_NOT_FOUND,
    MV_INVALID_TIMER_PARAMETER,
    MV_INVALID_BEHAVIOUR_ENTRY_TREE_PARAMETER,
+   MV_NEW_ENTRY_TREE_POSITION_IS_NOT_NULL,
+   MV_INVALID_NO_OF_MOVES_INSIDE_TREE,
+   MV_INVALID_MEMORY_ALLOCATION, // new / delete problems
+   MV_MOTIONAI_IS_NOT_INITIALISED,
+   MV_BEHAVIOUR_FUNCTION_LOADER_IS_NULL,
 
    MV_ERROR_ENUM_IS_NOT_FOUND, // odd error
    MV_NO_OF_ERROR_ENUMS
