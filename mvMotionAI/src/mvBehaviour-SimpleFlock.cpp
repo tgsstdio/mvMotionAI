@@ -67,7 +67,7 @@ void mvBehaviour_SimpleFlock_GroupOperations(mvWorld* worldPtr,
       /**
        * Step 2 - set totals to flock groupData
        */
-      if (groupData->getType() == MV_SIMPLE_FLOCK_GROUP_ENTRY)
+      if (groupData->getType() == MV_GROUP_ENTRY)
       {
          groupData->extraPoints[MV_SIMPLE_FLOCK_TOTAL_POSITION] = totalPosition;
          groupData->extraPoints[MV_SIMPLE_FLOCK_TOTAL_VELOCITY] = totalVelocity;

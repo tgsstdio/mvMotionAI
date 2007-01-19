@@ -136,7 +136,7 @@ void mvProcessGroupBehaviours(mvWorld* worldPtr, mvGroupBehaviour* groupBehPtr, 
 #endif
                 switch (behaviourType)
                 {
-                   case MV_SIMPLE_FLOCK_GROUP_ENTRY:
+                   case MV_GROUP_ENTRY:
                       mvBehaviour_SimpleFlock_GroupOperations(worldPtr, currentGroup, groupEntry);
                       break;
                    default:

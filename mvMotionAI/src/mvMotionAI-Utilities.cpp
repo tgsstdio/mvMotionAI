@@ -23,10 +23,7 @@
  */
 
 #include "mvMotionAI-Utilities.h"
-
-/**
- * Contains no code i.e empty file
- */
+#include <cmath>
 
  /*
  * Code taken from OpenSteer Utilities.h (2002-2004)
@@ -45,7 +42,7 @@
 /* TODO (White 2#1#): Include high precision as well */
 // #ifdef WIN32 is MVC++ 6 tag
 
-inline mvFloat mvFloor (mvFloat x)
+mvFloat mvFloor (mvFloat x)
 {
 #ifdef WIN32
    return floor (x);
@@ -54,7 +51,7 @@ inline mvFloat mvFloor (mvFloat x)
 #endif
 }
 
-inline mvFloat mvSqrt (mvFloat x)
+mvFloat mvSqrt (mvFloat x)
 {
 #ifdef WIN32
    return sqrt (x);
@@ -63,7 +60,7 @@ inline mvFloat mvSqrt (mvFloat x)
 #endif
 }
 
-inline mvFloat mvSin (mvFloat x)
+mvFloat mvSin (mvFloat x)
 {
 #ifdef WIN32
    return sin (x);
@@ -72,7 +69,7 @@ inline mvFloat mvSin (mvFloat x)
 #endif
 }
 
-inline mvFloat mvCos (mvFloat x)
+mvFloat mvCos (mvFloat x)
 {
 #ifdef WIN32
    return cos (x);
@@ -84,17 +81,17 @@ inline mvFloat mvCos (mvFloat x)
 //inline float mvAbs (mvFloat x)           {return abs (x);}
 //inline int mvAbs (int x)            {return abs (x);}
 
-inline mvFloat mvMax (mvFloat x, mvFloat y)
+mvFloat mvMax (mvFloat x, mvFloat y)
 {
    return (x > y) ? x : y;
 }
 
-inline mvFloat mvMin (mvFloat x, mvFloat y)
+mvFloat mvMin (mvFloat x, mvFloat y)
 {
    return (x < y) ? x : y;
 }
 
-inline mvFloat mvArcCos(mvFloat theta)
+mvFloat mvArcCos(mvFloat theta)
 {
 #ifdef WIN32
    return acos(theta);
@@ -103,7 +100,7 @@ inline mvFloat mvArcCos(mvFloat theta)
 #endif
 }
 
-inline mvFloat mvArcSin(mvFloat theta)
+mvFloat mvArcSin(mvFloat theta)
 {
 #ifdef WIN32
    return asin(theta);
@@ -112,7 +109,7 @@ inline mvFloat mvArcSin(mvFloat theta)
 #endif
 }
 
-inline mvFloat mvArcTan(mvFloat theta)
+mvFloat mvArcTan(mvFloat theta)
 {
 #ifdef WIN32
    return atan(theta);
@@ -121,22 +118,22 @@ inline mvFloat mvArcTan(mvFloat theta)
 #endif
 }
 
-inline mvFloat mvFMod(mvFloat num, mvFloat denom)
+mvFloat mvFMod(mvFloat num, mvFloat denom)
 {
-#ifdef WIN32
-   return fmod(num, denom);
-#else
+//#ifdef WIN32
+  // return fmod(num, denom);
+//#else
    return std::fmod(num, denom);
-#endif
+//#endif
 }
 
-inline mvFloat mvModf(mvFloat x, mvFloat* intPart);
+mvFloat mvModf(mvFloat x, mvFloat* intPart)
 {
-#ifdef WIN32
-   return modf(x, intPart);
-#else
+//#ifdef WIN32
+  // return modf(x, intPart);
+//#else
    return std::modf(x, intPart);
-#endif
+//#endif
 }
 
 

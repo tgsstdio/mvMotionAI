@@ -398,7 +398,7 @@ mvErrorEnum mvForce::setParameterf(mvParamEnum paramFlag, mvFloat num)
             isValid = true;
          }
          break;
-      case MV_GRAVITIONAL_MASS:
+      case MV_MASS:
          if (forceType == MV_GRAVITY_TO_POINT)
          {
             if (variables != NULL)
@@ -408,7 +408,7 @@ mvErrorEnum mvForce::setParameterf(mvParamEnum paramFlag, mvFloat num)
             isValid = true;
          }
          break;
-      case MV_GRAVITY_CONSTANT:
+      case MV_CONSTANT:
          if (forceType == MV_GRAVITY_TO_POINT)
          {
             if (variables != NULL)
@@ -484,7 +484,7 @@ mvErrorEnum mvForce::getParameterf(mvParamEnum paramFlag, mvFloat* dest)
                isValid = true;
             }
             break;
-         case MV_GRAVITIONAL_MASS:
+         case MV_MASS:
             if (forceType == MV_GRAVITY_TO_POINT)
             {
                if (variables != NULL)
@@ -494,7 +494,7 @@ mvErrorEnum mvForce::getParameterf(mvParamEnum paramFlag, mvFloat* dest)
                isValid = true;
             }
             break;
-         case MV_GRAVITY_CONSTANT:
+         case MV_CONSTANT:
             if (forceType == MV_GRAVITY_TO_POINT)
             {
                if (variables != NULL)
@@ -674,9 +674,9 @@ mvCount mvForce::getNoOfParameters(mvParamEnum paramFlag)
          return MV_NO_OF_FORCE_QUANTITY_PARAMETERS;
       case MV_FORCE_VECTOR:
          return MV_NO_OF_FORCE_VECTOR_PARAMETERS;
-      case MV_GRAVITIONAL_MASS:
+      case MV_MASS:
          return MV_NO_OF_GRAVITIONAL_MASS_PARAMETERS;
-      case MV_GRAVITY_CONSTANT:
+      case MV_CONSTANT:
          return MV_NO_OF_GRAVITY_CONSTANT_PARAMETERS;
       case MV_POSITION:
          return MV_NO_OF_POSITION_PARAMETERS;

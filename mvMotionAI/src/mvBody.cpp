@@ -433,13 +433,13 @@ mvErrorEnum mvBody::getParameteri(mvParamEnum paramFlag, mvIndex* index)
 
    switch (paramFlag)
    {
-      case MV_WAYPOINT_TARGET:
+      case MV_WAYPOINT:
          *index = getDefaultWaypoint();
          return MV_NO_ERROR;
-      case MV_BODY_TARGET:
+      case MV_BODY:
          *index = getDefaultBody();
          return MV_NO_ERROR;
-      case MV_PATHWAY_TARGET:
+      case MV_PATHWAY:
          *index = getDefaultPathway();
          return MV_NO_ERROR;
       default:
@@ -848,13 +848,13 @@ mvErrorEnum mvBody::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
    switch (paramFlag)
    {
-      case MV_WAYPOINT_TARGET:
+      case MV_WAYPOINT:
          setDefaultWaypoint(index);
          return MV_NO_ERROR;
-      case MV_BODY_TARGET:
+      case MV_BODY:
          setDefaultBody(index);
          return MV_NO_ERROR;
-      case MV_PATHWAY_TARGET:
+      case MV_PATHWAY:
          setDefaultPathway(index);
          return MV_NO_ERROR;
       default:
