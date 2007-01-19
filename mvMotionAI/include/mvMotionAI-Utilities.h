@@ -34,7 +34,6 @@
 #include <vector>
 #include "mvEnums.h"
 #include "mvMotionAI-Types.h"
-#include <cmath>
 
 
 
@@ -694,19 +693,19 @@ mvErrorEnum mvGetClassParametersv(std::vector<mvClass*>& mvClassList,
 /*
  * Math functions
  */
-inline mvFloat mvFloor (mvFloat x);
-inline mvFloat mvSqrt (mvFloat x);
-inline mvFloat mvSin (mvFloat x);
-inline mvFloat mvCos (mvFloat x);
-inline mvFloat mvAbs (mvFloat x);
+mvFloat mvFloor (mvFloat x);
+mvFloat mvSqrt (mvFloat x);
+mvFloat mvSin (mvFloat x);
+mvFloat mvCos (mvFloat x);
+mvFloat mvAbs (mvFloat x);
 //inline int   mvAbs (int x);
-inline mvFloat mvMax (mvFloat x, mvFloat y);
-inline mvFloat mvMin (mvFloat x, mvFloat y);
+mvFloat mvMax (mvFloat x, mvFloat y);
+mvFloat mvMin (mvFloat x, mvFloat y);
 
-inline mvFloat mvArcCos(mvFloat theta);
-inline mvFloat mvArcSin(mvFloat theta);
-inline mvFloat mvArcTan(mvFloat theta);
-inline mvFloat mvFMod(mvFloat num, mvFloat denom);
-inline mvFloat mvModf(mvFloat x, mvFloat* intPart);
+mvFloat mvArcCos(mvFloat theta);
+mvFloat mvArcSin(mvFloat theta);
+mvFloat mvArcTan(mvFloat theta);
+mvFloat mvFMod(mvFloat num, mvFloat denom);
+mvFloat mvModf(mvFloat x, mvFloat* intPart);
 
 #endif
