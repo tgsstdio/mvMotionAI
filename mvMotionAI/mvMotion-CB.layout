@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-winXP" />
-	<File name="experimental\include\mv2.h" open="0" top="0" tabpos="5">
+	<File name="experimental\include\mv2.h" open="1" top="0" tabpos="5">
 		<Cursor position="5937" topLine="102" />
 	</File>
-	<File name="experimental\include\mvBaseBehaviour.h" open="0" top="0" tabpos="1">
+	<File name="experimental\include\mvBaseBehaviour.h" open="1" top="0" tabpos="1">
 		<Cursor position="0" topLine="72" />
 	</File>
 	<File name="experimental\include\mvGlobalFunctions.h" open="0" top="0" tabpos="0">
 		<Cursor position="4020" topLine="30" />
 	</File>
-	<File name="experimental\include\mvList.h" open="0" top="0" tabpos="1">
+	<File name="experimental\include\mvList.h" open="1" top="0" tabpos="1">
 		<Cursor position="1174" topLine="6" />
 	</File>
-	<File name="experimental\src\mv.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="16495" topLine="671" />
+	<File name="experimental\src\mv.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="15361" topLine="677" />
 	</File>
-	<File name="experimental\src\mvBaseBehaviour.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="751" topLine="3" />
+	<File name="experimental\src\mvBaseBehaviour.cpp" open="1" top="0" tabpos="0">
+		<Cursor position="510" topLine="3" />
 	</File>
-	<File name="experimental\src\mvList.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="2883" topLine="62" />
+	<File name="experimental\src\mvList.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="26" topLine="0" />
 	</File>
 	<File name="include\mvBehaviour-List.h" open="0" top="0" tabpos="0">
 		<Cursor position="3388" topLine="6" />
@@ -35,7 +35,7 @@
 		<Cursor position="6326" topLine="137" />
 	</File>
 	<File name="include\mvEnums.h" open="1" top="0" tabpos="1">
-		<Cursor position="4719" topLine="171" />
+		<Cursor position="7724" topLine="259" />
 	</File>
 	<File name="include\mvForce.h" open="0" top="0" tabpos="0">
 		<Cursor position="1758" topLine="30" />
@@ -55,11 +55,11 @@
 	<File name="include\mvMotionAI-Types.h" open="0" top="0" tabpos="0">
 		<Cursor position="2215" topLine="60" />
 	</File>
-	<File name="include\mvMotionAI-Utilities.h" open="0" top="0" tabpos="6">
-		<Cursor position="18976" topLine="663" />
+	<File name="include\mvMotionAI-Utilities.h" open="0" top="0" tabpos="2">
+		<Cursor position="1600" topLine="0" />
 	</File>
-	<File name="include\mvMotionAI.h" open="0" top="0" tabpos="3">
-		<Cursor position="3204" topLine="70" />
+	<File name="include\mvMotionAI.h" open="0" top="0" tabpos="4">
+		<Cursor position="3786" topLine="28" />
 	</File>
 	<File name="include\mvObstacle.h" open="0" top="0" tabpos="5">
 		<Cursor position="1580" topLine="0" />
@@ -74,16 +74,16 @@
 		<Cursor position="3185" topLine="67" />
 	</File>
 	<File name="include\mvWorld.h" open="0" top="0" tabpos="1">
-		<Cursor position="27239" topLine="391" />
+		<Cursor position="24920" topLine="0" />
 	</File>
-	<File name="src\mvBehaviour-Central.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="15847" topLine="415" />
+	<File name="src\mvBehaviour-Central.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="5064" topLine="116" />
 	</File>
 	<File name="src\mvBehaviour-Clone.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1177" topLine="0" />
 	</File>
-	<File name="src\mvBehaviour-Entry.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="0" topLine="96" />
+	<File name="src\mvBehaviour-Entry.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="13591" topLine="495" />
 	</File>
 	<File name="src\mvBehaviour-Flee.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1280" topLine="0" />
@@ -94,17 +94,20 @@
 	<File name="src\mvBehaviour-Seek.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1210" topLine="12" />
 	</File>
-	<File name="src\mvBehaviour-SimpleFlock.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="2022" topLine="6" />
+	<File name="src\mvBehaviour-SimpleFlock.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="2797" topLine="47" />
 	</File>
-	<File name="src\mvBody.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="25837" topLine="471" />
+	<File name="src\mvBehaviour-Type.cpp" open="0" top="0" tabpos="8">
+		<Cursor position="5492" topLine="158" />
 	</File>
-	<File name="src\mvEnums.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="1396" topLine="9" />
+	<File name="src\mvBody.cpp" open="0" top="0" tabpos="9">
+		<Cursor position="23931" topLine="828" />
 	</File>
-	<File name="src\mvForce.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="7448" topLine="230" />
+	<File name="src\mvEnums.cpp" open="0" top="0" tabpos="10">
+		<Cursor position="9883" topLine="371" />
+	</File>
+	<File name="src\mvForce.cpp" open="0" top="0" tabpos="11">
+		<Cursor position="21581" topLine="656" />
 	</File>
 	<File name="src\mvGroup.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="2377" topLine="72" />
@@ -136,11 +139,11 @@
 	<File name="src\mvLuaScript.cpp" open="0" top="0" tabpos="17">
 		<Cursor position="8533" topLine="264" />
 	</File>
-	<File name="src\mvMotionAI-Utilities.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="3428" topLine="93" />
+	<File name="src\mvMotionAI-Utilities.cpp" open="0" top="0" tabpos="16">
+		<Cursor position="429" topLine="9" />
 	</File>
-	<File name="src\mvMotionAI.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="2451" topLine="54" />
+	<File name="src\mvMotionAI.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="2046" topLine="248" />
 	</File>
 	<File name="src\mvObstacle.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="1161" topLine="0" />
@@ -148,8 +151,8 @@
 	<File name="src\mvVec3.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="7897" topLine="16" />
 	</File>
-	<File name="src\mvWaypoint.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="15343" topLine="695" />
+	<File name="src\mvWaypoint.cpp" open="0" top="0" tabpos="17">
+		<Cursor position="7830" topLine="254" />
 	</File>
 	<File name="src\mvWorld.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="51656" topLine="1713" />
