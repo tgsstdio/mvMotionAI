@@ -55,6 +55,9 @@ class mvItemList
       mvIndex setCurrentIndex(mvIndex index);
 
       // TODO : implement this function
+      void applyToAllItemsByItemIndex(void (someFunction)(mvIndex,void*),\
+         void* extraPtr);
+
       mvClass* findItemPtrInList(bool (someFunction)(mvClass*, void*),\
          void* extraPtr);
 

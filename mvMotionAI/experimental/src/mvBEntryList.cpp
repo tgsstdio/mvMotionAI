@@ -429,7 +429,7 @@ mvBEntryListNode * mvBEntryList::findExistingGroupEntry(mvIndex bIndex,\
   *
   * (documentation goes here)
   */
- mvBEntryList::mvBEntryList(mvFloat dWeight = 1.0,\
+ mvBEntryList::mvBEntryList(mvFloat dWeight,\
    mvIndex dBody = MV_NO_CURRENT_INDEX,\
    mvIndex dWaypoint = MV_NO_CURRENT_INDEX,\
    mvIndex dPathway = MV_NO_CURRENT_INDEX)

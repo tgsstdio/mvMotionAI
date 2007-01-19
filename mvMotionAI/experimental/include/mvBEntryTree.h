@@ -33,30 +33,32 @@ class mvBEntryTree
       mvCount noOfNodes;
       mvBEntryTreeNode* root;
       mvBEntryTreeNode* currentNode;
+      void createRootTreeNode(mvIndex entryIndex,\
+         mvOptionEnum beMode, mvFloat weight, mvBEntryTimer* timer);
+      bool isRootEmpty();
 
    public:
       mvBEntryTree();
-      mvErrorEnum addNewNode(mvOptionEnum beMode, mvIndex entryIndex,\
-         mvFloat weight, mvBEntryTimer* timer);
-      mvErrorEnum addNewLevel(mvOptionEnum beMode, mvIndex entryIndex,\
-         mvFloat weight, mvBEntryTimer* timer);
+      mvErrorEnum addNewNode(mvIndex entryIndex = MV_NO_CURRENT_INDEX,\
+         mvOptionEnum beMode = MV_WEIGHTED,
+         mvFloat weight = 1.0, mvBEntryTimer* timer = NULL);
+      mvErrorEnum addNewLevel(mvIndex entryIndex = MV_NO_CURRENT_INDEX,\
+         mvOptionEnum beMode = MV_WEIGHTED,\
+         mvFloat weight = 1.0, mvBEntryTimer* timer = NULL);
 
       // does current node after
-      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
-      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
-      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num);
-      mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
-         mvCount* noOfParameters);
-
-      mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
-      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
-      mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
-      mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
+      mvBEntryTreeNode* getCurrentNode();
+      mvBEntryTreeNode* getRoot();
 
       mvErrorEnum moveCurrentNodeUp(mvCount moves);
       mvErrorEnum moveCurrentNodeDown(mvCount moves);
       mvErrorEnum moveCurrentNodeBack(mvCount moves);
       mvErrorEnum moveCurrentNodeForward(mvCount moves);
+
+      mvCount countLevelsAbove();
+      mvCount countLevelBelow();
+      mvCount countNextNodes();
+      mvCount countPreviousNodes();
 
       mvErrorEnum deleteCurrentNode();
 

@@ -43,13 +43,16 @@ class mvBEntryTreeNode
       mvBEntryTreeNode(mvIndex bEntryIndex = MV_NO_CURRENT_INDEX,\
          mvOptionEnum bNodeMode = MV_WEIGHTED,\
          mvFloat bEWeight = 1.0,\
+         mvFloat period = 1.0,\
+         mvFloat elapsedTime = 0.0,
          mvBEntryTreeNode* beNextNode = NULL,\
          mvBEntryTreeNode* beNextLevel = NULL,
          mvBEntryTreeNode* bePrevNode = NULL,\
-         mvBEntryTreeNode* bePrevLevel = NULL,\
-         mvFloat period = 1.0,\
-         mvFloat elapsedTime = 0.0
+         mvBEntryTreeNode* bePrevLevel = NULL
          );
+
+      mvIndex getEntryIndex();
+      mvErrorEnum setMode(mvOptionEnum option);
       mvFloat getWeight() const;
       mvBEntryTimer* getTimer();
       mvErrorEnum setWeight(mvFloat bWeight);
@@ -73,6 +76,10 @@ class mvBEntryTreeNode
       mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
       mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
       mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
+
+      // helper functions
+      void addNewNode(mvBEntryTreeNode* childNode);
+      void addNewLevel(mvBEntryTreeNode* childNode);
 
      // ~mvBEntryTreeNode();
 };

@@ -52,6 +52,22 @@ class mvWorld_V2
       char* getID() const;
       ~mvWorld_V2();
 
+      // TODO : world functions
+      void worldStep(mvFloat timeInSecs);
+      mvErrorEnum nudgeBody(mvIndex bodyIndex, mvFloat timeInSecs);
+      mvErrorEnum nudgeCurrentBody(mvFloat timeInSecs);
+
+      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
+      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
+      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num);
+      mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfElements);
+
+      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
+      mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
+
+
       // body functions
       mvIndex createBody(mvOptionEnum bType, mvOptionEnum bShape,\
          mvFloat x, mvFloat y, mvFloat z);
@@ -65,7 +81,6 @@ class mvWorld_V2
          void* extraPtr);
       void applyToAllBodiesByIndex(mvIndex worldIndex,\
          void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
-
 
       mvErrorEnum setBodyParameteri(mvIndex index, mvParamEnum paramFlag,\
          mvIndex paramIndex);
@@ -734,11 +749,6 @@ class mvWorld_V2
          mvFloat* num);
       mvErrorEnum getCurrentForceParametersv(const char* param,\
          mvFloat* array, mvCount* noOfParameters);
-
-      void worldStep(mvFloat timeInSecs);
-
-      mvErrorEnum nudgeBody(mvIndex index, mvFloat timeInSecs);
-      mvErrorEnum nudgeCurrentBody(mvFloat timeInSecs);
 
       mvErrorEnum setDefaultWaypointForBody(mvIndex waypointIndex,\
          mvIndex bodyIndex);

@@ -37,6 +37,12 @@ mvErrorEnum mvBehavFuncList::addBehaviourFunction(mvOptionEnum key, mvBaseBehavi
    // check if behaviour key exists
    std::map<mvOptionEnum,mvBaseBehaviourLoader*>::iterator checkKey;
 
+   // if loader is null, return error
+   if (bFunc == NULL)
+   {
+      return MV_BEHAVIOUR_FUNCTION_LOADER_IS_NULL;
+   }
+
    checkKey = bFunctions.find(key);
 
    // if found key exist in map, return false

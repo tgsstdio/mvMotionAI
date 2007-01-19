@@ -1193,3 +1193,18 @@ mvIndex mvItemList<mvClass>::findItemInList(bool (someFunction)(mvClass*, void*)
    return MV_NO_CURRENT_INDEX;
 
 }
+
+template <class mvClass>
+void mvItemList<mvClass>::applyToAllItemsByItemIndex(\
+   void (someFunction)(mvIndex,void*), void* extraPtr)
+{
+   class std::vector<mvClass*>::iterator i;
+   class std::vector<mvClass*>::iterator listEnd = listItems.end();
+   mvIndex itemIndex = 1;
+
+   for (i = listItems.begin(); i != listEnd; ++i)
+   {
+      someFunction(itemIndex, extraPtr);
+      ++itemIndex;
+   }
+}
