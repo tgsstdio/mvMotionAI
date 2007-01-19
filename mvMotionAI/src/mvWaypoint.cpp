@@ -249,7 +249,7 @@ mvErrorEnum mvWaypoint::addForce(mvForce* forcePtr)
    mvForce* tempForce = NULL;
 
    if (forcePtr == NULL)
-      return MV_PARAM_POINTER_IS_NULL;
+      return MV_PARAMETER_ARRAY_IS_NULL;
 
    for (i = forceList.begin(); i != forceList.end(); ++i)
    {
@@ -274,7 +274,7 @@ mvErrorEnum mvWaypoint::removeForce(mvForce* forcePtr)
    mvForce* tempForce = NULL;
 
    if (forcePtr == NULL)
-      return MV_PARAM_POINTER_IS_NULL;
+      return MV_PARAMETER_ARRAY_IS_NULL;
 
    for (i = forceList.begin(); i != forceList.end(); ++i)
    {

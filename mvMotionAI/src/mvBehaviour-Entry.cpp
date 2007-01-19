@@ -137,13 +137,13 @@ mvErrorEnum mvBehaviourEntry::getParameteri(mvParamEnum paramFlag, mvIndex* inde
 
    switch(paramFlag)
    {
-      case MV_WAYPOINT_TARGET:
+      case MV_WAYPOINT:
          *index = getWaypoint();
          return MV_NO_ERROR;
-      case MV_BODY_TARGET:
+      case MV_BODY:
          *index = getBody();
          return MV_NO_ERROR;
-      case MV_PATHWAY_TARGET:
+      case MV_PATHWAY:
          *index = getPathway();
          return MV_NO_ERROR;
       default:
@@ -155,11 +155,11 @@ mvErrorEnum mvBehaviourEntry::setParameteri(mvParamEnum paramFlag, mvIndex optio
 {
    switch(paramFlag)
    {
-      case MV_WAYPOINT_TARGET:
+      case MV_WAYPOINT:
          return addWaypoint(option);
-      case MV_BODY_TARGET:
+      case MV_BODY:
          return addBody(option);
-      case MV_PATHWAY_TARGET:
+      case MV_PATHWAY:
          return addPathway(option);
       default:
          return MV_INVALID_BEHAVIOUR_PARAMETER;
@@ -179,14 +179,14 @@ mvErrorEnum mvBehaviourEntry::getParameter(mvParamEnum paramFlag, mvOptionEnum* 
          *dest = getType();
          return MV_NO_ERROR;
       case MV_PERCEIVED_COHESION_FLAG:
-         if (bType == MV_SIMPLE_FLOCK_GROUP_ENTRY)
+         if (bType == MV_GROUP_ENTRY)
          {
             *dest = extraStates[MV_SIMPLE_FLOCK_PERCEIVED_COHESION_FLAG_INDEX];
             isValid = true;
          }
          break;
       case MV_PERCEIVED_ALIGNMENT_FLAG:
-         if (bType == MV_SIMPLE_FLOCK_GROUP_ENTRY)
+         if (bType == MV_GROUP_ENTRY)
          {
             *dest = extraStates[MV_SIMPLE_FLOCK_PERCEIVED_ALIGNMENT_FLAG_INDEX];
             isValid = true;
@@ -205,14 +205,14 @@ mvErrorEnum mvBehaviourEntry::setParameter(mvParamEnum paramFlag, mvOptionEnum o
    switch(paramFlag)
    {
       case MV_PERCEIVED_COHESION_FLAG:
-         if (bType == MV_SIMPLE_FLOCK_GROUP_ENTRY)
+         if (bType == MV_GROUP_ENTRY)
          {
             extraStates[MV_SIMPLE_FLOCK_PERCEIVED_COHESION_FLAG_INDEX] = option;
             isValid = true;
          }
          break;
       case MV_PERCEIVED_ALIGNMENT_FLAG:
-         if (bType == MV_SIMPLE_FLOCK_GROUP_ENTRY)
+         if (bType == MV_GROUP_ENTRY)
          {
             extraStates[MV_SIMPLE_FLOCK_PERCEIVED_ALIGNMENT_FLAG_INDEX] = option;
             isValid = true;
@@ -515,7 +515,7 @@ mvErrorEnum mvBehaviourEntry::mvBehaviour_InitialiseType2(mvOptionEnum type)
       case MV_PURSUIT:
       case MV_EVASION:
       case MV_SIMPLE_FLOCK:
-      case MV_SIMPLE_FLOCK_GROUP_ENTRY:
+      case MV_GROUP_ENTRY:
          if (indexes != NULL)
          {
           delete [] indexes;

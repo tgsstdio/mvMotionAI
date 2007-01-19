@@ -65,7 +65,7 @@ mvErrorEnum mvBehaviour_InitialiseType(mvOptionEnum type, mvOptionEnum& bType, m
       case MV_PURSUIT:
       case MV_EVASION:
       case MV_SIMPLE_FLOCK:
-      case MV_SIMPLE_FLOCK_GROUP_ENTRY:
+      case MV_GROUP_ENTRY:
          if (indexes != NULL)
          {
           delete [] indexes;
@@ -146,7 +146,7 @@ mvCount mvBehaviour_GetPointsArraySize(mvOptionEnum type)
    {
       case MV_SIMPLE_FLOCK:
          return MV_NO_OF_SIMPLE_FLOCK_POINTS;
-      case MV_SIMPLE_FLOCK_GROUP_ENTRY:
+      case MV_GROUP_ENTRY:
          return MV_NO_OF_SIMPLE_FLOCK_GROUP_POINTS;
       default:
          return 0;
@@ -162,7 +162,7 @@ mvCount mvBehaviour_GetVariablesArraySize(mvOptionEnum type)
    {
       case MV_SIMPLE_FLOCK:
          return MV_NO_OF_SIMPLE_FLOCK_VARIABLES;
-      case MV_SIMPLE_FLOCK_GROUP_ENTRY:
+      case MV_GROUP_ENTRY:
          return MV_NO_OF_SIMPLE_FLOCK_GROUP_VARIABLES;
       default:
          return 0;
@@ -178,7 +178,7 @@ mvCount mvBehaviour_GetStateArraySize(mvOptionEnum type)
    {
       case MV_SIMPLE_FLOCK:
          return MV_NO_OF_SIMPLE_FLOCK_STATES;
-      case MV_SIMPLE_FLOCK_GROUP_ENTRY:
+      case MV_GROUP_ENTRY:
          return MV_NO_OF_SIMPLE_FLOCK_GROUP_STATES;
       default:
          return 0;
@@ -192,7 +192,7 @@ mvOptionEnum singleNodeArray[] =
 
 mvOptionEnum groupNodeArray[] =
 {
-  MV_SIMPLE_FLOCK_GROUP_ENTRY,
+  MV_GROUP_ENTRY,
 };
 
 mvOptionEnum selectBodyToGroupEntryType(mvOptionEnum type)
