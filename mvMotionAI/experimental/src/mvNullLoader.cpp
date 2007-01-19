@@ -19,23 +19,16 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-#ifndef MVBEHAVFUNCLIST_H_INCLUDED
-#define MVBEHAVFUNCLIST_H_INCLUDED
-#include <map>
-#include "mvBaseBehaviour.h"
-#include "mvEnums.h"
 
-class mvBehavFuncList
+#include "mvNullLoader.h"
+
+mvNullLoader::mvNullLoader()
 {
-   public:
-      mvCount noOfValidFunctions;
-      std::map<mvOptionEnum,mvBaseBehaviourLoader*> bFunctions;
 
-      mvBehavFuncList();
-      mvErrorEnum addBehaviourFunction(mvOptionEnum key, mvBaseBehaviourLoader* bFunc);
-      void freeAllBehaviourFunctions();
-      mvBaseBehaviour* createBehaviour(mvOptionEnum key, mvBaseBehaviour* defaultBehav);
-      ~mvBehavFuncList();
-};
+}
 
-#endif // MVBEHAVFUNCLIST_H_INCLUDED
+virtual mvBaseBehaviour* mvNullLoader::operator()(\
+   mvBaseBehaviour* defaultBehaviour)
+{
+   return NULL;
+}

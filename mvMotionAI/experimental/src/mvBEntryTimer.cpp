@@ -248,7 +248,7 @@ mvErrorEnum mvBEntryTimer::setPeriod(mvFloat timeInSecs)
    }
 
    period = timeInSecs;
-   if (elaspedTime > timeInSecs)
+   if (elapsedTime > timeInSecs)
    {
       elapsedTime = mvFMod(timeInSecs,period);
    }
@@ -288,7 +288,7 @@ mvFloat mvBEntryTimer::getElaspedTime() const
 mvCount mvBEntryTimer::update(mvFloat timeInSecs)
 {
    mvFloat intPart;
-   mvFloat total;
+   mvFloat result;
 
    // if positive
    if (timeInSecs > 0.0)

@@ -40,7 +40,7 @@ mvErrorEnum mvBEntryTreeNode::setParameteri(mvParamEnum paramFlag,\
 
 /** @brief (one liner)
   *
-  * Automatically calls getParameterf
+  * Automatically calls timer's getParameterv, then its own getParameterf
   */
 mvErrorEnum mvBEntryTreeNode::getParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray, mvCount* noOfParameters)
@@ -57,15 +57,20 @@ mvErrorEnum mvBEntryTreeNode::getParameterv(mvParamEnum paramFlag,\
       return MV_FLOAT_DEST_IS_NULL;
    }
 
-   error = getParameterf(paramFlag, numArray);
-   if (error == MV_NO_ERROR)
+   error = timer.getParameterv(paramFlag, numArray, noOfParameters);
+   if (error == MV_INVALID_TIMER_PARAMETER)
    {
-      *noOfParameters = 1;
+      error = getParameterf(paramFlag, numArray);
+      if (error == MV_NO_ERROR)
+      {
+         *noOfParameters = 1;
+      }
+      else
+      {
+         *noOfParameters = 0;
+      }
    }
-   else
-   {
-      *noOfParameters = 0;
-   }
+
 
    return error;
 }
@@ -126,7 +131,7 @@ mvErrorEnum mvBEntryTreeNode::getParameteri(mvParamEnum paramFlag,\
   */
 void mvBEntryTreeNode::setNextLevel(mvBEntryTreeNode* node)
 {
-   nextNode = node;
+   nextLevel = node;
 }
 
 /** @brief (one liner)
@@ -233,43 +238,127 @@ mvFloat mvBEntryTreeNode::getWeight() const
   *
   * (documentation goes here)
   */
- mvBEntryTreeNode::mvBEntryTreeNode(mvIndex bEntryIndex ,\
-   mvOptionEnum bNodeMode, mvFloat bEWeight ,\
-   mvBEntryTreeNode* beNextNode , mvBEntryTreeNode* beNextLevel ,\
-   mvBEntryTreeNode* bePrevNode, mvBEntryTreeNode* bePrevLevel,\
-   mvFloat period , mvFloat elapsedTime)
+ mvBEntryTreeNode::mvBEntryTreeNode(mvIndex bEntryIndex,\
+         mvOptionEnum bNodeMode,\
+         mvFloat bEWeight,\
+         mvFloat period,\
+         mvFloat elapsedTime,
+         mvBEntryTreeNode* beNextNode,\
+         mvBEntryTreeNode* beNextLevel,
+         mvBEntryTreeNode* bePrevNode,\
+         mvBEntryTreeNode* bePrevLevel
+         )
 {
    bEntryNode = bEntryIndex;
-   mode = bNodeMode;
+   weight = 0.0;
+
+   setWeight(bEWeight);
+   setMode(bNodeMode);
+   setNextNode(beNextNode);
+   setNextLevel(beNextLevel);
+   setPrevLevel(bePrevLevel);
+   setPrevNode(bePrevNode);
+   timer.setPeriod(period);
+   timer.setElapsedTime(elapsedTime);
+}
+
+mvIndex mvBEntryTreeNode::getEntryIndex()
+{
+   return bEntryNode;
 }
 
 /** @brief (one liner)
   *
-  * (documentation goes here)
+  * Automatically calls timer's setParameter
   */
 mvErrorEnum mvBEntryTreeNode::setParameter(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
-
+   switch (paramFlag)
+   {
+      case MV_MODE:
+         return setMode(option);
+      default:
+         return timer.setParameter(paramFlag, option);
+   }
 }
 
 /** @brief (one liner)
   *
-  * (documentation goes here)
+  * Automatically calls timer's setParameterf
   */
 mvErrorEnum mvBEntryTreeNode::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
-
+   switch (paramFlag)
+   {
+      case MV_WEIGHT:
+         return setWeight(num);
+      default:
+         return timer.setParameterf(paramFlag, num);
+   }
 }
 
 /** @brief (one liner)
   *
-  * (documentation goes here)
+  * Automatically calls timer's setParameterv, then calls its setParameterf
   */
 mvErrorEnum mvBEntryTreeNode::setParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray)
 {
+   mvErrorEnum error;
 
+   if (numArray == NULL)
+   {
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
+   // check timer parameter first
+   error = timer.setParameterv(paramFlag, numArray);
+   if (error == MV_INVALID_TIMER_PARAMETER)
+   {
+      // then call setParameterf
+      error = setParameterf(paramFlag,numArray[0]);
+   }
+
+   return error;
 }
 
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvBEntryTreeNode::setMode(mvOptionEnum option)
+{
+   switch(option)
+   {
+      case MV_WEIGHTED:
+      case MV_XOR:
+      case MV_PRORITIZED_DITHERING:
+      case MV_RANDOM:
+      case MV_RANDOMIZED_WEIGHTED:
+         mode = option;
+         return MV_NO_ERROR;
+      default:
+         mode = MV_NON_BEHAVIOUR_ENTRY_MODE;
+         return MV_INVALID_BEHAVIOUR_ENTRY_INITIALIZATION;
+   }
+}
+
+void mvBEntryTreeNode::addNewNode(mvBEntryTreeNode* childNode)
+{
+   if (nextNode != NULL && childNode != NULL)
+   {
+      setNextNode(childNode);
+      childNode->setPrevNode(this);
+   }
+}
+
+void mvBEntryTreeNode::addNewLevel(mvBEntryTreeNode* childNode)
+{
+   if (nextLevel != NULL && childNode != NULL)
+   {
+      setNextLevel(childNode);
+      childNode->setPrevLevel(this);
+   }
+}
 

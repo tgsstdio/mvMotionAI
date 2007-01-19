@@ -555,7 +555,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameters(mvIndex worldIndex,\
 
    if (param == NULL)
    {
-      return MV_PARAM_POINTER_IS_NULL;
+      return MV_PARAMETER_ARRAY_IS_NULL;
    }
 
    if (!mvCheckAllParamEnumsForString(param,&paramFlag))
@@ -597,7 +597,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametersi(mvIndex worldIndex,\
 
    if (param == NULL)
    {
-      return MV_PARAM_POINTER_IS_NULL;
+      return MV_PARAMETER_ARRAY_IS_NULL;
    }
 
    if (!mvCheckAllParamEnumsForString(param,&paramFlag))
@@ -623,7 +623,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametersf(mvIndex worldIndex,\
 
    if (param == NULL)
    {
-      return MV_PARAM_POINTER_IS_NULL;
+      return MV_PARAMETER_ARRAY_IS_NULL;
    }
 
    if (!mvCheckAllParamEnumsForString(param,&paramFlag))
@@ -649,7 +649,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametersv(mvIndex worldIndex,\
 
    if (param == NULL)
    {
-      return MV_PARAM_POINTER_IS_NULL;
+      return MV_PARAMETER_ARRAY_IS_NULL;
    }
 
    if (!mvCheckAllParamEnumsForString(param,&paramFlag))
@@ -717,14 +717,27 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameterv(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameters(mvIndex worldIndex,\
    const char* param, const char* option)
 {
-
+   // TODO : implement
+   return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParametersi(mvIndex worldIndex,\
-   const char* param, mvIndex index);
+   const char* param, mvIndex index)
+{
+   // TODO : implement
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParametersf(mvIndex worldIndex,\
-   const char* param, mvFloat num);
+   const char* param, mvFloat num)
+{
+   // TODO : implement
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParametersv(mvIndex worldIndex,\
-   const char* param, mvFloat* array);
+   const char* param, mvFloat* array)
+{
+   // TODO : implement
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}

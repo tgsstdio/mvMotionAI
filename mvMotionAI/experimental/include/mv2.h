@@ -1,7 +1,7 @@
 /**
  * \file mv2.h
  *
- * Copyright (c) 2006 David Young.
+ * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -23,20 +23,24 @@
  *
  * Log
  * version
+ * 00-01-31    19/01/07
+ *
+ * - now mvMotionAI C interface using mvWorld_V2
  *
  * 00-01-25    23/12/06
  *
- * changed function signature
- * Permanent removing item from world  = Remove to Delete
+ * -changed function signature
+ *  - Permanent removing item from world  = Remove to Delete
  * - mvRemoveAllWorlds to mvDeleteAllWorlds
- * Create instead of Add
+ *  - Create instead of Add
  * - mvAddWorld to mvCreateAllWorlds
  */
 
 #ifndef MV_GLOBAL_FUNCTIONS_H_
 #define MV_GLOBAL_FUNCTIONS_H_
-#include "mvMotionAI.h"
 #include "mvMotionAI-Types.h"
+#include "mvWorld2.h"
+#include "mvBaseBehaviour.h"
 #include "mvEnums.h"
 
 #ifdef BUILD_DLL
@@ -45,26 +49,29 @@
 #define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
 #endif
 
-// mvMotionAI functions
+// mvMotionAI functions - 13 functions
 MV_GLOBAL_FUNC_PREFIX void mvInitMotionAI();
 MV_GLOBAL_FUNC_PREFIX void mvFreeMotionAI();
-
-//
-// world functions 30 functions  = 5 + 8 + 8 + 8 + 1
-//
-
-MV_GLOBAL_FUNC_PREFIX void mvRemoveAllWorlds();
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAllWorldsStepForward(mvFloat timeInSecs);
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateWorld(const char* id);
-MV_GLOBAL_FUNC_PREFIX mvWorld* mvGetWorldPtrByID(const char* worldID);
-MV_GLOBAL_FUNC_PREFIX mvWorld* mvGetWorldPtr(mvIndex index);
-MV_GLOBAL_FUNC_PREFIX mvIndex mvGetWorldByID(const char* worldID);
-MV_GLOBAL_FUNC_PREFIX void mvAllWorldsStepForward(mvFloat timeInSecs);
-MV_GLOBAL_FUNC_PREFIX void mvApplyToAllWorlds(\
-   void (someFunction)(mvWorld*,void*), void* extraPtr);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteAllWorlds();
+MV_GLOBAL_FUNC_PREFIX mvIndex mvGetWorldByID(const char* id);
+MV_GLOBAL_FUNC_PREFIX mvWorld_V2* mvGetWorldPtrByID(const char* id);
+MV_GLOBAL_FUNC_PREFIX mvWorld_V2* mvGetWorldPtr(mvIndex index);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorlds(\
+   void (someFunction)(mvWorld_V2*,void*),void* extraPtr);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorldsByIndex(\
+   void(someFunction)(mvIndex, void* extraPtr), void* extraPtr);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLoadDefaultBehaviours();
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddBehaviourFunction(mvOptionEnum bType,\
+   mvBaseBehaviourLoader* loader);
+MV_GLOBAL_FUNC_PREFIX mvBaseBehaviour* mvCreateNewBehaviour(mvOptionEnum type,\
+   mvBaseBehaviour* defaultBehaviour);
 
 // 506 functions + 2 + 2 + 4 + 8(13/10/06)
 // // Lua fucntions
-
+/*
+removing lua functions to own file
 #ifndef MV_ENABLE_LUA_SCRIPTING_FLAG
 #define MV_ENABLE_LUA_SCRIPTING_FLAG 1
 #include "mvLuaScript.h"
@@ -77,9 +84,57 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLua_LoadCStringWithLuaState(\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLua_LoadScriptFileWithLuaState(\
    lua_State* cState,const char* fileName);
 #endif
+*/
+
+/* TODO (White 2#1#): implement functions later */
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvWorldStep(mvIndex worldIndex,\
    mvFloat timeInSecs);
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvNudgeBody(mvIndex worldIndex,\
+   mvIndex bodyIndex, mvFloat timeInSecs);
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvNudgeCurrentBody(mvIndex worldIndex,\
+   mvFloat timeInSecs);
+
+//GET
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameter(mvIndex worldIndex,\
+	mvParamEnum param, mvOptionEnum* option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameteri(mvIndex worldIndex,\
+	mvParamEnum param, mvIndex* index);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameterf(mvIndex worldIndex,\
+	mvParamEnum param, mvFloat* num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameterv(mvIndex worldIndex,\
+	mvParamEnum param, mvFloat* array, mvCount* noOfParameters);
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameters(mvIndex worldIndex,\
+	const char* param, const char* option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametersi(mvIndex worldIndex,\
+	const char* param, mvIndex* index);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametersf(mvIndex worldIndex,\
+	const char* param, mvFloat* num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametersv(mvIndex worldIndex,\
+	const char* param, mvFloat* array, mvCount* noOfParameters);
+
+//SET
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameter(mvIndex worldIndex,\
+	mvParamEnum param, mvOptionEnum option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameteri(mvIndex worldIndex,\
+	mvParamEnum param, mvIndex index);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameterf(mvIndex worldIndex,\
+	mvParamEnum param, mvFloat num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameterv(mvIndex worldIndex,\
+   mvParamEnum param, mvFloat* array);
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameters(mvIndex worldIndex,\
+   const char* param, const char* option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParametersi(mvIndex worldIndex,\
+   const char* param, mvIndex index);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParametersf(mvIndex worldIndex,\
+   const char* param, mvFloat num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParametersv(mvIndex worldIndex,\
+   const char* param, mvFloat* array);
+
 // C pointer
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBodies(mvIndex worldIndex,\
    void (someFunction)(mvBody*,void*),void* extraPtr);
@@ -100,8 +155,6 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllForces(mvIndex worldIndex,\
    void (someFunction)(mvForce*,void*),void* extraPtr);
 // mvIndex
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorldsByIndex(\
-   void (someFunction)(mvIndex,void*),void* extraPtr);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBodiesByIndex(\
    mvIndex worldIndex, void (someFunction)(mvIndex,void*),void* extraPtr);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllObstaclesByIndex(\
@@ -118,43 +171,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehavioursByIndex(\
    mvIndex worldIndex, void (someFunction)(mvIndex,void*),void* extraPtr);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllForcesByIndex(mvIndex worldIndex,\
    void (someFunction)(mvIndex,void*),void* extraPtr);
-//GET
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameter(mvIndex worldIndex,\
-	mvParamEnum param, mvOptionEnum* option);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameteri(mvIndex worldIndex,\
-	mvParamEnum param, mvIndex* index);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameterf(mvIndex worldIndex,\
-	mvParamEnum param, mvFloat* num);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameterv(mvIndex worldIndex,\
-	mvParamEnum param, mvFloat* array, mvCount* noOfParameters);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameters(mvIndex worldIndex,\
-	const char* param, const char* option);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametersi(mvIndex worldIndex,\
-	const char* param, mvIndex* index);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametersf(mvIndex worldIndex,\
-	const char* param, mvFloat* num);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametersv(mvIndex worldIndex,\
-	const char* param, mvFloat* array, mvCount* noOfParameters);
-
-//SET
-
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameter(mvIndex worldIndex,\
-	mvParamEnum param, mvOptionEnum option);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameteri(mvIndex worldIndex,\
-	mvParamEnum param, mvIndex index);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameterf(mvIndex worldIndex,\
-	mvParamEnum param, mvFloat num);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameterv(mvIndex worldIndex,\
-   mvParamEnum param, mvFloat* array);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameters(mvIndex worldIndex,\
-   const char* param, const char* option);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParametersi(mvIndex worldIndex,\
-   const char* param, mvIndex index);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParametersf(mvIndex worldIndex,\
-   const char* param, mvFloat num);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParametersv(mvIndex worldIndex,\
-   const char* param, mvFloat* array);
 // TODO (White 2#1#): Global functions for mvMotionAI doing world and lua script functions
 
 //// body functions 44 functions = 6 + 16 + 16 + 16//
