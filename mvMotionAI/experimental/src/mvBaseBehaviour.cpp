@@ -81,3 +81,10 @@ mvBaseBehaviour::~mvBaseBehaviour()
    // empty code
 }
 
+/**
+ * \brief mvBaseBehaviourLoader constructor
+ */
+mvBaseBehaviourLoader::mvBaseBehaviourLoader()
+{
+   // empty code
+};

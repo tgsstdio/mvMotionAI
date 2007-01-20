@@ -56,18 +56,18 @@ mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETER(mvIndex worldIndex,\
 mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERI(mvIndex worldIndex,\
    mvParamEnum paramFlag, mvIndex index);
 mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERF(mvIndex worldIndex,\
-   mvParamEnum paramFlag, mvFloat* num);
+   mvParamEnum paramFlag, mvFloat num);
 mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERV(mvIndex worldIndex,\
-   mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfElements);
+   mvParamEnum paramFlag, mvFloat* numArray);
 
 mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETER(mvIndex worldIndex,\
    mvParamEnum paramFlag, mvOptionEnum* option);
 mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERI(mvIndex worldIndex,\
    mvParamEnum paramFlag, mvIndex* index);
 mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERF(mvIndex worldIndex,\
-   mvParamEnum paramFlag, mvFloat num);
+   mvParamEnum paramFlag, mvFloat* num);
 mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERV(mvIndex worldIndex,\
-   mvParamEnum paramFlag, mvFloat* numArray);
+   mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfElements);
 
 mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERS(mvIndex worldIndex,\
    const char* param, const char* option);
@@ -76,7 +76,7 @@ mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERSI(mvIndex worldIndex,\
 mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERSF(mvIndex worldIndex,\
    const char* param, mvFloat num);
 mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERSV(mvIndex worldIndex,\
-   const char* param, mvFloat* numArray, mvCount* noOfElements);
+   const char* param, mvFloat* numArray);
 
 mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERS(mvIndex worldIndex, const char* param,\
    const char** option);
@@ -85,7 +85,7 @@ mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERSI(mvIndex worldIndex, const char* pa
 mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERSF(mvIndex worldIndex, const char* param,\
    mvFloat* num);
 mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERSV(mvIndex worldIndex, const char* param,\
-   mvFloat* numArray);
+   mvFloat* numArray, mvCount* noOfElements);
 
 class mvMotionAI_V2
 {

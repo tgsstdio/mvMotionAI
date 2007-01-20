@@ -90,6 +90,8 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvWorldStep(mvIndex worldIndex,\
    if (error == MV_NO_ERROR)
    {
       worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
       worldPtr->worldStep(timeInSecs);
    }
 
@@ -105,6 +107,8 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvNudgeBody(mvIndex worldIndex,\
    if (error == MV_NO_ERROR)
    {
       worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
       return worldPtr->nudgeBody(bodyIndex,timeInSecs);
    }
 
@@ -120,7 +124,392 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvNudgeCurrentBody(mvIndex worldIndex,\
    if (error == MV_NO_ERROR)
    {
       worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
       return worldPtr->nudgeCurrentBody(timeInSecs);
+   }
+
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameter(mvIndex worldIndex,\
+	mvParamEnum param, mvOptionEnum* option)
+{
+   return mvMotionAI_V2_GETWORLDPARAMETER(worldIndex, param, option);
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameteri(mvIndex worldIndex,\
+	mvParamEnum param, mvIndex* index)
+{
+   return mvMotionAI_V2_GETWORLDPARAMETERI(worldIndex, param, index);
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameterf(mvIndex worldIndex,\
+	mvParamEnum param, mvFloat* num)
+{
+   return mvMotionAI_V2_GETWORLDPARAMETERF(worldIndex, param, num);
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameterv(mvIndex worldIndex,\
+	mvParamEnum param, mvFloat* array, mvCount* noOfParameters)
+{
+   return mvMotionAI_V2_GETWORLDPARAMETERV(worldIndex, param, array,\
+      noOfParameters);
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameters(mvIndex worldIndex,\
+	const char* param, const char** option)
+{
+   return mvMotionAI_V2_GETWORLDPARAMETERS(worldIndex, param, option);
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametersi(mvIndex worldIndex,\
+	const char* param, mvIndex* index)
+{
+   return mvMotionAI_V2_GETWORLDPARAMETERSI(worldIndex, param, index);
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametersf(mvIndex worldIndex,\
+	const char* param, mvFloat* num)
+{
+   return mvMotionAI_V2_GETWORLDPARAMETERSF(worldIndex, param, num);
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametersv(mvIndex worldIndex,\
+	const char* param, mvFloat* array, mvCount* noOfParameters)
+{
+   return mvMotionAI_V2_GETWORLDPARAMETERSV(worldIndex, param, array,\
+      noOfParameters);
+}
+
+//SET
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameter(mvIndex worldIndex,\
+	mvParamEnum param, mvOptionEnum option)
+{
+   return mvMotionAI_V2_SETWORLDPARAMETER(worldIndex, param, option);
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameteri(mvIndex worldIndex,\
+	mvParamEnum param, mvIndex index)
+{
+   return mvMotionAI_V2_SETWORLDPARAMETERI(worldIndex, param, index);
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameterf(mvIndex worldIndex,\
+	mvParamEnum param, mvFloat num)
+{
+   return mvMotionAI_V2_SETWORLDPARAMETERF(worldIndex,param, num);
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameterv(mvIndex worldIndex,\
+   mvParamEnum param, mvFloat* array)
+{
+   return mvMotionAI_V2_SETWORLDPARAMETERV(worldIndex, param, array);
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameters(mvIndex worldIndex,\
+   const char* param, const char* option)
+{
+   return mvMotionAI_V2_SETWORLDPARAMETERS(worldIndex, param, option);
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParametersi(mvIndex worldIndex,\
+   const char* param, mvIndex index)
+{
+   return mvMotionAI_V2_SETWORLDPARAMETERSI(worldIndex, param, index);
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParametersf(mvIndex worldIndex,\
+   const char* param, mvFloat num)
+{
+   return mvMotionAI_V2_SETWORLDPARAMETERSF(worldIndex, param, num);
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParametersv(mvIndex worldIndex,\
+   const char* param, mvFloat* array)
+{
+   return mvMotionAI_V2_SETWORLDPARAMETERSV(worldIndex, param, array);
+}
+
+// C pointer foreach functions
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBodies(mvIndex worldIndex,\
+   void (someFunction)(mvBody*,void*),void* extraPtr)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      worldPtr->applyToAllBodies(someFunction, extraPtr);
+   }
+
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllObstacles(mvIndex worldIndex,\
+   void (someFunction)(mvObstacle*,void*),void* extraPtr)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      worldPtr->applyToAllObstacles(someFunction, extraPtr);
+   }
+
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWaypoints(mvIndex worldIndex,\
+   void (someFunction)(mvWaypoint*,void*),void* extraPtr)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      worldPtr->applyToAllWaypoints(someFunction, extraPtr);
+   }
+
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllPathways(mvIndex worldIndex,\
+   void (someFunction)(mvPathway*,void*),void* extraPtr)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      worldPtr->applyToAllPathways(someFunction, extraPtr);
+   }
+
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroups(mvIndex worldIndex,\
+   void (someFunction)(mvGroup*,void*),void* extraPtr)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      worldPtr->applyToAllGroups(someFunction, extraPtr);
+   }
+
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllBehaviours(mvIndex worldIndex,\
+   void (someFunction)(mvBehaviour*,void*),void* extraPtr)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      worldPtr->applyToAllBehaviours(someFunction, extraPtr);
+   }
+
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehaviours(\
+   mvIndex worldIndex, void (someFunction)(mvGroupBehaviour*,void*),\
+   void* extraPtr)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      worldPtr->applyToAllGroupBehaviours(someFunction, extraPtr);
+   }
+
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllForces(mvIndex worldIndex,\
+   void (someFunction)(mvForce*,void*),void* extraPtr)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      worldPtr->applyToAllForces(someFunction, extraPtr);
+   }
+
+   return error;
+}
+
+// mvIndex C interface foreach
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBodiesByIndex(mvIndex worldIndex,\
+   void (someFunction)(mvIndex,mvIndex,void*),void* extraPtr)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      worldPtr->applyToAllBodiesByIndex(worldIndex, someFunction, extraPtr);
+   }
+
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllObstaclesByIndex(\
+   mvIndex worldIndex, void (someFunction)(mvIndex,mvIndex,void*),\
+   void* extraPtr)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      worldPtr->applyToAllObstaclesByIndex(worldIndex, someFunction, extraPtr);
+   }
+
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWaypointsByIndex(\
+   mvIndex worldIndex, void (someFunction)(mvIndex,mvIndex,void*),\
+   void* extraPtr)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      worldPtr->applyToAllWaypointsByIndex(worldIndex, someFunction, extraPtr);
+   }
+
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllPathwaysByIndex(\
+   mvIndex worldIndex, void (someFunction)(mvIndex,mvIndex, void*),\
+   void* extraPtr)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      worldPtr->applyToAllPathhwaysByIndex(worldIndex, someFunction, extraPtr);
+   }
+
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupsByIndex(\
+   mvIndex worldIndex, void (someFunction)(mvIndex,mvIndex, void*),\
+   void* extraPtr)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      worldPtr->applyToAllGroupsByIndex(worldIndex, someFunction, extraPtr);
+   }
+
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBehavioursByIndex(\
+   mvIndex worldIndex, void (someFunction)(mvIndex,mvIndex, void*),\
+   void* extraPtr)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      worldPtr->applyToAllBehavioursByIndex(worldIndex, someFunction, extraPtr);
+   }
+
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehavioursByIndex(\
+   mvIndex worldIndex, void (someFunction)(mvIndex,mvIndex, void*),\
+   void* extraPtr)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      worldPtr->applyToAllGroupBehavioursByIndex(worldIndex, someFunction,\
+         extraPtr);
+   }
+
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllForcesByIndex(mvIndex worldIndex,\
+   void (someFunction)(mvIndex,mvIndex, void*), void* extraPtr)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      worldPtr->applyToAllForcesByIndex(worldIndex, someFunction, extraPtr);
    }
 
    return error;

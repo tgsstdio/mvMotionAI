@@ -79,6 +79,8 @@ class mvBaseBehaviourLoader
    public:
       virtual mvBaseBehaviour* operator()(\
          mvBaseBehaviour* defaultBehaviour) = 0;
+      mvBaseBehaviourLoader();
+      virtual ~mvBaseBehaviourLoader();
 };
 
 #endif
