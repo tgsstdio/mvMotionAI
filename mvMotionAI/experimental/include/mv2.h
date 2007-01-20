@@ -86,8 +86,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLua_LoadScriptFileWithLuaState(\
 #endif
 */
 
-/* TODO (White 2#1#): implement functions later */
-
+/* WORLD FUNCTIONS  = 18 */
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvWorldStep(mvIndex worldIndex,\
    mvFloat timeInSecs);
 
@@ -97,7 +96,6 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvNudgeBody(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvNudgeCurrentBody(mvIndex worldIndex,\
    mvFloat timeInSecs);
 
-//GET
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameter(mvIndex worldIndex,\
 	mvParamEnum param, mvOptionEnum* option);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameteri(mvIndex worldIndex,\
@@ -108,7 +106,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameterv(mvIndex worldIndex,\
 	mvParamEnum param, mvFloat* array, mvCount* noOfParameters);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameters(mvIndex worldIndex,\
-	const char* param, const char* option);
+	const char* param, const char** option);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametersi(mvIndex worldIndex,\
 	const char* param, mvIndex* index);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametersf(mvIndex worldIndex,\
@@ -116,7 +114,6 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametersf(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametersv(mvIndex worldIndex,\
 	const char* param, mvFloat* array, mvCount* noOfParameters);
 
-//SET
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameter(mvIndex worldIndex,\
 	mvParamEnum param, mvOptionEnum option);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameteri(mvIndex worldIndex,\
@@ -135,7 +132,10 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParametersf(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParametersv(mvIndex worldIndex,\
    const char* param, mvFloat* array);
 
-// C pointer
+/*
+ * C pointer foreach functions = 8
+ * for C++ class methods
+ */
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBodies(mvIndex worldIndex,\
    void (someFunction)(mvBody*,void*),void* extraPtr);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllObstacles(mvIndex worldIndex,\
@@ -153,121 +153,160 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehaviours(\
    void* extraPtr);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllForces(mvIndex worldIndex,\
    void (someFunction)(mvForce*,void*),void* extraPtr);
-// mvIndex
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBodiesByIndex(\
-   mvIndex worldIndex, void (someFunction)(mvIndex,void*),void* extraPtr);
+/*
+ * mvIndex foreach functions = 8
+ * for using C interface functions
+ */
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBodiesByIndex(mvIndex worldIndex,\
+   void (someFunction)(mvIndex,mvIndex,void*),void* extraPtr);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllObstaclesByIndex(\
-   mvIndex worldIndex, void (someFunction)(mvIndex,void*),void* extraPtr);
+   mvIndex worldIndex, void (someFunction)(mvIndex,mvIndex,void*),\
+   void* extraPtr);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWaypointsByIndex(\
-   mvIndex worldIndex, void (someFunction)(mvIndex,void*),void* extraPtr);
+   mvIndex worldIndex, void (someFunction)(mvIndex,mvIndex,void*),\
+   void* extraPtr);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllPathwaysByIndex(\
-   mvIndex worldIndex, void (someFunction)(mvIndex,void*),void* extraPtr);
+   mvIndex worldIndex, void (someFunction)(mvIndex,mvIndex, void*),\
+   void* extraPtr);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupsByIndex(\
-   mvIndex worldIndex, void (someFunction)(mvIndex,void*),void* extraPtr);
+   mvIndex worldIndex, void (someFunction)(mvIndex,mvIndex, void*),\
+   void* extraPtr);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBehavioursByIndex(\
-   mvIndex worldIndex, void (someFunction)(mvIndex,void*),void* extraPtr);
+   mvIndex worldIndex, void (someFunction)(mvIndex,mvIndex, void*),\
+   void* extraPtr);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehavioursByIndex(\
-   mvIndex worldIndex, void (someFunction)(mvIndex,void*),void* extraPtr);
+   mvIndex worldIndex, void (someFunction)(mvIndex,mvIndex, void*),\
+   void* extraPtr);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllForcesByIndex(mvIndex worldIndex,\
-   void (someFunction)(mvIndex,void*),void* extraPtr);
+   void (someFunction)(mvIndex,mvIndex, void*), void* extraPtr);
 
+// TODO : function laters
 // TODO (White 2#1#): Global functions for mvMotionAI doing world and lua script functions
 
-//// body functions 44 functions = 6 + 16 + 16 + 16//
-mvIndex mvAddBody(mvIndex worldIndex, mvOptionEnum bodyType, mvOptionEnum bodyShape);
-mvIndex mvAddBodyWithPos(mvIndex worldIndex, mvOptionEnum bodyType, mvOptionEnum bodyShape,\
-        mvFloat x, mvFloat y, mvFloat z);
-void mvRemoveCurrentBody(mvIndex worldIndex);mvErrorEnum mvRemoveBody(mvIndex worldIndex, mvIndex index);
-void mvRemoveAllBodies(mvIndex worldIndex);mvIndex mvSetCurrentBody(mvIndex worldIndex, mvIndex index);
+/* body functions ?? functions = 7 + 8 + 8 + 8 + 8*/
 
-//change default body setting later...
+MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBody(mvIndex worldIndex,\
+   mvOptionEnum bType, mvOptionEnum bShape, mvFloat x, mvFloat y, mvFloat z);
+MV_GLOBAL_FUNC_PREFIX mvBody* mvGetBody(mvIndex worldIndex, mvIndex bodyIndex);
+MV_GLOBAL_FUNC_PREFIX mvBody* mvGetCurrentBody(mvIndex worldIndex);
+MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentBody(mvIndex worldIndex,\
+   mvIndex index);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteCurrentBody(mvIndex worldIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteBody(mvIndex worldIndex,\
+   mvIndex index);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteAllBodies(mvIndex worldIndex);
 
-mvErrorEnum mvGetDefaultWaypointForBody(mvIndex worldIndex, mvIndex* wayPoint, mvIndex* bodyIndex);
-mvErrorEnum mvGetDefaultPathwayForBody(mvIndex worldIndex, mvIndex* pathway, mvIndex* bodyIndex);
-mvErrorEnum mvGetDefaultBodyForBody(mvIndex worldIndex, mvIndex* target, mvIndex* bodyIndex);
-mvErrorEnum mvGetDefaultBehaviourFactorForBody(mvIndex worldIndex, mvFloat* bFactor, mvIndex bodyIndex);
-mvErrorEnum mvGetDefaultWaypointOfCurrentBody(mvIndex worldIndex, mvIndex* wayPoint);
-mvErrorEnum mvGetDefaultPathwayOfCurrentBody(mvIndex worldIndex, mvIndex* pathway);
-mvErrorEnum mvGetDefaultBodyOfCurrentBody(mvIndex worldIndex, mvIndex* target);
-mvErrorEnum mvGetDefaultBehaviourFactorOfCurrentBody(mvIndex worldIndex, mvFloat* bFactor);
-mvErrorEnum mvSetDefaultWaypointForBody(mvIndex worldIndex, mvIndex wayPoint, mvIndex bodyIndex);
-mvErrorEnum mvSetDefaultPathwayForBody(mvIndex worldIndex, mvIndex pathway, mvIndex bodyIndex);
-mvErrorEnum mvSetDefaultBodyForBody(mvIndex worldIndex, mvIndex target, mvIndex bodyIndex);
-mvErrorEnum mvSetDefaultBehaviourFactorForBody(mvIndex worldIndex, mvFloat bFactor, mvIndex bodyIndex);
-mvErrorEnum mvSetDefaultWaypointForCurrentBody(mvIndex worldIndex, mvIndex wayPoint);
-mvErrorEnum mvSetDefaultPathwayForCurrentBody(mvIndex worldIndex, mvIndex pathway);
-mvErrorEnum mvSetDefaultBodyForCurrentBody(mvIndex worldIndex, mvIndex target);
-mvErrorEnum mvSetDefaultBehaviourFactorForCurrentBody(mvIndex worldIndex, mvFloat bFactor);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBodyParameteri(mvIndex worldIndex,\
+   mvIndex index, mvParamEnum paramFlag, mvIndex paramIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBodyParameter(mvIndex worldIndex,\
+   mvIndex index, mvParamEnum paramFlag, mvOptionEnum option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBodyParameterf(mvIndex worldIndex,\
+   mvIndex index, mvParamEnum paramFlag, mvFloat num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBodyParameterv(mvIndex worldIndex,\
+   mvIndex index, mvParamEnum paramFlag, mvFloat* array);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyParameteri(\
+   mvIndex worldIndex,mvParamEnum paramFlag, mvIndex paramIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyParameter(mvIndex worldIndex,\
+   mvParamEnum paramFlag, mvOptionEnum option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyParameterf(\
+   mvIndex worldIndex,mvParamEnum paramFlag, mvFloat num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyParameterv(\
+   mvIndex worldIndex,mvParamEnum paramFlag, mvFloat* array);
 
-// get methods
-mvErrorEnum mvGetBodyParameter(mvIndex worldIndex, mvIndex index,\
-            mvParamEnum param, mvOptionEnum* option);
-mvErrorEnum mvGetCurrentBodyParameter(mvIndex worldIndex,\
-            mvParamEnum param, mvOptionEnum* option);
-mvErrorEnum mvGetBodyParameteri(mvIndex worldIndex, mvIndex index,\
-            mvParamEnum param, mvIndex* index);
-mvErrorEnum mvGetCurrentBodyParameteri(mvIndex worldIndex,\
-            mvParamEnum param, mvIndex* index);
-mvErrorEnum mvGetBodyParameterf(mvIndex worldIndex, mvIndex index,\
-            mvParamEnum param, mvFloat* num);
-mvErrorEnum mvGetCurrentBodyParameterf(mvIndex worldIndex,\
-            mvParamEnum param, mvFloat* num);
-mvErrorEnum mvGetBodyParameterv(mvIndex worldIndex, mvIndex index,\
-            mvParamEnum param, mvFloat* array, mvCount* noOfParameters);
-mvErrorEnum mvGetCurrentBodyParameterv(mvIndex worldIndex,\
-            mvParamEnum param, mvFloat* array, mvCount* noOfParameters);
-mvErrorEnum mvGetBodyParameters(mvIndex worldIndex, mvIndex index,\
-            const char* param, const char* option);
-mvErrorEnum mvGetCurrentBodyParameters(mvIndex worldIndex,\
-            const char* param, const char* option);
-mvErrorEnum mvGetBodyParametersi(mvIndex worldIndex, mvIndex index,\
-            const char* param, mvIndex* index);
-mvErrorEnum mvGetCurrentBodyParametersi(mvIndex worldIndex,\
-            const char* param, mvIndex* index);
-mvErrorEnum mvGetBodyParametersf(mvIndex worldIndex, mvIndex index, \
-            const char* param, mvFloat* num);
-mvErrorEnum mvGetCurrentBodyParametersf(mvIndex worldIndex,\
-            const char* param, mvFloat* num);
-mvErrorEnum mvGetBodyParametersv(mvIndex worldIndex, mvIndex index,\
-            const char* param, mvFloat* array, mvCount* noOfParameters);
-mvErrorEnum mvGetCurrentBodyParametersv(mvIndex worldIndex,\
-            const char* param, mvFloat* array, mvCount* noOfParameters);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBodyParametersi(mvIndex worldIndex,\
+   mvIndex index, const char* param, mvIndex paramIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBodyParameters(mvIndex worldIndex,\
+   mvIndex index, const char* param, const char* option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBodyParametersf(mvIndex worldIndex,\
+   ndex index, const char* param, mvFloat* array);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyParametersi(\
+   mvIndex worldIndex, const char* param, mvIndex paramIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyParameters(\
+   mvIndex worldIndex, const char* param, const char* option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyParametersf(\
+   mvIndex worldIndex, const char* param, mvFloat num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyParametersv(\
+   mvIndex worldIndex, const char* param, mvFloat* array);
 
-// set methods
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum getBodyParameteri(mvIndex worldIndex,\
+   mvIndex index, mvParamEnum paramFlag, mvIndex* outIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum getBodyParameter(mvIndex worldIndex,\
+   mvIndex index, mvParamEnum paramFlag, mvOptionEnum* option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum getBodyParameterf(mvIndex worldIndex,\
+   mvIndex index, mvParamEnum paramFlag, mvFloat* num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum getBodyParameterv(mvIndex worldIndex,\
+   mvIndex index, mvParamEnum paramFlag, mvFloat* array,\
+   mvCount* noOfParameters);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum getCurrentBodyParameteri(mvIndex worldIndex,\
+   mvParamEnum paramFlag, mvIndex* outIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum getCurrentBodyParameter(mvIndex worldIndex,\
+   mvParamEnum paramFlag, mvOptionEnum* option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum getCurrentBodyParameterf(mvIndex worldIndex,\
+   mvParamEnum paramFlag, mvFloat* num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum getCurrentBodyParameterv(mvIndex worldIndex,\
+   mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters);
 
-mvErrorEnum mvSetBodyParameter(mvIndex worldIndex, mvIndex index,\
-            mvParamEnum param, mvOptionEnum option);
-mvErrorEnum mvSetCurrentBodyParameter(mvIndex worldIndex,\
-            mvParamEnum param, mvOptionEnum option);
-mvErrorEnum mvSetBodyParameteri(mvIndex worldIndex, mvIndex index,\
-            mvParamEnum param, mvIndex index);
-mvErrorEnum mvSetCurrentBodyParameteri(mvIndex worldIndex,\
-            mvParamEnum param, mvIndex index);
-mvErrorEnum mvSetBodyParameterf(mvIndex worldIndex, mvIndex index,\
-            mvParamEnum param, mvFloat num);
-mvErrorEnum mvSetCurrentBodyParameterf(mvIndex worldIndex,\
-            mvParamEnum param, mvFloat num);
-mvErrorEnum mvSetBodyParameterv(mvIndex worldIndex, mvIndex index,\
-            mvParamEnum param, mvFloat* array);
-mvErrorEnum mvSetCurrentBodyParameterv(mvIndex worldIndex,\
-            mvParamEnum param, mvFloat* array);
-mvErrorEnum mvSetBodyParameters(mvIndex worldIndex, mvIndex index,\
-            const char* param, const char* option);
-mvErrorEnum mvSetCurrentBodyParameters(mvIndex worldIndex,\
-            const char* param, const char* option);
-mvErrorEnum mvSetBodyParametersi(mvIndex worldIndex, mvIndex index,\
-            const char* param, mvIndex index);
-mvErrorEnum mvSetCurrentBodyParametersi(mvIndex worldIndex,\
-            const char* param, mvIndex index);
-mvErrorEnum mvSetBodyParametersf(mvIndex worldIndex, mvIndex index,\
-            const char* param, mvFloat num);
-mvErrorEnum mvSetCurrentBodyParametersf(mvIndex worldIndex,\
-            const char* param, mvFloat num);
-mvErrorEnum mvSetBodyParametersv(mvIndex worldIndex, mvIndex index,\
-            const char* param, mvFloat* array);
-mvErrorEnum mvSetCurrentBodyParametersv(mvIndex worldIndex,\
-            const char* param, mvFloat* array);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum getBodyParametersi(mvIndex worldIndex,\
+   mvIndex index, const char* param, mvIndex* outIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum getBodyParameters(mvIndex worldIndex,\
+   mvIndex index, const char* param, const char** option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum getBodyParametersf(mvIndex worldIndex,\
+   mvIndex index, const char* param, mvFloat* num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum getBodyParametersv(mvIndex worldIndex,\
+   mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameters);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum getCurrentBodyParametersi(mvIndex worldIndex,\
+   const char* param, mvIndex* outIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum getCurrentBodyParameters(const char* param,\
+   const char** option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum getCurrentBodyParametersf(const char* param,\
+   mvFloat* num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum getCurrentBodyParametersv(mvIndex worldIndex,\
+   const char* param, mvFloat* array, mvCount* noOfParameters);
+
+/* TODO: implement the functions below */
+//change default body setting later... do we need these functions = 16
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultWaypointOfBody(\
+   mvIndex worldIndex, mvIndex* wayPoint, mvIndex* bodyIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultPathwayOfBody(\
+   mvIndex worldIndex, mvIndex* pathway, mvIndex* bodyIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultBodyOfBody(\
+   mvIndex worldIndex, mvIndex* target, mvIndex* bodyIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultWeightOfBody(\
+   mvIndex worldIndex, mvFloat* weight, mvIndex bodyIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultWaypointOfCurrentBody(\
+   mvIndex worldIndex, mvIndex* wayPoint);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultPathwayOfCurrentBody(\
+   mvIndex worldIndex, mvIndex* pathway);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultBodyOfCurrentBody(\
+   mvIndex worldIndex, mvIndex* target);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultWeightOfCurrentBody(\
+   mvIndex worldIndex, mvFloat* weight);
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultWaypointOfBody(\
+   mvIndex worldIndex, mvIndex wayPoint, mvIndex bodyIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultPathwayOfBody(\
+   mvIndex worldIndex, mvIndex pathway, mvIndex bodyIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultBodyOfBody(\
+   mvIndex worldIndex, mvIndex target, mvIndex bodyIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultWeightOfBody(\
+   mvIndex worldIndex, mvFloat weight, mvIndex bodyIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultWaypointOfCurrentBody(\
+   mvIndex worldIndex, mvIndex wayPoint);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultPathwayOfCurrentBody(\
+   mvIndex worldIndex, mvIndex pathway);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultBodyOfCurrentBody(\
+   mvIndex worldIndex, mvIndex target);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultWeightOfCurrentBody(\
+   mvIndex worldIndex, mvFloat weight);
+
+mvErrorEnum mvAddBehaviourToBody(mvIndex worldIndex, mvIndex bodyIndex,\
+   mvOptionEnum bType, mvIndex behaviourIndex, mvIndex groupIndex);
+mvErrorEnum mvAddBehaviourToCurrentBody(mvIndex worldIndex, mvOptionEnum bType,\
+   mvIndex behaviourIndex, mvIndex groupIndex);
+mvErrorEnum mvAddBehaviourToCurrentBody(
 
 ////mvObstacle 41 functions =  9 + 16 + 16
 mvIndex mvAddObstacle(mvIndex worldIndex, mvOptionEnum oShape, mvOptionEnum oState);

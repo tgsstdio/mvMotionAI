@@ -29,6 +29,8 @@ class mvNullLoader : public mvBaseBehaviourLoader
    public:
       mvNullLoader();
       virtual mvBaseBehaviour* operator()(mvBaseBehaviour* defaultBehaviour);
+      virtual ~mvNullLoader(){};
+
 };
 
 #endif // MVNULLLOADER_H_INCLUDED

@@ -22,7 +22,7 @@
 
 #include "mvNullLoader.h"
 
-mvNullLoader::mvNullLoader()
+mvNullLoader::mvNullLoader() : mvBaseBehaviourLoader()
 {
 
 }

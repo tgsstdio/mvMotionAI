@@ -530,5 +530,277 @@ mvErrorEnum mvMotionAI_V2_CHECKIFINITIALISED()
    }
 }
 
+mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETER(mvIndex worldIndex,\
+   mvParamEnum paramFlag, mvOptionEnum option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
 
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      return modulePtr->setWorldParameter(worldIndex, paramFlag, option);
+   }
+   else
+   {
+      return error;
+   }
+}
+
+mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERI(mvIndex worldIndex,\
+   mvParamEnum paramFlag, mvIndex index)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      return modulePtr->setWorldParameteri(worldIndex, paramFlag, index);
+   }
+   else
+   {
+      return error;
+   }
+}
+
+mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERF(mvIndex worldIndex,\
+   mvParamEnum paramFlag, mvFloat num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      return modulePtr->setWorldParameterf(worldIndex, paramFlag, num);
+   }
+   else
+   {
+      return error;
+   }
+}
+
+mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERV(mvIndex worldIndex,\
+   mvParamEnum paramFlag, mvFloat* numArray)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      return modulePtr->setWorldParameterv(worldIndex, paramFlag, numArray);
+   }
+   else
+   {
+      return error;
+   }
+}
+
+mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETER(mvIndex worldIndex,\
+   mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      return modulePtr->getWorldParameter(worldIndex, paramFlag, option);
+   }
+   else
+   {
+      return error;
+   }
+}
+
+mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERI(mvIndex worldIndex,\
+   mvParamEnum paramFlag, mvIndex* index)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      return modulePtr->getWorldParameteri(worldIndex, paramFlag, index);
+   }
+   else
+   {
+      return error;
+   }
+}
+
+mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERF(mvIndex worldIndex,\
+   mvParamEnum paramFlag, mvFloat* num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      return modulePtr->getWorldParameterf(worldIndex, paramFlag, num);
+   }
+   else
+   {
+      return error;
+   }
+}
+
+mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERV(mvIndex worldIndex,\
+   mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfElements)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      return modulePtr->getWorldParameterv(worldIndex, paramFlag, numArray,\
+         noOfElements);
+   }
+   else
+   {
+      return error;
+   }
+}
+
+mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERS(mvIndex worldIndex,\
+   const char* param, const char* option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      return modulePtr->setWorldParameters(worldIndex, param, option);
+   }
+   else
+   {
+      return error;
+   }
+}
+
+mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERSI(mvIndex worldIndex,\
+   const char* param, mvIndex index)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      return modulePtr->setWorldParametersi(worldIndex, param, index);
+   }
+   else
+   {
+      return error;
+   }
+}
+
+mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERSF(mvIndex worldIndex,\
+   const char* param, mvFloat num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      return modulePtr->setWorldParametersf(worldIndex, param, num);
+   }
+   else
+   {
+      return error;
+   }
+}
+
+mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERSV(mvIndex worldIndex,\
+   const char* param, mvFloat* numArray)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      return modulePtr->setWorldParametersv(worldIndex, param, numArray);
+   }
+   else
+   {
+      return error;
+   }
+}
+
+mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERS(mvIndex worldIndex,\
+   const char* param, const char** option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      return modulePtr->getWorldParameters(worldIndex, param, option);
+   }
+   else
+   {
+      return error;
+   }
+}
+
+mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERSI(mvIndex worldIndex,\
+   const char* param, mvIndex* index)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      return modulePtr->getWorldParametersi(worldIndex, param, index);
+   }
+   else
+   {
+      return error;
+   }
+}
+
+mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERSF(mvIndex worldIndex,\
+   const char* param, mvFloat* num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      return modulePtr->getWorldParametersf(worldIndex, param, num);
+   }
+   else
+   {
+      return error;
+   }
+}
+
+mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERSV(mvIndex worldIndex,\
+   const char* param, mvFloat* numArray, mvCount* noOfElements)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      return modulePtr->getWorldParametersv(worldIndex, param, numArray,\
+         noOfElements);
+   }
+   else
+   {
+      return error;
+   }
+}
 
