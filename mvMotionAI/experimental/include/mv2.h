@@ -189,8 +189,10 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllForcesByIndex(mvIndex worldIndex,\
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBody(mvIndex worldIndex,\
    mvOptionEnum bType, mvOptionEnum bShape, mvFloat x, mvFloat y, mvFloat z);
-MV_GLOBAL_FUNC_PREFIX mvBody* mvGetBody(mvIndex worldIndex, mvIndex bodyIndex);
-MV_GLOBAL_FUNC_PREFIX mvBody* mvGetCurrentBody(mvIndex worldIndex);
+MV_GLOBAL_FUNC_PREFIX mvBody* mvGetBodyPtr(mvIndex worldIndex,\
+   mvIndex bodyIndex);
+MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentBody(mvIndex worldIndex);
+MV_GLOBAL_FUNC_PREFIX mvBody* mvGetCurrentBodyPtr(mvIndex worldIndex);
 MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentBody(mvIndex worldIndex,\
    mvIndex index);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteCurrentBody(mvIndex worldIndex);
@@ -220,7 +222,9 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBodyParametersi(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBodyParameters(mvIndex worldIndex,\
    mvIndex index, const char* param, const char* option);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBodyParametersf(mvIndex worldIndex,\
-   ndex index, const char* param, mvFloat* array);
+   mvIndex index, const char* param, mvFloat num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBodyParametersv(mvIndex worldIndex,\
+   mvIndex index, const char* param, mvFloat* array);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyParametersi(\
    mvIndex worldIndex, const char* param, mvIndex paramIndex);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyParameters(\
@@ -230,39 +234,39 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyParametersf(\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyParametersv(\
    mvIndex worldIndex, const char* param, mvFloat* array);
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum getBodyParameteri(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParameteri(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvIndex* outIndex);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum getBodyParameter(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParameter(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvOptionEnum* option);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum getBodyParameterf(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParameterf(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* num);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum getBodyParameterv(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParameterv(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* array,\
    mvCount* noOfParameters);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum getCurrentBodyParameteri(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBodyParameteri(mvIndex worldIndex,\
    mvParamEnum paramFlag, mvIndex* outIndex);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum getCurrentBodyParameter(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBodyParameter(mvIndex worldIndex,\
    mvParamEnum paramFlag, mvOptionEnum* option);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum getCurrentBodyParameterf(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBodyParameterf(mvIndex worldIndex,\
    mvParamEnum paramFlag, mvFloat* num);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum getCurrentBodyParameterv(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBodyParameterv(mvIndex worldIndex,\
    mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters);
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum getBodyParametersi(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParametersi(mvIndex worldIndex,\
    mvIndex index, const char* param, mvIndex* outIndex);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum getBodyParameters(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParameters(mvIndex worldIndex,\
    mvIndex index, const char* param, const char** option);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum getBodyParametersf(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParametersf(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* num);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum getBodyParametersv(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParametersv(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameters);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum getCurrentBodyParametersi(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBodyParametersi(mvIndex worldIndex,\
    const char* param, mvIndex* outIndex);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum getCurrentBodyParameters(const char* param,\
    const char** option);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum getCurrentBodyParametersf(const char* param,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBodyParametersf(const char* param,\
    mvFloat* num);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum getCurrentBodyParametersv(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBodyParametersv(mvIndex worldIndex,\
    const char* param, mvFloat* array, mvCount* noOfParameters);
 
 /* TODO: implement the functions below */
@@ -302,93 +306,100 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultBodyOfCurrentBody(\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultWeightOfCurrentBody(\
    mvIndex worldIndex, mvFloat weight);
 
-mvErrorEnum mvAddBehaviourToBody(mvIndex worldIndex, mvIndex bodyIndex,\
-   mvOptionEnum bType, mvIndex behaviourIndex, mvIndex groupIndex);
-mvErrorEnum mvAddBehaviourToCurrentBody(mvIndex worldIndex, mvOptionEnum bType,\
-   mvIndex behaviourIndex, mvIndex groupIndex);
-mvErrorEnum mvAddBehaviourToCurrentBody(
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddBehaviourToBody(mvIndex worldIndex,\
+   mvIndex bodyIndex, mvOptionEnum bType, mvIndex behaviourIndex,\
+   mvIndex groupIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddBehaviourToCurrentBody(\
+   mvIndex worldIndex, mvOptionEnum bType, mvIndex behaviourIndex,\
+   mvIndex groupIndex);
 
 ////mvObstacle 41 functions =  9 + 16 + 16
-mvIndex mvAddObstacle(mvIndex worldIndex, mvOptionEnum oShape, mvOptionEnum oState);
-mvIndex mvAddObstacleWithPos(mvIndex worldIndex, mvOptionEnum oShape,\
-        mvOptionEnum oState, mvFloat x, mvFloat y, mvFloat z);
-mvErrorEnum mvRemoveCurrentObstacle(mvIndex worldIndex);
-mvErrorEnum mvRemoveObstacle(mvIndex worldIndex, mvIndex index);
-mvErrorEnum mvSetCurrentObstacle(mvIndex worldIndex, mvIndex index);
-void mvRemoveAllObstacles(mvIndex worldIndex);
-mvErrorEnum mvSetObstacleAsWorldBoundary(mvIndex worldIndex, mvIndex obstacleIndex);
-mvErrorEnum mvSetCurrentObstacleAsWorldBoundary(mvIndex worldIndex);
-mvErrorEnum mvGetCurrentObstacleAsWorldBoundary(mvIndex worldIndex);
+MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateObstacle(mvIndex worldIndex,\
+   mvOptionEnum bType, mvOptionEnum bShape, mvFloat x, mvFloat y, mvFloat z);
+MV_GLOBAL_FUNC_PREFIX mvObstacle* mvGetObstaclePtr(mvIndex worldIndex,\
+   mvIndex bodyIndex);
+MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentObstacle(mvIndex worldIndex);
+MV_GLOBAL_FUNC_PREFIX mvObstacle* mvGetCurrentObstaclePtr(mvIndex worldIndex);
+MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentObstacle(mvIndex worldIndex,\
+   mvIndex index);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteCurrentObstacle(mvIndex worldIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteObstacle(mvIndex worldIndex,\
+   mvIndex index);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteAllObstacles(mvIndex worldIndex);
 
-// GET
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetObstacleParameteri(mvIndex worldIndex,\
+   mvIndex index, mvParamEnum paramFlag, mvIndex paramIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetObstacleParameter(mvIndex worldIndex,\
+   mvIndex index, mvParamEnum paramFlag, mvOptionEnum option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetObstacleParameterf(mvIndex worldIndex,\
+   mvIndex index, mvParamEnum paramFlag, mvFloat num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetObstacleParameterv(mvIndex worldIndex,\
+   mvIndex index, mvParamEnum paramFlag, mvFloat* array);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentObstacleParameteri(\
+   mvIndex worldIndex,mvParamEnum paramFlag, mvIndex paramIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentObstacleParameter(\
+   mvIndex worldIndex, mvParamEnum paramFlag, mvOptionEnum option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentObstacleParameterf(\
+   mvIndex worldIndex,mvParamEnum paramFlag, mvFloat num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentObstacleParameterv(\
+   mvIndex worldIndex,mvParamEnum paramFlag, mvFloat* array);
 
-mvErrorEnum mvGetObstacleParameter(mvIndex worldIndex, mvIndex index,\
-            mvParamEnum param, mvOptionEnum* option);
-mvErrorEnum mvGetCurrentObstacleParameter(mvIndex worldIndex,\
-            mvParamEnum param, mvOptionEnum* option);
-mvErrorEnum mvGetObstacleParameteri(mvIndex worldIndex, mvIndex index,\
-            mvParamEnum param, mvIndex* index);
-mvErrorEnum mvGetCurrentObstacleParameteri(mvIndex worldIndex,\
-            mvParamEnum param, mvIndex* index);
-mvErrorEnum mvGetObstacleParameterf(mvIndex worldIndex, mvIndex index,\
-            mvParamEnum param, mvFloat* num);
-mvErrorEnum mvGetCurrentObstacleParameterf(mvIndex worldIndex,\
-            mvParamEnum param, mvFloat* num);
-mvErrorEnum mvGetObstacleParameterv(mvIndex worldIndex, mvIndex index,\
-            mvParamEnum param, mvFloat* array, mvCount* noOfParameters);
-mvErrorEnum mvGetCurrentObstacleParameterv(mvIndex worldIndex,\
-            mvParamEnum param, mvFloat* array, mvCount* noOfParameters);
-mvErrorEnum mvGetObstacleParameters(mvIndex worldIndex, mvIndex index,\
-            const char* param, const char* option);
-mvErrorEnum mvGetCurrentObstacleParameters(mvIndex worldIndex,\
-            const char* param, const char* option);
-mvErrorEnum mvGetObstacleParametersi(mvIndex worldIndex, mvIndex index,\
-            const char* param, mvIndex* index);
-mvErrorEnum mvGetCurrentObstacleParametersi(mvIndex worldIndex,\
-            const char* param, mvIndex* index);
-mvErrorEnum mvGetObstacleParametersf(mvIndex worldIndex, mvIndex index,\
-            const char* param, mvFloat* num);
-mvErrorEnum mvGetCurrentObstacleParametersf(mvIndex worldIndex,\
-            const char* param, mvFloat* num);
-mvErrorEnum mvGetObstacleParametersv(mvIndex worldIndex, mvIndex index,\
-            const char* param, mvFloat* array, mvCount* noOfParameters);
-mvErrorEnum mvGetCurrentObstacleParametersv(mvIndex worldIndex,\
-            const char* param, mvFloat* array, mvCount* noOfParameters);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetObstacleParametersi(mvIndex worldIndex,\
+   mvIndex index, const char* param, mvIndex paramIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetObstacleParameters(mvIndex worldIndex,\
+   mvIndex index, const char* param, const char* option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetObstacleParametersf(mvIndex worldIndex,\
+   mvIndex index, const char* param, mvFloat* array);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentObstacleParametersi(\
+   mvIndex worldIndex, const char* param, mvIndex paramIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentObstacleParameters(\
+   mvIndex worldIndex, const char* param, const char* option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentObstacleParametersf(\
+   mvIndex worldIndex, const char* param, mvFloat num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentObstacleParametersv(\
+   mvIndex worldIndex, const char* param, mvFloat* array);
 
-// SET
-mvErrorEnum mvSetObstacleParameter(mvIndex worldIndex, mvIndex index,\
-            mvParamEnum param, mvOptionEnum option);
-mvErrorEnum mvSetCurrentObstacleParameter(mvIndex worldIndex,\
-            mvParamEnum param, mvOptionEnum option);
-mvErrorEnum mvSetObstacleParameteri(mvIndex worldIndex, mvIndex index,\
-            mvParamEnum param, mvIndex index);
-mvErrorEnum mvSetCurrentObstacleParameteri(mvIndex worldIndex,\
-            mvParamEnum param, mvIndex index);
-mvErrorEnum mvSetObstacleParameterf(mvIndex worldIndex, mvIndex index,\
-            mvParamEnum param, mvFloat num);
-mvErrorEnum mvSetCurrentObstacleParameterf(mvIndex worldIndex,\
-            mvParamEnum param, mvFloat num);
-mvErrorEnum mvSetObstacleParameterv(mvIndex worldIndex, mvIndex index,\
-            mvParamEnum param, mvFloat* array);
-mvErrorEnum mvSetCurrentObstacleParameterv(mvIndex worldIndex,\
-            mvParamEnum param, mvFloat* array);
-mvErrorEnum mvSetObstacleParameters(mvIndex worldIndex, mvIndex index,\
-            const char* param, const char* option);
-mvErrorEnum mvSetCurrentObstacleParameters(mvIndex worldIndex,\
-            const char* param, const char* option);
-mvErrorEnum mvSetObstacleParametersi(mvIndex worldIndex, mvIndex index,\
-            const char* param, mvIndex index);
-mvErrorEnum mvSetCurrentObstacleParametersi(mvIndex worldIndex,\
-            const char* param, mvIndex index);
-mvErrorEnum mvSetObstacleParametersf(mvIndex worldIndex, mvIndex index,\
-            const char* param, mvFloat num);
-mvErrorEnum mvSetCurrentObstacleParametersf(mvIndex worldIndex,\
-            const char* param, mvFloat num);
-mvErrorEnum mvSetObstacleParametersv(mvIndex worldIndex, mvIndex index,\
-            const char* param, mvFloat* array);
-mvErrorEnum mvSetCurrentObstacleParametersv(mvIndex worldIndex,\
-            const char* param, mvFloat* array);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetObstacleParameteri(mvIndex worldIndex,\
+   mvIndex index, mvParamEnum paramFlag, mvIndex* outIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetObstacleParameter(mvIndex worldIndex,\
+   mvIndex index, mvParamEnum paramFlag, mvOptionEnum* option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetObstacleParameterf(mvIndex worldIndex,\
+   mvIndex index, mvParamEnum paramFlag, mvFloat* num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetObstacleParameterv(mvIndex worldIndex,\
+   mvIndex index, mvParamEnum paramFlag, mvFloat* array,\
+   mvCount* noOfParameters);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentObstacleParameteri(mvIndex worldIndex,\
+   mvParamEnum paramFlag, mvIndex* outIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentObstacleParameter(mvIndex worldIndex,\
+   mvParamEnum paramFlag, mvOptionEnum* option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentObstacleParameterf(mvIndex worldIndex,\
+   mvParamEnum paramFlag, mvFloat* num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentObstacleParameterv(mvIndex worldIndex,\
+   mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters);
 
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetObstacleParametersi(mvIndex worldIndex,\
+   mvIndex index, const char* param, mvIndex* outIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetObstacleParameters(mvIndex worldIndex,\
+   mvIndex index, const char* param, const char** option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetObstacleParametersf(mvIndex worldIndex,\
+   mvIndex index, const char* param, mvFloat* num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetObstacleParametersv(mvIndex worldIndex,\
+   mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameters);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentObstacleParametersi(mvIndex worldIndex,\
+   const char* param, mvIndex* outIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentObstacleParameters(const char* param,\
+   const char** option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentObstacleParametersf(const char* param,\
+   mvFloat* num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentObstacleParametersv(mvIndex worldIndex,\
+   const char* param, mvFloat* array, mvCount* noOfParameters);
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetObstacleAsBoundary(\
+   mvIndex worldIndex, mvIndex obstacleIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentObstacleAsBoundary(\
+   mvIndex worldIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentObstacleAsBoundary(\
+   mvIndex worldIndex);
 /*
  * mvWaypoint
  * No Of Functions : 46 = 6 + 16 + 16 + 8
