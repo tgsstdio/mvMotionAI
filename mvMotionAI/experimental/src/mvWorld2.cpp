@@ -322,7 +322,7 @@ mvIndex mvWorld_V2::setCurrentForce(mvIndex index)
   *
   * (documentation goes here)
   */
-mvForce* mvWorld_V2::getCurrentForce()
+mvForce* mvWorld_V2::getCurrentForcePtr()
 {
    return forces.getCurrentClassPtr();
 }
@@ -331,7 +331,7 @@ mvForce* mvWorld_V2::getCurrentForce()
   *
   * (documentation goes here)
   */
-mvForce* mvWorld_V2::getForce(mvIndex index)
+mvForce* mvWorld_V2::getForcePtr(mvIndex index)
 {
    return forces.getClassPtr(index);
 }
@@ -678,7 +678,7 @@ mvIndex mvWorld_V2::setCurrentGroupBehaviour(mvIndex index)
   *
   * (documentation goes here)
   */
-mvGroupBehaviour* mvWorld_V2::getCurrentGroupBehaviour()
+mvGroupBehaviour* mvWorld_V2::getCurrentGroupBehaviourPtr()
 {
    return groupBehaviours.getCurrentClassPtr();
 }
@@ -687,7 +687,7 @@ mvGroupBehaviour* mvWorld_V2::getCurrentGroupBehaviour()
   *
   * (documentation goes here)
   */
-mvGroupBehaviour* mvWorld_V2::getGroupBehaviour(mvIndex index)
+mvGroupBehaviour* mvWorld_V2::getGroupBehaviourPtr(mvIndex index)
 {
    return groupBehaviours.getClassPtr(index);
 }
@@ -1001,7 +1001,7 @@ mvIndex mvWorld_V2::setCurrentGroup(mvIndex index)
   *
   * (documentation goes here)
   */
-mvGroup * mvWorld_V2::getCurrentGroup()
+mvGroup * mvWorld_V2::getCurrentGroupPtr()
 {
    return groups.getCurrentClassPtr();
 }
@@ -1010,7 +1010,7 @@ mvGroup * mvWorld_V2::getCurrentGroup()
   *
   * (documentation goes here)
   */
-mvGroup * mvWorld_V2::getGroup(mvIndex index)
+mvGroup * mvWorld_V2::getGroupPtr(mvIndex index)
 {
    return groups.getClassPtr(index);
 }
@@ -1368,7 +1368,7 @@ mvIndex mvWorld_V2::setCurrentBehaviour(mvIndex index)
   *
   * (documentation goes here)
   */
-mvBehaviour * mvWorld_V2::getCurrentBehaviour()
+mvBehaviour * mvWorld_V2::getCurrentBehaviourPtr()
 {
    return behaviours.getCurrentClassPtr();
 }
@@ -1377,7 +1377,7 @@ mvBehaviour * mvWorld_V2::getCurrentBehaviour()
   *
   * (documentation goes here)
   */
-mvBehaviour * mvWorld_V2::getBehaviour(mvIndex index)
+mvBehaviour * mvWorld_V2::getBehaviourPtr(mvIndex index)
 {
    return behaviours.getClassPtr(index);
 }
@@ -1692,7 +1692,7 @@ mvIndex mvWorld_V2::setCurrentPathway(mvIndex index)
   *
   * (documentation goes here)
   */
-mvPathway * mvWorld_V2::getCurrentPathway()
+mvPathway * mvWorld_V2::getCurrentPathwayPtr()
 {
    return pathways.getCurrentClassPtr();
 }
@@ -1701,7 +1701,7 @@ mvPathway * mvWorld_V2::getCurrentPathway()
   *
   * (documentation goes here)
   */
-mvPathway * mvWorld_V2::getPathway(mvIndex index)
+mvPathway * mvWorld_V2::getPathwayPtr(mvIndex index)
 {
    return pathways.getClassPtr(index);
 }
@@ -2015,7 +2015,7 @@ mvIndex mvWorld_V2::setCurrentWaypoint(mvIndex index)
   *
   * (documentation goes here)
   */
-mvWaypoint * mvWorld_V2::getCurrentWaypoint()
+mvWaypoint * mvWorld_V2::getCurrentWaypointPtr()
 {
    return waypoints.getCurrentClassPtr();
 }
@@ -2024,7 +2024,7 @@ mvWaypoint * mvWorld_V2::getCurrentWaypoint()
   *
   * (documentation goes here)
   */
-mvWaypoint * mvWorld_V2::getWaypoint(mvIndex index)
+mvWaypoint * mvWorld_V2::getWaypointPtr(mvIndex index)
 {
    return waypoints.getClassPtr(index);
 }
@@ -2339,7 +2339,7 @@ mvIndex mvWorld_V2::setCurrentObstacle(mvIndex index)
   *
   * (documentation goes here)
   */
-mvObstacle * mvWorld_V2::getCurrentObstacle()
+mvObstacle * mvWorld_V2::getCurrentObstaclePtr()
 {
    return obstacles.getCurrentClassPtr();
 }
@@ -2348,7 +2348,7 @@ mvObstacle * mvWorld_V2::getCurrentObstacle()
   *
   * (documentation goes here)
   */
-mvObstacle * mvWorld_V2::getObstacle(mvIndex index)
+mvObstacle * mvWorld_V2::getObstaclePtr(mvIndex index)
 {
    return obstacles.getClassPtr(index);
 }
@@ -2663,7 +2663,7 @@ mvIndex mvWorld_V2::setCurrentBody(mvIndex index)
   *
   * (documentation goes here)
   */
-mvBody * mvWorld_V2::getCurrentBody()
+mvBody * mvWorld_V2::getCurrentBodyPtr()
 {
    return bodies.getCurrentClassPtr();
 }
@@ -2672,7 +2672,7 @@ mvBody * mvWorld_V2::getCurrentBody()
   *
   * (documentation goes here)
   */
-mvBody * mvWorld_V2::getBody(mvIndex index)
+mvBody * mvWorld_V2::getBodyPtr(mvIndex index)
 {
    return bodies.getClassPtr(index);
 }
@@ -4256,3 +4256,37 @@ mvErrorEnum mvWorld_V2::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
+mvIndex mvWorld_V2::getCurrentBody()
+{
+   return bodies.getCurrentIndex();
+}
+
+mvIndex mvWorld_V2::getCurrentObstacle()
+{
+   return obstacles.getCurrentIndex();
+}
+
+mvIndex mvWorld_V2::getCurrentWaypoint()
+{
+   return waypoints.getCurrentIndex();
+}
+
+mvIndex mvWorld_V2::getCurrentForce()
+{
+   return forces.getCurrentIndex();
+}
+
+mvIndex mvWorld_V2::getCurrentGroup()
+{
+   return groups.getCurrentIndex();
+}
+
+mvIndex mvWorld_V2::getCurrentBehaviour()
+{
+   return behaviours.getCurrentIndex();
+}
+
+mvIndex mvWorld_V2::getCurrentGroupBehaviour()
+{
+   return groupBehaviours.getCurrentIndex();
+}

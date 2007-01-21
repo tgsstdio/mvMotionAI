@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="ubuntu" />
-	<File name="examples-src/LuaFuncTest.cpp" open="0" top="0" tabpos="0">
+	<File name="examples-src\LuaFuncTest.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1815" topLine="9" />
 	</File>
-	<File name="include/mvLuaScript.h" open="0" top="0" tabpos="1">
+	<File name="include\mvLuaScript.h" open="0" top="0" tabpos="1">
 		<Cursor position="2243" topLine="24" />
 	</File>
 </CodeBlocks_layout_file>

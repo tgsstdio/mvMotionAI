@@ -71,8 +71,8 @@ class mvWorld_V2
       // body functions
       mvIndex createBody(mvOptionEnum bType, mvOptionEnum bShape,\
          mvFloat x, mvFloat y, mvFloat z);
-      mvBody* getBody(mvIndex index);
-      mvBody* getCurrentBody();
+      mvBody* getBodyPtr(mvIndex index);
+      mvBody* getCurrentBodyPtr();
       mvIndex setCurrentBody(mvIndex index);
       mvErrorEnum deleteCurrentBody();
       mvErrorEnum deleteBody(mvIndex index);
@@ -155,8 +155,8 @@ class mvWorld_V2
       // obstacle functions
       mvIndex createObstacle(mvOptionEnum oType, mvOptionEnum oState,\
          mvFloat x, mvFloat y, mvFloat z);
-      mvObstacle* getObstacle(mvIndex index);
-      mvObstacle* getCurrentObstacle();
+      mvObstacle* getObstaclePtr(mvIndex index);
+      mvObstacle* getCurrentObstaclePtr();
       mvIndex setCurrentObstacle(mvIndex index);
       mvErrorEnum deleteCurrentObstacle();
       mvErrorEnum deleteObstacle(mvIndex index);
@@ -242,8 +242,8 @@ class mvWorld_V2
       // Waypoint functions
       mvIndex createWaypoint(mvOptionEnum wType, mvOptionEnum wShape,\
          mvFloat x, mvFloat y, mvFloat z);
-      mvWaypoint* getWaypoint(mvIndex index);
-      mvWaypoint* getCurrentWaypoint();
+      mvWaypoint* getWaypointPtr(mvIndex index);
+      mvWaypoint* getCurrentWaypointPtr();
       mvIndex setCurrentWaypoint(mvIndex index);
       mvErrorEnum deleteCurrentWaypoint();
       mvErrorEnum deleteWaypoint(mvIndex index);
@@ -328,8 +328,8 @@ class mvWorld_V2
 
       // Pathway functions
       mvIndex createPathway();
-      mvPathway* getPathway(mvIndex index);
-      mvPathway* getCurrentPathway();
+      mvPathway* getPathwayPtr(mvIndex index);
+      mvPathway* getCurrentPathwayPtr();
       mvIndex setCurrentPathway(mvIndex index);
       mvErrorEnum deleteCurrentPathway();
       mvErrorEnum deletePathway(mvIndex index);
@@ -413,8 +413,8 @@ class mvWorld_V2
 
       // Behaviour functions
       mvIndex createBehaviour(mvOptionEnum bType);
-      mvBehaviour* getBehaviour(mvIndex index);
-      mvBehaviour* getCurrentBehaviour();
+      mvBehaviour* getBehaviourPtr(mvIndex index);
+      mvBehaviour* getCurrentBehaviourPtr();
       mvIndex setCurrentBehaviour(mvIndex index);
       mvErrorEnum deleteCurrentBehaviour();
       mvErrorEnum deleteBehaviour(mvIndex index);
@@ -498,8 +498,8 @@ class mvWorld_V2
 
       // Group functions
       mvIndex createGroup(const char* groupID);
-      mvGroup* getGroup(mvIndex index);
-      mvGroup* getCurrentGroup();
+      mvGroup* getGroupPtr(mvIndex index);
+      mvGroup* getCurrentGroupPtr();
       mvIndex setCurrentGroup(mvIndex index);
       mvErrorEnum deleteCurrentGroup();
       mvErrorEnum deleteGroup(mvIndex index);
@@ -582,8 +582,8 @@ class mvWorld_V2
 
       // GroupBehaviour functions
       mvIndex createGroupBehaviour(mvOptionEnum type);
-      mvGroupBehaviour* getGroupBehaviour(mvIndex index);
-      mvGroupBehaviour* getCurrentGroupBehaviour();
+      mvGroupBehaviour* getGroupBehaviourPtr(mvIndex index);
+      mvGroupBehaviour* getCurrentGroupBehaviourPtr();
       mvIndex setCurrentGroupBehaviour(mvIndex index);
       mvErrorEnum deleteCurrentGroupBehaviour();
       mvErrorEnum deleteGroupBehaviour(mvIndex index);
@@ -667,8 +667,8 @@ class mvWorld_V2
 
       // Force functions
       mvIndex createForce(mvOptionEnum fType);
-      mvForce* getForce(mvIndex index);
-      mvForce* getCurrentForce();
+      mvForce* getForcePtr(mvIndex index);
+      mvForce* getCurrentForcePtr();
       mvIndex setCurrentForce(mvIndex index);
       mvErrorEnum deleteCurrentForce();
       mvErrorEnum deleteForce(mvIndex index);
@@ -873,7 +873,16 @@ class mvWorld_V2
       mvErrorEnum getCurrentMainGroupBehaviourParameterv(mvParamEnum param,\
          mvFloat* array, mvCount* noOfParameters);
 
-// TODO : patahway functions
+      // TODO : get current index
+      mvIndex getCurrentBody();
+      mvIndex getCurrentObstacle();
+      mvIndex getCurrentWaypoint();
+      mvIndex getCurrentForce();
+      mvIndex getCurrentGroup();
+      mvIndex getCurrentBehaviour();
+      mvIndex getCurrentGroupBehaviour();
+
+      // TODO : patahway functions
 };
 
 #endif
