@@ -100,6 +100,7 @@
 			<Option target="Release" />
 		</Unit>
 		<Unit filename="experimental\include\mvBehaviourResult.h" />
+		<Unit filename="experimental\include\mvBehaviour_V2.h" />
 		<Unit filename="experimental\include\mvClone.h">
 			<Option target="Debug" />
 			<Option target="Release" />
@@ -164,6 +165,7 @@
 		<Unit filename="experimental\src\mvBehaviourResult.cpp">
 			<Option target="mvWorld2-Debug" />
 		</Unit>
+		<Unit filename="experimental\src\mvBehaviour_V2.cpp" />
 		<Unit filename="experimental\src\mvClone.cpp">
 			<Option target="Debug" />
 			<Option target="Release" />
@@ -172,6 +174,8 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
+		<Unit filename="experimental\src\mvGroupBNode_V2.cpp" />
+		<Unit filename="experimental\src\mvGroupBehaviour_V2.cpp" />
 		<Unit filename="experimental\src\mvList.cpp">
 			<Option compile="0" />
 			<Option link="0" />

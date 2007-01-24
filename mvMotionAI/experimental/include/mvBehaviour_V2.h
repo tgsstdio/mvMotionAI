@@ -19,45 +19,39 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-#ifndef MVGROUPBNODE_V2_H_INCLUDED
-#define MVGROUPBNODE_V2_H_INCLUDED
+#ifndef MVBEHAVIOUR_V2_H_INCLUDED
+#define MVBEHAVIOUR_V2_H_INCLUDED
 
-#include "mvEnums.h"
-#include "mvMotionAI-Types.h"
 #include "mvBaseBehaviour.h"
+#include "mvEnums.h"
 
-class mvGroupBNode_V2
+/**
+ * \class mvBehaviour
+ * \brief a global behaviour that all bodies can use.
+ */
+class mvBehaviour_V2
 {
    private:
-      mvIndex groupIndex;
-      mvBaseBehaviour* grpBehaviour;
       bool behavEnabled;
+      mvBaseBehaviour* behavPtr;
 
    public:
-      mvGroupBNode_V2(mvOptionEnum gbType, mvBaseBehaviour* mainBehaviour,\
-         mvIndex grpIndex);
+      mvBehaviour_V2(mvOptionEnum bType);
       bool isEnabled();
       void setEnabled(bool value);
       mvBaseBehaviour* getBehaviourPtr();
-      mvIndex getGroup();
-      mvErrorEnum setParameter(mvParamEnum paramFlag,\
-         mvOptionEnum option);
-      mvErrorEnum setParameteri(mvParamEnum paramFlag,\
-         mvIndex paramIndex);
-      mvErrorEnum setParameterf(mvParamEnum paramFlag,\
-         mvFloat num);
-      mvErrorEnum setParameterv(mvParamEnum paramFlag,\
-         mvFloat* array);
 
-      mvErrorEnum getParameter(mvParamEnum paramFlag,\
-         mvOptionEnum* option);
-      mvErrorEnum getParameteri(mvParamEnum paramFlag,\
-         mvIndex* outIndex);
-      mvErrorEnum getParameterf(mvParamEnum paramFlag,\
-         mvFloat* num);
-      mvErrorEnum getParameterv(mvParamEnum paramFlag,\
-         mvFloat* array, mvCount* noOfParameters);
-      ~mvGroupBNode_V2();
+      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
+      mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* array);
+
+      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
+      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
+      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num);
+      mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* array,\
+         mvCount* noOfParameters);
+      ~mvBehaviour_V2();
 };
 
-#endif // MVGROUPBNODE_V2_H_INCLUDED
+#endif // MVBEHAVIOUR_V2_H_INCLUDED

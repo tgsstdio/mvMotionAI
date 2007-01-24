@@ -3717,7 +3717,7 @@ mvErrorEnum mvWorld_V2::setGroupBehaviourParameteri(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getCurrentGroupParameteri(const char* param,\
+mvErrorEnum mvWorld_V2::getCurrentGroupParametersi(const char* param,\
    mvIndex* outIndex)
 {
    return groups.getCurrentItemParametersi(param, outIndex);
@@ -4289,4 +4289,9 @@ mvIndex mvWorld_V2::getCurrentBehaviour()
 mvIndex mvWorld_V2::getCurrentGroupBehaviour()
 {
    return groupBehaviours.getCurrentIndex();
+}
+
+mvIndex mvWorld_V2::getCurrentPathway()
+{
+   return pathways.getCurrentIndex();
 }

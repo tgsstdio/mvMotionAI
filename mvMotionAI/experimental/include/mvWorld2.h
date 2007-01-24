@@ -572,7 +572,7 @@ class mvWorld_V2
       mvErrorEnum getGroupParametersv(mvIndex index, const char* param,\
          mvFloat* array, mvCount* noOfParameters);
 
-      mvErrorEnum getCurrentGroupParameteri(const char* param,\
+      mvErrorEnum getCurrentGroupParametersi(const char* param,\
          mvIndex* outIndex);
       mvErrorEnum getCurrentGroupParameters(const char* param,\
          const char** option);
@@ -881,6 +881,7 @@ class mvWorld_V2
       mvIndex getCurrentGroup();
       mvIndex getCurrentBehaviour();
       mvIndex getCurrentGroupBehaviour();
+      mvIndex getCurrentPathway();
 
       // TODO : patahway functions
 };
