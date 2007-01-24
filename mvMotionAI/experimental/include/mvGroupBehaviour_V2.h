@@ -32,6 +32,7 @@ class mvGroupBehaviour_V2
    private:
       mvBaseBehaviour* defaultGBehaviour;
       mvItemList<mvGroupBNode_V2> groupNodeList;
+      bool behavEnabled;
    public:
       mvGroupBehaviour_V2(mvOptionEnum gbType);
       ~mvGroupBehaviour_V2();
@@ -40,9 +41,10 @@ class mvGroupBehaviour_V2
       void removeAllGroups();
       mvGroupBNode_V2* getGroupNodeByIndex(mvIndex index);
       mvGroupBNode_V2* findGroupNode(mvIndex groupIndex);
-      mvCount getNoOfGroups() const;
-      mvOptionEnum getType() const;
-      ~mvGroupBehaviour();
+      mvCount getNoOfGroups();
+      //mvOptionEnum getType();
+      bool isEnabled();
+      void setEnabled(bool value);
 
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
       mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
@@ -73,6 +75,59 @@ class mvGroupBehaviour_V2
       mvErrorEnum setNodeParameterv(mvIndex groupIndex, mvParamEnum paramFlag,\
          mvFloat* numArray);
 
+      mvErrorEnum getNodeParametersi(mvIndex groupIndex, const char* param,\
+         mvIndex* index);
+      mvErrorEnum getNodeParameters(mvIndex groupIndex, const char* param,\
+         const char** option);
+      mvErrorEnum getNodeParametersf(mvIndex groupIndex, const char* param,\
+         mvFloat* num);
+      mvErrorEnum getNodeParametersv(mvIndex groupIndex, const char* param,\
+         mvFloat* numArray, mvCount* noOfParameters);
+
+      mvErrorEnum setNodeParametersi(mvIndex groupIndex, const char* param,\
+         mvIndex index);
+      mvErrorEnum setNodeParameters(mvIndex groupIndex, const char* param,\
+         const char* option);
+      mvErrorEnum setNodeParametersf(mvIndex groupIndex, const char* param,\
+         mvFloat num);
+      mvErrorEnum setNodeParametersv(mvIndex groupIndex, const char* param,\
+         mvFloat* numArray);
+
+      mvErrorEnum getCurrentNodeParameteri(mvParamEnum paramFlag,\
+         mvIndex* index);
+      mvErrorEnum getCurrentNodeParameter(mvParamEnum paramFlag,\
+         mvOptionEnum* option);
+      mvErrorEnum getCurrentNodeParameterf(mvParamEnum paramFlag,\
+         mvFloat* num);
+      mvErrorEnum getCurrentNodeParameterv(mvParamEnum paramFlag,\
+         mvFloat* numArray, mvCount* noOfParameters);
+
+      mvErrorEnum setCurrentNodeParameteri(mvParamEnum paramFlag,\
+         mvIndex index);
+      mvErrorEnum setCurrentNodeParameter(mvParamEnum paramFlag,\
+         mvOptionEnum option);
+      mvErrorEnum setCurrentNodeParameterf(mvParamEnum paramFlag,\
+         mvFloat num);
+      mvErrorEnum setCurrentNodeParameterv(mvParamEnum paramFlag,\
+         mvFloat* numArray);
+
+      mvErrorEnum getCurrentNodeParametersi(const char* param,\
+         mvIndex* index);
+      mvErrorEnum getCurrentNodeParameters(const char* param,\
+         const char** option);
+      mvErrorEnum getCurrentNodeParametersf(const char* param,\
+         mvFloat* num);
+      mvErrorEnum getCurrentNodeParametersv(const char* param,\
+         mvFloat* numArray, mvCount* noOfParameters);
+
+      mvErrorEnum setCurrentNodeParametersi(const char* param,\
+         mvIndex index);
+      mvErrorEnum setCurrentNodeParameters(const char* param,\
+         const char* option);
+      mvErrorEnum setCurrentNodeParametersf(const char* param,\
+         mvFloat num);
+      mvErrorEnum setCurrentNodeParametersv(const char* param,\
+         mvFloat* numArray);
 };
 
 #endif // MVGROUPBEHAVIOUR_V2_H_INCLUDED

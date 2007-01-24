@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-winXP" />
-	<File name="experimental\include\mv2.h" open="1" top="0" tabpos="2">
-		<Cursor position="10612" topLine="197" />
+	<File name="experimental\include\mv2.h" open="0" top="0" tabpos="2">
+		<Cursor position="59447" topLine="1316" />
 	</File>
 	<File name="experimental\include\mvBaseBehaviour.h" open="1" top="0" tabpos="1">
 		<Cursor position="0" topLine="72" />
@@ -10,7 +10,7 @@
 	<File name="experimental\include\mvGlobalFunctions.h" open="0" top="0" tabpos="0">
 		<Cursor position="4020" topLine="30" />
 	</File>
-	<File name="experimental\include\mvList.h" open="1" top="0" tabpos="1">
+	<File name="experimental\include\mvList.h" open="0" top="0" tabpos="1">
 		<Cursor position="1174" topLine="6" />
 	</File>
 	<File name="experimental\src\mv.cpp" open="0" top="0" tabpos="3">
@@ -35,7 +35,7 @@
 		<Cursor position="6326" topLine="137" />
 	</File>
 	<File name="include\mvEnums.h" open="1" top="0" tabpos="1">
-		<Cursor position="7952" topLine="260" />
+		<Cursor position="5065" topLine="174" />
 	</File>
 	<File name="include\mvForce.h" open="0" top="0" tabpos="0">
 		<Cursor position="1758" topLine="30" />
@@ -73,8 +73,8 @@
 	<File name="include\mvWaypoint.h" open="0" top="0" tabpos="6">
 		<Cursor position="3185" topLine="67" />
 	</File>
-	<File name="include\mvWorld.h" open="1" top="0" tabpos="3">
-		<Cursor position="17955" topLine="275" />
+	<File name="include\mvWorld.h" open="0" top="0" tabpos="3">
+		<Cursor position="17955" topLine="266" />
 	</File>
 	<File name="src\mvBehaviour-Central.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="5064" topLine="116" />

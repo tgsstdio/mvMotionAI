@@ -201,6 +201,10 @@ enum mvParamEnum
    MV_PREV_NODE,
    MV_UP_LEVEL,
    MV_DOWN_LEVEL,
+   MV_IS_CONFINED,
+   MV_GROUP,
+   MV_AUTO_CONVERT_INDEX,
+   MV_RIGHT_HANDED,
 
    // user defined parameters
    MV_USER_PARAM_0,

@@ -11,7 +11,7 @@
 		<Cursor position="1143" topLine="0" />
 	</File>
 	<File name="experimental\include\mv2.h" open="0" top="0" tabpos="0">
-		<Cursor position="20876" topLine="404" />
+		<Cursor position="57824" topLine="968" />
 	</File>
 	<File name="experimental\include\mvBEntry.h" open="0" top="0" tabpos="3">
 		<Cursor position="1363" topLine="0" />
@@ -40,6 +40,9 @@
 	<File name="experimental\include\mvBehaviourResult.h" open="0" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />
 	</File>
+	<File name="experimental\include\mvBehaviour_V2.h" open="0" top="0" tabpos="3">
+		<Cursor position="1604" topLine="13" />
+	</File>
 	<File name="experimental\include\mvClone.h" open="0" top="0" tabpos="10">
 		<Cursor position="277" topLine="0" />
 	</File>
@@ -49,11 +52,11 @@
 	<File name="experimental\include\mvFlee.h" open="0" top="0" tabpos="7">
 		<Cursor position="225" topLine="0" />
 	</File>
-	<File name="experimental\include\mvGroupBNode_V2.h" open="0" top="0" tabpos="0">
-		<Cursor position="157" topLine="0" />
+	<File name="experimental\include\mvGroupBNode_V2.h" open="1" top="0" tabpos="2">
+		<Cursor position="1300" topLine="19" />
 	</File>
-	<File name="experimental\include\mvGroupBehaviour_V2.h" open="0" top="0" tabpos="1">
-		<Cursor position="1919" topLine="7" />
+	<File name="experimental\include\mvGroupBehaviour_V2.h" open="1" top="0" tabpos="1">
+		<Cursor position="1966" topLine="20" />
 	</File>
 	<File name="experimental\include\mvList.h" open="0" top="0" tabpos="0">
 		<Cursor position="2140" topLine="15" />
@@ -61,7 +64,7 @@
 	<File name="experimental\include\mvMotionAI_V2-Central.h" open="0" top="0" tabpos="2">
 		<Cursor position="3728" topLine="126" />
 	</File>
-	<File name="experimental\include\mvNullLoader.h" open="1" top="0" tabpos="3">
+	<File name="experimental\include\mvNullLoader.h" open="0" top="0" tabpos="3">
 		<Cursor position="1444" topLine="0" />
 	</File>
 	<File name="experimental\include\mvPursuit.h" open="0" top="0" tabpos="8">
@@ -76,14 +79,14 @@
 	<File name="experimental\include\mvSimpleFlock.h" open="0" top="0" tabpos="5">
 		<Cursor position="819" topLine="0" />
 	</File>
-	<File name="experimental\include\mvWorld2.h" open="1" top="0" tabpos="2">
-		<Cursor position="15302" topLine="324" />
+	<File name="experimental\include\mvWorld2.h" open="0" top="0" tabpos="2">
+		<Cursor position="26263" topLine="839" />
 	</File>
 	<File name="experimental\src\mv.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="17149" topLine="0" />
 	</File>
-	<File name="experimental\src\mv2.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="27870" topLine="947" />
+	<File name="experimental\src\mv2.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="154162" topLine="5154" />
 	</File>
 	<File name="experimental\src\mvBEntryList.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="10047" topLine="0" />
@@ -109,11 +112,17 @@
 	<File name="experimental\src\mvBehaviourResult.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="4988" topLine="0" />
 	</File>
+	<File name="experimental\src\mvBehaviour_V2.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="1310" topLine="17" />
+	</File>
 	<File name="experimental\src\mvClone.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="1143" topLine="0" />
 	</File>
 	<File name="experimental\src\mvFlee.cpp" open="0" top="0" tabpos="11">
 		<Cursor position="1143" topLine="3" />
+	</File>
+	<File name="experimental\src\mvGroupBNode_V2.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="4161" topLine="102" />
 	</File>
 	<File name="experimental\src\mvList.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="10170" topLine="419" />
@@ -133,7 +142,7 @@
 	<File name="experimental\src\mvSimpleFlock.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="1143" topLine="0" />
 	</File>
-	<File name="experimental\src\mvWorld2.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="37458" topLine="1609" />
+	<File name="experimental\src\mvWorld2.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="17072" topLine="738" />
 	</File>
 </CodeBlocks_layout_file>
