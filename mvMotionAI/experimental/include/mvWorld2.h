@@ -29,8 +29,8 @@
 #include "mvWaypoint.h"
 #include "mvPathway.h"
 #include "mvGroup.h"
-#include "mvGroupBehaviour.h"
-#include "mvBehaviour.h"
+#include "mvGroupBehaviour_V2.h"
+#include "mvBehaviour_V2.h"
 
 // TODO (White 2#1#): implement version two of world
 
@@ -43,8 +43,8 @@ class mvWorld_V2
       mvItemList<mvBody> bodies;
       mvItemList<mvWaypoint> waypoints;
       mvItemList<mvPathway> pathways;
-      mvItemList<mvGroupBehaviour> groupBehaviours;
-      mvItemList<mvBehaviour> behaviours;
+      mvItemList<mvGroupBehaviour_V2> groupBehaviours;
+      mvItemList<mvBehaviour_V2> behaviours;
       mvItemList<mvGroup> groups;
 
    public:
@@ -413,13 +413,13 @@ class mvWorld_V2
 
       // Behaviour functions
       mvIndex createBehaviour(mvOptionEnum bType);
-      mvBehaviour* getBehaviourPtr(mvIndex index);
-      mvBehaviour* getCurrentBehaviourPtr();
+      mvBehaviour_V2* getBehaviourPtr(mvIndex index);
+      mvBehaviour_V2* getCurrentBehaviourPtr();
       mvIndex setCurrentBehaviour(mvIndex index);
       mvErrorEnum deleteCurrentBehaviour();
       mvErrorEnum deleteBehaviour(mvIndex index);
       void deleteAllBehaviours();
-      void applyToAllBehaviours(void (someFunction)(mvBehaviour*, void*),\
+      void applyToAllBehaviours(void (someFunction)(mvBehaviour_V2*, void*),\
          void* extraPtr);
       void applyToAllBehavioursByIndex(mvIndex worldIndex,\
          void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
@@ -582,88 +582,90 @@ class mvWorld_V2
 
       // GroupBehaviour functions
       mvIndex createGroupBehaviour(mvOptionEnum type);
-      mvGroupBehaviour* getGroupBehaviourPtr(mvIndex index);
-      mvGroupBehaviour* getCurrentGroupBehaviourPtr();
+      mvGroupBehaviour_V2* getGroupBehaviourPtr(mvIndex index);
+      mvGroupBehaviour_V2* getCurrentGroupBehaviourPtr();
       mvIndex setCurrentGroupBehaviour(mvIndex index);
       mvErrorEnum deleteCurrentGroupBehaviour();
       mvErrorEnum deleteGroupBehaviour(mvIndex index);
       void deleteAllGroupBehaviours();
       void applyToAllGroupBehaviours(\
-         void (someFunction)(mvGroupBehaviour*, void*), void* extraPtr);
+         void (someFunction)(mvGroupBehaviour_V2*, void*), void* extraPtr);
       void applyToAllGroupBehavioursByIndex(mvIndex worldIndex,\
          void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
 
       mvErrorEnum setGroupBehaviourParameteri(mvIndex index,\
-         mvParamEnum paramFlag, mvIndex paramIndex);
+         mvIndex groupIndex, mvParamEnum paramFlag, mvIndex paramIndex);
       mvErrorEnum setGroupBehaviourParameter(mvIndex index,\
-         mvParamEnum paramFlag, mvOptionEnum option);
+         mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum option);
       mvErrorEnum setGroupBehaviourParameterf(mvIndex index,\
-         mvParamEnum paramFlag, mvFloat num);
+         mvIndex groupIndex, mvParamEnum paramFlag, mvFloat num);
       mvErrorEnum setGroupBehaviourParameterv(mvIndex index,\
+         mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* array);
+
+      mvErrorEnum setCurrentGroupBehaviourParameteri(mvIndex groupIndex,\
+         mvParamEnum paramFlag, mvIndex paramIndex);
+      mvErrorEnum setCurrentGroupBehaviourParameter(mvIndex groupIndex,\
+         mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setCurrentGroupBehaviourParameterf(mvIndex groupIndex,\
+         mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum setCurrentGroupBehaviourParameterv(mvIndex groupIndex,\
          mvParamEnum paramFlag, mvFloat* array);
 
-      mvErrorEnum setCurrentGroupBehaviourParameteri(mvParamEnum paramFlag,\
-         mvIndex paramIndex);
-      mvErrorEnum setCurrentGroupBehaviourParameter(mvParamEnum paramFlag,\
-         mvOptionEnum option);
-      mvErrorEnum setCurrentGroupBehaviourParameterf(mvParamEnum paramFlag,\
-         mvFloat num);
-      mvErrorEnum setCurrentGroupBehaviourParameterv(mvParamEnum paramFlag,\
-         mvFloat* array);
-
       mvErrorEnum setGroupBehaviourParametersi(mvIndex index,\
-         const char* param, mvIndex paramIndex);
+         mvIndex groupIndex, const char* param, mvIndex paramIndex);
       mvErrorEnum setGroupBehaviourParameters(mvIndex index,\
-         const char* param, const char* option);
+         mvIndex groupIndex, const char* param, const char* option);
       mvErrorEnum setGroupBehaviourParametersf(mvIndex index,\
-         const char* param, mvFloat num);
+         mvIndex groupIndex, const char* param, mvFloat num);
       mvErrorEnum setGroupBehaviourParametersv(mvIndex index,\
+         mvIndex groupIndex, const char* param, mvFloat* array);
+
+      mvErrorEnum setCurrentGroupBehaviourParametersi(mvIndex groupIndex,\
+         const char* param, mvIndex paramIndex);
+      mvErrorEnum setCurrentGroupBehaviourParameters(mvIndex groupIndex,\
+         const char* param, const char* option);
+      mvErrorEnum setCurrentGroupBehaviourParametersf(mvIndex groupIndex,\
+         const char* param, mvFloat num);
+      mvErrorEnum setCurrentGroupBehaviourParametersv(mvIndex groupIndex,\
          const char* param, mvFloat* array);
 
-      mvErrorEnum setCurrentGroupBehaviourParametersi(const char* param,\
-       mvIndex paramIndex);
-      mvErrorEnum setCurrentGroupBehaviourParameters(const char* param,\
-         const char* option);
-      mvErrorEnum setCurrentGroupBehaviourParametersf(const char* param,\
-         mvFloat num);
-      mvErrorEnum setCurrentGroupBehaviourParametersv(const char* param,\
-         mvFloat* array);
-
       mvErrorEnum getGroupBehaviourParameteri(mvIndex index,\
-         mvParamEnum paramFlag, mvIndex* outIndex);
+         mvIndex groupIndex, mvParamEnum paramFlag, mvIndex* outIndex);
       mvErrorEnum getGroupBehaviourParameter(mvIndex index,\
-         mvParamEnum paramFlag, mvOptionEnum* option);
+         mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum* option);
       mvErrorEnum getGroupBehaviourParameterf(mvIndex index,\
-         mvParamEnum paramFlag, mvFloat* num);
+         mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* num);
       mvErrorEnum getGroupBehaviourParameterv(mvIndex index,\
+         mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* array,\
+         mvCount* noOfParameters);
+
+      mvErrorEnum getCurrentGroupBehaviourParameteri(mvIndex groupIndex,\
+         mvParamEnum paramFlag, mvIndex* outIndex);
+      mvErrorEnum getCurrentGroupBehaviourParameter(mvIndex groupIndex,\
+         mvParamEnum paramFlag, mvOptionEnum* option);
+      mvErrorEnum getCurrentGroupBehaviourParameterf(mvIndex groupIndex,\
+         mvParamEnum paramFlag, mvFloat* num);
+      mvErrorEnum getCurrentGroupBehaviourParameterv(mvIndex groupIndex,\
          mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters);
 
-      mvErrorEnum getCurrentGroupBehaviourParameteri(mvParamEnum paramFlag,\
-         mvIndex* outIndex);
-      mvErrorEnum getCurrentGroupBehaviourParameter(mvParamEnum paramFlag,\
-         mvOptionEnum* option);
-      mvErrorEnum getCurrentGroupBehaviourParameterf(mvParamEnum paramFlag,\
-         mvFloat* num);
-      mvErrorEnum getCurrentGroupBehaviourParameterv(mvParamEnum paramFlag,\
-         mvFloat* array, mvCount* noOfParameters);
-
       mvErrorEnum getGroupBehaviourParametersi(mvIndex index,\
-         const char* param, mvIndex* outIndex);
+         mvIndex groupIndex, const char* param, mvIndex* outIndex);
       mvErrorEnum getGroupBehaviourParameters(mvIndex index,\
-         const char* param, const char** option);
+         mvIndex groupIndex, const char* param, const char** option);
       mvErrorEnum getGroupBehaviourParametersf(mvIndex index,\
-         const char* param, mvFloat* num);
+         mvIndex groupIndex, const char* param, mvFloat* num);
       mvErrorEnum getGroupBehaviourParametersv(mvIndex index,\
-         const char* param, mvFloat* array, mvCount* noOfParameters);
+         mvIndex groupIndex, const char* param, mvFloat* array,\
+         mvCount* noOfParameters);
 
-      mvErrorEnum getCurrentGroupBehaviourParametersi(const char* param,\
-         mvIndex* outIndex);
-      mvErrorEnum getCurrentGroupBehaviourParameters(const char* param,\
-         const char** option);
-      mvErrorEnum getCurrentGroupBehaviourParametersf(const char* param,\
-         mvFloat* num);
-      mvErrorEnum getCurrentGroupBehaviourParametersv(const char* param,\
-         mvFloat* array, mvCount* noOfParameters);
+      mvErrorEnum getCurrentGroupBehaviourParametersi(mvIndex groupIndex,\
+         const char* param, mvIndex* outIndex);
+      mvErrorEnum getCurrentGroupBehaviourParameters(mvIndex groupIndex,\
+         const char* param, const char** option);
+      mvErrorEnum getCurrentGroupBehaviourParametersf(mvIndex groupIndex,\
+         const char* param, mvFloat* num);
+      mvErrorEnum getCurrentGroupBehaviourParametersv(mvIndex groupIndex,\
+         const char* param, mvFloat* array, mvCount* noOfParameters);
 
       // Force functions
       mvIndex createForce(mvOptionEnum fType);
@@ -749,21 +751,22 @@ class mvWorld_V2
          mvFloat* num);
       mvErrorEnum getCurrentForceParametersv(const char* param,\
          mvFloat* array, mvCount* noOfParameters);
-
-      mvErrorEnum setDefaultWaypointForBody(mvIndex waypointIndex,\
-         mvIndex bodyIndex);
-      mvErrorEnum setDefaultPathwayForBody(mvIndex pathwayIndex,\
-         mvIndex bodyIndex);
-      mvErrorEnum setDefaultBodyForBody(mvIndex targetIndex,\
-         mvIndex bodyIndex);
-      mvErrorEnum setDefaultWeightForBody(mvFloat factor,\
-         mvIndex bodyIndex);
-
-      mvErrorEnum setDefaultWaypointForCurrentBody(mvIndex wpIndex);
-      mvErrorEnum setDefaultPathwayForCurrentBody(mvIndex pwIndex);
-      mvErrorEnum setDefaultBodyForCurrentBody(mvIndex bodyIndex);
-      // weight for behaviour factor
-      mvErrorEnum setDefaultWeightForCurrentBody(mvFloat factor);
+/*
+//      mvErrorEnum setDefaultWaypointForBody(mvIndex waypointIndex,\
+//         mvIndex bodyIndex);
+//      mvErrorEnum setDefaultPathwayForBody(mvIndex pathwayIndex,\
+//         mvIndex bodyIndex);
+//      mvErrorEnum setDefaultBodyForBody(mvIndex targetIndex,\
+//         mvIndex bodyIndex);
+//      mvErrorEnum setDefaultWeightForBody(mvFloat factor,\
+//         mvIndex bodyIndex);
+//
+//      mvErrorEnum setDefaultWaypointForCurrentBody(mvIndex wpIndex);
+//      mvErrorEnum setDefaultPathwayForCurrentBody(mvIndex pwIndex);
+//      mvErrorEnum setDefaultBodyForCurrentBody(mvIndex bodyIndex);
+//      // weight for behaviour factor
+//      mvErrorEnum setDefaultWeightForCurrentBody(mvFloat factor);
+*/
 
       mvErrorEnum addBehaviourToBody(mvIndex bodyIndex, mvOptionEnum bType,\
          mvIndex behaviourIndex, mvIndex groupIndex);

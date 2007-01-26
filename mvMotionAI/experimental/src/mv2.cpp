@@ -5072,7 +5072,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupParametersv(\
 
 // TODO : GROUP BEHAVIOUR FUNCTIONS
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroupBehaviour(mvIndex worldIndex,\
-	 mvOptionEnum gbType);
+	 mvOptionEnum gbType)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorld_V2* worldPtr = NULL;
@@ -5194,6 +5194,24 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteAllGroupBehaviours(mvIndex worldIndex)
    }
    return error;
 }
+
+// TODO : error functions
+
+MV_GLOBAL_FUNC_PREFIX const char* mvGetErrorEnumString(mvErrorEnum error)
+{
+   return mvGetErrorString(error);
+}
+
+MV_GLOBAL_FUNC_PREFIX const char* mvGetParamEnumString(mvParamEnum param)
+{
+   return mvGetParamString(param);
+}
+
+MV_GLOBAL_FUNC_PREFIX const char* mvGetOptionEnumString(mvOptionEnum option)
+{
+   return mvGetOptionString(option);
+}
+
 
 // TODO : more functions
 

@@ -57,40 +57,40 @@ class mvGroupBehaviour_V2
       mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
       mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
 
-      mvErrorEnum getNodeParameteri(mvIndex groupIndex, mvParamEnum paramFlag,\
+      mvErrorEnum getGroupParameteri(mvIndex groupIndex, mvParamEnum paramFlag,\
          mvIndex* index);
-      mvErrorEnum getNodeParameter(mvIndex groupIndex, mvParamEnum paramFlag,\
+      mvErrorEnum getGroupParameter(mvIndex groupIndex, mvParamEnum paramFlag,\
          mvOptionEnum* option);
-      mvErrorEnum getNodeParameterf(mvIndex groupIndex, mvParamEnum paramFlag,\
+      mvErrorEnum getGroupParameterf(mvIndex groupIndex, mvParamEnum paramFlag,\
          mvFloat* num);
-      mvErrorEnum getNodeParameterv(mvIndex groupIndex, mvParamEnum paramFlag,\
+      mvErrorEnum getGroupParameterv(mvIndex groupIndex, mvParamEnum paramFlag,\
          mvFloat* numArray, mvCount* noOfParameters);
 
-      mvErrorEnum setNodeParameteri(mvIndex groupIndex, mvParamEnum paramFlag,\
+      mvErrorEnum setGroupParameteri(mvIndex groupIndex, mvParamEnum paramFlag,\
          mvIndex index);
-      mvErrorEnum setNodeParameter(mvIndex groupIndex, mvParamEnum paramFlag,\
+      mvErrorEnum setGroupParameter(mvIndex groupIndex, mvParamEnum paramFlag,\
          mvOptionEnum option);
-      mvErrorEnum setNodeParameterf(mvIndex groupIndex, mvParamEnum paramFlag,\
+      mvErrorEnum setGroupParameterf(mvIndex groupIndex, mvParamEnum paramFlag,\
          mvFloat num);
-      mvErrorEnum setNodeParameterv(mvIndex groupIndex, mvParamEnum paramFlag,\
+      mvErrorEnum setGroupParameterv(mvIndex groupIndex, mvParamEnum paramFlag,\
          mvFloat* numArray);
 
-      mvErrorEnum getNodeParametersi(mvIndex groupIndex, const char* param,\
+      mvErrorEnum getGroupParametersi(mvIndex groupIndex, const char* param,\
          mvIndex* index);
-      mvErrorEnum getNodeParameters(mvIndex groupIndex, const char* param,\
+      mvErrorEnum getGroupParameters(mvIndex groupIndex, const char* param,\
          const char** option);
-      mvErrorEnum getNodeParametersf(mvIndex groupIndex, const char* param,\
+      mvErrorEnum getGroupParametersf(mvIndex groupIndex, const char* param,\
          mvFloat* num);
-      mvErrorEnum getNodeParametersv(mvIndex groupIndex, const char* param,\
+      mvErrorEnum getGroupParametersv(mvIndex groupIndex, const char* param,\
          mvFloat* numArray, mvCount* noOfParameters);
 
-      mvErrorEnum setNodeParametersi(mvIndex groupIndex, const char* param,\
+      mvErrorEnum setGroupParametersi(mvIndex groupIndex, const char* param,\
          mvIndex index);
-      mvErrorEnum setNodeParameters(mvIndex groupIndex, const char* param,\
+      mvErrorEnum setGroupParameters(mvIndex groupIndex, const char* param,\
          const char* option);
-      mvErrorEnum setNodeParametersf(mvIndex groupIndex, const char* param,\
+      mvErrorEnum setGroupParametersf(mvIndex groupIndex, const char* param,\
          mvFloat num);
-      mvErrorEnum setNodeParametersv(mvIndex groupIndex, const char* param,\
+      mvErrorEnum setGroupParametersv(mvIndex groupIndex, const char* param,\
          mvFloat* numArray);
 
       mvErrorEnum getCurrentNodeParameteri(mvParamEnum paramFlag,\

@@ -2,7 +2,7 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-winXP" />
 	<File name="experimental\include\mv2.h" open="0" top="0" tabpos="2">
-		<Cursor position="59447" topLine="1316" />
+		<Cursor position="13691" topLine="263" />
 	</File>
 	<File name="experimental\include\mvBaseBehaviour.h" open="1" top="0" tabpos="1">
 		<Cursor position="0" topLine="72" />
@@ -35,7 +35,7 @@
 		<Cursor position="6326" topLine="137" />
 	</File>
 	<File name="include\mvEnums.h" open="1" top="0" tabpos="1">
-		<Cursor position="5065" topLine="174" />
+		<Cursor position="7923" topLine="260" />
 	</File>
 	<File name="include\mvForce.h" open="0" top="0" tabpos="0">
 		<Cursor position="1758" topLine="30" />
