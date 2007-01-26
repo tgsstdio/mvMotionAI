@@ -11,7 +11,7 @@
 		<Cursor position="1143" topLine="0" />
 	</File>
 	<File name="experimental\include\mv2.h" open="0" top="0" tabpos="0">
-		<Cursor position="57824" topLine="968" />
+		<Cursor position="71024" topLine="1198" />
 	</File>
 	<File name="experimental\include\mvBEntry.h" open="0" top="0" tabpos="3">
 		<Cursor position="1363" topLine="0" />
@@ -32,7 +32,7 @@
 		<Cursor position="1857" topLine="0" />
 	</File>
 	<File name="experimental\include\mvBaseBehaviour.h" open="0" top="0" tabpos="0">
-		<Cursor position="2439" topLine="40" />
+		<Cursor position="1811" topLine="31" />
 	</File>
 	<File name="experimental\include\mvBehavFuncList.h" open="0" top="0" tabpos="4">
 		<Cursor position="1553" topLine="0" />
@@ -52,11 +52,11 @@
 	<File name="experimental\include\mvFlee.h" open="0" top="0" tabpos="7">
 		<Cursor position="225" topLine="0" />
 	</File>
-	<File name="experimental\include\mvGroupBNode_V2.h" open="1" top="0" tabpos="2">
-		<Cursor position="1300" topLine="19" />
+	<File name="experimental\include\mvGroupBNode_V2.h" open="0" top="0" tabpos="2">
+		<Cursor position="1489" topLine="15" />
 	</File>
-	<File name="experimental\include\mvGroupBehaviour_V2.h" open="1" top="0" tabpos="1">
-		<Cursor position="1966" topLine="20" />
+	<File name="experimental\include\mvGroupBehaviour_V2.h" open="0" top="0" tabpos="1">
+		<Cursor position="5591" topLine="88" />
 	</File>
 	<File name="experimental\include\mvList.h" open="0" top="0" tabpos="0">
 		<Cursor position="2140" topLine="15" />
@@ -79,14 +79,14 @@
 	<File name="experimental\include\mvSimpleFlock.h" open="0" top="0" tabpos="5">
 		<Cursor position="819" topLine="0" />
 	</File>
-	<File name="experimental\include\mvWorld2.h" open="0" top="0" tabpos="2">
-		<Cursor position="26263" topLine="839" />
+	<File name="experimental\include\mvWorld2.h" open="1" top="1" tabpos="2">
+		<Cursor position="30994" topLine="643" />
 	</File>
 	<File name="experimental\src\mv.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="17149" topLine="0" />
 	</File>
 	<File name="experimental\src\mv2.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="154162" topLine="5154" />
+		<Cursor position="154179" topLine="5173" />
 	</File>
 	<File name="experimental\src\mvBEntryList.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="10047" topLine="0" />
@@ -121,8 +121,11 @@
 	<File name="experimental\src\mvFlee.cpp" open="0" top="0" tabpos="11">
 		<Cursor position="1143" topLine="3" />
 	</File>
-	<File name="experimental\src\mvGroupBNode_V2.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="4161" topLine="102" />
+	<File name="experimental\src\mvGroupBNode_V2.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="5194" topLine="212" />
+	</File>
+	<File name="experimental\src\mvGroupBehaviour_V2.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="517" topLine="213" />
 	</File>
 	<File name="experimental\src\mvList.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="10170" topLine="419" />
@@ -142,7 +145,7 @@
 	<File name="experimental\src\mvSimpleFlock.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="1143" topLine="0" />
 	</File>
-	<File name="experimental\src\mvWorld2.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="17072" topLine="738" />
+	<File name="experimental\src\mvWorld2.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="8533" topLine="159" />
 	</File>
 </CodeBlocks_layout_file>

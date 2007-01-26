@@ -15,7 +15,7 @@
 
 /** @brief (one liner)
   *
-  * (documentation goes here)
+  * Automatically calls group behaviour node's getParameterv
   */
 mvErrorEnum mvGroupBNode_V2::getParameterv(mvParamEnum paramFlag,\
    mvFloat* array, mvCount* noOfParameters)
@@ -43,7 +43,7 @@ mvErrorEnum mvGroupBNode_V2::getParameterv(mvParamEnum paramFlag,\
 
 /** @brief (one liner)
   *
-  * (documentation goes here)
+  * Automatically calls group behaviour node's getParameterf
   */
 mvErrorEnum mvGroupBNode_V2::getParameterf(mvParamEnum paramFlag,\
    mvFloat* num)
@@ -65,7 +65,7 @@ mvErrorEnum mvGroupBNode_V2::getParameterf(mvParamEnum paramFlag,\
 
 /** @brief (one liner)
   *
-  * (documentation goes here)
+  * Automatically calls group behaviour node's getParameteri
   */
 mvErrorEnum mvGroupBNode_V2::getParameteri(mvParamEnum paramFlag,\
    mvIndex* outIndex)
@@ -94,7 +94,7 @@ mvErrorEnum mvGroupBNode_V2::getParameteri(mvParamEnum paramFlag,\
 
 /** @brief (one liner)
   *
-  * (documentation goes here)
+  * Automatically calls group behaviour node's getParameter
   */
 mvErrorEnum mvGroupBNode_V2::getParameter(mvParamEnum paramFlag,\
    mvOptionEnum* option)
@@ -130,7 +130,7 @@ mvErrorEnum mvGroupBNode_V2::getParameter(mvParamEnum paramFlag,\
 
 /** @brief (one liner)
   *
-  * (documentation goes here)
+  * Automatically calls group behaviour node's setParameterv
   */
 mvErrorEnum mvGroupBNode_V2::setParameterv(mvParamEnum paramFlag,\
    mvFloat* array)
@@ -152,7 +152,7 @@ mvErrorEnum mvGroupBNode_V2::setParameterv(mvParamEnum paramFlag,\
 
 /** @brief (one liner)
   *
-  * (documentation goes here)
+  * Automatically calls group behaviour node's setParameterf
   */
 mvErrorEnum mvGroupBNode_V2::setParameterf( mvParamEnum paramFlag, mvFloat num)
 {
@@ -168,7 +168,7 @@ mvErrorEnum mvGroupBNode_V2::setParameterf( mvParamEnum paramFlag, mvFloat num)
 
 /** @brief (one liner)
   *
-  * (documentation goes here)
+  * Automatically calls group behaviour node's setParameteri
   */
 mvErrorEnum mvGroupBNode_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
@@ -181,10 +181,10 @@ mvErrorEnum mvGroupBNode_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
       return MV_BEHAVIOUR_IS_NOT_INITIALISED;
    }
 }
-// TODO : function implementation later
+
 /** @brief (one liner)
   *
-  * (documentation goes here)
+  * Automatically calls group behaviour node's setParameter
   */
 mvErrorEnum mvGroupBNode_V2::setParameter(mvParamEnum paramFlag,\
    mvOptionEnum option)
