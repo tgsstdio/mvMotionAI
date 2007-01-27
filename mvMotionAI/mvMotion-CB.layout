@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-winXP" />
-	<File name="experimental/include/mv2.h" open="0" top="0" tabpos="2">
+	<File name="experimental/include/mv2.h" open="1" top="0" tabpos="2">
 		<Cursor position="13691" topLine="263" />
 	</File>
 	<File name="experimental/include/mvBaseBehaviour.h" open="1" top="0" tabpos="1">
