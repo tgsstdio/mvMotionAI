@@ -1176,16 +1176,17 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentMainGroupBehaviourParametersv(\
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameteri(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
-   mvIndex index, mvParamEnum paramFlag, mvIndex paramIndex);
+	mvParamEnum paramFlag, mvIndex paramIndex);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameter(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
-   mvIndex index, mvParamEnum paramFlag, mvOptionEnum option);
+   mvParamEnum paramFlag, mvOptionEnum option);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameterf(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
-   mvIndex index, mvParamEnum paramFlag, mvFloat num);
+   mvParamEnum paramFlag, mvFloat num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameterv(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
-   mvIndex index, mvParamEnum paramFlag, mvFloat* array);
+   mvParamEnum paramFlag, mvFloat* array);
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParameteri(\
 	mvIndex worldIndex, mvIndex groupIndex, mvParamEnum paramFlag,\
 	mvIndex paramIndex);
@@ -1211,6 +1212,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParametersf(\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParametersv(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex, const char* param,\
 	mvFloat* array);
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParametersi(\
    mvIndex worldIndex, mvIndex gbType, const char* param, mvIndex paramIndex);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParameters(\
@@ -1232,6 +1234,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameterf(\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameterv(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
 	mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters);
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupBehaviourParameteri(\
 	mvIndex worldIndex, mvIndex groupIndex, mvParamEnum paramFlag,\
 	mvIndex* outIndex);
@@ -1257,6 +1260,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParametersf(\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParametersv(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
    const char* param, mvFloat* array, mvCount* noOfParameters);
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupBehaviourParametersi(\
 	mvIndex worldIndex, mvIndex groupIndex, const char* param,\
 	mvIndex* outIndex);

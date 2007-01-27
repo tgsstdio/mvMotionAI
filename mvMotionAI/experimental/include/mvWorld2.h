@@ -876,7 +876,6 @@ class mvWorld_V2
       mvErrorEnum getCurrentMainGroupBehaviourParameterv(mvParamEnum param,\
          mvFloat* array, mvCount* noOfParameters);
 
-      // TODO : get current index
       mvIndex getCurrentBody();
       mvIndex getCurrentObstacle();
       mvIndex getCurrentWaypoint();
