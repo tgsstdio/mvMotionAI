@@ -1214,13 +1214,16 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParametersv(\
 	mvFloat* array);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParametersi(\
-   mvIndex worldIndex, mvIndex gbType, const char* param, mvIndex paramIndex);
+   mvIndex worldIndex, mvIndex groupIndex, const char* param,\
+   mvIndex paramIndex);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParameters(\
-   mvIndex worldIndex, mvIndex gbType, const char* param, const char* option);
+   mvIndex worldIndex, mvIndex groupIndex, const char* param,\
+   const char* option);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParametersf(\
-   mvIndex worldIndex, mvIndex gbType, const char* param, mvFloat num);
+   mvIndex worldIndex, mvIndex groupIndex, const char* param, mvFloat num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParametersv(\
-   mvIndex worldIndex, mvIndex gbType, const char* param, mvFloat* array);
+   mvIndex worldIndex, mvIndex groupIndex, const char* param, mvFloat* array);
+
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameteri(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
