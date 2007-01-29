@@ -30,7 +30,7 @@
 class mvGroupBehaviour_V2
 {
    private:
-      mvBaseBehaviour* defaultGBehaviour;
+      mvSuperBehaviourPtr defaultGBehaviour;
       mvItemList<mvGroupBNode_V2> groupNodeList;
       bool behavEnabled;
    public:

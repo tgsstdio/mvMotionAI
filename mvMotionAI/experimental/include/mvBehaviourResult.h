@@ -18,6 +18,12 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
+ * Log
+ *
+ * version     comments
+ * 00-01-39
+ * - renamed mv behaviour result to mv result for future use
  */
 
 #ifndef MVBEHAVIOURRESULT_H_INCLUDED
@@ -26,15 +32,17 @@
 #include "mvMotionAI-Types.h"
 #include "mvVec3.h"
 #include "mvEnums.h"
-#include "mvWorld.h"
+#include "mvWorld2.h"
 #include "mvBody.h"
 
 #define MV_QUATERNION_LENGTH 4
 
-class mvBehaviourResult
+//typedef void* mvWorldPtr;
+
+typedef class mvBehaviourResult
 {
    public:
-      mvWorld* currentWorld;
+      mvWorldPtr currentWorld;
       mvBody* currentBody;
 //      mvBaseBehaviour* currentGroupBehNode;
       mvIndex behaviourIndex;
@@ -60,7 +68,7 @@ class mvBehaviourResult
       mvFloat quaternion[MV_QUATERNION_LENGTH];
 
       mvBehaviourResult();
-      void setWorld(mvWorld* worldPtr);
+      void setWorld(mvWorldPtr worldPtr);
       void setBody(mvBody* bodyPtr);
 //      void setGroupBehaviourNode(mvBaseBehaviour* groupBehPtr);
 
@@ -80,11 +88,12 @@ class mvBehaviourResult
       void setToDirectional();
       void setToSteering();
 
-      mvWorld* getWorld();
+      mvWorldPtr getWorld();
 //      mvBaseBehaviour* getGroupBehaviourNode();
       mvBody*  getBody();
       mvIndex getBehaviourIndex();
       mvIndex getGroupIndex();
-};
+} mvResult;
+
 
 #endif // MVBEHAVIOURRESULT_H_INCLUDED

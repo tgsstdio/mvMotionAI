@@ -30,15 +30,15 @@ class mvGroupBNode_V2
 {
    private:
       mvIndex groupIndex;
-      mvBaseBehaviour* grpBehaviour;
+      mvSuperBehaviourPtr grpBehaviour;
       bool behavEnabled;
 
    public:
-      mvGroupBNode_V2(mvOptionEnum gbType, mvBaseBehaviour* mainBehaviour,\
+      mvGroupBNode_V2(mvOptionEnum gbType, mvSuperBehaviourPtr mainBehaviour,\
          mvIndex grpIndex);
       bool isEnabled();
       void setEnabled(bool value);
-      mvBaseBehaviour* getBehaviourPtr();
+      mvSuperBehaviourPtr getBehaviourPtr();
       mvIndex getGroup();
       mvErrorEnum setParameter(mvParamEnum paramFlag,\
          mvOptionEnum option);

@@ -22,6 +22,7 @@
 #ifndef MVBEHAVIOUR_V2_H_INCLUDED
 #define MVBEHAVIOUR_V2_H_INCLUDED
 
+#include "mvMotionAI-Types.h"
 #include "mvBaseBehaviour.h"
 #include "mvEnums.h"
 
@@ -29,17 +30,18 @@
  * \class mvBehaviour
  * \brief a global behaviour that all bodies can use.
  */
+
 class mvBehaviour_V2
 {
    private:
       bool behavEnabled;
-      mvBaseBehaviour* behavPtr;
+      mvSuperBehaviourPtr behavPtr;
 
    public:
       mvBehaviour_V2(mvOptionEnum bType);
       bool isEnabled();
       void setEnabled(bool value);
-      mvBaseBehaviour* getBehaviourPtr();
+      mvSuperBehaviourPtr getBehaviourPtr();
 
       mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
       mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);

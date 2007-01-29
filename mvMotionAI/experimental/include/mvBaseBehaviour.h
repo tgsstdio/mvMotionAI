@@ -34,15 +34,16 @@
 #define MV_BASE_BEHAVIOUR_H_
 
 #include "mvMotionAI-Types.h"
-#include "mvWorld.h"
-#include "mvVec3.h"
-#include "mvBody.h"
-#include "mvEnums.h"
+#include "mvBehaviourResult.h"
+//#include "mvWorld2.h"
+//#include "mvVec3.h"
+//#include "mvBody.h"
+//#include "mvEnums.h"
 #include "mvGroup.h"
 
-#include "mvBehaviourResult.h"
+typedef class mvBaseBehaviour* mvSuperBehaviourPtr;
 
-class mvBaseBehaviour
+typedef class mvBaseBehaviour
 {
    private:
       mvOptionEnum bType;
@@ -68,17 +69,18 @@ class mvBaseBehaviour
       virtual mvErrorEnum setParameterv(mvParamEnum paramFlag,\
          mvFloat* numArray);
 
-	   virtual void groupOp(mvWorld* world, mvGroup* groupPtr) = 0;
-      virtual void bodyOp(mvBehaviourResult* resultModule) = 0;
+      // return values true (perform) / false (break/ no operation)
+	   virtual bool groupOp(mvResultPtr resultModule) = 0;
+      virtual bool bodyOp(mvResultPtr resultModule) = 0;
 
       virtual ~mvBaseBehaviour();
-};
+} mvSuperBehaviour;
 
 class mvBaseBehaviourLoader
 {
    public:
-      virtual mvBaseBehaviour* operator()(\
-         mvBaseBehaviour* defaultBehaviour) = 0;
+      virtual mvSuperBehaviourPtr operator()(\
+         mvSuperBehaviourPtr defaultBehaviour) = 0;
       mvBaseBehaviourLoader();
       virtual ~mvBaseBehaviourLoader();
 };

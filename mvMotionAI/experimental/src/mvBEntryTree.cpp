@@ -47,17 +47,18 @@ bool mvBEntryTree::isRootEmpty()
 void mvBEntryTree::createRootTreeNode(mvIndex entryIndex,\
    mvOptionEnum beMode, mvFloat weight, mvBEntryTimer* timer)
 {
-
-//      mvBEntryTreeNode(mvIndex bEntryIndex = MV_NO_CURRENT_INDEX,\
-//         mvOptionEnum bNodeMode = MV_WEIGHTED,\
-//         mvFloat bEWeight = 1.0,\
-//         mvBEntryTreeNode* beNextNode = NULL,\
-//         mvBEntryTreeNode* beNextLevel = NULL,
-//         mvBEntryTreeNode* bePrevNode = NULL,\
-//         mvBEntryTreeNode* bePrevLevel = NULL,\
-//         mvFloat period = 1.0,\
-//         mvFloat elapsedTime = 0.0
-//         );
+/*
+      mvBEntryTreeNode(mvIndex bEntryIndex = MV_NO_CURRENT_INDEX,\
+         mvOptionEnum bNodeMode = MV_WEIGHTED,\
+         mvFloat bEWeight = 1.0,\
+         mvBEntryTreeNode* beNextNode = NULL,\
+         mvBEntryTreeNode* beNextLevel = NULL,
+         mvBEntryTreeNode* bePrevNode = NULL,\
+         mvBEntryTreeNode* bePrevLevel = NULL,\
+         mvFloat period = 1.0,\
+         mvFloat elapsedTime = 0.0
+         );
+*/
    // if root is empty
    if (isRootEmpty())
    {
@@ -100,11 +101,12 @@ mvErrorEnum mvBEntryTree::addNewNode(mvIndex entryIndex,mvOptionEnum beMode,\
    // create new node
    if (timer != NULL)
    {
-      newNode = new mvBEntryTreeNode(entryIndex, beNode, weight, timer->getPeriod());
+      newNode = new mvBEntryTreeNode(entryIndex, beMode, weight,\
+         timer->getPeriod());
    }
    else
    {
-      newNode = new mvBEntryTree(entryIndex, beNode, weight);
+      newNode = new mvBEntryTreeNode(entryIndex, beMode, weight);
    }
 
    if (newNode == NULL)
@@ -124,7 +126,7 @@ mvErrorEnum mvBEntryTree::addNewNode(mvIndex entryIndex,mvOptionEnum beMode,\
 /**
  * \brief add new level to the current node
  */
-mvErrorEnum mvBEntryTree::addNewLevel(mvOptionEnum beMode, mvIndex entryIndex,\
+mvErrorEnum mvBEntryTree::addNewLevel(mvIndex entryIndex, mvOptionEnum beMode,\
    mvFloat weight, mvBEntryTimer* timer)
 {
    mvBEntryTreeNode* newNode = NULL;
@@ -144,11 +146,12 @@ mvErrorEnum mvBEntryTree::addNewLevel(mvOptionEnum beMode, mvIndex entryIndex,\
    // create new node
    if (timer != NULL)
    {
-      newNode = new mvBEntryTreeNode(entryIndex, beNode, weight, timer->getPeriod());
+      newNode = new mvBEntryTreeNode(entryIndex, beMode, weight,\
+         timer->getPeriod());
    }
    else
    {
-      newNode = new mvBEntryTree(entryIndex, beNode, weight);
+      newNode = new mvBEntryTreeNode(entryIndex, beMode, weight);
    }
 
    if (newNode == NULL)

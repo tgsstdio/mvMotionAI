@@ -25,7 +25,7 @@
   *
   * (documentation goes here)
   */
-mvBody * mvBehaviourResult::getBody()
+mvBody * mvResult::getBody()
 {
    return currentBody;
 }
@@ -34,7 +34,7 @@ mvBody * mvBehaviourResult::getBody()
 //  *
 //  * (documentation goes here)
 //  */
-//mvBaseBehaviour * mvBehaviourResult::getGroupBehaviourNode()
+//mvBaseBehaviour * mvResult::getGroupBehaviourNode()
 //{
 //   return currentGroupBehNode;
 //}
@@ -43,7 +43,7 @@ mvBody * mvBehaviourResult::getBody()
   *
   * (documentation goes here)
   */
-mvWorld * mvBehaviourResult::getWorld()
+mvWorldPtr mvResult::getWorld()
 {
    return currentWorld;
 }
@@ -52,7 +52,7 @@ mvWorld * mvBehaviourResult::getWorld()
   *
   * (documentation goes here)
   */
-void mvBehaviourResult::setToSteering()
+void mvResult::setToSteering()
 {
    isSteering = true;
 }
@@ -61,7 +61,7 @@ void mvBehaviourResult::setToSteering()
   *
   * (documentation goes here)
   */
-void mvBehaviourResult::setToDirectional()
+void mvResult::setToDirectional()
 {
    isSteering = false;
 }
@@ -70,7 +70,7 @@ void mvBehaviourResult::setToDirectional()
   *
   * default behaviour return type is directional
   */
-void mvBehaviourResult::resetAll()
+void mvResult::resetAll()
 {
    currentWorld = NULL;
    currentBody = NULL;
@@ -108,7 +108,7 @@ void mvBehaviourResult::resetAll()
   *
   * (documentation goes here)
   */
-void mvBehaviourResult::setQuaternion(const mvFloat* quatArray)
+void mvResult::setQuaternion(const mvFloat* quatArray)
 {
    mvIndex i;
    for (i = 0; i < MV_QUATERNION_LENGTH; i++)
@@ -122,7 +122,7 @@ void mvBehaviourResult::setQuaternion(const mvFloat* quatArray)
   *
   * (documentation goes here)
   */
-void mvBehaviourResult::setDirection(const mvVec3& value)
+void mvResult::setDirection(const mvVec3& value)
 {
    direction = value;
    applyDirection = true;
@@ -132,7 +132,7 @@ void mvBehaviourResult::setDirection(const mvVec3& value)
   *
   * (documentation goes here)
   */
-void mvBehaviourResult::setTorque(const mvVec3& value)
+void mvResult::setTorque(const mvVec3& value)
 {
    torque = value;
    applyTorque = true;
@@ -142,7 +142,7 @@ void mvBehaviourResult::setTorque(const mvVec3& value)
   *
   * (documentation goes here)
   */
-void mvBehaviourResult::setVelocity(const mvVec3& value)
+void mvResult::setVelocity(const mvVec3& value)
 {
    velocity = value;
    applyVelocity = true;
@@ -152,7 +152,7 @@ void mvBehaviourResult::setVelocity(const mvVec3& value)
   *
   * (documentation goes here)
   */
-void mvBehaviourResult::setAcceleration(const mvVec3& value)
+void mvResult::setAcceleration(const mvVec3& value)
 {
    acceleration = value;
    applyAccel = true;
@@ -162,7 +162,7 @@ void mvBehaviourResult::setAcceleration(const mvVec3& value)
   *
   * (documentation goes here)
   */
-void mvBehaviourResult::setForce(const mvVec3& value)
+void mvResult::setForce(const mvVec3& value)
 {
    force = value;
    applyForce = true;
@@ -172,7 +172,7 @@ void mvBehaviourResult::setForce(const mvVec3& value)
   *
   * (documentation goes here)
   */
-void mvBehaviourResult::setGroupIndex(mvIndex gIndex)
+void mvResult::setGroupIndex(mvIndex gIndex)
 {
    groupIndex = gIndex;
 }
@@ -181,7 +181,7 @@ void mvBehaviourResult::setGroupIndex(mvIndex gIndex)
   *
   * (documentation goes here)
   */
-void mvBehaviourResult::setBehaviourIndex(mvIndex bIndex)
+void mvResult::setBehaviourIndex(mvIndex bIndex)
 {
    behaviourIndex = bIndex;
 }
@@ -190,7 +190,7 @@ void mvBehaviourResult::setBehaviourIndex(mvIndex bIndex)
 //  *
 //  * (documentation goes here)
 //  */
-//void mvBehaviourResult::setGroupBehaviourNode(mvBaseBehaviour* groupBehPtr)
+//void mvResult::setGroupBehaviourNode(mvBaseBehaviour* groupBehPtr)
 //{
 //   currentGroupBehNode = groupBehPtr;
 //}
@@ -199,7 +199,7 @@ void mvBehaviourResult::setBehaviourIndex(mvIndex bIndex)
   *
   * (documentation goes here)
   */
-void mvBehaviourResult::setBody(mvBody* bodyPtr)
+void mvResult::setBody(mvBody* bodyPtr)
 {
    currentBody = bodyPtr;
 }
@@ -208,7 +208,7 @@ void mvBehaviourResult::setBody(mvBody* bodyPtr)
   *
   * (documentation goes here)
   */
-void mvBehaviourResult::setWorld(mvWorld* worldPtr)
+void mvResult::setWorld(mvWorldPtr worldPtr)
 {
    currentWorld = worldPtr;
 }
@@ -217,7 +217,7 @@ void mvBehaviourResult::setWorld(mvWorld* worldPtr)
   *
   * (documentation goes here)
   */
- mvBehaviourResult::mvBehaviourResult()
+mvBehaviourResult::mvBehaviourResult()
 {
    resetAll();
 }
@@ -226,7 +226,7 @@ void mvBehaviourResult::setWorld(mvWorld* worldPtr)
   *
   * (documentation goes here)
   */
-mvIndex mvBehaviourResult::getBehaviourIndex()
+mvIndex mvResult::getBehaviourIndex()
 {
    return behaviourIndex;
 }
@@ -235,7 +235,7 @@ mvIndex mvBehaviourResult::getBehaviourIndex()
   *
   * (documentation goes here)
   */
-mvIndex mvBehaviourResult::getGroupIndex()
+mvIndex mvResult::getGroupIndex()
 {
    return groupIndex;
 }
@@ -244,7 +244,7 @@ mvIndex mvBehaviourResult::getGroupIndex()
   *
   * (documentation goes here)
   */
-void mvBehaviourResult::setOmega(const mvVec3& value)
+void mvResult::setOmega(const mvVec3& value)
 {
    omega = value;
    applyOmega = true;
@@ -254,7 +254,7 @@ void mvBehaviourResult::setOmega(const mvVec3& value)
   *
   * (documentation goes here)
   */
-void mvBehaviourResult::setOmegaInDegrees(const mvVec3& value)
+void mvResult::setOmegaInDegrees(const mvVec3& value)
 {
    omega = value;
    applyOmega = true;
@@ -265,7 +265,7 @@ void mvBehaviourResult::setOmegaInDegrees(const mvVec3& value)
   *
   * (documentation goes here)
   */
-void mvBehaviourResult::setOmegaInRadians(const mvVec3& value)
+void mvResult::setOmegaInRadians(const mvVec3& value)
 {
    omega = value;
    applyOmega = true;

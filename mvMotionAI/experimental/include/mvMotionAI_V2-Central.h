@@ -46,8 +46,8 @@ mvErrorEnum mvMotionAI_V2_APPLYTOALLWORLDSBYINDEX(\
 mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS();
 mvErrorEnum mvMotionAI_V2_ADDBEHAVIOURFUNC(mvOptionEnum bType,\
    mvBaseBehaviourLoader* loader);
-mvBaseBehaviour* mvMotionAI_V2_CREATENEWBEHAVIOUR(mvOptionEnum type,\
-   mvBaseBehaviour* defaultBehaviour);
+mvSuperBehaviourPtr mvMotionAI_V2_CREATENEWBEHAVIOUR(mvOptionEnum type,\
+   mvSuperBehaviourPtr  defaultBehaviour);
 mvErrorEnum mvMotionAI_V2_CHECKIFINITIALISED();
 
 // GLOBAL FUNCTIONS

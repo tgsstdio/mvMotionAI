@@ -144,7 +144,7 @@ class mvItemList
 };
 
 #ifndef MV_LIST_TEMPLATE_SOURCE_FILE
-#define MV_LIST_TEMPLATE_SOURCE_FILE
+#define MV_LIST_TEMPLATE_SOURCE_FILE 1
 // template functions need template implementation included
 // with template declarations
 #include "mvList.cpp"
