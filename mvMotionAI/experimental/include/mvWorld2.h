@@ -34,7 +34,7 @@
 
 // TODO (White 2#1#): implement version two of world
 
-class mvWorld_V2
+typedef class mvWorld_V2
 {
    private:
       char* worldID;
@@ -886,6 +886,8 @@ class mvWorld_V2
       mvIndex getCurrentPathway();
 
       // TODO : patahway functions
-};
+} mvWorld;
+
+
 
 #endif

@@ -114,4 +114,12 @@ static const mvIndex MV_NO_CURRENT_INDEX = 0;
  */
 static const mvCount MV_MAX_NO_OF_PARAMETERS = 4;
 
+/*
+ * complicated behaviour structure
+ * must pre declared pointer ahead of time
+ */
+typedef class mvBaseBehaviour* mvSuperBehaviourPtr;
+typedef class mvWorld_V2* mvWorldPtr;
+typedef class mvBehaviourResult* mvResultPtr;
+
 #endif

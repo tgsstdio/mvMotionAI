@@ -153,7 +153,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllPathways(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroups(mvIndex worldIndex,\
    void (someFunction)(mvGroup*,void*),void* extraPtr);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllBehaviours(mvIndex worldIndex,\
-   void (someFunction)(mvBehaviour*,void*),void* extraPtr);
+   void (someFunction)(mvBehaviour_V2*,void*),void* extraPtr);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehaviours(\
    mvIndex worldIndex, void (someFunction)(mvGroupBehaviour*,void*),\
    void* extraPtr);
@@ -187,9 +187,6 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehavioursByIndex(\
    void* extraPtr);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllForcesByIndex(mvIndex worldIndex,\
    void (someFunction)(mvIndex,mvIndex, void*), void* extraPtr);
-
-// TODO : function laters
-// TODO (White 2#1#): Global functions for mvMotionAI doing world and lua script functions
 
 /* body functions ?? functions = 7 + 8 + 8 + 8 + 8*/
 
@@ -280,39 +277,41 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBodyParametersv(\
 /* TODO: implement the functions below */
 //change default body setting later... do we need these functions = 16
 
-//MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultWaypointOfBody(\
-//   mvIndex worldIndex, mvIndex* wayPoint, mvIndex* bodyIndex);
-//MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultPathwayOfBody(\
-//   mvIndex worldIndex, mvIndex* pathway, mvIndex* bodyIndex);
-//MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultBodyOfBody(\
-//   mvIndex worldIndex, mvIndex* target, mvIndex* bodyIndex);
-//MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultWeightOfBody(\
-//   mvIndex worldIndex, mvFloat* weight, mvIndex bodyIndex);
-//MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultWaypointOfCurrentBody(\
-//   mvIndex worldIndex, mvIndex* wayPoint);
-//MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultPathwayOfCurrentBody(\
-//   mvIndex worldIndex, mvIndex* pathway);
-//MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultBodyOfCurrentBody(\
-//   mvIndex worldIndex, mvIndex* target);
-//MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultWeightOfCurrentBody(\
-//   mvIndex worldIndex, mvFloat* weight);
-//
-//MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultWaypointOfBody(\
-//   mvIndex worldIndex, mvIndex wayPoint, mvIndex bodyIndex);
-//MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultPathwayOfBody(\
-//   mvIndex worldIndex, mvIndex pathway, mvIndex bodyIndex);
-//MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultBodyOfBody(\
-//   mvIndex worldIndex, mvIndex target, mvIndex bodyIndex);
-//MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultWeightOfBody(\
-//   mvIndex worldIndex, mvFloat weight, mvIndex bodyIndex);
-//MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultWaypointOfCurrentBody(\
-//   mvIndex worldIndex, mvIndex wayPoint);
-//MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultPathwayOfCurrentBody(\
-//   mvIndex worldIndex, mvIndex pathway);
-//MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultBodyOfCurrentBody(\
-//   mvIndex worldIndex, mvIndex target);
-//MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultWeightOfCurrentBody(\
-//   mvIndex worldIndex, mvFloat weight);
+/*
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultWaypointOfBody(\
+   mvIndex worldIndex, mvIndex* wayPoint, mvIndex* bodyIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultPathwayOfBody(\
+   mvIndex worldIndex, mvIndex* pathway, mvIndex* bodyIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultBodyOfBody(\
+   mvIndex worldIndex, mvIndex* target, mvIndex* bodyIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultWeightOfBody(\
+   mvIndex worldIndex, mvFloat* weight, mvIndex bodyIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultWaypointOfCurrentBody(\
+   mvIndex worldIndex, mvIndex* wayPoint);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultPathwayOfCurrentBody(\
+   mvIndex worldIndex, mvIndex* pathway);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultBodyOfCurrentBody(\
+   mvIndex worldIndex, mvIndex* target);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultWeightOfCurrentBody(\
+   mvIndex worldIndex, mvFloat* weight);
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultWaypointOfBody(\
+   mvIndex worldIndex, mvIndex wayPoint, mvIndex bodyIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultPathwayOfBody(\
+   mvIndex worldIndex, mvIndex pathway, mvIndex bodyIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultBodyOfBody(\
+   mvIndex worldIndex, mvIndex target, mvIndex bodyIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultWeightOfBody(\
+   mvIndex worldIndex, mvFloat weight, mvIndex bodyIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultWaypointOfCurrentBody(\
+   mvIndex worldIndex, mvIndex wayPoint);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultPathwayOfCurrentBody(\
+   mvIndex worldIndex, mvIndex pathway);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultBodyOfCurrentBody(\
+   mvIndex worldIndex, mvIndex target);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultWeightOfCurrentBody(\
+   mvIndex worldIndex, mvFloat weight);
+*/
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddBehaviourToBody(mvIndex worldIndex,\
    mvIndex bodyIndex, mvOptionEnum bType, mvIndex behaviourIndex,\
@@ -516,10 +515,10 @@ mvErrorEnum mvRemoveCurrentForceIntoCurrentWaypoint(mvIndex worldIndex);
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBehaviour(mvIndex worldIndex,\
 	 mvOptionEnum bType);
-MV_GLOBAL_FUNC_PREFIX mvBehaviour* mvGetBehaviourPtr(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvBehaviour_V2* mvGetBehaviourPtr(mvIndex worldIndex,\
 	 mvIndex index);
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentBehaviour(mvIndex worldIndex);
-MV_GLOBAL_FUNC_PREFIX mvBehaviour* mvGetCurrentBehaviourPtr(mvIndex worldIndex);
+MV_GLOBAL_FUNC_PREFIX mvBehaviour_V2* mvGetCurrentBehaviourPtr(mvIndex worldIndex);
 MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentBehaviour(mvIndex worldIndex,\
    mvIndex index);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteCurrentBehaviour(mvIndex worldIndex);
@@ -1085,10 +1084,10 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetOperationOnCurrentGroup(mvIndex worldInde
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroupBehaviour(mvIndex worldIndex,\
 	 mvOptionEnum gbType);
-MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour* mvGetGroupBehaviourPtr(\
+MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour_V2* mvGetGroupBehaviourPtr(\
    mvIndex worldIndex, mvIndex index);
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentGroupBehaviour(mvIndex worldIndex);
-MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour* mvGetCurrentGroupBehaviourPtr(\
+MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour_V2* mvGetCurrentGroupBehaviourPtr(\
 mvIndex worldIndex);
 MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentGroupBehaviour(mvIndex worldIndex,\
    mvIndex index);
@@ -1208,7 +1207,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameters(\
    const char* param, const char* option);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParametersf(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex, const char* param,\
-	mvFloat* array);
+	mvFloat num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParametersv(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex, const char* param,\
 	mvFloat* array);

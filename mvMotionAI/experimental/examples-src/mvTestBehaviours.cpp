@@ -3,13 +3,13 @@
 #include <iostream>
 #include <cstdlib>
 #include <cstdio>
-#include <map>
+//#include <map>
 #include <utility>
 
 #include "mvSeek.h"
-#include "mvFlee.h"
-#include "mvClone.h"
-#include "mvPursuit.h"
+//#include "mvFlee.h"
+//#include "mvClone.h"
+//#include "mvPursuit.h"
 #include "mvBehavFuncList.h"
 
 int main(void)
@@ -23,16 +23,16 @@ int main(void)
 
    mvSeek s;
 
-   s.groupOperation(NULL,NULL);
-   s.bodyOperation(NULL,NULL,NULL,a,b,c);
+   s.groupOp(NULL);
+   s.bodyOp(NULL);
    std::cout << a <<  " " << b << " " << c << std::endl
              <<  mvGetOptionString(s.getType()) << std::endl;
 
    // adding functions
    puts(mvGetErrorString(bList.addBehaviourFunction(MV_SEEK,   new mvCreateSeeks()     )));
-   puts(mvGetErrorString(bList.addBehaviourFunction(MV_FLEE,   new mvCreateFlees()     )));
-   puts(mvGetErrorString(bList.addBehaviourFunction(MV_PURSUIT,new mvCreatePursuits()  )));
-   puts(mvGetErrorString(bList.addBehaviourFunction(MV_CLONE,  new mvCreateClones()    )));
+   //puts(mvGetErrorString(bList.addBehaviourFunction(MV_FLEE,   new mvCreateFlees()     )));
+   //puts(mvGetErrorString(bList.addBehaviourFunction(MV_PURSUIT,new mvCreatePursuits()  )));
+   //puts(mvGetErrorString(bList.addBehaviourFunction(MV_CLONE,  new mvCreateClones()    )));
 
    mvOptionEnum options[] = {MV_SEEK, MV_FLEE, MV_PURSUIT, MV_CLONE};
 
@@ -46,8 +46,8 @@ int main(void)
       else
       {
          puts(mvGetOptionString(child->getType()));
-         child->groupOperation(NULL,NULL);
-         child->bodyOperation(NULL,NULL,NULL,a,b,c);
+         child->groupOp(NULL);
+         child->bodyOp(NULL);
          delete child;
       }
    }

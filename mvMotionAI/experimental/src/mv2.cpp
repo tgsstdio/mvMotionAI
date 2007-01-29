@@ -317,7 +317,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroups(mvIndex worldIndex,\
 }
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllBehaviours(mvIndex worldIndex,\
-   void (someFunction)(mvBehaviour*,void*),void* extraPtr)
+   void (someFunction)(mvBehaviour_V2*,void*),void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorld_V2* worldPtr = NULL;
@@ -334,7 +334,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllBehaviours(mvIndex worldIndex,\
 }
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehaviours(\
-   mvIndex worldIndex, void (someFunction)(mvGroupBehaviour*,void*),\
+   mvIndex worldIndex, void (someFunction)(mvGroupBehaviour_V2*,void*),\
    void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
@@ -2516,7 +2516,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBehaviour(mvIndex worldIndex,\
    return MV_NO_CURRENT_INDEX;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvBehaviour* mvGetBehaviourPtr(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvBehaviour_V2* mvGetBehaviourPtr(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
@@ -2547,7 +2547,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentBehaviour(mvIndex worldIndex)
    return MV_NO_CURRENT_INDEX;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvBehaviour* mvGetCurrentBehaviourPtr(mvIndex worldIndex)
+MV_GLOBAL_FUNC_PREFIX mvBehaviour_V2* mvGetCurrentBehaviourPtr(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorld_V2* worldPtr = NULL;
@@ -5087,7 +5087,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroupBehaviour(mvIndex worldIndex,\
    return MV_NO_CURRENT_INDEX;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour* mvGetGroupBehaviourPtr(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour_V2* mvGetGroupBehaviourPtr(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
@@ -5118,7 +5118,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentGroupBehaviour(mvIndex worldIndex)
    return MV_NO_CURRENT_INDEX;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour* mvGetCurrentGroupBehaviourPtr(mvIndex worldIndex)
+MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour_V2* mvGetCurrentGroupBehaviourPtr(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorld_V2* worldPtr = NULL;
@@ -5230,101 +5230,563 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameteri(\
    }
    return error;
 }
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameter(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
-   mvParamEnum paramFlag, mvOptionEnum option);
+   mvParamEnum paramFlag, mvOptionEnum option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setGroupBehaviourParameter(gbIndex, groupIndex,\
+         paramFlag, option);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameterf(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
-   mvParamEnum paramFlag, mvFloat num);
+   mvParamEnum paramFlag, mvFloat num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setGroupBehaviourParameterf(gbIndex, groupIndex,\
+         paramFlag, num);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameterv(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
-   mvParamEnum paramFlag, mvFloat* array);
+   mvParamEnum paramFlag, mvFloat* array)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setGroupBehaviourParameterv(gbIndex, groupIndex,\
+         paramFlag, array);
+   }
+   return error;
+}
+
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParameteri(\
 	mvIndex worldIndex, mvIndex groupIndex, mvParamEnum paramFlag,\
-	mvIndex paramIndex);
+	mvIndex paramIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setCurrentGroupBehaviourParameteri(groupIndex,\
+         paramFlag, paramIndex);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParameter(\
 	mvIndex worldIndex, mvIndex groupIndex, mvParamEnum paramFlag,\
-	mvOptionEnum option);
+	mvOptionEnum option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setCurrentGroupBehaviourParameter(groupIndex,\
+         paramFlag, option);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParameterf(\
 	mvIndex worldIndex, mvIndex groupIndex, mvParamEnum paramFlag,\
-	mvFloat num);
+	mvFloat num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setCurrentGroupBehaviourParameterf(groupIndex,\
+         paramFlag, num);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParameterv(\
 	mvIndex worldIndex, mvIndex groupIndex, mvParamEnum paramFlag,\
-	mvFloat* array);
+	mvFloat* array)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setCurrentGroupBehaviourParameterv(groupIndex,\
+         paramFlag, array);
+   }
+   return error;
+}
+
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParametersi(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
-   const char* param, mvIndex paramIndex);
+   const char* param, mvIndex paramIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setGroupBehaviourParametersi(gbIndex, groupIndex,\
+         param, paramIndex);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameters(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
-   const char* param, const char* option);
+   const char* param, const char* option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setGroupBehaviourParameters(gbIndex, groupIndex,\
+         param, option);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParametersf(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex, const char* param,\
-	mvFloat* array);
+	mvFloat num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setGroupBehaviourParametersf(gbIndex, groupIndex,\
+         param, num);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParametersv(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex, const char* param,\
-	mvFloat* array);
+	mvFloat* array)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setGroupBehaviourParametersv(gbIndex, groupIndex,\
+         param, array);
+   }
+   return error;
+}
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParametersi(\
    mvIndex worldIndex, mvIndex groupIndex, const char* param,\
-   mvIndex paramIndex);
+   mvIndex paramIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setCurrentGroupBehaviourParametersi(groupIndex,\
+         param, paramIndex);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParameters(\
    mvIndex worldIndex, mvIndex groupIndex, const char* param,\
-   const char* option);
+   const char* option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setCurrentGroupBehaviourParameters(groupIndex,\
+         param, option);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParametersf(\
-   mvIndex worldIndex, mvIndex groupIndex, const char* param, mvFloat num);
+   mvIndex worldIndex, mvIndex groupIndex, const char* param, mvFloat num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setCurrentGroupBehaviourParametersf(groupIndex,\
+         param, num);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParametersv(\
-   mvIndex worldIndex, mvIndex groupIndex, const char* param, mvFloat* array);
+   mvIndex worldIndex, mvIndex groupIndex, const char* param, mvFloat* array)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setCurrentGroupBehaviourParametersv(groupIndex,\
+         param, array);
+   }
+   return error;
+}
+
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameteri(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
-   mvParamEnum paramFlag, mvIndex* outIndex);
+   mvParamEnum paramFlag, mvIndex* outIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getGroupBehaviourParameteri(gbIndex, groupIndex,\
+         paramFlag, outIndex);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameter(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
-   mvParamEnum paramFlag, mvOptionEnum* option);
+   mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getGroupBehaviourParameter(gbIndex, groupIndex,\
+         paramFlag, option);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameterf(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
-   mvParamEnum paramFlag, mvFloat* num);
+   mvParamEnum paramFlag, mvFloat* num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getGroupBehaviourParameterf(gbIndex, groupIndex,\
+         paramFlag, num);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameterv(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
-	mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters);
+	mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getGroupBehaviourParameterv(gbIndex, groupIndex,\
+         paramFlag, array, noOfParameters);
+   }
+   return error;
+}
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupBehaviourParameteri(\
 	mvIndex worldIndex, mvIndex groupIndex, mvParamEnum paramFlag,\
-	mvIndex* outIndex);
+	mvIndex* outIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getCurrentGroupBehaviourParameteri(groupIndex,\
+         paramFlag, outIndex);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupBehaviourParameter(\
 	mvIndex worldIndex, mvIndex groupIndex, mvParamEnum paramFlag,\
-	mvOptionEnum* option);
+	mvOptionEnum* option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getCurrentGroupBehaviourParameter(groupIndex,\
+         paramFlag, option);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupBehaviourParameterf(\
 	mvIndex worldIndex, mvIndex groupIndex, mvParamEnum paramFlag,\
-	mvFloat* num);
+	mvFloat* num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getCurrentGroupBehaviourParameterf(groupIndex,\
+         paramFlag, num);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupBehaviourParameterv(\
 	mvIndex worldIndex, mvIndex groupIndex, mvParamEnum paramFlag,\
-	mvFloat* array, mvCount* noOfParameters);
+	mvFloat* array, mvCount* noOfParameters)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getCurrentGroupBehaviourParameterv(groupIndex,\
+         paramFlag, array, noOfParameters);
+   }
+   return error;
+}
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParametersi(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
-   const char* param, mvIndex* outIndex);
+   const char* param, mvIndex* outIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getGroupBehaviourParametersi(gbIndex, groupIndex,\
+         param, outIndex);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameters(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
-   const char* param, const char** option);
+   const char* param, const char** option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getGroupBehaviourParameters(gbIndex, groupIndex,\
+         param, option);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParametersf(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
-   const char* param, mvFloat* num);
+   const char* param, mvFloat* num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getGroupBehaviourParametersf(gbIndex, groupIndex,\
+         param, num);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParametersv(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
-   const char* param, mvFloat* array, mvCount* noOfParameters);
+   const char* param, mvFloat* array, mvCount* noOfParameters)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getGroupBehaviourParametersv(gbIndex, groupIndex,\
+         param, array, noOfParameters);
+   }
+   return error;
+}
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupBehaviourParametersi(\
 	mvIndex worldIndex, mvIndex groupIndex, const char* param,\
-	mvIndex* outIndex);
+	mvIndex* outIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getCurrentGroupBehaviourParametersi(groupIndex,\
+         param, outIndex);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupBehaviourParameters(\
 	mvIndex worldIndex, mvIndex groupIndex, const char* param,\
-	const char** option);
+	const char** option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getCurrentGroupBehaviourParameters(groupIndex,\
+         param, option);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupBehaviourParametersf(\
 	mvIndex worldIndex, mvIndex groupIndex, const char* param,\
-	mvFloat* num);
+	mvFloat* num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getCurrentGroupBehaviourParametersf(groupIndex,\
+         param, num);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupBehaviourParametersv(\
 	mvIndex worldIndex, mvIndex groupIndex, const char* param,\
-	mvFloat* array, mvCount* noOfParameters);
+	mvFloat* array, mvCount* noOfParameters)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorld_V2* worldPtr = NULL;
+
+   if (error != MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getCurrentGroupBehaviourParametersv(groupIndex,\
+         param, array, noOfParameters);
+   }
+   return error;
+}
+

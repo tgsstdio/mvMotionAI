@@ -21,77 +21,95 @@
  */
 #include "mvSeek.h"
 
-mvSeek::mvSeek() :mvBaseBehaviour(MV_SEEK)
+mvSeek::mvSeek() : mvBaseBehaviour(MV_SEEK)
 {
    length = 0;
    waypointIndex = MV_NO_CURRENT_INDEX;
 }
 
-mvBehaviourReturnType mvSeek::bodyOperation(mvWorld* world, mvBody* body, mvBaseBehaviour* groupNodeBehaviour,
-                             mvVec3& forceVector, mvVec3& accelVector, mvVec3& velocity)
+bool mvSeek::bodyOp(mvResultPtr resultModule)
 {
-// TODO: incorporate length into equation
+   // TODO: incorporate length into equation
    /*
       ********************************
-      * \brief mvBehaviour Seek behaviour
-      * 2006
-      * using (psuedo-)code from SIGGRAPH 2000 article - Steering Behaviours
-      * by Robin Green (2000)
+      * mvBehaviour Seek behaviour  2006 using (psuedo-)code from
+      * SIGGRAPH 2000 article - Steering Behaviours by Robin Green (2000)
       * later copied out of mvBehaviour-Seek.h/.cpp Dec 2006
       ********************************
-
       mvVec3 mvBehaviour_Calculate_Seek(mvBody* body, mvWaypoint* point)
       {
          mvVec3 final_velocity;
          mvVec3 direction;
          mvVec3 target;
          mvVec3 pos;
-
          if (body != NULL && point != NULL)
          {
             pos = body->position;
-            target.set(point->getX(),point->getY(),point->getZ());
+            target = point;
             direction = target - pos;
             final_velocity = body->maxSpeed * direction.normalize();
             final_velocity -= body->finalVelocity;
          }
          return final_velocity;
       }
-   0.5 is averaged with steering + direction
+      restult = 0.5  times [i.e averaged with] (new velocity + old velocity)
    */
-   mvVec3 pos, direction;
+   mvVec3 pos, direction, velocity;
+   mvBody* bodyPtr = NULL;
    mvWaypoint* point = NULL;
+   mvWorldPtr worldPtr = NULL;
 
-   if (world == NULL)
+   // 1. apply no operation
+   if (resultModule != NULL)
    {
-      return MV_NO_OPERATION;
+      // 1.a exit here & apply no operation
+      return false;
    }
 
-   if (body == NULL)
+   // 2. check world pointer is valid
+   worldPtr = resultModule->getWorld();
+   if (worldPtr == NULL)
    {
-      return MV_NO_OPERATION;
+      // 2. b exit here & apply no operation
+      return false;
    }
 
-   point = world->mvGetWaypoint(waypointIndex);
+   // check body pointer is valid
+   bodyPtr = resultModule->getBody();
+   if (bodyPtr == NULL)
+   {
+      return false;
+   }
+
+   point = worldPtr->getWaypointPtr(waypointIndex);
    if (point == NULL)
    {
-      return MV_NO_OPERATION;
+      return false;
    }
 
    // pos = body->position;
-   pos.setAll(body->position);
+   pos.setAll(bodyPtr->position);
    // direction = target - pos;
    direction.set(point->getX(), point->getY(), point->getZ());
    direction.minusVec3(pos);
-   // final velocity == velocity
-   // final_velocity = body->maxSpeed * direction.normalize();
-   // final_velocity -= body->finalVelocity;
+   /*
+    * final velocity == velocity
+    * final_velocity = body->maxSpeed * direction.normalize();
+    * final_velocity -= body->finalVelocity;
+   */
    velocity.setAll(direction.normalize());
-   velocity *= body->maxSpeed;
+   velocity *= bodyPtr->getMaxSpeed();
    velocity *= 0.5;
-   //velocity.minusVec3(body->finalVelocity);
+   /*
+    * velocity.minusVec3(body->finalVelocity);
+    */
+   resultModule->setVelocity(velocity);
 
-   return MV_VELOCITY_ONLY;
+   // behaviour result is direction (not steering force)
+   resultModule->setToDirectional();
+
+   // integration include this operation
+   return true;
 }
 
 mvErrorEnum mvSeek::setParameterf(mvParamEnum param, mvFloat num)
@@ -109,7 +127,7 @@ mvErrorEnum mvSeek::setParameterf(mvParamEnum param, mvFloat num)
 
 mvErrorEnum mvSeek::setParameteri(mvParamEnum param, mvIndex index)
 {
-   if (param == MV_WAYPOINT_TARGET)
+   if (param == MV_WAYPOINT)
    {
       waypointIndex = index;
       return MV_NO_ERROR;
@@ -142,10 +160,10 @@ mvErrorEnum mvSeek::getParameteri(mvParamEnum param, mvIndex* index)
 {
    if (index == NULL)
    {
-      return MV_INDEX_DEST_IS_INVALID;
+      return MV_INDEX_DEST_IS_NULL;
    }
 
-   if (param == MV_WAYPOINT_TARGET)
+   if (param == MV_WAYPOINT)
    {
       *index = waypointIndex;
       return MV_NO_ERROR;
@@ -156,9 +174,10 @@ mvErrorEnum mvSeek::getParameteri(mvParamEnum param, mvIndex* index)
    }
 }
 
-void mvSeek::groupOperation(mvWorld* world, mvGroup* groupPtr)
+bool mvSeek::groupOp(mvResultPtr resultModule)
 {
    puts("GROUP OPERATION");
+   return false;
 }
 
 mvCreateSeeks::mvCreateSeeks()

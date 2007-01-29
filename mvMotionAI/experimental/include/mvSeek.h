@@ -10,9 +10,9 @@ class mvSeek : public mvBaseBehaviour
 
    public:
       mvSeek();
-	   virtual mvBehaviourReturnType bodyOperation(mvWorld* world, mvBody* b, mvBaseBehaviour* groupNodeBehaviour,
-               mvVec3& forceVector, mvVec3& accelVector, mvVec3& velocity);
-      void groupOperation(mvWorld* world, mvGroup* groupPtr);
+	   virtual bool groupOp(mvResultPtr resultModule);
+      virtual bool bodyOp(mvResultPtr resultModule);
+
       mvErrorEnum setParameterf(mvParamEnum param, mvFloat num);
       mvErrorEnum setParameteri(mvParamEnum param, mvIndex index);
       mvErrorEnum getParameterf(mvParamEnum param, mvFloat* num);
