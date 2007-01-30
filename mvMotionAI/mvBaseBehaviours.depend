@@ -540,9 +540,11 @@
 	"mvMotionAI-Types.h"
 	"mvBaseBehaviour.h"
 
-1170077256 source:d:\mvmotionai\mvmotionai\experimental\examples-src\classptr.cpp
+1170165556 source:d:\mvmotionai\mvmotionai\experimental\examples-src\classptr.cpp
 	<cstring>
 	<cstdlib>
+	<cstdio>
+	<vector>
 
 1169301248 source:d:\mvmotionai\mvmotionai\experimental\src\mvmotionai_v2-central.cpp
 	"mvMotionAI_V2-Central.h"

@@ -3,7 +3,7 @@
  *
  * \brief defines the basic data types used in mvMotionAI
  *
- * Copyright (c) 2006 David Young.
+ * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -26,11 +26,15 @@
  * Log
  *
  * version     date
+ * 00-01-35    31/01/07
+ * - version number and class pointers
  *
  * 00-01-20    18/11/06  \li doxygen documentation added
  */
 #ifndef MV_MOTIONAI_TYPES_H_
 #define MV_MOTIONAI_TYPES_H_
+
+#define MVMOTIONAI_TYPES_VERSION "00-01-35"
 
 /*
  * FLOATING POINT - used in Vec3 and other places
@@ -118,8 +122,13 @@ static const mvCount MV_MAX_NO_OF_PARAMETERS = 4;
  * complicated behaviour structure
  * must pre declared pointer ahead of time
  */
-typedef class mvBaseBehaviour* mvSuperBehaviourPtr;
+typedef class mvBaseBehaviour* mvBaseBehaviourPtr;
 typedef class mvWorld_V2* mvWorldPtr;
 typedef class mvBehaviourResult* mvResultPtr;
+typedef class mvBody* mvBodyPtr;
+typedef class mvObstacle* mvObstaclePtr;
+typedef class mvWaypoint* mvWaypointPtr;
+typedef class mvGroupBehaviour_V2* mvGroupBehaviourPtr;
+typedef class mvBehaviour_V2* mvBehaviourPtr;
 
 #endif
