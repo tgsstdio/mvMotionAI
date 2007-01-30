@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-winXP" />
-	<File name="experimental\include\mv2.h" open="1" top="0" tabpos="2">
+	<File name="experimental\include\mv2.h" open="0" top="0" tabpos="2">
 		<Cursor position="13691" topLine="263" />
 	</File>
 	<File name="experimental\include\mvBaseBehaviour.h" open="1" top="0" tabpos="1">
@@ -16,10 +16,10 @@
 	<File name="experimental\src\mv.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="15361" topLine="677" />
 	</File>
-	<File name="experimental\src\mvBaseBehaviour.cpp" open="1" top="0" tabpos="1">
+	<File name="experimental\src\mvBaseBehaviour.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="2399" topLine="40" />
 	</File>
-	<File name="experimental\src\mvList.cpp" open="1" top="0" tabpos="4">
+	<File name="experimental\src\mvList.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="26" topLine="0" />
 	</File>
 	<File name="include\mvBehaviour-List.h" open="0" top="0" tabpos="0">
@@ -52,8 +52,8 @@
 	<File name="include\mvLuaScript.h" open="0" top="0" tabpos="1">
 		<Cursor position="3917" topLine="106" />
 	</File>
-	<File name="include\mvMotionAI-Types.h" open="0" top="0" tabpos="0">
-		<Cursor position="3691" topLine="75" />
+	<File name="include\mvMotionAI-Types.h" open="1" top="0" tabpos="4">
+		<Cursor position="124" topLine="3" />
 	</File>
 	<File name="include\mvMotionAI-Utilities.h" open="0" top="0" tabpos="2">
 		<Cursor position="1600" topLine="0" />
@@ -73,8 +73,8 @@
 	<File name="include\mvWaypoint.h" open="0" top="0" tabpos="6">
 		<Cursor position="3185" topLine="67" />
 	</File>
-	<File name="include\mvWorld.h" open="0" top="0" tabpos="3">
-		<Cursor position="17955" topLine="266" />
+	<File name="include\mvWorld.h" open="1" top="0" tabpos="5">
+		<Cursor position="17955" topLine="18" />
 	</File>
 	<File name="src\mvBehaviour-Central.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="5064" topLine="116" />
