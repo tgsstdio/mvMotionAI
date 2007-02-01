@@ -4,7 +4,8 @@
 
 class mvEvade : public mvBaseBehaviour
 {
-
+   public:
+      mvEvade();
 }
 
 class mvCreateEvades : public mvBaseBehaviourLoader

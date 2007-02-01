@@ -23,7 +23,8 @@
 #define MVGROUPBEHAVIOUR_V2_H_INCLUDED
 
 #include "mvMotionAI-Types.h"
-#include "mvList.h"
+//#include "mvList.h" chenged to pointer list
+#include "mvPointerList.h"
 #include "mvBaseBehaviour.h"
 #include "mvGroupBNode_V2.h"
 
@@ -31,7 +32,7 @@ class mvGroupBehaviour_V2
 {
    private:
       mvBaseBehaviourPtr defaultGBehaviour;
-      mvItemList<mvGroupBNode_V2> groupNodeList;
+      mvPointerList<mvGroupBehaviourNodePtr> groupNodeList;
       bool behavEnabled;
    public:
       mvGroupBehaviour_V2(mvOptionEnum gbType);
@@ -39,8 +40,8 @@ class mvGroupBehaviour_V2
       mvErrorEnum addGroup(mvIndex groupNo);
       mvErrorEnum removeGroup(mvIndex groupNo);
       void removeAllGroups();
-      mvGroupBNode_V2* getGroupNodeByIndex(mvIndex index);
-      mvGroupBNode_V2* findGroupNode(mvIndex groupIndex);
+      mvGroupBehaviourNodePtr getGroupNodeByIndex(mvIndex index);
+      mvGroupBehaviourNodePtr findGroupNode(mvIndex groupIndex);
       mvCount getNoOfGroups();
       //mvOptionEnum getType();
       bool isEnabled();

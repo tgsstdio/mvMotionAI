@@ -35,13 +35,11 @@
 
 #include "mvMotionAI-Types.h"
 #include "mvBehaviourResult.h"
+#include "mvGroupBehaviourResult.h"
 //#include "mvWorld2.h"
 //#include "mvVec3.h"
 //#include "mvBody.h"
 //#include "mvEnums.h"
-#include "mvGroup.h"
-
-typedef class mvBaseBehaviour* mvSuperBehaviourPtr;
 
 typedef class mvBaseBehaviour
 {
@@ -79,10 +77,10 @@ typedef class mvBaseBehaviour
 class mvBaseBehaviourLoader
 {
    public:
-      virtual mvSuperBehaviourPtr operator()(\
-         mvSuperBehaviourPtr defaultBehaviour) = 0;
+      virtual mvBaseBehaviourPtr operator()(\
+         mvBaseBehaviourPtr defaultBehaviour) = 0;
       mvBaseBehaviourLoader();
-      virtual ~mvBaseBehaviourLoader();
+      virtual ~mvBaseBehaviourLoader(){};
 };
 
 #endif

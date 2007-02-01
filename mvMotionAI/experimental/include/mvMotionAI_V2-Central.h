@@ -18,6 +18,9 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
+ * 00-01-41
+ * changed to pointer list
  */
 
 #ifndef MVMOTIONAI_V2_CENTRAL_H_INCLUDED
@@ -27,7 +30,7 @@
 #include "mvBaseBehaviour.h"
 #include "mvBehavFuncList.h"
 #include "mvWorld2.h"
-#include "mvList.h"
+//#include "mvList.h"
 
 /* TODO : implement v2 motion ai functions */
 
@@ -46,8 +49,8 @@ mvErrorEnum mvMotionAI_V2_APPLYTOALLWORLDSBYINDEX(\
 mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS();
 mvErrorEnum mvMotionAI_V2_ADDBEHAVIOURFUNC(mvOptionEnum bType,\
    mvBaseBehaviourLoader* loader);
-mvSuperBehaviourPtr mvMotionAI_V2_CREATENEWBEHAVIOUR(mvOptionEnum type,\
-   mvSuperBehaviourPtr  defaultBehaviour);
+mvBaseBehaviourPtr mvMotionAI_V2_CREATENEWBEHAVIOUR(mvOptionEnum type,\
+   mvBaseBehaviourPtr  defaultBehaviour);
 mvErrorEnum mvMotionAI_V2_CHECKIFINITIALISED();
 
 // GLOBAL FUNCTIONS
@@ -91,17 +94,17 @@ class mvMotionAI_V2
 {
    public:
       mvBehavFuncList bFunctions;
-      mvItemList<mvWorld_V2> worlds;
+      mvPointerList<mvWorldPtr> worlds;
 
       mvMotionAI_V2();
       mvIndex createWorld(const char* worldID);
       mvIndex getWorldByID(const char* worldID);
       mvCount getNoOfWorlds();
-      mvWorld_V2* getWorldPtr(mvIndex index);
-      mvWorld_V2* getWorldPtrByID(const char* worldID);
+      mvWorldPtr getWorldPtr(mvIndex index);
+      mvWorldPtr getWorldPtrByID(const char* worldID);
       void deleteAllWorlds();
       void allWorldsStepForward(mvFloat timeInSecs);
-      void applyToAllWorlds(void (someFunction)(mvWorld_V2*,void*),void* extraPtr);
+      void applyToAllWorlds(void (someFunction)(mvWorldPtr,void*),void* extraPtr);
       void applyToAllWorldsByIndex(void (someFunction)(mvIndex,void*),\
          void* extraPtr);
       mvErrorEnum loadDefaultBehaviours();

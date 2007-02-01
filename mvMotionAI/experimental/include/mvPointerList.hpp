@@ -94,10 +94,10 @@ mvErrorEnum mvPointerList<mvClass>::checkParamStringAndIndex(mvIndex& i,\
  * Code taken from mvAddUniqueItemInVector in mvMotionAI-Utilities.h , 2006
  */
 template <class mvClass>
-mvErrorEnum mvPointerList<mvClass>::addItem(mvClass* itemPtr)
+mvErrorEnum mvPointerList<mvClass>::addItem(mvClass itemPtr)
 {
-   class std::vector<mvClass*>::const_iterator i;
-   const mvClass currentItem = NULL;
+   class std::vector<mvClass>::const_iterator i;
+   mvClass currentItem = NULL;
 
    if (itemPtr == NULL)
       return MV_ITEM_POINTER_IS_NULL;
@@ -172,8 +172,8 @@ mvErrorEnum mvPointerList<mvClass>::deleteCurrentItem()
 template <class mvClass>
 void mvPointerList<mvClass>::deleteAllItems()
 {
-   class std::vector<mvClass*>::iterator i;
-   class std::vector<mvClass*>::iterator listEnd = listItems.end();
+   class std::vector<mvClass>::iterator i;
+   class std::vector<mvClass>::iterator listEnd = listItems.end();
    mvClass temp = NULL;
 
    for (i = listItems.begin(); i != listEnd; ++i)
@@ -221,14 +221,14 @@ mvClass mvPointerList<mvClass>::getCurrentClassPtr()
 template <class mvClass>
 mvCount mvPointerList<mvClass>::getNoOfItems() const
 {
-   class std::vector<mvClass*>::const_iterator i;
-   class std::vector<mvClass*>::const_iterator listEnd = listItems.end();
+   class std::vector<mvClass>::const_iterator i;
+   class std::vector<mvClass>::const_iterator listEnd = listItems.end();
    mvCount totalItems = 0;
-   const mvClass temp = NULL;
+   mvClass temp = NULL;
 
    for (i = listItems.begin(); i != listEnd; ++i)
    {
-      temp = (mvClass*) *i;
+      temp = (mvClass) *i;
       if (temp != NULL)
          ++totalItems;
    }
@@ -277,8 +277,8 @@ template <class mvClass>
 void mvPointerList<mvClass>::applyToAllItems(\
    void (someFunction)(mvClass, void*),void* extraPtr)
 {
-   class std::vector<mvClass*>::iterator i;
-   class std::vector<mvClass*>::iterator listEnd = listItems.end();
+   class std::vector<mvClass>::iterator i;
+   class std::vector<mvClass>::iterator listEnd = listItems.end();
    mvClass tempClass = NULL;
 
    for (i = listItems.begin(); i != listEnd; ++i)
@@ -304,8 +304,8 @@ template <class mvClass>
 void mvPointerList<mvClass>::applyToAllItemsByIndex(mvIndex worldIndex,\
    void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr)
 {
-   class std::vector<mvClass*>::iterator i;
-   class std::vector<mvClass*>::iterator listEnd = listItems.end();
+   class std::vector<mvClass>::iterator i;
+   class std::vector<mvClass>::iterator listEnd = listItems.end();
    mvClass tempClass = NULL;
    mvIndex listIndex = 1;
 
@@ -473,7 +473,7 @@ mvErrorEnum mvPointerList<mvClass>::getItemParameterf(mvIndex itemIndex,\
 {
    mvIndex listIndex = itemIndex;
    mvErrorEnum error = checkIndex(listIndex);
-   mvClass* classPtr = NULL;
+   mvClass classPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -1179,9 +1179,9 @@ template <class mvClass>
 mvClass mvPointerList<mvClass>::findItemPtrInList(bool (someFunction)(mvClass, void*),\
    void* extraPtr)
 {
-   class std::vector<mvClass*>::iterator i;
+   class std::vector<mvClass>::iterator i;
    mvClass currentPtr = NULL;
-   class std::vector<mvClass*>::iterator listEnd = listItems.end();
+   class std::vector<mvClass>::iterator listEnd = listItems.end();
 
    for (i = listItems.begin(); i != listEnd; ++i)
    {
@@ -1223,8 +1223,8 @@ template <class mvClass>
 void mvPointerList<mvClass>::applyToAllItemsByItemIndex(\
    void (someFunction)(mvIndex,void*), void* extraPtr)
 {
-   class std::vector<mvClass*>::iterator i;
-   class std::vector<mvClass*>::iterator listEnd = listItems.end();
+   class std::vector<mvClass>::iterator i;
+   class std::vector<mvClass>::iterator listEnd = listItems.end();
    mvIndex itemIndex = 1;
 
    for (i = listItems.begin(); i != listEnd; ++i)

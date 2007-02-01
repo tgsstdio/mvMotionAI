@@ -10,8 +10,8 @@ class mvSeek : public mvBaseBehaviour
 
    public:
       mvSeek();
-	   virtual bool groupOp(mvResultPtr resultModule);
-      virtual bool bodyOp(mvResultPtr resultModule);
+	   virtual bool groupOp(mvGroupBehaviourResultPtr resultModule);
+      virtual bool bodyOp(mvBehaviourResultPtr resultModule);
 
       mvErrorEnum setParameterf(mvParamEnum param, mvFloat num);
       mvErrorEnum setParameteri(mvParamEnum param, mvIndex index);
@@ -24,6 +24,7 @@ class mvCreateSeeks : public mvBaseBehaviourLoader
    public:
       mvCreateSeeks();
       mvBaseBehaviour* operator()(mvBaseBehaviour* defaultBehav);
+      ~mvCreateSeeks(){};
 };
 
 #endif

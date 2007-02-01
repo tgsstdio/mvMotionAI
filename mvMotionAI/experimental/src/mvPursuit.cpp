@@ -20,6 +20,7 @@
  * DEALINGS IN THE SOFTWARE.
  */
 #include "mvPursuit.h"
+#include <new>
 
 mvCreatePursuits::mvCreatePursuits()
 {
@@ -32,7 +33,7 @@ mvCreatePursuits::mvCreatePursuits()
   */
 mvBaseBehaviour* mvCreatePursuits::operator()(mvBaseBehaviour* defaultBehav)
 {
-   return new mvPursuit();
+   return new (std::nothrow) mvPursuit();
 }
 
 /** @brief (one liner)
@@ -43,10 +44,10 @@ mvErrorEnum mvPursuit::getParameteri(mvParamEnum param, mvIndex* index)
 {
    if (index == NULL)
    {
-      return MV_INDEX_DEST_IS_INVALID;
+      return MV_INDEX_DEST_IS_NULL;
    }
 
-   if (param == MV_BODY_TARGET)
+   if (param == MV_BODY)
    {
       *index = targetObject;
       return MV_NO_ERROR;
@@ -63,7 +64,7 @@ mvErrorEnum mvPursuit::getParameteri(mvParamEnum param, mvIndex* index)
   */
 mvErrorEnum mvPursuit::setParameteri(mvParamEnum param, mvIndex index)
 {
-   if (param == MV_BODY_TARGET)
+   if (param == MV_BODY)
    {
       targetObject = index;
       return MV_NO_ERROR;
@@ -78,46 +79,55 @@ mvErrorEnum mvPursuit::setParameteri(mvParamEnum param, mvIndex index)
   *
   * (documentation goes here)
   */
-mvBehaviourReturnType mvPursuit::bodyOperation(mvWorld* world, mvBody* body, mvBaseBehaviour* groupNodeBehaviour,
-   mvVec3& forceVector, mvVec3& accelVector, mvVec3& velocity)
+bool mvPursuit::bodyOp(mvBehaviourResultPtr resultModule)
 {
-//mvVec3 mvBehaviour_Calculate_Pursuit(mvBody* currentBody, mvBody* targetBody)
-//{
-//   mvVec3 targetDir, finalVelocity, desiredVelocity, nextPos;
-//   mvFloat dist = 0.0;
-//   if (currentBody != NULL && targetBody != NULL)
-//   {
-//      dist = (targetBody->position - currentBody->position).length();
-//
-//      nextPos = targetBody->position + (targetBody->direction * targetBody->speed * (dist/currentBody->maxSpeed));
-//
-//      desiredVelocity = (nextPos - currentBody->position).normalize() * currentBody->maxSpeed;
-//
-//      //finalVelocity = (desiredVelocity - (currentBody->speed * currentBody->direction)) + (currentBody->speed * currentBody->direction);
-//      finalVelocity = desiredVelocity;
-//      finalVelocity *= 0.5;
-//   }
-//   return finalVelocity;
-//}
-   mvVec3 targetDir, desiredVelocity, nextPos;
-   mvBody* target = NULL;
+/*
+mvVec3 mvBehaviour_Calculate_Pursuit(mvBody* currentBody, mvBody* targetBody)
+{
+   mvVec3 targetDir, finalVelocity, desiredVelocity, nextPos;
+   mvFloat dist = 0.0;
+   if (currentBody != NULL && targetBody != NULL)
+   {
+      dist = (targetBody->position - currentBody->position).length();
+
+      nextPos = targetBody->position + (targetBody->direction * targetBody->speed * (dist/currentBody->maxSpeed));
+
+      desiredVelocity = (nextPos - currentBody->position).normalize() * currentBody->maxSpeed;
+
+      //finalVelocity = (desiredVelocity - (currentBody->speed * currentBody->direction)) + (currentBody->speed * currentBody->direction);
+      finalVelocity = desiredVelocity;
+      finalVelocity *= 0.5;
+   }
+   return finalVelocity;
+}
+*/
+   mvVec3 targetDir, desiredVelocity, nextPos, velocity;
+   mvBodyPtr body = NULL;
+   mvBodyPtr target = NULL;
+   mvWorldPtr world = NULL;
    mvFloat period = 0;
 
+   if (resultModule == NULL)
+   {
+      return false;
+   }
+
+   world = resultModule->getWorld();
    if (world == NULL)
    {
-      return MV_NO_OPERATION;
+      return false;
    }
 
+   body = resultModule->getBody();
    if (body == NULL)
    {
-      return MV_NO_OPERATION;
+      return false;
    }
 
-   target = world->mvGetBody(targetObject);
-
+   target = world->getBodyPtr(targetObject);
    if (target == NULL)
    {
-      return MV_NO_OPERATION;
+      return false;
    }
 
    targetDir.setAll(target->position);
@@ -145,16 +155,20 @@ mvBehaviourReturnType mvPursuit::bodyOperation(mvWorld* world, mvBody* body, mvB
    velocity *= body->maxSpeed;
    velocity *= 0.5;
 
-   return MV_VELOCITY_ONLY;
+   resultModule->setVelocity(velocity);
+   resultModule->setToDirectional();
+
+   return true;
 }
 
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-void mvPursuit::groupOperation(mvWorld* world, mvGroup* groupPtr)
+bool mvPursuit::groupOp(mvGroupBehaviourResultPtr resultModule)
 {
    puts("PURSUIT - GROUP OPERATION");
+   return false;
 }
 
 /** @brief (one liner)

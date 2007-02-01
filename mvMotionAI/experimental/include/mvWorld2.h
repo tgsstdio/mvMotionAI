@@ -18,10 +18,15 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
+ *  implementation of version two of mvMotionAI world
  */
 #ifndef MV_MOTIONAI_WORLD_V2_H_
 #define MV_MOTIONAI_WORLD_V2_H_
+
+#include "mvMotionAI-Types.h"
 #include "mvList.h"
+#include "mvPointerList.h"
 
 #include "mvForce.h"
 #include "mvBody.h"
@@ -32,20 +37,18 @@
 #include "mvGroupBehaviour_V2.h"
 #include "mvBehaviour_V2.h"
 
-// TODO (White 2#1#): implement version two of world
-
 typedef class mvWorld_V2
 {
    private:
       char* worldID;
-      mvItemList<mvForce> forces;
-      mvItemList<mvObstacle> obstacles;
-      mvItemList<mvBody> bodies;
-      mvItemList<mvWaypoint> waypoints;
-      mvItemList<mvPathway> pathways;
-      mvItemList<mvGroupBehaviour_V2> groupBehaviours;
-      mvItemList<mvBehaviour_V2> behaviours;
-      mvItemList<mvGroup> groups;
+      mvPointerList<mvForcePtr> forces;
+      mvPointerList<mvObstaclePtr> obstacles;
+      mvPointerList<mvBodyPtr> bodies;
+      mvPointerList<mvWaypointPtr> waypoints;
+      mvPointerList<mvPathwayPtr> pathways;
+      mvPointerList<mvGroupBehaviourPtr> groupBehaviours;
+      mvPointerList<mvBehaviourPtr> behaviours;
+      mvPointerList<mvGroupPtr> groups;
 
    public:
       mvWorld_V2(const char* worldID);
@@ -67,17 +70,16 @@ typedef class mvWorld_V2
       mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
       mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
 
-
       // body functions
       mvIndex createBody(mvOptionEnum bType, mvOptionEnum bShape,\
          mvFloat x, mvFloat y, mvFloat z);
-      mvBody* getBodyPtr(mvIndex index);
-      mvBody* getCurrentBodyPtr();
+      mvBodyPtr getBodyPtr(mvIndex index);
+      mvBodyPtr getCurrentBodyPtr();
       mvIndex setCurrentBody(mvIndex index);
       mvErrorEnum deleteCurrentBody();
       mvErrorEnum deleteBody(mvIndex index);
       void deleteAllBodies();
-      void applyToAllBodies(void (someFunction)(mvBody*, void*),\
+      void applyToAllBodies(void (someFunction)(mvBodyPtr, void*),\
          void* extraPtr);
       void applyToAllBodiesByIndex(mvIndex worldIndex,\
          void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
@@ -155,13 +157,13 @@ typedef class mvWorld_V2
       // obstacle functions
       mvIndex createObstacle(mvOptionEnum oType, mvOptionEnum oState,\
          mvFloat x, mvFloat y, mvFloat z);
-      mvObstacle* getObstaclePtr(mvIndex index);
-      mvObstacle* getCurrentObstaclePtr();
+      mvObstaclePtr getObstaclePtr(mvIndex index);
+      mvObstaclePtr getCurrentObstaclePtr();
       mvIndex setCurrentObstacle(mvIndex index);
       mvErrorEnum deleteCurrentObstacle();
       mvErrorEnum deleteObstacle(mvIndex index);
       void deleteAllObstacles();
-      void applyToAllObstacles(void (someFunction)(mvObstacle*, void*),\
+      void applyToAllObstacles(void (someFunction)(mvObstaclePtr, void*),\
          void* extraPtr);
       void applyToAllObstaclesByIndex(mvIndex worldIndex,\
          void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
@@ -242,13 +244,13 @@ typedef class mvWorld_V2
       // Waypoint functions
       mvIndex createWaypoint(mvOptionEnum wType, mvOptionEnum wShape,\
          mvFloat x, mvFloat y, mvFloat z);
-      mvWaypoint* getWaypointPtr(mvIndex index);
-      mvWaypoint* getCurrentWaypointPtr();
+      mvWaypointPtr getWaypointPtr(mvIndex index);
+      mvWaypointPtr getCurrentWaypointPtr();
       mvIndex setCurrentWaypoint(mvIndex index);
       mvErrorEnum deleteCurrentWaypoint();
       mvErrorEnum deleteWaypoint(mvIndex index);
       void deleteAllWaypoints();
-      void applyToAllWaypoints(void (someFunction)(mvWaypoint*, void*),\
+      void applyToAllWaypoints(void (someFunction)(mvWaypointPtr, void*),\
          void* extraPtr);
       void applyToAllWaypointsByIndex(mvIndex worldIndex,\
          void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
@@ -328,13 +330,13 @@ typedef class mvWorld_V2
 
       // Pathway functions
       mvIndex createPathway();
-      mvPathway* getPathwayPtr(mvIndex index);
-      mvPathway* getCurrentPathwayPtr();
+      mvPathwayPtr getPathwayPtr(mvIndex index);
+      mvPathwayPtr getCurrentPathwayPtr();
       mvIndex setCurrentPathway(mvIndex index);
       mvErrorEnum deleteCurrentPathway();
       mvErrorEnum deletePathway(mvIndex index);
       void deleteAllPathways();
-      void applyToAllPathways(void (someFunction)(mvPathway*, void*),\
+      void applyToAllPathways(void (someFunction)(mvPathwayPtr, void*),\
          void* extraPtr);
       void applyToAllPathwaysByIndex(mvIndex worldIndex,\
          void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
@@ -413,13 +415,13 @@ typedef class mvWorld_V2
 
       // Behaviour functions
       mvIndex createBehaviour(mvOptionEnum bType);
-      mvBehaviour_V2* getBehaviourPtr(mvIndex index);
-      mvBehaviour_V2* getCurrentBehaviourPtr();
+      mvBehaviourPtr getBehaviourPtr(mvIndex index);
+      mvBehaviourPtr getCurrentBehaviourPtr();
       mvIndex setCurrentBehaviour(mvIndex index);
       mvErrorEnum deleteCurrentBehaviour();
       mvErrorEnum deleteBehaviour(mvIndex index);
       void deleteAllBehaviours();
-      void applyToAllBehaviours(void (someFunction)(mvBehaviour_V2*, void*),\
+      void applyToAllBehaviours(void (someFunction)(mvBehaviourPtr, void*),\
          void* extraPtr);
       void applyToAllBehavioursByIndex(mvIndex worldIndex,\
          void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
@@ -498,13 +500,13 @@ typedef class mvWorld_V2
 
       // Group functions
       mvIndex createGroup(const char* groupID);
-      mvGroup* getGroupPtr(mvIndex index);
-      mvGroup* getCurrentGroupPtr();
+      mvGroupPtr getGroupPtr(mvIndex index);
+      mvGroupPtr getCurrentGroupPtr();
       mvIndex setCurrentGroup(mvIndex index);
       mvErrorEnum deleteCurrentGroup();
       mvErrorEnum deleteGroup(mvIndex index);
       void deleteAllGroups();
-      void applyToAllGroups(void (someFunction)(mvGroup*, void*),\
+      void applyToAllGroups(void (someFunction)(mvGroupPtr, void*),\
          void* extraPtr);
       void applyToAllGroupsByIndex(mvIndex worldIndex,\
          void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
@@ -582,14 +584,14 @@ typedef class mvWorld_V2
 
       // GroupBehaviour functions
       mvIndex createGroupBehaviour(mvOptionEnum type);
-      mvGroupBehaviour_V2* getGroupBehaviourPtr(mvIndex index);
-      mvGroupBehaviour_V2* getCurrentGroupBehaviourPtr();
+      mvGroupBehaviourPtr getGroupBehaviourPtr(mvIndex index);
+      mvGroupBehaviourPtr getCurrentGroupBehaviourPtr();
       mvIndex setCurrentGroupBehaviour(mvIndex index);
       mvErrorEnum deleteCurrentGroupBehaviour();
       mvErrorEnum deleteGroupBehaviour(mvIndex index);
       void deleteAllGroupBehaviours();
       void applyToAllGroupBehaviours(\
-         void (someFunction)(mvGroupBehaviour_V2*, void*), void* extraPtr);
+         void (someFunction)(mvGroupBehaviourPtr, void*), void* extraPtr);
       void applyToAllGroupBehavioursByIndex(mvIndex worldIndex,\
          void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
 
@@ -669,13 +671,13 @@ typedef class mvWorld_V2
 
       // Force functions
       mvIndex createForce(mvOptionEnum fType);
-      mvForce* getForcePtr(mvIndex index);
-      mvForce* getCurrentForcePtr();
+      mvForcePtr getForcePtr(mvIndex index);
+      mvForcePtr getCurrentForcePtr();
       mvIndex setCurrentForce(mvIndex index);
       mvErrorEnum deleteCurrentForce();
       mvErrorEnum deleteForce(mvIndex index);
       void deleteAllForces();
-      void applyToAllForces(void (someFunction)(mvForce*, void*),\
+      void applyToAllForces(void (someFunction)(mvForcePtr, void*),\
          void* extraPtr);
       void applyToAllForcesByIndex(mvIndex worldIndex,\
          void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
@@ -831,13 +833,13 @@ typedef class mvWorld_V2
       mvErrorEnum setMainGroupBehaviourParametersv(mvIndex index,\
          const char* param, mvFloat* array);
 
-      mvErrorEnum setCurrentMainGroupBehaviourParametersi(mvIndex index,\
+      mvErrorEnum setCurrentMainGroupBehaviourParametersi(\
          const char* param, mvIndex paramIndex);
-      mvErrorEnum setCurrentMainGroupBehaviourParameters(mvIndex index,\
+      mvErrorEnum setCurrentMainGroupBehaviourParameters(\
          const char* param, const char* option);
-      mvErrorEnum setCurrentMainGroupBehaviourParametersf(mvIndex index,\
+      mvErrorEnum setCurrentMainGroupBehaviourParametersf(\
          const char* param, mvFloat num);
-      mvErrorEnum setCurrentMainGroupBehaviourParametersv(mvIndex index,\
+      mvErrorEnum setCurrentMainGroupBehaviourParametersv(\
          const char* param, mvFloat* array);
 
       mvErrorEnum getMainGroupBehaviourParameters(mvIndex index,\

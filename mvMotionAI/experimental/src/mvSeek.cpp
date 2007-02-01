@@ -20,6 +20,7 @@
  * DEALINGS IN THE SOFTWARE.
  */
 #include "mvSeek.h"
+#include <new>
 
 mvSeek::mvSeek() : mvBaseBehaviour(MV_SEEK)
 {
@@ -27,7 +28,7 @@ mvSeek::mvSeek() : mvBaseBehaviour(MV_SEEK)
    waypointIndex = MV_NO_CURRENT_INDEX;
 }
 
-bool mvSeek::bodyOp(mvResultPtr resultModule)
+bool mvSeek::bodyOp(mvBehaviourResultPtr resultModule)
 {
    // TODO: incorporate length into equation
    /*
@@ -59,14 +60,14 @@ bool mvSeek::bodyOp(mvResultPtr resultModule)
    mvWaypoint* point = NULL;
    mvWorldPtr worldPtr = NULL;
 
-   // 1. apply no operation
-   if (resultModule != NULL)
+   // 1. check if input/output class pointer is valid
+   if (resultModule == NULL)
    {
       // 1.a exit here & apply no operation
       return false;
    }
 
-   // 2. check world pointer is valid
+   // 2. check world pointer in input/output is valid
    worldPtr = resultModule->getWorld();
    if (worldPtr == NULL)
    {
@@ -174,7 +175,7 @@ mvErrorEnum mvSeek::getParameteri(mvParamEnum param, mvIndex* index)
    }
 }
 
-bool mvSeek::groupOp(mvResultPtr resultModule)
+bool mvSeek::groupOp(mvGroupBehaviourResultPtr resultModule)
 {
    puts("GROUP OPERATION");
    return false;
@@ -187,5 +188,5 @@ mvCreateSeeks::mvCreateSeeks()
 
 mvBaseBehaviour* mvCreateSeeks::operator()(mvBaseBehaviour* defaultBehav)
 {
-   return new mvSeek();
+   return new (std::nothrow) mvSeek();
 }
