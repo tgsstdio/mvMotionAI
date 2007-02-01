@@ -191,7 +191,6 @@
 		<Unit filename="experimental\include\mvList.h">
 			<Option target="mvItemList-Debug" />
 			<Option target="Debug" />
-			<Option target="Class Pointers" />
 		</Unit>
 		<Unit filename="experimental\include\mvMotionAI_V2-Central.h">
 			<Option target="Release" />
@@ -202,6 +201,12 @@
 		<Unit filename="experimental\include\mvNullLoader.h">
 			<Option target="Release" />
 			<Option target="Debug" />
+		</Unit>
+		<Unit filename="experimental\include\mvPointerList.h">
+			<Option target="Class Pointers" />
+		</Unit>
+		<Unit filename="experimental\include\mvPointerList.hpp">
+			<Option target="Class Pointers" />
 		</Unit>
 		<Unit filename="experimental\include\mvPursuit.h">
 			<Option target="Release" />
@@ -308,7 +313,6 @@
 			<Option compile="0" />
 			<Option link="0" />
 			<Option target="Debug" />
-			<Option target="Class Pointers" />
 		</Unit>
 		<Unit filename="experimental\src\mvMotionAI_V2-Central.cpp">
 			<Option target="Release" />

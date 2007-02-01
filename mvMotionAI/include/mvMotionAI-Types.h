@@ -34,7 +34,7 @@
 #ifndef MV_MOTIONAI_TYPES_H_
 #define MV_MOTIONAI_TYPES_H_
 
-#define MVMOTIONAI_TYPES_VERSION "00-01-35"
+#define MVMOTIONAI_TYPES_VERSION "00-01-40"
 
 /*
  * FLOATING POINT - used in Vec3 and other places
@@ -123,12 +123,18 @@ static const mvCount MV_MAX_NO_OF_PARAMETERS = 4;
  * must pre declared pointer ahead of time
  */
 typedef class mvBaseBehaviour* mvBaseBehaviourPtr;
-typedef class mvWorld_V2* mvWorldPtr;
-typedef class mvBehaviourResult* mvResultPtr;
-typedef class mvBody* mvBodyPtr;
-typedef class mvObstacle* mvObstaclePtr;
-typedef class mvWaypoint* mvWaypointPtr;
-typedef class mvGroupBehaviour_V2* mvGroupBehaviourPtr;
+typedef class mvBaseBehaviourLoader* mvBaseBehaviourLoaderPtr;
 typedef class mvBehaviour_V2* mvBehaviourPtr;
+typedef class mvBehaviourResult* mvBehaviourResultPtr;
+typedef class mvBody* mvBodyPtr;
+typedef class mvForce* mvForcePtr;
+typedef class mvForceResult* mvForceResultPtr;
+typedef class mvGroup* mvGroupPtr;
+typedef class mvGroupBehaviour_V2* mvGroupBehaviourPtr;
+typedef class mvGroupBehavResult* mvGroupBehaviourResultPtr;
+typedef class mvObstacle* mvObstaclePtr;
+typedef class mvPathway* mvPathwayPtr;
+typedef class mvWaypoint* mvWaypointPtr;
+typedef class mvWorld_V2* mvWorldPtr;
 
 #endif

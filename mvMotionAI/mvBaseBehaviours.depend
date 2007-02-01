@@ -26,7 +26,7 @@
 
 1166797132 haviour.h"
 
-1170078578 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
+1170167064 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
 
 1166248706 d:\mvmotionai\mvmotionai\include\mvbody.h
 	<vector>
@@ -540,11 +540,12 @@
 	"mvMotionAI-Types.h"
 	"mvBaseBehaviour.h"
 
-1170165556 source:d:\mvmotionai\mvmotionai\experimental\examples-src\classptr.cpp
+1170250874 source:d:\mvmotionai\mvmotionai\experimental\examples-src\classptr.cpp
 	<cstring>
 	<cstdlib>
 	<cstdio>
 	<vector>
+	"mvPointerList.h"
 
 1169301248 source:d:\mvmotionai\mvmotionai\experimental\src\mvmotionai_v2-central.cpp
 	"mvMotionAI_V2-Central.h"
@@ -554,4 +555,12 @@
 
 1169301248 d:\mvmotionai\mvmotionai\experimental\include\mvnullloader.h
 	"mvBaseBehaviour.h"
+
+1170250244 d:\mvmotionai\mvmotionai\experimental\include\mvpointerlist.h
+	<vector>
+	"mvEnums.h"
+	"mvMotionAI-Types.h"
+	"mvPointerList.hpp"
+
+1170250762 d:\mvmotionai\mvmotionai\experimental\include\mvpointerlist.hpp
 

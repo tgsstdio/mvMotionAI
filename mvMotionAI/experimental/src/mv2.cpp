@@ -40,18 +40,18 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvGetWorldByID(const char* id)
    return mvMotionAI_V2_GETWORLDBYID(id);
 }
 
-MV_GLOBAL_FUNC_PREFIX mvWorld_V2* mvGetWorldPtrByID(const char* id)
+MV_GLOBAL_FUNC_PREFIX mvWorldPtr mvGetWorldPtrByID(const char* id)
 {
    return mvMotionAI_V2_GETWORLDPTRBYID(id);
 }
 
-MV_GLOBAL_FUNC_PREFIX mvWorld_V2* mvGetWorldPtr(mvIndex index)
+MV_GLOBAL_FUNC_PREFIX mvWorldPtr mvGetWorldPtr(mvIndex index)
 {
    return mvMotionAI_V2_GETWORLDPTR(index);
 }
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorlds(\
-   void (someFunction)(mvWorld_V2*,void*),void* extraPtr)
+   void (someFunction)(mvWorldPtr,void*),void* extraPtr)
 {
    return mvMotionAI_V2_APPLYTOALLWORLDS(someFunction, extraPtr);
 }
@@ -68,13 +68,13 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLoadDefaultBehaviours()
 }
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddBehaviourFunction(mvOptionEnum bType,\
-   mvBaseBehaviourLoader* loader)
+   mvBaseBehaviourLoaderPtr loader)
 {
    return mvMotionAI_V2_ADDBEHAVIOURFUNC(bType, loader);
 }
 
-MV_GLOBAL_FUNC_PREFIX mvBaseBehaviour* mvCreateNewBehaviour(mvOptionEnum type,\
-   mvBaseBehaviour* defaultBehaviour)
+MV_GLOBAL_FUNC_PREFIX mvBaseBehaviourPtr mvCreateNewBehaviour(mvOptionEnum type,\
+   mvBaseBehaviourPtr defaultBehaviour)
 {
    return mvMotionAI_V2_CREATENEWBEHAVIOUR(type, defaultBehaviour);
 }
@@ -83,7 +83,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvWorldStep(mvIndex worldIndex,\
    mvFloat timeInSecs)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -100,7 +100,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvNudgeBody(mvIndex worldIndex,\
    mvIndex bodyIndex, mvFloat timeInSecs)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -117,7 +117,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvNudgeCurrentBody(mvIndex worldIndex,\
    mvFloat timeInSecs)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -235,7 +235,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBodies(mvIndex worldIndex,\
    void (someFunction)(mvBody*,void*),void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -252,7 +252,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllObstacles(mvIndex worldIndex,\
    void (someFunction)(mvObstacle*,void*),void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -269,7 +269,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWaypoints(mvIndex worldIndex,\
    void (someFunction)(mvWaypoint*,void*),void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -286,7 +286,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllPathways(mvIndex worldIndex,\
    void (someFunction)(mvPathway*,void*),void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -303,7 +303,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroups(mvIndex worldIndex,\
    void (someFunction)(mvGroup*,void*),void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -320,7 +320,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllBehaviours(mvIndex worldIndex,\
    void (someFunction)(mvBehaviour_V2*,void*),void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -338,7 +338,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehaviours(\
    void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -355,7 +355,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllForces(mvIndex worldIndex,\
    void (someFunction)(mvForce*,void*),void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -374,7 +374,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBodiesByIndex(mvIndex worldIndex,\
    void (someFunction)(mvIndex,mvIndex,void*),void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -392,7 +392,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllObstaclesByIndex(\
    void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -410,7 +410,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWaypointsByIndex(\
    void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -428,7 +428,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllPathwaysByIndex(\
    void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -446,7 +446,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupsByIndex(\
    void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -464,7 +464,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBehavioursByIndex(\
    void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -482,7 +482,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehavioursByIndex(\
    void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -500,7 +500,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllForcesByIndex(mvIndex worldIndex,\
    void (someFunction)(mvIndex,mvIndex, void*), void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -517,7 +517,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBody(mvIndex worldIndex,\
    mvOptionEnum bType, mvOptionEnum bShape, mvFloat x, mvFloat y, mvFloat z)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -529,11 +529,11 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBody(mvIndex worldIndex,\
    return MV_NO_CURRENT_INDEX;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvBody* mvGetBodyPtr(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvBodyPtr mvGetBodyPtr(mvIndex worldIndex,\
    mvIndex bodyIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -548,7 +548,7 @@ MV_GLOBAL_FUNC_PREFIX mvBody* mvGetBodyPtr(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentBody(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -560,10 +560,10 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentBody(mvIndex worldIndex)
    return MV_NO_CURRENT_INDEX;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvBody* mvGetCurrentBodyPtr(mvIndex worldIndex)
+MV_GLOBAL_FUNC_PREFIX mvBodyPtr mvGetCurrentBodyPtr(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -579,7 +579,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentBody(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -594,7 +594,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentBody(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteCurrentBody(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -610,7 +610,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteBody(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -625,7 +625,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteBody(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteAllBodies(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -641,7 +641,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBodyParameteri(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -657,7 +657,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBodyParameter(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -673,7 +673,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBodyParameterf(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -689,7 +689,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBodyParameterv(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -705,7 +705,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyParameteri(\
    mvIndex worldIndex,mvParamEnum paramFlag, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -721,7 +721,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyParameter(mvIndex worldIndex,\
    mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -737,7 +737,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyParameterf(\
    mvIndex worldIndex,mvParamEnum paramFlag, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -753,7 +753,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyParameterv(\
    mvIndex worldIndex,mvParamEnum paramFlag, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -769,7 +769,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBodyParametersi(mvIndex worldIndex,\
    mvIndex index, const char* param, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -785,7 +785,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBodyParameters(mvIndex worldIndex,\
    mvIndex index, const char* param, const char* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -801,7 +801,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBodyParametersf(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -817,7 +817,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBodyParametersv(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -833,7 +833,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyParametersi(\
    mvIndex worldIndex, const char* param, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -849,7 +849,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyParameters(\
    mvIndex worldIndex, const char* param, const char* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -865,7 +865,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyParametersf(\
    mvIndex worldIndex, const char* param, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -881,7 +881,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyParametersv(\
    mvIndex worldIndex, const char* param, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -897,7 +897,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParameteri(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -913,7 +913,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParameter(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvOptionEnum* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -929,7 +929,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParameterf(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -946,7 +946,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParameterv(mvIndex worldIndex,\
    mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -962,7 +962,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBodyParameteri(\
    mvIndex worldIndex, mvParamEnum paramFlag, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -978,7 +978,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBodyParameter(\
    mvIndex worldIndex,  mvParamEnum paramFlag, mvOptionEnum* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -994,7 +994,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBodyParameterf(\
    mvIndex worldIndex, mvParamEnum paramFlag, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1011,7 +1011,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBodyParameterv(\
    mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1028,7 +1028,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParametersi(mvIndex worldIndex,\
    mvIndex index, const char* param, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1044,7 +1044,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParameters(mvIndex worldIndex,\
    mvIndex index, const char* param, const char** option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1060,7 +1060,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParametersf(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1076,7 +1076,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParametersv(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1093,7 +1093,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBodyParametersi(\
    mvIndex worldIndex, const char* param, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1109,7 +1109,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBodyParameters(\
    mvIndex worldIndex,const char* param, const char** option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1125,7 +1125,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBodyParametersf(\
    mvIndex worldIndex, const char* param, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1142,7 +1142,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBodyParametersv(\
    mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1161,7 +1161,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddBehaviourToBody(mvIndex worldIndex,\
 {
    // TODO : function later implementation
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   //mvWorld_V2* worldPtr = NULL;
+   //mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -1176,7 +1176,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddBehaviourToCurrentBody(\
 {
    // TODO : function later implementation
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-  // mvWorld_V2* worldPtr = NULL;
+  // mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -1190,7 +1190,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateObstacle(mvIndex worldIndex,\
    mvOptionEnum oShape, mvOptionEnum oState, mvFloat x, mvFloat y, mvFloat z)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -1202,11 +1202,11 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateObstacle(mvIndex worldIndex,\
    return MV_NO_CURRENT_INDEX;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvObstacle* mvGetObstaclePtr(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvObstaclePtr mvGetObstaclePtr(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -1221,7 +1221,7 @@ MV_GLOBAL_FUNC_PREFIX mvObstacle* mvGetObstaclePtr(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentObstacle(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -1233,10 +1233,10 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentObstacle(mvIndex worldIndex)
    return MV_NO_CURRENT_INDEX;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvObstacle* mvGetCurrentObstaclePtr(mvIndex worldIndex)
+MV_GLOBAL_FUNC_PREFIX mvObstaclePtr mvGetCurrentObstaclePtr(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -1252,7 +1252,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentObstacle(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -1267,7 +1267,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentObstacle(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteCurrentObstacle(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -1283,7 +1283,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteObstacle(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -1298,7 +1298,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteObstacle(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteAllObstacles(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -1314,7 +1314,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetObstacleParameteri(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1330,7 +1330,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetObstacleParameter(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1346,7 +1346,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetObstacleParameterf(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1362,7 +1362,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetObstacleParameterv(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1378,7 +1378,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentObstacleParameteri(\
    mvIndex worldIndex,mvParamEnum paramFlag, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1394,7 +1394,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentObstacleParameter(mvIndex worldInd
    mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1410,7 +1410,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentObstacleParameterf(\
    mvIndex worldIndex,mvParamEnum paramFlag, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1426,7 +1426,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentObstacleParameterv(\
    mvIndex worldIndex,mvParamEnum paramFlag, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1442,7 +1442,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetObstacleParametersi(mvIndex worldIndex,\
    mvIndex index, const char* param, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1458,7 +1458,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetObstacleParameters(mvIndex worldIndex,\
    mvIndex index, const char* param, const char* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1474,7 +1474,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetObstacleParametersf(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1490,7 +1490,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetObstacleParametersv(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1506,7 +1506,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentObstacleParametersi(\
    mvIndex worldIndex, const char* param, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1522,7 +1522,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentObstacleParameters(\
    mvIndex worldIndex, const char* param, const char* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1538,7 +1538,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentObstacleParametersf(\
    mvIndex worldIndex, const char* param, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1554,7 +1554,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentObstacleParametersv(\
    mvIndex worldIndex, const char* param, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1570,7 +1570,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetObstacleParameteri(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1586,7 +1586,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetObstacleParameter(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvOptionEnum* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1602,7 +1602,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetObstacleParameterf(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1619,7 +1619,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetObstacleParameterv(mvIndex worldIndex,\
    mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1635,7 +1635,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentObstacleParameteri(\
    mvIndex worldIndex, mvParamEnum paramFlag, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1651,7 +1651,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentObstacleParameter(\
    mvIndex worldIndex,  mvParamEnum paramFlag, mvOptionEnum* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1667,7 +1667,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentObstacleParameterf(\
    mvIndex worldIndex, mvParamEnum paramFlag, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1684,7 +1684,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentObstacleParameterv(\
    mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1701,7 +1701,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetObstacleParametersi(mvIndex worldIndex,\
    mvIndex index, const char* param, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1717,7 +1717,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetObstacleParameters(mvIndex worldIndex,\
    mvIndex index, const char* param, const char** option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1733,7 +1733,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetObstacleParametersf(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1749,7 +1749,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetObstacleParametersv(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1766,7 +1766,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentObstacleParametersi(\
    mvIndex worldIndex, const char* param, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1782,7 +1782,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentObstacleParameters(\
    mvIndex worldIndex,const char* param, const char** option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1798,7 +1798,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentObstacleParametersf(\
    mvIndex worldIndex, const char* param, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1815,7 +1815,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentObstacleParametersv(\
    mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1833,7 +1833,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetObstacleAsWorldBoundary(\
 {
    // TODO : function later implementation
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-  // mvWorld_V2* worldPtr = NULL;
+  // mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -1847,7 +1847,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentObstacleAsWorldBoundary(\
 {
    // TODO : function later implementation
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-  // mvWorld_V2* worldPtr = NULL;
+  // mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -1861,7 +1861,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateWaypoint(mvIndex worldIndex,\
 	 mvOptionEnum wType, mvOptionEnum wShape, mvFloat x, mvFloat y, mvFloat z)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -1873,11 +1873,11 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateWaypoint(mvIndex worldIndex,\
    return MV_NO_CURRENT_INDEX;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvWaypoint* mvGetWaypointPtr(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvWaypointPtr mvGetWaypointPtr(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -1892,7 +1892,7 @@ MV_GLOBAL_FUNC_PREFIX mvWaypoint* mvGetWaypointPtr(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentWaypoint(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -1904,10 +1904,10 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentWaypoint(mvIndex worldIndex)
    return MV_NO_CURRENT_INDEX;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvWaypoint* mvGetCurrentWaypointPtr(mvIndex worldIndex)
+MV_GLOBAL_FUNC_PREFIX mvWaypointPtr mvGetCurrentWaypointPtr(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -1923,7 +1923,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentWaypoint(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -1938,7 +1938,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentWaypoint(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteCurrentWaypoint(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -1954,7 +1954,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteWaypoint(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -1969,7 +1969,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteWaypoint(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteAllWaypoints(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -1985,7 +1985,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWaypointParameteri(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2001,7 +2001,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWaypointParameter(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2017,7 +2017,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWaypointParameterf(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2033,7 +2033,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWaypointParameterv(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2049,7 +2049,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentWaypointParameteri(\
    mvIndex worldIndex,mvParamEnum paramFlag, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2065,7 +2065,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentWaypointParameter(\
    mvIndex worldIndex, mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2081,7 +2081,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentWaypointParameterf(\
    mvIndex worldIndex,mvParamEnum paramFlag, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2097,7 +2097,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentWaypointParameterv(\
    mvIndex worldIndex,mvParamEnum paramFlag, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2113,7 +2113,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWaypointParametersi(mvIndex worldIndex,\
    mvIndex index, const char* param, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2129,7 +2129,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWaypointParameters(mvIndex worldIndex,\
    mvIndex index, const char* param, const char* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2145,7 +2145,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWaypointParametersf(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2161,7 +2161,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWaypointParametersv(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2177,7 +2177,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentWaypointParametersi(\
    mvIndex worldIndex, const char* param, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2193,7 +2193,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentWaypointParameters(\
    mvIndex worldIndex, const char* param, const char* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2209,7 +2209,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentWaypointParametersf(\
    mvIndex worldIndex, const char* param, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2225,7 +2225,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentWaypointParametersv(\
    mvIndex worldIndex, const char* param, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2241,7 +2241,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWaypointParameteri(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2257,7 +2257,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWaypointParameter(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvOptionEnum* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2273,7 +2273,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWaypointParameterf(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2290,7 +2290,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWaypointParameterv(mvIndex worldIndex,\
    mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2306,7 +2306,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentWaypointParameteri(\
    mvIndex worldIndex, mvParamEnum paramFlag, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2322,7 +2322,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentWaypointParameter(\
    mvIndex worldIndex,  mvParamEnum paramFlag, mvOptionEnum* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2338,7 +2338,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentWaypointParameterf(\
    mvIndex worldIndex, mvParamEnum paramFlag, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2355,7 +2355,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentWaypointParameterv(\
    mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2372,7 +2372,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWaypointParametersi(mvIndex worldIndex,\
    mvIndex index, const char* param, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2388,7 +2388,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWaypointParameters(mvIndex worldIndex,\
    mvIndex index, const char* param, const char** option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2404,7 +2404,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWaypointParametersf(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2420,7 +2420,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWaypointParametersv(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2437,7 +2437,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentWaypointParametersi(\
    mvIndex worldIndex, const char* param, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2453,7 +2453,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentWaypointParameters(\
    mvIndex worldIndex,const char* param, const char** option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2469,7 +2469,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentWaypointParametersf(\
    mvIndex worldIndex, const char* param, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2486,7 +2486,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentWaypointParametersv(\
    mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2504,7 +2504,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBehaviour(mvIndex worldIndex,\
 	 mvOptionEnum bType)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -2516,11 +2516,11 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBehaviour(mvIndex worldIndex,\
    return MV_NO_CURRENT_INDEX;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvBehaviour_V2* mvGetBehaviourPtr(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvBehaviourPtr mvGetBehaviourPtr(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -2535,7 +2535,7 @@ MV_GLOBAL_FUNC_PREFIX mvBehaviour_V2* mvGetBehaviourPtr(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentBehaviour(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -2547,10 +2547,10 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentBehaviour(mvIndex worldIndex)
    return MV_NO_CURRENT_INDEX;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvBehaviour_V2* mvGetCurrentBehaviourPtr(mvIndex worldIndex)
+MV_GLOBAL_FUNC_PREFIX mvBehaviourPtr mvGetCurrentBehaviourPtr(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -2566,7 +2566,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentBehaviour(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -2581,7 +2581,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentBehaviour(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteCurrentBehaviour(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -2597,7 +2597,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteBehaviour(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -2612,7 +2612,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteBehaviour(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteAllBehaviours(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -2628,7 +2628,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBehaviourParameteri(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2644,7 +2644,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBehaviourParameter(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2660,7 +2660,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBehaviourParameterf(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2676,7 +2676,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBehaviourParameterv(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2692,7 +2692,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBehaviourParameteri(\
    mvIndex worldIndex,mvParamEnum paramFlag, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2708,7 +2708,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBehaviourParameter(mvIndex worldIn
    mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2724,7 +2724,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBehaviourParameterf(\
    mvIndex worldIndex,mvParamEnum paramFlag, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2740,7 +2740,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBehaviourParameterv(\
    mvIndex worldIndex,mvParamEnum paramFlag, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2756,7 +2756,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBehaviourParametersi(mvIndex worldIndex,\
    mvIndex index, const char* param, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2772,7 +2772,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBehaviourParameters(mvIndex worldIndex,\
    mvIndex index, const char* param, const char* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2788,7 +2788,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBehaviourParametersf(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2804,7 +2804,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBehaviourParametersv(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2820,7 +2820,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBehaviourParametersi(\
    mvIndex worldIndex, const char* param, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2836,7 +2836,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBehaviourParameters(\
    mvIndex worldIndex, const char* param, const char* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2852,7 +2852,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBehaviourParametersf(\
    mvIndex worldIndex, const char* param, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2868,7 +2868,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBehaviourParametersv(\
    mvIndex worldIndex, const char* param, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2884,7 +2884,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBehaviourParameteri(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2900,7 +2900,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBehaviourParameter(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvOptionEnum* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2916,7 +2916,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBehaviourParameterf(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2933,7 +2933,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBehaviourParameterv(mvIndex worldIndex,\
    mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2949,7 +2949,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBehaviourParameteri(\
    mvIndex worldIndex, mvParamEnum paramFlag, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2965,7 +2965,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBehaviourParameter(\
    mvIndex worldIndex,  mvParamEnum paramFlag, mvOptionEnum* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2981,7 +2981,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBehaviourParameterf(\
    mvIndex worldIndex, mvParamEnum paramFlag, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -2998,7 +2998,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBehaviourParameterv(\
    mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3015,7 +3015,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBehaviourParametersi(mvIndex worldIndex,\
    mvIndex index, const char* param, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3031,7 +3031,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBehaviourParameters(mvIndex worldIndex,\
    mvIndex index, const char* param, const char** option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3047,7 +3047,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBehaviourParametersf(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3063,7 +3063,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBehaviourParametersv(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3080,7 +3080,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBehaviourParametersi(\
    mvIndex worldIndex, const char* param, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3096,7 +3096,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBehaviourParameters(\
    mvIndex worldIndex,const char* param, const char** option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3112,7 +3112,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBehaviourParametersf(\
    mvIndex worldIndex, const char* param, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3129,7 +3129,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBehaviourParametersv(\
    mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3147,7 +3147,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateForce(mvIndex worldIndex,\
    mvOptionEnum fType)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -3159,11 +3159,11 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateForce(mvIndex worldIndex,\
    return MV_NO_CURRENT_INDEX;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvForce* mvGetForcePtr(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvForcePtr mvGetForcePtr(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -3178,7 +3178,7 @@ MV_GLOBAL_FUNC_PREFIX mvForce* mvGetForcePtr(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentForce(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -3190,10 +3190,10 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentForce(mvIndex worldIndex)
    return MV_NO_CURRENT_INDEX;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvForce* mvGetCurrentForcePtr(mvIndex worldIndex)
+MV_GLOBAL_FUNC_PREFIX mvForcePtr mvGetCurrentForcePtr(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -3209,7 +3209,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentForce(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -3224,7 +3224,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentForce(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteCurrentForce(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -3240,7 +3240,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteForce(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -3255,7 +3255,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteForce(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteAllForces(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -3271,7 +3271,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetForceParameteri(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3287,7 +3287,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetForceParameter(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3303,7 +3303,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetForceParameterf(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3319,7 +3319,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetForceParameterv(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3335,7 +3335,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentForceParameteri(\
    mvIndex worldIndex,mvParamEnum paramFlag, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3351,7 +3351,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentForceParameter(mvIndex worldIndex,
    mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3367,7 +3367,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentForceParameterf(\
    mvIndex worldIndex,mvParamEnum paramFlag, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3383,7 +3383,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentForceParameterv(\
    mvIndex worldIndex,mvParamEnum paramFlag, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3399,7 +3399,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetForceParametersi(mvIndex worldIndex,\
    mvIndex index, const char* param, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3415,7 +3415,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetForceParameters(mvIndex worldIndex,\
    mvIndex index, const char* param, const char* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3431,7 +3431,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetForceParametersf(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3447,7 +3447,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetForceParametersv(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3463,7 +3463,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentForceParametersi(\
    mvIndex worldIndex, const char* param, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3479,7 +3479,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentForceParameters(\
    mvIndex worldIndex, const char* param, const char* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3495,7 +3495,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentForceParametersf(\
    mvIndex worldIndex, const char* param, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3511,7 +3511,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentForceParametersv(\
    mvIndex worldIndex, const char* param, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3527,7 +3527,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetForceParameteri(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3543,7 +3543,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetForceParameter(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvOptionEnum* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3559,7 +3559,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetForceParameterf(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3576,7 +3576,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetForceParameterv(mvIndex worldIndex,\
    mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3592,7 +3592,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentForceParameteri(\
    mvIndex worldIndex, mvParamEnum paramFlag, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3608,7 +3608,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentForceParameter(\
    mvIndex worldIndex,  mvParamEnum paramFlag, mvOptionEnum* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3624,7 +3624,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentForceParameterf(\
    mvIndex worldIndex, mvParamEnum paramFlag, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3641,7 +3641,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentForceParameterv(\
    mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3658,7 +3658,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetForceParametersi(mvIndex worldIndex,\
    mvIndex index, const char* param, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3674,7 +3674,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetForceParameters(mvIndex worldIndex,\
    mvIndex index, const char* param, const char** option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3690,7 +3690,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetForceParametersf(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3706,7 +3706,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetForceParametersv(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3723,7 +3723,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentForceParametersi(\
    mvIndex worldIndex, const char* param, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3739,7 +3739,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentForceParameters(\
    mvIndex worldIndex,const char* param, const char** option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3755,7 +3755,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentForceParametersf(\
    mvIndex worldIndex, const char* param, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3772,7 +3772,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentForceParametersv(\
    mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3789,7 +3789,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentForceParametersv(\
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreatePathway(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -3801,11 +3801,11 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreatePathway(mvIndex worldIndex)
    return MV_NO_CURRENT_INDEX;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvPathway* mvGetPathwayPtr(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvPathwayPtr mvGetPathwayPtr(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -3820,7 +3820,7 @@ MV_GLOBAL_FUNC_PREFIX mvPathway* mvGetPathwayPtr(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentPathway(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -3832,10 +3832,10 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentPathway(mvIndex worldIndex)
    return MV_NO_CURRENT_INDEX;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvPathway* mvGetCurrentPathwayPtr(mvIndex worldIndex)
+MV_GLOBAL_FUNC_PREFIX mvPathwayPtr mvGetCurrentPathwayPtr(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -3851,7 +3851,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentPathway(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -3866,7 +3866,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentPathway(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteCurrentPathway(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -3882,7 +3882,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeletePathway(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -3897,7 +3897,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeletePathway(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteAllPathways(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -3913,7 +3913,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetPathwayParameteri(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3929,7 +3929,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetPathwayParameter(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3945,7 +3945,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetPathwayParameterf(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3961,7 +3961,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetPathwayParameterv(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3977,7 +3977,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentPathwayParameteri(\
    mvIndex worldIndex,mvParamEnum paramFlag, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -3993,7 +3993,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentPathwayParameter(mvIndex worldInde
    mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4009,7 +4009,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentPathwayParameterf(\
    mvIndex worldIndex,mvParamEnum paramFlag, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4025,7 +4025,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentPathwayParameterv(\
    mvIndex worldIndex,mvParamEnum paramFlag, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4041,7 +4041,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetPathwayParametersi(mvIndex worldIndex,\
    mvIndex index, const char* param, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4057,7 +4057,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetPathwayParameters(mvIndex worldIndex,\
    mvIndex index, const char* param, const char* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4073,7 +4073,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetPathwayParametersf(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4089,7 +4089,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetPathwayParametersv(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4105,7 +4105,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentPathwayParametersi(\
    mvIndex worldIndex, const char* param, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4121,7 +4121,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentPathwayParameters(\
    mvIndex worldIndex, const char* param, const char* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4137,7 +4137,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentPathwayParametersf(\
    mvIndex worldIndex, const char* param, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4153,7 +4153,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentPathwayParametersv(\
    mvIndex worldIndex, const char* param, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4169,7 +4169,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayParameteri(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4185,7 +4185,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayParameter(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvOptionEnum* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4201,7 +4201,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayParameterf(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4218,7 +4218,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayParameterv(mvIndex worldIndex,\
    mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4234,7 +4234,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentPathwayParameteri(\
    mvIndex worldIndex, mvParamEnum paramFlag, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4250,7 +4250,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentPathwayParameter(\
    mvIndex worldIndex,  mvParamEnum paramFlag, mvOptionEnum* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4266,7 +4266,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentPathwayParameterf(\
    mvIndex worldIndex, mvParamEnum paramFlag, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4283,7 +4283,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentPathwayParameterv(\
    mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4300,7 +4300,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayParametersi(mvIndex worldIndex,\
    mvIndex index, const char* param, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4316,7 +4316,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayParameters(mvIndex worldIndex,\
    mvIndex index, const char* param, const char** option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4332,7 +4332,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayParametersf(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4348,7 +4348,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayParametersv(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4365,7 +4365,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentPathwayParametersi(\
    mvIndex worldIndex, const char* param, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4381,7 +4381,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentPathwayParameters(\
    mvIndex worldIndex,const char* param, const char** option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4397,7 +4397,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentPathwayParametersf(\
    mvIndex worldIndex, const char* param, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4414,7 +4414,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentPathwayParametersv(\
    mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4432,7 +4432,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroup(mvIndex worldIndex,\
    const char* groupName)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -4444,11 +4444,11 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroup(mvIndex worldIndex,\
    return MV_NO_CURRENT_INDEX;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvGroup* mvGetGroupPtr(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvGroupPtr mvGetGroupPtr(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -4463,7 +4463,7 @@ MV_GLOBAL_FUNC_PREFIX mvGroup* mvGetGroupPtr(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentGroup(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -4475,10 +4475,10 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentGroup(mvIndex worldIndex)
    return MV_NO_CURRENT_INDEX;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvGroup* mvGetCurrentGroupPtr(mvIndex worldIndex)
+MV_GLOBAL_FUNC_PREFIX mvGroupPtr mvGetCurrentGroupPtr(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -4494,7 +4494,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentGroup(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -4509,7 +4509,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentGroup(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteCurrentGroup(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -4525,7 +4525,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteGroup(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -4540,7 +4540,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteGroup(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteAllGroups(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -4556,7 +4556,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupParameteri(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4572,7 +4572,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupParameter(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4588,7 +4588,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupParameterf(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4604,7 +4604,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupParameterv(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4620,7 +4620,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupParameteri(\
    mvIndex worldIndex,mvParamEnum paramFlag, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4636,7 +4636,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupParameter(mvIndex worldIndex,
    mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4652,7 +4652,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupParameterf(\
    mvIndex worldIndex,mvParamEnum paramFlag, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4668,7 +4668,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupParameterv(\
    mvIndex worldIndex,mvParamEnum paramFlag, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4684,7 +4684,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupParametersi(mvIndex worldIndex,\
    mvIndex index, const char* param, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4700,7 +4700,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupParameters(mvIndex worldIndex,\
    mvIndex index, const char* param, const char* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4716,7 +4716,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupParametersf(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4732,7 +4732,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupParametersv(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4748,7 +4748,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupParametersi(\
    mvIndex worldIndex, const char* param, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4764,7 +4764,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupParameters(\
    mvIndex worldIndex, const char* param, const char* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4780,7 +4780,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupParametersf(\
    mvIndex worldIndex, const char* param, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4796,7 +4796,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupParametersv(\
    mvIndex worldIndex, const char* param, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4812,7 +4812,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupParameteri(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4828,7 +4828,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupParameter(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvOptionEnum* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4844,7 +4844,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupParameterf(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4861,7 +4861,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupParameterv(mvIndex worldIndex,\
    mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4877,7 +4877,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupParameteri(\
    mvIndex worldIndex, mvParamEnum paramFlag, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4893,7 +4893,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupParameter(\
    mvIndex worldIndex,  mvParamEnum paramFlag, mvOptionEnum* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4909,7 +4909,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupParameterf(\
    mvIndex worldIndex, mvParamEnum paramFlag, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4926,7 +4926,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupParameterv(\
    mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4943,7 +4943,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupParametersi(mvIndex worldIndex,\
    mvIndex index, const char* param, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4959,7 +4959,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupParameters(mvIndex worldIndex,\
    mvIndex index, const char* param, const char** option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4975,7 +4975,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupParametersf(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -4991,7 +4991,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupParametersv(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -5008,7 +5008,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupParametersi(\
    mvIndex worldIndex, const char* param, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -5024,7 +5024,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupParameters(\
    mvIndex worldIndex,const char* param, const char** option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -5040,7 +5040,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupParametersf(\
    mvIndex worldIndex, const char* param, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -5057,7 +5057,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupParametersv(\
    mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -5075,7 +5075,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroupBehaviour(mvIndex worldIndex,\
 	 mvOptionEnum gbType)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5087,11 +5087,11 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroupBehaviour(mvIndex worldIndex,\
    return MV_NO_CURRENT_INDEX;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour_V2* mvGetGroupBehaviourPtr(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvGroupBehaviourPtr mvGetGroupBehaviourPtr(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5106,7 +5106,7 @@ MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour_V2* mvGetGroupBehaviourPtr(mvIndex worldI
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentGroupBehaviour(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5118,10 +5118,10 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentGroupBehaviour(mvIndex worldIndex)
    return MV_NO_CURRENT_INDEX;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour_V2* mvGetCurrentGroupBehaviourPtr(mvIndex worldIndex)
+MV_GLOBAL_FUNC_PREFIX mvGroupBehaviourPtr mvGetCurrentGroupBehaviourPtr(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5137,7 +5137,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentGroupBehaviour(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5152,7 +5152,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentGroupBehaviour(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteCurrentGroupBehaviour(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5168,7 +5168,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteGroupBehaviour(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5183,7 +5183,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteGroupBehaviour(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteAllGroupBehaviours(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5218,7 +5218,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameteri(\
 	mvParamEnum paramFlag, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5236,7 +5236,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameter(\
    mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5254,7 +5254,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameterf(\
    mvParamEnum paramFlag, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5272,7 +5272,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameterv(\
    mvParamEnum paramFlag, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5291,7 +5291,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParameteri(\
 	mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5309,7 +5309,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParameter(\
 	mvOptionEnum option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5327,7 +5327,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParameterf(\
 	mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5345,7 +5345,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParameterv(\
 	mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5364,7 +5364,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParametersi(\
    const char* param, mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5382,7 +5382,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameters(\
    const char* param, const char* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5400,7 +5400,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParametersf(\
 	mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5418,7 +5418,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParametersv(\
 	mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5436,7 +5436,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParametersi(\
    mvIndex paramIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5454,7 +5454,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParameters(\
    const char* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5471,7 +5471,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParametersf(\
    mvIndex worldIndex, mvIndex groupIndex, const char* param, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5488,7 +5488,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentGroupBehaviourParametersv(\
    mvIndex worldIndex, mvIndex groupIndex, const char* param, mvFloat* array)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5507,7 +5507,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameteri(\
    mvParamEnum paramFlag, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5525,7 +5525,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameter(\
    mvParamEnum paramFlag, mvOptionEnum* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5543,7 +5543,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameterf(\
    mvParamEnum paramFlag, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5561,7 +5561,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameterv(\
 	mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5579,7 +5579,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupBehaviourParameteri(\
 	mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5597,7 +5597,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupBehaviourParameter(\
 	mvOptionEnum* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5615,7 +5615,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupBehaviourParameterf(\
 	mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5633,7 +5633,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupBehaviourParameterv(\
 	mvFloat* array, mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5651,7 +5651,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParametersi(\
    const char* param, mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5669,7 +5669,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameters(\
    const char* param, const char** option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5687,7 +5687,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParametersf(\
    const char* param, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5705,7 +5705,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParametersv(\
    const char* param, mvFloat* array, mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5723,7 +5723,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupBehaviourParametersi(\
 	mvIndex* outIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5741,7 +5741,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupBehaviourParameters(\
 	const char** option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5759,7 +5759,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupBehaviourParametersf(\
 	mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -5777,7 +5777,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupBehaviourParametersv(\
 	mvFloat* array, mvCount* noOfParameters)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorld_V2* worldPtr = NULL;
+   mvWorldPtr worldPtr = NULL;
 
    if (error != MV_NO_ERROR)
    {

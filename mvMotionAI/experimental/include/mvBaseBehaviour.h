@@ -70,8 +70,8 @@ typedef class mvBaseBehaviour
          mvFloat* numArray);
 
       // return values true (perform) / false (break/ no operation)
-	   virtual bool groupOp(mvResultPtr resultModule) = 0;
-      virtual bool bodyOp(mvResultPtr resultModule) = 0;
+	   virtual bool groupOp(mvGroupBehaviourResultPtr resultModule) = 0;
+      virtual bool bodyOp(mvBehaviourResultPtr resultModule) = 0;
 
       virtual ~mvBaseBehaviour();
 } mvSuperBehaviour;
