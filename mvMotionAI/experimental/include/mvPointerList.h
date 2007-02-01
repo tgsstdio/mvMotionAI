@@ -19,38 +19,37 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-#ifndef MV_VECTOR_LIST_H_
-#define MV_VECTOR_LIST_H_
-
+#ifndef MVPOINTERLIST_H_INCLUDED
+#define MVPOINTERLIST_H_INCLUDED
 #include <vector>
 #include "mvEnums.h"
 #include "mvMotionAI-Types.h"
 
 //TODO : use negetive index as wrap around array index
-
 template <class mvClass>
-class mvItemList
+class mvPointerList
 {
    private:
-      std::vector<mvClass*> listItems;
-      mvCount maxNoOfItems;
       mvIndex currentIndex;
+      mvCount maxNoOfItems;
       bool autoConvertNegetiveIndex;
       mvErrorEnum checkIndex(mvIndex& i) const;
       mvErrorEnum checkParamStringAndIndex(mvIndex& i, const char* param,\
          mvParamEnum* paramFlag) const;
 
    public:
-      mvItemList();
-      ~mvItemList();
+      std::vector<mvClass> listItems;
+      mvPointerList();
+      ~mvPointerList();
       void setAutoConvertIndex(bool value);
       mvErrorEnum addItem(mvClass* itemPtr);
       mvErrorEnum deleteItem(mvIndex index);
       mvErrorEnum deleteCurrentItem();
       void deleteAllItems();
+
       mvIndex convertIndex(mvIndex i) const;
-      mvClass* getClassPtr(mvIndex index);
-      mvClass* getCurrentClassPtr();
+      mvClass getClassPtr(mvIndex index);
+      mvClass getCurrentClassPtr();
       mvCount getNoOfItems() const;
       mvIndex getCurrentIndex() const;
       mvIndex setCurrentIndex(mvIndex index);
@@ -59,17 +58,16 @@ class mvItemList
       void applyToAllItemsByItemIndex(void (someFunction)(mvIndex,void*),\
          void* extraPtr);
 
-      mvClass* findItemPtrInList(bool (someFunction)(mvClass*, void*),\
+      mvClass findItemPtrInList(bool (someFunction)(mvClass, void*),\
          void* extraPtr);
 
-      mvIndex findItemInList(bool (someFunction)(mvClass*, void*),\
+      mvIndex findItemInList(bool (someFunction)(mvClass, void*),\
          void* extraPtr);
 
-      void applyToAllItems(void (someFunction)(mvClass*, void*),\
+      void applyToAllItems(void (someFunction)(mvClass, void*),\
          void* extraPtr);
       void applyToAllItemsByIndex(mvIndex worldIndex,\
          void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
-      ~mvItemList();
 
       mvErrorEnum setItemParameter(mvIndex itemIndex, mvParamEnum paramFlag,\
          mvOptionEnum option);
@@ -144,11 +142,7 @@ class mvItemList
          mvFloat* array, mvCount* noOfParameters);
 };
 
-#ifndef MV_LIST_TEMPLATE_SOURCE_FILE
-#define MV_LIST_TEMPLATE_SOURCE_FILE 1
-// template functions need template implementation included
-// with template declarations
-#include "mvList.cpp"
-#endif
+// template implementation
+#include "mvPointerList.hpp"
 
-#endif
+#endif // MVPOINTERLIST_H_INCLUDED

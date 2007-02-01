@@ -23,7 +23,8 @@
 #include <cstdlib>
 #include <cstdio>
 #include <vector>
-//#include "mvList.h"
+
+#include "mvPointerList.h"
 /**
  * PROBLEM A : how do you compile files when there is a circular coupled
  *           relationship to classes?
@@ -42,89 +43,91 @@
  *                 pointers in declaration/implementation, using the
  *                 typedef'fed pointers types
  */
-typedef class mvA* mvBaseBehaviourPtr;
-typedef class mvB* mvResultPtr;
-typedef class mvC* mvWorldPtr;
-typedef class mvD* mvGroupBehaviourPtr;
-typedef class mvE* mvGroupBehaviourNodePtr;
-typedef class mvF* mvBehaviourPtr;
-typedef class mvG* mvBodyPtr;
-typedef class mvH* mvBListPtr;
-typedef class mvI* mvBEntryNodePtr;
-typedef class mvJ* mvBaseBehaviourLoaderPtr;
+typedef class mvA2* mvBaseBehaviourPtr2;
+typedef class mvB* mvResultPtr2;
+typedef class mvC* mvWorldPtr2;
+typedef class mvD* mvGroupBehaviourPtr2;
+typedef class mvE* mvGroupBehaviourNodePtr2;
+typedef class mvF* mvBehaviourPtr2;
+typedef class mvG* mvBodyPtr2;
+typedef class mvH* mvBListPtr2;
+typedef class mvI* mvBEntryNodePtr2;
+typedef class mvJ* mvBaseBehaviourLoaderPtr2;
 
 // for pointer only
+/*
 template <class mvClass>
 class mvPointerList
 {
    std::vector<mvClass> pList;
 };
+*/
 
 typedef class mvK
 {
 
-} mvObstacle;
+} mvObstacle2;
 
 typedef class mvH
 {
    // mbBList
-   mvPointerList<mvBEntryNodePtr> nodes;
+   mvPointerList<mvBEntryNodePtr2> nodes;
 } mvBList;
 
 typedef class mvI
 {
    // mvBehaviouEntry
-   mvBaseBehaviourPtr behav;
+   mvBaseBehaviourPtr2 behav;
 } mvBEntryNode;
 
 typedef class mvG
 {
    // mvBody
    mvBList list;
-} mvBody;
+} mvBody2;
 
 typedef class mvC
 {
    // mvWorld
-   mvPointerList<mvGroupBehaviourPtr> ds; //group behaviours
-   mvPointerList<mvBodyPtr> gs; // mvBody
-   mvPointerList<mvBehaviourPtr> fs; // behaviours
+   mvPointerList<mvGroupBehaviourPtr2> ds; //group behaviours
+   mvPointerList<mvBodyPtr2> gs; // mvBody
+   mvPointerList<mvBehaviourPtr2> fs; // behaviours
 } mvWorld;
 
 typedef class mvD
 {
    // group behaviour
-   mvBaseBehaviourPtr beh;
-   mvPointerList<mvGroupBehaviourNodePtr> nodes;
+   mvBaseBehaviourPtr2 beh;
+   mvPointerList<mvGroupBehaviourNodePtr2> nodes;
 } mvGroupBehaviour;
 
 typedef class mvF
 {
    // behaviour (global)
-   mvBaseBehaviourPtr beh;
+   mvBaseBehaviourPtr2 beh;
 } mvBehaviour;
 
 typedef class mvE
 {
    // group behaviour node
-   mvBaseBehaviourPtr beh;
+   mvBaseBehaviourPtr2 beh;
 } mvGroupBehaviourNode;
 
 typedef class mvB
 {
    // result class
-   mvWorldPtr world;
+   mvWorldPtr2 world;
 } mvResult;
 
-typedef class mvA
+typedef class mvA2
 {
    // base behaviour
-   bool do_stuff(mvResultPtr b);
-} mvBaseBehaviour;
+   bool do_stuff(mvResultPtr2 b);
+} mvBaseBehaviour2;
 
 typedef class mvJ
 {
-   mvBaseBehaviourPtr operator()(mvBaseBehaviourPtr db);
+   mvBaseBehaviourPtr2 operator()(mvBaseBehaviourPtr2 db);
 } mvBaseBehaviourLoader;
 
 int main(void)
