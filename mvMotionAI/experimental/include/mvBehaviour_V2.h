@@ -35,13 +35,13 @@ class mvBehaviour_V2
 {
    private:
       bool behavEnabled;
-      mvSuperBehaviourPtr behavPtr;
+      mvBaseBehaviourPtr behavPtr;
 
    public:
       mvBehaviour_V2(mvOptionEnum bType);
       bool isEnabled();
       void setEnabled(bool value);
-      mvSuperBehaviourPtr getBehaviourPtr();
+      mvBaseBehaviourPtr getBehaviourPtr();
 
       mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
       mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);

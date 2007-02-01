@@ -38,10 +38,10 @@ mvErrorEnum mvClone::getParameteri(mvParamEnum param, mvIndex* index)
 {
    if (index == NULL)
    {
-      return MV_INDEX_DEST_IS_INVALID;
+      return MV_INDEX_DEST_IS_NULL;
    }
 
-   if (param == MV_BODY_TARGET)
+   if (param == MV_BODY)
    {
       *index = targetIndex;
       return MV_NO_ERROR;
@@ -58,7 +58,7 @@ mvErrorEnum mvClone::getParameteri(mvParamEnum param, mvIndex* index)
   */
 mvErrorEnum mvClone::setParameteri(mvParamEnum param, mvIndex index)
 {
-   if (param == MV_BODY_TARGET)
+   if (param == MV_BODY)
    {
       targetIndex = index;
       return MV_NO_ERROR;
@@ -73,17 +73,17 @@ mvErrorEnum mvClone::setParameteri(mvParamEnum param, mvIndex index)
   *
   * (documentation goes here)
   */
-void mvClone::groupOperation(mvWorld* world, mvGroup* groupPtr)
+bool mvClone::groupOp(mvGroupBehaviourResultPtr resultModule)
 {
    puts("MV CLONE group operation");
+   return false;
 }
 
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-mvBehaviourReturnType mvClone::bodyOperation(mvWorld* world, mvBody* body, mvBaseBehaviour* groupNodeBehaviour,
-               mvVec3& forceVector, mvVec3& accelVector, mvVec3& velocity)
+bool mvClone::bodyOp(mvBehaviourResultPtr resultModule)
 {
 //{
 //mvVec3 mvBehaviour_Calculate_Clone(mvBody* currentBody, mvBody* targetBody,
@@ -98,34 +98,47 @@ mvBehaviourReturnType mvClone::bodyOperation(mvWorld* world, mvBody* body, mvBas
 //   return finalVelocity;
 //}
 
-   mvBody* target = NULL;
+   mvBodyPtr target = NULL;
+   mvBodyPtr body = NULL;
+   mvWorldPtr world = NULL;
+   mvVec3 velocity;
 
+   if (resultModule == NULL)
+   {
+      return false;
+   }
+
+   world = resultModule->getWorld();
    if (world == NULL)
    {
-      return MV_NO_OPERATION;
+      return false;
    }
 
+   body = resultModule->getBody();
    if (body == NULL)
    {
-      return MV_NO_OPERATION;
+      return false;
    }
 
-   target = world->mvGetBody(targetIndex);
+   target = world->getBodyPtr(targetIndex);
    if (target == NULL)
    {
-      return MV_NO_OPERATION;
+      return false;
    }
 
    velocity = target->getVelocity();
    // should add turning angles later
+   resultModule->setVelocity(velocity);
+   resultModule->setToDirectional();
 
-   return MV_VELOCITY_ONLY;
+   return true;
 }
+
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-mvBaseBehaviour * mvCreateClones::operator()(mvBaseBehaviour* defaultBehav)
+mvBaseBehaviourPtr mvCreateClones::operator()(mvBaseBehaviourPtr defaultBehav)
 {
    return new mvClone();
 }

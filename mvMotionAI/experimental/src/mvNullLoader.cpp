@@ -27,8 +27,8 @@ mvNullLoader::mvNullLoader() : mvBaseBehaviourLoader()
 
 }
 
-virtual mvBaseBehaviour* mvNullLoader::operator()(\
-   mvBaseBehaviour* defaultBehaviour)
+mvBaseBehaviourPtr mvNullLoader::operator()(\
+   mvBaseBehaviourPtr defaultBehaviour)
 {
    return NULL;
 }

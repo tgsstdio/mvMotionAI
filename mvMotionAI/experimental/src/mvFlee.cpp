@@ -29,10 +29,10 @@ mvErrorEnum mvFlee::getParameteri(mvParamEnum param, mvIndex* index)
 {
    if (index == NULL)
    {
-      return MV_INDEX_DEST_IS_INVALID;
+      return MV_INDEX_DEST_IS_NULL;
    }
 
-   if (param == MV_WAYPOINT_TARGET)
+   if (param == MV_WAYPOINT)
    {
       *index = waypointIndex;
       return MV_NO_ERROR;
@@ -71,7 +71,7 @@ mvErrorEnum mvFlee::getParameterf(mvParamEnum param, mvFloat* num)
   */
 mvErrorEnum mvFlee::setParameteri(mvParamEnum param, mvIndex index)
 {
-   if (param == MV_WAYPOINT_TARGET)
+   if (param == MV_WAYPOINT)
    {
       waypointIndex = index;
       return MV_NO_ERROR;
@@ -103,16 +103,17 @@ mvErrorEnum mvFlee::setParameterf(mvParamEnum param, mvFloat num)
   *
   * (documentation goes here)
   */
-void mvFlee::groupOperation(mvWorld* world, mvGroup* groupPtr)
+bool mvFlee::groupOp(mvGroupBehaviourResultPtr resultModule)
 {
    puts("FLEE GROUP OPERATION");
+   return false;
 }
 
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-mvBehaviourReturnType mvFlee::bodyOperation(mvWorld* world, mvBody* b, mvBaseBehaviour* groupNodeBehaviour, mvVec3& forceVector, mvVec3& accelVector, mvVec3& velocity)
+bool mvFlee::bodyOp(mvBehaviourResultPtr resultModule)
 {
    /*
    from file mvBehaviour-Flee.h/.cpp (2006)
@@ -135,23 +136,32 @@ mvBehaviourReturnType mvFlee::bodyOperation(mvWorld* world, mvBody* b, mvBaseBeh
    0.5 is averaged with steering + direction
    */
 // TODO: incorporate length into equation
-   mvVec3 targetPos, direction;
-   mvWaypoint* point = NULL;
+   mvVec3 targetPos, direction, velocity;
+   mvWaypointPtr point = NULL;
+   mvBodyPtr b = NULL;
+   mvWorldPtr world = NULL;
 
+   if (resultModule == NULL)
+   {
+      return false;
+   }
+
+   world = resultModule->getWorld();
    if (world == NULL)
    {
-      return MV_NO_OPERATION;
+      return false;
    }
 
+   b = resultModule->getBody();
    if (b == NULL)
    {
-      return MV_NO_OPERATION;
+      return false;
    }
 
-   point = world->mvGetWaypoint(waypointIndex);
+   point = world->getWaypointPtr(waypointIndex);
    if (point == NULL)
    {
-      return MV_NO_OPERATION;
+      return false;
    }
 
    direction.setAll(b->position);
@@ -161,7 +171,10 @@ mvBehaviourReturnType mvFlee::bodyOperation(mvWorld* world, mvBody* b, mvBaseBeh
    velocity *= b->maxSpeed;
    velocity *= 0.5;
 
-   return MV_VELOCITY_ONLY;
+   resultModule->setVelocity(velocity);
+   resultModule->setToDirectional();
+
+   return true;
 }
 
 /** @brief (one liner)
@@ -179,7 +192,7 @@ mvCreateFlees::mvCreateFlees()
 
 }
 
-mvBaseBehaviour* mvCreateFlees::operator()(mvBaseBehaviour* defaultBehav)
+mvBaseBehaviourPtr mvCreateFlees::operator()(mvBaseBehaviourPtr defaultBehav)
 {
    return new mvFlee();
 };

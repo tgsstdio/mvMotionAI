@@ -42,7 +42,7 @@ class mvPointerList
       mvPointerList();
       ~mvPointerList();
       void setAutoConvertIndex(bool value);
-      mvErrorEnum addItem(mvClass* itemPtr);
+      mvErrorEnum addItem(mvClass itemPtr);
       mvErrorEnum deleteItem(mvIndex index);
       mvErrorEnum deleteCurrentItem();
       void deleteAllItems();

@@ -5,6 +5,8 @@
 /**
  * \brief this class is goes into the behaviour list for
  * the body.
+ *
+ * SHARED BEHAVIOUR : main group behaviour & unique entry to a body
  */
 class mvSimpleFlock : public mvBaseBehaviour
 {
@@ -17,9 +19,8 @@ class mvSimpleFlock : public mvBaseBehaviour
       bool perceivedCohesion;
 
       mvSimpleFlock();
-	   virtual void groupOperation(mvWorld* world, mvGroup* groupPtr);
-	   virtual mvBehaviourReturnType bodyOperation(mvWorld* world, mvBody* b, mvBaseBehaviour* groupNodeBehaviour,
-               mvVec3& forceVector, mvVec3& accelVector, mvVec3& velocity);
+	   virtual bool groupOp(mvGroupBehaviourResultPtr resultModule);
+      virtual bool bodyOp(mvBehaviourResultPtr resultModule);
 };
 
 /**
@@ -39,14 +40,13 @@ class mvSimpleFlockGroup : public mvBaseBehaviour
       bool defaultPerceivedAlignment;
       bool defaultPerceivedCohesion;
       mvSimpleFlockGroup();
-	   virtual void groupOperation(mvWorld* world, mvGroup* groupPtr);
-	   virtual mvBehaviourReturnType bodyOperation(mvWorld* world, mvBody* b, mvBaseBehaviour* groupNodeBehaviour,
-               mvVec3& forceVector, mvVec3& accelVector, mvVec3& velocity);
+	   virtual bool groupOp(mvGroupBehaviourResultPtr resultModule);
+      virtual bool bodyOp(mvBehaviourResultPtr resultModule);
 };
 
-/**
+/*
  * \brief this class is main (top) group behaviour function
- */
+ *
 class mvSimpleFlockDefaultGroup : public mvBaseBehaviour
 {
 //   private:
@@ -58,15 +58,16 @@ class mvSimpleFlockDefaultGroup : public mvBaseBehaviour
       bool defaultGroupPerceivedAlignment;
       bool defaultGroupPerceivedCohesion;
       mvSimpleFlockDefaultGroup();
-	   virtual void groupOperation(mvWorld* world, mvGroup* groupPtr);
-	   virtual mvBehaviourReturnType bodyOperation(mvWorld* world, mvBody* b, mvBaseBehaviour* groupNodeBehaviour,
-               mvVec3& forceVector, mvVec3& accelVector, mvVec3& velocity);
+	   virtual bool groupOp(mvGroupBehaviourResultPtr resultModule);
+      virtual bool bodyOp(mvBehaviourResultPtr resultModule);
 };
+*/
 
 class mvCreateSimpleFlock : public mvBaseBehaviourLoader
 {
    public:
-      mvBaseBehaviour* operator()(mvBaseBehaviour* defaultBehaviour);
+      mvCreateSimpleFlock();
+      mvBaseBehaviourPtr operator()(mvBaseBehaviourPtr defaultBehaviour);
 };
 
 #endif // MVSIMPLEFLOCK_H_INCLUDED

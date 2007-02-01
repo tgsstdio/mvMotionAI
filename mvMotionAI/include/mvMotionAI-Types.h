@@ -131,6 +131,7 @@ typedef class mvForce* mvForcePtr;
 typedef class mvForceResult* mvForceResultPtr;
 typedef class mvGroup* mvGroupPtr;
 typedef class mvGroupBehaviour_V2* mvGroupBehaviourPtr;
+typedef class mvGroupBNode_V2* mvGroupBehaviourNodePtr;
 typedef class mvGroupBehavResult* mvGroupBehaviourResultPtr;
 typedef class mvObstacle* mvObstaclePtr;
 typedef class mvPathway* mvPathwayPtr;

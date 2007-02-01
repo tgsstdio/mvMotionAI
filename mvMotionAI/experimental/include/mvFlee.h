@@ -10,9 +10,8 @@ class mvFlee : public mvBaseBehaviour
 
    public:
       mvFlee();
-	   virtual mvBehaviourReturnType bodyOperation(mvWorld* world, mvBody* b, mvBaseBehaviour* groupNodeBehaviour,
-               mvVec3& forceVector, mvVec3& accelVector, mvVec3& velocity);
-      void groupOperation(mvWorld* world, mvGroup* groupPtr);
+	   bool groupOp(mvGroupBehaviourResultPtr resultModule);
+      bool bodyOp(mvBehaviourResultPtr resultModule);
       mvErrorEnum setParameterf(mvParamEnum param, mvFloat num);
       mvErrorEnum setParameteri(mvParamEnum param, mvIndex index);
       mvErrorEnum getParameterf(mvParamEnum param, mvFloat* num);
@@ -23,7 +22,8 @@ class mvCreateFlees : public mvBaseBehaviourLoader
 {
    public:
       mvCreateFlees();
-      mvBaseBehaviour* operator()(mvBaseBehaviour* defaultBehav);
+      virtual mvBaseBehaviourPtr operator()(mvBaseBehaviourPtr defaultBehav);
+      virtual ~mvCreateFlees(){};
 };
 
 #endif // MVFLEE_H_INCLUDED

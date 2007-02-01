@@ -20,64 +20,48 @@
  * DEALINGS IN THE SOFTWARE.
  */
 #include "mvSimpleFlock.h"
-
-mvSimpleFlockDefaultGroup::mvSimpleFlockDefaultGroup() : mvBaseBehaviour(MV_SIMPLE_FLOCK)
-{
-   // DUMMY CLASSES FOR HOLDING VARIABLES
-}
-
-void mvSimpleFlockDefaultGroup::groupOperation(mvWorld* worldPtr, mvGroup* groupPtr)
-{
-   // DUMMY CLASSES FOR HOLDING VARIABLES
-}
-
-mvBehaviourReturnType mvSimpleFlockDefaultGroup::bodyOperation(mvWorld* world, mvBody* b, mvBaseBehaviour* groupNodeBehaviour,
-               mvVec3& forceVector, mvVec3& accelVector, mvVec3& velocity)
-{
-   return MV_NO_OPERATION;
-}
+#include <new>
 
 mvSimpleFlock::mvSimpleFlock() : mvBaseBehaviour(MV_SIMPLE_FLOCK)
 {
-
+   alignment = false;
+   cohesion = false;
 }
 
-void mvSimpleFlock::groupOperation(mvWorld* worldPtr, mvGroup* groupPtr)
+bool mvSimpleFlock::groupOp(mvGroupBehaviourResultPtr result)
 {
-   // DOES NOTHING
+   return false;
 }
 
-mvBehaviourReturnType mvSimpleFlock::bodyOperation(mvWorld* world, mvBody* b, mvBaseBehaviour* groupNodeBehaviour,
-               mvVec3& forceVector, mvVec3& accelVector, mvVec3& velocity)
-{
-   // DOES SOMETHING
-   return MV_NO_OPERATION;
-}
-
-mvSimpleFlockGroup::mvSimpleFlockGroup() : mvBaseBehaviour(MV_SIMPLE_FLOCK_GROUP_ENTRY)
-{
-
-}
-
-void mvSimpleFlockGroup::groupOperation(mvWorld* worldPtr, mvGroup* groupPtr)
+bool mvSimpleFlock::bodyOp(mvBehaviourResultPtr resultModule)
 {
    // DOES SOMETHING
+   return false;
 }
 
-mvBehaviourReturnType mvSimpleFlockGroup::bodyOperation(mvWorld* world, mvBody* b, mvBaseBehaviour* groupNodeBehaviour,
-               mvVec3& forceVector, mvVec3& accelVector, mvVec3& velocity)
+mvSimpleFlockGroup::mvSimpleFlockGroup() : mvBaseBehaviour(MV_GROUP_ENTRY)
 {
-   // DOES NOTHING
-   return MV_NO_OPERATION;
+
 }
 
-mvBaseBehaviour* mvCreateSimpleFlock::operator()(mvBaseBehaviour* defaultBehaviour)
+bool mvSimpleFlockGroup::groupOp(mvGroupBehaviourResultPtr result)
+{
+   return false;
+}
+
+bool mvSimpleFlockGroup::bodyOp(mvBehaviourResultPtr resultModule)
+{
+   // DOES SOMETHING
+   return false;
+}
+
+mvBaseBehaviourPtr mvCreateSimpleFlock::operator()(mvBaseBehaviourPtr defaultBehaviour)
 {
    mvOptionEnum type;
 
    if (defaultBehaviour == NULL)
    {
-      return new mvSimpleFlockDefaultGroup();
+      return new (std::nothrow) mvSimpleFlock();
    }
 
    type = defaultBehaviour->getType();
@@ -85,11 +69,11 @@ mvBaseBehaviour* mvCreateSimpleFlock::operator()(mvBaseBehaviour* defaultBehavio
    // from default main group creation
    if (type == MV_SIMPLE_FLOCK)
    {
-      return new mvSimpleFlockGroup();
+      return new (std::nothrow) mvSimpleFlockGroup();
    }
-   else if (type == MV_SIMPLE_FLOCK_GROUP_ENTRY)
+   else if (type == MV_GROUP_ENTRY)
    {
-      return new mvSimpleFlock();
+      return new (std::nothrow)mvSimpleFlock();
    }
    else
    {

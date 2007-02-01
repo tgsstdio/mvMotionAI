@@ -277,7 +277,7 @@ void mvWorld_V2::applyToAllForcesByIndex(mvIndex worldIndex,\
   *
   * (documentation goes here)
   */
-void mvWorld_V2::applyToAllForces(void (someFunction)(mvForce*, void*),\
+void mvWorld_V2::applyToAllForces(void (someFunction)(mvForcePtr, void*),\
    void* extraPtr)
 {
    forces.applyToAllItems(someFunction,extraPtr);
@@ -323,7 +323,7 @@ mvIndex mvWorld_V2::setCurrentForce(mvIndex index)
   *
   * (documentation goes here)
   */
-mvForce* mvWorld_V2::getCurrentForcePtr()
+mvForcePtr mvWorld_V2::getCurrentForcePtr()
 {
    return forces.getCurrentClassPtr();
 }
@@ -332,7 +332,7 @@ mvForce* mvWorld_V2::getCurrentForcePtr()
   *
   * (documentation goes here)
   */
-mvForce* mvWorld_V2::getForcePtr(mvIndex index)
+mvForcePtr mvWorld_V2::getForcePtr(mvIndex index)
 {
    return forces.getClassPtr(index);
 }
@@ -343,7 +343,7 @@ mvForce* mvWorld_V2::getForcePtr(mvIndex index)
   */
 mvIndex mvWorld_V2::createForce(mvOptionEnum fType)
 {
-   mvForce* temp = new (std::nothrow) mvForce(fType);
+   mvForcePtr temp = new (std::nothrow) mvForce(fType);
 
    if (temp == NULL)
       return MV_NO_CURRENT_INDEX;
@@ -358,7 +358,7 @@ mvIndex mvWorld_V2::createForce(mvOptionEnum fType)
 mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParametersv(mvIndex groupIndex,\
    const char* param, mvFloat* array, mvCount* noOfParameters)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getCurrentClassPtr();
+   mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
@@ -373,12 +373,12 @@ mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParametersv(mvIndex groupIndex,\
 mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParametersf(mvIndex groupIndex,\
    const char* param, mvFloat* num)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getCurrentClassPtr();
+   mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
 
-   return temp->getGroupParametersf(groupIndex, param, array, num);
+   return temp->getGroupParametersf(groupIndex, param, num);
 }
 
 /** @brief (one liner)
@@ -388,12 +388,12 @@ mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParametersf(mvIndex groupIndex,\
 mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParameters(mvIndex groupIndex,\
    const char* param, const char** option)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getCurrentClassPtr();
+   mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
 
-   return temp->getGroupParameters(groupIndex, param, array, option);
+   return temp->getGroupParameters(groupIndex, param, option);
 }
 
 /** @brief (one liner)
@@ -404,7 +404,7 @@ mvErrorEnum mvWorld_V2::getGroupBehaviourParametersv(mvIndex index,\
    mvIndex groupIndex, const char* param, mvFloat* array,\
    mvCount* noOfParameters)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getClassPtr(index);
+   mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
@@ -419,7 +419,7 @@ mvErrorEnum mvWorld_V2::getGroupBehaviourParametersv(mvIndex index,\
 mvErrorEnum mvWorld_V2::getGroupBehaviourParametersf(mvIndex index,\
    mvIndex groupIndex, const char* param, mvFloat* num)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getClassPtr(index);
+   mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
@@ -434,7 +434,7 @@ mvErrorEnum mvWorld_V2::getGroupBehaviourParametersf(mvIndex index,\
 mvErrorEnum mvWorld_V2::getGroupBehaviourParameters(mvIndex index,\
    mvIndex groupIndex, const char* param, const char** option)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getClassPtr(index);
+   mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
@@ -450,12 +450,13 @@ mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParameterv(\
    mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* array,\
    mvCount* noOfParameters)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getClassPtr(index);
+   mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
 
-   return temp->getGroupParametersv(groupIndex, param, array, noOfParameters);
+   return temp->getGroupParameterv(groupIndex, paramFlag, array,\
+      noOfParameters);
 }
 
 /** @brief (one liner)
@@ -465,7 +466,7 @@ mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParameterv(\
 mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParameterf(\
    mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* num)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getCurrentClassPtr();
+   mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
@@ -480,7 +481,7 @@ mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParameterf(\
 mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParameter(\
    mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum* option)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getCurrentClassPtr();
+   mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
@@ -496,7 +497,7 @@ mvErrorEnum mvWorld_V2::getGroupBehaviourParameterv(mvIndex index,\
    mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* array,\
    mvCount* noOfParameters)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getClassPtr(index);
+   mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
@@ -512,13 +513,12 @@ mvErrorEnum mvWorld_V2::getGroupBehaviourParameterv(mvIndex index,\
 mvErrorEnum mvWorld_V2::getGroupBehaviourParameterf(mvIndex index,\
    mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* num)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getClassPtr(index);
+   mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
 
-   return temp->getGroupParameterf(groupIndex, paramFlag, array,\
-      noOfParameters);
+   return temp->getGroupParameterf(groupIndex, paramFlag, num);
 }
 
 /** @brief (one liner)
@@ -528,13 +528,12 @@ mvErrorEnum mvWorld_V2::getGroupBehaviourParameterf(mvIndex index,\
 mvErrorEnum mvWorld_V2::getGroupBehaviourParameter(mvIndex index,\
    mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum* option)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getClassPtr(index);
+   mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
 
-   return temp->getGroupParameterv(groupIndex, paramFlag, array,\
-      noOfParameters);
+   return temp->getGroupParameter(groupIndex, paramFlag, option);
 }
 
 /** @brief (one liner)
@@ -544,12 +543,12 @@ mvErrorEnum mvWorld_V2::getGroupBehaviourParameter(mvIndex index,\
 mvErrorEnum mvWorld_V2::setCurrentGroupBehaviourParametersv(mvIndex groupIndex,\
    const char* param, mvFloat* array)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getCurrentClassPtr();
+   mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
 
-   return temp->setGroupParameterv(groupIndex, paramFlag, array);
+   return temp->setGroupParametersv(groupIndex, param, array);
 }
 
 /** @brief (one liner)
@@ -559,12 +558,12 @@ mvErrorEnum mvWorld_V2::setCurrentGroupBehaviourParametersv(mvIndex groupIndex,\
 mvErrorEnum mvWorld_V2::setCurrentGroupBehaviourParametersf(mvIndex groupIndex,\
    const char* param, mvFloat num)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getCurrentClassPtr();
+   mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
 
-   return temp->setGroupParameterv(groupIndex, paramFlag, array);
+   return temp->setGroupParametersf(groupIndex, param, num);
 }
 
 /** @brief (one liner)
@@ -574,7 +573,7 @@ mvErrorEnum mvWorld_V2::setCurrentGroupBehaviourParametersf(mvIndex groupIndex,\
 mvErrorEnum mvWorld_V2::setCurrentGroupBehaviourParameters(mvIndex groupIndex,\
    const char* param, const char* option)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getCurrentClassPtr();
+   mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
@@ -589,7 +588,7 @@ mvErrorEnum mvWorld_V2::setCurrentGroupBehaviourParameters(mvIndex groupIndex,\
 mvErrorEnum mvWorld_V2::setGroupBehaviourParametersv(mvIndex index,\
    mvIndex groupIndex, const char* param, mvFloat* array)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getClassPtr(index);
+   mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
@@ -604,7 +603,7 @@ mvErrorEnum mvWorld_V2::setGroupBehaviourParametersv(mvIndex index,\
 mvErrorEnum mvWorld_V2::setGroupBehaviourParametersf(mvIndex index,\
    mvIndex groupIndex, const char* param, mvFloat num)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getClassPtr(index);
+   mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
@@ -619,7 +618,7 @@ mvErrorEnum mvWorld_V2::setGroupBehaviourParametersf(mvIndex index,\
 mvErrorEnum mvWorld_V2::setGroupBehaviourParameters(mvIndex index,\
    mvIndex groupIndex, const char* param, const char* option)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getClassPtr(index);
+   mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
@@ -634,7 +633,7 @@ mvErrorEnum mvWorld_V2::setGroupBehaviourParameters(mvIndex index,\
 mvErrorEnum mvWorld_V2::setCurrentGroupBehaviourParameterv(\
    mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* array)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getClassPtr(index);
+   mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
@@ -649,7 +648,7 @@ mvErrorEnum mvWorld_V2::setCurrentGroupBehaviourParameterv(\
 mvErrorEnum mvWorld_V2::setCurrentGroupBehaviourParameterf(mvIndex groupIndex,\
    mvParamEnum paramFlag, mvFloat num)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getClassPtr(index);
+   mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
@@ -664,7 +663,7 @@ mvErrorEnum mvWorld_V2::setCurrentGroupBehaviourParameterf(mvIndex groupIndex,\
 mvErrorEnum mvWorld_V2::setCurrentGroupBehaviourParameter(mvIndex groupIndex,\
    mvParamEnum paramFlag, mvOptionEnum option)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getCurrentClassPtr();
+   mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
@@ -679,12 +678,12 @@ mvErrorEnum mvWorld_V2::setCurrentGroupBehaviourParameter(mvIndex groupIndex,\
 mvErrorEnum mvWorld_V2::setGroupBehaviourParameterv(mvIndex index,\
    mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* array)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getClassPtr(index);
+   mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
 
-   return temp->setGroupParameterf(groupIndex, paramFlag, num);
+   return temp->setGroupParameterv(groupIndex, paramFlag, array);
 }
 
 /** @brief (one liner)
@@ -694,7 +693,7 @@ mvErrorEnum mvWorld_V2::setGroupBehaviourParameterv(mvIndex index,\
 mvErrorEnum mvWorld_V2::setGroupBehaviourParameterf(mvIndex index,\
    mvIndex groupIndex,mvParamEnum paramFlag, mvFloat num)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getClassPtr(index);
+   mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
@@ -709,7 +708,7 @@ mvErrorEnum mvWorld_V2::setGroupBehaviourParameterf(mvIndex index,\
 mvErrorEnum mvWorld_V2::setGroupBehaviourParameter(mvIndex index,\
    mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum option)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getClassPtr(index);
+   mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
    if (temp == NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
@@ -777,7 +776,7 @@ mvIndex mvWorld_V2::setCurrentGroupBehaviour(mvIndex index)
   *
   * (documentation goes here)
   */
-mvGroupBehaviour_V2* mvWorld_V2::getCurrentGroupBehaviourPtr()
+mvGroupBehaviourPtr mvWorld_V2::getCurrentGroupBehaviourPtr()
 {
    return groupBehaviours.getCurrentClassPtr();
 }
@@ -786,7 +785,7 @@ mvGroupBehaviour_V2* mvWorld_V2::getCurrentGroupBehaviourPtr()
   *
   * (documentation goes here)
   */
-mvGroupBehaviour_V2* mvWorld_V2::getGroupBehaviourPtr(mvIndex index)
+mvGroupBehaviourPtr mvWorld_V2::getGroupBehaviourPtr(mvIndex index)
 {
    return groupBehaviours.getClassPtr(index);
 }
@@ -797,7 +796,7 @@ mvGroupBehaviour_V2* mvWorld_V2::getGroupBehaviourPtr(mvIndex index)
   */
 mvIndex mvWorld_V2::createGroupBehaviour(mvOptionEnum type)
 {
-   mvGroupBehaviour_V2* temp = new (std::nothrow) mvGroupBehaviour_V2(type);
+   mvGroupBehaviourPtr temp = new (std::nothrow) mvGroupBehaviour_V2(type);
 
    if (temp == NULL)
       return MV_NO_CURRENT_INDEX;
@@ -1147,7 +1146,7 @@ bool checkGroupsForIDMatch(mvGroup* currentGroup, void* extraPtr)
   */
 mvIndex mvWorld_V2::createGroup(const char* groupID)
 {
-   mvGroup* temp = NULL;
+   mvGroupPtr temp = NULL;
 
    if (groupID == NULL)
    {
@@ -1158,10 +1157,15 @@ mvIndex mvWorld_V2::createGroup(const char* groupID)
 
    if (temp != NULL)
    {
-      return MV_UNIQUE_ITEM_ALREADY_IN_LIST;
+      return MV_NO_CURRENT_INDEX;
    }
 
-   temp = new (std::nothrow) mvGroup(groupID)
+   temp = new (std::nothrow) mvGroup(groupID);
+
+   if (temp == NULL)
+   {
+      return MV_NO_CURRENT_INDEX;
+   }
 
    return groups.addItem(temp);
 }
@@ -2311,10 +2315,30 @@ mvErrorEnum mvWorld_V2::setObstacleParametersf(mvIndex index,\
   *
   * (documentation goes here)
   */
+mvErrorEnum mvWorld_V2::setObstacleParametersi(mvIndex index,\
+   const char* param, mvIndex paramIndex)
+{
+   return obstacles.setItemParametersi(index, param, paramIndex);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
 mvErrorEnum mvWorld_V2::setObstacleParameters(mvIndex index, const char* param,\
    const char* option)
 {
    return obstacles.setItemParameters(index, param, option);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld_V2::setCurrentObstacleParameteri(\
+   mvParamEnum paramFlag, mvIndex paramIndex)
+{
+   return obstacles.setCurrentItemParameteri(paramFlag, paramIndex);
 }
 
 /** @brief (one liner)
@@ -2861,10 +2885,7 @@ mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
-// /** @brief (one liner)
-//  *
-//  * (documentation goes here)
-//  */
+/*
 //mvErrorEnum mvWorld_V2::setDefaultWaypointForBody(mvIndex waypointIndex,\
 //   mvIndex bodyIndex)
 //{
@@ -2885,10 +2906,7 @@ mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
 //   return MV_NO_ERROR;
 //}
 //
-// /** @brief (one liner)
-//  *
-//  * (documentation goes here)
-//  */
+
 //mvErrorEnum mvWorld_V2::setDefaultPathwayForBody(mvIndex pathwayIndex,\
 //   mvIndex bodyIndex)
 //{
@@ -2909,10 +2927,7 @@ mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
 //   return MV_NO_ERROR;
 //}
 
-// /** @brief (one liner)
-//  *
-//  * (documentation goes here)
-//  */
+
 //mvErrorEnum mvWorld_V2::setDefaultBodyForBody(mvIndex targetIndex,\
 //   mvIndex bodyIndex)
 //{
@@ -2933,10 +2948,7 @@ mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
 //   return MV_NO_ERROR;
 //}
 
-// /** @brief (one liner)
-//  *
-//  * (documentation goes here)
-//  */
+
 //mvErrorEnum mvWorld_V2::setDefaultWeightForBody(mvFloat factor,\
 //   mvIndex bodyIndex)
 //{
@@ -2950,10 +2962,7 @@ mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
 //   return tempBody->setDefaultBehaviourFactor(factor);
 //}
 
-// /** @brief (one liner)
-//  *
-//  * (documentation goes here)
-//  */
+
 //mvErrorEnum mvWorld_V2::setDefaultWaypointForCurrentBody(mvIndex wpIndex)
 //{
 //   mvBody* tempBody = bodies.getCurrentClassPtr();
@@ -2973,10 +2982,7 @@ mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
 //   return MV_NO_ERROR;
 //}
 
-// /** @brief (one liner)
-//  *
-//  * (documentation goes here)
-//  */
+
 //mvErrorEnum mvWorld_V2::setDefaultPathwayForCurrentBody(mvIndex pwIndex)
 //{
 //   mvBody* tempBody = bodies.getCurrentClassPtr();
@@ -2997,10 +3003,7 @@ mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
 //   return MV_NO_ERROR;
 //}
 
-// /** @brief (one liner)
-//  *
-//  * (documentation goes here)
-//  */
+
 //mvErrorEnum mvWorld_V2::setDefaultBodyForCurrentBody(mvIndex bodyIndex)
 //{
 //   mvBody* tempBody = bodies.getCurrentClassPtr();
@@ -3021,10 +3024,7 @@ mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
 //   return MV_NO_ERROR;
 //}
 
-// /** @brief (one liner)
-//  *
-//  * (documentation goes here)
-//  */
+
 //mvErrorEnum mvWorld_V2::setDefaultWeightForCurrentBody(mvFloat factor)
 //{
 //   mvBody* tempBody = bodies.getCurrentClassPtr();
@@ -3036,6 +3036,7 @@ mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
 //
 //   return tempBody->setDefaultBehaviourFactor(factor);
 //}
+*/
 
 /** @brief (one liner)
   *
@@ -3363,7 +3364,7 @@ mvErrorEnum mvWorld_V2::setCurrentMainGroupBehaviourParameter(\
 mvErrorEnum mvWorld_V2::setCurrentMainGroupBehaviourParameteri(\
    mvParamEnum param, mvIndex paramIndex)
 {
-   return groupBehaviours.setCurrentItemParameter(param, paramIndex);
+   return groupBehaviours.setCurrentItemParameteri(param, paramIndex);
 }
 
 /** @brief (one liner)
@@ -3423,7 +3424,7 @@ mvErrorEnum mvWorld_V2::setMainGroupBehaviourParametersf(mvIndex index,\
 mvErrorEnum mvWorld_V2::setMainGroupBehaviourParametersv(mvIndex index,\
    const char* param, mvFloat* array)
 {
-   return groupBehaviours.setItemParametersv(index, param, option);
+   return groupBehaviours.setItemParametersv(index, param, array);
 }
 
 /** @brief (one liner)
@@ -3453,7 +3454,7 @@ mvErrorEnum mvWorld_V2::setCurrentMainGroupBehaviourParameters(\
 mvErrorEnum mvWorld_V2::setCurrentMainGroupBehaviourParametersf(\
    const char* param, mvFloat num)
 {
-   return groupBehaviours.setCurrentItemParametersf(param, paramIndex);
+   return groupBehaviours.setCurrentItemParametersf(param, num);
 }
 
 /** @brief (one liner)
@@ -3463,7 +3464,7 @@ mvErrorEnum mvWorld_V2::setCurrentMainGroupBehaviourParametersf(\
 mvErrorEnum mvWorld_V2::setCurrentMainGroupBehaviourParametersv(\
    const char* param, mvFloat* array)
 {
-   return groupBehaviours.setCurrentItemParametersf(param, array);
+   return groupBehaviours.setCurrentItemParametersv(param, array);
 }
 
 /** @brief (one liner)
@@ -3503,7 +3504,7 @@ mvErrorEnum mvWorld_V2::getMainGroupBehaviourParametersf(mvIndex index,\
 mvErrorEnum mvWorld_V2::getMainGroupBehaviourParametersv(mvIndex index,\
    const char* param, mvFloat* array, mvCount* noOfParameters)
 {
-   return groupBehaviours.getItemParametersf(index,param, array,\
+   return groupBehaviours.getItemParametersv(index,param, array,\
       noOfParameters);
 }
 
@@ -3524,7 +3525,7 @@ mvErrorEnum mvWorld_V2::getCurrentMainGroupBehaviourParameters(\
 mvErrorEnum mvWorld_V2::getCurrentMainGroupBehaviourParametersi(\
    const char* param, mvIndex* paramIndex)
 {
-   return groupBehaviours.getCurrentItemParametersi(param, option);
+   return groupBehaviours.getCurrentItemParametersi(param, paramIndex);
 }
 
 /** @brief (one liner)
@@ -3596,7 +3597,7 @@ mvErrorEnum mvWorld_V2::getMainGroupBehaviourParameterv(mvIndex index,\
 mvErrorEnum mvWorld_V2::getCurrentMainGroupBehaviourParameteri(\
    mvParamEnum param, mvIndex* paramIndex)
 {
-   return groupBehaviours.getItemParameteri(index, param, paramIndex);
+   return groupBehaviours.getCurrentItemParameteri(param, paramIndex);
 }
 
 /** @brief (one liner)
@@ -3606,7 +3607,7 @@ mvErrorEnum mvWorld_V2::getCurrentMainGroupBehaviourParameteri(\
 mvErrorEnum mvWorld_V2::getCurrentMainGroupBehaviourParameterf(\
    mvParamEnum param, mvFloat* num)
 {
-   return groupBehaviours.getCurrentItemParameterf(index, param, num);
+   return groupBehaviours.getCurrentItemParameterf(param, num);
 }
 
 /** @brief (one liner)
@@ -3616,7 +3617,7 @@ mvErrorEnum mvWorld_V2::getCurrentMainGroupBehaviourParameterf(\
 mvErrorEnum mvWorld_V2::getCurrentMainGroupBehaviourParameterv(\
    mvParamEnum param, mvFloat* array, mvCount* noOfParameters)
 {
-   return groupBehaviours.getCurrentItemParameterv(index, param, array,\
+   return groupBehaviours.getCurrentItemParameterv(param, array,\
       noOfParameters);
 }
 
@@ -3707,7 +3708,7 @@ mvErrorEnum mvWorld_V2::setForceParameteri(mvIndex index,\
 mvErrorEnum mvWorld_V2::getGroupBehaviourParametersi(mvIndex index,\
    mvIndex groupIndex, const char* param, mvIndex* outIndex)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getClassPtr(index);
+   mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
    if (temp != NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
@@ -3722,12 +3723,12 @@ mvErrorEnum mvWorld_V2::getGroupBehaviourParametersi(mvIndex index,\
 mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParameteri(\
    mvIndex groupIndex, mvParamEnum paramFlag, mvIndex* outIndex)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getCurrentClassPtr();
+   mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
    if (temp != NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
 
-   return temp->getGroupParameteri(groupIndex, param, outIndex);
+   return temp->getGroupParameteri(groupIndex, paramFlag, outIndex);
 }
 
 /** @brief (one liner)
@@ -3737,12 +3738,12 @@ mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParameteri(\
 mvErrorEnum mvWorld_V2::getGroupBehaviourParameteri(mvIndex index,\
    mvIndex groupIndex, mvParamEnum paramFlag, mvIndex* outIndex)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getClassPtr(index);
+   mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
    if (temp != NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
 
-   return temp->getGroupParameteri(groupIndex, param, outIndex);
+   return temp->getGroupParameteri(groupIndex, paramFlag, outIndex);
 }
 
 /** @brief (one liner)
@@ -3752,7 +3753,7 @@ mvErrorEnum mvWorld_V2::getGroupBehaviourParameteri(mvIndex index,\
 mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParametersi(mvIndex groupIndex,\
    const char* param, mvIndex* outIndex)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getCurrentClassPtr();
+   mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
    if (temp != NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
@@ -3767,12 +3768,12 @@ mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParametersi(mvIndex groupIndex,\
 mvErrorEnum mvWorld_V2::setCurrentGroupBehaviourParametersi(\
    mvIndex groupIndex, const char* param, mvIndex paramIndex)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getCurrentClassPtr();
+   mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
    if (temp != NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
 
-   return temp->getGroupParametersi(groupIndex, param, outIndex);
+   return temp->setGroupParametersi(groupIndex, param, paramIndex);
 }
 
 
@@ -3783,7 +3784,7 @@ mvErrorEnum mvWorld_V2::setCurrentGroupBehaviourParametersi(\
 mvErrorEnum mvWorld_V2::setGroupBehaviourParametersi(mvIndex index,\
    mvIndex groupIndex, const char* param, mvIndex paramIndex)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getClassPtr(index);
+   mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
    if (temp != NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
@@ -3798,12 +3799,12 @@ mvErrorEnum mvWorld_V2::setGroupBehaviourParametersi(mvIndex index,\
 mvErrorEnum mvWorld_V2::setCurrentGroupBehaviourParameteri(\
    mvIndex groupIndex, mvParamEnum paramFlag, mvIndex paramIndex)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getCurrentClassPtr();
+   mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
    if (temp != NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
 
-   return temp->setGroupParameteri(groupIndex, param, paramIndex);
+   return temp->setGroupParameteri(groupIndex, paramFlag, paramIndex);
 }
 
 /** @brief (one liner)
@@ -3813,12 +3814,12 @@ mvErrorEnum mvWorld_V2::setCurrentGroupBehaviourParameteri(\
 mvErrorEnum mvWorld_V2::setGroupBehaviourParameteri(mvIndex index,\
    mvIndex groupIndex, mvParamEnum paramFlag, mvIndex paramIndex)
 {
-   mvGroupBehaviour_V2* temp = groupBehaviours.getClassPtr(index);
+   mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
    if (temp != NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
 
-   return temp->setGroupParameteri(groupIndex, param, paramIndex);
+   return temp->setGroupParameteri(groupIndex, paramFlag, paramIndex);
 }
 
 /** @brief (one liner)
