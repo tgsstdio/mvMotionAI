@@ -81,6 +81,11 @@
 					<Add directory="lib" />
 				</Linker>
 			</Target>
+			<Target title="Shapes">
+				<Option output="mvBaseBehaviours.exe" prefix_auto="1" extension_auto="1" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
@@ -92,6 +97,9 @@
 		</Linker>
 		<Unit filename="experimental\examples-src\ClassPtr.cpp">
 			<Option target="Class Pointers" />
+		</Unit>
+		<Unit filename="experimental\examples-src\ShapesTest.cpp">
+			<Option target="Shapes" />
 		</Unit>
 		<Unit filename="experimental\examples-src\mvItemList-Test.cpp">
 			<Option target="mvItemList-Debug" />
@@ -224,6 +232,7 @@
 			<Option target="mvItemList-Debug" />
 			<Option target="mvWorld2-Debug" />
 			<Option target="Debug" />
+			<Option target="Shapes" />
 		</Unit>
 		<Unit filename="experimental\include\mvSimpleFlock.h">
 			<Option target="C Interface" />
@@ -238,6 +247,11 @@
 		<Unit filename="experimental\src\mv.cpp">
 			<Option compile="0" />
 			<Option link="0" />
+			<Option target="Debug" />
+			<Option target="C Interface" />
+			<Option target="mvItemList-Debug" />
+			<Option target="mvWorld2-Debug" />
+			<Option target="Class Pointers" />
 		</Unit>
 		<Unit filename="experimental\src\mv2.cpp">
 			<Option target="C Interface" />
@@ -336,6 +350,9 @@
 		<Unit filename="experimental\src\mvSeek.cpp">
 			<Option target="Debug" />
 			<Option target="C Interface" />
+		</Unit>
+		<Unit filename="experimental\src\mvShape.cpp">
+			<Option target="Shapes" />
 		</Unit>
 		<Unit filename="experimental\src\mvSimpleFlock.cpp">
 			<Option target="C Interface" />

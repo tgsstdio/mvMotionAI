@@ -63,11 +63,13 @@ enum mvOptionEnum
    MV_Y_AXIS_AA_CYLINDER,
    MV_Z_AXIS_AA_CYLINDER,
    // new enumerations
+   /*
    MV_MINUS_AABOX,
    MV_MINUS_SPHERE,
    MV_MINUS_X_AXIS_AA_CYLINDER,
    MV_MINUS_Y_AXIS_AA_CYLINDER,
    MV_MINUS_Z_AXIS_AA_CYLINDER,
+   */
    MV_NON_SHAPE,
 
    // waypoints types

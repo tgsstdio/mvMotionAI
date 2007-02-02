@@ -37,7 +37,7 @@
 
 1168094781 ur-List.h"
 
-1169649204 d:\mvmotionai\mvmotionai\include\mvenums.h
+1170375418 d:\mvmotionai\mvmotionai\include\mvenums.h
 	<cstdlib>
 
 1168523236 
@@ -585,4 +585,16 @@
 
 1170334448 source:d:\mvmotionai\mvmotionai\experimental\src\mvnullloader.cpp
 	"mvNullLoader.h"
+
+1170394452 source:d:\mvmotionai\mvmotionai\experimental\src\mvshape.cpp
+	"mvShape.h"
+
+1170339692 d:\mvmotionai\mvmotionai\experimental\include\mvshape.h
+	"mvMotionAI-Types.h"
+	"mvEnums.h"
+
+1170395104 source:d:\mvmotionai\mvmotionai\experimental\examples-src\shapestest.cpp
+	"mvShape.h"
+	<cstdlib>
+	<cstdio>
 
