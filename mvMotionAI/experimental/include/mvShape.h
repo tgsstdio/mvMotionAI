@@ -22,13 +22,20 @@
 #ifndef MVSHAPE_H_INCLUDED
 #define MVSHAPE_H_INCLUDED
 
+#include "mvMotionAI-Types.h"
+#include "mvEnums.h"
+
 class mvShape
 {
-   public:
+   private:
       mvOptionEnum shapeFlag;
       mvFloat* dimensions;
+      mvErrorEnum initDimensions(mvOptionEnum type);
 
+   public:
       mvShape(mvOptionEnum sType);
+      ~mvShape();
+      mvCount getNoOfDimensions() const;
       mvOptionEnum getType() const;
 
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
