@@ -34,7 +34,7 @@
 	<File name="include\mvBody.h" open="0" top="0" tabpos="3">
 		<Cursor position="6326" topLine="137" />
 	</File>
-	<File name="include\mvEnums.h" open="1" top="0" tabpos="2">
+	<File name="include\mvEnums.h" open="0" top="0" tabpos="2">
 		<Cursor position="4790" topLine="171" />
 	</File>
 	<File name="include\mvForce.h" open="0" top="0" tabpos="0">
@@ -67,7 +67,7 @@
 	<File name="include\mvPathway.h" open="0" top="0" tabpos="0">
 		<Cursor position="2551" topLine="49" />
 	</File>
-	<File name="include\mvVec3.h" open="0" top="0" tabpos="3">
+	<File name="include\mvVec3.h" open="1" top="0" tabpos="3">
 		<Cursor position="4249" topLine="0" />
 	</File>
 	<File name="include\mvWaypoint.h" open="0" top="0" tabpos="6">
@@ -100,7 +100,7 @@
 	<File name="src\mvBehaviour-Type.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="5492" topLine="158" />
 	</File>
-	<File name="src\mvBody.cpp" open="1" top="0" tabpos="1">
+	<File name="src\mvBody.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="11277" topLine="404" />
 	</File>
 	<File name="src\mvEnums.cpp" open="0" top="0" tabpos="10">
@@ -148,7 +148,7 @@
 	<File name="src\mvObstacle.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="2424" topLine="441" />
 	</File>
-	<File name="src\mvVec3.cpp" open="0" top="0" tabpos="2">
+	<File name="src\mvVec3.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="7897" topLine="16" />
 	</File>
 	<File name="src\mvWaypoint.cpp" open="0" top="0" tabpos="17">
