@@ -1,0 +1,225 @@
+# depslib dependency file v1.0
+1170476608 source:d:\mvmotionai\mvmotionai\examples-src\test\mvsampletest.cpp
+	<cstdlib>
+	<cstdio>
+	<cmath>
+	<iostream>
+	<fstream>
+	<cppunit/CompilerOutputter.h>
+	<cppunit/XmlOutputter.h>
+	<cppunit/TextOutputter.h>
+	<cppunit/extensions/TestFactoryRegistry.h>
+	<cppunit/ui/text/TestRunner.h>
+
+1151615558 d:\cppunit\cppunit-1.12.0\include\\cppunit\compileroutputter.h
+	<cppunit/Portability.h>
+	<cppunit/Outputter.h>
+	<cppunit/portability/Stream.h>
+
+1151615558 d:\cppunit\cppunit-1.12.0\include\\cppunit\portability.h
+	<cppunit/config/config-bcb5.h>
+	<cppunit/config/config-evc4.h>
+	<cppunit/config/config-msvc6.h>
+	<cppunit/config-auto.h>
+	<cppunit/config/CppUnitApi.h>
+	<cppunit/config/SelectDllLoader.h>
+
+1026453598 d:\cppunit\cppunit-1.12.0\include\\cppunit\config\config-bcb5.h
+
+1088165724 d:\cppunit\cppunit-1.12.0\include\\cppunit\config\config-evc4.h
+
+1122706958 d:\cppunit\cppunit-1.12.0\include\\cppunit\config\config-msvc6.h
+
+1167199228 d:\cppunit\cppunit-1.12.0\include\\cppunit\config-auto.h
+
+1019123294 d:\cppunit\cppunit-1.12.0\include\\cppunit\config\cppunitapi.h
+
+1052339354 d:\cppunit\cppunit-1.12.0\include\\cppunit\config\selectdllloader.h
+
+1026453596 d:\cppunit\cppunit-1.12.0\include\\cppunit\outputter.h
+	<cppunit/Portability.h>
+
+1130444554 d:\cppunit\cppunit-1.12.0\include\\cppunit\portability\stream.h
+	<cppunit/Portability.h>
+	<string>
+	<stdio.h>
+	<string.h>
+	<sstream>
+	<fstream>
+	<string>
+	<strstream>
+	<strstream.h>
+	<iostream>
+
+1032201166 d:\cppunit\cppunit-1.12.0\include\\cppunit\extensions\testfactoryregistry.h
+	<cppunit/Portability.h>
+	<cppunit/portability/CppUnitSet.h>
+	<cppunit/extensions/TestFactory.h>
+	<string>
+
+1032201412 d:\cppunit\cppunit-1.12.0\include\\cppunit\portability\cppunitset.h
+	<cppunit/Portability.h>
+	<functional>
+	<set>
+
+1026453598 d:\cppunit\cppunit-1.12.0\include\\cppunit\extensions\testfactory.h
+	<cppunit/Portability.h>
+
+1026676112 d:\cppunit\cppunit-1.12.0\include\\cppunit\ui\text\testrunner.h
+	<cppunit/ui/text/TextTestRunner.h>
+
+1151606290 d:\cppunit\cppunit-1.12.0\include\\cppunit\ui\text\texttestrunner.h
+	<cppunit/Portability.h>
+	<string>
+	<cppunit/TestRunner.h>
+
+1030649228 d:\cppunit\cppunit-1.12.0\include\\cppunit\testrunner.h
+	<cppunit/TestSuite.h>
+	<string>
+
+1120894968 d:\cppunit\cppunit-1.12.0\include\\cppunit\testsuite.h
+	<cppunit/Portability.h>
+	<cppunit/TestComposite.h>
+	<cppunit/portability/CppUnitVector.h>
+
+1026453598 d:\cppunit\cppunit-1.12.0\include\\cppunit\testcomposite.h
+	<cppunit/Test.h>
+	<string>
+
+1026453598 d:\cppunit\cppunit-1.12.0\include\\cppunit\test.h
+	<cppunit/Portability.h>
+	<string>
+
+1032201412 d:\cppunit\cppunit-1.12.0\include\\cppunit\portability\cppunitvector.h
+	<cppunit/Portability.h>
+	<vector>
+
+1079182376 d:\cppunit\cppunit-1.12.0\include\\cppunit\extensions\helpermacros.h
+	<cppunit/TestCaller.h>
+	<cppunit/TestSuite.h>
+	<cppunit/extensions/AutoRegisterSuite.h>
+	<cppunit/extensions/ExceptionTestCaseDecorator.h>
+	<cppunit/extensions/TestFixtureFactory.h>
+	<cppunit/extensions/TestNamer.h>
+	<cppunit/extensions/TestSuiteBuilderContext.h>
+	<memory>
+
+1028389672 d:\cppunit\cppunit-1.12.0\include\\cppunit\testcaller.h
+	<cppunit/Exception.h>
+	<cppunit/TestCase.h>
+	<cppunit/extensions/TypeInfoHelper.h>
+
+1030649228 d:\cppunit\cppunit-1.12.0\include\\cppunit\exception.h
+	<cppunit/Portability.h>
+	<cppunit/Message.h>
+	<cppunit/SourceLine.h>
+	<exception>
+
+1100894444 d:\cppunit\cppunit-1.12.0\include\\cppunit\message.h
+	<cppunit/Portability.h>
+	<cppunit/portability/CppUnitDeque.h>
+	<string>
+
+1032201412 d:\cppunit\cppunit-1.12.0\include\\cppunit\portability\cppunitdeque.h
+	<cppunit/Portability.h>
+	<deque>
+
+1100894444 d:\cppunit\cppunit-1.12.0\include\\cppunit\sourceline.h
+	<cppunit/Portability.h>
+	<string>
+
+1028389672 d:\cppunit\cppunit-1.12.0\include\\cppunit\testcase.h
+	<cppunit/Portability.h>
+	<cppunit/TestLeaf.h>
+	<cppunit/TestAssert.h>
+	<cppunit/TestFixture.h>
+	<string>
+
+1026453598 d:\cppunit\cppunit-1.12.0\include\\cppunit\testleaf.h
+	<cppunit/Test.h>
+
+1131296302 d:\cppunit\cppunit-1.12.0\include\\cppunit\testassert.h
+	<cppunit/Portability.h>
+	<cppunit/Exception.h>
+	<cppunit/Asserter.h>
+	<cppunit/portability/Stream.h>
+	<stdio.h>
+	<float.h>
+
+1030606610 d:\cppunit\cppunit-1.12.0\include\\cppunit\asserter.h
+	<cppunit/AdditionalMessage.h>
+	<cppunit/SourceLine.h>
+	<string>
+
+1026453596 d:\cppunit\cppunit-1.12.0\include\\cppunit\additionalmessage.h
+	<cppunit/Message.h>
+
+1026453598 d:\cppunit\cppunit-1.12.0\include\\cppunit\testfixture.h
+	<cppunit/Portability.h>
+
+1088160088 d:\cppunit\cppunit-1.12.0\include\\cppunit\extensions\typeinfohelper.h
+	<cppunit/Portability.h>
+	<typeinfo>
+	<string>
+
+1026556430 d:\cppunit\cppunit-1.12.0\include\\cppunit\extensions\autoregistersuite.h
+	<cppunit/extensions/TestSuiteFactory.h>
+	<cppunit/extensions/TestFactoryRegistry.h>
+	<string>
+
+1026453598 d:\cppunit\cppunit-1.12.0\include\\cppunit\extensions\testsuitefactory.h
+	<cppunit/extensions/TestFactory.h>
+
+1047718528 d:\cppunit\cppunit-1.12.0\include\\cppunit\extensions\exceptiontestcasedecorator.h
+	<cppunit/Portability.h>
+	<cppunit/Exception.h>
+	<cppunit/extensions/TestCaseDecorator.h>
+
+1028389672 d:\cppunit\cppunit-1.12.0\include\\cppunit\extensions\testcasedecorator.h
+	<cppunit/Portability.h>
+	<cppunit/TestCase.h>
+
+1032201412 d:\cppunit\cppunit-1.12.0\include\\cppunit\extensions\testfixturefactory.h
+	<cppunit/Portability.h>
+
+1048144102 d:\cppunit\cppunit-1.12.0\include\\cppunit\extensions\testnamer.h
+	<cppunit/Portability.h>
+	<string>
+	<typeinfo>
+
+1087544386 d:\cppunit\cppunit-1.12.0\include\\cppunit\extensions\testsuitebuildercontext.h
+	<cppunit/Portability.h>
+	<cppunit/portability/CppUnitMap.h>
+	<string>
+
+1032201412 d:\cppunit\cppunit-1.12.0\include\\cppunit\portability\cppunitmap.h
+	<cppunit/Portability.h>
+	<functional>
+	<map>
+
+1170398276 source:d:\mvmotionai\mvmotionai\test\moneytest.cpp
+	"MoneyTest.h"
+
+1170398242 d:\mvmotionai\mvmotionai\test\moneytest.h
+	"Money.h"
+	<cppunit/extensions/HelperMacros.h>
+
+1170397838 source:d:\mvmotionai\mvmotionai\test\money.cpp
+
+1170474716 d:\mvmotionai\mvmotionai\test\money.h
+	<string>
+	<string>
+	<stdexcept>
+
+1094069856 d:\cppunit\cppunit-1.12.0\include\\cppunit\xmloutputter.h
+	<cppunit/Portability.h>
+	<cppunit/Outputter.h>
+	<cppunit/portability/CppUnitDeque.h>
+	<cppunit/portability/CppUnitMap.h>
+	<cppunit/portability/Stream.h>
+
+1088161906 d:\cppunit\cppunit-1.12.0\include\\cppunit\textoutputter.h
+	<cppunit/Portability.h>
+	<cppunit/Outputter.h>
+	<cppunit/portability/Stream.h>
+

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="mvVec3CPPUnitTest" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="mingw-Release">
+				<Option output="..\bin\test\mvVec3CPPUnitTest.exe" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="..\bin\test" />
+				<Option object_output="obj\Release\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="$(CPPUNIT_INC_PATH)" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="..\lib\libmvMotionAI-mingw.a" />
+					<Add library="TestHarness" />
+					<Add library="cppunit" />
+					<Add library="cppunit.dll" />
+					<Add directory="$(CPPUNIT_LIB_PATH)" />
+					<Add directory="lib" />
+				</Linker>
+				<Environment>
+					<Variable name="CPPUNIT_INC_PATH" value="D:\CPPunit\cppunit-1.12.0\include" />
+					<Variable name="CPPUNIT_LIB_PATH" value="D:\CPPunit\cppunit-1.12.0\src\cppunit\.libs" />
+				</Environment>
+			</Target>
+			<Target title="ubuntu - Release">
+				<Option output="..\bin\test\mvVec3CPPUnitTest.exe" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="..\bin\test" />
+				<Option object_output="obj\Release\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="$(CPPUNIT_INC_PATH)" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="TestHarness" />
+					<Add library="cppunit" />
+					<Add library="cppunit.dll" />
+					<Add directory="$(CPPUNIT_LIB_PATH)" />
+					<Add directory="lib" />
+				</Linker>
+				<Environment>
+					<Variable name="CPPUNIT_INC_PATH" value="D:\CPPunit\cppunit-1.12.0\include" />
+					<Variable name="CPPUNIT_LIB_PATH" value="D:\CPPunit\cppunit-1.12.0\src\cppunit\.libs" />
+				</Environment>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="..\include" />
+		</Compiler>
+		<Linker>
+			<Add directory="lib" />
+		</Linker>
+		<Unit filename="..\include\mvVec3.h" />
+		<Unit filename="mvVec3Test.cpp" />
+		<Unit filename="mvVec3Test.h" />
+		<Extensions>
+			<code_completion />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

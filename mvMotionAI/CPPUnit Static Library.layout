@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="MinGW CPP Unit Static Library" />
+	<File name="examples-src\test\mvSampleTest.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="880" topLine="6" />
+	</File>
+	<File name="test\Money.h" open="0" top="0" tabpos="4">
+		<Cursor position="168" topLine="0" />
+	</File>
+	<File name="test\MoneyTest.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="408" topLine="21" />
+	</File>
+	<File name="test\MoneyTest.h" open="0" top="0" tabpos="2">
+		<Cursor position="260" topLine="0" />
+	</File>
+</CodeBlocks_layout_file>
