@@ -4,10 +4,13 @@
 	<File name="..\include\mvVec3.h" open="0" top="0" tabpos="0">
 		<Cursor position="4626" topLine="58" />
 	</File>
-	<File name="mvVec3Test.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="2443" topLine="78" />
+	<File name="..\src\mvVec3.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="16478" topLine="591" />
 	</File>
-	<File name="mvVec3Test.h" open="1" top="0" tabpos="1">
-		<Cursor position="303" topLine="0" />
+	<File name="mvVec3Test.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="445" topLine="11" />
+	</File>
+	<File name="mvVec3Test.h" open="0" top="0" tabpos="1">
+		<Cursor position="92" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

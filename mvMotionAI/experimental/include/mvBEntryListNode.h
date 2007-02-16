@@ -30,14 +30,13 @@
 class mvBEntryListNode
 {
    public:
-      mvBEntry* bEntryPtr;
-      mvFloat weight;
-      mvBEntryTimer timer;
+      mvBEntryPtr bEntryPtr;
+      mvBEntryUtility entryFlags;
 
       mvBEntryListNode(mvFloat bNodeWeight, mvBEntry* behEntry, mvFloat period,\
          mvFloat elaspedTime);
-      mvBEntry* getEntryPtr();
-      mvBEntryTimer* getTimer();
+      mvBEntryPtr getEntryPtr();
+      mvTimerPtr getTimer();
       mvFloat getWeight() const;
 
       mvErrorEnum setEntryPtr(mvBEntry* behEntry);

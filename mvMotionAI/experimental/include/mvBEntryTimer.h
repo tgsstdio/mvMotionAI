@@ -25,17 +25,17 @@
 #include "mvMotionAI-Types.h"
 #include "mvEnums.h"
 
-class mvBEntryTimer
+class mvTimer
 {
    private:
       mvFloat elapsedTime;
       mvFloat period;
-      bool isTimed;
 
    public:
-      mvBEntryTimer(mvFloat periodInSecs = 1.0, mvFloat eTime = 0.0);
-      mvCount update(mvFloat timeInSecs);
-      mvFloat getElaspedTime() const;
+      bool isTimed;
+      mvTimer(mvFloat periodInSecs = 1.0, mvFloat eTime = 0.0);
+      mvFloat update(mvFloat timeInSecs);
+      mvFloat getElapsedTime() const;
       mvFloat getPeriod() const;
       mvErrorEnum setPeriod(mvFloat timeInSecs);
       mvErrorEnum setElapsedTime(mvFloat timeInSecs);

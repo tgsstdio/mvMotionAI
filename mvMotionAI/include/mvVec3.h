@@ -134,6 +134,7 @@ class mvVec3
       void minusVec3(const mvVec3& rhs);
       void timesVec3(const mvVec3& rhs);
       void divideVec3(const mvVec3& rhs);
+      // TODO : inplace sign change
 
       mvFloat getX() const;
       mvFloat getY() const;

@@ -18,10 +18,10 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add library="..\lib\libmvMotionAI-mingw.a" />
 					<Add library="TestHarness" />
 					<Add library="cppunit" />
 					<Add library="cppunit.dll" />
+					<Add library="..\lib\libmvMotionAI-mingw.a" />
 					<Add directory="$(CPPUNIT_LIB_PATH)" />
 					<Add directory="lib" />
 				</Linker>
@@ -62,6 +62,7 @@
 			<Add directory="lib" />
 		</Linker>
 		<Unit filename="..\include\mvVec3.h" />
+		<Unit filename="..\src\mvVec3.cpp" />
 		<Unit filename="mvVec3Test.cpp" />
 		<Unit filename="mvVec3Test.h" />
 		<Extensions>
