@@ -24,7 +24,6 @@ void mvVec3Test::tearDown()
  */
 void mvVec3Test::testConstructor()
 {
-
    // checking default vec3 constructor A i.e x,y,z = 0.0;
    mvVec3 a;
    mvFloat zero = 0.0;
@@ -380,6 +379,7 @@ void mvVec3Test::testMultiply()
 
 /** \brief testing signed operator
  *
+ *  mvVec3 operator- (void) const;
  */
 void mvVec3Test::testSigned()
 {
@@ -418,3 +418,84 @@ void mvVec3Test::testSigned()
    CPPUNIT_ASSERT_EQUAL( c_Result.getZ(),  c_2.getZ() );
 }
 
+/** \brief testing signed operator
+ *
+ * A: bool operator== (const mvVec3& v) const;
+ * B: bool operator!= (const mvVec3& v) const;
+ */
+void mvVec3Test::testEquality()
+{
+   mvFloat ax = 4.0;
+   mvFloat ay = 1000.001;
+   mvFloat az = -923.42;
+   mvFloat zero = 0;
+   mvVec3 sample(ax,ay,az);
+
+   // == run 8 cases i.e 2 (binary) ^ 3 (components)
+
+   // TESTING A 1 : case 0 all equal
+   mvVec3 a_1(ax,ay,az);
+   CPPUNIT_ASSERT_EQUAL(sample == a_1, true);
+
+   // TESTING A 2 : partial equal case 1 i.e NOT TRUE
+   mvVec3 a_2(ax,ay,zero);
+   CPPUNIT_ASSERT_EQUAL(sample == a_2, false);
+
+   // TESTING A 3 : partial equal case 2 i.e NOT TRUE
+   mvVec3 a_3(ax, zero, az);
+   CPPUNIT_ASSERT_EQUAL(sample == a_3, false);
+
+   // TESTING A 4 : partial equal case 3 i.e NOT TRUE
+   mvVec3 a_4(ax, zero, zero);
+   CPPUNIT_ASSERT_EQUAL(sample == a_4, false);
+
+   // TESTING A 5  : partial equal case 4 i.e NOT TRUE
+   mvVec3 a_5(zero,ay,az);
+   CPPUNIT_ASSERT_EQUAL(sample == a_5, false);
+
+   // TESTING A 6 : partial equal case 5 i.e NOT TRUE
+   mvVec3 a_6(zero,ay,zero);
+   CPPUNIT_ASSERT_EQUAL(sample == a_6, false);
+
+   // TESTING A 7 : partial equal case 6 i.e NOT TRUE
+   mvVec3 a_7(zero, zero, az);
+   CPPUNIT_ASSERT_EQUAL(sample == a_7, false);
+
+   // TESTING A 8 : full error case 7 i.e NOT TRUE
+   mvVec3 a_8(zero, zero, zero);
+   CPPUNIT_ASSERT_EQUAL(sample == a_8, false);
+
+   // TESTING  != run 8 cases i.e 2 (binary) ^ 3 (components)
+
+   // TESTING b 1 : case 0 all equal FALSE
+   mvVec3 b_1(ax,ay,az);
+   CPPUNIT_ASSERT_EQUAL(sample != b_1, false);
+
+   // TESTING A 2 : partial equal case 1 i.e TRUE
+   mvVec3 b_2(ax,ay,zero);
+   CPPUNIT_ASSERT_EQUAL(sample != b_2, true);
+
+   // TESTING A 3 : partial equal case 2 i.e TRUE
+   mvVec3 b_3(ax, zero, az);
+   CPPUNIT_ASSERT_EQUAL(sample != b_3, true);
+
+   // TESTING A 4 : partial equal case 3 i.e NOT TRUE
+   mvVec3 b_4(ax, zero, zero);
+   CPPUNIT_ASSERT_EQUAL(sample != b_4, true);
+
+   // TESTING A 5  : partial equal case 4 i.e TRUE
+   mvVec3 b_5(zero,ay,az);
+   CPPUNIT_ASSERT_EQUAL(sample != b_5, true);
+
+   // TESTING A 6 : partial equal case 5 i.e TRUE
+   mvVec3 b_6(zero,ay,zero);
+   CPPUNIT_ASSERT_EQUAL(sample != b_6, true);
+
+   // TESTING A 7 : partial equal case 6 i.e TRUE
+   mvVec3 b_7(zero, zero, az);
+   CPPUNIT_ASSERT_EQUAL(sample != b_7, true);
+
+   // TESTING A 8 : full error case 7 i.e TRUE
+   mvVec3 b_8(zero, zero, zero);
+   CPPUNIT_ASSERT_EQUAL(sample != b_8, true);
+}

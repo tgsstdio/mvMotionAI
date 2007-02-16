@@ -10,8 +10,8 @@
 	<File name="experimental\include\mvGlobalFunctions.h" open="0" top="0" tabpos="0">
 		<Cursor position="4020" topLine="30" />
 	</File>
-	<File name="experimental\include\mvList.h" open="0" top="0" tabpos="1">
-		<Cursor position="1201" topLine="6" />
+	<File name="experimental\include\mvList.h" open="1" top="0" tabpos="1">
+		<Cursor position="6284" topLine="115" />
 	</File>
 	<File name="experimental\src\mv.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="15361" topLine="677" />
@@ -35,7 +35,7 @@
 		<Cursor position="6326" topLine="137" />
 	</File>
 	<File name="include\mvEnums.h" open="0" top="0" tabpos="2">
-		<Cursor position="4790" topLine="171" />
+		<Cursor position="3645" topLine="101" />
 	</File>
 	<File name="include\mvForce.h" open="0" top="0" tabpos="0">
 		<Cursor position="1758" topLine="30" />
@@ -52,8 +52,8 @@
 	<File name="include\mvLuaScript.h" open="0" top="0" tabpos="1">
 		<Cursor position="3917" topLine="106" />
 	</File>
-	<File name="include\mvMotionAI-Types.h" open="0" top="0" tabpos="2">
-		<Cursor position="3961" topLine="90" />
+	<File name="include\mvMotionAI-Types.h" open="1" top="0" tabpos="8">
+		<Cursor position="4420" topLine="103" />
 	</File>
 	<File name="include\mvMotionAI-Utilities.h" open="0" top="0" tabpos="2">
 		<Cursor position="1600" topLine="0" />
@@ -67,8 +67,8 @@
 	<File name="include\mvPathway.h" open="0" top="0" tabpos="0">
 		<Cursor position="2551" topLine="49" />
 	</File>
-	<File name="include\mvVec3.h" open="1" top="0" tabpos="3">
-		<Cursor position="4249" topLine="0" />
+	<File name="include\mvVec3.h" open="0" top="0" tabpos="1">
+		<Cursor position="4957" topLine="81" />
 	</File>
 	<File name="include\mvWaypoint.h" open="0" top="0" tabpos="6">
 		<Cursor position="3185" topLine="67" />
@@ -148,8 +148,8 @@
 	<File name="src\mvObstacle.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="2424" topLine="441" />
 	</File>
-	<File name="src\mvVec3.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="7897" topLine="16" />
+	<File name="src\mvVec3.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="1436" topLine="313" />
 	</File>
 	<File name="src\mvWaypoint.cpp" open="0" top="0" tabpos="17">
 		<Cursor position="8186" topLine="269" />

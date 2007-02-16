@@ -561,10 +561,7 @@ bool mvVec3::operator== (const mvVec3& v) const
  */
 bool mvVec3::operator!= (const mvVec3& v) const
 {
-   if (getX() == v.getX() && getY() == v.getY() && getZ() == v.getZ())
-      return true;
-   else
-      return false;
+   return !(*this ==(v));
 }
 
 /**

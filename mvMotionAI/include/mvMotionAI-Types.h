@@ -137,5 +137,6 @@ typedef class mvObstacle* mvObstaclePtr;
 typedef class mvPathway* mvPathwayPtr;
 typedef class mvWaypoint* mvWaypointPtr;
 typedef class mvWorld_V2* mvWorldPtr;
+typedef class mvTimer* mvTimerPtr;
 
 #endif

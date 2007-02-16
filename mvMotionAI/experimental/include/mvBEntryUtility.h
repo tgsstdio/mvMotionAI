@@ -19,28 +19,26 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-#ifndef MVBENTRY_H_INCLUDED
-#define MVBENTRY_H_INCLUDED
+#ifndef MVBENTRYUTILITY_H_INCLUDED
+#define MVBENTRYUTILITY_H_INCLUDED
 
 #include "mvMotionAI-Types.h"
-#include "mvBaseBehaviour.h"
+#include "mvBEntryTimer.h"
 
-class mvBEntry
+class mvBEntryUtility
 {
+   private:
+      mvFloat bWeight;
+
    public:
-      mvBaseBehaviourPtr behaviourPtr;
-      mvIndex groupIndex;
-      mvIndex behaviourIndex;
-      mvOptionEnum entryType;
+      mvTimer bTimer;
+      bool confined;
+      bool enabled;
 
-      mvBEntry(mvOptionEnum type, mvIndex bIndex, mvIndex gIndex,\
-         mvBaseBehaviour* dBehaviour);
-      void setBehaviourPtr(mvBaseBehaviour* behavPtr);
-      mvBaseBehaviour* getBehaviourPtr() const;
-      mvOptionEnum getType() const;
-      mvIndex getGroup() const;
-      mvIndex getBehaviour() const;
-
+      mvBEntryUtility();
+      mvErrorEnum setWeight(mvFloat entryWeight);
+      mvFloat getWeight() const;
+      mvTimerPtr getTimerPtr();
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
       mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
       mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num);
@@ -51,7 +49,6 @@ class mvBEntry
       mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
       mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
       mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
-      ~mvBEntry();
 };
 
-#endif // MVBENTRY_H_INCLUDED
+#endif // MVBENTRYUTILITY_H_INCLUDED

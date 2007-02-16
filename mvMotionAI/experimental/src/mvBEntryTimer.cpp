@@ -36,7 +36,7 @@
   *
   * Automatically calls setParameterf as well
   */
-mvErrorEnum mvBEntryTimer::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
+mvErrorEnum mvTimer::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 {
    if (numArray == NULL)
    {
@@ -53,7 +53,7 @@ mvErrorEnum mvBEntryTimer::setParameterv(mvParamEnum paramFlag, mvFloat* numArra
   * \return either MV_NO_ERROR (0) or any non zero (ie.
   * MV_INVALID_TIMER_PARAMETER)
   */
-mvErrorEnum mvBEntryTimer::setParameterf(mvParamEnum paramFlag, mvFloat num)
+mvErrorEnum mvTimer::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
    switch (paramFlag)
    {
@@ -72,7 +72,7 @@ mvErrorEnum mvBEntryTimer::setParameterf(mvParamEnum paramFlag, mvFloat num)
   * \return either MV_NO_ERROR (0) or any non zero (ie.
   * MV_INVALID_TIMER_PARAMETER)
   */
-mvErrorEnum mvBEntryTimer::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
+mvErrorEnum mvTimer::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
    switch (paramFlag)
    {
@@ -94,7 +94,7 @@ mvErrorEnum mvBEntryTimer::setParameter(mvParamEnum paramFlag, mvOptionEnum opti
   * \return either MV_NO_ERROR (0) or any non zero (ie.
   * MV_INVALID_TIMER_PARAMETER)
   */
-mvErrorEnum mvBEntryTimer::setParameteri(mvParamEnum paramFlag, mvIndex index)
+mvErrorEnum mvTimer::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
    return MV_INVALID_TIMER_PARAMETER;
 }
@@ -105,7 +105,7 @@ mvErrorEnum mvBEntryTimer::setParameteri(mvParamEnum paramFlag, mvIndex index)
   * \return either MV_NO_ERROR (0) or any non zero (ie.
   * MV_INVALID_TIMER_PARAMETER)
   */
-mvErrorEnum mvBEntryTimer::getParameterv(mvParamEnum paramFlag,\
+mvErrorEnum mvTimer::getParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray, mvCount* noOfParameters)
 {
    mvCount noOfValuesReturned = 0;
@@ -139,7 +139,7 @@ mvErrorEnum mvBEntryTimer::getParameterv(mvParamEnum paramFlag,\
   * \return either MV_NO_ERROR (0) or any non zero (ie.
   * MV_INVALID_TIMER_PARAMETER)
   */
-mvErrorEnum mvBEntryTimer::getParameterf(mvParamEnum paramFlag, mvFloat* num)
+mvErrorEnum mvTimer::getParameterf(mvParamEnum paramFlag, mvFloat* num)
 {
    if (num == NULL)
    {
@@ -165,9 +165,14 @@ mvErrorEnum mvBEntryTimer::getParameterf(mvParamEnum paramFlag, mvFloat* num)
   * \return either MV_NO_ERROR (0) or any non zero (ie.
   * MV_INVALID_TIMER_PARAMETER)
   */
-mvErrorEnum mvBEntryTimer::getParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvTimer::getParameter(mvParamEnum paramFlag,\
    mvOptionEnum* option)
 {
+   if (option == NULL)
+   {
+      return MV_OPTION_ENUM_DEST_IS_NULL;
+   }
+
    switch (paramFlag)
    {
       case MV_IS_TIMED:
@@ -187,21 +192,26 @@ mvErrorEnum mvBEntryTimer::getParameter(mvParamEnum paramFlag,\
   * \return either MV_NO_ERROR (0) or any non zero (ie.
   * MV_INVALID_TIMER_PARAMETER)
   */
-mvErrorEnum mvBEntryTimer::getParameteri(mvParamEnum paramFlag, mvIndex* index)
+mvErrorEnum mvTimer::getParameteri(mvParamEnum paramFlag, mvIndex* index)
 {
+   if (index == NULL)
+   {
+      return MV_INDEX_DEST_IS_NULL;
+   }
+
    return MV_INVALID_TIMER_PARAMETER;
 }
 
 /** @brief set timer to timed
  */
-void mvBEntryTimer::toTimed()
+void mvTimer::toTimed()
 {
    isTimed = true;
 }
 
 /** @brief set timer to always perform
  */
-void mvBEntryTimer::toAlways()
+void mvTimer::toAlways()
 {
    isTimed = false;
 }
@@ -213,7 +223,7 @@ void mvBEntryTimer::toAlways()
   * If timeInSecs given is greater than the period of the timer
   * the remainder of timeInSecs/period is set as the elapsedTime
   */
-mvErrorEnum mvBEntryTimer::setElapsedTime(mvFloat timeInSecs)
+mvErrorEnum mvTimer::setElapsedTime(mvFloat timeInSecs)
 {
    if (timeInSecs < 0.0)
    {
@@ -222,7 +232,14 @@ mvErrorEnum mvBEntryTimer::setElapsedTime(mvFloat timeInSecs)
 
    if (timeInSecs > period)
    {
-      elapsedTime = mvFMod(timeInSecs,period);
+      if (period > 0.0)
+      {
+         elapsedTime = mvFMod(timeInSecs,period);
+      }
+      else
+      {
+         elapsedTime = period;
+      }
       return MV_NO_ERROR;
    }
    else
@@ -240,7 +257,7 @@ mvErrorEnum mvBEntryTimer::setElapsedTime(mvFloat timeInSecs)
   * the remainder is the new elasped time. Also in reverse,
   * if the period is greater, then the old elapsed time is kept
   */
-mvErrorEnum mvBEntryTimer::setPeriod(mvFloat timeInSecs)
+mvErrorEnum mvTimer::setPeriod(mvFloat timeInSecs)
 {
    if (timeInSecs < 0.0)
    {
@@ -259,7 +276,7 @@ mvErrorEnum mvBEntryTimer::setPeriod(mvFloat timeInSecs)
 /** @brief retrieves period (in seconds) of timer
   * \return positive mvFloat value
   */
-mvFloat mvBEntryTimer::getPeriod() const
+mvFloat mvTimer::getPeriod() const
 {
    return period;
 }
@@ -267,7 +284,7 @@ mvFloat mvBEntryTimer::getPeriod() const
 /** @brief retrieves elapsed time (in seconds) of timer
   * \return positive mvFloat value
   */
-mvFloat mvBEntryTimer::getElaspedTime() const
+mvFloat mvTimer::getElapsedTime() const
 {
    return elapsedTime;
 }
@@ -285,19 +302,18 @@ mvFloat mvBEntryTimer::getElaspedTime() const
   *
   * TODO : negetive regression
   */
-mvCount mvBEntryTimer::update(mvFloat timeInSecs)
+mvFloat mvTimer::update(mvFloat timeInSecs)
 {
-   mvFloat intPart;
+   mvFloat noOfCount = 0;
    mvFloat result;
 
    // if positive
-   if (timeInSecs > 0.0)
+   if (timeInSecs >= 0.0)
    {
-      if (!isTimed)
+      if (!isTimed) // set to always
       {
-         result = timeInSecs;
-         result /= period;
-         result = mvModf(result, &intPart);
+         // once per call, no change to values
+         noOfCount = 1;
       }
       else
       {
@@ -305,17 +321,18 @@ mvCount mvBEntryTimer::update(mvFloat timeInSecs)
          if (elapsedTime > period)
          {
             elapsedTime /= period;
-            elapsedTime = mvModf(elapsedTime, &intPart);
+            elapsedTime = mvModf(elapsedTime, &noOfCount);
+            elapsedTime *= period;
          }
       }
    }
    else
    {
       // TODO : negetive regression
-      intPart = 1;
+      noOfCount = -1;
    }
 
-   return (mvCount) intPart;
+   return noOfCount;
 }
 
 /** @brief timer constructor
@@ -327,7 +344,7 @@ mvCount mvBEntryTimer::update(mvFloat timeInSecs)
   *
   * Default timer mode is set to always.
   */
-mvBEntryTimer::mvBEntryTimer(mvFloat periodInSecs, mvFloat eTime)
+mvTimer::mvTimer(mvFloat periodInSecs, mvFloat eTime)
 {
    if (setPeriod(periodInSecs) != MV_NO_ERROR)
    {
