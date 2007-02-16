@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>mvMotionAI - C++/Lua Steering Behaviours Library</title>
+</head>
+<body>
+<h1 align="center">mvMotionAI</h1>
+<h2 align="center">C++/Lua Steering Behaviours Library</h2>
+<a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=174315&amp;type=7" width="210" height="62" border="0" alt="SourceForge.net Logo" /></a>
+<hr>
+<table> 
+   <tr>
+			<td valign="top">
+      <!--
+       Menu column
+      -->
+			   <ul> 		
+ 				    <li>
+		   			    <a href="#mvIntro">Introduction</a>
+				    </li>
+				 		<!--
+						Introduction
+						-->
+				    <ul>
+   						<li>
+  								<a href="mvLicense.html"> mvMotionAI MIT License</a>
+  						</li>
+  						<li>
+  								<a href=""> mvMotionAI objects types</a>
+  						</li>
+  						<li>
+  								<a href="">Application integration of mvMotionAI library </a>
+  						</li>
+              <li>
+  						   <a href="">Scripting language integration example </a>
+  						</li>		
+              <li>        
+                 <a href=""> Setting  &amp; getting variables </a>
+  						</li>		
+              <li>
+							   <a href="">Implemented functions list</a>
+							</li>					
+              <li>
+							   <a href="">mvMotionAI memory management </a>
+							</li>	
+              <li>
+							   <a href=""> Creation of user-defined behaviours </a>
+							</li>								
+						</ul>
+              <li>
+              <a href="#mvLinks"> Links </a>				
+              <ul>
+    						<li> 
+    								<a href="#mvDoxygen"> Doxygen documentation </a>				
+                <li>
+    								<a href="#mvSFFiles"> SourceForge File Releases </a>
+    						</li>
+                <li>
+    								<a href="#mvSFCodeRepos"> SourceForge Subversion
+									    code repository </a> 
+    						</li>	
+	           </ul>
+						 
+				   </ul>							
+			  </td>
+
+				<td>
+				<table>
+				<tr>
+  			<!---
+				  CURRENT PROGRESS : START  
+				-->
+				<td>
+				<h1> Current Progress </h1>
+				    <ul>
+						<li>
+						   <h2> News, Forums, Updates and Patches </h2>
+						    <ul>
+								<li> <a href="http://sourceforge.net/projects/mvmotionai">mvMotionAI SourceForge hosted page</a> </li>
+								</ul>
+						</li>								
+					  <li>
+						  <h2> Latest File Releases </h2>
+								<ul>
+  								<li>version 00-01-22 (December 2006)</li>
+									<p> Found at the <a href="http://sourceforge.net/project/showfiles.php?group_id=174315">SourceForge hosted page</a> </p>
+									<ul>
+    								<li> Source Code</li>
+    								<li> Documentation </li>
+											<ul>
+											  	<li>
+												     SourceForge hosted documentation
+  								  	  	</li>
+											</ul>										
+    								<li> Library &amp; Binaries </li>
+    										<ul>
+    										  <li>Ubuntu</li>
+    										  <li>Windows XP</li>
+    										</ul>
+    							</ul>
+								</ul>
+ 						</li>								
+						<li><h2> Scripting Language Support </h2></li>
+						 <ul>
+						    <li>
+								     C / C++ 
+								</li>
+						    <li>
+								     Lua
+								</li>								
+						 </ul>
+				</td>
+				</tr>
+  			<!---
+				  CURRENT PROGRESS : END  
+				-->									
+				<tr>		
+				<td>
+  			<hr />										
+        <!--
+          Info column : START
+        -->
+        <h1><a id="mvIntro">Introduction</a></h1>			
+			
+        <p>mvMotionAI is an <acronym title="Articifial Intelligence"> AI </acronym> library module (currently a static library,
+           hopefully in version 00-02-00 and above as a DLL &amp; shared library).					 
+				</p>
+				
+				<p>C/C++ steering behaviour library (AI) with Lua scripting for games and simulations.</p>				
+					 
+        <p>This library is a general purpose steering behaviours library for 
+					 games and simulations that is easily pluggable into different 
+					 applications.</p>
+				
+        <p><a href="">How to integrate mvMotionAI library into your
+           application</a></p>					 
+					 
+        <p>The library is coded in C++ with interfaces in both C++ and the 
+				   scripting language Lua. </p>					 
+					
+				<p>First created in January 2006, then the source code was released 
+				   as open source in June 2006 under the <a href="mvLicense.html"> MIT 
+					 License</a>.				 
+				</p>
+				
+				<p>
+					  The library was started as a reusable code for applications (such as
+				    games), focusing on the area of artificial intelligence known as 
+						steering behaviours or motion/movement based such as path-following 
+						and seeking &amp; evading another body.   
+				</p>       
+				
+        <p>Motion based behaviours with scripting functionality.</p>
+				
+        <p><a href=""> mvMotionAI objects types</a></p>
+				
+				
+        <p>The interface was designed to be both scripting language
+        friendly and easy access to its objects inside the module.</p>
+				
+        <p><a href="">Scripting language integration of
+        mvMotionAI</a></p>
+				
+        <p><a href="">Approaches to retrieve information from
+        mvMotionAI</a></p>
+				
+        <p>It was inspired by the OpenGL interface, i.e global functions
+        with a special prefix (mv) to avoid namespace collisions.</p>
+				
+        <p><a href="">List of functions implemented</a></p>
+				
+        <p>Object memory handling by the library module.</p>
+				
+        <p><a href="">Initialises and deallocating mvMotionAI</a></p>
+				
+        <p>The behaviour framework (for version 00-02-00 and above) allows 
+				user-defined behaviours extensions into the system and those additional
+				objects are available via the scripting language interface.</p>
+				
+        <p><a href="">How to create new mvMotionAI behaviours which are
+        accessible via a scripting language</a></p>
+				
+        <p>Minimal vocabulary for retrieving parameters and variables
+        from mvMotionAI's objects.</p>
+				
+        <p>Structured for accommodate single, global ,and shared
+        cooperative group behaviours</p>
+        </td>
+        </tr>
+				<tr>
+				<td>				
+				<hr />				
+        <h2><a id="mvLinks"> Links </a></h2>
+        <h3><a id="mvDoxygen"> Doxygen documentation </a> </h3>
+				<p> The following HTML documentation of the mvMotionAI API has been generated
+				by <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> 
+				from mvMotionAI source code. Each version can be downloaded from the 
+				File Releases section of SourceForge hosted central page (?)  </p> 
+				<ul>
+        <li> Version 00-01-22 </li>
+        </ul>
+        <h3><a id="mvSFFiles"> SourceForge File Releases </a> </h3>
+				<p> At this moment, there are up to four types of file release made for 
+				mvMotionAI library. </p>
+				<ol>
+       <li>Source code / Developer Release</li>
+			 <li>The binaries of the examples for different OS </li>
+       <li>API Documentation </li>
+			 <li>Full workspace of mvMotionAI less API documentation</li>			 
+			 </ol>
+        <h3><a id="mvSFCodeRepos"> SourceForge Subversion code 
+				   repository </a> </h3>
+        <p>Bleeding edge code updates made via the Subversion
+        repository. </p>
+				<p> 
+        <h3>David's Young Projects</h3>
+        <p>Author of mvMotionAI's other projects</p>
+        </td>
+        </tr>
+				
+		</table>
+</table>
+
+<hr />
+<h4>Created on 17th January 2007 using HTML-KIT &amp; last modified on
+   5th February 2007</h4>
+</body>
+</html>
