@@ -1,13 +1,33 @@
 #include "mvBEntryUtility.h"
 
 
-/** @brief (one liner)
+/** @brief sets a floating point variable
+  * \param[in] paramFlag Behaviour parameter to be set
+  * \param[in] num mvFloat float value
+  * \return if ok MV_NO_ERROR (0), else any non-zero error value
   *
-  * (documentation goes here)
+  * NOTE : timer getParameter is also called
   */
 mvErrorEnum mvBEntryUtility::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   switch(paramFlag)
+   {
+      case MV_WEIGHT:
+         return setWeight(num);
+      default:
+         error = bTimer.setParameterf(paramFlag, num);
+         if (error == MV_INVALID_TIMER_PARAMETER)
+         {
+            //  NOT_FOUND then not 'behaviour' parameter error
+            return MV_INVALID_BEHAVIOUR_PARAMETER;
+         }
+         else
+         {
+            return error;
+         }
+   }
 }
 
 /** @brief (one liner)
@@ -20,13 +40,23 @@ mvErrorEnum mvBEntryUtility::setParameter(mvParamEnum paramFlag,\
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
-/** @brief (one liner)
-  *
-  * (documentation goes here)
+/** @brief set this utility's index/count parameters
+  * \param[in] paramFlag Behaviour parameter to be set
+  * \param[in] index A mvIndex value
+  * \return if ok MV_NO_ERROR (0), else any non-zero error value
   */
 mvErrorEnum mvBEntryUtility::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error = bTimer.setParameteri(paramFlag, index);
+   if (error == MV_INVALID_TIMER_PARAMETER)
+   {
+      //  NOT_FOUND then not 'behaviour' parameter error
+      return MV_INVALID_BEHAVIOUR_PARAMETER;
+   }
+   else
+   {
+      return error;
+   }
 }
 
 /** @brief (one liner)
@@ -45,7 +75,30 @@ mvErrorEnum mvBEntryUtility::getParameterv(mvParamEnum paramFlag,\
   */
 mvErrorEnum mvBEntryUtility::getParameterf(mvParamEnum paramFlag, mvFloat* num)
 {
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   if (num == NULL)
+   {
+      return MV_FLOAT_DEST_IS_NULL;
+   }
+
+   switch(paramFlag)
+   {
+      case MV_WEIGHT:
+         *num = getWeight();
+         return MV_NO_ERROR;
+      default:
+         error = bTimer.getParameterf(paramFlag, num);
+         if (error == MV_INVALID_TIMER_PARAMETER)
+         {
+            //  NOT_FOUND then not 'behaviour' parameter error
+            return MV_INVALID_BEHAVIOUR_PARAMETER;
+         }
+         else
+         {
+            return error;
+         }
+   }
 }
 
 /** @brief (one liner)
@@ -58,26 +111,43 @@ mvErrorEnum mvBEntryUtility::getParameter(mvParamEnum paramFlag,\
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
-/** @brief (one liner)
+/** @brief get this utility's index/count parameters
+  * \param[in] paramFlag Parameter to be retrieved
+  * \param[out] index Pointer to mvIndex memory location
+  * \return if ok MV_NO_ERROR (0) else any non-zero error value
   *
-  * (documentation goes here)
+  * NOTE if index pointer is NULL, then MV_INDEX_DEST_IS_NULL is returned.
   */
 mvErrorEnum mvBEntryUtility::getParameteri(mvParamEnum paramFlag,\
    mvIndex* index)
 {
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   if (index == NULL)
+   {
+      return MV_INDEX_DEST_IS_NULL;
+   }
+
+   error = bTimer.getParameteri(paramFlag, index);
+   if (error == MV_INVALID_TIMER_PARAMETER)
+   {
+      //  NOT_FOUND then not 'behaviour' parameter error
+      return MV_INVALID_BEHAVIOUR_PARAMETER;
+   }
+   else
+   {
+      return error;
+   }
 }
 
-/** @brief (one liner)
-  *
-  * (documentation goes here)
+/** @brief return pointer to the timer
   */
 mvTimerPtr mvBEntryUtility::getTimerPtr()
 {
    return &bTimer;
 }
 
-/** @brief (one liner)
+/** @brief Constructor
   *
   * Default values for members in class
   * - Confined = true;
@@ -102,13 +172,19 @@ mvErrorEnum mvBEntryUtility::setParameterv(mvParamEnum paramFlag,\
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
+/** @brief set weight of behaviour
+ * \param[in] entryWeight Positive mvFloat value
+  * \return if ok MV_NO_ERROR (0) else any non-zero error value
+ */
 mvErrorEnum mvBEntryUtility::setWeight(mvFloat entryWeight)
 {
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (entryWeight < 0.0)
+   {
+      return MV_FLOAT_VALUE_IS_NOT_POSITIVE;
+   }
+
+   bWeight = entryWeight;
+   return MV_NO_ERROR;
 }
 
 /** @brief (one liner)
@@ -117,5 +193,5 @@ mvErrorEnum mvBEntryUtility::setWeight(mvFloat entryWeight)
   */
 mvFloat mvBEntryUtility::getWeight() const
 {
-   return 0;
+   return bWeight;
 }

@@ -103,8 +103,8 @@
 	<File name="experimental\src\mvBEntryList.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="10047" topLine="0" />
 	</File>
-	<File name="experimental\src\mvBEntryListNode.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="1396" topLine="0" />
+	<File name="experimental\src\mvBEntryListNode.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="1396" topLine="15" />
 	</File>
 	<File name="experimental\src\mvBEntryTimer.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="8586" topLine="253" />
