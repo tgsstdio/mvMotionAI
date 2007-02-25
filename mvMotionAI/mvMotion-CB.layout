@@ -10,7 +10,7 @@
 	<File name="experimental\include\mvGlobalFunctions.h" open="0" top="0" tabpos="0">
 		<Cursor position="4020" topLine="30" />
 	</File>
-	<File name="experimental\include\mvList.h" open="1" top="0" tabpos="1">
+	<File name="experimental\include\mvList.h" open="0" top="0" tabpos="1">
 		<Cursor position="6284" topLine="115" />
 	</File>
 	<File name="experimental\src\mv.cpp" open="0" top="0" tabpos="3">
@@ -52,7 +52,7 @@
 	<File name="include\mvLuaScript.h" open="0" top="0" tabpos="1">
 		<Cursor position="3917" topLine="106" />
 	</File>
-	<File name="include\mvMotionAI-Types.h" open="1" top="0" tabpos="2">
+	<File name="include\mvMotionAI-Types.h" open="1" top="0" tabpos="1">
 		<Cursor position="4420" topLine="103" />
 	</File>
 	<File name="include\mvMotionAI-Utilities.h" open="0" top="0" tabpos="2">
