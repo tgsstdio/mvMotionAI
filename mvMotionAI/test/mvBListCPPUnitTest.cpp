@@ -30,19 +30,40 @@ void mvBListCPPUnitTest::testBaseBehaviours()
    mvFloat floatDestArray[10];
    mvCount countDest;
    mvIndex indexDest;
+   mvOptionEnum endState;
 
    /**
     * CASE A : Get parameter Implementation tests
     */
    mvBEntryUtility aUtility;
-   mvErrorEnum errorValue = MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum errorValue = MV_OPTION_ENUM_DEST_IS_NULL;
    // TEST A1 check the get parameter with null option
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("A1 FUNCTION NOT IMPLEMENTED = GETPARAMETER",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A1 !OPTION_DEST is null = GETPARAMETER",\
       errorValue, aUtility.getParameter(noParameter,nullOptionPtr));
 
-   // TEST A2 check the get parameter with valid option
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("A2 FUNCTION NOT IMPLEMENTED = GETPARAMETER",\
-      errorValue, aUtility.getParameter(noParameter,&optionDest));
+   // TEST A2 check confined
+   errorValue = MV_NO_ERROR;
+   anyParameter = MV_IS_CONFINED;
+   endState = (aUtility.confined) ? MV_TRUE : MV_FALSE;
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A2a !MV_NO_ERROR = GETPARAMETER",\
+      errorValue, aUtility.getParameter(anyParameter,&optionDest));
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A2b !MV_TRUE", endState, optionDest);
+
+   // TEST A2 check enabled
+   errorValue = MV_NO_ERROR;
+   anyParameter = MV_IS_ENABLED;
+   endState = (aUtility.enabled) ? MV_TRUE : MV_FALSE;
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A2a !MV_NO_ERROR = GETPARAMETER",\
+      errorValue, aUtility.getParameter(anyParameter,&optionDest));
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A2b !MV_TRUE", endState, optionDest);
+
+   // TEST A2 check is timed
+   errorValue = MV_NO_ERROR;
+   anyParameter = MV_IS_TIMED;
+   endState = (aUtility.bTimer.isTimed) ? MV_TRUE : MV_FALSE;
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A2a !MV_NO_ERROR = GETPARAMETER",\
+      errorValue, aUtility.getParameter(anyParameter,&optionDest));
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A2b !MV_TRUE", endState, optionDest);
 
    // TEST A3 check the get parameteri with null option
    errorValue = MV_INDEX_DEST_IS_NULL;
@@ -60,8 +81,29 @@ void mvBListCPPUnitTest::testBaseBehaviours()
       errorValue, aUtility.getParameterf(noParameter,nullFloatPtr));
 
    mvFloat dWeight = 1.0;
+   // A5 b & c weight
+   errorValue = MV_NO_ERROR;
    anyParameter = MV_WEIGHT;
-   // TODO : Here most weight tests
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A5b !NO_ERROR from GETPARAMETERf",\
+      errorValue, aUtility.getParameterf(anyParameter,&floatDest));
+   CPPUNIT_ASSERT_DOUBLES_EQUAL_MESSAGE("A5c !Default Weight", dWeight,
+      floatDest,0.0001);
+
+   // A5 d & e period
+   errorValue = MV_NO_ERROR;
+   anyParameter = MV_PERIOD;
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A5d !NO_ERROR from GETPARAMETERf",\
+      errorValue, aUtility.getParameterf(anyParameter,&floatDest));
+   CPPUNIT_ASSERT_DOUBLES_EQUAL_MESSAGE("A5e !Default Period",\
+      aUtility.bTimer.getPeriod(), floatDest,0.0001);
+
+   // A5 f & g elapsed time
+   errorValue = MV_NO_ERROR;
+   anyParameter = MV_ELAPSED_TIME;
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A5f !NO_ERROR from GETPARAMETERf",\
+      errorValue, aUtility.getParameterf(anyParameter,&floatDest));
+   CPPUNIT_ASSERT_DOUBLES_EQUAL_MESSAGE("A5g !Default Elapsed Time",\
+      aUtility.bTimer.getElapsedTime(), floatDest,0.0001);
 
    // TEST A6 check the get parameterf with valid option
    errorValue = MV_INVALID_BEHAVIOUR_PARAMETER;

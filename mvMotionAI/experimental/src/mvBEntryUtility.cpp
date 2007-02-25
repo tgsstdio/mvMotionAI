@@ -108,7 +108,47 @@ mvErrorEnum mvBEntryUtility::getParameterf(mvParamEnum paramFlag, mvFloat* num)
 mvErrorEnum mvBEntryUtility::getParameter(mvParamEnum paramFlag,\
    mvOptionEnum* option)
 {
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   if (option == NULL)
+   {
+      return MV_OPTION_ENUM_DEST_IS_NULL;
+   }
+
+   switch(paramFlag)
+   {
+      case MV_IS_CONFINED:
+         if(confined)
+         {
+            *option = MV_TRUE;
+         }
+         else
+         {
+            *option = MV_FALSE;
+         }
+         return MV_NO_ERROR;
+      case MV_IS_ENABLED:
+         if(enabled)
+         {
+            *option = MV_TRUE;
+         }
+         else
+         {
+            *option = MV_FALSE;
+         }
+         return MV_NO_ERROR;
+      default:
+         error = bTimer.getParameter(paramFlag, option);
+         if (error == MV_INVALID_TIMER_PARAMETER)
+         {
+            //  NOT_FOUND then not 'behaviour' parameter error
+            return MV_INVALID_BEHAVIOUR_PARAMETER;
+         }
+         else
+         {
+            return error;
+         }
+   }
 }
 
 /** @brief get this utility's index/count parameters
