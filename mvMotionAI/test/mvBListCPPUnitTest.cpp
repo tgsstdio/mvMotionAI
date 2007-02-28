@@ -136,10 +136,59 @@ void mvBListCPPUnitTest::testBaseBehaviours()
     */
    mvBEntryUtility bUtility;
 
-   errorValue = MV_FUNCTION_NOT_IMPLEMENTED;
-   // TEST B1 check the get parameter with null option
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1 FUNCTION NOT IMPLEMENTED = SETPARAMETER",\
-      errorValue, bUtility.setParameter(noParameter,optionDest));
+   bool flagValue;
+
+   // B1 no parameter check
+   endState = MV_FALSE;
+   errorValue = MV_INVALID_BEHAVIOUR_PARAMETER;
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1 !MV_INVALID_BEHAV_PARAMETER from SETPARAMETER",\
+      errorValue, bUtility.setParameter(noParameter,endState));
+
+   errorValue = MV_NO_ERROR;
+   anyParameter = MV_IS_CONFINED;
+   // TEST B1abcd check the confined parameter true
+
+   flagValue = false;
+   endState = (flagValue) ? MV_TRUE : MV_FALSE;
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1a !NO_ERROR = SETPARAMETER",\
+      errorValue, bUtility.setParameter(anyParameter,endState));
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1b !FALSE", flagValue, bUtility.confined);
+
+   flagValue = true;
+   endState = (flagValue) ? MV_TRUE : MV_FALSE;
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1c !NO_ERROR = SETPARAMETER",\
+      errorValue, bUtility.setParameter(anyParameter,endState));
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1d !TRUE", flagValue, bUtility.confined);
+
+   // TEST B1efgh check the enabled parameter true
+   anyParameter = MV_IS_ENABLED;
+   flagValue = false;
+   endState = (flagValue) ? MV_TRUE : MV_FALSE;
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1e !NO_ERROR = SETPARAMETER",\
+      errorValue, bUtility.setParameter(anyParameter,endState));
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1f !FALSE", flagValue, bUtility.enabled);
+
+   flagValue = true;
+   endState = (flagValue) ? MV_TRUE : MV_FALSE;
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1g !NO_ERROR = SETPARAMETER",\
+      errorValue, bUtility.setParameter(anyParameter,endState));
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1h !TRUE", flagValue, bUtility.enabled);
+
+   // TEST B1ijkl check the timed parameter true
+   anyParameter = MV_IS_TIMED;
+   flagValue = false;
+   endState = (flagValue) ? MV_TRUE : MV_FALSE;
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1i !NO_ERROR = SETPARAMETER",\
+      errorValue, bUtility.setParameter(anyParameter,endState));
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1j !FALSE", flagValue,\
+      bUtility.bTimer.isTimed);
+
+   flagValue = true;
+   endState = (flagValue) ? MV_TRUE : MV_FALSE;
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1k !NO_ERROR = SETPARAMETER",\
+      errorValue, bUtility.setParameter(anyParameter,endState));
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1l !TRUE", flagValue,\
+      bUtility.bTimer.isTimed);
 
    // TEST B2 check the get parameteri with valid option
    errorValue = MV_INVALID_BEHAVIOUR_PARAMETER;

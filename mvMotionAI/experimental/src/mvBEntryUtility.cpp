@@ -37,12 +37,49 @@ mvErrorEnum mvBEntryUtility::setParameterf(mvParamEnum paramFlag, mvFloat num)
 mvErrorEnum mvBEntryUtility::setParameter(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   switch(paramFlag)
+   {
+      case MV_IS_CONFINED:
+         // i.e non zero is true
+         if(option == MV_FALSE)
+         {
+            confined = false;
+         }
+         else
+         {
+            confined = true;
+         }
+         return MV_NO_ERROR;
+      case MV_IS_ENABLED:
+         // i.e non zero is true
+         if(option == MV_FALSE)
+         {
+            enabled = false;
+         }
+         else
+         {
+            enabled = true;
+         }
+         return MV_NO_ERROR;
+      default:
+         error = bTimer.setParameter(paramFlag, option);
+         if (error == MV_INVALID_TIMER_PARAMETER)
+         {
+            //  NOT_FOUND then not 'behaviour' parameter error
+            return MV_INVALID_BEHAVIOUR_PARAMETER;
+         }
+         else
+         {
+            return error;
+         }
+   }
 }
 
 /** @brief set this utility's index/count parameters
   * \param[in] paramFlag Behaviour parameter to be set
-  * \param[in] index A mvIndex value
+  * \param[in] index A mvIndex index value
   * \return if ok MV_NO_ERROR (0), else any non-zero error value
   */
 mvErrorEnum mvBEntryUtility::setParameteri(mvParamEnum paramFlag, mvIndex index)
@@ -59,9 +96,12 @@ mvErrorEnum mvBEntryUtility::setParameteri(mvParamEnum paramFlag, mvIndex index)
    }
 }
 
-/** @brief (one liner)
+/** @brief retrieves utility's vector/array parameters
+  * \param[in] paramFlag Behaviour parameter to be retrieved
+  * \param[out] numArray mvFloat array pointer
+  * \param[out] noOfParameters no of parameteters returned by function
   *
-  * (documentation goes here)
+  * NOTE: also calls getParameterf
   */
 mvErrorEnum mvBEntryUtility::getParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray, mvCount* noOfParameters)
@@ -69,9 +109,11 @@ mvErrorEnum mvBEntryUtility::getParameterv(mvParamEnum paramFlag,\
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
-/** @brief (one liner)
+/** @brief retrieves single floating point variable of entry
+  * \param[in] paramFlag Behaviour parameter to be retrieved
+  * \param[out] numArray mvFloat pointer to memory location
   *
-  * (documentation goes here)
+  * NOTE : also calls its timer's getParameterf
   */
 mvErrorEnum mvBEntryUtility::getParameterf(mvParamEnum paramFlag, mvFloat* num)
 {
@@ -102,8 +144,10 @@ mvErrorEnum mvBEntryUtility::getParameterf(mvParamEnum paramFlag, mvFloat* num)
 }
 
 /** @brief (one liner)
+  * \param[in] paramFlag Behaviour parameter to be retrieved
+  * \param[out] option mvFloat array pointer
   *
-  * (documentation goes here)
+  * NOTE : also calls its timer's getParameter
   */
 mvErrorEnum mvBEntryUtility::getParameter(mvParamEnum paramFlag,\
    mvOptionEnum* option)
