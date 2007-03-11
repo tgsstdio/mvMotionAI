@@ -52,7 +52,7 @@
 class mvGroup
 {
    private:
-     std::vector<mvBody*> members;
+     std::vector<mvBodyPtr> members;
      //int noOfMembersSlots;
      mvCount noOfMembers;
      //char* groupID;
@@ -65,9 +65,9 @@ class mvGroup
       void clearAllMembers();
      // void removeAllMembers();
       char* getID() const;
-      mvBody* getMemberByIndex(mvIndex index);
-      mvErrorEnum addMember(mvBody* tempBody);
-      mvErrorEnum removeMember(mvBody* tempBody);
+      mvBodyPtr getMemberByIndex(mvIndex index);
+      mvErrorEnum addMember(mvBodyPtr tempBody);
+      mvErrorEnum removeMember(mvBodyPtr tempBody);
       mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
       mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num);

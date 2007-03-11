@@ -33,13 +33,13 @@
 #undef MV_BEHAVIOUR_CENTRAL_DEBUG_OUTPUT_FLAG
 
 //update global behaviours data
-void mvProcessGroupBehaviours(mvWorld* worldPtr, mvGroupBehaviour* groupBehPtr, mvIndex behaviourIndex, mvFloat timeStep)
+void mvProcessGroupBehaviours(mvWorldPtr worldPtr, mvGroupBehaviourPtr groupBehPtr, mvIndex behaviourIndex, mvFloat timeStep)
 {
    mvIndex i,j;
    mvCount noOfGroups, noOfMembers;
    mvGroupBehaviourNode* currentGroupNode = NULL;
-   mvBody* currentBody = NULL;
-   mvGroup* currentGroup = NULL;
+   mvBodyPtr currentBody = NULL;
+   mvGroupPtr currentGroup = NULL;
    mvIndex currentGroupIndex;
    mvBehaviourEntry* groupEntry = NULL;
    mvOptionEnum behaviourType;
@@ -149,7 +149,7 @@ void mvProcessGroupBehaviours(mvWorld* worldPtr, mvGroupBehaviour* groupBehPtr, 
    }
 }
 
-void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBody* currentBody, mvFloat timeStep,
+void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBodyPtr currentBody, mvFloat timeStep,
                              mvVec3& mvDirVector, mvVec3& mvVelocityVector,
                              mvVec3& mvAccelVector,mvVec3& mvForceVector)
 {
@@ -158,13 +158,13 @@ void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBody* currentBody, mvFloat tim
    mvBehaviourEntry* bodyEntry = NULL;
    mvOptionEnum nodeType, behaviourType;
    mvBehaviour* globalBehaviour = NULL;
-   mvGroupBehaviour* groupBehav = NULL;
+   mvGroupBehaviourPtr groupBehav = NULL;
    mvGroupBehaviourNode* groupBehavNode = NULL;
-   //mvGroup* currentGroup = NULL;
+   //mvGroupPtr currentGroup = NULL;
    mvIndex i;
    mvCount noOfBehaviours;
    mvIndex behaviourIndex, groupIndex, bodyIndex, waypointIndex;
-   mvBody* bodyPtr = NULL;
+   mvBodyPtr bodyPtr = NULL;
    mvWaypoint* wayPointPtr = NULL;
    //mvPathway* pathWayPtr = NULL;
    mvFloat nodeFactor = 0; // multiplier with each behaviour
@@ -385,8 +385,8 @@ void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBody* currentBody, mvFloat tim
    mvEnum bType;
    mvPathway* currentPathway = NULL;
    mvWaypoint* tempWaypoint = NULL;
-   mvBody* tempBody1 = NULL;
-   mvBody* tempBody2 = NULL;
+   mvBodyPtr tempBody1 = NULL;
+   mvBodyPtr tempBody2 = NULL;
    */
 
          /*

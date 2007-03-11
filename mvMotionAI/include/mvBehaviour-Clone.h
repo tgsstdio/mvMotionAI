@@ -28,7 +28,7 @@
 #include "mvVec3.h"
 #include "mvBody.h"
 
-mvVec3 mvBehaviour_Calculate_Clone(mvBody* currentBody, mvBody* targetBody,
+mvVec3 mvBehaviour_Calculate_Clone(mvBodyPtr currentBody, mvBodyPtr targetBody,
                                 mvFloat syncRatio);
 
 #endif

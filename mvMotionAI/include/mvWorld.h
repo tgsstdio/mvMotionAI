@@ -83,7 +83,7 @@ class mvWorld
       mvCount noOfWaypoints;
       std::vector<mvBehaviour*> behaviours;
       mvCount noOfBehaviours;
-      std::vector<mvBody*> bodies;
+      std::vector<mvBodyPtr> bodies;
       mvCount noOfBodies;
       std::vector<mvPathway*> pathways;
       mvCount noOfPathways;
@@ -91,7 +91,7 @@ class mvWorld
       mvCount noOfObstacles;
       std::vector<mvGroup*> groups;
       mvCount noOfGroups;
-      std::vector<mvGroupBehaviour*> groupBehaviours;
+      std::vector<mvGroupBehaviourPtr> groupBehaviours;
       mvCount noOfGroupBehaviours;
       mvIndex currentGroupBehaviour;
 
@@ -157,7 +157,7 @@ class mvWorld
 
       mvIndex mvAddBody(mvOptionEnum bType, mvOptionEnum bShape); //< initialised
       mvIndex mvAddBodyWithPos(mvOptionEnum bType, mvOptionEnum bShape, mvFloat x, mvFloat y, mvFloat z); //< initialised
-      mvBody* mvGetBody(mvIndex index); //< initialised
+      mvBodyPtr mvGetBody(mvIndex index); //< initialised
       mvIndex mvSetCurrentBody(mvIndex index); //< initialised
       mvErrorEnum mvRemoveCurrentBody(); //< initialised
       mvErrorEnum mvRemoveBody(mvIndex index); //< initialised
@@ -218,8 +218,8 @@ class mvWorld
       */
 
       mvIndex mvAddGroup(char* mvGroupID); //< initialised
-      mvGroup* mvGetGroup(mvIndex index); //< initialised
-      mvGroup* mvGetGroupByID(char* groupID);
+      mvGroupPtr mvGetGroup(mvIndex index); //< initialised
+      mvGroupPtr mvGetGroupByID(char* groupID);
       mvIndex mvGetGroupIndexByID(char* groupID);
       mvErrorEnum mvRemoveCurrentGroup(); //< initialised
       mvErrorEnum mvRemoveGroup(mvIndex index); //< initialised
@@ -243,7 +243,7 @@ class mvWorld
       mvErrorEnum mvRemoveCurrentBodyFromCurrentGroup();//< initialised
 
       mvIndex mvAddForce(mvOptionEnum fType); //< initialised
-      mvForce* mvGetForce(mvIndex index);//< initialised
+      mvForcePtr mvGetForce(mvIndex index);//< initialised
       mvIndex mvAddForceVector(mvOptionEnum fType, mvFloat x, mvFloat y, mvFloat z);//< initialised
       mvErrorEnum mvRemoveForce(mvIndex index);//< initialised
       mvErrorEnum mvRemoveCurrentForce();//< initialised
@@ -258,7 +258,7 @@ class mvWorld
 
       // mv group behaviours
       mvIndex mvAddGroupBehaviour(mvOptionEnum type); //< initialised
-      mvGroupBehaviour* mvGetGroupBehaviour(mvIndex index); //< initialised
+      mvGroupBehaviourPtr mvGetGroupBehaviour(mvIndex index); //< initialised
       mvErrorEnum mvRemoveGroupBehaviour(mvIndex index); //< initialised
       mvErrorEnum mvRemoveCurrentGroupBehaviour(); //< initialised
       void mvRemoveAllGroupBehaviours(); //< initialised
@@ -288,7 +288,7 @@ class mvWorld
       mvErrorEnum mvInsertCurrentGroupIntoCurrentGroupBehaviour();
 
       void mvWorldStep(mvFloat timeInSecs); //< initialised
-      void mvApplyToAllBodies(void (someFunction)(mvBody*,void*),void* extraPtr);
+      void mvApplyToAllBodies(void (someFunction)(mvBodyPtr,void*),void* extraPtr);
       void mvApplyToAllObstacles(void (someFunction)(mvObstacle*,void*),void* extraPtr);
       void mvApplyToAllWaypoints(void (someFunction)(mvWaypoint*,void*),void* extraPtr);
 

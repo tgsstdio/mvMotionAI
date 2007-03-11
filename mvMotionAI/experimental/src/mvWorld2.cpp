@@ -1118,7 +1118,7 @@ mvGroup * mvWorld_V2::getGroupPtr(mvIndex index)
    return groups.getClassPtr(index);
 }
 
-bool checkGroupsForIDMatch(mvGroup* currentGroup, void* extraPtr)
+bool checkGroupsForIDMatch(mvGroupPtr currentGroup, void* extraPtr)
 {
    const char* groupID = NULL;
 
@@ -2739,7 +2739,7 @@ void mvWorld_V2::applyToAllBodiesByIndex(mvIndex worldIndex,\
   *
   * (documentation goes here)
   */
-void mvWorld_V2::applyToAllBodies(void (someFunction)(mvBody*, void*),\
+void mvWorld_V2::applyToAllBodies(void (someFunction)(mvBodyPtr, void*),\
    void* extraPtr)
 {
    bodies.applyToAllItems(someFunction, extraPtr);
@@ -2889,7 +2889,7 @@ mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
 //mvErrorEnum mvWorld_V2::setDefaultWaypointForBody(mvIndex waypointIndex,\
 //   mvIndex bodyIndex)
 //{
-//   mvBody* tempBody = bodies.getClassPtr(bodyIndex);
+//   mvBodyPtr tempBody = bodies.getClassPtr(bodyIndex);
 //   mvIndex convertedIndex;
 //
 //   if (tempBody == NULL)
@@ -2910,7 +2910,7 @@ mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
 //mvErrorEnum mvWorld_V2::setDefaultPathwayForBody(mvIndex pathwayIndex,\
 //   mvIndex bodyIndex)
 //{
-//   mvBody* tempBody = bodies.getClassPtr(bodyIndex);
+//   mvBodyPtr tempBody = bodies.getClassPtr(bodyIndex);
 //   mvIndex convertedIndex;
 //
 //   if (tempBody == NULL)
@@ -2931,7 +2931,7 @@ mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
 //mvErrorEnum mvWorld_V2::setDefaultBodyForBody(mvIndex targetIndex,\
 //   mvIndex bodyIndex)
 //{
-//   mvBody* tempBody = bodies.getClassPtr(bodyIndex);
+//   mvBodyPtr tempBody = bodies.getClassPtr(bodyIndex);
 //   mvIndex convertedIndex;
 //
 //   if (tempBody == NULL)
@@ -2952,7 +2952,7 @@ mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
 //mvErrorEnum mvWorld_V2::setDefaultWeightForBody(mvFloat factor,\
 //   mvIndex bodyIndex)
 //{
-//   mvBody* tempBody = bodies.getClassPtr(bodyIndex);
+//   mvBodyPtr tempBody = bodies.getClassPtr(bodyIndex);
 //
 //   if (tempBody == NULL)
 //   {
@@ -2965,7 +2965,7 @@ mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
 
 //mvErrorEnum mvWorld_V2::setDefaultWaypointForCurrentBody(mvIndex wpIndex)
 //{
-//   mvBody* tempBody = bodies.getCurrentClassPtr();
+//   mvBodyPtr tempBody = bodies.getCurrentClassPtr();
 //   mvIndex convertedIndex;
 //
 //   if (tempBody == NULL)
@@ -2985,7 +2985,7 @@ mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
 
 //mvErrorEnum mvWorld_V2::setDefaultPathwayForCurrentBody(mvIndex pwIndex)
 //{
-//   mvBody* tempBody = bodies.getCurrentClassPtr();
+//   mvBodyPtr tempBody = bodies.getCurrentClassPtr();
 //   mvIndex convertedIndex;
 //
 //   if (tempBody == NULL)
@@ -3006,7 +3006,7 @@ mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
 
 //mvErrorEnum mvWorld_V2::setDefaultBodyForCurrentBody(mvIndex bodyIndex)
 //{
-//   mvBody* tempBody = bodies.getCurrentClassPtr();
+//   mvBodyPtr tempBody = bodies.getCurrentClassPtr();
 //   mvIndex convertedIndex;
 //
 //   if (tempBody == NULL)
@@ -3027,7 +3027,7 @@ mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
 
 //mvErrorEnum mvWorld_V2::setDefaultWeightForCurrentBody(mvFloat factor)
 //{
-//   mvBody* tempBody = bodies.getCurrentClassPtr();
+//   mvBodyPtr tempBody = bodies.getCurrentClassPtr();
 //
 //   if (tempBody == NULL)
 //   {

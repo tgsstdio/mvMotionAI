@@ -28,7 +28,7 @@
 #include "mvMotionAI-Types.h"
 #include <cstdlib>
 #include <cstring>
-#include <iostream>
+//#include <iostream>
 
 #define MV_SCRIPT_DEBUG_STDOUT 1
 #undef MV_SCRIPT_DEBUG_STDOUT

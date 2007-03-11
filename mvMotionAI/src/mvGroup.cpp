@@ -45,8 +45,8 @@ mvCount mvGroup::getNoOfMembers()
 /*
 void mvGroup::removeAllMembers()
 {
-   std::vector<mvBody*>::iterator i;
-   mvBody* tempBody = NULL;
+   std::vector<mvBodyPtr>::iterator i;
+   mvBodyPtr tempBody = NULL;
 
    **
    for (i = members.begin(); i != members.end(); ++i)
@@ -68,8 +68,8 @@ void mvGroup::removeAllMembers()
 
 void mvGroup::clearAllMembers()
 {
-   std::vector<mvBody*>::iterator i;
-   mvBody* tempBody = NULL;
+   std::vector<mvBodyPtr>::iterator i;
+   mvBodyPtr tempBody = NULL;
 
    for (i = members.begin(); i != members.end(); ++i)
    {
@@ -100,7 +100,7 @@ mvGroup::mvGroup(const char* mBodyGroupID)
   noOfMembers = 0;
 }
 
-mvBody* mvGroup::getMemberByIndex(mvIndex index)
+mvBodyPtr mvGroup::getMemberByIndex(mvIndex index)
 {
    /*
   if (index > 1 && index <= noOfMembers)
@@ -118,11 +118,11 @@ mvBody* mvGroup::getMemberByIndex(mvIndex index)
 /**
  * adds members by mvBody pointers.
  */
-mvErrorEnum mvGroup::addMember(mvBody* tempBody)
+mvErrorEnum mvGroup::addMember(mvBodyPtr tempBody)
 {
    /*
-   std::vector<mvBody*>::iterator i;
-   mvBody* currentBody = NULL;
+   std::vector<mvBodyPtr>::iterator i;
+   mvBodyPtr currentBody = NULL;
 
    if (tempBody == NULL)
      return MV_FALSE;
@@ -141,11 +141,11 @@ mvErrorEnum mvGroup::addMember(mvBody* tempBody)
    return mvAddUniqueItemInVector<mvBody>(members,tempBody,noOfMembers);
 }
 
-mvErrorEnum mvGroup::removeMember(mvBody* tempBody)
+mvErrorEnum mvGroup::removeMember(mvBodyPtr tempBody)
 {
    /*
-   std::vector<mvBody*>::iterator i;
-   mvBody* currentBody = NULL;
+   std::vector<mvBodyPtr>::iterator i;
+   mvBodyPtr currentBody = NULL;
 
    if (tempBody != NULL && noOfMembers <= 0)
       return MV_FALSE;

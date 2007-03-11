@@ -41,13 +41,13 @@ static const mvIndex MV_SIMPLE_FLOCK_PERCEIVED_COHESION_FLAG_INDEX = 0;
 static const mvIndex MV_SIMPLE_FLOCK_PERCEIVED_ALIGNMENT_FLAG_INDEX = 1;
 
 void mvBehaviour_SimpleFlock_GroupOperations(mvWorld* worldPtr,
-                                             mvGroup* flockGroup,
+                                             mvGroupPtr flockGroup,
                                              mvBehaviourEntry* groupData)
 {
    mvCount groupSize;
    mvIndex i;
    mvVec3 totalVelocity, totalPosition;
-   mvBody* tempBody = NULL;
+   mvBodyPtr tempBody = NULL;
 
    if (worldPtr != NULL && flockGroup != NULL && groupData != NULL)
    {
@@ -83,7 +83,7 @@ void mvBehaviour_SimpleFlock_GroupOperations(mvWorld* worldPtr,
 }
 
 
-mvVec3 mvBehaviour_SimpleFlock_SingularOperation(mvBehaviourEntry* groupData, mvBody* currentBody,
+mvVec3 mvBehaviour_SimpleFlock_SingularOperation(mvBehaviourEntry* groupData, mvBodyPtr currentBody,
                                                mvBehaviourEntry* bodyData)
 {
    mvVec3 finalVelocity, cohesion, alignment, separation,

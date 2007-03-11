@@ -23,7 +23,7 @@
  */
 
 #include "mvBehaviour-Type.h"
-#include <iostream>
+//#include <iostream>
 
 mvCount mvBehaviour_GetIndexesArraySize(mvOptionEnum type)
 {

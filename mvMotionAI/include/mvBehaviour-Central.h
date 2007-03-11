@@ -35,11 +35,11 @@
 #include "mvMotionAI-Types.h"
 
 
-void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBody* currentBody, mvFloat timeStep,
+void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBodyPtr currentBody, mvFloat timeStep,
                              mvVec3& mvDirVector, mvVec3& mvVelocityVector,
                              mvVec3& mvAccelVector,mvVec3& mvForceVector);
 
-void mvProcessGroupBehaviours(mvWorld* worldPtr, mvGroupBehaviour* groupBehPtr,
+void mvProcessGroupBehaviours(mvWorld* worldPtr, mvGroupBehaviourPtr groupBehPtr,
                               mvIndex groupIndex, mvFloat timeStep);
 
 

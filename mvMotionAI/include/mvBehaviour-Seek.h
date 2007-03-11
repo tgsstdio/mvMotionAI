@@ -29,6 +29,6 @@
 #include "mvWaypoint.h"
 #include "mvMotionAI-Types.h"
 
-mvVec3 mvBehaviour_Calculate_Seek(mvBody* body, mvWaypoint* point);
+mvVec3 mvBehaviour_Calculate_Seek(mvBodyPtr body, mvWaypoint* point);
 
 #endif

@@ -24,7 +24,7 @@
 
 #include "mvWorld.h"
 #include <cstdlib>
-#include <iostream>
+//#include <iostream>
 #include "mvMotionAI-Utilities.h"
 #include "mvBehaviour-Central.h"
 //#include "Utilities.h"
@@ -196,10 +196,10 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
    mvFloat pos[2][3];
    mvFloat vel[2][3];
    /**/
-   std::vector<mvBody*>::iterator i;
+   std::vector<mvBodyPtr>::iterator i;
    std::vector<mvForce*>::iterator forceIterator;
-   mvBody* tempBody = NULL;
-   mvForce* currentForce = NULL;
+   mvBodyPtr tempBody = NULL;
+   mvForcePtr currentForce = NULL;
    // linear motion variables
    mvFloat h,currentAcceleration, maxSpeed, extraVelocity;
    // force variables
@@ -389,7 +389,7 @@ void mvWorld::mvWorldStep(mvFloat timeInSecs)
    /*
     * Step 4 : iterate & perform group functions
     */
-   mvGroupBehaviour* currentGroupBeh = NULL;
+   mvGroupBehaviourPtr currentGroupBeh = NULL;
    for (groupNo = 1; groupNo <= noOfGroupBehaviours; groupNo++)
    {
       currentGroupBeh = mvGetGroupBehaviour(groupNo);
@@ -599,7 +599,7 @@ mvErrorEnum mvWorld::mvNudgeBody(mvIndex bodyIndex, mvFloat timeInSecs)
    mvFloat speed[2], dir[3];
    mvIndex j;
 
-   mvBody* tempBody = mvGetBody(bodyIndex);
+   mvBodyPtr tempBody = mvGetBody(bodyIndex);
 
    if (tempBody != NULL)
    {
@@ -747,11 +747,11 @@ mvErrorEnum mvWorld::mvNudgeCurrentBody(mvFloat timeInSecs)
    return mvNudgeBody(currentBody,timeInSecs);
 }
 
-void mvWorld::mvApplyToAllBodies(void (someFunction)(mvBody*,void*),void* extraPtr)
+void mvWorld::mvApplyToAllBodies(void (someFunction)(mvBodyPtr,void*),void* extraPtr)
 {
    /*
-   std::vector<mvBody*>::iterator i;
-   mvBody* tempBody = NULL;
+   std::vector<mvBodyPtr>::iterator i;
+   mvBodyPtr tempBody = NULL;
 
    for (i = bodies.begin(); i != bodies.end(); ++i)
    {
@@ -787,7 +787,7 @@ mvIndex mvWorld::mvAddBody(mvOptionEnum bType, mvOptionEnum bShape)
 
 mvIndex mvWorld::mvAddBodyWithPos(mvOptionEnum bType, mvOptionEnum bShape, mvFloat x, mvFloat y, mvFloat z)
 {
-   mvBody* tempBody = NULL;
+   mvBodyPtr tempBody = NULL;
 
    // initialise body
    tempBody = new mvBody(bType,bShape,x,y,z);
@@ -801,7 +801,7 @@ mvIndex mvWorld::mvAddBodyWithPos(mvOptionEnum bType, mvOptionEnum bShape, mvFlo
    return currentBody;
 }
 
-mvBody* mvWorld::mvGetBody(mvIndex index)
+mvBodyPtr mvWorld::mvGetBody(mvIndex index)
 {
    return mvGetClassPtr<mvBody>(bodies,index, noOfBodies);
 }
@@ -866,7 +866,7 @@ mvErrorEnum mvWorld::mvSetCurrentBodyParameterv(mvParamEnum paramFlag, mvFloat* 
 mvIndex mvWorld::mvAddGroup(char* mvGroupID)
 {
    std::vector<mvGroup*>::iterator i;
-   mvGroup* tempGroup = NULL;
+   mvGroupPtr tempGroup = NULL;
 
    if (mvGroupID == NULL)
       return MV_FALSE;
@@ -893,7 +893,7 @@ mvIndex mvWorld::mvAddGroup(char* mvGroupID)
    return currentGroup;
 }
 
-mvGroup* mvWorld::mvGetGroup(mvIndex index)
+mvGroupPtr mvWorld::mvGetGroup(mvIndex index)
 {
    //std::cout << "Index : " << index << std::endl;
    return mvGetClassPtr<mvGroup>(groups, index, noOfGroups);
@@ -908,7 +908,7 @@ mvErrorEnum mvWorld::mvRemoveCurrentGroup()
 mvErrorEnum mvWorld::mvRemoveGroup(mvIndex index)
 {
   /*
-  mvGroup* tempGroup = NULL;
+  mvGroupPtr tempGroup = NULL;
   mvIndex groupIndex = index + MV_OFFSET_TO_INDEX;
 
   if (groupIndex >= 0 && groupIndex < noOfGroups)
@@ -945,7 +945,7 @@ void mvWorld::mvRemoveAllGroups()
 {
    /*
    std::vector<mvGroup*>::iterator i = groups.begin();
-   mvGroup* temp = NULL;
+   mvGroupPtr temp = NULL;
 
    ** ignores first group <=> ALL **
    for (++i ; i != groups.end(); ++i)
@@ -995,8 +995,8 @@ mvErrorEnum mvWorld::mvSetCurrentGroupParameterv(mvParamEnum paramFlag, mvFloat*
 
 mvErrorEnum mvWorld::mvAddBodyToGroup(mvIndex bodyIndex, mvIndex groupIndex)
 {
-   mvGroup* currentGroup = NULL;
-   mvBody* tempBody = NULL;
+   mvGroupPtr currentGroup = NULL;
+   mvBodyPtr tempBody = NULL;
 
    tempBody = mvGetBody(bodyIndex);
    if (tempBody != NULL)
@@ -1038,8 +1038,8 @@ mvErrorEnum mvWorld::mvAddCurrentBodyToCurrentGroup()
 
 mvErrorEnum mvWorld::mvRemoveBodyFromGroup(mvIndex bodyIndex, mvIndex groupIndex)
 {
-   mvGroup* currentGroup = NULL;
-   mvBody* tempBody = NULL;
+   mvGroupPtr currentGroup = NULL;
+   mvBodyPtr tempBody = NULL;
 
    tempBody = mvGetBody(bodyIndex);
    if (tempBody != NULL)
@@ -1076,10 +1076,10 @@ mvErrorEnum mvWorld::mvRemoveCurrentBodyFromCurrentGroup()
    return mvRemoveBodyFromGroup(currentBody, currentGroup);
 }
 
-mvGroup* mvWorld::mvGetGroupByID(char* groupID)
+mvGroupPtr mvWorld::mvGetGroupByID(char* groupID)
 {
    std::vector<mvGroup*>::iterator i;
-   mvGroup* tempGroup = NULL;
+   mvGroupPtr tempGroup = NULL;
 
    if (groupID == NULL)
       return NULL;
@@ -1103,7 +1103,7 @@ mvIndex mvWorld::mvGetGroupIndexByID(char* groupID)
 {
    std::vector<mvGroup*>::iterator i;
    mvCount count = 1;
-   mvGroup* temp = NULL;
+   mvGroupPtr temp = NULL;
    char* tempID = NULL;
 
    if (groupID == NULL)
@@ -1410,14 +1410,14 @@ mvIndex mvWorld::mvAddForce(mvOptionEnum fType)
    return mvAddForceVector(fType, 0, 0, 0);
 }
 
-mvForce* mvWorld::mvGetForce(mvIndex index)
+mvForcePtr mvWorld::mvGetForce(mvIndex index)
 {
    return mvGetClassPtr<mvForce>(forces, index, noOfForces);
 }
 
 mvIndex mvWorld::mvAddForceVector(mvOptionEnum fType, mvFloat x, mvFloat y, mvFloat z)
 {
-   mvForce* tempForce = new mvForce(fType,x,y,z);
+   mvForcePtr tempForce = new mvForce(fType,x,y,z);
 
    forces.push_back(tempForce);
    ++noOfForces;
@@ -1614,7 +1614,7 @@ mvErrorEnum mvWorld::mvSetCurrentBehaviourParameterv(mvParamEnum paramFlag, mvFl
 /*
 mvEnum mvWorld::mvAddBehaviourToBody(mvIndex behaviourIndex, mvIndex bodyIndex)
 {
-   mvBody* tempBody = NULL;
+   mvBodyPtr tempBody = NULL;
    mvBehaviour* tempBehaviour = NULL;
 
    tempBehaviour = mvGetBehaviour(behaviourIndex);
@@ -1680,7 +1680,7 @@ mvEnum mvWorld::mvAddCurrentWaypointToCurrentBehaviour()
 
 mvEnum mvWorld::mvAddBodyToBehaviour(mvIndex bodyIndex, mvIndex behaviourIndex)
 {
-   mvBody* tempBody = NULL;
+   mvBodyPtr tempBody = NULL;
    mvBehaviour* tempBehaviour = NULL;
 
    tempBody = mvGetBody(bodyIndex);
@@ -1715,7 +1715,7 @@ mvEnum mvWorld::mvAddCurrentBodyToCurrentBehaviour()
 
 mvErrorEnum mvWorld::mvSetDefaultWaypointForBody(mvIndex waypointIndex, mvIndex bodyIndex)
 {
-   mvBody* tempBody = mvGetBody(bodyIndex);
+   mvBodyPtr tempBody = mvGetBody(bodyIndex);
 
    if (tempBody == NULL)
    {
@@ -1728,7 +1728,7 @@ mvErrorEnum mvWorld::mvSetDefaultWaypointForBody(mvIndex waypointIndex, mvIndex 
 
 mvErrorEnum mvWorld::mvSetDefaultPathwayForBody(mvIndex pathwayIndex, mvIndex bodyIndex)
 {
-   mvBody* tempBody = mvGetBody(bodyIndex);
+   mvBodyPtr tempBody = mvGetBody(bodyIndex);
 
    if (tempBody == NULL)
    {
@@ -1741,7 +1741,7 @@ mvErrorEnum mvWorld::mvSetDefaultPathwayForBody(mvIndex pathwayIndex, mvIndex bo
 
 mvErrorEnum mvWorld::mvSetDefaultBodyForBody(mvIndex targetIndex,mvIndex bodyIndex)
 {
-   mvBody* tempBody = mvGetBody(bodyIndex);
+   mvBodyPtr tempBody = mvGetBody(bodyIndex);
 
    if (tempBody == NULL)
    {
@@ -1754,7 +1754,7 @@ mvErrorEnum mvWorld::mvSetDefaultBodyForBody(mvIndex targetIndex,mvIndex bodyInd
 
 mvIndex mvWorld::mvAddGroupBehaviour(mvOptionEnum type)
 {
-   mvGroupBehaviour* tempGroupBehav = NULL;
+   mvGroupBehaviourPtr tempGroupBehav = NULL;
 
    tempGroupBehav = new mvGroupBehaviour(type);
    groupBehaviours.push_back(tempGroupBehav);
@@ -1763,7 +1763,7 @@ mvIndex mvWorld::mvAddGroupBehaviour(mvOptionEnum type)
    return currentBehaviour;
 }
 
-mvGroupBehaviour* mvWorld::mvGetGroupBehaviour(mvIndex index)
+mvGroupBehaviourPtr mvWorld::mvGetGroupBehaviour(mvIndex index)
 {
    return mvGetClassPtr<mvGroupBehaviour>(groupBehaviours,index, noOfGroupBehaviours);
 }
@@ -1827,7 +1827,7 @@ mvEnum mvWorld::mvSetCurrentGroupBehaviourParameterv(mvEnum paramFlag, mvFloat* 
 // 00-01-09
 mvErrorEnum mvWorld::mvSetGroupBehaviourParameter(mvIndex gbIndex, mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum option)
 {
-   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(gbIndex);
+   mvGroupBehaviourPtr tempGroupBehav = mvGetGroupBehaviour(gbIndex);
 
    if (tempGroupBehav != NULL)
    {
@@ -1841,7 +1841,7 @@ mvErrorEnum mvWorld::mvSetGroupBehaviourParameter(mvIndex gbIndex, mvIndex group
 
 mvErrorEnum mvWorld::mvSetGroupBehaviourParameteri(mvIndex gbIndex, mvIndex groupIndex, mvParamEnum paramFlag, mvIndex option)
 {
-   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(gbIndex);
+   mvGroupBehaviourPtr tempGroupBehav = mvGetGroupBehaviour(gbIndex);
 
    if (tempGroupBehav != NULL)
    {
@@ -1855,7 +1855,7 @@ mvErrorEnum mvWorld::mvSetGroupBehaviourParameteri(mvIndex gbIndex, mvIndex grou
 
 mvErrorEnum mvWorld::mvSetGroupBehaviourParameterf(mvIndex gbIndex, mvIndex groupIndex, mvParamEnum paramFlag, mvFloat num)
 {
-   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(gbIndex);
+   mvGroupBehaviourPtr tempGroupBehav = mvGetGroupBehaviour(gbIndex);
 
    if (tempGroupBehav != NULL)
    {
@@ -1869,7 +1869,7 @@ mvErrorEnum mvWorld::mvSetGroupBehaviourParameterf(mvIndex gbIndex, mvIndex grou
 
 mvErrorEnum mvWorld::mvSetGroupBehaviourParameterv(mvIndex gbIndex, mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* array)
 {
-   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(gbIndex);
+   mvGroupBehaviourPtr tempGroupBehav = mvGetGroupBehaviour(gbIndex);
 
    if (tempGroupBehav != NULL)
    {
@@ -1903,7 +1903,7 @@ mvErrorEnum mvWorld::mvSetCurrentGroupBehaviourParameterv(mvIndex groupIndex, mv
 
 mvErrorEnum mvWorld::mvAddBehaviourToBody(mvIndex bodyIndex, mvOptionEnum bType, mvIndex behaviourIndex, mvIndex groupIndex)
 {
-   mvBody* tempBody = mvGetBody(bodyIndex);
+   mvBodyPtr tempBody = mvGetBody(bodyIndex);
 
    if (tempBody == NULL)
       return MV_BODY_INDEX_IS_INVALID;
@@ -1913,8 +1913,8 @@ mvErrorEnum mvWorld::mvAddBehaviourToBody(mvIndex bodyIndex, mvOptionEnum bType,
 
 mvErrorEnum mvWorld::mvInsertGroupIntoGroupBehaviour(mvIndex groupIndex, mvIndex groupBehaviour)
 {
-  mvGroup* checkGroup = mvGetGroup(groupIndex);
-  mvGroupBehaviour* tempGBehaviour = mvGetGroupBehaviour(groupBehaviour);
+  mvGroupPtr checkGroup = mvGetGroup(groupIndex);
+  mvGroupBehaviourPtr tempGBehaviour = mvGetGroupBehaviour(groupBehaviour);
 
   if (checkGroup != NULL && tempGBehaviour != NULL)
   {
@@ -1943,7 +1943,7 @@ mvErrorEnum mvWorld::mvInsertCurrentGroupIntoCurrentGroupBehaviour()
 
 mvErrorEnum mvWorld::mvSetDefaultBehaviourFactorForBody(mvFloat factor, mvIndex bodyIndex)
 {
-   mvBody* tempBody = mvGetBody(bodyIndex);
+   mvBodyPtr tempBody = mvGetBody(bodyIndex);
 
    if (tempBody == NULL)
    {
@@ -2509,7 +2509,7 @@ return mvGetClassParameterv<mvBehaviour>(behaviours,currentBehaviour,noOfBehavio
   */
 mvErrorEnum mvWorld::mvGetGroupBehaviourParameter(mvIndex gbIndex, mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum* option)
 {
-   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(gbIndex);
+   mvGroupBehaviourPtr tempGroupBehav = mvGetGroupBehaviour(gbIndex);
 
    if (tempGroupBehav != NULL)
    {
@@ -2528,7 +2528,7 @@ mvErrorEnum mvWorld::mvGetGroupBehaviourParameter(mvIndex gbIndex, mvIndex group
 mvErrorEnum mvWorld::mvGetGroupBehaviourParameterf(mvIndex gbIndex, mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* num)
 {
 //   return mvGetClassParameterf<mvGroupBehaviour>(groupBehaviours,index,noOfGroupBehaviours,paramFlag,num);
-   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(gbIndex);
+   mvGroupBehaviourPtr tempGroupBehav = mvGetGroupBehaviour(gbIndex);
 
    if (tempGroupBehav != NULL)
    {
@@ -2546,7 +2546,7 @@ mvErrorEnum mvWorld::mvGetGroupBehaviourParameterf(mvIndex gbIndex, mvIndex grou
   */
 mvErrorEnum mvWorld::mvGetGroupBehaviourParameterv(mvIndex gbIndex, mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
 {
-   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(gbIndex);
+   mvGroupBehaviourPtr tempGroupBehav = mvGetGroupBehaviour(gbIndex);
 
    if (tempGroupBehav != NULL)
    {
@@ -2591,7 +2591,7 @@ mvErrorEnum mvWorld::mvGetCurrentGroupBehaviourParameterv(mvIndex groupIndex, mv
   */
 mvErrorEnum mvWorld::mvSetMainGroupBehaviourParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum option)
 {
-   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(index);
+   mvGroupBehaviourPtr tempGroupBehav = mvGetGroupBehaviour(index);
 
    if (tempGroupBehav != NULL)
    {
@@ -2609,7 +2609,7 @@ mvErrorEnum mvWorld::mvSetMainGroupBehaviourParameter(mvIndex index, mvParamEnum
   */
 mvErrorEnum mvWorld::mvSetMainGroupBehaviourParameteri(mvIndex index, mvParamEnum paramFlag, mvIndex paramIndex)
 {
-   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(index);
+   mvGroupBehaviourPtr tempGroupBehav = mvGetGroupBehaviour(index);
 
    if (tempGroupBehav != NULL)
    {
@@ -2627,7 +2627,7 @@ mvErrorEnum mvWorld::mvSetMainGroupBehaviourParameteri(mvIndex index, mvParamEnu
   */
 mvErrorEnum mvWorld::mvSetMainGroupBehaviourParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat num)
 {
-   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(index);
+   mvGroupBehaviourPtr tempGroupBehav = mvGetGroupBehaviour(index);
 
    if (tempGroupBehav != NULL)
    {
@@ -2645,7 +2645,7 @@ mvErrorEnum mvWorld::mvSetMainGroupBehaviourParameterf(mvIndex index, mvParamEnu
   */
 mvErrorEnum mvWorld::mvSetMainGroupBehaviourParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array)
 {
-   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(index);
+   mvGroupBehaviourPtr tempGroupBehav = mvGetGroupBehaviour(index);
 
    if (tempGroupBehav != NULL)
    {
@@ -2699,7 +2699,7 @@ mvErrorEnum mvWorld::mvSetCurrentMainGroupBehaviourParameterv(mvParamEnum paramF
   */
 mvErrorEnum mvWorld::mvGetMainGroupBehaviourParameter(mvIndex index, mvParamEnum paramFlag, mvOptionEnum* option)
 {
-   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(index);
+   mvGroupBehaviourPtr tempGroupBehav = mvGetGroupBehaviour(index);
 
    if (tempGroupBehav != NULL)
    {
@@ -2717,7 +2717,7 @@ mvErrorEnum mvWorld::mvGetMainGroupBehaviourParameter(mvIndex index, mvParamEnum
   */
 mvErrorEnum mvWorld::mvGetMainGroupBehaviourParameteri(mvIndex index, mvParamEnum paramFlag, mvIndex* paramIndex)
 {
-   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(index);
+   mvGroupBehaviourPtr tempGroupBehav = mvGetGroupBehaviour(index);
 
    if (tempGroupBehav != NULL)
    {
@@ -2735,7 +2735,7 @@ mvErrorEnum mvWorld::mvGetMainGroupBehaviourParameteri(mvIndex index, mvParamEnu
   */
 mvErrorEnum mvWorld::mvGetMainGroupBehaviourParameterf(mvIndex index, mvParamEnum paramFlag, mvFloat* num)
 {
-   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(index);
+   mvGroupBehaviourPtr tempGroupBehav = mvGetGroupBehaviour(index);
 
    if (tempGroupBehav != NULL)
    {
@@ -2753,7 +2753,7 @@ mvErrorEnum mvWorld::mvGetMainGroupBehaviourParameterf(mvIndex index, mvParamEnu
   */
 mvErrorEnum mvWorld::mvGetMainGroupBehaviourParameterv(mvIndex index, mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
 {
-   mvGroupBehaviour* tempGroupBehav = mvGetGroupBehaviour(index);
+   mvGroupBehaviourPtr tempGroupBehav = mvGetGroupBehaviour(index);
 
    if (tempGroupBehav != NULL)
    {

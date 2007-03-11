@@ -72,9 +72,9 @@ class mvBehaviour
     void initDefault();
     //mvEnum initialiseType(mvEnum type);
     //mvEnum initialiseVectors(mvEnum type);
-    //mvEnum addEntry(mvGroup* bGroup, mvBody* bBody);
-    //mvEnum removeEntry(mvGroup* bGroup, mvBody* bBody);
-    //mvEnum removeGroupEntries(mvGroup* bGroup);
+    //mvEnum addEntry(mvGroupPtr bGroup, mvBodyPtr bBody);
+    //mvEnum removeEntry(mvGroupPtr bGroup, mvBodyPtr bBody);
+    //mvEnum removeGroupEntries(mvGroupPtr bGroup);
     //mvFloat* defaultVariables;
     //Vec3* defaultVectors;
     //mvPathway* bPaths;
@@ -104,7 +104,7 @@ class mvBehaviour
     //char* getName();
     //int getNoOfGroups();
     //void removeAllGroups();
-    //mvEnum addGroup(mvGroup* bGroup);
-    //mvEnum removeGroup(mvGroup* bGroup);
+    //mvEnum addGroup(mvGroupPtr bGroup);
+    //mvEnum removeGroup(mvGroupPtr bGroup);
 };
 #endif
