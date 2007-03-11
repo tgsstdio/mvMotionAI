@@ -43,7 +43,7 @@ typedef class mvBehaviourResult
 {
    public:
       mvWorldPtr currentWorld;
-      mvBody* currentBody;
+      mvBodyPtr currentBody;
 //      mvBaseBehaviour* currentGroupBehNode;
       mvIndex behaviourIndex;
       mvIndex groupIndex;
@@ -68,8 +68,8 @@ typedef class mvBehaviourResult
       mvFloat quaternion[MV_QUATERNION_LENGTH];
 
       mvBehaviourResult();
-      void setWorld(mvWorldPtr worldPtr);
-      void setBody(mvBody* bodyPtr);
+      void setWorldPtr(mvWorldPtr worldPtr);
+      void setCurrentBodyPtr(mvBodyPtr bodyPtr);
 //      void setGroupBehaviourNode(mvBaseBehaviour* groupBehPtr);
 
       void setBehaviourIndex(mvIndex bIndex);
@@ -88,11 +88,18 @@ typedef class mvBehaviourResult
       void setToDirectional();
       void setToSteering();
 
-      mvWorldPtr getWorld();
+      mvWorldPtr getWorldPtr();
 //      mvBaseBehaviour* getGroupBehaviourNode();
-      mvBody*  getBody();
+      mvBodyPtr getCurrentBodyPtr();
       mvIndex getBehaviourIndex();
       mvIndex getGroupIndex();
+
+      // utility functions
+      mvWaypointPtr fetchWaypointPtr(mvIndex index);
+      mvBodyPtr fetchBodyPtr(mvIndex index);
+      mvGroupBehaviourPtr fetchGroupBehaviourPtr(mvIndex gbIndex);
+      mvPathwayPtr fetchPathwayPtr(mvIndex index);
+      mvGroupPtr fetchGroupPtr(mvIndex index);
 } mvResult;
 
 

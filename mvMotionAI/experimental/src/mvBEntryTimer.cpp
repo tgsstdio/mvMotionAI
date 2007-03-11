@@ -305,7 +305,7 @@ mvFloat mvTimer::getElapsedTime() const
 mvFloat mvTimer::update(mvFloat timeInSecs)
 {
    mvFloat noOfCount = 0;
-   mvFloat result;
+   //mvFloat result;
 
    // if positive
    if (timeInSecs >= 0.0)

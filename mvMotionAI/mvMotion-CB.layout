@@ -4,14 +4,14 @@
 	<File name="experimental\include\mv2.h" open="0" top="0" tabpos="2">
 		<Cursor position="13691" topLine="290" />
 	</File>
-	<File name="experimental\include\mvBaseBehaviour.h" open="0" top="0" tabpos="1">
+	<File name="experimental\include\mvBaseBehaviour.h" open="1" top="0" tabpos="1">
 		<Cursor position="0" topLine="40" />
 	</File>
 	<File name="experimental\include\mvGlobalFunctions.h" open="0" top="0" tabpos="0">
 		<Cursor position="4020" topLine="30" />
 	</File>
 	<File name="experimental\include\mvList.h" open="0" top="0" tabpos="1">
-		<Cursor position="6284" topLine="115" />
+		<Cursor position="4825" topLine="106" />
 	</File>
 	<File name="experimental\src\mv.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="15361" topLine="677" />
@@ -23,7 +23,10 @@
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="include\mvBehaviour-List.h" open="0" top="0" tabpos="0">
-		<Cursor position="3388" topLine="6" />
+		<Cursor position="3388" topLine="71" />
+	</File>
+	<File name="include\mvBehaviour-Seek.h" open="1" top="0" tabpos="10">
+		<Cursor position="1170" topLine="0" />
 	</File>
 	<File name="include\mvBehaviour-SimpleFlock.h" open="0" top="0" tabpos="7">
 		<Cursor position="2150" topLine="0" />
@@ -32,7 +35,7 @@
 		<Cursor position="3129" topLine="67" />
 	</File>
 	<File name="include\mvBody.h" open="0" top="0" tabpos="3">
-		<Cursor position="6326" topLine="137" />
+		<Cursor position="5410" topLine="80" />
 	</File>
 	<File name="include\mvEnums.h" open="0" top="0" tabpos="2">
 		<Cursor position="3645" topLine="101" />
@@ -52,8 +55,8 @@
 	<File name="include\mvLuaScript.h" open="0" top="0" tabpos="1">
 		<Cursor position="3917" topLine="106" />
 	</File>
-	<File name="include\mvMotionAI-Types.h" open="1" top="0" tabpos="1">
-		<Cursor position="4420" topLine="103" />
+	<File name="include\mvMotionAI-Types.h" open="1" top="0" tabpos="4">
+		<Cursor position="3868" topLine="12" />
 	</File>
 	<File name="include\mvMotionAI-Utilities.h" open="0" top="0" tabpos="2">
 		<Cursor position="1600" topLine="0" />
@@ -91,8 +94,8 @@
 	<File name="src\mvBehaviour-Pursuit.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="1707" topLine="13" />
 	</File>
-	<File name="src\mvBehaviour-Seek.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1210" topLine="12" />
+	<File name="src\mvBehaviour-Seek.cpp" open="1" top="0" tabpos="11">
+		<Cursor position="1361" topLine="0" />
 	</File>
 	<File name="src\mvBehaviour-SimpleFlock.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="2797" topLine="47" />

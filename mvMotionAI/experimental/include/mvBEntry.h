@@ -23,23 +23,28 @@
 #define MVBENTRY_H_INCLUDED
 
 #include "mvMotionAI-Types.h"
+#include "mvEnums.h"
 #include "mvBaseBehaviour.h"
 
 class mvBEntry
 {
-   public:
-      mvBaseBehaviourPtr behaviourPtr;
+   private:
+      //void validEntryType();
       mvIndex groupIndex;
       mvIndex behaviourIndex;
       mvOptionEnum entryType;
+      mvBaseBehaviourPtr behaviourPtr;
+   public:
 
       mvBEntry(mvOptionEnum type, mvIndex bIndex, mvIndex gIndex,\
-         mvBaseBehaviour* dBehaviour);
-      void setBehaviourPtr(mvBaseBehaviour* behavPtr);
-      mvBaseBehaviour* getBehaviourPtr() const;
+         mvBaseBehaviourPtr dBehaviour);
+      void setBehaviourPtr(mvBaseBehaviourPtr behavPtr);
+      mvBaseBehaviourPtr getBehaviourPtr() const;
       mvOptionEnum getType() const;
       mvIndex getGroup() const;
       mvIndex getBehaviour() const;
+      void setBehaviourIndex(mvIndex index);
+      void setGroupIndex(mvIndex index);
 
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
       mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);

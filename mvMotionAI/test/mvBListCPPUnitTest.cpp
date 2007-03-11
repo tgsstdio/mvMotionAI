@@ -2,6 +2,8 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 #include "mvBEntryUtility.h"
+#include "mvBEntry.h"
+#include "mvSeek.h"
 
 // Registers the fixture into the 'registry'
 CPPUNIT_TEST_SUITE_REGISTRATION( mvBListCPPUnitTest );
@@ -16,7 +18,7 @@ void mvBListCPPUnitTest::tearDown()
 
 }
 
-void mvBListCPPUnitTest::testBaseBehaviours()
+void mvBListCPPUnitTest::testEntryUtility()
 {
 //   mvTimerPtr nullTimerPtr = NULL;
    mvParamEnum noParameter = MV_NO_PARAMETER;
@@ -277,4 +279,36 @@ void mvBListCPPUnitTest::testBaseBehaviours()
       fUtility.getWeight());
    // TODO : more tests here continue
 
+}
+
+
+void mvBListCPPUnitTest::testEntryConstructor()
+{
+   mvOptionEnum expectedType = MV_SEEK;
+   mvIndex expectedGroupIndex = 14;
+   mvIndex expectedBehaviourIndex = 2;
+   mvBaseBehaviourPtr expectedBehavPtr = NULL;
+
+   mvBEntry a(expectedType, expectedBehaviourIndex, expectedGroupIndex,\
+      expectedBehavPtr);
+   // A : TEST CONSTRUCTOR - NULL
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A1a : Type", expectedType, a.getType());
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A1b : Group Index", expectedGroupIndex,\
+      a.getGroup());
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A1c : Behaviour Index",\
+      expectedBehaviourIndex, a.getBehaviour());
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A1d : Null Behaviour Ptr ",\
+      expectedBehavPtr, a.getBehaviourPtr());
+
+   mvBaseBehaviourPtr bBehavPtr = new mvSeek();
+   mvBEntry b(expectedType, expectedBehaviourIndex, expectedGroupIndex,\
+      bBehavPtr);
+   //
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1a : Type", expectedType, a.getType());
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1b : Group Index", expectedGroupIndex,\
+      a.getGroup());
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1c : Behaviour Index",\
+      expectedBehaviourIndex, a.getBehaviour());
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1d : Behaviour Ptr ",\
+      bBehavPtr, a.getBehaviourPtr());
 }

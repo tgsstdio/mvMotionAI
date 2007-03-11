@@ -106,7 +106,24 @@ mvErrorEnum mvBEntryUtility::setParameteri(mvParamEnum paramFlag, mvIndex index)
 mvErrorEnum mvBEntryUtility::getParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray, mvCount* noOfParameters)
 {
+   // TODO: implement later
+   /*
+   mvErrorEnum error = bTimer.getParameterv(paramArray, numArray,\
+      noOfParameters);
+
+   if (error == MV_INVALID_TIMER_PARAMETER)
+   {
+      //  NOT_FOUND then not 'behaviour' parameter error
+      return MV_INVALID_BEHAVIOUR_PARAMETER;
+   }
+   else
+   {
+      return error;
+   }
+   */
+
    return MV_FUNCTION_NOT_IMPLEMENTED;
+
 }
 
 /** @brief retrieves single floating point variable of entry
@@ -253,6 +270,7 @@ mvTimerPtr mvBEntryUtility::getTimerPtr()
 mvErrorEnum mvBEntryUtility::setParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray)
 {
+   // TODO: implement later
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 

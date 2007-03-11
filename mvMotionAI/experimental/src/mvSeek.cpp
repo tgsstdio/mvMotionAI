@@ -56,9 +56,8 @@ bool mvSeek::bodyOp(mvBehaviourResultPtr resultModule)
       restult = 0.5  times [i.e averaged with] (new velocity + old velocity)
    */
    mvVec3 pos, direction, velocity;
-   mvBody* bodyPtr = NULL;
-   mvWaypoint* point = NULL;
-   mvWorldPtr worldPtr = NULL;
+   mvBodyPtr bodyPtr = NULL;
+   mvWaypointPtr point = NULL;
 
    // 1. check if input/output class pointer is valid
    if (resultModule == NULL)
@@ -67,22 +66,15 @@ bool mvSeek::bodyOp(mvBehaviourResultPtr resultModule)
       return false;
    }
 
-   // 2. check world pointer in input/output is valid
-   worldPtr = resultModule->getWorld();
-   if (worldPtr == NULL)
-   {
-      // 2. b exit here & apply no operation
-      return false;
-   }
-
-   // check body pointer is valid
-   bodyPtr = resultModule->getBody();
+   // 2. check body pointer is valid
+   bodyPtr = resultModule->getCurrentBodyPtr();
    if (bodyPtr == NULL)
    {
       return false;
    }
 
-   point = worldPtr->getWaypointPtr(waypointIndex);
+   // 3. fetch waypoint module from list
+   point = resultModule->fetchWaypointPtr(waypointIndex);
    if (point == NULL)
    {
       return false;
@@ -177,7 +169,6 @@ mvErrorEnum mvSeek::getParameteri(mvParamEnum param, mvIndex* index)
 
 bool mvSeek::groupOp(mvGroupBehaviourResultPtr resultModule)
 {
-   puts("GROUP OPERATION");
    return false;
 }
 
