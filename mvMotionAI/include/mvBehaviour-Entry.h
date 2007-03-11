@@ -65,7 +65,7 @@ class mvBehaviourEntry
    //mvIndex currentGroup;
    //mvPathway* currentPathway;
    //mvIndex currentWaypoint;
-//   mvBody* currentBody;
+//   mvBodyPtr currentBody;
       mvBehaviourEntry();
       mvBehaviourEntry(mvOptionEnum type);
   //vBehaviourEntry(mvEnum type, mvIndex behaviourIndex, mvIndex groupIndex);

@@ -47,7 +47,7 @@
 #define MV_MOTION_AI_H_
 
 #include <cstdlib>
-#include <iostream>
+//#include <iostream>
 #include <vector>
 #include "mvWorld.h"
 #include "mvMotionAI-Types.h"

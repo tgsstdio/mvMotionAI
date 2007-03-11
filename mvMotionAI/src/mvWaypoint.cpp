@@ -243,10 +243,10 @@ mvWaypoint::mvWaypoint(mvOptionEnum targetType, mvOptionEnum targetShape, mvFloa
 /**
  * \brief add a force, via its pointer, to this waypoint
  */
-mvErrorEnum mvWaypoint::addForce(mvForce* forcePtr)
+mvErrorEnum mvWaypoint::addForce(mvForcePtr forcePtr)
 {
    std::vector<mvForce*>::iterator i;
-   mvForce* tempForce = NULL;
+   mvForcePtr tempForce = NULL;
 
    if (forcePtr == NULL)
       return MV_PARAMETER_ARRAY_IS_NULL;
@@ -268,10 +268,10 @@ mvErrorEnum mvWaypoint::addForce(mvForce* forcePtr)
 /**
  * \brief removes this  force, using its pointer, from this waypoint
  */
-mvErrorEnum mvWaypoint::removeForce(mvForce* forcePtr)
+mvErrorEnum mvWaypoint::removeForce(mvForcePtr forcePtr)
 {
    std::vector<mvForce*>::iterator i;
-   mvForce* tempForce = NULL;
+   mvForcePtr tempForce = NULL;
 
    if (forcePtr == NULL)
       return MV_PARAMETER_ARRAY_IS_NULL;
@@ -299,7 +299,7 @@ mvErrorEnum mvWaypoint::removeForce(mvForce* forcePtr)
 void mvWaypoint::removeAllForces()
 {
    std::vector<mvForce*>::iterator i;
-   mvForce* tempForce = NULL;
+   mvForcePtr tempForce = NULL;
 
    for (i = forceList.begin(); i != forceList.end(); ++i)
    {

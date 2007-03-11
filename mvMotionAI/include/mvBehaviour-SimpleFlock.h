@@ -31,16 +31,16 @@
 #include "mvMotionAI-Types.h"
 #include "mvBehaviour-Entry.h"
 
-void mvBehaviour_SimpleFlock_GroupOperations(mvWorld* worldPtr, mvGroup* flockGroup, mvBehaviourEntry* groupData);
+void mvBehaviour_SimpleFlock_GroupOperations(mvWorld* worldPtr, mvGroupPtr flockGroup, mvBehaviourEntry* groupData);
 
-mvVec3 mvBehaviour_SimpleFlock_SingularOperation(mvBehaviourEntry* groupData, mvBody* currentBody,
+mvVec3 mvBehaviour_SimpleFlock_SingularOperation(mvBehaviourEntry* groupData, mvBodyPtr currentBody,
                                                mvBehaviourEntry* bodyData);
 /*
 class mvSimpleFlock
 {
    public:
-      void mvGroupFunc(mvWorld* worldPtr, mvGroup* flockGroup, mvBehaviourEntry* groupData);
-      mvVec3 mvBodyFunc(mvBehaviourEntry* groupData, mvBody* currentBody,
+      void mvGroupFunc(mvWorld* worldPtr, mvGroupPtr flockGroup, mvBehaviourEntry* groupData);
+      mvVec3 mvBodyFunc(mvBehaviourEntry* groupData, mvBodyPtr currentBody,
                                                mvBehaviourEntry* bodyData);
       mvBehaviourEntry* createBodyEntry(mvBehaviourEntry* defaultEntry);
       mvBehaviourEntry* createGroupEntry(mvBehaviourEntry* defaultEntry);

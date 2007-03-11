@@ -755,10 +755,13 @@ mvVec3 operator* (mvFloat s, const mvVec3& v)
    return v*s;
 }
 
+/*
+no iostream in library - code bloat
 std::ostream& operator<< (std::ostream& o, const mvVec3& v)
 {
    return o << "(" << v.getX() << "," << v.getY() << "," << v.getZ() << ")";
 }
+*/
 
 /** @brief set current vector to parameter
   *

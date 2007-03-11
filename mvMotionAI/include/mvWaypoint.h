@@ -64,7 +64,7 @@ class mvWaypoint
    private:
       mvErrorEnum initialisePoints(mvOptionEnum type);
       mvErrorEnum initialiseShapeDimensions(mvOptionEnum shape);
-      //mvGroup* groupPtr;
+      //mvGroupPtr groupPtr;
       mvVec3* points;
       //mvCount noOfPoints;
       mvOptionEnum wayPointType;
@@ -78,13 +78,13 @@ class mvWaypoint
       //mvWaypoint(mvEnum targetType);
       mvWaypoint(mvOptionEnum targetType, mvOptionEnum targetShape);
       mvWaypoint(mvOptionEnum targetType, mvOptionEnum targetShape, mvFloat x, mvFloat y, mvFloat z);
-      mvErrorEnum addForce(mvForce* forcePtr);
-      mvErrorEnum removeForce(mvForce* forcePtr);
+      mvErrorEnum addForce(mvForcePtr forcePtr);
+      mvErrorEnum removeForce(mvForcePtr forcePtr);
       void removeAllForces();
       mvCount getNoOfForces() const;
       mvCount getNoOfPoints() const;
       mvCount getNoOfDimensions() const;
-      //void setGroup(mvGroup* wpGroup);
+      //void setGroup(mvGroupPtr wpGroup);
       mvOptionEnum getType();
       mvOptionEnum getShape();
       mvFloat getX() const;

@@ -53,7 +53,7 @@ mvGroupBehaviour::mvGroupBehaviour(mvOptionEnum gbType)
 
 // no repetition
 /**/
-//mvEnum mvGroupBehaviour::addGroup(mvGroup* groupPtr)
+//mvEnum mvGroupBehaviour::addGroup(mvGroupPtr groupPtr)
 mvErrorEnum mvGroupBehaviour::addGroup(mvIndex  groupNo)
 {
    mvIndex currentGroupIndex;
@@ -82,11 +82,11 @@ mvErrorEnum mvGroupBehaviour::addGroup(mvIndex  groupNo)
 
 
 // no repetition
-//mvEnum mvGroupBehaviour::removeGroup(mvGroup* groupPtr)
+//mvEnum mvGroupBehaviour::removeGroup(mvGroupPtr groupPtr)
 mvErrorEnum mvGroupBehaviour::removeGroup(mvIndex groupNo)
 {
   /*
-   mvGroup* currentGroup = NULL;
+   mvGroupPtr currentGroup = NULL;
    mvGroupBehaviourNode* tempNode = NULL;
    std::set<mvGroupBehaviourNode*>::iterator i;
 
@@ -360,9 +360,9 @@ mvGroupBehaviourNode* mvGroupBehaviour::findGroupNodeByIndex(mvIndex groupIndex)
 }
 
 /*
-mvGroupBehaviourNode* mvGroupBehaviour::findGroupNodeByPtr(mvGroup* groupPtr)
+mvGroupBehaviourNode* mvGroupBehaviour::findGroupNodeByPtr(mvGroupPtr groupPtr)
 {
-   mvGroup* currentGroup = NULL;
+   mvGroupPtr currentGroup = NULL;
    mvGroupBehaviourNode* tempNode = NULL;
    std::vector<mvGroupBehaviourNode*>::iterator i;
 
@@ -520,7 +520,7 @@ mvErrorEnum mvGroupBehaviour::setMainParameterv(mvParamEnum paramFlag, mvFloat* 
 
 // group beh list node
 
-//mvGroupBehaviourNode::mvGroupBehaviourNode(mvEnum gbType, mvGroup* bGroup)
+//mvGroupBehaviourNode::mvGroupBehaviourNode(mvEnum gbType, mvGroupPtr bGroup)
 mvGroupBehaviourNode::mvGroupBehaviourNode(mvOptionEnum gbType, mvIndex bGroup)
 {
    mvOptionEnum groupNodeType;
@@ -581,7 +581,7 @@ const mvGroupBehaviourNode& mvGroupBehaviourNode::operator=(const mvGroupBehavio
    return *this;
 }
 
-//mvGroup* mvGroupBehaviourNode::getGroup() const
+//mvGroupPtr mvGroupBehaviourNode::getGroup() const
 mvIndex mvGroupBehaviourNode::getGroup() const
 {
    //return groupPtr;

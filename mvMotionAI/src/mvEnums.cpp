@@ -31,7 +31,7 @@
 
 #include "mvEnums.h"
 #include <cstring>
-#include <iostream>
+//#include <iostream>
 #include "mvMotionAI-Types.h"
 
 
@@ -290,11 +290,11 @@ const mvOptionEnum orderedOptionEnums[] =
    MV_GRAVITY_TO_POINT,
    MV_GROUP_WAYPOINT,
    MV_LIQUID_OBSTACLE,
-   MV_MINUS_AABOX,
-   MV_MINUS_SPHERE,
-   MV_MINUS_X_AXIS_AA_CYLINDER,
-   MV_MINUS_Y_AXIS_AA_CYLINDER,
-   MV_MINUS_Z_AXIS_AA_CYLINDER,
+   //MV_MINUS_AABOX,
+  // MV_MINUS_SPHERE,
+   //MV_MINUS_X_AXIS_AA_CYLINDER,
+  // MV_MINUS_Y_AXIS_AA_CYLINDER,
+  // MV_MINUS_Z_AXIS_AA_CYLINDER,
    MV_NO_DOMAIN_APPLIED,
    MV_NO_MOTION_STATE,
    MV_NO_OF_OPTION_ENUMS,

@@ -46,7 +46,7 @@
 class mvGroupBehaviourNode
 {
    private:
-     // mvGroup* groupPtr;
+     // mvGroupPtr groupPtr;
       mvIndex groupIndex;
       mvBehaviourEntry* behavData;
 
@@ -55,7 +55,7 @@ class mvGroupBehaviourNode
       mvGroupBehaviourNode(mvOptionEnum gbType, mvIndex bGroup);
       mvGroupBehaviourNode(const mvGroupBehaviourNode& rhs);
       const mvGroupBehaviourNode& operator=(const mvGroupBehaviourNode& rhs);
-     // mvGroup* getGroup() const;
+     // mvGroupPtr getGroup() const;
       mvIndex getGroup() const;
       mvBehaviourEntry* getBehavData() const;
       ~mvGroupBehaviourNode();

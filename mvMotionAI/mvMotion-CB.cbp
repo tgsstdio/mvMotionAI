@@ -56,9 +56,7 @@
 					<Add option="-O2" />
 					<Add option="-O1" />
 					<Add option="-O" />
-					<Add option="-pedantic" />
 					<Add option="-Wall" />
-					<Add option="-ansi" />
 					<Add directory="include-other" />
 					<Add directory="include-other\mingw" />
 				</Compiler>
@@ -82,16 +80,8 @@
 		<Unit filename="experimental\include\mvBaseBehaviour.h" />
 		<Unit filename="experimental\include\mvGlobalFunctions.h" />
 		<Unit filename="experimental\include\mvList.h" />
-		<Unit filename="experimental\src\mv.cpp" />
-		<Unit filename="experimental\src\mvBaseBehaviour.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-			<Option target="default" />
-		</Unit>
-		<Unit filename="experimental\src\mvList.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
+		<Unit filename="experimental\include\mvWorld2.h" />
+		<Unit filename="experimental\src\mvWorld2.cpp" />
 		<Unit filename="include\mvBehaviour-Central.h" />
 		<Unit filename="include\mvBehaviour-Clone.h" />
 		<Unit filename="include\mvBehaviour-Entry.h" />
@@ -160,7 +150,10 @@
 		<Unit filename="src\mvScript-Utilities.cpp" />
 		<Unit filename="src\mvVec3.cpp" />
 		<Unit filename="src\mvWaypoint.cpp" />
-		<Unit filename="src\mvWorld.cpp" />
+		<Unit filename="src\mvWorld.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 		</Extensions>

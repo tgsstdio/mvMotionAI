@@ -40,7 +40,7 @@
  *}
 **/
 
-mvVec3 mvBehaviour_Calculate_Pursuit(mvBody* currentBody, mvBody* targetBody)
+mvVec3 mvBehaviour_Calculate_Pursuit(mvBodyPtr currentBody, mvBodyPtr targetBody)
 {
    mvVec3 targetDir, finalVelocity, desiredVelocity, nextPos;
    mvFloat dist = 0.0;

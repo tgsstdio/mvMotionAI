@@ -37,6 +37,6 @@
 #include "mvBody.h"
 #include "mvMotionAI-Types.h"
 
-mvVec3 mvBehaviour_Calculate_Pursuit(mvBody* currentBody, mvBody* targetBody);
+mvVec3 mvBehaviour_Calculate_Pursuit(mvBodyPtr currentBody, mvBodyPtr targetBody);
 
 #endif
