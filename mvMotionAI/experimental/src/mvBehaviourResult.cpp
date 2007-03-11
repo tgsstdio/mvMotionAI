@@ -25,7 +25,7 @@
   *
   * (documentation goes here)
   */
-mvBody * mvResult::getBody()
+mvBody * mvResult::getCurrentBodyPtr()
 {
    return currentBody;
 }
@@ -43,7 +43,7 @@ mvBody * mvResult::getBody()
   *
   * (documentation goes here)
   */
-mvWorldPtr mvResult::getWorld()
+mvWorldPtr mvResult::getWorldPtr()
 {
    return currentWorld;
 }
@@ -199,7 +199,7 @@ void mvResult::setBehaviourIndex(mvIndex bIndex)
   *
   * (documentation goes here)
   */
-void mvResult::setBody(mvBody* bodyPtr)
+void mvResult::setCurrentBodyPtr(mvBodyPtr bodyPtr)
 {
    currentBody = bodyPtr;
 }
@@ -208,7 +208,7 @@ void mvResult::setBody(mvBody* bodyPtr)
   *
   * (documentation goes here)
   */
-void mvResult::setWorld(mvWorldPtr worldPtr)
+void mvResult::setWorldPtr(mvWorldPtr worldPtr)
 {
    currentWorld = worldPtr;
 }
@@ -271,4 +271,56 @@ void mvResult::setOmegaInRadians(const mvVec3& value)
    applyOmega = true;
    omegaInDegrees = false;
 }
+
+// new utility functions
+mvWaypointPtr mvResult::fetchWaypointPtr(mvIndex index)
+{
+   if (currentWorld == NULL)
+   {
+      return NULL;
+   }
+
+   return currentWorld->getWaypointPtr(index);
+}
+
+mvBodyPtr mvResult::fetchBodyPtr(mvIndex index)
+{
+   if (currentWorld == NULL)
+   {
+      return NULL;
+   }
+
+   return currentWorld->getBodyPtr(index);
+}
+
+mvGroupBehaviourPtr mvResult::fetchGroupBehaviourPtr(mvIndex index)
+{
+   if (currentWorld == NULL)
+   {
+      return NULL;
+   }
+
+   return currentWorld->getGroupBehaviourPtr(index);
+}
+
+mvPathwayPtr mvResult::fetchPathwayPtr(mvIndex index)
+{
+   if (currentWorld == NULL)
+   {
+      return NULL;
+   }
+
+   return currentWorld->getPathwayPtr(index);
+}
+
+mvGroupPtr mvResult::fetchGroupPtr(mvIndex index)
+{
+   if (currentWorld == NULL)
+   {
+      return NULL;
+   }
+
+   return currentWorld->getGroupPtr(index);
+}
+
 
