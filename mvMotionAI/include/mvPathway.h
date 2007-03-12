@@ -24,10 +24,10 @@
 
 #ifndef MOTIONAI_MVPATHWAY_H_
 #define MOTIONAI_MVPATHWAY_H_
-#include <vector>
-#include "mvEnums.h"
-#include "mvWaypoint.h"
 #include "mvMotionAI-Types.h"
+#include <vector>
+#include MV_ENUMS_HEADER_FILE_H_
+#include MV_WAYPOINT_HEADER_FILE_H_
 //#include "Vec3.h"
 
 /**
@@ -53,14 +53,14 @@
 class mvPathway
 {
    private:
-      std::vector<mvWaypoint*> waypoints;
+      std::vector<mvWaypointPtr> waypoints;
       mvIndex currentWPIndex;
       mvCount noOfWaypoints;
 
    public:
       mvPathway();
-      void addWaypoint(mvWaypoint* pWaypoint);
-      mvErrorEnum removeWaypoint(mvWaypoint* pWaypoint);
+      void addWaypoint(mvWaypointPtr pWaypoint);
+      mvErrorEnum removeWaypoint(mvWaypointPtr pWaypoint);
 
       mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
       mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);

@@ -1,6 +1,6 @@
 /**
  *\file mvBody.h
- * Copyright (c) 2006 David Young.
+ * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -27,8 +27,8 @@
 #include <vector>
 
 #include "mvMotionAI-Types.h"
-#include "mvEnums.h"
-#include "mvVec3.h"
+#include MV_ENUMS_HEADER_FILE_H_
+#include MV_VEC_3_HEADER_FILE_H_
 #include "mvBehaviour-List.h"
 
 /**
@@ -92,101 +92,106 @@ static const mvCount MV_MAX_NO_OF_BODY_DIMENSIONS = 3;
 
 class mvBody
 {
-  private:
-     void initialiseFloats();
-     mvErrorEnum initialiseDomain(mvOptionEnum option);
-     mvErrorEnum initialiseDimensions(mvOptionEnum option);
-     mvErrorEnum initialiseType(mvOptionEnum option);
-     mvErrorEnum initialiseState(mvOptionEnum option);
-     mvCount getNoOfDomainVariables() const;
+   private:
+      void initialiseFloats();
+      mvErrorEnum initialiseDomain(mvOptionEnum option);
+      mvErrorEnum initialiseDimensions(mvOptionEnum option);
+      mvErrorEnum initialiseType(mvOptionEnum option);
+      mvErrorEnum initialiseState(mvOptionEnum option);
+      mvCount getNoOfDomainVariables() const;
 
-  public:
-    mvBehaviourList bList;
-    mvVec3 position;
-    mvVec3 direction;
-    mvVec3 finalVelocity;
-    mvFloat maxSpeed;
-    mvFloat speed;
-    //mvFloat maxForce;
-    mvFloat acceleration;
-    mvFloat deceleration;
-    //mvFloat maxDeceleration;
-    //mvFloat maxAcceleration;
-    mvFloat mass;
-    mvFloat* dimensions;
-    mvOptionEnum bodyShape;
-    //std::vector<int> behaviours;
-    mvOptionEnum domain; //< freedom of motion allowed
-    mvFloat* domainVariables;
-    //int noOfBehaviours;
-    //int behaviourIndex;
-    mvOptionEnum type; //< body type i.e vehicle/particle/dual type
-    mvOptionEnum state; //< motion to apply iteration
+   public:
+      mvBehaviourList bList;
+      mvVec3 position;
+      mvVec3 direction;
+      mvVec3 finalVelocity;
+      mvFloat maxSpeed;
+      mvFloat speed;
+      //mvFloat maxForce;
+      mvFloat acceleration;
+      mvFloat deceleration;
+      //mvFloat maxDeceleration;
+      //mvFloat maxAcceleration;
+      mvFloat mass;
+      mvFloat* dimensions;
+      mvOptionEnum bodyShape;
+      //std::vector<int> behaviours;
+      mvOptionEnum domain; //< freedom of motion allowed
+      mvFloat* domainVariables;
+      //int noOfBehaviours;
+      //int behaviourIndex;
+      mvOptionEnum type; //< body type i.e vehicle/particle/dual type
+      mvOptionEnum state; //< motion to apply iteration
 
-    mvBody(mvOptionEnum bType, mvOptionEnum shape);
-    mvBody(mvOptionEnum bType, mvOptionEnum shape, mvFloat x, mvFloat y, mvFloat z);
-    //mvBody(mvFloat x, mvFloat y, mvFloat z);
-    void setPosition(mvFloat x, mvFloat y, mvFloat z);
-    void setDirection(mvFloat x, mvFloat y,mvFloat z);
-    void setSpeed(mvFloat num);
-    void setMaxSpeed(mvFloat num);
-    void setMass(mvFloat num);
-    void setState(mvOptionEnum bState);
-    mvCount getNoOfDimensions() const;
+      mvBody(mvOptionEnum bType, mvOptionEnum shape);
+      mvBody(mvOptionEnum bType, mvOptionEnum shape, mvFloat x, mvFloat y,\
+         mvFloat z);
+      //mvBody(mvFloat x, mvFloat y, mvFloat z);
+      void setPosition(mvFloat x, mvFloat y, mvFloat z);
+      void setDirection(mvFloat x, mvFloat y,mvFloat z);
+      void setSpeed(mvFloat num);
+      void setMaxSpeed(mvFloat num);
+      void setMass(mvFloat num);
+      void setState(mvOptionEnum bState);
+      mvCount getNoOfDimensions() const;
 
-    mvOptionEnum getType() const;
-    mvOptionEnum getState() const;
-    mvOptionEnum getDomain() const;
-    mvOptionEnum getShape() const;
-    mvFloat getX() const;
-    mvFloat getY() const;
-    mvFloat getZ() const;
-    //void setMaxAcceleration(mvFloat num);
-    void setAcceleration(mvFloat accel);
-    mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
-    mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
-    mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num);
-    mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters);
+      mvOptionEnum getType() const;
+      mvOptionEnum getState() const;
+      mvOptionEnum getDomain() const;
+      mvOptionEnum getShape() const;
+      mvFloat getX() const;
+      mvFloat getY() const;
+      mvFloat getZ() const;
+      //void setMaxAcceleration(mvFloat num);
+      void setAcceleration(mvFloat accel);
+      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
+      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
+      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num);
+      mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
+         mvCount* noOfParameters);
 
-    mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
-    mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
-    mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
-    mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
-    //
-    mvErrorEnum addExistingGroupBehaviourEntry(mvIndex behaviourIndex, mvIndex groupIndex);
-    mvErrorEnum addExistingBehaviourEntry(mvIndex behaviourIndex);
-    mvErrorEnum addNewBehaviourEntry(mvOptionEnum behaviourType);
-    mvErrorEnum addEntry(mvOptionEnum bType, mvIndex behaviourIndex, mvIndex groupIndex);
+      mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
+      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
+      //
+      mvErrorEnum addExistingGroupBehaviourEntry(mvIndex behaviourIndex,\
+         mvIndex groupIndex);
+      mvErrorEnum addExistingBehaviourEntry(mvIndex behaviourIndex);
+      mvErrorEnum addNewBehaviourEntry(mvOptionEnum behaviourType);
+      mvErrorEnum addEntry(mvOptionEnum bType, mvIndex behaviourIndex,\
+         mvIndex groupIndex);
 
-    //mvEnum addBehaviour(mvBehaviour* bItem, mvEnum* flagArray, mvFloat* varArray);
-    mvCount getNoOfBehaviours();
-    mvBehaviourListNode* getEntryByIndex(mvIndex index);
-    mvFloat getListFactorTotal() const;
-    //mvBehaviourEntry* getEntryByPtr(mvBehaviour* bEntry);
-    //mvBehaviourEntry* getEntryByName(char* bName);
-    void removeAllBehaviours();
-    ~mvBody();
-    void setDefaultBody(mvIndex bodyIndex);
-    void setDefaultWaypoint(mvIndex wpIndex);
-    void setDefaultPathway(mvIndex pwIndex);
-    mvIndex getDefaultBody() const;
-    mvIndex getDefaultWaypoint() const;
-    mvIndex getDefaultPathway() const;
-    mvFloat getDefaultBehaviourFactor() const;
-    mvErrorEnum setDefaultBehaviourFactor(mvFloat factor);
-    bool checkGroupBehaviourExists(mvIndex behaviourIndex, mvIndex groupIndex);
+      //mvEnum addBehaviour(mvBehaviourPtr bItem, mvEnum* flagArray, mvFloat* varArray);
+      mvCount getNoOfBehaviours();
+      mvBehaviourListNode* getEntryByIndex(mvIndex index);
+      mvFloat getListFactorTotal() const;
+      //mvBehaviourEntry* getEntryByPtr(mvBehaviourPtr bEntry);
+      //mvBehaviourEntry* getEntryByName(char* bName);
+      void removeAllBehaviours();
+      ~mvBody();
+      void setDefaultBody(mvIndex bodyIndex);
+      void setDefaultWaypoint(mvIndex wpIndex);
+      void setDefaultPathway(mvIndex pwIndex);
+      mvIndex getDefaultBody() const;
+      mvIndex getDefaultWaypoint() const;
+      mvIndex getDefaultPathway() const;
+      mvFloat getDefaultBehaviourFactor() const;
+      mvErrorEnum setDefaultBehaviourFactor(mvFloat factor);
+      bool checkGroupBehaviourExists(mvIndex behaviourIndex,\
+         mvIndex groupIndex);
 
-// TODO : new functions for retriving values
-    mvVec3 getFinalDirection() const;
-    mvVec3 getFinalVelocity() const;
-    mvVec3 getFaceDirection() const;
-    mvVec3 getVelocity() const;
-    mvFloat getSpeed() const;
-    mvFloat getFinalSpeed() const;
-    mvVec3 predictPosition(mvFloat timeInSecs) const;
-    mvVec3 predictFinalPosition(mvFloat timeInSecs) const;
-    mvVec3 confineVector(const mvVec3& v) const;
-    mvFloat getMaxSpeed() const;
+      // TODO : new functions for retriving values
+      mvVec3 getFinalDirection() const;
+      mvVec3 getFinalVelocity() const;
+      mvVec3 getFaceDirection() const;
+      mvVec3 getVelocity() const;
+      mvFloat getSpeed() const;
+      mvFloat getFinalSpeed() const;
+      mvVec3 predictPosition(mvFloat timeInSecs) const;
+      mvVec3 predictFinalPosition(mvFloat timeInSecs) const;
+      mvVec3 confineVector(const mvVec3& v) const;
+      mvFloat getMaxSpeed() const;
 };
 
 #endif

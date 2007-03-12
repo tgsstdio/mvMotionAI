@@ -1,7 +1,7 @@
 /**
  * \file mvGroup.cpp
  *
- * Copyright (c) 2006 David Young.
+ * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -22,8 +22,8 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "mvGroup.h"
 #include "mvMotionAI-Utilities.h"
+#include "mvGroup.h"
 
 mvGroup::~mvGroup()
 {

@@ -40,15 +40,15 @@ mvErrorEnum mvMotionAI_V2_ALLWORLDSSTEPFORWARD(mvFloat timeInSecs);
 mvIndex mvMotionAI_V2_CREATEWORLD(const char* id);
 mvErrorEnum mvMotionAI_V2_DELETEALLWORLDS();
 mvIndex mvMotionAI_V2_GETWORLDBYID(const char* id);
-mvWorld_V2* mvMotionAI_V2_GETWORLDPTRBYID(const char* id);
-mvWorld_V2* mvMotionAI_V2_GETWORLDPTR(mvIndex index);
+mvWorldPtr mvMotionAI_V2_GETWORLDPTRBYID(const char* id);
+mvWorldPtr mvMotionAI_V2_GETWORLDPTR(mvIndex index);
 mvErrorEnum mvMotionAI_V2_APPLYTOALLWORLDS(\
-   void (someFunction)(mvWorld_V2* ,void*),void* extraPtr);
+   void (someFunction)(mvWorldPtr ,void*),void* extraPtr);
 mvErrorEnum mvMotionAI_V2_APPLYTOALLWORLDSBYINDEX(\
    void(someFunction)(mvIndex, void* extraPtr), void* extraPtr);
 mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS();
 mvErrorEnum mvMotionAI_V2_ADDBEHAVIOURFUNC(mvOptionEnum bType,\
-   mvBaseBehaviourLoader* loader);
+   mvBaseBehaviourLoaderPtr loader);
 mvBaseBehaviourPtr mvMotionAI_V2_CREATENEWBEHAVIOUR(mvOptionEnum type,\
    mvBaseBehaviourPtr  defaultBehaviour);
 mvErrorEnum mvMotionAI_V2_CHECKIFINITIALISED();

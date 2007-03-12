@@ -1212,14 +1212,14 @@ mvIndex mvWorld::mvAddWaypoint(mvOptionEnum wType, mvOptionEnum wShape)
 
 mvIndex mvWorld::mvAddWaypointWithPos(mvOptionEnum wType, mvOptionEnum wShape, mvFloat x, mvFloat y, mvFloat z)
 {
-  mvWaypoint* temp = new mvWaypoint(wType, wShape, x,y,z);
+  mvWaypointPtr temp = new mvWaypoint(wType, wShape, x,y,z);
   waypoints.push_back(temp);
   ++noOfWaypoints;
   currentWaypoint = noOfWaypoints;
   return currentWaypoint;
 }
 
-mvWaypoint* mvWorld::mvGetWaypoint(mvIndex index)
+mvWaypointPtr mvWorld::mvGetWaypoint(mvIndex index)
 {
    return mvGetClassPtr<mvWaypoint>(waypoints, index, noOfWaypoints);
 }
@@ -1344,7 +1344,7 @@ mvErrorEnum mvWorld::mvSetCurrentPathwayParameterv(mvParamEnum paramFlag, mvFloa
 mvErrorEnum mvWorld::mvAddWaypointToPathway(mvIndex wpIndex, mvIndex pIndex)
 {
    mvPathway* tempPathway = NULL;
-   mvWaypoint* wPoint = NULL;
+   mvWaypointPtr wPoint = NULL;
 
    wPoint = mvGetWaypoint(wpIndex);
    if (wPoint == NULL)
@@ -1376,7 +1376,7 @@ mvErrorEnum mvWorld::mvAddCurrentWaypointToPathway(mvIndex pIndex)
 mvErrorEnum mvWorld::mvRemoveWaypointFromPathway(mvIndex wpIndex, mvIndex pIndex)
 {
    mvPathway* tempPathway = NULL;
-   mvWaypoint* wPoint = NULL;
+   mvWaypointPtr wPoint = NULL;
 
    wPoint = mvGetWaypoint(wpIndex);
    if (wPoint == NULL)
@@ -1479,7 +1479,7 @@ mvIndex mvWorld::mvSetCurrentForce(mvIndex index)
 mvIndex mvWorld::mvAddBehaviour(mvOptionEnum bType)
 {
    //std::vector<mvBehaviour*>::iterator i;
-   mvBehaviour* tempBehaviour = NULL;
+   mvBehaviourPtr tempBehaviour = NULL;
    /*
    if (bName == NULL)
       return 0;
@@ -1506,15 +1506,15 @@ mvIndex mvWorld::mvAddBehaviour(mvOptionEnum bType)
    return currentBehaviour;
 }
 
-mvBehaviour* mvWorld::mvGetBehaviour(mvIndex index)
+mvBehaviourPtr mvWorld::mvGetBehaviour(mvIndex index)
 {
    return mvGetClassPtr<mvBehaviour>(behaviours, index, noOfBehaviours);
 }
 /*
-mvBehaviour* mvWorld::mvGetBehaviourByID(char* bID)
+mvBehaviourPtr mvWorld::mvGetBehaviourByID(char* bID)
 {
    std::vector<mvBehaviour*>::iterator i;
-   mvBehaviour* tempBehaviour = NULL;
+   mvBehaviourPtr tempBehaviour = NULL;
 
    if (bID == NULL)
       return NULL;
@@ -1538,7 +1538,7 @@ mvIndex mvWorld::mvGetBehaviourIndexByID(char* bID)
 {
    std::vector<mvBehaviour*>::iterator i;
    mvCount count = 1;
-   mvBehaviour* temp = NULL;
+   mvBehaviourPtr temp = NULL;
    char* tempID = NULL;
 
    if (bID == NULL)
@@ -1615,7 +1615,7 @@ mvErrorEnum mvWorld::mvSetCurrentBehaviourParameterv(mvParamEnum paramFlag, mvFl
 mvEnum mvWorld::mvAddBehaviourToBody(mvIndex behaviourIndex, mvIndex bodyIndex)
 {
    mvBodyPtr tempBody = NULL;
-   mvBehaviour* tempBehaviour = NULL;
+   mvBehaviourPtr tempBehaviour = NULL;
 
    tempBehaviour = mvGetBehaviour(behaviourIndex);
    tempBody = mvGetBody(bodyIndex);
@@ -1647,8 +1647,8 @@ mvEnum mvWorld::mvAddCurrentBehaviourToCurrentBody()
 
 mvEnum mvWorld::mvAddWaypointToBehaviour(mvIndex wpIndex,mvIndex behIndex)
 {
-   mvWaypoint* tempWaypoint = NULL;
-   mvBehaviour* tempBehaviour = NULL;
+   mvWaypointPtr tempWaypoint = NULL;
+   mvBehaviourPtr tempBehaviour = NULL;
 
    tempWaypoint = mvGetWaypoint(wpIndex);
    tempBehaviour = mvGetBehaviour(behIndex);
@@ -1681,7 +1681,7 @@ mvEnum mvWorld::mvAddCurrentWaypointToCurrentBehaviour()
 mvEnum mvWorld::mvAddBodyToBehaviour(mvIndex bodyIndex, mvIndex behaviourIndex)
 {
    mvBodyPtr tempBody = NULL;
-   mvBehaviour* tempBehaviour = NULL;
+   mvBehaviourPtr tempBehaviour = NULL;
 
    tempBody = mvGetBody(bodyIndex);
    tempBehaviour = mvGetBehaviour(behaviourIndex);
@@ -1982,7 +1982,7 @@ mvErrorEnum mvWorld::mvAddBehaviourToCurrentBody(mvOptionEnum bType, mvIndex beh
 
 mvErrorEnum mvWorld::mvSetBehaviourParameteri(mvIndex behaviourIndex,mvParamEnum paramFlag, mvIndex index)
 {
-   mvBehaviour* tempBehaviour = mvGetBehaviour(behaviourIndex);
+   mvBehaviourPtr tempBehaviour = mvGetBehaviour(behaviourIndex);
 
    if (tempBehaviour != NULL)
    {

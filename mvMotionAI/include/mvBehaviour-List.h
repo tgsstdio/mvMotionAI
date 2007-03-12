@@ -115,7 +115,7 @@ class mvBehaviourList
 
       //mvBehaviourEntry* entries;
 
-      //mvBehaviourEntry* findNodeByKeyPtr(mvBehaviour* bEntry);
+      //mvBehaviourEntry* findNodeByKeyPtr(mvBehaviourPtr bEntry);
       //mvBehaviourEntry* findEntryByName(char* bName);
       void setDefaultBody(mvIndex bodyIndex);
       void setDefaultWaypoint(mvIndex wpIndex);

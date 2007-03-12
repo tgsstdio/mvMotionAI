@@ -115,7 +115,7 @@ int mvLua_AddBehaviour(lua_State* L)
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    //const char* behaviourName = lua_tostring(L,2);
    const char* type = lua_tostring(L,MV_LUA_ADD_BEhAVIOUR_TYPE_INDEX);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
    mvOptionEnum bType;
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
@@ -129,7 +129,7 @@ int mvLua_AddBehaviour(lua_State* L)
 #ifdef MV_LUA_SCRIPT_BEHAVIOUR_DEBUG_FLAG
          puts(mvGetOptionString(bType));
 #endif
-         result = tempWorld->mvAddBehaviour(bType);
+         result = tempWorld->createBehaviour(bType);
       }
    };
    lua_pushnumber(L,result);
@@ -140,13 +140,13 @@ int mvLua_RemoveCurrentBehaviour(lua_State* L)
 {
    int result = 0;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
      // puts(tempWorld->getWorldID());
-      result = tempWorld->mvRemoveCurrentBehaviour();
+      result = tempWorld->removeCurrentBehaviour();
    }
    lua_pushnumber(L,result);
    return MV_LUA_RETURNED_ERROR_COUNT;
@@ -157,13 +157,13 @@ int mvLua_RemoveBehaviour(lua_State* L)
    int result = 0;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvIndex bIndex = (mvIndex) lua_tonumber(L,MV_LUA_REMOVE_ITEM_INDEX_NO);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
      // puts(tempWorld->getWorldID());
-      result = tempWorld->mvRemoveBehaviour(bIndex);
+      result = tempWorld->removeBehaviour(bIndex);
    }
    lua_pushnumber(L,result);
    return MV_LUA_RETURNED_ERROR_COUNT;
@@ -174,13 +174,13 @@ int mvLua_SetCurrentBehaviour(lua_State* L)
    int result = 0;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvIndex bIndex = (mvIndex) lua_tonumber(L,MV_LUA_SET_CURRENT_ITEM_INDEX_NO);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
    {
    //  puts(tempWorld->getWorldID());
-      result = tempWorld->mvSetCurrentBehaviour(bIndex);
+      result = tempWorld->setCurrentBehaviour(bIndex);
    }
    lua_pushnumber(L,result);
    return MV_LUA_RETURNED_ERROR_COUNT;
@@ -190,7 +190,7 @@ int mvLua_RemoveAllBehaviours(lua_State* L)
 {
    //int result = 0;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
@@ -215,7 +215,7 @@ int mvLua_AddBehaviourToBody(lua_State* L)
    mvIndex behaviourIndex = (mvIndex) lua_tonumber(L,MV_LUA_ADDBEHAVIOURTOBODY_BEHAVIOUR_INDEX_NO);
    mvIndex groupIndex = (mvIndex) lua_tonumber(L,MV_LUA_ADDBEHAVIOURTOBODY_GROUP_INDEX_NO);
    int result = MV_INVALID_BEHAVIOUR_TYPE;
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
    mvOptionEnum bType;
    mvErrorEnum error;
 
@@ -251,7 +251,7 @@ int mvLua_AddBehaviourToCurrentBody(lua_State* L)
    mvIndex behaviourIndex = (mvIndex) lua_tonumber(L,MV_LUA_ADDBEHAVIOURTOCURRENTBODY_BEHAVIOUR_INDEX_NO);
    mvIndex groupIndex = (mvIndex) lua_tonumber(L,MV_LUA_ADDBEHAVIOURTOCURRENTBODY_GROUP_INDEX_NO);
    int result = MV_INVALID_BEHAVIOUR_TYPE;
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
    mvOptionEnum bType;
    mvErrorEnum error;
 
@@ -285,7 +285,7 @@ int mvLua_SetBehaviourParameter(lua_State* L)
    mvIndex i;
    mvIndex indexValue;
    mvFloat numArray[MV_MAX_NO_OF_PARAMETERS];
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    // check single parameter first
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
@@ -355,7 +355,7 @@ int mvLua_SetCurrentBehaviourParameter(lua_State* L)
    mvIndex i;
    mvIndex indexValue;
    mvFloat numArray[MV_MAX_NO_OF_PARAMETERS];
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    // check single parameter first
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);

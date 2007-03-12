@@ -504,7 +504,7 @@ mvFloat mvBehaviourList::getDefaultBehaviourFactor() const
 
 
 /*
-mvBehaviourEntry* mvBehaviour_List::findEntryByKey(mvBehaviour* bEntry)
+mvBehaviourEntry* mvBehaviour_List::findEntryByKey(mvBehaviourPtr bEntry)
 {
    std::vector<mvBehaviourEntry*>::iterator i;
    mvBehaviourEntry* tempEntry = NULL;
@@ -545,7 +545,7 @@ mvBehaviourEntry* mvBehaviour_List::findEntryByName(char* bName)
 */
 
 /*
-mvEnum mvBehaviourList::addNewEntry(mvBehaviour* behaviourKey)
+mvEnum mvBehaviourList::addNewEntry(mvBehaviourPtr behaviourKey)
 {
    mvBehaviourEntry* tempEntry = NULL;
 

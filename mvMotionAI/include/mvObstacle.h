@@ -49,10 +49,11 @@
 
 #ifndef MOTIONAI_MVOBSTACLE_H_
 #define MOTIONAI_MVOBSTACLE_H_
-#include "mvEnums.h"
-//#include "Vec3.h"
-#include "mvVec3.h"
+
 #include "mvMotionAI-Types.h"
+#include MV_ENUMS_HEADER_FILE_H_
+#include MV_VEC_3_HEADER_FILE_H_
+
 
 /**
  * \class mvObstacle

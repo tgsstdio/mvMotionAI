@@ -149,7 +149,6 @@ class mvVec3
 
       // void matrixMultiply(const mvFloat* matrix, int noOfValues, int order);
       friend mvVec3 operator* (float s, const mvVec3& v);
-      // TODO : remove this function later
       //friend std::ostream& operator<< (std::ostream& o, const mvVec3& v);
 
 // TODO (White 2#1#): Distance function between to two points

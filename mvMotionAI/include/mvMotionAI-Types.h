@@ -26,6 +26,9 @@
  * Log
  *
  * version     date
+ * 00-01-51    12/03/07
+ * - declared header file here so change of header linking is easier.
+ *
  * 00-01-35    31/01/07
  * - version number and class pointers
  *
@@ -121,22 +124,55 @@ static const mvCount MV_MAX_NO_OF_PARAMETERS = 4;
 /*
  * complicated behaviour structure
  * must pre declared pointer ahead of time
+ *
  */
+
+#define MV_BASE_BEHAVIOUR_HEADER_FILE_H_ "mvBaseBehaviour.h"
 typedef class mvBaseBehaviour* mvBaseBehaviourPtr;
 typedef class mvBaseBehaviourLoader* mvBaseBehaviourLoaderPtr;
+
+#define MV_BEHAVIOUR_HEADER_FILE_H_ "mvBehaviour_V2.h"
 typedef class mvBehaviour_V2* mvBehaviourPtr;
+
+#define MV_BEHAVIOUR_RESULT_HEADER_FILE_H_ "mvBehaviourResult.h"
 typedef class mvBehaviourResult* mvBehaviourResultPtr;
-typedef class mvBody* mvBodyPtr;
+
+#define MV_BODY_HEADER_FILE_H_ "mvBody_V2.h"
+typedef class mvBody_V2* mvBodyPtr;
+
+#define MV_FORCE_HEADER_FILE_H_ "mvForce.h"
 typedef class mvForce* mvForcePtr;
+
+#define MV_FORCE_RESULT_HEADER_FILE_H_
 typedef class mvForceResult* mvForceResultPtr;
+
+#define MV_GROUP_HEADER_FILE_H_ "mvGroup.h"
 typedef class mvGroup* mvGroupPtr;
+
+#define MV_GROUP_BEHAVIOUR_HEADER_FILE_H_ "mvGroupBehaviour_V2.h"
 typedef class mvGroupBehaviour_V2* mvGroupBehaviourPtr;
 typedef class mvGroupBNode_V2* mvGroupBehaviourNodePtr;
+
+#define MV_GROUP_BEHAVIOUR_RESULT_HEADER_FILE_H_ "mvGroupBehaviourResult.h"
 typedef class mvGroupBehavResult* mvGroupBehaviourResultPtr;
+
+#define MV_OBSTACLE_HEADER_FILE_H_ "mvObstacle.h"
 typedef class mvObstacle* mvObstaclePtr;
+
+#define MV_PATHWAY_HEADER_FILE_H_ "mvPathway.h"
 typedef class mvPathway* mvPathwayPtr;
+
+#define MV_WAYPOINT_HEADER_FILE_H_ "mvWaypoint.h"
 typedef class mvWaypoint* mvWaypointPtr;
+
+#define MV_WORLD_HEADER_FILE_H_ "mvWorld2.h"
 typedef class mvWorld_V2* mvWorldPtr;
+
+#define MV_TIMER_HEADER_FILE_H_ "mvTimer.h"
 typedef class mvTimer* mvTimerPtr;
+
+#define MV_VEC_3_HEADER_FILE_H_ "mvVec3.h"
+#define MV_ENUMS_HEADER_FILE_H_ "mvEnums.h"
+#define MV_MOTIONAI_HEADER_FILE "mvMotionAI-V2.h"
 
 #endif

@@ -40,7 +40,7 @@ static const mvIndex MV_SIMPLE_FLOCK_ALIGNMENT_FACTOR_INDEX = 2;
 static const mvIndex MV_SIMPLE_FLOCK_PERCEIVED_COHESION_FLAG_INDEX = 0;
 static const mvIndex MV_SIMPLE_FLOCK_PERCEIVED_ALIGNMENT_FLAG_INDEX = 1;
 
-void mvBehaviour_SimpleFlock_GroupOperations(mvWorld* worldPtr,
+void mvBehaviour_SimpleFlock_GroupOperations(mvWorldPtr worldPtr,
                                              mvGroupPtr flockGroup,
                                              mvBehaviourEntry* groupData)
 {

@@ -112,7 +112,7 @@ mvIndex mvMotionAI_GETWORLDBYID(const char* id)
 #endif
 }
 
-mvWorld* mvMotionAI_GETWORLDPTR(mvIndex index)
+mvWorldPtr mvMotionAI_GETWORLDPTR(mvIndex index)
 {
 #ifdef __MV_MOTIONAI_CENTRAL_MODULE_PTR
    if (__motionAI_Central_Module != NULL)
@@ -128,7 +128,7 @@ mvWorld* mvMotionAI_GETWORLDPTR(mvIndex index)
 #endif
 }
 
-mvWorld* mvMotionAI_GETWORLDPTRBYID(char* worldID)
+mvWorldPtr mvMotionAI_GETWORLDPTRBYID(char* worldID)
 {
 #ifdef __MV_MOTIONAI_CENTRAL_MODULE_PTR
    if (__motionAI_Central_Module != NULL)
@@ -165,7 +165,7 @@ mvMotionAI::mvMotionAI()
 
 mvIndex mvMotionAI::addWorld(const char* worldID)
 {
-   mvWorld* temp = NULL;
+   mvWorldPtr temp = NULL;
 
    temp = new mvWorld(worldID);
    mvWorlds.push_back(temp);
@@ -178,7 +178,7 @@ mvIndex mvMotionAI::getWorldIndex(const char* worldID)
 {
    std::vector<mvWorld*>::iterator i;
    mvCount count = 1;
-   mvWorld* temp = NULL;
+   mvWorldPtr temp = NULL;
    char* tempID = NULL;
 
    for ( i = mvWorlds.begin(); i != mvWorlds.end(); ++i)
@@ -202,7 +202,7 @@ mvCount mvMotionAI::getNoOfWorlds()
    return noOfWorlds;
 }
 
-mvWorld* mvMotionAI::getWorldByIndex(mvIndex index)
+mvWorldPtr mvMotionAI::getWorldByIndex(mvIndex index)
 {
    /*
    if (index < 1 || index > noOfWorlds)
@@ -220,10 +220,10 @@ mvWorld* mvMotionAI::getWorldByIndex(mvIndex index)
    return mvGetClassPtr<mvWorld>(mvWorlds,index, noOfWorlds);
 }
 
-mvWorld* mvMotionAI::getWorldByID(const char* worldID)
+mvWorldPtr mvMotionAI::getWorldByID(const char* worldID)
 {
    std::vector<mvWorld*>::iterator i;
-   mvWorld* temp = NULL;
+   mvWorldPtr temp = NULL;
    char* tempID = NULL;
 
    for ( i = mvWorlds.begin(); i != mvWorlds.end(); ++i)
@@ -245,7 +245,7 @@ void mvMotionAI::removeAllWorlds()
 {
    /*
    std::vector<mvWorld*>::iterator i;
-   mvWorld* temp = NULL;
+   mvWorldPtr temp = NULL;
 
    for ( i = mvWorlds.begin(); i != mvWorlds.end(); ++i)
    {
@@ -274,7 +274,7 @@ mvMotionAI::~mvMotionAI()
 void mvMotionAI::allWorldsStepForward(mvFloat timeInSecs)
 {
    std::vector<mvWorld*>::iterator i;
-   mvWorld* temp = NULL;
+   mvWorldPtr temp = NULL;
 
    for ( i = mvWorlds.begin(); i != mvWorlds.end(); ++i)
    {

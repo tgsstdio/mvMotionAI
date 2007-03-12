@@ -41,7 +41,7 @@ mvPathway::~mvPathway()
  *
  * NOTE:  repetitions are allowed
  */
-void mvPathway::addWaypoint(mvWaypoint* pWaypoint)
+void mvPathway::addWaypoint(mvWaypointPtr pWaypoint)
 {
   if (pWaypoint != NULL)
   {
@@ -53,10 +53,10 @@ void mvPathway::addWaypoint(mvWaypoint* pWaypoint)
 /**
  * removes the latest instance
  */
-mvErrorEnum mvPathway::removeWaypoint(mvWaypoint* pWaypoint)
+mvErrorEnum mvPathway::removeWaypoint(mvWaypointPtr pWaypoint)
 {
    std::vector<mvWaypoint*>::reverse_iterator i;
-   mvWaypoint* currentWaypoint = NULL;
+   mvWaypointPtr currentWaypoint = NULL;
    mvIndex wpIndex;
 
    if (pWaypoint == NULL)
@@ -84,7 +84,7 @@ mvErrorEnum mvPathway::removeWaypoint(mvWaypoint* pWaypoint)
 void mvPathway::removeAllWaypoints()
 {
    std::vector<mvWaypoint*>::iterator i;
-   mvWaypoint* tempPoint = NULL;
+   mvWaypointPtr tempPoint = NULL;
 
    for (i = waypoints.begin(); i != waypoints.end(); ++i)
    {

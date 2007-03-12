@@ -128,7 +128,7 @@ int mvLua_AddGroup(lua_State* L)
 {
    static const mvIndex MV_LUA_ADDGROUP_GROUP_NAME_INDEX = 2;
 
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
    mvIndex worldID = static_cast<mvIndex>(lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE));
    char* groupName = const_cast<char*>(lua_tostring(L,MV_LUA_ADDGROUP_GROUP_NAME_INDEX));
    int result = 0;
@@ -152,7 +152,7 @@ int mvLua_GetGroup(lua_State* L)
 {
    static const mvIndex MV_LUA_GETGROUP_GROUP_NAME_INDEX = 2;
 
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    char* groupName = (char*)  lua_tostring(L,MV_LUA_GETGROUP_GROUP_NAME_INDEX);
    int result = 0;
@@ -169,7 +169,7 @@ int mvLua_GetGroup(lua_State* L)
 
 int mvLua_RemoveCurrentGroup(lua_State* L)
 {
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    int result = 0;
@@ -184,7 +184,7 @@ int mvLua_RemoveCurrentGroup(lua_State* L)
 
 int mvLua_RemoveGroup(lua_State* L)
 {
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    mvIndex groupIndex = (mvIndex) lua_tonumber(L,MV_LUA_REMOVE_ITEM_INDEX_NO);
@@ -200,7 +200,7 @@ int mvLua_RemoveGroup(lua_State* L)
 
 int mvLua_SetCurrentGroup(lua_State* L)
 {
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvIndex groupIndex = (mvIndex) lua_tonumber(L,MV_LUA_SET_CURRENT_ITEM_INDEX_NO);
    int result = 0;
@@ -216,7 +216,7 @@ int mvLua_SetCurrentGroup(lua_State* L)
 
 int mvLua_RemoveAllGroups(lua_State* L)
 {
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
@@ -234,7 +234,7 @@ int mvLua_AddBodyToGroup(lua_State* L)
    static const mvIndex MV_LUA_ADDBODYTOGROUP_BODY_INDEX = 2;
    static const mvIndex MV_LUA_ADDBODYTOGROUP_GROUP_INDEX = 3;
 
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvIndex bodyIndex = (mvIndex) lua_tonumber(L,MV_LUA_ADDBODYTOGROUP_BODY_INDEX);
    mvIndex groupIndex = (mvIndex) lua_tonumber(L,MV_LUA_ADDBODYTOGROUP_GROUP_INDEX);
@@ -253,7 +253,7 @@ int mvLua_AddCurrentBodyToGroup(lua_State* L)
 {
    static const mvIndex MV_LUA_ADDCURRENTBODYTOGROUP_GROUP_INDEX = 2;
 
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    //mvIndex bodyIndex = (mvIndex) lua_tonumber(L,2);
    mvIndex groupIndex = (mvIndex) lua_tonumber(L,MV_LUA_ADDCURRENTBODYTOGROUP_GROUP_INDEX);
@@ -272,7 +272,7 @@ int mvLua_AddBodyToCurrentGroup(lua_State* L)
 {
    static const mvIndex MV_LUA_ADDBODYTOCURRENTGROUP_GROUP_INDEX = 2;
 
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvIndex bodyIndex = (mvIndex) lua_tonumber(L,MV_LUA_ADDBODYTOCURRENTGROUP_GROUP_INDEX);
   // int groupIndex = (int) lua_tonumber(L,3);
@@ -289,7 +289,7 @@ int mvLua_AddBodyToCurrentGroup(lua_State* L)
 
 int mvLua_AddCurrentBodyToCurrentGroup(lua_State* L)
 {
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    //mvIndex bodyIndex = (mvIndex) lua_tonumber(L,2);
   // mvIndex groupIndex = (mvIndex) lua_tonumber(L,3);
@@ -309,7 +309,7 @@ int mvLua_RemoveBodyFromGroup(lua_State* L)
    static const mvIndex MV_LUA_REMOVEBODYFROMGROUP_BODY_INDEX = 2;
    static const mvIndex MV_LUA_REMOVEBODYFROMGROUP_GROUP_INDEX = 3;
 
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvIndex bodyIndex = (mvIndex) lua_tonumber(L,MV_LUA_REMOVEBODYFROMGROUP_BODY_INDEX);
    mvIndex groupIndex = (mvIndex) lua_tonumber(L,MV_LUA_REMOVEBODYFROMGROUP_GROUP_INDEX);
@@ -328,7 +328,7 @@ int mvLua_RemoveCurrentBodyFromGroup(lua_State* L)
 {
    static const mvIndex MV_LUA_REMOVECURRENTBODYFROMGROUP_GROUP_INDEX = 2;
 
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    //mvIndex bodyIndex = (mvIndex) lua_tonumber(L,2);
    mvIndex groupIndex = (mvIndex) lua_tonumber(L,MV_LUA_REMOVECURRENTBODYFROMGROUP_GROUP_INDEX);
@@ -347,7 +347,7 @@ int mvLua_RemoveBodyFromCurrentGroup(lua_State* L)
 {
    static const mvIndex MV_LUA_REMOVEFROMCURRENTGROUP_BODY_INDEX = 2;
 
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvIndex bodyIndex = (mvIndex) lua_tonumber(L,MV_LUA_REMOVEFROMCURRENTGROUP_BODY_INDEX);
    //int groupIndex = (int) lua_tonumber(L,3);
@@ -364,7 +364,7 @@ int mvLua_RemoveBodyFromCurrentGroup(lua_State* L)
 
 int mvLua_RemoveCurrentBodyFromCurrentGroup(lua_State* L)
 {
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    //mvIndex bodyIndex = (mvIndex) lua_tonumber(L,2);
    //mvIndex groupIndex = (mvIndex) lua_tonumber(L,3);
@@ -395,7 +395,7 @@ int mvLua_SetGroupParameter(lua_State* L)
    mvErrorEnum checkError;
    mvIndex i, indexValue;
    mvFloat numArray[MV_MAX_NO_OF_PARAMETERS];
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    // check single parameter first
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
@@ -467,7 +467,7 @@ int mvLua_SetCurrentGroupParameter(lua_State* L)
    mvIndex i;
    mvIndex indexValue;
    mvFloat numArray[MV_MAX_NO_OF_PARAMETERS];
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    // check single parameter first
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);

@@ -46,10 +46,10 @@
 #include <vector>
 //#include "Vec3.h"
 #include "mvMotionAI-Types.h"
-#include "mvVec3.h"
-#include "mvEnums.h"
+#include MV_VEC_3_HEADER_FILE_H_
+#include MV_ENUMS_HEADER_FILE_H_
 //#include "mvGroup.h"
-#include "mvForce.h"
+#include MV_FORCE_HEADER_FILE_H_
 
 /**
  * \class mvWaypoint

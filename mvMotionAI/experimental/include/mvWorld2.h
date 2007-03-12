@@ -28,14 +28,14 @@
 //#include "mvList.h"
 #include "mvPointerList.h"
 
-#include "mvForce.h"
-#include "mvBody.h"
-#include "mvObstacle.h"
-#include "mvWaypoint.h"
-#include "mvPathway.h"
-#include "mvGroup.h"
-#include "mvGroupBehaviour_V2.h"
-#include "mvBehaviour_V2.h"
+#include MV_FORCE_HEADER_FILE_H_
+#include MV_BODY_HEADER_FILE_H_
+#include MV_OBSTACLE_HEADER_FILE_H_
+#include MV_WAYPOINT_HEADER_FILE_H_
+#include MV_PATHWAY_HEADER_FILE_H_
+#include MV_GROUP_HEADER_FILE_H_
+#include MV_GROUP_BEHAVIOUR_HEADER_FILE_H_
+#include MV_BEHAVIOUR_HEADER_FILE_H_
 
 typedef class mvWorld_V2
 {

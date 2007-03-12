@@ -78,7 +78,7 @@ class mvBehaviour
     //mvFloat* defaultVariables;
     //Vec3* defaultVectors;
     //mvPathway* bPaths;
-    //mvWaypoint* bWaypoints;
+    //mvWaypointPtr bWaypoints;
     //mvIndex* indexes;
 
   public:

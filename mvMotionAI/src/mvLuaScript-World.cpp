@@ -79,7 +79,7 @@ int mvLua_WorldStep(lua_State* L)
    int result = 0;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvFloat timeInSecs = (mvFloat) lua_tonumber(L,MV_LUA_WORLDSTEP_TIMEINSECS_INDEX);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    // check if world exist
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
@@ -100,7 +100,7 @@ int mvLua_NudgeBody(lua_State* L)
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvIndex bodyIndex = (mvIndex) lua_tonumber(L,MV_LUA_NUDGEBODY_BODY_INDEX_VALUE);
    mvFloat timeInSecs = (mvFloat) lua_tonumber(L,MV_LUA_NUDGEBODY_TIMEINSECS_INDEX);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    // check if world exist
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
@@ -119,7 +119,7 @@ int mvLua_NudgeCurrentBody(lua_State* L)
    int result = 0;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvFloat timeInSecs = (mvFloat) lua_tonumber(L,MV_LUA_NUDGECURRENTBODY_TIMEINSECS_INDEX);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    // check if world exist
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
@@ -147,7 +147,7 @@ int mvLua_SetWorldParameter(lua_State* L)
    mvErrorEnum checkError;
    mvIndex i, indexValue;
    mvFloat numArray[MV_MAX_NO_OF_PARAMETERS];
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    // check single parameter first
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);

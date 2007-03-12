@@ -116,7 +116,7 @@ class mvWorld
 
       mvIndex mvAddWaypoint(mvOptionEnum wType, mvOptionEnum wShape); //< initialised
       mvIndex mvAddWaypointWithPos(mvOptionEnum wType, mvOptionEnum wShape, mvFloat x, mvFloat y, mvFloat z);//< initialised
-      mvWaypoint* mvGetWaypoint(mvIndex index);//< initialised
+      mvWaypointPtr mvGetWaypoint(mvIndex index);//< initialised
       mvErrorEnum mvRemoveWaypoint(mvIndex index);//< initialised
       mvErrorEnum mvRemoveCurrentWaypoint();//< initialised
       mvIndex mvSetCurrentWaypoint(mvIndex index);//< initialised
@@ -185,8 +185,8 @@ class mvWorld
 
       //mvIndex mvAddBehaviour(char* bName, mvOptionEnum bType); //< initialised
       mvIndex mvAddBehaviour(mvOptionEnum bType);
-      mvBehaviour* mvGetBehaviour(mvIndex index); //< initialised
-      //mvBehaviour* mvGetBehaviourByID(char* bID);//< initialised
+      mvBehaviourPtr mvGetBehaviour(mvIndex index); //< initialised
+      //mvBehaviourPtr mvGetBehaviourByID(char* bID);//< initialised
       mvIndex mvGetBehaviourIndexByID(char* bID);//< initialised
       mvErrorEnum mvRemoveCurrentBehaviour();//< initialised
       mvErrorEnum mvRemoveBehaviour(mvIndex index);//< initialised
