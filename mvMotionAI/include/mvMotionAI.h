@@ -72,8 +72,8 @@ void mvMotionAI_ALLWORLDSSTEPFORWARD(mvFloat timeInSecs);
 mvIndex mvMotionAI_CREATEWORLD(const char* id);
 void mvMotionAI_DELETEALLWORLDS();
 mvIndex mvMotionAI_GETWORLDBYID(const char* id);
-mvWorld* mvMotionAI_GETWORLDPTRBYID(const char* id);
-mvWorld* mvMotionAI_GETWORLDPTR(mvIndex index);
+mvWorldPtr mvMotionAI_GETWORLDPTRBYID(const char* id);
+mvWorldPtr mvMotionAI_GETWORLDPTR(mvIndex index);
 void mvMotionAI_APPLYTOALLWORLDS(void (someFunction)(mvWorld*,void*),void* extraPtr);
 
 /**
@@ -98,8 +98,8 @@ class mvMotionAI
       mvIndex addWorld(const char* worldID);
       mvIndex getWorldIndex(const char* worldID);
       mvCount getNoOfWorlds();
-      mvWorld* getWorldByIndex(mvIndex index);
-      mvWorld* getWorldByID(const char* worldID);
+      mvWorldPtr getWorldByIndex(mvIndex index);
+      mvWorldPtr getWorldByID(const char* worldID);
       void removeAllWorlds();
       void allWorldsStepForward(mvFloat timeInSecs);
       ~mvMotionAI();

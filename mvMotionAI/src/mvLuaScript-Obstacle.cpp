@@ -113,7 +113,7 @@ int mvLua_AddObstacle(lua_State* L)
    mvFloat z = (mvFloat) lua_tonumber(L,MV_ADDOBSTACLE_Z_INDEX);
    mvOptionEnum oShape, oType;
 
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    // check if world exist
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
@@ -134,7 +134,7 @@ int mvLua_RemoveCurrentObstacle(lua_State* L)
 {
    int result = 0;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
@@ -153,7 +153,7 @@ int mvLua_RemoveObstacle(lua_State* L)
    int result = 0;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvIndex oIndex = (mvIndex) lua_tonumber(L,MV_LUA_REMOVE_ITEM_INDEX_NO);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
@@ -172,7 +172,7 @@ int mvLua_SetCurrentObstacle(lua_State* L)
    int result = 0;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvIndex oIndex = (mvIndex) lua_tonumber(L,MV_LUA_SET_CURRENT_ITEM_INDEX_NO);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
@@ -190,7 +190,7 @@ int mvLua_RemoveAllObstacles(lua_State* L)
 {
    //int result = 0;
    mvIndex worldID = (int) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
@@ -220,7 +220,7 @@ int mvLua_SetObstacleParameter(lua_State* L)
    mvErrorEnum checkError;
    mvIndex i, indexValue;
    mvFloat numArray[MV_MAX_NO_OF_PARAMETERS];
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    // check single parameter first
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
@@ -289,7 +289,7 @@ int mvLua_SetCurrentObstacleParameter(lua_State* L)
    mvIndex i;
    mvIndex indexValue;
    mvFloat numArray[MV_MAX_NO_OF_PARAMETERS];
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    // check single parameter first
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);

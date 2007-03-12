@@ -333,7 +333,7 @@ mvOptionEnum mvBody::getShape() const
 16th June 2006
 Behaviour functions in mvBody
 **
-mvEnum mvBody::addBehaviour(mvBehaviour* bItem, mvEnum* flagArray, mvFloat* varArray)
+mvEnum mvBody::addBehaviour(mvBehaviourPtr bItem, mvEnum* flagArray, mvFloat* varArray)
 {
    **
    mvBehaviourEntry* tempEntry = getEntryByPtr(bItem);
@@ -349,7 +349,7 @@ mvEnum mvBody::addBehaviour(mvBehaviour* bItem, mvEnum* flagArray, mvFloat* varA
    return MV_TRUE;
 };
 **
-mvBehaviourEntry* mvBody::getEntryByPtr(mvBehaviour* bEntry)
+mvBehaviourEntry* mvBody::getEntryByPtr(mvBehaviourPtr bEntry)
 {
    return bList.findEntryByKey(bEntry);
 };

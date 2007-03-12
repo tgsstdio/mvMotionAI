@@ -22,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#include "mvMotionAI-Types.h"
 #include "mvBehaviour-Central.h"
 #include "mvBehaviour-Seek.h"
 #include "mvBehaviour-Flee.h"
@@ -149,7 +150,7 @@ void mvProcessGroupBehaviours(mvWorldPtr worldPtr, mvGroupBehaviourPtr groupBehP
    }
 }
 
-void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBodyPtr currentBody, mvFloat timeStep,
+void mvProcessBodyBehaviours(mvWorldPtr worldPtr, mvBodyPtr currentBody, mvFloat timeStep,
                              mvVec3& mvDirVector, mvVec3& mvVelocityVector,
                              mvVec3& mvAccelVector,mvVec3& mvForceVector)
 {
@@ -157,7 +158,7 @@ void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBodyPtr currentBody, mvFloat t
    mvBehaviourEntry* groupEntry = NULL;
    mvBehaviourEntry* bodyEntry = NULL;
    mvOptionEnum nodeType, behaviourType;
-   mvBehaviour* globalBehaviour = NULL;
+   mvBehaviourPtr globalBehaviour = NULL;
    mvGroupBehaviourPtr groupBehav = NULL;
    mvGroupBehaviourNode* groupBehavNode = NULL;
    //mvGroupPtr currentGroup = NULL;
@@ -165,7 +166,7 @@ void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBodyPtr currentBody, mvFloat t
    mvCount noOfBehaviours;
    mvIndex behaviourIndex, groupIndex, bodyIndex, waypointIndex;
    mvBodyPtr bodyPtr = NULL;
-   mvWaypoint* wayPointPtr = NULL;
+   mvWaypointPtr wayPointPtr = NULL;
    //mvPathway* pathWayPtr = NULL;
    mvFloat nodeFactor = 0; // multiplier with each behaviour
    mvFloat listFactorTotal;
@@ -384,7 +385,7 @@ void mvProcessBodyBehaviours(mvWorld* worldPtr, mvBodyPtr currentBody, mvFloat t
    mvIndex index;
    mvEnum bType;
    mvPathway* currentPathway = NULL;
-   mvWaypoint* tempWaypoint = NULL;
+   mvWaypointPtr tempWaypoint = NULL;
    mvBodyPtr tempBody1 = NULL;
    mvBodyPtr tempBody2 = NULL;
    */

@@ -152,7 +152,7 @@ int mvLua_AddBody(lua_State* L)
    mvFloat z = (mvFloat) lua_tonumber(L,MV_LUA_ADDBODY_Z_INDEX);
    mvOptionEnum bType, bShape;
 
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    // check if world exist
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
@@ -176,7 +176,7 @@ int mvLua_RemoveCurrentBody(lua_State* L)
 {
    int result = 0;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
@@ -195,7 +195,7 @@ int mvLua_RemoveBody(lua_State* L)
    int result = 0;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvIndex bIndex = (mvIndex) lua_tonumber(L,MV_LUA_REMOVE_ITEM_INDEX_NO);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
@@ -214,7 +214,7 @@ int mvLua_SetCurrentBody(lua_State* L)
    int result = 0;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvIndex bIndex = (mvIndex) lua_tonumber(L,MV_LUA_SET_CURRENT_ITEM_INDEX_NO);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
@@ -232,7 +232,7 @@ int mvLua_RemoveAllBodies(lua_State* L)
 {
    //int result = 0;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
@@ -252,7 +252,7 @@ int mvLua_SetDefaultWaypointForBody(lua_State* L)
    mvIndex waypointIndex = (mvIndex) lua_tonumber(L,MV_LUA_SETDEFAULTITEMFORBODY_INDEX_NO);
    mvIndex bodyIndex = (mvIndex) lua_tonumber(L,MV_LUA_SET_DEFAULT_ITEM_BODY_INDEX);
 
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
@@ -270,7 +270,7 @@ int mvLua_SetDefaultPathwayForBody(lua_State* L)
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvIndex pathwayIndex =  (mvIndex) lua_tonumber(L,MV_LUA_SETDEFAULTITEMFORBODY_INDEX_NO);
    mvIndex bodyIndex = (mvIndex) lua_tonumber(L,MV_LUA_SET_DEFAULT_ITEM_BODY_INDEX);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
@@ -288,7 +288,7 @@ int mvLua_SetDefaultBodyForBody(lua_State* L)
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvIndex targetIndex = (mvIndex) lua_tonumber(L,MV_LUA_SETDEFAULTITEMFORBODY_INDEX_NO);
    mvIndex bodyIndex = (mvIndex) lua_tonumber(L,MV_LUA_SET_DEFAULT_ITEM_BODY_INDEX);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
@@ -306,7 +306,7 @@ int mvLua_SetDefaultBehaviourFactorForBody(lua_State* L)
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvFloat bFactor = (mvFloat) lua_tonumber(L,MV_LUA_SETDEFAULTITEMFORBODY_INDEX_NO);
    mvIndex bodyIndex = (mvIndex) lua_tonumber(L,MV_LUA_SET_DEFAULT_ITEM_BODY_INDEX);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
@@ -322,7 +322,7 @@ int mvLua_SetDefaultWaypointForCurrentBody(lua_State* L)
    int result = 0;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvIndex wpIndex = (mvIndex) lua_tonumber(L,MV_LUA_SETDEFAULTITEMFORBODY_INDEX_NO);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
@@ -338,7 +338,7 @@ int mvLua_SetDefaultPathwayForCurrentBody(lua_State* L)
    int result = 0;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvIndex pwIndex = (mvIndex) lua_tonumber(L,MV_LUA_SETDEFAULTITEMFORBODY_INDEX_NO);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
@@ -354,7 +354,7 @@ int mvLua_SetDefaultBodyForCurrentBody(lua_State* L)
    int result = 0;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvIndex bodyIndex = (mvIndex) lua_tonumber(L,MV_LUA_SETDEFAULTITEMFORBODY_INDEX_NO);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
@@ -370,7 +370,7 @@ int mvLua_SetDefaultBehaviourFactorForCurrentBody(lua_State* L)
    int result = 0;
    mvIndex worldID = (mvIndex) lua_tonumber(L,MV_LUA_WORLD_INDEX_VALUE);
    mvFloat bFactor = (mvFloat) lua_tonumber(L,MV_LUA_SETDEFAULTITEMFORBODY_INDEX_NO);
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
    if (tempWorld != NULL)
@@ -398,7 +398,7 @@ int mvLua_SetBodyParameter(lua_State* L)
    mvErrorEnum checkError;
    mvIndex i, indexValue;
    mvFloat numArray[MV_MAX_NO_OF_PARAMETERS];
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    // check single parameter first
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);
@@ -467,7 +467,7 @@ int mvLua_SetCurrentBodyParameter(lua_State* L)
    mvIndex i;
    mvIndex indexValue;
    mvFloat numArray[MV_MAX_NO_OF_PARAMETERS];
-   mvWorld* tempWorld = NULL;
+   mvWorldPtr tempWorld = NULL;
 
    // check single parameter first
    tempWorld = mvMotionAI_GETWORLDPTR(worldID);

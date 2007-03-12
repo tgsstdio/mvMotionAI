@@ -29,6 +29,6 @@
 #include "mvBody.h"
 #include "mvWaypoint.h"
 
-mvVec3 mvBehaviour_Calculate_Flee(mvBodyPtr body, mvWaypoint* point);
+mvVec3 mvBehaviour_Calculate_Flee(mvBodyPtr body, mvWaypointPtr point);
 
 #endif

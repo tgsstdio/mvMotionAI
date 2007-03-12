@@ -180,7 +180,7 @@
 	"mvMotionAI-Types.h"
 	"mvBEntryTimer.h"
 
-1171603526 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
+1173625614 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
 
 1171255674 d:\mvmotionai\mvmotionai\experimental\include\mvbentrytimer.h
 	"mvMotionAI-Types.h"
@@ -221,9 +221,8 @@
 	"mvWorld2.h"
 	"mvBody.h"
 
-1170827430 d:\mvmotionai\mvmotionai\include\mvvec3.h
+1173624518 d:\mvmotionai\mvmotionai\include\mvvec3.h
 	"mvMotionAI-Types.h"
-	<iostream>
 
 1173583772 d:\mvmotionai\mvmotionai\experimental\include\mvworld2.h
 	"mvMotionAI-Types.h"
@@ -251,48 +250,37 @@
 
 1170312250 d:\mvmotionai\mvmotionai\experimental\include\mvpointerlist.hpp
 
-1167541360 d:\mvmotionai\mvmotionai\include\mvforce.h
-	"mvVec3.h"
+1173624564 d:\mvmotionai\mvmotionai\include\mvforce.h
 	"mvMotionAI-Types.h"
-	"mvEnums.h"
 
-1166248706 d:\mvmotionai\mvmotionai\include\mvbody.h
+1173624450 d:\mvmotionai\mvmotionai\include\mvbody.h
 	<vector>
 	"mvMotionAI-Types.h"
-	"mvEnums.h"
-	"mvVec3.h"
 	"mvBehaviour-List.h"
 
-1162533962 d:\mvmotionai\mvmotionai\include\mvbehaviour-list.h
+1173594238 d:\mvmotionai\mvmotionai\include\mvbehaviour-list.h
 	<vector>
 	"mvEnums.h"
 	"mvMotionAI-Types.h"
 	"mvBehaviour-Entry.h"
 
-1161756880 d:\mvmotionai\mvmotionai\include\mvbehaviour-entry.h
+1173592986 d:\mvmotionai\mvmotionai\include\mvbehaviour-entry.h
 	"mvMotionAI-Types.h"
 	"mvVec3.h"
 	"mvEnums.h"
 
-1164628632 d:\mvmotionai\mvmotionai\include\mvobstacle.h
-	"mvEnums.h"
-	"mvVec3.h"
+1173624694 d:\mvmotionai\mvmotionai\include\mvobstacle.h
 	"mvMotionAI-Types.h"
 
-1164635366 d:\mvmotionai\mvmotionai\include\mvwaypoint.h
+1173624804 d:\mvmotionai\mvmotionai\include\mvwaypoint.h
 	<vector>
 	"mvMotionAI-Types.h"
-	"mvVec3.h"
-	"mvEnums.h"
-	"mvForce.h"
 
-1161845658 d:\mvmotionai\mvmotionai\include\mvpathway.h
-	<vector>
-	"mvEnums.h"
-	"mvWaypoint.h"
+1173703896 d:\mvmotionai\mvmotionai\include\mvpathway.h
 	"mvMotionAI-Types.h"
+	<vector>
 
-1167658720 d:\mvmotionai\mvmotionai\include\mvgroup.h
+1173592996 d:\mvmotionai\mvmotionai\include\mvgroup.h
 	<vector>
 	"mvMotionAI-Types.h"
 	"mvEnums.h"
@@ -319,11 +307,11 @@
 	"mvGroup.h"
 	"mvWorld2.h"
 
-1170335708 source:d:\mvmotionai\mvmotionai\experimental\src\mvseek.cpp
+1173589430 source:d:\mvmotionai\mvmotionai\experimental\src\mvseek.cpp
 	"mvSeek.h"
 	<new>
 
-1170337464 d:\mvmotionai\mvmotionai\experimental\include\mvseek.h
+1173590218 d:\mvmotionai\mvmotionai\experimental\include\mvseek.h
 	"mvBaseBehaviour.h"
 
 1169301248 source:d:\mvmotionai\mvmotionai\experimental\src\mvbasebehaviour.cpp

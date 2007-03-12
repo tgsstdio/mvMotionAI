@@ -24,10 +24,10 @@
 #ifndef _MV_MOTIONAI_FORCE_H
 #define _MV_MOTIONAI_FORCE_H
 
-#include "mvVec3.h"
 #include "mvMotionAI-Types.h"
 //#include "Vec3.h"
-#include "mvEnums.h"
+#include MV_VEC_3_HEADER_FILE_H_
+#include MV_ENUMS_HEADER_FILE_H_
 
 /**
  * \class mvForce

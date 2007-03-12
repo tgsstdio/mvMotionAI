@@ -30,10 +30,10 @@
 #define MVBEHAVIOURRESULT_H_INCLUDED
 
 #include "mvMotionAI-Types.h"
-#include "mvVec3.h"
-#include "mvEnums.h"
-#include "mvWorld2.h"
-#include "mvBody.h"
+#include MV_VEC_3_HEADER_FILE_H_
+#include MV_ENUMS_HEADER_FILE_H_
+#include MV_WORLD_HEADER_FILE_H_
+#include MV_BODY_HEADER_FILE_H_
 
 #define MV_QUATERNION_LENGTH 4
 

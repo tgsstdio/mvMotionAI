@@ -50,8 +50,8 @@ int mvLua_AllWorldsStepForward(lua_State* luaVM);
 /*
 void mvLoadLuaScriptFile(char* fileName);
 void mvAllWorldsStepForward(mvFloat timeInSecs);
-mvWorld* mvGetWorldByID(char* id);
-mvWorld* mvAddWorld(char* id);
+mvWorldPtr mvGetWorldByID(char* id);
+mvWorldPtr mvAddWorld(char* id);
 void mvRemoveAllWorlds();
 */
 

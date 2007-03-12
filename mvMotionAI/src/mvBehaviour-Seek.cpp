@@ -29,7 +29,7 @@
  * using (psuedo-)code from SIGGRAPH 2000 article - Steering Behaviours
  * by Robin Green (2000)
  */
-mvVec3 mvBehaviour_Calculate_Seek(mvBodyPtr body, mvWaypoint* point)
+mvVec3 mvBehaviour_Calculate_Seek(mvBodyPtr body, mvWaypointPtr point)
 {
    mvVec3 final_velocity;
    mvVec3 direction;

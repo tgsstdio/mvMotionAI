@@ -24,7 +24,7 @@
 
 #include "mvBehaviour-Flee.h"
 
-mvVec3 mvBehaviour_Calculate_Flee(mvBodyPtr body, mvWaypoint* point)
+mvVec3 mvBehaviour_Calculate_Flee(mvBodyPtr body, mvWaypointPtr point)
 {
    mvVec3 final_velocity;
    mvVec3 direction;
