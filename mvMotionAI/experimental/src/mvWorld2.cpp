@@ -2785,7 +2785,7 @@ mvIndex mvWorld_V2::setCurrentBody(mvIndex index)
   *
   * (documentation goes here)
   */
-mvBody * mvWorld_V2::getCurrentBodyPtr()
+mvBodyPtr mvWorld_V2::getCurrentBodyPtr()
 {
    return bodies.getCurrentClassPtr();
 }
@@ -2794,7 +2794,7 @@ mvBody * mvWorld_V2::getCurrentBodyPtr()
   *
   * (documentation goes here)
   */
-mvBody * mvWorld_V2::getBodyPtr(mvIndex index)
+mvBodyPtr mvWorld_V2::getBodyPtr(mvIndex index)
 {
    return bodies.getClassPtr(index);
 }

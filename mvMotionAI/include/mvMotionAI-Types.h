@@ -138,6 +138,7 @@ typedef class mvBehaviour_V2* mvBehaviourPtr;
 typedef class mvBehaviourResult* mvBehaviourResultPtr;
 
 #define MV_BODY_HEADER_FILE_H_ "mvBody_V2.h"
+typedef class mvBody_V2 mvBody;
 typedef class mvBody_V2* mvBodyPtr;
 
 #define MV_FORCE_HEADER_FILE_H_ "mvForce.h"
