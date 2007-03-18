@@ -81,7 +81,7 @@ bool mvSeek::bodyOp(mvBehaviourResultPtr resultModule)
    }
 
    // pos = body->position;
-   pos.setAll(bodyPtr->position);
+   pos = bodyPtr->getPosition();
    // direction = target - pos;
    direction.set(point->getX(), point->getY(), point->getZ());
    direction.minusVec3(pos);

@@ -28,7 +28,7 @@
 	<File name="experimental\include\mvBEntryListNode.h" open="0" top="0" tabpos="2">
 		<Cursor position="1143" topLine="6" />
 	</File>
-	<File name="experimental\include\mvBEntryTimer.h" open="1" top="0" tabpos="1">
+	<File name="experimental\include\mvBEntryTimer.h" open="0" top="0" tabpos="1">
 		<Cursor position="1395" topLine="17" />
 	</File>
 	<File name="experimental\include\mvBEntryTree.h" open="0" top="0" tabpos="11">
@@ -76,7 +76,7 @@
 	<File name="experimental\include\mvPointerList.h" open="0" top="0" tabpos="8">
 		<Cursor position="1848" topLine="98" />
 	</File>
-	<File name="experimental\include\mvPointerList.hpp" open="1" top="0" tabpos="5">
+	<File name="experimental\include\mvPointerList.hpp" open="0" top="0" tabpos="5">
 		<Cursor position="4877" topLine="164" />
 	</File>
 	<File name="experimental\include\mvPursuit.h" open="0" top="0" tabpos="4">
@@ -151,7 +151,7 @@
 	<File name="experimental\src\mvPursuit.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="1406" topLine="0" />
 	</File>
-	<File name="experimental\src\mvSeek.cpp" open="0" top="0" tabpos="8">
+	<File name="experimental\src\mvSeek.cpp" open="1" top="0" tabpos="8">
 		<Cursor position="4959" topLine="145" />
 	</File>
 	<File name="experimental\src\mvShape.cpp" open="0" top="0" tabpos="2">

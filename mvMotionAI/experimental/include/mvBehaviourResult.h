@@ -43,7 +43,7 @@ typedef class mvBehaviourResult
 {
    public:
       mvWorldPtr currentWorld;
-      mvBodyPtr currentBody;
+      const mvBodyPtr currentBody;
 //      mvBaseBehaviour* currentGroupBehNode;
       mvIndex behaviourIndex;
       mvIndex groupIndex;
@@ -88,11 +88,21 @@ typedef class mvBehaviourResult
       void setToDirectional();
       void setToSteering();
 
-      mvWorldPtr getWorldPtr();
+      const mvWorldPtr getWorldPtr();
 //      mvBaseBehaviour* getGroupBehaviourNode();
       mvBodyPtr getCurrentBodyPtr();
       mvIndex getBehaviourIndex();
       mvIndex getGroupIndex();
+
+      // utility functions
+      // TODO: new predicter functions
+      const mvVec3& predictPosition(mvFloat timeInSecs) const;
+      const mvVec3& predictFinalPosition(mvFloat timeInSecs) const;
+
+      const mvVec3& predictVelocity(mvFloat timeInSecs) const;
+      const mvVec3& predictFinalVelocity(mvFloat timeInSecs) const;
+      // maybe
+      const mvVec3& confineVector(const mvVec3& v) const;
 
       // utility functions
       mvWaypointPtr fetchWaypointPtr(mvIndex index);
