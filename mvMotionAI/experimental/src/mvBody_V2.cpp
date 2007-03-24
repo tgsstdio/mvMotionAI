@@ -30,7 +30,7 @@ const mvVec3& mvBody_V2::getPosition() const
 
 void mvBody_V2::setPosition(mvFloat x, mvFloat y, mvFloat z)
 {
-   position.set(x,y,z);
+   bodyPosition.set(x,y,z);
 }
 
 const mvVec3& mvBody_V2::getFaceDirection() const
@@ -75,38 +75,48 @@ mvFloat mvBody_V2::getMass() const
 
 // boolean flags
 
-mvFloat mvBody_V2::getAcceleration(mvFloat accel)
+mvFloat mvBody_V2::getAcceleration(mvFloat accel) const
 {
-   bodyAccel = accel;
+   return bodyAccel;
 }
 
 void mvBody_V2::setAcceleration(mvFloat accel)
 {
-   return accel;
+   bodyAccel = accel;
 }
 
 // TODO : new functions for retriving values
-mvVec3 mvBody_V2::getFinalDirection() const
+const mvVec3& mvBody_V2::getFinalDirection() const
 {
-   return finalVelocity.normalize();
+   return faceDirection;
 }
 
-mvVec3 mvBody_V2::setFinalDirection(mvVec3& value)
+void mvBody_V2::setFinalDirection(mvVec3& value)
 {
-   return finalVelocity.s
+   faceDirection = value;
 }
 
-      mvVec3 getFinalVelocity() const;
-      mvVec3 setFinalVelocity(mvVec3& value);
+const mvVec3& mvBody_V2::getFinalVelocity() const
+{
+   return finalVelocity;
+}
+
+void mvBody_V2::setFinalVelocity(mvVec3& value)
+{
+   finalVelocity = value;
+}
 
 mvVec3 mvBody_V2::getVelocity() const
 {
+   mvVec3 temp(bodyDirection);
+   temp *= getSpeed();
 
+   return temp;
 }
 
 mvFloat mvBody_V2::getFinalSpeed() const
 {
-
+   return finalVelocity.length();
 }
 
 // parameter functions

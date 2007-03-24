@@ -56,7 +56,7 @@ bool mvSeek::bodyOp(mvBehaviourResultPtr resultModule)
       restult = 0.5  times [i.e averaged with] (new velocity + old velocity)
    */
    mvVec3 pos, direction, velocity;
-   mvBodyPtr bodyPtr = NULL;
+   const mvBodyPtr bodyPtr = NULL;
    mvWaypointPtr point = NULL;
 
    // 1. check if input/output class pointer is valid

@@ -21,14 +21,15 @@
  */
 #include "mvBehaviourResult.h"
 
-/** @brief (one liner)
+ /** @brief (one liner)
   *
   * (documentation goes here)
   */
-mvBody * mvResult::getCurrentBodyPtr()
+const mvBodyPtr mvResult::getCurrentBodyPtr() const
 {
    return currentBody;
 }
+
 
 // /** @brief (one liner)
 //  *
@@ -43,7 +44,7 @@ mvBody * mvResult::getCurrentBodyPtr()
   *
   * (documentation goes here)
   */
-mvWorldPtr mvResult::getWorldPtr()
+const mvWorldPtr mvResult::getWorldPtr() const
 {
    return currentWorld;
 }
@@ -72,8 +73,8 @@ void mvResult::setToDirectional()
   */
 void mvResult::resetAll()
 {
-   currentWorld = NULL;
-   currentBody = NULL;
+   //currentWorld = NULL;
+   //currentBody = NULL;
 //   currentGroupBehNode = NULL;
    behaviourIndex = MV_NO_CURRENT_INDEX;
    groupIndex = MV_NO_CURRENT_INDEX;
@@ -217,7 +218,8 @@ void mvResult::setWorldPtr(mvWorldPtr worldPtr)
   *
   * (documentation goes here)
   */
-mvBehaviourResult::mvBehaviourResult()
+mvBehaviourResult::mvBehaviourResult(const mvWorldPtr worldPtr, const mvBodyPtr bodyPtr)
+: currentWorld(worldPtr), currentBody(bodyPtr)
 {
    resetAll();
 }
