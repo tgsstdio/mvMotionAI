@@ -23,7 +23,7 @@
 #define MV_VECTOR_LIST_H_
 
 #include <vector>
-#include "mvEnums.h"
+#include MV_ENUMS_HEADER_FILE_H_
 #include "mvMotionAI-Types.h"
 
 //TODO : use negetive index as wrap around array index

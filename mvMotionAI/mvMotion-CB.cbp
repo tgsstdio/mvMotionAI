@@ -79,6 +79,7 @@
 		</Linker>
 		<Unit filename="experimental\include\mv2.h" />
 		<Unit filename="experimental\include\mvBaseBehaviour.h" />
+		<Unit filename="experimental\include\mvBehavFuncList.h" />
 		<Unit filename="experimental\include\mvBehaviourResult.h" />
 		<Unit filename="experimental\include\mvBehaviour_V2.h" />
 		<Unit filename="experimental\include\mvBody_V2.h" />
@@ -86,6 +87,7 @@
 		<Unit filename="experimental\include\mvGroupBehaviourResult.h" />
 		<Unit filename="experimental\include\mvGroupBehaviour_V2.h" />
 		<Unit filename="experimental\include\mvWorld2.h" />
+		<Unit filename="experimental\src\mvBehavFuncList.cpp" />
 		<Unit filename="experimental\src\mvBehaviour_V2.cpp" />
 		<Unit filename="experimental\src\mvBody_V2.cpp" />
 		<Unit filename="experimental\src\mvGroupBNode_V2.cpp" />
@@ -94,7 +96,6 @@
 		<Unit filename="include\mvEnums.h" />
 		<Unit filename="include\mvForce.h" />
 		<Unit filename="include\mvGroup.h" />
-		<Unit filename="include\mvLuaScript.h" />
 		<Unit filename="include\mvMotionAI-Types.h" />
 		<Unit filename="include\mvMotionAI-Utilities.h" />
 		<Unit filename="include\mvObstacle.h" />

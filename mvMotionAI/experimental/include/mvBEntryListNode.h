@@ -23,9 +23,9 @@
 #define MVBENTRYLISTNODE_H_INCLUDED
 
 #include "mvMotionAI-Types.h"
-#include "mvEnums.h"
-#include "mvBEntry.h"
-#include "mvBEntryTimer.h"
+#include MV_ENUMS_HEADER_FILE_H_
+#include MV_BENTRY_HEADER_FILE_H_
+#include MV_TIMER_HEADER_FILE_H_
 
 class mvBEntryListNode
 {

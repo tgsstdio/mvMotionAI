@@ -60,6 +60,8 @@
  * \brief immoveable objects that are avoided.
  */
 
+// TODO : collision detection
+
 static const mvCount MV_MAX_NO_OF_OBSTACLE_DIMENSIONS = 4;
 
 class mvObstacle

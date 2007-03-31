@@ -23,7 +23,7 @@
 #define MVBENTRYUTILITY_H_INCLUDED
 
 #include "mvMotionAI-Types.h"
-#include "mvBEntryTimer.h"
+#include MV_TIMER_HEADER_FILE_H_
 
 class mvBEntryUtility
 {

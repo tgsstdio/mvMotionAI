@@ -32,7 +32,8 @@ mvBehavFuncList::mvBehavFuncList()
    noOfValidFunctions = 0;
 }
 
-mvErrorEnum mvBehavFuncList::addBehaviourFunction(mvOptionEnum key, mvBaseBehaviourLoader* bFunc)
+mvErrorEnum mvBehavFuncList::addBehaviourFunction(mvOptionEnum key,\
+   mvBaseBehaviourLoader* bFunc)
 {
    // check if behaviour key exists
    std::map<mvOptionEnum,mvBaseBehaviourLoader*>::iterator checkKey;
@@ -75,7 +76,8 @@ void mvBehavFuncList::freeAllBehaviourFunctions()
    bFunctions.clear();
 }
 
-mvBaseBehaviour* mvBehavFuncList::createBehaviour(mvOptionEnum key, mvBaseBehaviour* defaultBehav)
+mvBaseBehaviour* mvBehavFuncList::createBehaviour(mvOptionEnum key,\
+   mvBaseBehaviour* defaultBehav)
 {
    // check if behaviour key exists
    std::map<mvOptionEnum,mvBaseBehaviourLoader*>::iterator checkKey;

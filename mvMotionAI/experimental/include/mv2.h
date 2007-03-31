@@ -41,7 +41,9 @@
 #include "mvMotionAI-Types.h"
 #include "mvWorld2.h"
 #include "mvBaseBehaviour.h"
-#include "mvEnums.h"
+#include MV_ENUMS_HEADER_FILE_H_
+
+// TODO : add defined HEADER_FILES_H
 
 #ifdef BUILD_DLL
 #define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)

@@ -23,8 +23,8 @@
 #define MVBENTRY_H_INCLUDED
 
 #include "mvMotionAI-Types.h"
-#include "mvEnums.h"
-#include "mvBaseBehaviour.h"
+#include MV_ENUMS_HEADER_FILE_H_
+#include MV_BASE_BEHAVIOUR_HEADER_FILE_H_
 
 class mvBEntry
 {

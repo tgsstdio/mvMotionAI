@@ -56,6 +56,7 @@
  * \brief Immediate class between Motion AI objects and gloabl world points
  */
 // TODO (White 2#1#): doygen documentation
+// TODO : removing force list
 
 static const mvCount MV_MAX_NO_OF_WAYPOINT_DIMENSIONS = 3;
 

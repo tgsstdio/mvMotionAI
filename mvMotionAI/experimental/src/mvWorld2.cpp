@@ -796,12 +796,12 @@ mvGroupBehaviourPtr mvWorld_V2::getGroupBehaviourPtr(mvIndex index)
   */
 mvIndex mvWorld_V2::createGroupBehaviour(mvOptionEnum type)
 {
-   mvGroupBehaviourPtr temp = new (std::nothrow) mvGroupBehaviour_V2(type);
+   mvBaseBehaviourPtr temp = behavLoader->createBehaviour(type,NULL);
 
    if (temp == NULL)
       return MV_NO_CURRENT_INDEX;
-
-   return groupBehaviours.addItem(temp);
+      //TODO : change group behaviour type with typedefs
+   return groupBehaviours.addItem(new mvGroupBehaviour(temp));
 }
 
 /** @brief (one liner)
@@ -1490,7 +1490,21 @@ mvBehaviour_V2 * mvWorld_V2::getBehaviourPtr(mvIndex index)
   */
 mvIndex mvWorld_V2::createBehaviour(mvOptionEnum bType)
 {
-   return behaviours.addItem(new mvBehaviour_V2(bType));
+   mvBaseBehaviourPtr tempBehav = NULL;
+
+   if (behavLoader != NULL)
+   {
+      tempBehav = behavLoader->createBehaviour(bType,NULL);
+   }
+
+   if (tempBehav == NULL)
+   {
+      return MV_NO_CURRENT_INDEX;
+   }
+   else
+   {
+      return behaviours.addItem(new mvBehaviour_V2(tempBehav));
+   }
 }
 
 /** @brief (one liner)
@@ -2853,7 +2867,25 @@ mvWorld_V2::mvWorld_V2(const char* id = NULL)
       worldID = NULL;
    }
 
+   behavLoader = NULL;
+}
 
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+void mvWorld_V2::setBehaviourLoader(mvBehavFuncListPtr bLoaderPtr)
+{
+   behavLoader = bLoaderPtr;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvBehavFuncListPtr mvWorld_V2::getBehaviourLoader() const
+{
+   return behavLoader;
 }
 
 /** @brief (one liner)

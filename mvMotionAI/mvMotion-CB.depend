@@ -24,7 +24,7 @@
 
 1162271928 
 
-1174220114 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
+1175355838 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
 
 1173704284 d:\mvmotionai\mvmotionai\include\mvbody.h
 	<vector>
@@ -64,11 +64,11 @@
 
 1163222446 haviour.h"
 
-1173624804 d:\mvmotionai\mvmotionai\include\mvwaypoint.h
+1175356432 d:\mvmotionai\mvmotionai\include\mvwaypoint.h
 	<vector>
 	"mvMotionAI-Types.h"
 
-1173624564 d:\mvmotionai\mvmotionai\include\mvforce.h
+1175356562 d:\mvmotionai\mvmotionai\include\mvforce.h
 	"mvMotionAI-Types.h"
 
 1173593930 d:\mvmotionai\mvmotionai\include\mvbehaviour.h
@@ -76,7 +76,7 @@
 	"mvEnums.h"
 	"mvMotionAI-Types.h"
 
-1173703896 d:\mvmotionai\mvmotionai\include\mvpathway.h
+1175356482 d:\mvmotionai\mvmotionai\include\mvpathway.h
 	"mvMotionAI-Types.h"
 	<vector>
 
@@ -84,7 +84,7 @@
 	<vector>
 	"mvMotionAI-Types.h"
 
-1173624694 d:\mvmotionai\mvmotionai\include\mvobstacle.h
+1175356406 d:\mvmotionai\mvmotionai\include\mvobstacle.h
 	"mvMotionAI-Types.h"
 
 1173593132 d:\mvmotionai\mvmotionai\include\mvgroupbehaviour.h
@@ -416,7 +416,7 @@
 
 1160983812 aviour.h"
 
-1170337372 d:\mvmotionai\mvmotionai\experimental\include\mvbasebehaviour.h
+1174716576 d:\mvmotionai\mvmotionai\experimental\include\mvbasebehaviour.h
 	"mvMotionAI-Types.h"
 	"mvBehaviourResult.h"
 	"mvGroupBehaviourResult.h"
@@ -426,7 +426,7 @@
 	<cstring>
 	"mvMotionAI-Types.h"
 
-1170375418 d:\mvmotionai\mvmotionai\include\mvenums.h
+1175356896 d:\mvmotionai\mvmotionai\include\mvenums.h
 	<cstdlib>
 
 1161096100 d:\mvmotionai\mvmotionai\src\mvenums.cpp
@@ -869,7 +869,7 @@
 1173594238 source:d:\mvmotionai\mvmotionai\src\mvbody.cpp
 	"mvBody.h"
 
-1173624886 source:d:\mvmotionai\mvmotionai\src\mvenums.cpp
+1175356896 source:d:\mvmotionai\mvmotionai\src\mvenums.cpp
 	"mvMotionAI-Types.h"
 	"mvEnums.h"
 	<cstring>
@@ -980,7 +980,7 @@
 	"mvLuaScript.h"
 	"mvMotionAI-Utilities.h"
 
-1164628602 source:d:\mvmotionai\mvmotionai\src\mvobstacle.cpp
+1175356916 source:d:\mvmotionai\mvmotionai\src\mvobstacle.cpp
 	"mvObstacle.h"
 
 1173593934 source:d:\mvmotionai\mvmotionai\src\mvpathway.cpp
@@ -997,7 +997,7 @@
 	"mvVec3.h"
 	"mvMotionAI-Utilities.h"
 
-1173593008 source:d:\mvmotionai\mvmotionai\src\mvwaypoint.cpp
+1175356928 source:d:\mvmotionai\mvmotionai\src\mvwaypoint.cpp
 	"mvWaypoint.h"
 
 1166711312 source:d:\mvmotionai\mvmotionai\src\mvworld.cpp
@@ -1036,30 +1036,28 @@
 	"mvEnums.h"
 	"mvMotionAI-Types.h"
 
-1174220096 source:d:\mvmotionai\mvmotionai\experimental\src\mvworld2.cpp
+1175326146 source:d:\mvmotionai\mvmotionai\experimental\src\mvworld2.cpp
 	"mvWorld2.h"
 	<cstring>
 	<new>
 
-1173706628 d:\mvmotionai\mvmotionai\experimental\include\mvworld2.h
+1174718544 d:\mvmotionai\mvmotionai\experimental\include\mvworld2.h
 	"mvMotionAI-Types.h"
 	"mvPointerList.h"
 
-1170311690 d:\mvmotionai\mvmotionai\experimental\include\mvpointerlist.h
+1174716622 d:\mvmotionai\mvmotionai\experimental\include\mvpointerlist.h
 	<vector>
-	"mvEnums.h"
 	"mvMotionAI-Types.h"
 	"mvPointerList.hpp"
 
 1170312250 d:\mvmotionai\mvmotionai\experimental\include\mvpointerlist.hpp
 
-1170311454 d:\mvmotionai\mvmotionai\experimental\include\mvgroupbehaviour_v2.h
+1175356746 d:\mvmotionai\mvmotionai\experimental\include\mvgroupbehaviour_v2.h
 	"mvMotionAI-Types.h"
 	"mvPointerList.h"
-	"mvBaseBehaviour.h"
 	"mvGroupBNode_V2.h"
 
-1174222732 d:\mvmotionai\mvmotionai\experimental\include\mvbehaviourresult.h
+1174715204 d:\mvmotionai\mvmotionai\experimental\include\mvbehaviourresult.h
 	"mvMotionAI-Types.h"
 
 1170310826 d:\mvmotionai\mvmotionai\experimental\include\mvgroupbehaviourresult.h
@@ -1067,17 +1065,14 @@
 	"mvGroup.h"
 	"mvWorld2.h"
 
-1170311246 d:\mvmotionai\mvmotionai\experimental\include\mvgroupbnode_v2.h
-	"mvEnums.h"
+1175356638 d:\mvmotionai\mvmotionai\experimental\include\mvgroupbnode_v2.h
+	"mvMotionAI-Types.h"
+
+1174716576 d:\mvmotionai\mvmotionai\experimental\include\mvbehaviour_v2.h
 	"mvMotionAI-Types.h"
 	"mvBaseBehaviour.h"
 
-1170311222 d:\mvmotionai\mvmotionai\experimental\include\mvbehaviour_v2.h
-	"mvMotionAI-Types.h"
-	"mvBaseBehaviour.h"
-	"mvEnums.h"
-
-1170311568 source:d:\mvmotionai\mvmotionai\experimental\src\mvgroupbehaviour_v2.cpp
+1175325886 source:d:\mvmotionai\mvmotionai\experimental\src\mvgroupbehaviour_v2.cpp
 	"mvGroupBehaviour_V2.h"
 	"mvMotionAI_V2-Central.h"
 	<new>
@@ -1088,22 +1083,20 @@
 	"mvBehavFuncList.h"
 	"mvWorld2.h"
 
-1169102104 d:\mvmotionai\mvmotionai\experimental\include\mvbehavfunclist.h
+1174717562 d:\mvmotionai\mvmotionai\experimental\include\mvbehavfunclist.h
 	<map>
-	"mvBaseBehaviour.h"
-	"mvEnums.h"
+	"mvMotionAI-Types.h"
 
 1169703550 source:d:\mvmotionai\mvmotionai\experimental\src\mvgroupbnode_v2.cpp
 	"mvGroupBNode_V2.h"
 	"mvMotionAI_V2-Central.h"
 
-1170311930 source:d:\mvmotionai\mvmotionai\experimental\src\mvbehaviour_v2.cpp
+1174715820 source:d:\mvmotionai\mvmotionai\experimental\src\mvbehaviour_v2.cpp
 	"mvBehaviour_V2.h"
-	"mvMotionAI_V2-Central.h"
 
-1174713376 source:d:\mvmotionai\mvmotionai\experimental\src\mvbody_v2.cpp
+1175356708 source:d:\mvmotionai\mvmotionai\experimental\src\mvbody_v2.cpp
 	"mvBody_V2.h"
 
-1174713400 d:\mvmotionai\mvmotionai\experimental\include\mvbody_v2.h
+1175356686 d:\mvmotionai\mvmotionai\experimental\include\mvbody_v2.h
 	"mvMotionAI-Types.h"
 

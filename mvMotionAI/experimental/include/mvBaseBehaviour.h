@@ -34,12 +34,14 @@
 #define MV_BASE_BEHAVIOUR_H_
 
 #include "mvMotionAI-Types.h"
+#include MV_ENUMS_HEADER_FILE_H_
 #include "mvBehaviourResult.h"
 #include "mvGroupBehaviourResult.h"
 //#include "mvWorld2.h"
 //#include "mvVec3.h"
 //#include "mvBody.h"
-//#include "mvEnums.h"
+// TODO : add defined HEADER_FILES_H
+
 
 typedef class mvBaseBehaviour
 {

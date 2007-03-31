@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="Shapes" />
+	<ActiveTarget name="Debug" />
 	<File name="experimental\examples-src\ClassPtr.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="3684" topLine="89" />
+		<Cursor position="3620" topLine="97" />
 	</File>
 	<File name="experimental\examples-src\ShapesTest.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="65" topLine="0" />
@@ -11,7 +11,7 @@
 		<Cursor position="692" topLine="0" />
 	</File>
 	<File name="experimental\examples-src\mvTestBehaviours.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="54" topLine="0" />
+		<Cursor position="62" topLine="0" />
 	</File>
 	<File name="experimental\examples-src\mvWorld2-Test.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="1143" topLine="0" />
@@ -20,34 +20,34 @@
 		<Cursor position="56442" topLine="536" />
 	</File>
 	<File name="experimental\include\mvBEntry.h" open="0" top="0" tabpos="2">
-		<Cursor position="1143" topLine="23" />
+		<Cursor position="1311" topLine="15" />
 	</File>
 	<File name="experimental\include\mvBEntryList.h" open="0" top="0" tabpos="3">
-		<Cursor position="1296" topLine="165" />
+		<Cursor position="1276" topLine="25" />
 	</File>
 	<File name="experimental\include\mvBEntryListNode.h" open="0" top="0" tabpos="2">
-		<Cursor position="1143" topLine="6" />
+		<Cursor position="1382" topLine="14" />
 	</File>
 	<File name="experimental\include\mvBEntryTimer.h" open="0" top="0" tabpos="1">
-		<Cursor position="1395" topLine="17" />
+		<Cursor position="1278" topLine="17" />
 	</File>
 	<File name="experimental\include\mvBEntryTree.h" open="0" top="0" tabpos="11">
-		<Cursor position="1824" topLine="19" />
+		<Cursor position="1276" topLine="25" />
 	</File>
 	<File name="experimental\include\mvBEntryTreeNode.h" open="0" top="0" tabpos="3">
-		<Cursor position="1857" topLine="0" />
+		<Cursor position="1284" topLine="16" />
 	</File>
 	<File name="experimental\include\mvBaseBehaviour.h" open="0" top="0" tabpos="0">
-		<Cursor position="1036" topLine="17" />
+		<Cursor position="2966" topLine="47" />
 	</File>
-	<File name="experimental\include\mvBehavFuncList.h" open="0" top="0" tabpos="4">
-		<Cursor position="1553" topLine="0" />
+	<File name="experimental\include\mvBehavFuncList.h" open="0" top="0" tabpos="6">
+		<Cursor position="1351" topLine="0" />
 	</File>
 	<File name="experimental\include\mvBehaviourResult.h" open="0" top="0" tabpos="1">
 		<Cursor position="3081" topLine="60" />
 	</File>
 	<File name="experimental\include\mvBehaviour_V2.h" open="0" top="0" tabpos="4">
-		<Cursor position="1456" topLine="9" />
+		<Cursor position="1456" topLine="21" />
 	</File>
 	<File name="experimental\include\mvClone.h" open="0" top="0" tabpos="3">
 		<Cursor position="1333" topLine="8" />
@@ -62,22 +62,22 @@
 		<Cursor position="1310" topLine="4" />
 	</File>
 	<File name="experimental\include\mvGroupBehaviour_V2.h" open="0" top="0" tabpos="2">
-		<Cursor position="1401" topLine="0" />
+		<Cursor position="1588" topLine="18" />
 	</File>
-	<File name="experimental\include\mvList.h" open="0" top="0" tabpos="0">
-		<Cursor position="6284" topLine="102" />
+	<File name="experimental\include\mvList.h" open="0" top="0" tabpos="1">
+		<Cursor position="1252" topLine="25" />
 	</File>
-	<File name="experimental\include\mvMotionAI_V2-Central.h" open="0" top="0" tabpos="6">
-		<Cursor position="2224" topLine="7" />
+	<File name="experimental\include\mvMotionAI_V2-Central.h" open="1" top="0" tabpos="2">
+		<Cursor position="2224" topLine="13" />
 	</File>
 	<File name="experimental\include\mvNullLoader.h" open="0" top="0" tabpos="3">
 		<Cursor position="1408" topLine="0" />
 	</File>
-	<File name="experimental\include\mvPointerList.h" open="0" top="0" tabpos="8">
-		<Cursor position="1848" topLine="98" />
+	<File name="experimental\include\mvPointerList.h" open="0" top="0" tabpos="2">
+		<Cursor position="1264" topLine="24" />
 	</File>
-	<File name="experimental\include\mvPointerList.hpp" open="0" top="0" tabpos="5">
-		<Cursor position="4877" topLine="164" />
+	<File name="experimental\include\mvPointerList.hpp" open="0" top="0" tabpos="7">
+		<Cursor position="15143" topLine="595" />
 	</File>
 	<File name="experimental\include\mvPursuit.h" open="0" top="0" tabpos="4">
 		<Cursor position="1235" topLine="4" />
@@ -85,14 +85,14 @@
 	<File name="experimental\include\mvSeek.h" open="0" top="0" tabpos="7">
 		<Cursor position="836" topLine="0" />
 	</File>
-	<File name="experimental\include\mvShape.h" open="0" top="0" tabpos="1">
-		<Cursor position="1366" topLine="4" />
+	<File name="experimental\include\mvShape.h" open="1" top="1" tabpos="1">
+		<Cursor position="1266" topLine="4" />
 	</File>
 	<File name="experimental\include\mvSimpleFlock.h" open="0" top="0" tabpos="5">
 		<Cursor position="626" topLine="0" />
 	</File>
 	<File name="experimental\include\mvWorld2.h" open="0" top="0" tabpos="1">
-		<Cursor position="3661" topLine="23" />
+		<Cursor position="1776" topLine="23" />
 	</File>
 	<File name="experimental\src\mv.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="17149" topLine="0" />
@@ -142,8 +142,8 @@
 	<File name="experimental\src\mvList.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="7023" topLine="280" />
 	</File>
-	<File name="experimental\src\mvMotionAI_V2-Central.cpp" open="0" top="0" tabpos="15">
-		<Cursor position="18891" topLine="756" />
+	<File name="experimental\src\mvMotionAI_V2-Central.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="12146" topLine="485" />
 	</File>
 	<File name="experimental\src\mvNullLoader.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1238" topLine="0" />
@@ -151,7 +151,7 @@
 	<File name="experimental\src\mvPursuit.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="1406" topLine="0" />
 	</File>
-	<File name="experimental\src\mvSeek.cpp" open="1" top="0" tabpos="8">
+	<File name="experimental\src\mvSeek.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="4959" topLine="145" />
 	</File>
 	<File name="experimental\src\mvShape.cpp" open="0" top="0" tabpos="2">
@@ -161,6 +161,6 @@
 		<Cursor position="1259" topLine="13" />
 	</File>
 	<File name="experimental\src\mvWorld2.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="54256" topLine="2318" />
+		<Cursor position="53808" topLine="2318" />
 	</File>
 </CodeBlocks_layout_file>

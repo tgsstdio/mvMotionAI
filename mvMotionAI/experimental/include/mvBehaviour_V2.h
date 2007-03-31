@@ -24,7 +24,7 @@
 
 #include "mvMotionAI-Types.h"
 #include "mvBaseBehaviour.h"
-#include "mvEnums.h"
+#include MV_ENUMS_HEADER_FILE_H_
 
 /**
  * \class mvBehaviour
@@ -38,7 +38,7 @@ class mvBehaviour_V2
       mvBaseBehaviourPtr behavPtr;
 
    public:
-      mvBehaviour_V2(mvOptionEnum bType);
+      mvBehaviour_V2(mvBaseBehaviourPtr bPtr);
       bool isEnabled();
       void setEnabled(bool value);
       mvBaseBehaviourPtr getBehaviourPtr();

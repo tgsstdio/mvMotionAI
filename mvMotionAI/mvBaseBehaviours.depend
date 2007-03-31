@@ -26,7 +26,7 @@
 
 1166797132 haviour.h"
 
-1170311410 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
+1174716220 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
 
 1166248706 d:\mvmotionai\mvmotionai\include\mvbody.h
 	<vector>
@@ -84,11 +84,9 @@
 	"mvWaypoint.h"
 	"mvMotionAI-Types.h"
 
-1167658720 d:\mvmotionai\mvmotionai\include\mvgroup.h
+1173706928 d:\mvmotionai\mvmotionai\include\mvgroup.h
 	<vector>
 	"mvMotionAI-Types.h"
-	"mvEnums.h"
-	"mvBody.h"
 
 1164628632 d:\mvmotionai\mvmotionai\include\mvobstacle.h
 	"mvEnums.h"
@@ -182,18 +180,9 @@
 	"mvWorld2.h"
 	<cstdlib>
 
-1170332822 d:\mvmotionai\mvmotionai\experimental\include\mvworld2.h
+1173706628 d:\mvmotionai\mvmotionai\experimental\include\mvworld2.h
 	"mvMotionAI-Types.h"
-	"mvList.h"
 	"mvPointerList.h"
-	"mvForce.h"
-	"mvBody.h"
-	"mvObstacle.h"
-	"mvWaypoint.h"
-	"mvPathway.h"
-	"mvGroup.h"
-	"mvGroupBehaviour_V2.h"
-	"mvBehaviour_V2.h"
 
 1168139659 ur.h"
 
@@ -287,7 +276,7 @@
 	"mvEnums.h"
 	"mvMotionAI-Types.h"
 
-1170337020 source:d:\mvmotionai\mvmotionai\experimental\src\mvworld2.cpp
+1174220096 source:d:\mvmotionai\mvmotionai\experimental\src\mvworld2.cpp
 	"mvWorld2.h"
 	<cstring>
 	<new>
@@ -308,30 +297,22 @@
 
 1168957428 ree.h"
 
-1170078616 d:\mvmotionai\mvmotionai\experimental\include\mvbehaviourresult.h
+1174715204 d:\mvmotionai\mvmotionai\experimental\include\mvbehaviourresult.h
 	"mvMotionAI-Types.h"
-	"mvVec3.h"
-	"mvEnums.h"
-	"mvWorld2.h"
-	"mvBody.h"
 
-1169102118 d:\mvmotionai\mvmotionai\experimental\include\mvbentrylistnode.h
+1174716192 d:\mvmotionai\mvmotionai\experimental\include\mvbentrylistnode.h
 	"mvMotionAI-Types.h"
-	"mvEnums.h"
-	"mvBEntry.h"
-	"mvBEntryTimer.h"
 
 1169018052 imer.h"
 
-1168581468 d:\mvmotionai\mvmotionai\experimental\include\mvbentry.h
+1174716158 d:\mvmotionai\mvmotionai\experimental\include\mvbentry.h
 	"mvMotionAI-Types.h"
-	"mvBaseBehaviour.h"
 
-1168867250 d:\mvmotionai\mvmotionai\experimental\include\mvbentrytimer.h
+1171255674 d:\mvmotionai\mvmotionai\experimental\include\mvbentrytimer.h
 	"mvMotionAI-Types.h"
 	"mvEnums.h"
 
-1169016078 d:\mvmotionai\mvmotionai\experimental\include\mvbentrytreenode.h
+1174716290 d:\mvmotionai\mvmotionai\experimental\include\mvbentrytreenode.h
 	"mvMotionAI-Types.h"
 	"mvEnums.h"
 	"mvBEntryTimer.h"
@@ -353,7 +334,7 @@
 	"mvEnums.h"
 	"mvMotionAI-Types.h"
 
-1169018052 d:\mvmotionai\mvmotionai\experimental\include\mvbentrytree.h
+1174716318 d:\mvmotionai\mvmotionai\experimental\include\mvbentrytree.h
 	"mvMotionAI-Types.h"
 	"mvEnums.h"
 	"mvBEntryTreeNode.h"
@@ -519,7 +500,7 @@
 	<lualib.h>
 	<lauxlib.h>
 
-1170311900 d:\mvmotionai\mvmotionai\experimental\include\mvmotionai_v2-central.h
+1173625662 d:\mvmotionai\mvmotionai\experimental\include\mvmotionai_v2-central.h
 	"mvMotionAI-Types.h"
 	"mvBaseBehaviour.h"
 	"mvBehavFuncList.h"
@@ -593,7 +574,7 @@
 	"mvMotionAI-Types.h"
 	"mvEnums.h"
 
-1170395104 source:d:\mvmotionai\mvmotionai\experimental\examples-src\shapestest.cpp
+1170395344 source:d:\mvmotionai\mvmotionai\experimental\examples-src\shapestest.cpp
 	"mvShape.h"
 	<cstdlib>
 	<cstdio>

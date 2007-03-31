@@ -1,5 +1,4 @@
 #include "mvBehaviour_V2.h"
-#include "mvMotionAI_V2-Central.h"
 
 /** @brief (one liner)
   *
@@ -63,9 +62,9 @@ bool mvBehaviour_V2::isEnabled()
   *
   * (documentation goes here)
   */
- mvBehaviour_V2::mvBehaviour_V2(mvOptionEnum bType)
+ mvBehaviour_V2::mvBehaviour_V2(mvBaseBehaviourPtr bPtr)
 {
-   behavPtr = mvMotionAI_V2_CREATENEWBEHAVIOUR(bType, NULL);
+   behavPtr = bPtr;
    behavEnabled = true;
 }
 

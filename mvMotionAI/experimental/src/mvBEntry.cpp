@@ -46,43 +46,51 @@ void mvBEntry::setGroupIndex(mvIndex index)
 
 mvErrorEnum mvBEntry::getParameteri(mvParamEnum paramFlag, mvIndex* index)
 {
+   // TODO: implement later
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
 mvErrorEnum mvBEntry::getParameter(mvParamEnum paramFlag, mvOptionEnum* option)
 {
+// TODO: implement later
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
 mvErrorEnum mvBEntry::getParameterf(mvParamEnum paramFlag, mvFloat* num)
 {
+// TODO: implement later
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
 mvErrorEnum mvBEntry::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
    mvCount* noOfParameters)
 {
+// TODO: implement later
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
 
 mvErrorEnum mvBEntry::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
+// TODO: implement later
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
 mvErrorEnum mvBEntry::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
+// TODO: implement later
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
 mvErrorEnum mvBEntry::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
+// TODO: implement later
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
 mvErrorEnum mvBEntry::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 {
+// TODO: implement later
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 

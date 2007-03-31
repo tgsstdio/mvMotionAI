@@ -32,9 +32,11 @@ bool findGroupNodeByIndex(mvGroupBNode_V2* groupNodePtr, void* extraPtr)
   *
   * (documentation goes here)
   */
- mvGroupBehaviour_V2::mvGroupBehaviour_V2(mvOptionEnum gbType)
+ mvGroupBehaviour_V2::mvGroupBehaviour_V2(mvBaseBehaviourPtr groupBehPtr)
 {
-   defaultGBehaviour = mvMotionAI_V2_CREATENEWBEHAVIOUR(gbType, NULL);
+      // TODO : group behavioior functions with behaviour loading
+
+   defaultGBehaviour = groupBehPtr;
    behavEnabled = true;
 }
 

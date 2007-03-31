@@ -25,8 +25,10 @@
 #include "mvMotionAI-Types.h"
 //#include "mvList.h" chenged to pointer list
 #include "mvPointerList.h"
-#include "mvBaseBehaviour.h"
-#include "mvGroupBNode_V2.h"
+#include MV_BASE_BEHAVIOUR_HEADER_FILE_H_
+#include MV_GROUP_BEHAVIOUR_NODE_HEADER_FILE_H_
+
+// TODO : add pointer to pointer (ptr**) to mvBehaviourFuncList
 
 class mvGroupBehaviour_V2
 {
@@ -35,7 +37,7 @@ class mvGroupBehaviour_V2
       mvPointerList<mvGroupBehaviourNodePtr> groupNodeList;
       bool behavEnabled;
    public:
-      mvGroupBehaviour_V2(mvOptionEnum gbType);
+      mvGroupBehaviour_V2(mvBaseBehaviourPtr groupBehPtr);
       ~mvGroupBehaviour_V2();
       mvErrorEnum addGroup(mvIndex groupNo);
       mvErrorEnum removeGroup(mvIndex groupNo);

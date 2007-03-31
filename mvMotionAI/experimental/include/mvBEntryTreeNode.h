@@ -23,7 +23,7 @@
 #define MVBENTRYTREENODE_H_INCLUDED
 
 #include "mvMotionAI-Types.h"
-#include "mvEnums.h"
+#include MV_ENUMS_HEADER_FILE_H_
 #include "mvBEntryTimer.h"
 
 /* TODO : implement functions tree node */
@@ -33,7 +33,7 @@ class mvBEntryTreeNode
    public:
       mvIndex bEntryNode;
       mvOptionEnum mode;
-      mvBEntryTimer timer;
+      mvTimer timer;
       mvBEntryTreeNode* prevNode;
       mvBEntryTreeNode* nextLevel;
       mvBEntryTreeNode* prevLevel;

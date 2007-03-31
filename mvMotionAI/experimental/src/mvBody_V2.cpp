@@ -1,11 +1,49 @@
 #include "mvBody_V2.h"
-/*
+/** \brief mvBodyV2 constructor
  * This is a rewrite of mvBody
  */
 mvBody_V2::mvBody_V2(mvOptionEnum bType, mvOptionEnum shape, mvFloat x,\
-   mvFloat y, mvFloat z)
+   mvFloat y, mvFloat z) :  bodyPosition(x,y,z)
 {
-   //TODO : implememt this function
+   // boolean flags are true
+   enabled = true;
+   applyForces = true;
+   applyShifts = true;
+   applyAccelerations = true;
+   applyGravity = true;
+   applyCollisions = true;
+   applyAllForces = true;
+
+   //acceleration = 1.0
+   bodyAccel = 1;
+   // deaccleation = 1
+   bodyDeaccel = 1;
+   // mass = 1.0
+   bodyMass = 1.0;
+   // current speed = 0
+   bodyCurrentSpeed = 0;
+   // max speed = 5
+   bodyMaxSpeed = 5;
+   // user data = NULL
+   bodyUserDataPtr = NULL;
+   // default direction 1.0
+   bodyDirection.set(0,0,1);
+   //  default direction
+
+   // face direction
+   faceDirection.set(0,0,1);
+   //TODO : initialises variables
+
+}
+
+void* mvBody_V2::getUserData() const
+{
+   return bodyUserDataPtr;
+}
+
+void mvBody_V2::setUserData(void* usrData)
+{
+   bodyUserDataPtr = usrData;
 }
 
 mvFloat mvBody_V2::getX() const
@@ -73,9 +111,18 @@ mvFloat mvBody_V2::getMass() const
    return bodyMass;
 }
 
-// boolean flags
 
-mvFloat mvBody_V2::getAcceleration(mvFloat accel) const
+mvFloat mvBody_V2::getDeacceleration() const
+{
+   return bodyDeaccel;
+}
+
+void mvBody_V2::setDeacceleration(mvFloat dAccel)
+{
+   bodyDeaccel = dAccel;
+}
+
+mvFloat mvBody_V2::getAcceleration() const
 {
    return bodyAccel;
 }

@@ -50,6 +50,9 @@
  *                         - created simple array of waypoints which can be loaded via scripts
  *
  */
+
+ // TODO : removing waypoint pointer to indexes
+
 class mvPathway
 {
    private:
