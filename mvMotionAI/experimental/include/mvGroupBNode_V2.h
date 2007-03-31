@@ -22,9 +22,9 @@
 #ifndef MVGROUPBNODE_V2_H_INCLUDED
 #define MVGROUPBNODE_V2_H_INCLUDED
 
-#include "mvEnums.h"
 #include "mvMotionAI-Types.h"
-#include "mvBaseBehaviour.h"
+#include MV_ENUMS_HEADER_FILE_H_
+#include MV_BASE_BEHAVIOUR_HEADER_FILE_H_
 
 class mvGroupBNode_V2
 {

@@ -1,6 +1,8 @@
 #include "mvGroupBNode_V2.h"
 #include "mvMotionAI_V2-Central.h"
 
+// TODO : remove all C interface function calls - more modular
+
 /** @brief (one liner)
   *
   * (documentation goes here)

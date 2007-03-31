@@ -28,6 +28,7 @@
 //#include "mvList.h"
 #include "mvPointerList.h"
 
+#include MV_BASE_BEHAVIOUR_HEADER_FILE_H_
 #include MV_FORCE_HEADER_FILE_H_
 #include MV_BODY_HEADER_FILE_H_
 #include MV_OBSTACLE_HEADER_FILE_H_
@@ -36,6 +37,9 @@
 #include MV_GROUP_HEADER_FILE_H_
 #include MV_GROUP_BEHAVIOUR_HEADER_FILE_H_
 #include MV_BEHAVIOUR_HEADER_FILE_H_
+#include MV_BEHAV_FUNC_LIST_HEADER_FILE_H_
+
+//TODO : new group behaviour functions
 
 typedef class mvWorld_V2
 {
@@ -49,11 +53,16 @@ typedef class mvWorld_V2
       mvPointerList<mvGroupBehaviourPtr> groupBehaviours;
       mvPointerList<mvBehaviourPtr> behaviours;
       mvPointerList<mvGroupPtr> groups;
+      mvBehavFuncListPtr behavLoader;
 
    public:
       mvWorld_V2(const char* worldID);
       char* getID() const;
       ~mvWorld_V2();
+
+
+      void setBehaviourLoader(mvBehavFuncListPtr bLoaderPtr);
+      mvBehavFuncListPtr getBehaviourLoader() const;
 
       // TODO : world functions
       void worldStep(mvFloat timeInSecs);

@@ -152,20 +152,19 @@ enum mvParamEnum
    MV_VELOCITY,
    MV_ACCELERATION_VECTOR,
    MV_FORCE_QUANTITY,
-   //MV_GRAVITIONAL_MASS,  duplicate
    MV_CONSTANT, // renamed
    MV_POSITION,
    MV_LENGTH,
    MV_RADIUS,
-   MV_X_WIDTH,
-   MV_Y_LENGTH,
-   MV_Z_DEPTH,
+   MV_X_WIDTH, // shorten
+   MV_Y_HEIGHT, // shorten
+   MV_Z_DEPTH, // shorten
    MV_DIRECTION,
    MV_WAYPOINT,
    MV_BODY,
    MV_PATHWAY,
-   MV_PERCEIVED_COHESION_FLAG, // remove flag
-   MV_PERCEIVED_ALIGNMENT_FLAG, // remove flag
+   MV_PERCEIVED_COHESION,
+   MV_PERCEIVED_ALIGNMENT,
    MV_COHESION_FACTOR,
    MV_SEPARATION_FACTOR,
    MV_ALIGNMENT_FACTOR,
@@ -209,11 +208,18 @@ enum mvParamEnum
    MV_RIGHT_HANDED,
 
    // user defined parameters
+   MV_USER_PARAM_INDEX,
    MV_USER_PARAM_0,
    MV_USER_PARAM_1,
    MV_USER_PARAM_2,
    MV_USER_PARAM_3,
-   MV_USER_PARAM_5,
+
+   // user string statements
+   MV_USER_STRING_INDEX,
+   MV_USER_STRING_0,
+   MV_USER_STRING_1,
+   MV_USER_STRING_2,
+   MV_USER_STRING_3,
 
    MV_NO_OF_PARAM_ENUMS
 };

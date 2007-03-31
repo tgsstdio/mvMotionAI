@@ -511,7 +511,7 @@ mvErrorEnum mvWaypoint::getParameterf(mvParamEnum paramFlag, mvFloat* num)
             default:
                return MV_INVALID_WAYPOINT_SHAPE;
          }
-      case MV_Y_LENGTH:
+      case MV_Y_HEIGHT:
          switch(wayPointShape)
          {
             case MV_AABOX:

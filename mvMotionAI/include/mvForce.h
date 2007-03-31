@@ -47,6 +47,10 @@
  *00-01-00  22/5/06  - initialised forces
  */
 
+// TODO : added waypoint index to list
+// TODO : remove count from list
+// TODO : make force a superclass
+
 static const mvCount MV_MAX_NO_OF_FORCE_VARIABLES = 3;
 class mvForce
 {

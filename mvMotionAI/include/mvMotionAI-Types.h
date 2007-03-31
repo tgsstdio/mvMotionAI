@@ -132,26 +132,33 @@ typedef class mvBaseBehaviour* mvBaseBehaviourPtr;
 typedef class mvBaseBehaviourLoader* mvBaseBehaviourLoaderPtr;
 
 #define MV_BEHAVIOUR_HEADER_FILE_H_ "mvBehaviour_V2.h"
+typedef class mvBehaviour_V2 mvBehaviour;
 typedef class mvBehaviour_V2* mvBehaviourPtr;
+typedef class mvBehaviour_V2 const * const mvConstBehaviourPtr;
 
 #define MV_BEHAVIOUR_RESULT_HEADER_FILE_H_ "mvBehaviourResult.h"
 typedef class mvBehaviourResult* mvBehaviourResultPtr;
 
 #define MV_BODY_HEADER_FILE_H_ "mvBody_V2.h"
 typedef class mvBody_V2 mvBody;
-//typedef class mvBody_V2* mvBodyPtr;
-#define mvBodyPtr mvBody_V2*
+typedef class mvBody_V2* mvBodyPtr;
+typedef class mvBody_V2 const * const mvConstBodyPtr;
+//#define mvBodyPtr mvBody_V2*
 
 #define MV_FORCE_HEADER_FILE_H_ "mvForce.h"
 typedef class mvForce* mvForcePtr;
+typedef class mvForce const * const mvConstForcePtr;
 
 #define MV_FORCE_RESULT_HEADER_FILE_H_
 typedef class mvForceResult* mvForceResultPtr;
 
 #define MV_GROUP_HEADER_FILE_H_ "mvGroup.h"
 typedef class mvGroup* mvGroupPtr;
+typedef class mvGroup const * const mvConstGroupPtr;
 
 #define MV_GROUP_BEHAVIOUR_HEADER_FILE_H_ "mvGroupBehaviour_V2.h"
+#define MV_GROUP_BEHAVIOUR_NODE_HEADER_FILE_H_ "mvGroupBNode_V2.h"
+typedef class mvGroupBehaviour_V2 mvGroupBehaviour;
 typedef class mvGroupBehaviour_V2* mvGroupBehaviourPtr;
 typedef class mvGroupBNode_V2* mvGroupBehaviourNodePtr;
 
@@ -160,21 +167,32 @@ typedef class mvGroupBehavResult* mvGroupBehaviourResultPtr;
 
 #define MV_OBSTACLE_HEADER_FILE_H_ "mvObstacle.h"
 typedef class mvObstacle* mvObstaclePtr;
+typedef class mvObstacle const * const mvConstObstaclePtr;
 
 #define MV_PATHWAY_HEADER_FILE_H_ "mvPathway.h"
 typedef class mvPathway* mvPathwayPtr;
+typedef class mvPathway const * const mvConstPathwayPtr;
 
 #define MV_WAYPOINT_HEADER_FILE_H_ "mvWaypoint.h"
 typedef class mvWaypoint* mvWaypointPtr;
+typedef class mvWaypoint const * const mvConstWaypointPtr;
 
 #define MV_WORLD_HEADER_FILE_H_ "mvWorld2.h"
 typedef class mvWorld_V2* mvWorldPtr;
+typedef class mvWorld_V2 const * const mvConstWorldPtr;
 
-#define MV_TIMER_HEADER_FILE_H_ "mvTimer.h"
+#define MV_TIMER_HEADER_FILE_H_ "mvBEntryTimer.h"
 typedef class mvTimer* mvTimerPtr;
+
+#define MV_BENTRY_HEADER_FILE_H_ "mvBEntry.h"
+typedef class mvBEntry* mvBEntryPtr;
+
+#define MV_BEHAV_FUNC_LIST_HEADER_FILE_H_ "mvBehavFuncList.h"
+typedef class mvBehavFuncList* mvBehavFuncListPtr;
 
 #define MV_VEC_3_HEADER_FILE_H_ "mvVec3.h"
 #define MV_ENUMS_HEADER_FILE_H_ "mvEnums.h"
 #define MV_MOTIONAI_HEADER_FILE "mvMotionAI-V2.h"
+
 
 #endif

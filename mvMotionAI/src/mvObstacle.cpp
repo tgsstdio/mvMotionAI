@@ -309,7 +309,7 @@ mvErrorEnum mvObstacle::getParameterf(mvParamEnum paramFlag, mvFloat* num)
             default:
                return MV_INVALID_OBSTACLE_SHAPE;
          }
-      case MV_Y_LENGTH:
+      case MV_Y_HEIGHT:
          switch(obstacleShape)
          {
             case MV_AABOX:
@@ -391,7 +391,7 @@ mvErrorEnum mvObstacle::setParameterf(mvParamEnum paramFlag, mvFloat num)
             default:
                return MV_INVALID_OBSTACLE_SHAPE;
          }
-      case MV_Y_LENGTH:
+      case MV_Y_HEIGHT:
          switch(obstacleShape)
          {
             case MV_AABOX:

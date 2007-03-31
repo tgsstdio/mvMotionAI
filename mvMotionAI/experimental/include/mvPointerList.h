@@ -22,7 +22,7 @@
 #ifndef MVPOINTERLIST_H_INCLUDED
 #define MVPOINTERLIST_H_INCLUDED
 #include <vector>
-#include "mvEnums.h"
+#include MV_ENUMS_HEADER_FILE_H_
 #include "mvMotionAI-Types.h"
 
 //TODO : use negetive index as wrap around array index

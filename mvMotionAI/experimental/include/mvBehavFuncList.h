@@ -22,8 +22,12 @@
 #ifndef MVBEHAVFUNCLIST_H_INCLUDED
 #define MVBEHAVFUNCLIST_H_INCLUDED
 #include <map>
-#include "mvBaseBehaviour.h"
-#include "mvEnums.h"
+
+#include "mvMotionAI-Types.h"
+#include MV_BASE_BEHAVIOUR_HEADER_FILE_H_
+#include MV_ENUMS_HEADER_FILE_H_
+
+// TODO : transform into template class for code reuse i.e force func list
 
 class mvBehavFuncList
 {

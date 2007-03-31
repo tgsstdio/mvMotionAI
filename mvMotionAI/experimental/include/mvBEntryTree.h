@@ -23,7 +23,7 @@
 #define MVBENTRYTREE_H_INCLUDED
 
 #include "mvMotionAI-Types.h"
-#include "mvEnums.h"
+#include MV_ENUMS_HEADER_FILE_H_
 #include "mvBEntryTreeNode.h"
 #include "mvBEntryTimer.h"
 
@@ -34,7 +34,7 @@ class mvBEntryTree
       mvBEntryTreeNode* root;
       mvBEntryTreeNode* currentNode;
       void createRootTreeNode(mvIndex entryIndex,\
-         mvOptionEnum beMode, mvFloat weight, mvBEntryTimer* timer);
+         mvOptionEnum beMode, mvFloat weight, mvTimerPtr timer);
       bool isRootEmpty();
 
    public:

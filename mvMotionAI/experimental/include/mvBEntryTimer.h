@@ -23,7 +23,7 @@
 #define MVBENTRYTIMER_H_INCLUDED
 
 #include "mvMotionAI-Types.h"
-#include "mvEnums.h"
+#include MV_ENUMS_HEADER_FILE_H_
 
 class mvTimer
 {
