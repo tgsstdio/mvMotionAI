@@ -52,12 +52,34 @@
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
 				<Compiler>
+					<Add option="-fexpensive-optimizations" />
 					<Add option="-Os" />
 					<Add option="-O3" />
 					<Add option="-O2" />
 					<Add option="-O1" />
 					<Add option="-O" />
 					<Add option="-Wall" />
+					<Add directory="include-other" />
+					<Add directory="include-other\mingw" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add directory="lib-other\mingw" />
+				</Linker>
+			</Target>
+			<Target title="mingw-winXP-debug">
+				<Option output="lib\libmvMotionAI-mingw-debug.a" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O3" />
+					<Add option="-O2" />
+					<Add option="-O1" />
+					<Add option="-O" />
+					<Add option="-Wall" />
+					<Add option="-g" />
 					<Add directory="include-other" />
 					<Add directory="include-other\mingw" />
 				</Compiler>
@@ -86,30 +108,32 @@
 		<Unit filename="experimental\include\mvGroupBNode_V2.h" />
 		<Unit filename="experimental\include\mvGroupBehaviourResult.h" />
 		<Unit filename="experimental\include\mvGroupBehaviour_V2.h" />
+		<Unit filename="experimental\include\mvObstacle_V2.h" />
+		<Unit filename="experimental\include\mvShape.h" />
+		<Unit filename="experimental\include\mvWaypoint_V2.h" />
 		<Unit filename="experimental\include\mvWorld2.h" />
 		<Unit filename="experimental\src\mvBehavFuncList.cpp" />
 		<Unit filename="experimental\src\mvBehaviour_V2.cpp" />
 		<Unit filename="experimental\src\mvBody_V2.cpp" />
 		<Unit filename="experimental\src\mvGroupBNode_V2.cpp" />
 		<Unit filename="experimental\src\mvGroupBehaviour_V2.cpp" />
+		<Unit filename="experimental\src\mvObstacle_V2.cpp" />
+		<Unit filename="experimental\src\mvShape.cpp" />
+		<Unit filename="experimental\src\mvWaypoint_V2.cpp" />
 		<Unit filename="experimental\src\mvWorld2.cpp" />
 		<Unit filename="include\mvEnums.h" />
 		<Unit filename="include\mvForce.h" />
 		<Unit filename="include\mvGroup.h" />
 		<Unit filename="include\mvMotionAI-Types.h" />
 		<Unit filename="include\mvMotionAI-Utilities.h" />
-		<Unit filename="include\mvObstacle.h" />
 		<Unit filename="include\mvPathway.h" />
 		<Unit filename="include\mvVec3.h" />
-		<Unit filename="include\mvWaypoint.h" />
 		<Unit filename="src\mvEnums.cpp" />
 		<Unit filename="src\mvForce.cpp" />
 		<Unit filename="src\mvGroup.cpp" />
 		<Unit filename="src\mvMotionAI-Utilities.cpp" />
-		<Unit filename="src\mvObstacle.cpp" />
 		<Unit filename="src\mvPathway.cpp" />
 		<Unit filename="src\mvVec3.cpp" />
-		<Unit filename="src\mvWaypoint.cpp" />
 		<Extensions>
 			<code_completion />
 		</Extensions>

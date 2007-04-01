@@ -5,8 +5,10 @@
 		<Project filename="mvMotion-GLMain.cbp" />
 		<Project filename="mvMotionAI-TypeSizes.cbp" />
 		<Project filename="mvMotion-CB.cbp" active="1" />
-		<Project filename="mvBaseBehaviours.cbp" />
 		<Project filename="CPPUnit Static Library.cbp" />
+		<Project filename="mvBaseBehaviours.cbp">
+			<Depends filename="CPPUnit Static Library.cbp" />
+		</Project>
 		<Project filename="test\mvVec3CPPUnitTest.cbp" />
 		<Project filename="test\mvBListCPPUnitTest.cbp" />
 		<Project filename="test\mvTimer-CPPUNIT.cbp" />
