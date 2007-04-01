@@ -165,17 +165,19 @@ typedef class mvGroupBNode_V2* mvGroupBehaviourNodePtr;
 #define MV_GROUP_BEHAVIOUR_RESULT_HEADER_FILE_H_ "mvGroupBehaviourResult.h"
 typedef class mvGroupBehavResult* mvGroupBehaviourResultPtr;
 
-#define MV_OBSTACLE_HEADER_FILE_H_ "mvObstacle.h"
-typedef class mvObstacle* mvObstaclePtr;
-typedef class mvObstacle const * const mvConstObstaclePtr;
+#define MV_OBSTACLE_HEADER_FILE_H_ "mvObstacle_V2.h"
+typedef class mvObstacle_V2 mvObstacle;
+typedef class mvObstacle_V2* mvObstaclePtr;
+typedef class mvObstacle_V2 const * const mvConstObstaclePtr;
 
 #define MV_PATHWAY_HEADER_FILE_H_ "mvPathway.h"
 typedef class mvPathway* mvPathwayPtr;
 typedef class mvPathway const * const mvConstPathwayPtr;
 
-#define MV_WAYPOINT_HEADER_FILE_H_ "mvWaypoint.h"
-typedef class mvWaypoint* mvWaypointPtr;
-typedef class mvWaypoint const * const mvConstWaypointPtr;
+#define MV_WAYPOINT_HEADER_FILE_H_ "mvWaypoint_V2.h"
+typedef class mvWaypoint_V2 mvWaypoint;
+typedef class mvWaypoint_V2* mvWaypointPtr;
+typedef class mvWaypoint_V2 const * const mvConstWaypointPtr;
 
 #define MV_WORLD_HEADER_FILE_H_ "mvWorld2.h"
 typedef class mvWorld_V2* mvWorldPtr;
@@ -194,5 +196,8 @@ typedef class mvBehavFuncList* mvBehavFuncListPtr;
 #define MV_ENUMS_HEADER_FILE_H_ "mvEnums.h"
 #define MV_MOTIONAI_HEADER_FILE "mvMotionAI-V2.h"
 
+#define MV_SHAPE_HEADER_FILE_H_ "mvShape.h"
+typedef class mvShape* mvShapePtr;
+typedef class mvShape const * const mvConstShapePtr;
 
 #endif

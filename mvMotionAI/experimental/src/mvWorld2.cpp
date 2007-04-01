@@ -2149,10 +2149,10 @@ mvWaypoint * mvWorld_V2::getWaypointPtr(mvIndex index)
   *
   * (documentation goes here)
   */
-mvIndex mvWorld_V2::createWaypoint(mvOptionEnum wType,\
-   mvOptionEnum wShape, mvFloat x = 0, mvFloat y = 0, mvFloat z = 0)
+mvIndex mvWorld_V2::createWaypoint(mvOptionEnum wShape, mvFloat x = 0,\
+   mvFloat y = 0, mvFloat z = 0)
 {
-   return waypoints.addItem(new mvWaypoint(wType,wShape, x, y, z));
+   return waypoints.addItem(new mvWaypoint(wShape, x, y, z));
 }
 
 /** @brief (one liner)
@@ -2429,7 +2429,7 @@ void mvWorld_V2::applyToAllObstaclesByIndex(mvIndex worldIndex,\
   *
   * (documentation goes here)
   */
-void mvWorld_V2::applyToAllObstacles(void (someFunction)(mvObstacle*, void*),\
+void mvWorld_V2::applyToAllObstacles(void (someFunction)(mvObstaclePtr, void*),\
    void* extraPtr)
 {
    obstacles.applyToAllItems(someFunction, extraPtr);
@@ -2475,7 +2475,7 @@ mvIndex mvWorld_V2::setCurrentObstacle(mvIndex index)
   *
   * (documentation goes here)
   */
-mvObstacle * mvWorld_V2::getCurrentObstaclePtr()
+mvObstaclePtr mvWorld_V2::getCurrentObstaclePtr()
 {
    return obstacles.getCurrentClassPtr();
 }
@@ -2484,7 +2484,7 @@ mvObstacle * mvWorld_V2::getCurrentObstaclePtr()
   *
   * (documentation goes here)
   */
-mvObstacle * mvWorld_V2::getObstaclePtr(mvIndex index)
+mvObstaclePtr mvWorld_V2::getObstaclePtr(mvIndex index)
 {
    return obstacles.getClassPtr(index);
 }

@@ -30,19 +30,25 @@ class mvShape
    private:
       mvOptionEnum shapeFlag;
       mvFloat* dimensions;
-      mvErrorEnum initDimensions(mvOptionEnum type);
 
    public:
+      // TODO : complete these shape constructor
+      mvShape();
+      mvShape(const mvShape& rhs);
+      mvErrorEnum setType(mvOptionEnum type);
+      const mvShape& operator=(const mvShape& rhs);
+
       mvShape(mvOptionEnum sType);
       ~mvShape();
       mvCount getNoOfDimensions() const;
       mvOptionEnum getType() const;
 
-      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
-      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
-      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num);
+      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
+      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option)\
+         const;
+      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num) const;
       mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
-         mvCount* noOfParameters);
+         mvCount* noOfParameters) const;
 
       mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
       mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);

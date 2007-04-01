@@ -4,7 +4,7 @@
 
 1168581468 aviour.h"
 
-1170337372 d:\mvmotionai\mvmotionai\experimental\include\mvbasebehaviour.h
+1175357242 d:\mvmotionai\mvmotionai\experimental\include\mvbasebehaviour.h
 	"mvMotionAI-Types.h"
 	"mvBehaviourResult.h"
 	"mvGroupBehaviourResult.h"
@@ -26,7 +26,7 @@
 
 1166797132 haviour.h"
 
-1174716220 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
+1175357072 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
 
 1166248706 d:\mvmotionai\mvmotionai\include\mvbody.h
 	<vector>
@@ -122,10 +122,9 @@
 	"mvBehavFuncList.h"
 	<cstdlib>
 
-1169102104 d:\mvmotionai\mvmotionai\experimental\include\mvbehavfunclist.h
+1175357606 d:\mvmotionai\mvmotionai\experimental\include\mvbehavfunclist.h
 	<map>
-	"mvBaseBehaviour.h"
-	"mvEnums.h"
+	"mvMotionAI-Types.h"
 
 1170335740 source:d:\mvmotionai\mvmotionai\experimental\src\mvpursuit.cpp
 	"mvPursuit.h"
@@ -163,9 +162,8 @@
 	<cstdlib>
 	<iostream>
 
-1170226104 d:\mvmotionai\mvmotionai\experimental\include\mvlist.h
+1174716622 d:\mvmotionai\mvmotionai\experimental\include\mvlist.h
 	<vector>
-	"mvEnums.h"
 	"mvMotionAI-Types.h"
 	"mvList.cpp"
 
@@ -180,7 +178,7 @@
 	"mvWorld2.h"
 	<cstdlib>
 
-1173706628 d:\mvmotionai\mvmotionai\experimental\include\mvworld2.h
+1174718544 d:\mvmotionai\mvmotionai\experimental\include\mvworld2.h
 	"mvMotionAI-Types.h"
 	"mvPointerList.h"
 
@@ -276,7 +274,7 @@
 	"mvEnums.h"
 	"mvMotionAI-Types.h"
 
-1174220096 source:d:\mvmotionai\mvmotionai\experimental\src\mvworld2.cpp
+1175326146 source:d:\mvmotionai\mvmotionai\experimental\src\mvworld2.cpp
 	"mvWorld2.h"
 	<cstring>
 	<new>
@@ -286,9 +284,8 @@
 
 1168957138 ist.h"
 
-1168872560 d:\mvmotionai\mvmotionai\experimental\include\mvbentrylist.h
+1174716620 d:\mvmotionai\mvmotionai\experimental\include\mvbentrylist.h
 	"mvMotionAI-Types.h"
-	"mvEnums.h"
 	"mvBaseBehaviour.h"
 	"mvList.h"
 	"mvBEntryListNode.h"
@@ -308,13 +305,11 @@
 1174716158 d:\mvmotionai\mvmotionai\experimental\include\mvbentry.h
 	"mvMotionAI-Types.h"
 
-1171255674 d:\mvmotionai\mvmotionai\experimental\include\mvbentrytimer.h
+1174716620 d:\mvmotionai\mvmotionai\experimental\include\mvbentrytimer.h
 	"mvMotionAI-Types.h"
-	"mvEnums.h"
 
-1174716290 d:\mvmotionai\mvmotionai\experimental\include\mvbentrytreenode.h
+1174716616 d:\mvmotionai\mvmotionai\experimental\include\mvbentrytreenode.h
 	"mvMotionAI-Types.h"
-	"mvEnums.h"
 	"mvBEntryTimer.h"
 
 1170078024 source:d:\mvmotionai\mvmotionai\experimental\src\mvbehaviourresult.cpp
@@ -334,9 +329,8 @@
 	"mvEnums.h"
 	"mvMotionAI-Types.h"
 
-1174716318 d:\mvmotionai\mvmotionai\experimental\include\mvbentrytree.h
+1174716618 d:\mvmotionai\mvmotionai\experimental\include\mvbentrytree.h
 	"mvMotionAI-Types.h"
-	"mvEnums.h"
 	"mvBEntryTreeNode.h"
 	"mvBEntryTimer.h"
 
@@ -506,20 +500,16 @@
 	"mvBehavFuncList.h"
 	"mvWorld2.h"
 
-1170311930 source:d:\mvmotionai\mvmotionai\experimental\src\mvbehaviour_v2.cpp
+1174715820 source:d:\mvmotionai\mvmotionai\experimental\src\mvbehaviour_v2.cpp
 	"mvBehaviour_V2.h"
-	"mvMotionAI_V2-Central.h"
 
-1170311222 d:\mvmotionai\mvmotionai\experimental\include\mvbehaviour_v2.h
+1174716576 d:\mvmotionai\mvmotionai\experimental\include\mvbehaviour_v2.h
 	"mvMotionAI-Types.h"
 	"mvBaseBehaviour.h"
-	"mvEnums.h"
 
-1170311454 d:\mvmotionai\mvmotionai\experimental\include\mvgroupbehaviour_v2.h
+1175357506 d:\mvmotionai\mvmotionai\experimental\include\mvgroupbehaviour_v2.h
 	"mvMotionAI-Types.h"
 	"mvPointerList.h"
-	"mvBaseBehaviour.h"
-	"mvGroupBNode_V2.h"
 
 1170311246 d:\mvmotionai\mvmotionai\experimental\include\mvgroupbnode_v2.h
 	"mvEnums.h"
@@ -542,15 +532,14 @@
 1170336436 d:\mvmotionai\mvmotionai\experimental\include\mvnullloader.h
 	"mvBaseBehaviour.h"
 
-1170311690 d:\mvmotionai\mvmotionai\experimental\include\mvpointerlist.h
+1174716622 d:\mvmotionai\mvmotionai\experimental\include\mvpointerlist.h
 	<vector>
-	"mvEnums.h"
 	"mvMotionAI-Types.h"
 	"mvPointerList.hpp"
 
 1170312250 d:\mvmotionai\mvmotionai\experimental\include\mvpointerlist.hpp
 
-1170310826 d:\mvmotionai\mvmotionai\experimental\include\mvgroupbehaviourresult.h
+1175357150 d:\mvmotionai\mvmotionai\experimental\include\mvgroupbehaviourresult.h
 	"mvMotionAI-Types.h"
 	"mvGroup.h"
 	"mvWorld2.h"
@@ -559,7 +548,7 @@
 	"mvGroupBNode_V2.h"
 	"mvMotionAI_V2-Central.h"
 
-1170311568 source:d:\mvmotionai\mvmotionai\experimental\src\mvgroupbehaviour_v2.cpp
+1175325886 source:d:\mvmotionai\mvmotionai\experimental\src\mvgroupbehaviour_v2.cpp
 	"mvGroupBehaviour_V2.h"
 	"mvMotionAI_V2-Central.h"
 	<new>
@@ -567,15 +556,232 @@
 1170334448 source:d:\mvmotionai\mvmotionai\experimental\src\mvnullloader.cpp
 	"mvNullLoader.h"
 
-1170394452 source:d:\mvmotionai\mvmotionai\experimental\src\mvshape.cpp
+1175404294 source:d:\mvmotionai\mvmotionai\experimental\src\mvshape.cpp
 	"mvShape.h"
 
-1170339692 d:\mvmotionai\mvmotionai\experimental\include\mvshape.h
+1175404514 d:\mvmotionai\mvmotionai\experimental\include\mvshape.h
 	"mvMotionAI-Types.h"
-	"mvEnums.h"
 
 1170395344 source:d:\mvmotionai\mvmotionai\experimental\examples-src\shapestest.cpp
 	"mvShape.h"
 	<cstdlib>
 	<cstdio>
+
+1173591784 source:d:\mvmotionai\mvmotionai\examples-src\test\mvsampletest.cpp
+	<cstdlib>
+	<cstdio>
+	<cmath>
+	<iostream>
+	<fstream>
+	<cppunit/CompilerOutputter.h>
+	<cppunit/XmlOutputter.h>
+	<cppunit/TextOutputter.h>
+	<cppunit/extensions/TestFactoryRegistry.h>
+	<cppunit/ui/text/TestRunner.h>
+
+1151615558 d:\cppunit\cppunit-1.12.0\include\cppunit\compileroutputter.h
+	<cppunit/Portability.h>
+	<cppunit/Outputter.h>
+	<cppunit/portability/Stream.h>
+
+1151615558 d:\cppunit\cppunit-1.12.0\include\cppunit\portability.h
+	<cppunit/config/config-bcb5.h>
+	<cppunit/config/config-evc4.h>
+	<cppunit/config/config-msvc6.h>
+	<cppunit/config-auto.h>
+	<cppunit/config/CppUnitApi.h>
+	<cppunit/config/SelectDllLoader.h>
+
+1026453598 d:\cppunit\cppunit-1.12.0\include\cppunit\config\config-bcb5.h
+
+1088165724 d:\cppunit\cppunit-1.12.0\include\cppunit\config\config-evc4.h
+
+1122706958 d:\cppunit\cppunit-1.12.0\include\cppunit\config\config-msvc6.h
+
+1167199228 d:\cppunit\cppunit-1.12.0\include\cppunit\config-auto.h
+
+1019123294 d:\cppunit\cppunit-1.12.0\include\cppunit\config\cppunitapi.h
+
+1052339354 d:\cppunit\cppunit-1.12.0\include\cppunit\config\selectdllloader.h
+
+1026453596 d:\cppunit\cppunit-1.12.0\include\cppunit\outputter.h
+	<cppunit/Portability.h>
+
+1130444554 d:\cppunit\cppunit-1.12.0\include\cppunit\portability\stream.h
+	<cppunit/Portability.h>
+	<string>
+	<stdio.h>
+	<string.h>
+	<sstream>
+	<fstream>
+	<string>
+	<strstream>
+	<strstream.h>
+	<iostream>
+
+1094069856 d:\cppunit\cppunit-1.12.0\include\cppunit\xmloutputter.h
+	<cppunit/Portability.h>
+	<cppunit/Outputter.h>
+	<cppunit/portability/CppUnitDeque.h>
+	<cppunit/portability/CppUnitMap.h>
+	<cppunit/portability/Stream.h>
+
+1032201412 d:\cppunit\cppunit-1.12.0\include\cppunit\portability\cppunitdeque.h
+	<cppunit/Portability.h>
+	<deque>
+
+1032201412 d:\cppunit\cppunit-1.12.0\include\cppunit\portability\cppunitmap.h
+	<cppunit/Portability.h>
+	<functional>
+	<map>
+
+1088161906 d:\cppunit\cppunit-1.12.0\include\cppunit\textoutputter.h
+	<cppunit/Portability.h>
+	<cppunit/Outputter.h>
+	<cppunit/portability/Stream.h>
+
+1032201166 d:\cppunit\cppunit-1.12.0\include\cppunit\extensions\testfactoryregistry.h
+	<cppunit/Portability.h>
+	<cppunit/portability/CppUnitSet.h>
+	<cppunit/extensions/TestFactory.h>
+	<string>
+
+1032201412 d:\cppunit\cppunit-1.12.0\include\cppunit\portability\cppunitset.h
+	<cppunit/Portability.h>
+	<functional>
+	<set>
+
+1026453598 d:\cppunit\cppunit-1.12.0\include\cppunit\extensions\testfactory.h
+	<cppunit/Portability.h>
+
+1026676112 d:\cppunit\cppunit-1.12.0\include\cppunit\ui\text\testrunner.h
+	<cppunit/ui/text/TextTestRunner.h>
+
+1151606290 d:\cppunit\cppunit-1.12.0\include\cppunit\ui\text\texttestrunner.h
+	<cppunit/Portability.h>
+	<string>
+	<cppunit/TestRunner.h>
+
+1030649228 d:\cppunit\cppunit-1.12.0\include\cppunit\testrunner.h
+	<cppunit/TestSuite.h>
+	<string>
+
+1120894968 d:\cppunit\cppunit-1.12.0\include\cppunit\testsuite.h
+	<cppunit/Portability.h>
+	<cppunit/TestComposite.h>
+	<cppunit/portability/CppUnitVector.h>
+
+1026453598 d:\cppunit\cppunit-1.12.0\include\cppunit\testcomposite.h
+	<cppunit/Test.h>
+	<string>
+
+1026453598 d:\cppunit\cppunit-1.12.0\include\cppunit\test.h
+	<cppunit/Portability.h>
+	<string>
+
+1032201412 d:\cppunit\cppunit-1.12.0\include\cppunit\portability\cppunitvector.h
+	<cppunit/Portability.h>
+	<vector>
+
+1175404330 source:d:\mvmotionai\mvmotionai\test\mvshapetest.cpp
+	"mvShapeTest.h"
+	<mvShape.h>
+	<cppunit/extensions/HelperMacros.h>
+
+1175402314 d:\mvmotionai\mvmotionai\test\mvshapetest.h
+	<cppunit/extensions/HelperMacros.h>
+
+1079182376 d:\cppunit\cppunit-1.12.0\include\cppunit\extensions\helpermacros.h
+	<cppunit/TestCaller.h>
+	<cppunit/TestSuite.h>
+	<cppunit/extensions/AutoRegisterSuite.h>
+	<cppunit/extensions/ExceptionTestCaseDecorator.h>
+	<cppunit/extensions/TestFixtureFactory.h>
+	<cppunit/extensions/TestNamer.h>
+	<cppunit/extensions/TestSuiteBuilderContext.h>
+	<memory>
+
+1028389672 d:\cppunit\cppunit-1.12.0\include\cppunit\testcaller.h
+	<cppunit/Exception.h>
+	<cppunit/TestCase.h>
+	<cppunit/extensions/TypeInfoHelper.h>
+
+1030649228 d:\cppunit\cppunit-1.12.0\include\cppunit\exception.h
+	<cppunit/Portability.h>
+	<cppunit/Message.h>
+	<cppunit/SourceLine.h>
+	<exception>
+
+1100894444 d:\cppunit\cppunit-1.12.0\include\cppunit\message.h
+	<cppunit/Portability.h>
+	<cppunit/portability/CppUnitDeque.h>
+	<string>
+
+1100894444 d:\cppunit\cppunit-1.12.0\include\cppunit\sourceline.h
+	<cppunit/Portability.h>
+	<string>
+
+1028389672 d:\cppunit\cppunit-1.12.0\include\cppunit\testcase.h
+	<cppunit/Portability.h>
+	<cppunit/TestLeaf.h>
+	<cppunit/TestAssert.h>
+	<cppunit/TestFixture.h>
+	<string>
+
+1026453598 d:\cppunit\cppunit-1.12.0\include\cppunit\testleaf.h
+	<cppunit/Test.h>
+
+1131296302 d:\cppunit\cppunit-1.12.0\include\cppunit\testassert.h
+	<cppunit/Portability.h>
+	<cppunit/Exception.h>
+	<cppunit/Asserter.h>
+	<cppunit/portability/Stream.h>
+	<stdio.h>
+	<float.h>
+
+1030606610 d:\cppunit\cppunit-1.12.0\include\cppunit\asserter.h
+	<cppunit/AdditionalMessage.h>
+	<cppunit/SourceLine.h>
+	<string>
+
+1026453596 d:\cppunit\cppunit-1.12.0\include\cppunit\additionalmessage.h
+	<cppunit/Message.h>
+
+1026453598 d:\cppunit\cppunit-1.12.0\include\cppunit\testfixture.h
+	<cppunit/Portability.h>
+
+1088160088 d:\cppunit\cppunit-1.12.0\include\cppunit\extensions\typeinfohelper.h
+	<cppunit/Portability.h>
+	<typeinfo>
+	<string>
+
+1026556430 d:\cppunit\cppunit-1.12.0\include\cppunit\extensions\autoregistersuite.h
+	<cppunit/extensions/TestSuiteFactory.h>
+	<cppunit/extensions/TestFactoryRegistry.h>
+	<string>
+
+1026453598 d:\cppunit\cppunit-1.12.0\include\cppunit\extensions\testsuitefactory.h
+	<cppunit/extensions/TestFactory.h>
+
+1047718528 d:\cppunit\cppunit-1.12.0\include\cppunit\extensions\exceptiontestcasedecorator.h
+	<cppunit/Portability.h>
+	<cppunit/Exception.h>
+	<cppunit/extensions/TestCaseDecorator.h>
+
+1028389672 d:\cppunit\cppunit-1.12.0\include\cppunit\extensions\testcasedecorator.h
+	<cppunit/Portability.h>
+	<cppunit/TestCase.h>
+
+1032201412 d:\cppunit\cppunit-1.12.0\include\cppunit\extensions\testfixturefactory.h
+	<cppunit/Portability.h>
+
+1048144102 d:\cppunit\cppunit-1.12.0\include\cppunit\extensions\testnamer.h
+	<cppunit/Portability.h>
+	<string>
+	<typeinfo>
+
+1087544386 d:\cppunit\cppunit-1.12.0\include\cppunit\extensions\testsuitebuildercontext.h
+	<cppunit/Portability.h>
+	<cppunit/portability/CppUnitMap.h>
+	<string>
 

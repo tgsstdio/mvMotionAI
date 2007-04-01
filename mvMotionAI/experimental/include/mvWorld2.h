@@ -251,8 +251,8 @@ typedef class mvWorld_V2
          mvFloat* array, mvCount* noOfParameters);
 
       // Waypoint functions
-      mvIndex createWaypoint(mvOptionEnum wType, mvOptionEnum wShape,\
-         mvFloat x, mvFloat y, mvFloat z);
+      mvIndex createWaypoint(mvOptionEnum wShape,mvFloat x,\
+         mvFloat y, mvFloat z);
       mvWaypointPtr getWaypointPtr(mvIndex index);
       mvWaypointPtr getCurrentWaypointPtr();
       mvIndex setCurrentWaypoint(mvIndex index);

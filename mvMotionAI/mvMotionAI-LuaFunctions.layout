@@ -4,7 +4,7 @@
 	<File name="examples-src\LuaFuncTest.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1711" topLine="31" />
 	</File>
-	<File name="include\mvLuaScript.h" open="1" top="0" tabpos="1">
+	<File name="include\mvLuaScript.h" open="0" top="0" tabpos="1">
 		<Cursor position="2243" topLine="24" />
 	</File>
 </CodeBlocks_layout_file>

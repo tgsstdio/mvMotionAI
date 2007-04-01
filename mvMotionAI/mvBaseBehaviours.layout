@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="Debug" />
+	<ActiveTarget name="Shapes" />
 	<File name="experimental\examples-src\ClassPtr.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="3620" topLine="97" />
 	</File>
 	<File name="experimental\examples-src\ShapesTest.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="65" topLine="0" />
+		<Cursor position="186" topLine="0" />
 	</File>
 	<File name="experimental\examples-src\mvItemList-Test.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="692" topLine="0" />
 	</File>
 	<File name="experimental\examples-src\mvTestBehaviours.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="62" topLine="0" />
+		<Cursor position="476" topLine="10" />
 	</File>
 	<File name="experimental\examples-src\mvWorld2-Test.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="1143" topLine="0" />
@@ -67,7 +67,7 @@
 	<File name="experimental\include\mvList.h" open="0" top="0" tabpos="1">
 		<Cursor position="1252" topLine="25" />
 	</File>
-	<File name="experimental\include\mvMotionAI_V2-Central.h" open="1" top="0" tabpos="2">
+	<File name="experimental\include\mvMotionAI_V2-Central.h" open="0" top="0" tabpos="2">
 		<Cursor position="2224" topLine="13" />
 	</File>
 	<File name="experimental\include\mvNullLoader.h" open="0" top="0" tabpos="3">
@@ -85,7 +85,7 @@
 	<File name="experimental\include\mvSeek.h" open="0" top="0" tabpos="7">
 		<Cursor position="836" topLine="0" />
 	</File>
-	<File name="experimental\include\mvShape.h" open="1" top="1" tabpos="1">
+	<File name="experimental\include\mvShape.h" open="1" top="0" tabpos="1">
 		<Cursor position="1266" topLine="4" />
 	</File>
 	<File name="experimental\include\mvSimpleFlock.h" open="0" top="0" tabpos="5">
@@ -155,12 +155,18 @@
 		<Cursor position="4959" topLine="145" />
 	</File>
 	<File name="experimental\src\mvShape.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="1755" topLine="389" />
+		<Cursor position="11275" topLine="389" />
 	</File>
 	<File name="experimental\src\mvSimpleFlock.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="1259" topLine="13" />
 	</File>
 	<File name="experimental\src\mvWorld2.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="53808" topLine="2318" />
+	</File>
+	<File name="test\mvShapeTest.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="802" topLine="96" />
+	</File>
+	<File name="test\mvShapeTest.h" open="0" top="0" tabpos="0">
+		<Cursor position="467" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

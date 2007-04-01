@@ -7,7 +7,8 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output=".\mvBaseBehaviours.exe" prefix_auto="1" extension_auto="1" />
+				<Option output="mvBaseBehaviours.exe" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="..\mvMotionAI" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -82,9 +83,22 @@
 				</Linker>
 			</Target>
 			<Target title="Shapes">
-				<Option output="mvBaseBehaviours.exe" prefix_auto="1" extension_auto="1" />
+				<Option output="bin\test\mvShapeTest.exe" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin\test" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add directory="..\..\CPPunit\cppunit-1.12.0\include" />
+				</Compiler>
+				<Linker>
+					<Add library="cppunit.dll" />
+					<Add library="cppunit" />
+					<Add library="mvMotionAI-mingw" />
+					<Add directory="..\..\CPPunit\cppunit-1.12.0\src\cppunit\.libs" />
+					<Add directory="..\mvMotionAI" />
+				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
@@ -95,14 +109,19 @@
 		<Linker>
 			<Add directory="lib" />
 		</Linker>
+		<Unit filename="examples-src\test\mvSampleTest.cpp">
+			<Option target="Shapes" />
+		</Unit>
 		<Unit filename="experimental\examples-src\ClassPtr.cpp">
 			<Option target="Class Pointers" />
+			<Option target="Debug" />
 		</Unit>
 		<Unit filename="experimental\examples-src\ShapesTest.cpp">
-			<Option target="Shapes" />
+			<Option target="Debug" />
 		</Unit>
 		<Unit filename="experimental\examples-src\mvItemList-Test.cpp">
 			<Option target="mvItemList-Debug" />
+			<Option target="Debug" />
 		</Unit>
 		<Unit filename="experimental\examples-src\mvTestBehaviours.cpp">
 			<Option target="C Interface" />
@@ -110,11 +129,13 @@
 		</Unit>
 		<Unit filename="experimental\examples-src\mvWorld2-Test.cpp">
 			<Option target="mvWorld2-Debug" />
+			<Option target="Debug" />
 		</Unit>
 		<Unit filename="experimental\include\mv2.h">
 			<Option target="C Interface" />
 			<Option target="mvItemList-Debug" />
 			<Option target="mvWorld2-Debug" />
+			<Option target="Debug" />
 		</Unit>
 		<Unit filename="experimental\include\mvBEntry.h">
 			<Option target="C Interface" />
@@ -166,10 +187,10 @@
 			<Option target="Debug" />
 		</Unit>
 		<Unit filename="experimental\include\mvBehaviour_V2.h">
-			<Option target="Debug" />
 			<Option target="C Interface" />
 			<Option target="mvItemList-Debug" />
 			<Option target="mvWorld2-Debug" />
+			<Option target="Debug" />
 		</Unit>
 		<Unit filename="experimental\include\mvClone.h">
 			<Option target="C Interface" />
@@ -231,7 +252,6 @@
 			<Option target="C Interface" />
 			<Option target="mvItemList-Debug" />
 			<Option target="mvWorld2-Debug" />
-			<Option target="Debug" />
 			<Option target="Shapes" />
 		</Unit>
 		<Unit filename="experimental\include\mvSimpleFlock.h">
@@ -247,16 +267,17 @@
 		<Unit filename="experimental\src\mv.cpp">
 			<Option compile="0" />
 			<Option link="0" />
-			<Option target="Debug" />
 			<Option target="C Interface" />
 			<Option target="mvItemList-Debug" />
 			<Option target="mvWorld2-Debug" />
 			<Option target="Class Pointers" />
+			<Option target="Debug" />
 		</Unit>
 		<Unit filename="experimental\src\mv2.cpp">
 			<Option target="C Interface" />
 			<Option target="mvItemList-Debug" />
 			<Option target="mvWorld2-Debug" />
+			<Option target="Debug" />
 		</Unit>
 		<Unit filename="experimental\src\mvBEntryList.cpp">
 			<Option target="mvWorld2-Debug" />
@@ -287,23 +308,23 @@
 			<Option target="Debug" />
 		</Unit>
 		<Unit filename="experimental\src\mvBaseBehaviour.cpp">
-			<Option target="Debug" />
 			<Option target="C Interface" />
+			<Option target="Debug" />
 		</Unit>
 		<Unit filename="experimental\src\mvBehavFuncList.cpp">
-			<Option target="Debug" />
 			<Option target="C Interface" />
+			<Option target="Debug" />
 		</Unit>
 		<Unit filename="experimental\src\mvBehaviourResult.cpp">
-			<Option target="Debug" />
 			<Option target="C Interface" />
 			<Option target="mvWorld2-Debug" />
+			<Option target="Debug" />
 		</Unit>
 		<Unit filename="experimental\src\mvBehaviour_V2.cpp">
-			<Option target="Debug" />
 			<Option target="C Interface" />
 			<Option target="mvItemList-Debug" />
 			<Option target="mvWorld2-Debug" />
+			<Option target="Debug" />
 		</Unit>
 		<Unit filename="experimental\src\mvClone.cpp">
 			<Option target="C Interface" />
@@ -328,8 +349,8 @@
 		<Unit filename="experimental\src\mvList.cpp">
 			<Option compile="0" />
 			<Option link="0" />
-			<Option target="Debug" />
 			<Option target="C Interface" />
+			<Option target="Debug" />
 		</Unit>
 		<Unit filename="experimental\src\mvMotionAI_V2-Central.cpp">
 			<Option target="C Interface" />
@@ -348,8 +369,8 @@
 			<Option target="Debug" />
 		</Unit>
 		<Unit filename="experimental\src\mvSeek.cpp">
-			<Option target="Debug" />
 			<Option target="C Interface" />
+			<Option target="Debug" />
 		</Unit>
 		<Unit filename="experimental\src\mvShape.cpp">
 			<Option target="Shapes" />
@@ -359,9 +380,15 @@
 			<Option target="Debug" />
 		</Unit>
 		<Unit filename="experimental\src\mvWorld2.cpp">
-			<Option target="Debug" />
 			<Option target="C Interface" />
 			<Option target="mvWorld2-Debug" />
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="test\mvShapeTest.cpp">
+			<Option target="Shapes" />
+		</Unit>
+		<Unit filename="test\mvShapeTest.h">
+			<Option target="Shapes" />
 		</Unit>
 		<Extensions>
 			<code_completion />

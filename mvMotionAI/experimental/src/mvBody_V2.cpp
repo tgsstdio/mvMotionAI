@@ -28,12 +28,41 @@ mvBody_V2::mvBody_V2(mvOptionEnum bType, mvOptionEnum shape, mvFloat x,\
    bodyUserDataPtr = NULL;
    // default direction 1.0
    bodyDirection.set(0,0,1);
-   //  default direction
-
    // face direction
    faceDirection.set(0,0,1);
+   // shape
+   setShape(shape);
    //TODO : initialises variables
 
+}
+
+mvOptionEnum mvBody_V2::getType() const
+{
+   return bodyType;
+}
+
+mvErrorEnum mvBody_V2::setType(mvOptionEnum bType)
+{
+   switch(bType)
+   {
+      case MV_VEHICLE:
+      case MV_PARTICLE:
+      case MV_DUAL_BODY:
+         bodyType = bType;
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_BODY_TYPE;
+   }
+}
+
+mvConstShapePtr mvBody_V2::getShape() const
+{
+   return &bodyShape;
+}
+
+mvErrorEnum mvBody_V2::setShape(mvOptionEnum bShape)
+{
+   return bodyShape.setType(bShape);
 }
 
 void* mvBody_V2::getUserData() const

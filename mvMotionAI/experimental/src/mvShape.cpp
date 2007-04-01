@@ -63,7 +63,7 @@ mvErrorEnum mvShape::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
                }
                return MV_NO_ERROR;
             default:
-               return MV_INVALID_BODY_SHAPE;
+               return MV_INCORRECT_SHAPE_TYPE;
          }
       case MV_PLANE_NORMAL:
          switch(shapeFlag)
@@ -76,7 +76,7 @@ mvErrorEnum mvShape::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
                }
                return MV_NO_ERROR;
             default:
-               return MV_INVALID_BODY_SHAPE;
+               return MV_INCORRECT_SHAPE_TYPE;
          }
       default:
          return setParameterf(paramFlag, numArray[0]);
@@ -102,7 +102,7 @@ mvErrorEnum mvShape::setParameterf(mvParamEnum paramFlag, mvFloat num)
                dimensions[MV_AACYLINDER_LENGTH_INDEX] = num;
                return MV_NO_ERROR;
             default:
-               return MV_INVALID_BODY_SHAPE;
+               return MV_INCORRECT_SHAPE_TYPE;
          }
       case MV_RADIUS:
          switch(shapeFlag)
@@ -114,7 +114,7 @@ mvErrorEnum mvShape::setParameterf(mvParamEnum paramFlag, mvFloat num)
                dimensions[MV_CIRCULAR_RADIUS_INDEX] = num;
                return MV_NO_ERROR;
             default:
-               return MV_INVALID_BODY_SHAPE;
+               return MV_INCORRECT_SHAPE_TYPE;
          }
       case MV_X_WIDTH:
          switch(shapeFlag)
@@ -128,9 +128,9 @@ mvErrorEnum mvShape::setParameterf(mvParamEnum paramFlag, mvFloat num)
                dimensions[tempIndex] = num;
                return MV_NO_ERROR;
             default:
-               return MV_INVALID_BODY_SHAPE;
+               return MV_INCORRECT_SHAPE_TYPE;
          }
-      case MV_Y_LENGTH:
+      case MV_Y_HEIGHT:
          switch(shapeFlag)
          {
             case MV_AABOX:
@@ -142,7 +142,7 @@ mvErrorEnum mvShape::setParameterf(mvParamEnum paramFlag, mvFloat num)
                dimensions[tempIndex] = num;
                return MV_NO_ERROR;
             default:
-               return MV_INVALID_BODY_SHAPE;
+               return MV_INCORRECT_SHAPE_TYPE;
          }
       case MV_Z_DEPTH:
          switch(shapeFlag)
@@ -156,10 +156,10 @@ mvErrorEnum mvShape::setParameterf(mvParamEnum paramFlag, mvFloat num)
                dimensions[tempIndex] = num;
                return MV_NO_ERROR;
             default:
-               return MV_INVALID_BODY_SHAPE;
+               return MV_INCORRECT_SHAPE_TYPE;
          }
       default:
-         return MV_INVALID_BODY_PARAMETER;
+         return MV_INVALID_SHAPE_PARAMETER;
    }
 }
 
@@ -172,9 +172,9 @@ mvErrorEnum mvShape::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
    switch(paramFlag)
    {
       case MV_SHAPE:
-         return initDimensions(option);
+         return setType(option);
       default:
-         return MV_INVALID_BODY_PARAMETER;
+         return MV_INVALID_SHAPE_PARAMETER;
    }
 }
 
@@ -184,7 +184,7 @@ mvErrorEnum mvShape::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
   */
 mvErrorEnum mvShape::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   return MV_INVALID_SHAPE_PARAMETER;
 }
 
 /** @brief (one liner)
@@ -192,7 +192,7 @@ mvErrorEnum mvShape::setParameteri(mvParamEnum paramFlag, mvIndex index)
   * (documentation goes here)
   */
 mvErrorEnum mvShape::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
-   mvCount* noOfParameters)
+   mvCount* noOfParameters) const
 {
    mvErrorEnum error;
    mvCount noOfDimensions;
@@ -228,7 +228,7 @@ mvErrorEnum mvShape::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
                *noOfParameters = noOfDimensions;
                return MV_NO_ERROR;
             default:
-               return MV_INVALID_BODY_SHAPE;
+               return MV_INCORRECT_SHAPE_TYPE;
          }
       case MV_PLANE_NORMAL:
          switch(shapeFlag)
@@ -241,7 +241,7 @@ mvErrorEnum mvShape::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
                }
                return MV_NO_ERROR;
             default:
-               return MV_INVALID_BODY_SHAPE;
+               return MV_INCORRECT_SHAPE_TYPE;
          }
       default:
          error = getParameterf(paramFlag,&numArray[0]);
@@ -261,7 +261,7 @@ mvErrorEnum mvShape::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvShape::getParameterf(mvParamEnum paramFlag, mvFloat* num)
+mvErrorEnum mvShape::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
 {
    mvIndex tempIndex;
 
@@ -281,7 +281,7 @@ mvErrorEnum mvShape::getParameterf(mvParamEnum paramFlag, mvFloat* num)
                *num = dimensions[MV_AACYLINDER_LENGTH_INDEX];
                return MV_NO_ERROR;
             default:
-               return MV_INVALID_BODY_SHAPE;
+               return MV_INCORRECT_SHAPE_TYPE;
          }
       case MV_RADIUS:
          switch(shapeFlag)
@@ -293,7 +293,7 @@ mvErrorEnum mvShape::getParameterf(mvParamEnum paramFlag, mvFloat* num)
                *num = dimensions[MV_CIRCULAR_RADIUS_INDEX];
                return MV_NO_ERROR;
             default:
-               return MV_INVALID_BODY_SHAPE;
+               return MV_INCORRECT_SHAPE_TYPE;
          }
       case MV_X_WIDTH:
          switch(shapeFlag)
@@ -307,9 +307,9 @@ mvErrorEnum mvShape::getParameterf(mvParamEnum paramFlag, mvFloat* num)
                *num = dimensions[tempIndex];
                return MV_NO_ERROR;
             default:
-               return MV_INVALID_BODY_SHAPE;
+               return MV_INCORRECT_SHAPE_TYPE;
          }
-      case MV_Y_LENGTH:
+      case MV_Y_HEIGHT:
          switch(shapeFlag)
          {
             case MV_AABOX:
@@ -320,7 +320,7 @@ mvErrorEnum mvShape::getParameterf(mvParamEnum paramFlag, mvFloat* num)
                *num = dimensions[tempIndex];
                return MV_NO_ERROR;
             default:
-               return MV_INVALID_BODY_SHAPE;
+               return MV_INCORRECT_SHAPE_TYPE;
          }
       case MV_Z_DEPTH:
          switch(shapeFlag)
@@ -334,7 +334,7 @@ mvErrorEnum mvShape::getParameterf(mvParamEnum paramFlag, mvFloat* num)
                *num = dimensions[tempIndex];
                return MV_NO_ERROR;
             default:
-               return MV_INVALID_BODY_SHAPE;
+               return MV_INCORRECT_SHAPE_TYPE;
          }
       default:
          return MV_INVALID_BODY_PARAMETER;
@@ -346,6 +346,7 @@ mvErrorEnum mvShape::getParameterf(mvParamEnum paramFlag, mvFloat* num)
   * (documentation goes here)
   */
 mvErrorEnum mvShape::getParameter(mvParamEnum paramFlag, mvOptionEnum* option)
+   const
 {
    if (option == NULL)
       return MV_OPTION_ENUM_DEST_IS_NULL;
@@ -356,7 +357,7 @@ mvErrorEnum mvShape::getParameter(mvParamEnum paramFlag, mvOptionEnum* option)
          *option = getType();
          return MV_NO_ERROR;
       default:
-         return MV_INVALID_BODY_SHAPE;
+         return MV_INVALID_SHAPE_PARAMETER;
    }
 }
 
@@ -365,8 +366,21 @@ mvErrorEnum mvShape::getParameter(mvParamEnum paramFlag, mvOptionEnum* option)
   * (documentation goes here)
   */
 mvErrorEnum mvShape::getParameteri(mvParamEnum paramFlag, mvIndex* index)
+   const
 {
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (index == NULL)
+   {
+      return MV_INDEX_DEST_IS_NULL;
+   }
+
+   switch(paramFlag)
+   {
+      case MV_NO_OF_SHAPE_DIMENSIONS:
+         *index = getNoOfDimensions();
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_SHAPE_PARAMETER;
+   }
 }
 
 /** @brief (one liner)
@@ -398,7 +412,26 @@ mvOptionEnum mvShape::getType() const
  mvShape::mvShape(mvOptionEnum sType)
 {
    dimensions = NULL;
-   initDimensions(sType);
+   setType(sType);
+}
+
+mvShape::mvShape()
+{
+   shapeFlag = MV_NON_SHAPE;
+   dimensions = NULL;
+}
+
+mvShape::mvShape(const mvShape& rhs)
+{
+   mvOptionEnum shapeType = rhs.getType();
+   setType(shapeType);
+}
+
+const mvShape& mvShape::operator=(const mvShape& rhs)
+{
+   mvOptionEnum shapeType = rhs.getType();
+   setType(shapeType);
+   return *this;
 }
 
 /** @brief (one liner)
@@ -434,7 +467,7 @@ mvCount mvShape::getNoOfDimensions() const
   *
   * (documentation goes here)
   */
-mvErrorEnum mvShape::initDimensions(mvOptionEnum type)
+mvErrorEnum mvShape::setType(mvOptionEnum type)
 {
    mvFloat tempDims[MV_MAX_NO_OF_DIMENSIONS];
    mvIndex i;
@@ -466,7 +499,7 @@ mvErrorEnum mvShape::initDimensions(mvOptionEnum type)
          break;
       default:
          shapeFlag = MV_NON_SHAPE;
-         return MV_INVALID_BODY_SHAPE;
+         return MV_INVALID_SHAPE_PARAMETER;
    }
 
    noOfDimensions = getNoOfDimensions();
