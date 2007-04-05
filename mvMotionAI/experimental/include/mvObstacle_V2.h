@@ -46,11 +46,10 @@ class mvObstacle_V2
       mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
          mvCount* noOfParameters) const;
 
-      mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index) const;
-      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option)\
-         const;
-      mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num) const;
-      mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray) const;
+      mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
+      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
       ~mvObstacle_V2();
 };
 

@@ -48,8 +48,10 @@ class mvPointerList
       void deleteAllItems();
 
       mvIndex convertIndex(mvIndex i) const;
-      mvClass getClassPtr(mvIndex index);
-      mvClass getCurrentClassPtr();
+      mvClass getClassPtr(mvIndex index) const;
+      mvClass getCurrentClassPtr() const;
+      const mvClass getCurrentConstClassPtr() const;
+      const mvClass getConstClassPtr(mvIndex index) const;
       mvCount getNoOfItems() const;
       mvIndex getCurrentIndex() const;
       mvIndex setCurrentIndex(mvIndex index);
@@ -59,10 +61,10 @@ class mvPointerList
          void* extraPtr);
 
       mvClass findItemPtrInList(bool (someFunction)(mvClass, void*),\
-         void* extraPtr);
+         void* extraPtr) const;
 
       mvIndex findItemInList(bool (someFunction)(mvClass, void*),\
-         void* extraPtr);
+         void* extraPtr) const;
 
       void applyToAllItems(void (someFunction)(mvClass, void*),\
          void* extraPtr);
@@ -79,13 +81,13 @@ class mvPointerList
          mvFloat* array);
 
       mvErrorEnum getItemParameter(mvIndex itemIndex,mvParamEnum paramFlag,\
-         mvOptionEnum* option);
+         mvOptionEnum* option) const;
       mvErrorEnum getItemParameteri(mvIndex itemIndex,mvParamEnum paramFlag,\
-         mvIndex* index);
+         mvIndex* index) const;
       mvErrorEnum getItemParameterf(mvIndex itemIndex,mvParamEnum paramFlag,\
-         mvFloat* num);
+         mvFloat* num) const;
       mvErrorEnum getItemParameterv(mvIndex itemIndex,mvParamEnum paramFlag,\
-         mvFloat* array, mvCount* noOfParameters);
+         mvFloat* array, mvCount* noOfParameters) const;
 
       mvErrorEnum setItemParameters(mvIndex itemIndex, const char* param,\
          const char* option);
@@ -97,13 +99,13 @@ class mvPointerList
          mvFloat* array);
 
       mvErrorEnum getItemParameters(mvIndex itemIndex, const char* param,\
-         const char** option);
+         const char** option) const;
       mvErrorEnum getItemParametersi(mvIndex itemIndex, const char* param,\
-         mvIndex* index);
+         mvIndex* index) const;
       mvErrorEnum getItemParametersf(mvIndex itemIndex, const char* param,\
-         mvFloat* num);
+         mvFloat* num) const;
       mvErrorEnum getItemParametersv(mvIndex itemIndex, const char* param,\
-         mvFloat* array, mvCount* noOfParameters);
+         mvFloat* array, mvCount* noOfParameters) const;
 
       mvErrorEnum setCurrentItemParameters(const char* param,\
          const char* option);
@@ -115,13 +117,13 @@ class mvPointerList
          mvFloat* array);
 
       mvErrorEnum getCurrentItemParameters(const char* param,\
-         const char** option);
+         const char** option) const;
       mvErrorEnum getCurrentItemParametersi(const char* param,\
-         mvIndex* index);
+         mvIndex* index) const;
       mvErrorEnum getCurrentItemParametersf(const char* param,\
-         mvFloat* num);
+         mvFloat* num) const;
       mvErrorEnum getCurrentItemParametersv(const char* param,\
-         mvFloat* array, mvCount* noOfParameters);
+         mvFloat* array, mvCount* noOfParameters) const;
 
       mvErrorEnum setCurrentItemParameter(mvParamEnum paramFlag,\
          mvOptionEnum option);
@@ -133,13 +135,13 @@ class mvPointerList
          mvFloat* array);
 
       mvErrorEnum getCurrentItemParameter(mvParamEnum paramFlag,\
-         mvOptionEnum* option);
+         mvOptionEnum* option) const;
       mvErrorEnum getCurrentItemParameteri(mvParamEnum paramFlag,\
-         mvIndex* index);
+         mvIndex* index) const;
       mvErrorEnum getCurrentItemParameterf(mvParamEnum paramFlag,\
-         mvFloat* num);
+         mvFloat* num) const;
       mvErrorEnum getCurrentItemParameterv(mvParamEnum paramFlag,\
-         mvFloat* array, mvCount* noOfParameters);
+         mvFloat* array, mvCount* noOfParameters) const;
 };
 
 // template implementation

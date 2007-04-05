@@ -79,13 +79,6 @@ enum mvOptionEnum
    MV_NON_WAYPOINT_TYPE,
 
    //STATE
-   // TODO : remove states from body => to paramEnums
-   MV_APPLY_MOTIONAI_STATE,
-   MV_NO_MOTION_STATE,
-   MV_USER_MOTION_STATE,
-   MV_APPLY_NO_FORCES_STATE,
-   MV_NON_BODY_STATE,
-
    // force types
    MV_DIRECTION_FORCE_TO_POINT,
    MV_DIRECTION_SHIFT_TO_POINT,
@@ -207,6 +200,14 @@ enum mvParamEnum
    MV_GROUP,
    MV_AUTO_CONVERT_INDEX,
    MV_RIGHT_HANDED,
+
+   // body boolean flags
+   MV_APPLY_FORCES,
+   MV_APPLY_SHIFTS,
+   MV_APPLY_ACCELERATIONS,
+   MV_APPLY_GRAVITY,
+   MV_APPLY_COLLISIONS,
+   MV_APPLY_ALL_FORCES,
 
    // user defined parameters
    MV_USER_PARAM_INDEX,

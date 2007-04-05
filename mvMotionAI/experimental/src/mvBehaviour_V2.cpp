@@ -53,7 +53,7 @@ void mvBehaviour_V2::setEnabled(bool value)
   *
   * (documentation goes here)
   */
-bool mvBehaviour_V2::isEnabled()
+bool mvBehaviour_V2::isEnabled() const
 {
    return behavEnabled;
 }
@@ -121,7 +121,7 @@ mvErrorEnum mvBehaviour_V2::setParameterv(mvParamEnum paramFlag, mvFloat* array)
   * (documentation goes here)
   */
 mvErrorEnum mvBehaviour_V2::getParameter(mvParamEnum paramFlag,\
-   mvOptionEnum* option)
+   mvOptionEnum* option) const
 {
    switch(paramFlag)
    {
@@ -152,7 +152,7 @@ mvErrorEnum mvBehaviour_V2::getParameter(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvBehaviour_V2::getParameteri(mvParamEnum paramFlag,\
-   mvIndex* index)
+   mvIndex* index) const
 {
    if (behavPtr != NULL)
    {
@@ -169,7 +169,7 @@ mvErrorEnum mvBehaviour_V2::getParameteri(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvBehaviour_V2::getParameterf(mvParamEnum paramFlag,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    if (behavPtr != NULL)
    {
@@ -186,7 +186,7 @@ mvErrorEnum mvBehaviour_V2::getParameterf(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvBehaviour_V2::getParameterv(mvParamEnum paramFlag,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    if (behavPtr != NULL)
    {

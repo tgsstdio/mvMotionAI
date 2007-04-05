@@ -25,7 +25,7 @@
   *
   * (documentation goes here)
   */
-const mvBodyPtr mvResult::getCurrentBodyPtr() const
+mvConstBodyPtr mvResult::getCurrentBodyPtr() const
 {
    return currentBody;
 }
@@ -44,7 +44,7 @@ const mvBodyPtr mvResult::getCurrentBodyPtr() const
   *
   * (documentation goes here)
   */
-const mvWorldPtr mvResult::getWorldPtr() const
+mvConstWorldPtr mvResult::getWorldPtr() const
 {
    return currentWorld;
 }
@@ -196,30 +196,35 @@ void mvResult::setBehaviourIndex(mvIndex bIndex)
 //   currentGroupBehNode = groupBehPtr;
 //}
 
-/** @brief (one liner)
+
+/* @brief (one liner)
   *
   * (documentation goes here)
-  */
+  *
+  // invalid
 void mvResult::setCurrentBodyPtr(mvBodyPtr bodyPtr)
 {
    currentBody = bodyPtr;
 }
+*/
 
-/** @brief (one liner)
+/* @brief (one liner)
   *
   * (documentation goes here)
-  */
+  *
+// invalid
 void mvResult::setWorldPtr(mvWorldPtr worldPtr)
 {
    currentWorld = worldPtr;
 }
+*/
 
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-mvBehaviourResult::mvBehaviourResult(const mvWorldPtr worldPtr, const mvBodyPtr bodyPtr)
-: currentWorld(worldPtr), currentBody(bodyPtr)
+mvBehaviourResult::mvBehaviourResult(mvConstWorldPtr worldPtr,\
+   mvConstBodyPtr bodyPtr) : currentWorld(worldPtr), currentBody(bodyPtr)
 {
    resetAll();
 }
@@ -228,7 +233,7 @@ mvBehaviourResult::mvBehaviourResult(const mvWorldPtr worldPtr, const mvBodyPtr 
   *
   * (documentation goes here)
   */
-mvIndex mvResult::getBehaviourIndex()
+mvIndex mvResult::getBehaviourIndex() const
 {
    return behaviourIndex;
 }
@@ -237,7 +242,7 @@ mvIndex mvResult::getBehaviourIndex()
   *
   * (documentation goes here)
   */
-mvIndex mvResult::getGroupIndex()
+mvIndex mvResult::getGroupIndex() const
 {
    return groupIndex;
 }
@@ -275,54 +280,54 @@ void mvResult::setOmegaInRadians(const mvVec3& value)
 }
 
 // new utility functions
-mvWaypointPtr mvResult::fetchWaypointPtr(mvIndex index)
+mvConstWaypointPtr mvResult::fetchWaypointPtr(mvIndex index) const
 {
    if (currentWorld == NULL)
    {
       return NULL;
    }
 
-   return currentWorld->getWaypointPtr(index);
+   return currentWorld->getConstWaypointPtr(index);
 }
 
-mvBodyPtr mvResult::fetchBodyPtr(mvIndex index)
+mvConstBodyPtr mvResult::fetchBodyPtr(mvIndex index) const
 {
    if (currentWorld == NULL)
    {
       return NULL;
    }
 
-   return currentWorld->getBodyPtr(index);
+   return currentWorld->getConstBodyPtr(index);
 }
 
-mvGroupBehaviourPtr mvResult::fetchGroupBehaviourPtr(mvIndex index)
+mvConstGroupBehaviourPtr mvResult::fetchGroupBehaviourPtr(mvIndex index) const
 {
    if (currentWorld == NULL)
    {
       return NULL;
    }
 
-   return currentWorld->getGroupBehaviourPtr(index);
+   return currentWorld->getConstGroupBehaviourPtr(index);
 }
 
-mvPathwayPtr mvResult::fetchPathwayPtr(mvIndex index)
+mvConstPathwayPtr mvResult::fetchPathwayPtr(mvIndex index) const
 {
    if (currentWorld == NULL)
    {
       return NULL;
    }
 
-   return currentWorld->getPathwayPtr(index);
+   return currentWorld->getConstPathwayPtr(index);
 }
 
-mvGroupPtr mvResult::fetchGroupPtr(mvIndex index)
+mvConstGroupPtr mvResult::fetchGroupPtr(mvIndex index) const
 {
    if (currentWorld == NULL)
    {
       return NULL;
    }
 
-   return currentWorld->getGroupPtr(index);
+   return currentWorld->getConstGroupPtr(index);
 }
 
 

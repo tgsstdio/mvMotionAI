@@ -35,13 +35,11 @@
 
 #include "mvMotionAI-Types.h"
 #include MV_ENUMS_HEADER_FILE_H_
-#include "mvBehaviourResult.h"
-#include "mvGroupBehaviourResult.h"
+#include MV_BEHAVIOUR_RESULT_HEADER_FILE_H_
+#include MV_GROUP_BEHAVIOUR_RESULT_HEADER_FILE_H_
 //#include "mvWorld2.h"
 //#include "mvVec3.h"
 //#include "mvBody.h"
-// TODO : add defined HEADER_FILES_H
-
 
 typedef class mvBaseBehaviour
 {
@@ -69,8 +67,17 @@ typedef class mvBaseBehaviour
       virtual mvErrorEnum setParameterv(mvParamEnum paramFlag,\
          mvFloat* numArray);
 
-      // return values true (perform) / false (break/ no operation)
+      /** \brief user defined behaviour operation for single body
+       * \param[inout] resultModule module for retrieve and setting motion
+       * \return values true (perform) / false (break/ no operation)
+       */
 	   virtual bool groupOp(mvGroupBehaviourResultPtr resultModule) = 0;
+
+      /** \brief user defined behaviour operation for group operation
+       * \param[inout] resultModule module for retrieving and setting
+       * cooperative variables
+       * \return values true (perform) / false (break/ no operation)
+       */
       virtual bool bodyOp(mvBehaviourResultPtr resultModule) = 0;
 
       virtual ~mvBaseBehaviour();

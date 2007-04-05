@@ -39,7 +39,7 @@ class mvBehaviour_V2
 
    public:
       mvBehaviour_V2(mvBaseBehaviourPtr bPtr);
-      bool isEnabled();
+      bool isEnabled() const;
       void setEnabled(bool value);
       mvBaseBehaviourPtr getBehaviourPtr();
 
@@ -48,11 +48,12 @@ class mvBehaviour_V2
       mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
       mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* array);
 
-      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
-      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
-      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num);
+      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option)\
+         const;
+      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
+      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num) const;
       mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* array,\
-         mvCount* noOfParameters);
+         mvCount* noOfParameters) const;
       ~mvBehaviour_V2();
 };
 

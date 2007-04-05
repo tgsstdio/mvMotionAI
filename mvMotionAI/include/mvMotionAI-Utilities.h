@@ -32,10 +32,8 @@
 #ifndef MV_MOTIONAI_UTILITIES_H_
 #define MV_MOTIONAI_UTILITIES_H_
 #include <vector>
-#include "mvEnums.h"
 #include "mvMotionAI-Types.h"
-
-// TODO : add defined HEADER_FILES_H
+#include MV_ENUMS_HEADER_FILE_H_
 
 template<class mvClass>
 mvErrorEnum removeItemFromVectorByIndex(std::vector<mvClass*>& mvClassList, mvIndex index, int& currentIndex, int& noOfItems)

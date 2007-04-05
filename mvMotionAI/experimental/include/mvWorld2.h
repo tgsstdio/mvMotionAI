@@ -896,6 +896,16 @@ typedef class mvWorld_V2
       mvIndex getCurrentGroupBehaviour();
       mvIndex getCurrentPathway();
 
+      //TODO : new const object pointer loading
+      mvConstBodyPtr getConstBodyPtr(mvIndex index) const;
+      mvConstObstaclePtr getConstObstaclePtr(mvIndex index) const;
+      mvConstWaypointPtr getConstWaypointPtr(mvIndex index) const;
+      mvConstPathwayPtr getConstPathwayPtr(mvIndex index) const;
+      mvConstGroupPtr getConstGroupPtr(mvIndex index) const;
+      mvConstGroupBehaviourPtr getConstGroupBehaviourPtr(mvIndex index) const;
+      mvConstBehaviourPtr getConstBehaviourPtr(mvIndex index) const;
+      mvConstForcePtr getConstGroupForcePtr(mvIndex index) const;
+
       // TODO : patahway functions
 } mvWorld;
 

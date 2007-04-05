@@ -191,7 +191,20 @@ void mvPointerList<mvClass>::deleteAllItems()
 }
 
 template <class mvClass>
-mvClass mvPointerList<mvClass>::getClassPtr(mvIndex index)
+const mvClass mvPointerList<mvClass>::getCurrentConstClassPtr() const
+{
+   return ((const mvClass) getCurrentClassPtr());
+}
+
+template <class mvClass>
+const mvClass mvPointerList<mvClass>::getConstClassPtr(mvIndex index)\
+   const
+{
+   return getClassPtr(index);
+}
+
+template <class mvClass>
+mvClass mvPointerList<mvClass>::getClassPtr(mvIndex index) const
 {
    mvIndex listIndex = index;
    mvErrorEnum error = checkIndex(listIndex);
@@ -205,7 +218,7 @@ mvClass mvPointerList<mvClass>::getClassPtr(mvIndex index)
 }
 
 template <class mvClass>
-mvClass mvPointerList<mvClass>::getCurrentClassPtr()
+mvClass mvPointerList<mvClass>::getCurrentClassPtr() const
 {
    mvIndex listIndex = currentIndex;
    mvErrorEnum error = checkIndex(listIndex);
@@ -425,7 +438,7 @@ mvErrorEnum mvPointerList<mvClass>::setItemParameterv(mvIndex itemIndex,\
 
 template <class mvClass>
 mvErrorEnum mvPointerList<mvClass>::getItemParameter(mvIndex itemIndex,\
-   mvParamEnum paramFlag, mvOptionEnum* option)
+   mvParamEnum paramFlag, mvOptionEnum* option) const
 {
    mvIndex listIndex = itemIndex;
    mvErrorEnum error = checkIndex(listIndex);
@@ -447,7 +460,7 @@ mvErrorEnum mvPointerList<mvClass>::getItemParameter(mvIndex itemIndex,\
 
 template <class mvClass>
 mvErrorEnum mvPointerList<mvClass>::getItemParameteri(mvIndex itemIndex,\
-   mvParamEnum paramFlag, mvIndex* index)
+   mvParamEnum paramFlag, mvIndex* index) const
 {
    mvIndex listIndex = itemIndex;
    mvErrorEnum error = checkIndex(listIndex);
@@ -469,7 +482,7 @@ mvErrorEnum mvPointerList<mvClass>::getItemParameteri(mvIndex itemIndex,\
 
 template <class mvClass>
 mvErrorEnum mvPointerList<mvClass>::getItemParameterf(mvIndex itemIndex,\
-   mvParamEnum paramFlag, mvFloat* num)
+   mvParamEnum paramFlag, mvFloat* num) const
 {
    mvIndex listIndex = itemIndex;
    mvErrorEnum error = checkIndex(listIndex);
@@ -491,7 +504,7 @@ mvErrorEnum mvPointerList<mvClass>::getItemParameterf(mvIndex itemIndex,\
 
 template <class mvClass>
 mvErrorEnum mvPointerList<mvClass>::getItemParameterv(mvIndex itemIndex,\
-   mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+   mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters) const
 {
    mvIndex listIndex = itemIndex;
    mvErrorEnum error = checkIndex(listIndex);
@@ -645,7 +658,7 @@ mvErrorEnum mvPointerList<mvClass>::setItemParametersv(mvIndex itemIndex,\
  */
 template <class mvClass>
 mvErrorEnum mvPointerList<mvClass>::getItemParameters(mvIndex itemIndex,\
-   const char* param, const char** option)
+   const char* param, const char** option) const
 {
    mvIndex listIndex = itemIndex;
    mvParamEnum paramFlag;
@@ -683,7 +696,7 @@ mvErrorEnum mvPointerList<mvClass>::getItemParameters(mvIndex itemIndex,\
 
 template <class mvClass>
 mvErrorEnum mvPointerList<mvClass>::getItemParametersi(mvIndex itemIndex,\
-   const char* param, mvIndex* index)
+   const char* param, mvIndex* index) const
 {
    mvIndex listIndex = itemIndex;
    mvParamEnum paramFlag;
@@ -708,7 +721,7 @@ mvErrorEnum mvPointerList<mvClass>::getItemParametersi(mvIndex itemIndex,\
 
 template <class mvClass>
 mvErrorEnum mvPointerList<mvClass>::getItemParametersf(mvIndex itemIndex,\
-   const char* param, mvFloat* num)
+   const char* param, mvFloat* num) const
 {
    mvIndex listIndex = itemIndex;
    mvParamEnum paramFlag;
@@ -734,7 +747,7 @@ mvErrorEnum mvPointerList<mvClass>::getItemParametersf(mvIndex itemIndex,\
 
 template <class mvClass>
 mvErrorEnum mvPointerList<mvClass>::getItemParametersv(mvIndex itemIndex,\
-   const char* param, mvFloat* array, mvCount* noOfParameters)
+   const char* param, mvFloat* array, mvCount* noOfParameters) const
 {
    mvIndex listIndex = itemIndex;
    mvParamEnum paramFlag;
@@ -756,8 +769,6 @@ mvErrorEnum mvPointerList<mvClass>::getItemParametersv(mvIndex itemIndex,\
 
    return classPtr->getParameterv(paramFlag,array,noOfParameters);
 }
-
-
 
 template <class mvClass>
 mvErrorEnum mvPointerList<mvClass>::setCurrentItemParameters(const char* param,\
@@ -872,7 +883,7 @@ mvErrorEnum mvPointerList<mvClass>::setCurrentItemParametersv(const char* param,
 
 template <class mvClass>
 mvErrorEnum mvPointerList<mvClass>::getCurrentItemParameters(const char* param,\
-   const char** option)
+   const char** option) const
 {
    mvIndex listIndex = currentIndex;
    mvParamEnum paramFlag;
@@ -908,7 +919,7 @@ mvErrorEnum mvPointerList<mvClass>::getCurrentItemParameters(const char* param,\
 
 template <class mvClass>
 mvErrorEnum mvPointerList<mvClass>::getCurrentItemParametersi(const char* param,\
-   mvIndex* index)
+   mvIndex* index) const
 {
    mvIndex listIndex = currentIndex;
    mvParamEnum paramFlag;
@@ -933,7 +944,7 @@ mvErrorEnum mvPointerList<mvClass>::getCurrentItemParametersi(const char* param,
 
 template <class mvClass>
 mvErrorEnum mvPointerList<mvClass>::getCurrentItemParametersf(const char* param,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    mvIndex listIndex = currentIndex;
    mvParamEnum paramFlag;
@@ -958,7 +969,7 @@ mvErrorEnum mvPointerList<mvClass>::getCurrentItemParametersf(const char* param,
 
 template <class mvClass>
 mvErrorEnum mvPointerList<mvClass>::getCurrentItemParametersv(const char* param,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    mvIndex listIndex = currentIndex;
    mvParamEnum paramFlag;
@@ -1081,7 +1092,7 @@ mvErrorEnum mvPointerList<mvClass>::setCurrentItemParameterv(mvParamEnum paramFl
 
 template <class mvClass>
 mvErrorEnum mvPointerList<mvClass>::getCurrentItemParameter(mvParamEnum paramFlag,\
-   mvOptionEnum* option)
+   mvOptionEnum* option) const
 {
    mvIndex listIndex = currentIndex;
    mvErrorEnum error = checkIndex(listIndex);
@@ -1105,7 +1116,7 @@ mvErrorEnum mvPointerList<mvClass>::getCurrentItemParameter(mvParamEnum paramFla
 
 template <class mvClass>
 mvErrorEnum mvPointerList<mvClass>::getCurrentItemParameteri(mvParamEnum paramFlag,\
-   mvIndex* index)
+   mvIndex* index) const
 {
    mvIndex listIndex = currentIndex;
    mvErrorEnum error = checkIndex(listIndex);
@@ -1129,7 +1140,7 @@ mvErrorEnum mvPointerList<mvClass>::getCurrentItemParameteri(mvParamEnum paramFl
 
 template <class mvClass>
 mvErrorEnum mvPointerList<mvClass>::getCurrentItemParameterf(mvParamEnum paramFlag,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    mvIndex listIndex = currentIndex;
    mvErrorEnum error = checkIndex(listIndex);
@@ -1153,7 +1164,7 @@ mvErrorEnum mvPointerList<mvClass>::getCurrentItemParameterf(mvParamEnum paramFl
 
 template <class mvClass>
 mvErrorEnum mvPointerList<mvClass>::getCurrentItemParameterv(mvParamEnum paramFlag,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    mvIndex listIndex = currentIndex;
    mvErrorEnum error = checkIndex(listIndex);
@@ -1177,11 +1188,11 @@ mvErrorEnum mvPointerList<mvClass>::getCurrentItemParameterv(mvParamEnum paramFl
 
 template <class mvClass>
 mvClass mvPointerList<mvClass>::findItemPtrInList(bool (someFunction)(mvClass, void*),\
-   void* extraPtr)
+   void* extraPtr) const
 {
-   class std::vector<mvClass>::iterator i;
+   class std::vector<mvClass>::const_iterator i;
    mvClass currentPtr = NULL;
-   class std::vector<mvClass>::iterator listEnd = listItems.end();
+   class std::vector<mvClass>::const_iterator listEnd = listItems.end();
 
    for (i = listItems.begin(); i != listEnd; ++i)
    {
@@ -1197,11 +1208,11 @@ mvClass mvPointerList<mvClass>::findItemPtrInList(bool (someFunction)(mvClass, v
 
 template <class mvClass>
 mvIndex mvPointerList<mvClass>::findItemInList(bool (someFunction)(mvClass, void*),\
-   void* extraPtr)
+   void* extraPtr) const
 {
-   class std::vector<mvClass>::iterator i;
+   class std::vector<mvClass>::const_iterator i;
    mvClass currentPtr = NULL;
-   class std::vector<mvClass>::iterator listEnd = listItems.end();
+   class std::vector<mvClass>::const_iterator listEnd = listItems.end();
    mvIndex count = 1;
 
    for (i = listItems.begin(); i != listEnd; ++i)
