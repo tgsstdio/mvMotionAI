@@ -196,27 +196,28 @@ mvFloat mvBody_V2::getFinalSpeed() const
 }
 
 // parameter functions
-mvErrorEnum mvBody_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)
+mvErrorEnum mvBody_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
+   const
 {
    //TODO : implememt this function
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
 mvErrorEnum mvBody_V2::getParameter(mvParamEnum paramFlag,\
-   mvOptionEnum* option)
+   mvOptionEnum* option) const
 {
    //TODO : implememt this function
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
-mvErrorEnum mvBody_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num)
+mvErrorEnum mvBody_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
 {
    //TODO : implememt this function
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
 mvErrorEnum mvBody_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
-   mvCount* noOfParameters)
+   mvCount* noOfParameters) const
 {
    //TODO : implememt this function
    return MV_FUNCTION_NOT_IMPLEMENTED;

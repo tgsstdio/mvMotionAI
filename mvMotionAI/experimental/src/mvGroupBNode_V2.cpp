@@ -20,7 +20,7 @@
   * Automatically calls group behaviour node's getParameterv
   */
 mvErrorEnum mvGroupBNode_V2::getParameterv(mvParamEnum paramFlag,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    if (noOfParameters == NULL)
    {
@@ -48,7 +48,7 @@ mvErrorEnum mvGroupBNode_V2::getParameterv(mvParamEnum paramFlag,\
   * Automatically calls group behaviour node's getParameterf
   */
 mvErrorEnum mvGroupBNode_V2::getParameterf(mvParamEnum paramFlag,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    if (num == NULL)
    {
@@ -70,7 +70,7 @@ mvErrorEnum mvGroupBNode_V2::getParameterf(mvParamEnum paramFlag,\
   * Automatically calls group behaviour node's getParameteri
   */
 mvErrorEnum mvGroupBNode_V2::getParameteri(mvParamEnum paramFlag,\
-   mvIndex* outIndex)
+   mvIndex* outIndex) const
 {
    if (outIndex == NULL)
    {
@@ -99,7 +99,7 @@ mvErrorEnum mvGroupBNode_V2::getParameteri(mvParamEnum paramFlag,\
   * Automatically calls group behaviour node's getParameter
   */
 mvErrorEnum mvGroupBNode_V2::getParameter(mvParamEnum paramFlag,\
-   mvOptionEnum* option)
+   mvOptionEnum* option) const
 {
    if (option == NULL)
    {

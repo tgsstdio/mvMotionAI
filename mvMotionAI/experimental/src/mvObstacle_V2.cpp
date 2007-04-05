@@ -105,29 +105,27 @@ mvErrorEnum mvObstacle_V2::getParameterv(mvParamEnum paramFlag,\
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
-mvErrorEnum mvObstacle_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)\
-   const
+mvErrorEnum mvObstacle_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
    // TODO : implement this function
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
-mvErrorEnum mvObstacle_V2::setParameter(mvParamEnum paramFlag, mvOptionEnum option)\
-   const
+mvErrorEnum mvObstacle_V2::setParameter(mvParamEnum paramFlag,\
+   mvOptionEnum option)
 {
    // TODO : implement this function
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
-mvErrorEnum mvObstacle_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)\
-   const
+mvErrorEnum mvObstacle_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
    // TODO : implement this function
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
 mvErrorEnum mvObstacle_V2::setParameterv(mvParamEnum paramFlag,\
-   mvFloat* numArray) const
+   mvFloat* numArray)
 {
    // TODO : implement this function
    return MV_FUNCTION_NOT_IMPLEMENTED;

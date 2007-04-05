@@ -85,28 +85,26 @@ mvErrorEnum mvWaypoint_V2::getParameterv(mvParamEnum paramFlag,\
 }
 
 mvErrorEnum mvWaypoint_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)\
-   const
 {
    // TODO : implement this function
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
 mvErrorEnum mvWaypoint_V2::setParameter(mvParamEnum paramFlag,\
-   mvOptionEnum option) const
+   mvOptionEnum option)
 {
    // TODO : implement this function
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
 mvErrorEnum mvWaypoint_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)\
-   const
 {
    // TODO : implement this function
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
 mvErrorEnum mvWaypoint_V2::setParameterv(mvParamEnum paramFlag,\
-   mvFloat* numArray) const
+   mvFloat* numArray)
 {
    // TODO : implement this function
    return MV_FUNCTION_NOT_IMPLEMENTED;

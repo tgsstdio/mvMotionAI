@@ -42,4 +42,28 @@ class mvBehavFuncList
       ~mvBehavFuncList();
 };
 
+#undef MV_USE_TEMPLATE_FACTORY_FUNCTION
+
+#ifdef MV_USE_TEMPLATE_FACTORY_FUNCTION
+// derived template
+template <class mvClassFactory, class mvClass, class mvParamClass>
+class mvFactoryFunctionList
+{
+   private:
+      mvCount noOfValidFunctions;
+      std::map<mvOptionEnum,mvClassFactory*> fFunctions;
+
+      mvFactoryFunctionList();
+      mvErrorEnum addFactoryFunction(mvOptionEnum key,\
+         mvClassFactory* cFactoryPtr);
+      void freeAllFactoryFunctions();
+      mvClass* createAClassPtr(mvOptionEnum key, mvParamClass* defaultClass);
+      ~mvFactoryFunctionList();
+};
+
+// implementation
+#include "mvFactoryFunctionList.hpp"
+#endif
+
+
 #endif // MVBEHAVFUNCLIST_H_INCLUDED

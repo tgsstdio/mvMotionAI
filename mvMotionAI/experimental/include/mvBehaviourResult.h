@@ -41,9 +41,9 @@
 
 typedef class mvBehaviourResult
 {
-   public:
-      mvWorld_V2* currentWorld;
-      const mvBodyPtr currentBody;
+   private:
+      mvConstWorldPtr currentWorld;
+      mvConstBodyPtr currentBody;
 //      mvBaseBehaviour* currentGroupBehNode;
       mvIndex behaviourIndex;
       mvIndex groupIndex;
@@ -67,9 +67,15 @@ typedef class mvBehaviourResult
       mvVec3 omega;
       mvFloat quaternion[MV_QUATERNION_LENGTH];
 
-      mvBehaviourResult(const mvWorldPtr worldPtr, const mvBodyPtr bodyPtr);
-      void setWorldPtr(mvWorldPtr worldPtr);
-      void setCurrentBodyPtr(mvBodyPtr bodyPtr);
+      // predicted items.
+      mvVec3 brFuturePosition;
+      mvVec3 brFutureFinalPosition;
+      mvVec3 brFutureVelocity;
+      mvVec3 brFutureFinalVelocity;
+
+
+   public:
+      mvBehaviourResult(mvConstWorldPtr worldPtr, mvConstBodyPtr bodyPtr);
 //      void setGroupBehaviourNode(mvBaseBehaviour* groupBehPtr);
 
       void setBehaviourIndex(mvIndex bIndex);
@@ -88,28 +94,28 @@ typedef class mvBehaviourResult
       void setToDirectional();
       void setToSteering();
 
-      const mvWorldPtr getWorldPtr() const;
+      mvConstWorldPtr getWorldPtr() const;
 //      mvBaseBehaviour* getGroupBehaviourNode();
-      const mvBodyPtr getCurrentBodyPtr() const;
-      mvIndex getBehaviourIndex();
-      mvIndex getGroupIndex();
+      mvConstBodyPtr getCurrentBodyPtr() const;
+      mvIndex getBehaviourIndex() const;
+      mvIndex getGroupIndex() const;
 
       // utility functions
       // TODO: new predicter functions
-      const mvVec3& predictPosition(mvFloat timeInSecs) const;
-      const mvVec3& predictFinalPosition(mvFloat timeInSecs) const;
+      const mvVec3& predictPositionOfCurrentBody(mvFloat timeInSecs) const;
+      const mvVec3& predictFinalPositionOfCurrentBody(mvFloat timeInSecs) const;
 
-      const mvVec3& predictVelocity(mvFloat timeInSecs) const;
-      const mvVec3& predictFinalVelocity(mvFloat timeInSecs) const;
+      const mvVec3& predictVelocityOfCurrentBody(mvFloat timeInSecs) const;
+      const mvVec3& predictFinalVelocityOfCurrentBody(mvFloat timeInSecs) const;
       // maybe
       const mvVec3& confineVector(const mvVec3& v) const;
 
       // utility functions
-      mvWaypointPtr fetchWaypointPtr(mvIndex index);
-      mvBodyPtr fetchBodyPtr(mvIndex index);
-      mvGroupBehaviourPtr fetchGroupBehaviourPtr(mvIndex gbIndex);
-      mvPathwayPtr fetchPathwayPtr(mvIndex index);
-      mvGroupPtr fetchGroupPtr(mvIndex index);
+      mvConstWaypointPtr fetchWaypointPtr(mvIndex index) const;
+      mvConstBodyPtr fetchBodyPtr(mvIndex index) const;
+      mvConstGroupBehaviourPtr fetchGroupBehaviourPtr(mvIndex gbIndex) const;
+      mvConstPathwayPtr fetchPathwayPtr(mvIndex index) const;
+      mvConstGroupPtr fetchGroupPtr(mvIndex index) const;
 } mvResult;
 
 

@@ -797,10 +797,10 @@ mvGroupBehaviourPtr mvWorld_V2::getGroupBehaviourPtr(mvIndex index)
 mvIndex mvWorld_V2::createGroupBehaviour(mvOptionEnum type)
 {
    mvBaseBehaviourPtr temp = behavLoader->createBehaviour(type,NULL);
-
+   //TODO : change group behaviour constructor to add behaviour function list
    if (temp == NULL)
       return MV_NO_CURRENT_INDEX;
-      //TODO : change group behaviour type with typedefs
+
    return groupBehaviours.addItem(new mvGroupBehaviour(temp));
 }
 
@@ -4435,4 +4435,45 @@ mvIndex mvWorld_V2::getCurrentGroupBehaviour()
 mvIndex mvWorld_V2::getCurrentPathway()
 {
    return pathways.getCurrentIndex();
+}
+
+mvConstBodyPtr mvWorld_V2::getConstBodyPtr(mvIndex index) const
+{
+   return bodies.getConstClassPtr(index);
+}
+
+mvConstObstaclePtr mvWorld_V2::getConstObstaclePtr(mvIndex index) const
+{
+   return obstacles.getConstClassPtr(index);
+}
+
+mvConstWaypointPtr mvWorld_V2::getConstWaypointPtr(mvIndex index) const
+{
+   return waypoints.getConstClassPtr(index);
+}
+
+mvConstPathwayPtr mvWorld_V2::getConstPathwayPtr(mvIndex index) const
+{
+   return pathways.getConstClassPtr(index);
+}
+
+mvConstGroupPtr mvWorld_V2::getConstGroupPtr(mvIndex index) const
+{
+   return groups.getConstClassPtr(index);
+}
+
+mvConstGroupBehaviourPtr mvWorld_V2::getConstGroupBehaviourPtr(mvIndex index)\
+   const
+{
+   return groupBehaviours.getConstClassPtr(index);
+}
+
+mvConstBehaviourPtr mvWorld_V2::getConstBehaviourPtr(mvIndex index) const
+{
+   return behaviours.getConstClassPtr(index);
+}
+
+mvConstForcePtr mvWorld_V2::getConstGroupForcePtr(mvIndex index) const
+{
+   return forces.getConstClassPtr(index);
 }

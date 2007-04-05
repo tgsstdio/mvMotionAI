@@ -50,13 +50,13 @@ class mvGroupBNode_V2
          mvFloat* array);
 
       mvErrorEnum getParameter(mvParamEnum paramFlag,\
-         mvOptionEnum* option);
+         mvOptionEnum* option) const;
       mvErrorEnum getParameteri(mvParamEnum paramFlag,\
-         mvIndex* outIndex);
+         mvIndex* outIndex) const;
       mvErrorEnum getParameterf(mvParamEnum paramFlag,\
-         mvFloat* num);
+         mvFloat* num) const;
       mvErrorEnum getParameterv(mvParamEnum paramFlag,\
-         mvFloat* array, mvCount* noOfParameters);
+         mvFloat* array, mvCount* noOfParameters) const;
       ~mvGroupBNode_V2();
 };
 
