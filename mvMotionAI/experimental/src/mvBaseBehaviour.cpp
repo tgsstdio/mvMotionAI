@@ -87,4 +87,4 @@ mvBaseBehaviour::~mvBaseBehaviour()
 mvBaseBehaviourLoader::mvBaseBehaviourLoader()
 {
    // empty code
-};
+}

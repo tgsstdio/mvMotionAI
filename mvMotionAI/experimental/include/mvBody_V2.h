@@ -74,8 +74,9 @@ class mvBody_V2
       mvOptionEnum bodyType;
 
       //domain
-      mvOptionEnum domain;
+      mvOptionEnum bodyDomain;
       mvFloat* bodyDomainVariables;
+
    public:
       mvOptionEnum getType() const;
       mvErrorEnum setType(mvOptionEnum bType);
@@ -119,6 +120,11 @@ class mvBody_V2
       mvConstShapePtr getShape() const;
       mvErrorEnum setShape(mvOptionEnum bShape);
 
+      mvErrorEnum setDomain(mvOptionEnum bDomain);
+      mvOptionEnum getDomain() const;
+      mvCount getNoOfDomainVariables() const;
+      const mvFloat* getDomainVariables() const;
+
       // parameter functions
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
       mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option) \
@@ -143,7 +149,7 @@ class mvBody_V2
       mvBody_V2(mvOptionEnum bType, mvOptionEnum shape, mvFloat x, mvFloat y,\
          mvFloat z);
       //TODO : implement destructor
-      //~mvBody_V2();
+      ~mvBody_V2();
 
 };
 
