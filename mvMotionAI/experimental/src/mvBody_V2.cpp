@@ -1,3 +1,27 @@
+/**
+ * \file mvBody_V2.cpp
+ *
+ * Copyright (c) 2006 , 2007 David Young.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
+
 #include "mvBody_V2.h"
 /** \brief mvBodyV2 constructor
  * This is a rewrite of mvBody
@@ -434,216 +458,241 @@ mvErrorEnum mvBody_V2::getParameter(mvParamEnum paramFlag,\
 
 mvErrorEnum mvBody_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
 {
-   /*
-   MV_SPEED,
-   MV_MAX_SPEED,
-   MV_ACCELERATION,
-   MV_DECELERATION,
-   MV_MASS,
-   MV_FORCE_QUANTITY,
-   MV_FINAL_SPEED,
-   */
+   mvErrorEnum error;
 
-   //TODO : implememt this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (num == NULL)
+   {
+      return MV_FLOAT_DEST_IS_NULL;
+   }
+
+   switch(paramFlag)
+   {
+      // TODO : MV_FORCE_QUANTITY
+      case MV_SPEED:
+         *num = getSpeed();
+         return MV_NO_ERROR;
+      case MV_MAX_SPEED:
+         *num = getMaxSpeed();
+         return MV_NO_ERROR;
+      case MV_ACCELERATION:
+         *num = getAcceleration();
+         return MV_NO_ERROR;
+      case MV_DECELERATION:
+         *num = getDeacceleration();
+         return MV_NO_ERROR;
+      case MV_MASS:
+         *num = getMass();
+         return MV_NO_ERROR;
+      case MV_FINAL_SPEED:
+         *num = getFinalSpeed();
+         return MV_NO_ERROR;
+      default:
+         // TODO : pass behaviour list
+
+         // check shape then return error
+         error = bodyShape.getParameterf(paramFlag, num);
+
+         if (error == MV_INVALID_SHAPE_PARAMETER)
+         {
+            return MV_INVALID_BODY_PARAMETER;
+         }
+         else
+         {
+            return error;
+         }
+   }
 }
 
 mvErrorEnum mvBody_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
    mvCount* noOfParameters) const
 {
-   /*
-   MV_FORCE_VECTOR,
-   MV_VELOCITY,
-   MV_ACCELERATION_VECTOR,
-   MV_POSITION,
-   MV_DIRECTION,
-   MV_SHAPE_DIMENSIONS,
-   MV_DOMAIN_VARIABLES,
-   MV_FINAL_VELOCITY,
-   MV_FINAL_DIRECTION,
-   MV_PLANE_NORMAL,
-   MV_LINE_VECTOR,
-   */
+   mvErrorEnum error;
+   mvOptionEnum option;
+   mvVec3 resultVector;
+   mvCount arrayCount, i;
+
+   if (notOfParameters == NULL)
+   {
+      return MV_COUNT_DEST_IS_NULL;
+   }
+
+   if (numArray == NULL)
+   {
+      *noOfParameters = 0;
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
    //TODO : implememt this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   switch(paramFlag)
+   {
+      // TODO : case MV_FORCE_VECTOR:
+      //TODO : case MV_ACCELERATION_VECTOR:
+      case MV_VELOCITY:
+         resultVector = getVelocity();
+         numArray[0] = resultVector.getX();
+         numArray[1] = resultVector.getY();
+         numArray[2] = resultVector.getZ();
+         *noOfParameters = 3;
+         return MV_NO_ERROR;
+      case MV_POSITION:
+         resultVector = getPosition();
+         numArray[0] = resultVector.getX();
+         numArray[1] = resultVector.getY();
+         numArray[2] = resultVector.getZ();
+         *noOfParameters = 3;
+         return MV_NO_ERROR;
+      case MV_DIRECTION:
+         resultVector = getFaceDirection();
+         numArray[0] = resultVector.getX();
+         numArray[1] = resultVector.getY();
+         numArray[2] = resultVector.getZ();
+         *noOfParameters = 3;
+         return MV_NO_ERROR;
+      case MV_DOMAIN_VARIABLES:
+         arrayCount = getNoOfDomainVariables();
+         for (i = 0; i < arrayCount; i++)
+         {
+            numArray[i] = bodyDomainVariables[i];
+         }
+         *noOfParameters = dimensionCount;
+         return MV_NO_ERROR;
+      case MV_FINAL_VELOCITY:
+         resultVector = getFinalVelocity();
+         numArray[0] = resultVector.getX();
+         numArray[1] = resultVector.getY();
+         numArray[2] = resultVector.getZ();
+         *noOfParameters = 3;
+         return MV_NO_ERROR;
+      case MV_FINAL_DIRECTION:
+         resultVector = getFinalDirection();
+         numArray[0] = resultVector.getX();
+         numArray[1] = resultVector.getY();
+         numArray[2] = resultVector.getZ();
+         *noOfParameters = 3;
+         return MV_NO_ERROR;
+      case MV_PLANE_NORMAL:
+         option = getDomain();
+         switch(option)
+         {
+            default:
+               *noOfParameters = 0;
+               return MV_INVALID_DOMAIN;
+            // is right handed
+            // TODO: left hand conversion
+            case MV_XZ_PLANE:
+               numArray[0] = 0;
+               numArray[1] = 1;
+               numArray[2] = 0;
+               *noOfParameters = 3;
+               return MV_NO_ERROR;
+            case MV_XY_PLANE:
+               numArray[0] = 0;
+               numArray[1] = 0;
+               numArray[2] = 1;
+               *noOfParameters = 3;
+               return MV_NO_ERROR;
+            case MV_YZ_PLANE:
+               numArray[0] = 1;
+               numArray[1] = 0;
+               numArray[2] = 0;
+               *noOfParameters = 3;
+               return MV_NO_ERROR;
+            case MV_ANY_PLANE:
+               arrayCount = 3;
+               for (i = 0; i < arrayCount; i++)
+               {
+                  numArray[i] = bodyDomainVariables[i];
+               }
+               *noOfParameters = arrayCount;
+               return MV_NO_ERROR;
+         }
+      case MV_LINE_VECTOR:
+         option = getDomain();
+         switch(option)
+         {
+            default:
+               *noOfParameters = 0;
+               return MV_INVALID_DOMAIN;
+            // is right handed
+            // TODO: left hand conversion
+            case MV_X_AXIS_ONLY:
+               numArray[0] = 1;
+               numArray[1] = 0;
+               numArray[2] = 0;
+               *noOfParameters = 3;
+               return MV_NO_ERROR;
+            case MV_Y_AXIS_ONLY:
+               numArray[0] = 0;
+               numArray[1] = 1;
+               numArray[2] = 0;
+               *noOfParameters = 3;
+               return MV_NO_ERROR;
+            case MV_Z_AXIS_ONLY:
+               numArray[0] = 0;
+               numArray[1] = 0;
+               numArray[2] = 1;
+               *noOfParameters = 3;
+               return MV_NO_ERROR;
+            case MV_ANY_LINE:
+               arrayCount = 3;
+               for (i = 0; i < arrayCount; i++)
+               {
+                  numArray[i] = bodyDomainVariables[i];
+               }
+               *noOfParameters = arrayCount;
+               return MV_NO_ERROR;
+         }
+      default:
+         // shape's getParameterv
+         error = bodyShape.getParameterv(paramFlag, numArray, noOfParameters);
+         if (error != MV_INVALID_SHAPE_PARAMETER)
+         {
+            return error;
+         }
+
+         // body getParameterv
+         error = getParameterf(paramFlag, &numArray[0]);
+         if (error == MV_NO_ERROR)
+         {
+            *noOfParameters = 1;
+         }
+         else
+         {
+            *noOfParameters = 0;
+         }
+         return error;
+   }
+
 }
 
 mvErrorEnum mvBody_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
-   /*
-   MV_NO_PARAMETER = 0,
-   MV_SPEED,
-   MV_MAX_SPEED,
-   MV_ACCELERATION,
-   MV_DECELERATION,
-   MV_MASS,
-   //MV_STATE,
-   MV_SHAPE,
-   MV_TYPE,
-   MV_DOMAIN,
-   MV_FORCE_VECTOR,
-
-   MV_VELOCITY,
-   MV_ACCELERATION_VECTOR,
-   MV_FORCE_QUANTITY,
-   MV_CONSTANT, // renamed
-   MV_POSITION,
-   MV_LENGTH,
-   MV_RADIUS,
-   MV_X_WIDTH, // shorten
-   MV_Y_HEIGHT, // shorten
-   MV_Z_DEPTH, // shorten
-   MV_DIRECTION,
-   MV_WAYPOINT,
-   MV_BODY,
-   MV_PATHWAY,
-   MV_PERCEIVED_COHESION,
-   MV_PERCEIVED_ALIGNMENT,
-   MV_COHESION_FACTOR,
-   MV_SEPARATION_FACTOR,
-   MV_ALIGNMENT_FACTOR,
-   // new enums
-   MV_SHAPE_DIMENSIONS,
-   MV_NO_OF_SHAPE_DIMENSIONS,
-   MV_IS_ENABLED,
-   MV_DOMAIN_VARIABLES,
-   MV_NO_OF_BODIES,
-   MV_NO_OF_GROUPS,
-   MV_NO_OF_FORCES,
-   MV_NO_OF_WAYPOINTS,
-   MV_NO_OF_OBSTACLES,
-   MV_NO_OF_GROUP_BEHAVIOURS,
-   MV_NO_OF_BEHAVIOURS,
-   MV_WIDTH,
-   MV_DEPTH,
-   // new enums behaviour list
-   MV_MODE,
-   MV_CURRENT_INDEX,
-   MV_WEIGHT,
-   MV_FINAL_VELOCITY,
-   MV_FINAL_SPEED,
-   MV_FINAL_DIRECTION,
-   MV_PLANE_NORMAL,
-   MV_LINE_VECTOR,
-   MV_ELAPSED_TIME,
-   MV_PERIOD,
-   MV_IS_TIMED,
-   MV_INDEX,
-
-   // tree movement functions
-   MV_NEW_NODE,
-   MV_NEW_LEVEL,
-   MV_NEXT_NODE,
-   MV_PREV_NODE,
-   MV_UP_LEVEL,
-   MV_DOWN_LEVEL,
-   MV_IS_CONFINED,
-   MV_GROUP,
-   MV_AUTO_CONVERT_INDEX,
-   MV_RIGHT_HANDED,
-
-   // body boolean flags
-   MV_APPLY_FORCES,
-   MV_APPLY_SHIFTS,
-   MV_APPLY_ACCELERATIONS,
-   MV_APPLY_GRAVITY,
-   MV_APPLY_COLLISIONS,
-   MV_APPLY_ALL_FORCES,
-
-   // user defined parameters
-   MV_USER_PARAM_INDEX,
-   MV_USER_PARAM_0,
-   MV_USER_PARAM_1,
-   MV_USER_PARAM_2,
-   MV_USER_PARAM_3,
-
-   // user string statements
-   MV_USER_STRING_INDEX,
-   MV_USER_STRING_0,
-   MV_USER_STRING_1,
-   MV_USER_STRING_2,
-   MV_USER_STRING_3,
-
-   MV_NO_OF_PARAM_ENUMS
-   */
    //TODO : implememt this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   // TODO : behaviour list
+
+   // shape set parameter
+   error = bodyShape.setParameteri(paramFlag, index);
+
+   if (error == MV_INVALID_SHAPE_PARAMETER)
+   {
+      return MV_INVALID_BODY_PARAMETER;
+   }
+   else
+   {
+      return error;
+   }
 }
 
 mvErrorEnum mvBody_V2::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
    /*
-   MV_NO_PARAMETER = 0,
-   MV_SPEED,
-   MV_MAX_SPEED,
-   MV_ACCELERATION,
-   MV_DECELERATION,
-   MV_MASS,
-   //MV_STATE,
    MV_SHAPE,
    MV_TYPE,
    MV_DOMAIN,
-   MV_FORCE_VECTOR,
 
-   MV_VELOCITY,
-   MV_ACCELERATION_VECTOR,
-   MV_FORCE_QUANTITY,
-   MV_CONSTANT, // renamed
-   MV_POSITION,
-   MV_LENGTH,
-   MV_RADIUS,
-   MV_X_WIDTH, // shorten
-   MV_Y_HEIGHT, // shorten
-   MV_Z_DEPTH, // shorten
-   MV_DIRECTION,
-   MV_WAYPOINT,
-   MV_BODY,
-   MV_PATHWAY,
-   MV_PERCEIVED_COHESION,
-   MV_PERCEIVED_ALIGNMENT,
-   MV_COHESION_FACTOR,
-   MV_SEPARATION_FACTOR,
-   MV_ALIGNMENT_FACTOR,
-   // new enums
-   MV_SHAPE_DIMENSIONS,
-   MV_NO_OF_SHAPE_DIMENSIONS,
    MV_IS_ENABLED,
-   MV_DOMAIN_VARIABLES,
-   MV_NO_OF_BODIES,
-   MV_NO_OF_GROUPS,
-   MV_NO_OF_FORCES,
-   MV_NO_OF_WAYPOINTS,
-   MV_NO_OF_OBSTACLES,
-   MV_NO_OF_GROUP_BEHAVIOURS,
-   MV_NO_OF_BEHAVIOURS,
-   MV_WIDTH,
-   MV_DEPTH,
-   // new enums behaviour list
-   MV_MODE,
-   MV_CURRENT_INDEX,
-   MV_WEIGHT,
-   MV_FINAL_VELOCITY,
-   MV_FINAL_SPEED,
-   MV_FINAL_DIRECTION,
-   MV_PLANE_NORMAL,
-   MV_LINE_VECTOR,
-   MV_ELAPSED_TIME,
-   MV_PERIOD,
-   MV_IS_TIMED,
-   MV_INDEX,
-
-   // tree movement functions
-   MV_NEW_NODE,
-   MV_NEW_LEVEL,
-   MV_NEXT_NODE,
-   MV_PREV_NODE,
-   MV_UP_LEVEL,
-   MV_DOWN_LEVEL,
-   MV_IS_CONFINED,
-   MV_GROUP,
-   MV_AUTO_CONVERT_INDEX,
-   MV_RIGHT_HANDED,
-
    // body boolean flags
    MV_APPLY_FORCES,
    MV_APPLY_SHIFTS,
@@ -651,25 +700,101 @@ mvErrorEnum mvBody_V2::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
    MV_APPLY_GRAVITY,
    MV_APPLY_COLLISIONS,
    MV_APPLY_ALL_FORCES,
-
-   // user defined parameters
-   MV_USER_PARAM_INDEX,
-   MV_USER_PARAM_0,
-   MV_USER_PARAM_1,
-   MV_USER_PARAM_2,
-   MV_USER_PARAM_3,
-
-   // user string statements
-   MV_USER_STRING_INDEX,
-   MV_USER_STRING_0,
-   MV_USER_STRING_1,
-   MV_USER_STRING_2,
-   MV_USER_STRING_3,
-
-   MV_NO_OF_PARAM_ENUMS
    */
-   //TODO : implememt this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   switch(paramFlag)
+   {
+      default:
+         // TODO : behaviour list
+
+         // shape
+         error = bodyShape.setParameter(paramFlag, option);
+         if (error != MV_INVALID_SHAPE_PARAMETER)
+         {
+            return error;
+         }
+         else
+         {
+            return MV_INVALID_BODY_PARAMETER;
+         }
+      case MV_SHAPE:
+         return setShape(option);
+      case MV_TYPE:
+         return setType(option);
+      case MV_DOMAIN:
+         return setDomain(option);
+      case MV_IS_ENABLED:
+         if (option == MV_FALSE)
+         {
+            isEnabled = false;
+         }
+         else
+         {
+            isEnabled = true;
+         }
+         return MV_NO_ERROR;
+      case MV_APPLY_FORCES:
+         if (option == MV_FALSE)
+         {
+            isEnabled = false;
+         }
+         else
+         {
+            isEnabled = true;
+         }
+         return MV_NO_ERROR;
+      case MV_APPLY_SHIFTS:
+         if (option == MV_FALSE)
+         {
+            isEnabled = false;
+         }
+         else
+         {
+            isEnabled = true;
+         }
+         return MV_NO_ERROR;
+      case MV_APPLY_ACCELERATIONS:
+         if (option == MV_FALSE)
+         {
+            isEnabled = false;
+         }
+         else
+         {
+            isEnabled = true;
+         }
+         return MV_NO_ERROR;
+      case MV_APPLY_GRAVITY:
+         if (option == MV_FALSE)
+         {
+            isEnabled = false;
+         }
+         else
+         {
+            isEnabled = true;
+         }
+         return MV_NO_ERROR;
+      case MV_APPLY_COLLISIONS:
+         if (option == MV_FALSE)
+         {
+            isEnabled = false;
+         }
+         else
+         {
+            isEnabled = true;
+         }
+         return MV_NO_ERROR;
+      case MV_APPLY_ALL_FORCES:
+         if (option == MV_FALSE)
+         {
+            isEnabled = false;
+         }
+         else
+         {
+            isEnabled = true;
+         }
+         return MV_NO_ERROR;
+   }
 }
 
 mvErrorEnum mvBody_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
