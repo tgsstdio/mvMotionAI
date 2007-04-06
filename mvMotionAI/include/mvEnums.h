@@ -136,7 +136,7 @@ enum mvParamEnum
    MV_ACCELERATION,
    MV_DECELERATION,
    MV_MASS,
-   MV_STATE,
+   //MV_STATE,
    MV_SHAPE,
    MV_TYPE,
    MV_DOMAIN,

@@ -119,7 +119,7 @@ static const mvIndex MV_NO_CURRENT_INDEX = 0;
 /**
  * \brief maximum array length required for set and retrieving parameters
  */
-static const mvCount MV_MAX_NO_OF_PARAMETERS = 4;
+static const mvCount MV_MAX_NO_OF_PARAMETERS = 5;
 
 /*
  * complicated behaviour structure

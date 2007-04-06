@@ -92,6 +92,8 @@
 			<Add alias="All" targets="default;" />
 		</VirtualTargets>
 		<Compiler>
+			<Add option="-pedantic" />
+			<Add option="-Wall" />
 			<Add directory="include" />
 			<Add directory="experimental\include" />
 		</Compiler>
