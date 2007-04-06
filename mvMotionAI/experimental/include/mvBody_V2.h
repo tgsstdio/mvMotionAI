@@ -127,7 +127,7 @@ class mvBody_V2
 
       // parameter functions
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
-      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option) \
+      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option)\
          const;
       mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num) const;
       mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
