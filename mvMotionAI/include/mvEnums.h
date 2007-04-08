@@ -184,6 +184,9 @@ enum mvParamEnum
    MV_FINAL_DIRECTION,
    MV_PLANE_NORMAL,
    MV_LINE_VECTOR,
+
+   // for body's domain
+   MV_DOMAIN_NORMAL,
    MV_ELAPSED_TIME,
    MV_PERIOD,
    MV_IS_TIMED,
