@@ -85,31 +85,37 @@ class mvBody_V2
       mvFloat getY() const;
       mvFloat getZ() const;
       const mvVec3& getPosition() const;
-      void setPosition(mvFloat x, mvFloat y, mvFloat z);
+      mvErrorEnum setPosition(mvFloat x, mvFloat y, mvFloat z);
 
       const mvVec3& getFaceDirection() const;
-      void setFaceDirection(mvFloat x, mvFloat y,mvFloat z);
+      mvErrorEnum setFaceDirection(mvFloat x, mvFloat y,mvFloat z);
+      mvErrorEnum setFaceDirectionByVec3(const mvVec3& value);
 
       mvFloat getSpeed() const;
-      void setSpeed(mvFloat num);
+      mvErrorEnum setSpeed(mvFloat num);
 
       mvFloat getMaxSpeed() const;
-      void setMaxSpeed(mvFloat num);
+      mvErrorEnum setMaxSpeed(mvFloat num);
 
-      void setMass(mvFloat num);
+      mvErrorEnum setMass(mvFloat num);
       mvFloat getMass() const;
 
       mvFloat getAcceleration() const;
-      void setAcceleration(mvFloat accel);
+      mvErrorEnum setAcceleration(mvFloat accel);
 
-      mvFloat getDeacceleration() const;
-      void setDeacceleration(mvFloat dAccel);
+      mvFloat getDeceleration() const;
+      mvErrorEnum setDeceleration(mvFloat dAccel);
 
-      const mvVec3& getFinalDirection() const;
-      void setFinalDirection(mvVec3& value);
+      mvVec3 getFinalDirection() const;
+      mvErrorEnum setFinalDirection(mvFloat fx, mvFloat fy, mvFloat fz);
+      mvErrorEnum setFinalDirectionByVec3(mvVec3& value);
 
+      mvErrorEnum setVelocity(mvFloat vx, mvFloat vy, mvFloat vz);
       const mvVec3& getFinalVelocity() const;
-      void setFinalVelocity(mvVec3& value);
+      mvErrorEnum setFinalVelocity(mvFloat x, mvFloat y, mvFloat z);
+      mvErrorEnum setVelocityByVec3(const mvVec3& value);
+      mvErrorEnum setFinalVelocityByVec3(const mvVec3& value);
+      mvErrorEnum setPositionByVec3(const mvVec3& value);
 
       mvVec3 getVelocity() const;
       mvFloat getFinalSpeed() const;

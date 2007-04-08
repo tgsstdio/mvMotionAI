@@ -39,15 +39,15 @@ mvBody_V2::mvBody_V2(mvOptionEnum bType, mvOptionEnum shape, mvFloat x,\
    applyAllForces = true;
 
    //acceleration = 1.0
-   bodyAccel = 1;
+   setAcceleration(1);
    // deaccleation = 1
-   bodyDeaccel = 1;
+   setDeceleration(1);
    // mass = 1.0
-   bodyMass = 1.0;
+   setMass(1);
    // current speed = 0
-   bodyCurrentSpeed = 0;
+   setSpeed(0);
    // max speed = 5
-   bodyMaxSpeed = 5;
+   setMaxSpeed(5);
    // user data = NULL
    bodyUserDataPtr = NULL;
    // default direction 1.0
@@ -229,9 +229,10 @@ const mvVec3& mvBody_V2::getPosition() const
    return bodyPosition;
 }
 
-void mvBody_V2::setPosition(mvFloat x, mvFloat y, mvFloat z)
+mvErrorEnum mvBody_V2::setPosition(mvFloat x, mvFloat y, mvFloat z)
 {
-   bodyPosition.set(x,y,z);
+   mvVec3 temp(x,y,z);
+   return setPositionByVec3(temp);
 }
 
 const mvVec3& mvBody_V2::getFaceDirection() const
@@ -239,9 +240,16 @@ const mvVec3& mvBody_V2::getFaceDirection() const
    return faceDirection;
 }
 
-void mvBody_V2::setFaceDirection(mvFloat x, mvFloat y,mvFloat z)
+mvErrorEnum mvBody_V2::setFaceDirection(mvFloat x, mvFloat y,mvFloat z)
 {
-   faceDirection.set(x,y,z);
+   mvVec3 temp(x,y,z);
+   return setFaceDirectionByVec3(temp);
+}
+
+mvErrorEnum mvBody_V2::setFaceDirectionByVec3(const mvVec3& value)
+{
+   faceDirection = value;
+   return MV_NO_ERROR;
 }
 
 mvFloat mvBody_V2::getSpeed() const
@@ -249,9 +257,10 @@ mvFloat mvBody_V2::getSpeed() const
    return bodyCurrentSpeed;
 }
 
-void mvBody_V2::setSpeed(mvFloat num)
+mvErrorEnum mvBody_V2::setSpeed(mvFloat num)
 {
    bodyCurrentSpeed = num;
+   return MV_NO_ERROR;
 }
 
 mvFloat mvBody_V2::getMaxSpeed() const
@@ -259,14 +268,23 @@ mvFloat mvBody_V2::getMaxSpeed() const
    return bodyMaxSpeed;
 }
 
-void mvBody_V2::setMaxSpeed(mvFloat num)
+mvErrorEnum mvBody_V2::setMaxSpeed(mvFloat num)
 {
    bodyMaxSpeed = num;
+   return MV_NO_ERROR;
 }
 
-void mvBody_V2::setMass(mvFloat num)
+mvErrorEnum mvBody_V2::setMass(mvFloat num)
 {
-   bodyMass = num;
+   if (num >= 0)
+   {
+      bodyMass = num;
+      return MV_NO_ERROR;
+   }
+   else
+   {
+      return MV_FLOAT_VALUE_IS_NOT_POSITIVE;
+   }
 }
 
 mvFloat mvBody_V2::getMass() const
@@ -274,15 +292,15 @@ mvFloat mvBody_V2::getMass() const
    return bodyMass;
 }
 
-
-mvFloat mvBody_V2::getDeacceleration() const
+mvFloat mvBody_V2::getDeceleration() const
 {
    return bodyDeaccel;
 }
 
-void mvBody_V2::setDeacceleration(mvFloat dAccel)
+mvErrorEnum mvBody_V2::setDeceleration(mvFloat dAccel)
 {
    bodyDeaccel = dAccel;
+   return MV_NO_ERROR;
 }
 
 mvFloat mvBody_V2::getAcceleration() const
@@ -290,20 +308,29 @@ mvFloat mvBody_V2::getAcceleration() const
    return bodyAccel;
 }
 
-void mvBody_V2::setAcceleration(mvFloat accel)
+mvErrorEnum mvBody_V2::setAcceleration(mvFloat accel)
 {
    bodyAccel = accel;
+   return MV_NO_ERROR;
 }
 
 // TODO : new functions for retriving values
-const mvVec3& mvBody_V2::getFinalDirection() const
+mvVec3 mvBody_V2::getFinalDirection() const
 {
-   return faceDirection;
+   mvVec3 temp = finalVelocity.normalise();
+   return temp;
 }
 
-void mvBody_V2::setFinalDirection(mvVec3& value)
+mvErrorEnum mvBody_V2::setFinalDirection(mvFloat fx, mvFloat fy, mvFloat fz)
+{
+   mvVec3 temp(fx,fy,fz);
+   return setFinalDirectionByVec3(temp);
+}
+
+mvErrorEnum mvBody_V2::setFinalDirectionByVec3(mvVec3& value)
 {
    faceDirection = value;
+   return MV_NO_ERROR;
 }
 
 const mvVec3& mvBody_V2::getFinalVelocity() const
@@ -311,9 +338,35 @@ const mvVec3& mvBody_V2::getFinalVelocity() const
    return finalVelocity;
 }
 
-void mvBody_V2::setFinalVelocity(mvVec3& value)
+mvErrorEnum mvBody_V2::setFinalVelocity(mvFloat x, mvFloat y, mvFloat z)
+{
+   mvVec3 temp(x,y,z);
+   return setFinalVelocityByVec3(temp);
+}
+
+mvErrorEnum mvBody_V2::setVelocity(mvFloat vx, mvFloat vy, mvFloat vz)
+{
+   mvVec3 temp(vx,vy,vz);
+   return setVelocityByVec3(temp);
+}
+
+mvErrorEnum mvBody_V2::setVelocityByVec3(const mvVec3& value)
+{
+   bodyCurrentSpeed = value.length();
+   faceDirection = value.normalize();
+   return MV_NO_ERROR;
+}
+
+mvErrorEnum mvBody_V2::setFinalVelocityByVec3(const mvVec3& value)
 {
    finalVelocity = value;
+   return MV_NO_ERROR;
+}
+
+mvErrorEnum mvBody_V2::setPositionByVec3(const mvVec3& value)
+{
+   bodyPosition = value;
+   return MV_NO_ERROR;
 }
 
 mvVec3 mvBody_V2::getVelocity() const
@@ -478,7 +531,7 @@ mvErrorEnum mvBody_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
          *num = getAcceleration();
          return MV_NO_ERROR;
       case MV_DECELERATION:
-         *num = getDeacceleration();
+         *num = getDeceleration();
          return MV_NO_ERROR;
       case MV_MASS:
          *num = getMass();
@@ -511,7 +564,7 @@ mvErrorEnum mvBody_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
    mvVec3 resultVector;
    mvCount arrayCount, i;
 
-   if (notOfParameters == NULL)
+   if (noOfParameters == NULL)
    {
       return MV_COUNT_DEST_IS_NULL;
    }
@@ -554,7 +607,7 @@ mvErrorEnum mvBody_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
          {
             numArray[i] = bodyDomainVariables[i];
          }
-         *noOfParameters = dimensionCount;
+         *noOfParameters = arrayCount;
          return MV_NO_ERROR;
       case MV_FINAL_VELOCITY:
          resultVector = getFinalVelocity();
@@ -570,7 +623,7 @@ mvErrorEnum mvBody_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
          numArray[2] = resultVector.getZ();
          *noOfParameters = 3;
          return MV_NO_ERROR;
-      case MV_PLANE_NORMAL:
+      case MV_DOMAIN_NORMAL:
          option = getDomain();
          switch(option)
          {
@@ -727,71 +780,71 @@ mvErrorEnum mvBody_V2::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
       case MV_IS_ENABLED:
          if (option == MV_FALSE)
          {
-            isEnabled = false;
+            enabled = false;
          }
          else
          {
-            isEnabled = true;
+            enabled = true;
          }
          return MV_NO_ERROR;
       case MV_APPLY_FORCES:
          if (option == MV_FALSE)
          {
-            isEnabled = false;
+            applyForces = false;
          }
          else
          {
-            isEnabled = true;
+            applyForces = true;
          }
          return MV_NO_ERROR;
       case MV_APPLY_SHIFTS:
          if (option == MV_FALSE)
          {
-            isEnabled = false;
+            applyShifts = false;
          }
          else
          {
-            isEnabled = true;
+            applyShifts = true;
          }
          return MV_NO_ERROR;
       case MV_APPLY_ACCELERATIONS:
          if (option == MV_FALSE)
          {
-            isEnabled = false;
+            applyAccelerations = false;
          }
          else
          {
-            isEnabled = true;
+            applyAccelerations = true;
          }
          return MV_NO_ERROR;
       case MV_APPLY_GRAVITY:
          if (option == MV_FALSE)
          {
-            isEnabled = false;
+            applyGravity = false;
          }
          else
          {
-            isEnabled = true;
+            applyGravity = true;
          }
          return MV_NO_ERROR;
       case MV_APPLY_COLLISIONS:
          if (option == MV_FALSE)
          {
-            isEnabled = false;
+            applyCollisions = false;
          }
          else
          {
-            isEnabled = true;
+            applyCollisions = true;
          }
          return MV_NO_ERROR;
       case MV_APPLY_ALL_FORCES:
          if (option == MV_FALSE)
          {
-            isEnabled = false;
+            applyAllForces = false;
          }
          else
          {
-            isEnabled = true;
+            applyAllForces = true;
          }
          return MV_NO_ERROR;
    }
@@ -799,203 +852,68 @@ mvErrorEnum mvBody_V2::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
 
 mvErrorEnum mvBody_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
-   /*
-   MV_NO_PARAMETER = 0,
-   MV_SPEED,
-   MV_MAX_SPEED,
-   MV_ACCELERATION,
-   MV_DECELERATION,
-   MV_MASS,
-   //MV_STATE,
-   MV_SHAPE,
-   MV_TYPE,
-   MV_DOMAIN,
-   MV_FORCE_VECTOR,
+   mvErrorEnum error;
 
-   MV_VELOCITY,
-   MV_ACCELERATION_VECTOR,
-   MV_FORCE_QUANTITY,
-   MV_CONSTANT, // renamed
-   MV_POSITION,
-   MV_LENGTH,
-   MV_RADIUS,
-   MV_X_WIDTH, // shorten
-   MV_Y_HEIGHT, // shorten
-   MV_Z_DEPTH, // shorten
-   MV_DIRECTION,
-   MV_WAYPOINT,
-   MV_BODY,
-   MV_PATHWAY,
-   MV_PERCEIVED_COHESION,
-   MV_PERCEIVED_ALIGNMENT,
-   MV_COHESION_FACTOR,
-   MV_SEPARATION_FACTOR,
-   MV_ALIGNMENT_FACTOR,
-   // new enums
-   MV_SHAPE_DIMENSIONS,
-   MV_NO_OF_SHAPE_DIMENSIONS,
-   MV_IS_ENABLED,
-   MV_DOMAIN_VARIABLES,
-   MV_NO_OF_BODIES,
-   MV_NO_OF_GROUPS,
-   MV_NO_OF_FORCES,
-   MV_NO_OF_WAYPOINTS,
-   MV_NO_OF_OBSTACLES,
-   MV_NO_OF_GROUP_BEHAVIOURS,
-   MV_NO_OF_BEHAVIOURS,
-   MV_WIDTH,
-   MV_DEPTH,
-   // new enums behaviour list
-   MV_MODE,
-   MV_CURRENT_INDEX,
-   MV_WEIGHT,
-   MV_FINAL_VELOCITY,
-   MV_FINAL_SPEED,
-   MV_FINAL_DIRECTION,
-   MV_PLANE_NORMAL,
-   MV_LINE_VECTOR,
-   MV_ELAPSED_TIME,
-   MV_PERIOD,
-   MV_IS_TIMED,
-   MV_INDEX,
+   switch (paramFlag)
+   {
+      case MV_SPEED:
+         return setSpeed(num);
+      case MV_MAX_SPEED:
+         return setMaxSpeed(num);
+      case MV_ACCELERATION:
+         return setAcceleration(num);
+      case MV_DECELERATION:
+         return setDeceleration(num);
+      case MV_MASS:
+         return setMass(num);
+      // TODO: case MV_FORCE_QUANTITY:
+      // TODO: case MV_FINAL_SPEED:
+      default:
+         // TODO: pass on to behaviour list
 
-   // tree movement functions
-   MV_NEW_NODE,
-   MV_NEW_LEVEL,
-   MV_NEXT_NODE,
-   MV_PREV_NODE,
-   MV_UP_LEVEL,
-   MV_DOWN_LEVEL,
-   MV_IS_CONFINED,
-   MV_GROUP,
-   MV_AUTO_CONVERT_INDEX,
-   MV_RIGHT_HANDED,
-
-   // body boolean flags
-   MV_APPLY_FORCES,
-   MV_APPLY_SHIFTS,
-   MV_APPLY_ACCELERATIONS,
-   MV_APPLY_GRAVITY,
-   MV_APPLY_COLLISIONS,
-   MV_APPLY_ALL_FORCES,
-
-   // user defined parameters
-   MV_USER_PARAM_INDEX,
-   MV_USER_PARAM_0,
-   MV_USER_PARAM_1,
-   MV_USER_PARAM_2,
-   MV_USER_PARAM_3,
-
-   // user string statements
-   MV_USER_STRING_INDEX,
-   MV_USER_STRING_0,
-   MV_USER_STRING_1,
-   MV_USER_STRING_2,
-   MV_USER_STRING_3,
-
-   MV_NO_OF_PARAM_ENUMS
-   */
-   //TODO : implememt this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+         // shape set parameterf
+         error = bodyShape.setParameterf(paramFlag, num);
+         if (error != MV_INVALID_SHAPE_PARAMETER)
+         {
+            return error;
+         }
+         else
+         {
+            return MV_INVALID_BODY_PARAMETER;
+         }
+   }
 }
 
 mvErrorEnum mvBody_V2::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 {
-   /*
-   MV_NO_PARAMETER = 0,
-   MV_SPEED,
-   MV_MAX_SPEED,
-   MV_ACCELERATION,
-   MV_DECELERATION,
-   MV_MASS,
-   //MV_STATE,
-   MV_SHAPE,
-   MV_TYPE,
-   MV_DOMAIN,
-   MV_FORCE_VECTOR,
+   if (numArray == NULL)
+   {
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
 
-   MV_VELOCITY,
-   MV_ACCELERATION_VECTOR,
-   MV_FORCE_QUANTITY,
-   MV_CONSTANT, // renamed
-   MV_POSITION,
-   MV_LENGTH,
-   MV_RADIUS,
-   MV_X_WIDTH, // shorten
-   MV_Y_HEIGHT, // shorten
-   MV_Z_DEPTH, // shorten
-   MV_DIRECTION,
-   MV_WAYPOINT,
-   MV_BODY,
-   MV_PATHWAY,
-   MV_PERCEIVED_COHESION,
-   MV_PERCEIVED_ALIGNMENT,
-   MV_COHESION_FACTOR,
-   MV_SEPARATION_FACTOR,
-   MV_ALIGNMENT_FACTOR,
-   // new enums
-   MV_SHAPE_DIMENSIONS,
-   MV_NO_OF_SHAPE_DIMENSIONS,
-   MV_IS_ENABLED,
-   MV_DOMAIN_VARIABLES,
-   MV_NO_OF_BODIES,
-   MV_NO_OF_GROUPS,
-   MV_NO_OF_FORCES,
-   MV_NO_OF_WAYPOINTS,
-   MV_NO_OF_OBSTACLES,
-   MV_NO_OF_GROUP_BEHAVIOURS,
-   MV_NO_OF_BEHAVIOURS,
-   MV_WIDTH,
-   MV_DEPTH,
-   // new enums behaviour list
-   MV_MODE,
-   MV_CURRENT_INDEX,
-   MV_WEIGHT,
-   MV_FINAL_VELOCITY,
-   MV_FINAL_SPEED,
-   MV_FINAL_DIRECTION,
-   MV_PLANE_NORMAL,
-   MV_LINE_VECTOR,
-   MV_ELAPSED_TIME,
-   MV_PERIOD,
-   MV_IS_TIMED,
-   MV_INDEX,
+   switch(paramFlag)
+   {
+      // TODO: case MV_FORCE_VECTOR:
+      case MV_VELOCITY:
+         return setVelocity(numArray[0],numArray[1],numArray[2]);
+      // TODO :case MV_ACCELERATION_VECTOR:
+      case MV_POSITION:
+         return setPosition(numArray[0],numArray[1],numArray[2]);
+      case MV_DIRECTION:
+         return setFaceDirection(numArray[0],numArray[1],numArray[2]);
+      case MV_SHAPE_DIMENSIONS:
 
-   // tree movement functions
-   MV_NEW_NODE,
-   MV_NEW_LEVEL,
-   MV_NEXT_NODE,
-   MV_PREV_NODE,
-   MV_UP_LEVEL,
-   MV_DOWN_LEVEL,
-   MV_IS_CONFINED,
-   MV_GROUP,
-   MV_AUTO_CONVERT_INDEX,
-   MV_RIGHT_HANDED,
+      case MV_DOMAIN_VARIABLES:
 
-   // body boolean flags
-   MV_APPLY_FORCES,
-   MV_APPLY_SHIFTS,
-   MV_APPLY_ACCELERATIONS,
-   MV_APPLY_GRAVITY,
-   MV_APPLY_COLLISIONS,
-   MV_APPLY_ALL_FORCES,
+      case MV_DOMAIN_NORMAL:
 
-   // user defined parameters
-   MV_USER_PARAM_INDEX,
-   MV_USER_PARAM_0,
-   MV_USER_PARAM_1,
-   MV_USER_PARAM_2,
-   MV_USER_PARAM_3,
+      case MV_LINE_VECTOR:
+      default:
+         // TODO:  body setParameterf
 
-   // user string statements
-   MV_USER_STRING_INDEX,
-   MV_USER_STRING_0,
-   MV_USER_STRING_1,
-   MV_USER_STRING_2,
-   MV_USER_STRING_3,
-
-   MV_NO_OF_PARAM_ENUMS
+         // TODO: shape setParamterf
+         return
+   }
    */
    //TODO : implememt this function
    return MV_FUNCTION_NOT_IMPLEMENTED;
