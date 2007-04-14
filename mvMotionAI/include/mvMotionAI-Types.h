@@ -201,4 +201,7 @@ typedef class mvBehavFuncList* mvBehavFuncListPtr;
 typedef class mvShape* mvShapePtr;
 typedef class mvShape const * const mvConstShapePtr;
 
+#define MV_INDEX_SET_HEADER_FILE_H_ "mvIndexSet.h"
+
+
 #endif
