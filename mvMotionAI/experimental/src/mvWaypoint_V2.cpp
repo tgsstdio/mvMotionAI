@@ -1,3 +1,26 @@
+/**
+ * \file mvWaypoint_V2.cpp
+ *
+ * Copyright (c) 2006 , 2007 David Young.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
 #include "mvWaypoint_V2.h"
 mvWaypoint_V2::mvWaypoint_V2(mvOptionEnum wshape, mvFloat x, mvFloat y,\
    mvFloat z)
@@ -41,9 +64,16 @@ const mvVec3& mvWaypoint_V2::getPosition() const
    return wpPosition;
 }
 
-void mvWaypoint_V2::setPosition(mvFloat x, mvFloat y, mvFloat z)
+mvErrorEnum mvWaypoint_V2::setPosition(mvFloat x, mvFloat y, mvFloat z)
 {
-   wpPosition.set(x,y,z);
+   mvVec3 temp(x,y,z);
+   return setPositionByVec3(temp);
+}
+
+mvErrorEnum mvWaypoint_V2::setPositionByVec3(const mvVec3& value)
+{
+   wpPosition = value;
+   return MV_NO_ERROR;
 }
 
 mvErrorEnum mvWaypoint_V2::setShape(mvOptionEnum shape)
@@ -59,55 +89,187 @@ mvConstShapePtr mvWaypoint_V2::getShape() const
 mvErrorEnum mvWaypoint_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    const
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   if (index == NULL)
+   {
+      return MV_INDEX_DEST_IS_NULL;
+   }
+
+   error = wpShape.getParameteri(paramFlag, index);
+
+   if (error != MV_INVALID_SHAPE_PARAMETER)
+   {
+      return MV_INVALID_WAYPOINT_PARAMETER;
+   }
+   else
+   {
+      return error;
+   }
 }
 
 mvErrorEnum mvWaypoint_V2::getParameter(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   if (option == NULL)
+   {
+      return MV_OPTION_ENUM_DEST_IS_NULL;
+   }
+
+   error = wpShape.getParameter(paramFlag, option);
+   if (error != MV_INVALID_SHAPE_PARAMETER)
+   {
+      return error;
+   }
+   else
+   {
+      return MV_INVALID_WAYPOINT_PARAMETER;
+   }
 }
 
 mvErrorEnum mvWaypoint_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num)\
    const
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   if (num == NULL)
+   {
+      return MV_FLOAT_DEST_IS_NULL;
+   }
+
+   error = wpShape.getParameterf(paramFlag, num);
+   if (error != MV_INVALID_SHAPE_PARAMETER)
+   {
+      return error;
+   }
+   else
+   {
+      return MV_INVALID_WAYPOINT_PARAMETER;
+   }
 }
 
 mvErrorEnum mvWaypoint_V2::getParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray, mvCount* noOfParameters) const
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   if (noOfParameters == NULL)
+   {
+      return MV_COUNT_DEST_IS_NULL;
+   }
+
+   if (numArray == NULL)
+   {
+      *noOfParameters = 0;
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
+   switch(paramFlag)
+   {
+      case MV_POSITION:
+         numArray[0] = getX();
+         numArray[1] = getY();
+         numArray[2] = getZ();
+         *noOfParameters = 3;
+         return MV_NO_ERROR;
+      default:
+         error = wpShape.getParameterv(paramFlag, numArray, noOfParameters);
+
+         if (error != MV_INVALID_SHAPE_PARAMETER)
+         {
+            return error;
+         }
+
+         error = getParameterf(paramFlag, numArray);
+         if (error == MV_NO_ERROR)
+         {
+            *noOfParameters = 1;
+         }
+         else
+         {
+            *noOfParameters = 0;
+         }
+         return error;
+
+   }
 }
 
-mvErrorEnum mvWaypoint_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)\
+mvErrorEnum mvWaypoint_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   error = wpShape.setParameteri(paramFlag, index);
+
+   if (error != MV_INVALID_SHAPE_PARAMETER)
+   {
+      return MV_INVALID_WAYPOINT_PARAMETER;
+   }
+   else
+   {
+      return error;
+   }
 }
 
 mvErrorEnum mvWaypoint_V2::setParameter(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   error = wpShape.setParameter(paramFlag, option);
+
+   if (error != MV_INVALID_SHAPE_PARAMETER)
+   {
+      return error;
+   }
+   else
+   {
+      return MV_INVALID_WAYPOINT_PARAMETER;
+   }
+
 }
 
-mvErrorEnum mvWaypoint_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)\
+mvErrorEnum mvWaypoint_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   error = wpShape.setParameterf(paramFlag, num);
+
+   if (error != MV_INVALID_SHAPE_PARAMETER)
+   {
+      return MV_INVALID_WAYPOINT_PARAMETER;
+   }
+   else
+   {
+      return error;
+   }
 }
 
 mvErrorEnum mvWaypoint_V2::setParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray)
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   if (numArray == NULL)
+   {
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
+   switch(paramFlag)
+   {
+      case MV_POSITION:
+         return setPosition(numArray[0], numArray[1], numArray[2]);
+      default:
+         error = wpShape.setParameterv(paramFlag, numArray);
+
+         if (error != MV_INVALID_SHAPE_PARAMETER)
+         {
+            return error;
+         }
+
+         return setParameterf(paramFlag, numArray[0]);
+   }
 }
 
 mvWaypoint_V2::~mvWaypoint_V2()

@@ -24,6 +24,8 @@
  *
  * Log
  *
+ * 00-01-21  23/11/06  - changed from normalised to normalized
+ *
  * 00-01-21  23/11/06  - added cosine measure
  *
  * 00-01-17   -       - add new functions setAll for setting the vector
@@ -83,7 +85,7 @@ class mvVec3
       mvVec3 operator/ (const mvFloat s) const;
       // rename dot => dot product of normalized values
       mvFloat cosineMeasure(const mvVec3& v) const;
-      mvFloat normalisedDotProduct(const mvVec3& v) const;
+      mvFloat normalizedDotProduct(const mvVec3& v) const;
 
       // leaves values same
       mvFloat dot (const mvVec3& v) const;

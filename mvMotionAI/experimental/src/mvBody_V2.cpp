@@ -65,11 +65,29 @@ mvBody_V2::mvBody_V2(mvOptionEnum bType, mvOptionEnum shape, mvFloat x,\
 
 }
 
+const mvVec3& mvBody_V2::getBodyDirection() const
+{
+   return bodyDirection;
+}
+
+mvErrorEnum mvBody_V2::setBodyDirection(mvFloat bdx, mvFloat bdy, mvFloat bdz)
+{
+   mvVec3 temp(bdx, bdy, bdz);
+   return setBodyDirectionByVec3(temp);
+}
+
+mvErrorEnum mvBody_V2::setBodyDirectionByVec3(const mvVec3& value)
+{
+   bodyDirection = value;
+   return MV_NO_ERROR;
+}
+
 mvBody_V2::~mvBody_V2()
 {
    if (bodyDomainVariables != NULL)
    {
       delete [] bodyDomainVariables;
+      bodyDomainVariables = NULL;
    }
 }
 
@@ -314,10 +332,9 @@ mvErrorEnum mvBody_V2::setAcceleration(mvFloat accel)
    return MV_NO_ERROR;
 }
 
-// TODO : new functions for retriving values
 mvVec3 mvBody_V2::getFinalDirection() const
 {
-   mvVec3 temp = finalVelocity.normalise();
+   mvVec3 temp = finalVelocity.normalize();
    return temp;
 }
 
@@ -327,7 +344,7 @@ mvErrorEnum mvBody_V2::setFinalDirection(mvFloat fx, mvFloat fy, mvFloat fz)
    return setFinalDirectionByVec3(temp);
 }
 
-mvErrorEnum mvBody_V2::setFinalDirectionByVec3(mvVec3& value)
+mvErrorEnum mvBody_V2::setFinalDirectionByVec3(const mvVec3& value)
 {
    faceDirection = value;
    return MV_NO_ERROR;
@@ -388,15 +405,36 @@ mvErrorEnum mvBody_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
 {
    /*
    MV_NO_OF_SHAPE_DIMENSIONS,
-   MV_NO_OF_GROUPS,
-   MV_NO_OF_FORCES,
-   MV_NO_OF_WAYPOINTS,
-   MV_NO_OF_OBSTACLES,
-   MV_NO_OF_GROUP_BEHAVIOURS,
    MV_NO_OF_BEHAVIOURS,
    */
-   //TODO : implememt this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   if (index == NULL)
+   {
+      return MV_INDEX_DEST_IS_NULL;
+   }
+
+   switch(paramFlag)
+   {
+      // TODO : case MV_NO_OF_BEHAVIOURS:
+
+      case MV_NO_OF_DOMAIN_VARIABLES:
+         *index = getNoOfDomainVariables();
+         return MV_NO_ERROR;
+      default:
+         //TODO : behaviour list
+
+         // shape parameter
+         error = bodyShape.getParameteri(paramFlag,index);
+         if (error != MV_INVALID_SHAPE_PARAMETER)
+         {
+            return error;
+         }
+         else
+         {
+            return MV_INVALID_BODY_PARAMETER;
+         }
+   }
 }
 
 mvErrorEnum mvBody_V2::getParameter(mvParamEnum paramFlag,\
@@ -404,7 +442,6 @@ mvErrorEnum mvBody_V2::getParameter(mvParamEnum paramFlag,\
 {
    mvErrorEnum error;
 
-   //TODO : implememt this function
    if (option == NULL)
    {
       return MV_OPTION_ENUM_DEST_IS_NULL;
@@ -412,9 +449,11 @@ mvErrorEnum mvBody_V2::getParameter(mvParamEnum paramFlag,\
 
    switch(paramFlag)
    {
+      /*
       case MV_SHAPE:
          *option = bodyShape.getType();
          return MV_NO_ERROR;
+      */
       case MV_TYPE:
          *option = getType();
          return MV_NO_ERROR;
@@ -575,7 +614,6 @@ mvErrorEnum mvBody_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
       return MV_PARAMETER_ARRAY_IS_NULL;
    }
 
-   //TODO : implememt this function
    switch(paramFlag)
    {
       // TODO : case MV_FORCE_VECTOR:
@@ -595,6 +633,13 @@ mvErrorEnum mvBody_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
          *noOfParameters = 3;
          return MV_NO_ERROR;
       case MV_DIRECTION:
+         resultVector = getBodyDirection();
+         numArray[0] = resultVector.getX();
+         numArray[1] = resultVector.getY();
+         numArray[2] = resultVector.getZ();
+         *noOfParameters = 3;
+         return MV_NO_ERROR;
+      case MV_FACE_DIRECTION:
          resultVector = getFaceDirection();
          numArray[0] = resultVector.getX();
          numArray[1] = resultVector.getY();
@@ -696,6 +741,8 @@ mvErrorEnum mvBody_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
                return MV_NO_ERROR;
          }
       default:
+         // TODO : behaviour list
+
          // shape's getParameterv
          error = bodyShape.getParameterv(paramFlag, numArray, noOfParameters);
          if (error != MV_INVALID_SHAPE_PARAMETER)
@@ -720,7 +767,6 @@ mvErrorEnum mvBody_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
 
 mvErrorEnum mvBody_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
-   //TODO : implememt this function
    mvErrorEnum error;
 
    // TODO : behaviour list
@@ -740,20 +786,6 @@ mvErrorEnum mvBody_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
 
 mvErrorEnum mvBody_V2::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
-   /*
-   MV_SHAPE,
-   MV_TYPE,
-   MV_DOMAIN,
-
-   MV_IS_ENABLED,
-   // body boolean flags
-   MV_APPLY_FORCES,
-   MV_APPLY_SHIFTS,
-   MV_APPLY_ACCELERATIONS,
-   MV_APPLY_GRAVITY,
-   MV_APPLY_COLLISIONS,
-   MV_APPLY_ALL_FORCES,
-   */
    mvErrorEnum error;
 
    switch(paramFlag)
@@ -773,8 +805,11 @@ mvErrorEnum mvBody_V2::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
          }
       case MV_SHAPE:
          return setShape(option);
+      /*
+      already implemented
       case MV_TYPE:
          return setType(option);
+      */
       case MV_DOMAIN:
          return setDomain(option);
       case MV_IS_ENABLED:
@@ -886,6 +921,11 @@ mvErrorEnum mvBody_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
 
 mvErrorEnum mvBody_V2::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 {
+   mvErrorEnum error;
+   mvOptionEnum option;
+   mvIndex i;
+   mvCount arrayCount;
+
    if (numArray == NULL)
    {
       return MV_PARAMETER_ARRAY_IS_NULL;
@@ -900,22 +940,51 @@ mvErrorEnum mvBody_V2::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
       case MV_POSITION:
          return setPosition(numArray[0],numArray[1],numArray[2]);
       case MV_DIRECTION:
+         return setBodyDirection(numArray[0],numArray[1],numArray[2]);
+      case MV_FACE_DIRECTION:
          return setFaceDirection(numArray[0],numArray[1],numArray[2]);
-      case MV_SHAPE_DIMENSIONS:
-
-      case MV_DOMAIN_VARIABLES:
-
       case MV_DOMAIN_NORMAL:
-
       case MV_LINE_VECTOR:
+      case MV_DOMAIN_VARIABLES:
+         option = getDomain();
+         switch(option)
+         {
+            case MV_ANY_LINE:
+            case MV_ANY_PLANE:
+               arrayCount = getNoOfDomainVariables();
+               for (i = 0; i < arrayCount; i++)
+               {
+                  bodyDomainVariables[i] = numArray[i];
+               }
+               return MV_NO_ERROR;
+            default:
+               return MV_INVALID_DOMAIN;
+         }
       default:
-         // TODO:  body setParameterf
+         // TODO: behaviour list
 
-         // TODO: shape setParamterf
-         return
+         // shape setParamterv
+         error = bodyShape.setParameterv(paramFlag, numArray);
+         if (error != MV_INVALID_SHAPE_PARAMETER)
+         {
+            return error;
+         }
+
+         return setParameterf(paramFlag,numArray[0]);
    }
-   */
-   //TODO : implememt this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
+void mvBody_V2::setX(mvFloat x)
+{
+   bodyPosition.setX(x);
+}
+
+void mvBody_V2::setY(mvFloat y)
+{
+   bodyPosition.setY(y);
+}
+
+void mvBody_V2::setZ(mvFloat z)
+{
+   bodyPosition.setZ(z);
+}

@@ -1,3 +1,26 @@
+/**
+ * \file mvObstacle_V2.cpp
+ *
+ * Copyright (c) 2006 , 2007 David Young.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
 #include "mvObstacle_V2.h"
 
 mvObstacle_V2::mvObstacle_V2(mvOptionEnum oShape, mvOptionEnum oType,\
@@ -8,9 +31,16 @@ mvObstacle_V2::mvObstacle_V2(mvOptionEnum oShape, mvOptionEnum oType,\
    setPosition(x,y,z);
 }
 
-void mvObstacle_V2::setPosition(mvFloat x, mvFloat y, mvFloat z)
+mvErrorEnum mvObstacle_V2::setPosition(mvFloat x, mvFloat y, mvFloat z)
 {
-   obPosition.set(x,y,z);
+   mvVec3 temp(x,y,z);
+   return setPositionByVec3(temp);
+}
+
+mvErrorEnum mvObstacle_V2::setPositionByVec3(const mvVec3& value)
+{
+   obPosition = value;
+   return MV_NO_ERROR;
 }
 
 mvFloat mvObstacle_V2::getX() const
@@ -80,55 +110,194 @@ mvConstShapePtr mvObstacle_V2::getShape() const
 mvErrorEnum mvObstacle_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    const
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   if (index == NULL)
+   {
+      return MV_INDEX_DEST_IS_NULL;
+   }
+
+   // pass onto shape
+   error = obShape.getParameteri(paramFlag, index);
+   if (error != MV_INVALID_SHAPE_PARAMETER)
+   {
+      return error;
+   }
+   else
+   {
+      return MV_INVALID_OBSTACLE_PARAMETER;
+   }
 }
 
 mvErrorEnum mvObstacle_V2::getParameter(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   switch(paramFlag)
+   {
+      case MV_TYPE:
+         *option = getType();
+         return MV_NO_ERROR;
+      default:
+         // pass onto shape
+         error = obShape.getParameter(paramFlag, option);
+         if (error != MV_INVALID_SHAPE_PARAMETER)
+         {
+            return error;
+         }
+         else
+         {
+            return MV_INVALID_OBSTACLE_PARAMETER;
+         }
+   }
 }
 
 mvErrorEnum mvObstacle_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num)\
    const
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   if (num == NULL)
+   {
+      return MV_FLOAT_DEST_IS_NULL;
+   }
+
+   // pass onto shape
+   error = obShape.getParameterf(paramFlag, num);
+   if (error != MV_INVALID_SHAPE_PARAMETER)
+   {
+      return error;
+   }
+   else
+   {
+      return MV_INVALID_OBSTACLE_PARAMETER;
+   }
 }
 
 mvErrorEnum mvObstacle_V2::getParameterv(mvParamEnum paramFlag,\
  mvFloat* numArray, mvCount* noOfParameters) const
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   if (noOfParameters == NULL)
+   {
+      return MV_COUNT_DEST_IS_NULL;
+   }
+
+   if (numArray == NULL)
+   {
+      *noOfParameters = 0;
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
+   switch(paramFlag)
+   {
+      case MV_POSITION:
+         numArray[0] = getX();
+         numArray[1] = getY();
+         numArray[2] = getZ();
+         *noOfParameters = 3;
+         return MV_NO_ERROR;
+      default:
+         // pass onto shape
+         error = obShape.getParameterv(paramFlag, numArray, noOfParameters);
+         if (error != MV_INVALID_SHAPE_PARAMETER)
+         {
+            return error;
+         }
+
+         error = getParameterf(paramFlag, numArray);
+         if (error == MV_NO_ERROR)
+         {
+            *noOfParameters = 1;
+         }
+         else
+         {
+            *noOfParameters = 0;
+         }
+         return error;
+   }
 }
 
 mvErrorEnum mvObstacle_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   error = obShape.setParameteri(paramFlag, index);
+   if (error != MV_INVALID_SHAPE_PARAMETER)
+   {
+      return error;
+   }
+   else
+   {
+      return MV_INVALID_OBSTACLE_PARAMETER;
+   }
 }
 
 mvErrorEnum mvObstacle_V2::setParameter(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   switch(paramFlag)
+   {
+      case MV_TYPE:
+         return setType(option);
+      default:
+         error = obShape.setParameter(paramFlag, option);
+
+         if (error != MV_INVALID_SHAPE_PARAMETER)
+         {
+            return error;
+         }
+         else
+         {
+            return MV_INVALID_OBSTACLE_PARAMETER;
+         }
+   }
 }
 
 mvErrorEnum mvObstacle_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   error = obShape.setParameterf(paramFlag, num);
+
+   if (error != MV_INVALID_SHAPE_PARAMETER)
+   {
+      return error;
+   }
+   else
+   {
+      return MV_INVALID_OBSTACLE_PARAMETER;
+   }
 }
 
 mvErrorEnum mvObstacle_V2::setParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray)
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   if (numArray == NULL)
+   {
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
+   switch(paramFlag)
+   {
+      case MV_POSITION:
+         return setPosition(numArray[0], numArray[1], numArray[2]);
+      default:
+         error = obShape.setParameterv(paramFlag, numArray);
+
+         if (error != MV_INVALID_SHAPE_PARAMETER)
+         {
+            return error;
+         }
+
+         return setParameterf(paramFlag, numArray[0]);
+   }
 }
 
 mvObstacle_V2::~mvObstacle_V2()
