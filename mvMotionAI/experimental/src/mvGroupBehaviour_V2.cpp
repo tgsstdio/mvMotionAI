@@ -72,7 +72,7 @@ mvErrorEnum mvGroupBehaviour_V2::addGroup(mvIndex groupNo)
    // create new behaviour node if valid
    if (defaultGBehaviour == NULL)
    {
-      return MV_INVALID_BEHAVIOUR_INITIALIZATION;
+      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
    }
 
    groupNodePtr = new (std::nothrow) mvGroupBNode_V2(\

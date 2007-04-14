@@ -1,3 +1,6 @@
+#include "mvWorld2.h"
+
+#ifdef MV_FILE_HEADER_TAG_
 /**
  * Copyright (c) 2006, 2007 David Young.
  *
@@ -18,8 +21,10 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  */
-#include "mvWorld2.h"
+#endif
+
 #include <cstring>
 #include <new>
 
@@ -796,7 +801,7 @@ mvGroupBehaviourPtr mvWorld_V2::getGroupBehaviourPtr(mvIndex index)
   */
 mvIndex mvWorld_V2::createGroupBehaviour(mvOptionEnum type)
 {
-   mvBaseBehaviourPtr temp = behavLoader->createBehaviour(type,NULL);
+   mvBaseBehaviourPtr temp = behavLoader->createAClassPtr(type,NULL);
    //TODO : change group behaviour constructor to add behaviour function list
    if (temp == NULL)
       return MV_NO_CURRENT_INDEX;
@@ -1494,7 +1499,7 @@ mvIndex mvWorld_V2::createBehaviour(mvOptionEnum bType)
 
    if (behavLoader != NULL)
    {
-      tempBehav = behavLoader->createBehaviour(bType,NULL);
+      tempBehav = behavLoader->createAClassPtr(bType,NULL);
    }
 
    if (tempBehav == NULL)

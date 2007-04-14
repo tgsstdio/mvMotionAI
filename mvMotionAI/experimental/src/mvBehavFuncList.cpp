@@ -41,7 +41,7 @@ mvErrorEnum mvBehavFuncList::addBehaviourFunction(mvOptionEnum key,\
    // if loader is null, return error
    if (bFunc == NULL)
    {
-      return MV_BEHAVIOUR_FUNCTION_LOADER_IS_NULL;
+      return MV_FUNCTION_LOADER_IS_NULL;
    }
 
    checkKey = bFunctions.find(key);
@@ -50,7 +50,7 @@ mvErrorEnum mvBehavFuncList::addBehaviourFunction(mvOptionEnum key,\
    if (checkKey != bFunctions.end())
    {
 //TODO : need new error for existing creation functions
-      return MV_INVALID_BEHAVIOUR_INITIALIZATION;
+      return MV_INVALID_FUNCTION_LOADER_INITIALIZATION;
    }
 
    bFunctions.insert(std::make_pair(key, bFunc));
