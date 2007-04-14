@@ -1,26 +1,23 @@
-#ifndef MVWAYPOINTCAPSULE_H_INCLUDED
-#define MVWAYPOINTCAPSULE_H_INCLUDED
+#ifndef MVFORCECAPSULE_H_INCLUDED
+#define MVFORCECAPSULE_H_INCLUDED
 
 #include "mvMotionAI-Types.h"
 #include MV_ENUMS_HEADER_FILE_H_
-#include MV_WAYPOINT_HEADER_FILE_H_
+#include MV_INDEX_SET_HEADER_FILE_H_
 
-class mvWaypointCapsule
+class mvForceCapsule
 {
-   protected:
-      mvWaypointPtr encappedWaypoint;
+   private:
+      mvCount noOfWaypointsConnected;
+
    public:
-      bool containsBody;
-      mvCount noOfLinkedForces;
+      mvUniqueSet linkedWaypoints;
+      mvForcePtr encappedForce;
 
-      mvWaypointCapsule(mvWaypointPtr wPoint);
-      mvConstWaypointPtr getConstWaypointPtr() const;
-      mvWaypointPtr getWaypointPtr() const;
-
-      bool isLinkedWaypoint() const;
-      void resetCapsule();
-      void incrementCount();
-      void decrementCount();
+      mvForceCapsule(mvForcePtr forcePtr);
+      mvErrorEnum addWaypoint(mvIndex index);
+      mvErrorEnum removeWaypoint(mvIndex index);
+      void clearAll();
 
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
       mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option)\
@@ -34,9 +31,7 @@ class mvWaypointCapsule
       mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
       mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
 
-      ~mvWaypointCapsule();
+      ~mvForceCapsule();
 };
 
-typedef class mvWaypointCapsule* mvWaypointCapsulePtr;
-
-#endif // MVWAYPOINTCAPSULE_H_INCLUDED
+#endif // MVFORCECAPSULE_H_INCLUDED
