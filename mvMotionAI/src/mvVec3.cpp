@@ -159,7 +159,7 @@ mvVec3 mvVec3::operator/ (const mvFloat s) const
  */
 mvFloat mvVec3::cosineMeasure(const mvVec3& v) const
 {
-    mvFloat normalDProduct = normalisedDotProduct(v);
+    mvFloat normalDProduct = normalizedDotProduct(v);
     return mvArcCos(normalDProduct);
 }
 
@@ -176,7 +176,7 @@ mvFloat mvVec3::cosineMeasure(const mvVec3& v) const
  * n.d.p = (a . b )\ (|a||b|)
  * Original vectors v & a is unchanged by dot function.
  */
-mvFloat mvVec3::normalisedDotProduct(const mvVec3& v) const
+mvFloat mvVec3::normalizedDotProduct(const mvVec3& v) const
 {
     mvFloat magnitudeProduct = length();
     mvFloat dProduct = dot(v);

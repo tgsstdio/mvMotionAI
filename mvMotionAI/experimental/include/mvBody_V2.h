@@ -29,15 +29,11 @@
 #include MV_ENUMS_HEADER_FILE_H_
 #include MV_SHAPE_HEADER_FILE_H_
 
-
-//TODO : Implement these functions
 //TODO : rotation
 //TODO: behaviour list
 //TODO: max force
 //TODO: up vector
-//TODO: shape in parameters
 //TODO: confusion between direction/rotation/orientation
-//TODO: domain
 
 class mvBody_V2
 {
@@ -84,6 +80,9 @@ class mvBody_V2
       mvFloat getX() const;
       mvFloat getY() const;
       mvFloat getZ() const;
+      void setX(mvFloat x);
+      void setY(mvFloat y);
+      void setZ(mvFloat z);
       const mvVec3& getPosition() const;
       mvErrorEnum setPosition(mvFloat x, mvFloat y, mvFloat z);
 
@@ -106,9 +105,13 @@ class mvBody_V2
       mvFloat getDeceleration() const;
       mvErrorEnum setDeceleration(mvFloat dAccel);
 
+      const mvVec3& getBodyDirection() const;
+      mvErrorEnum setBodyDirection(mvFloat fx, mvFloat fy, mvFloat fz);
+      mvErrorEnum setBodyDirectionByVec3(const mvVec3& value);
+
       mvVec3 getFinalDirection() const;
       mvErrorEnum setFinalDirection(mvFloat fx, mvFloat fy, mvFloat fz);
-      mvErrorEnum setFinalDirectionByVec3(mvVec3& value);
+      mvErrorEnum setFinalDirectionByVec3(const mvVec3& value);
 
       mvErrorEnum setVelocity(mvFloat vx, mvFloat vy, mvFloat vz);
       const mvVec3& getFinalVelocity() const;
@@ -154,7 +157,6 @@ class mvBody_V2
 
       mvBody_V2(mvOptionEnum bType, mvOptionEnum shape, mvFloat x, mvFloat y,\
          mvFloat z);
-      //TODO : implement destructor
       ~mvBody_V2();
 
 };

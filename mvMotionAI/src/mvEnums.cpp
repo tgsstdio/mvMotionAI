@@ -439,7 +439,7 @@ const mvParamEnum orderedParamEnums[]=
    MV_SHAPE,
    MV_SHAPE_DIMENSIONS,
    MV_SPEED,
-   MV_STATE,
+//   MV_STATE,
    MV_TYPE,
    MV_VELOCITY,
    MV_WAYPOINT,

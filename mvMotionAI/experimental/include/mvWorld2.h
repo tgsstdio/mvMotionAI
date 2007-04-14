@@ -28,6 +28,9 @@
 //#include "mvList.h"
 #include "mvPointerList.h"
 
+#include "mvBodyCapsule.h"
+#include "mvWaypointCapsule.h"
+
 #include MV_BASE_BEHAVIOUR_HEADER_FILE_H_
 #include MV_FORCE_HEADER_FILE_H_
 #include MV_BODY_HEADER_FILE_H_
@@ -40,6 +43,8 @@
 #include MV_BEHAV_FUNC_LIST_HEADER_FILE_H_
 
 //TODO : new group behaviour functions
+//TODO : body capsule
+//TODO : wapoint capsule
 
 typedef class mvWorld_V2
 {
@@ -54,6 +59,16 @@ typedef class mvWorld_V2
       mvPointerList<mvBehaviourPtr> behaviours;
       mvPointerList<mvGroupPtr> groups;
       mvBehavFuncListPtr behavLoader;
+
+      /// world step functionality
+      void prepareIntegrationStep();
+      void calculateGroupBehaviours(); // 1
+      void checkIfWaypointContainsBody(mvIndex waypointIndex,\
+         mvIndex bodyIndex); // part of 2
+      void calculateGlobalForceOnBody(mvIndex globalForce,mvIndex bodyIndex);
+      void calculateLocalForceOnBody(mvIndex localForce, mvIndex bodyIndex);
+      void calculateBehavioursOnBody(mvIndex bodyIndex);
+      void finaliseIntegrationOfBody(mvIndex bodyIndex);
 
    public:
       mvWorld_V2(const char* worldID);

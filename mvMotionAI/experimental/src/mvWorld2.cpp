@@ -4477,3 +4477,32 @@ mvConstForcePtr mvWorld_V2::getConstGroupForcePtr(mvIndex index) const
 {
    return forces.getConstClassPtr(index);
 }
+
+// TODO : calculate world functions
+void mvWorld_V2::calculateGroupBehaviours() // 1
+{
+
+}
+
+void mvWorld_V2::checkIfWaypointContainsBody(mvIndex waypointIndex,\
+      mvIndex bodyIndex) // part of 2
+{
+
+}
+
+void mvWorld_V2::calculateGlobalForceOnBody(mvIndex globalForce,\
+   mvIndex bodyIndex)
+{
+
+}
+
+void mvWorld_V2::calculateLocalForceOnBody(mvIndex localForce,\
+   mvIndex bodyIndex)
+{
+
+}
+
+void mvWorld_V2::calculateBehavioursOnBody(mvIndex bodyIndex)
+{
+
+}
