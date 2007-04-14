@@ -1,3 +1,12 @@
+#ifndef MV_MOTIONAI_TYPES_H_
+#define MV_MOTIONAI_TYPES_H_
+
+#define MVMOTIONAI_TYPES_VERSION "00-01-61"
+
+#define MV_FILE_HEADER_TAG_ 1
+#undef MV_FILE_HEADER_TAG_
+
+#ifdef MV_FILE_HEADER_TAG_
 /**
  * \file mvMotionAI-Types.h
  *
@@ -34,10 +43,8 @@
  *
  * 00-01-20    18/11/06  \li doxygen documentation added
  */
-#ifndef MV_MOTIONAI_TYPES_H_
-#define MV_MOTIONAI_TYPES_H_
+ #endif
 
-#define MVMOTIONAI_TYPES_VERSION "00-01-40"
 
 /*
  * FLOATING POINT - used in Vec3 and other places
@@ -191,7 +198,8 @@ typedef class mvTimer* mvTimerPtr;
 typedef class mvBEntry* mvBEntryPtr;
 
 #define MV_BEHAV_FUNC_LIST_HEADER_FILE_H_ "mvBehavFuncList.h"
-typedef class mvBehavFuncList* mvBehavFuncListPtr;
+//typedef class mvBehavFuncList*  mvBehavFuncListPtr;
+#define mvBehavFuncListPtr mvBehavFuncList*
 
 #define MV_VEC_3_HEADER_FILE_H_ "mvVec3.h"
 #define MV_ENUMS_HEADER_FILE_H_ "mvEnums.h"

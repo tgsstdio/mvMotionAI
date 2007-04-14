@@ -1,3 +1,9 @@
+#ifndef MV_MOTIONAI_WORLD_V2_H_
+#define MV_MOTIONAI_WORLD_V2_H_
+
+#include "mvMotionAI-Types.h"
+
+#ifdef MV_FILE_HEADER_TAG_
 /**
  * Copyright (c) 2006, 2007 David Young.
  *
@@ -21,11 +27,8 @@
  *
  *  implementation of version two of mvMotionAI world
  */
-#ifndef MV_MOTIONAI_WORLD_V2_H_
-#define MV_MOTIONAI_WORLD_V2_H_
+#endif
 
-#include "mvMotionAI-Types.h"
-//#include "mvList.h"
 #include "mvPointerList.h"
 
 #include "mvBodyCapsule.h"

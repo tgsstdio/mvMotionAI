@@ -108,6 +108,8 @@
 		<Unit filename="experimental\include\mvBehaviour_V2.h" />
 		<Unit filename="experimental\include\mvBodyCapsule.h" />
 		<Unit filename="experimental\include\mvBody_V2.h" />
+		<Unit filename="experimental\include\mvFactoryFunctionList.h" />
+		<Unit filename="experimental\include\mvFactoryFunctionList.hpp" />
 		<Unit filename="experimental\include\mvForceCapsule.h" />
 		<Unit filename="experimental\include\mvGroupBNode_V2.h" />
 		<Unit filename="experimental\include\mvGroupBehaviourResult.h" />
@@ -121,11 +123,11 @@
 		<Unit filename="experimental\include\mvWaypoint_V2.h" />
 		<Unit filename="experimental\include\mvWorld2.h" />
 		<Unit filename="experimental\src\mvBaseBehaviour.cpp" />
-		<Unit filename="experimental\src\mvBehavFuncList.cpp" />
 		<Unit filename="experimental\src\mvBehaviourResult.cpp" />
 		<Unit filename="experimental\src\mvBehaviour_V2.cpp" />
 		<Unit filename="experimental\src\mvBodyCapsule.cpp" />
 		<Unit filename="experimental\src\mvBody_V2.cpp" />
+		<Unit filename="experimental\src\mvForceCapsule.cpp" />
 		<Unit filename="experimental\src\mvGroupBNode_V2.cpp" />
 		<Unit filename="experimental\src\mvGroupBehaviour_V2.cpp" />
 		<Unit filename="experimental\src\mvIndexSet.cpp" />

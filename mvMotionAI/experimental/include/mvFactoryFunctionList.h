@@ -1,7 +1,7 @@
-#ifndef MVBODYCAPSULE_H_INCLUDED
-#define MVBODYCAPSULE_H_INCLUDED
-
+#ifndef MVFACTORYFUNCTIONLIST_H_INCLUDED
+#define MVFACTORYFUNCTIONLIST_H_INCLUDED
 #include "mvMotionAI-Types.h"
+
 #ifdef MV_FILE_HEADER_TAG_
 /**
  * Copyright (c) 2006, 2007 David Young.
@@ -27,36 +27,27 @@
  */
 #endif
 
-#include MV_BODY_HEADER_FILE_H_
+#include <map>
+#include MV_ENUMS_HEADER_FILE_H_
 
-class mvBodyCapsule
+// derived template
+template <class mvClassFactory, class mvClass, class mvParamClass>
+class mvFactoryFunctionList
 {
-   protected:
-      mvBodyPtr encapsulatedBody;
+   private:
+      mvCount noOfValidFunctions;
+      std::map<mvOptionEnum,mvClassFactory*> fFunctions;
+
    public:
-      mvVec3 futurePosition;
-      mvVec3 futureFinalVelocity;
-      mvVec3 futureRotation;
-
-      mvBodyCapsule(mvBodyPtr capsuleBody);
-      mvConstBodyPtr getConstBodyPtr() const;
-      mvBodyPtr getBodyPtr() const;
-
-      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
-      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option)\
-         const;
-      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num) const;
-      mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
-         mvCount* noOfParameters) const;
-
-      mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
-      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
-      mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
-      mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
-
-      ~mvBodyCapsule();
+      mvFactoryFunctionList();
+      mvErrorEnum addFactoryFunction(mvOptionEnum key,\
+         mvClassFactory* cFactoryPtr);
+      void freeAllFactoryFunctions();
+      mvClass* createAClassPtr(mvOptionEnum key, mvParamClass defaultClass);
+      ~mvFactoryFunctionList();
 };
 
-typedef class mvBodyCapsule* mvBodyCapsulePtr;
+// implementation
+#include "mvFactoryFunctionList.hpp"
 
-#endif // MVBODYCAPSULE_H_INCLUDED
+#endif // MVFACTORYFUNCTIONLIST_H_INCLUDED
