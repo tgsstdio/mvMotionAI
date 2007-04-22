@@ -33,7 +33,7 @@
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentForceParametersv(const char* param,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    return forces.getCurrentItemParametersv(param,array,noOfParameters);
 }
@@ -43,7 +43,7 @@ mvErrorEnum mvWorld_V2::getCurrentForceParametersv(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentForceParametersf(const char* param,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    return forces.getCurrentItemParametersf(param,num);
 }
@@ -53,7 +53,7 @@ mvErrorEnum mvWorld_V2::getCurrentForceParametersf(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentForceParameters(const char* param,\
-   const char** option)
+   const char** option) const
 {
    return forces.getCurrentItemParameters(param,option);
 }
@@ -63,7 +63,7 @@ mvErrorEnum mvWorld_V2::getCurrentForceParameters(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getForceParametersv(mvIndex index, const char* param,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    return forces.getItemParametersv(index,param,array,noOfParameters);
 }
@@ -73,7 +73,7 @@ mvErrorEnum mvWorld_V2::getForceParametersv(mvIndex index, const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getForceParametersf(mvIndex index, const char* param,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    return forces.getItemParametersf(index, param, num);
 }
@@ -83,7 +83,7 @@ mvErrorEnum mvWorld_V2::getForceParametersf(mvIndex index, const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getForceParameters(mvIndex index, const char* param,\
-   const char** option)
+   const char** option) const
 {
    return forces.getItemParameters(index, param, option);
 }
@@ -93,7 +93,7 @@ mvErrorEnum mvWorld_V2::getForceParameters(mvIndex index, const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentForceParameterv(mvParamEnum paramFlag,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    return forces.getCurrentItemParameterv(paramFlag, array, noOfParameters);
 }
@@ -103,7 +103,7 @@ mvErrorEnum mvWorld_V2::getCurrentForceParameterv(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentForceParameterf(mvParamEnum paramFlag,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    return forces.getCurrentItemParameterf(paramFlag, num);
 }
@@ -113,7 +113,7 @@ mvErrorEnum mvWorld_V2::getCurrentForceParameterf(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentForceParameter(mvParamEnum paramFlag,\
-   mvOptionEnum* option)
+   mvOptionEnum* option) const
 {
    return forces.getCurrentItemParameter(paramFlag,option);
 }
@@ -123,7 +123,7 @@ mvErrorEnum mvWorld_V2::getCurrentForceParameter(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getForceParameterv(mvIndex index,\
-   mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+   mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters) const
 {
    return forces.getItemParameterv(index, paramFlag,array,noOfParameters);
 }
@@ -133,7 +133,7 @@ mvErrorEnum mvWorld_V2::getForceParameterv(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getForceParameterf(mvIndex index,\
-   mvParamEnum paramFlag, mvFloat* num)
+   mvParamEnum paramFlag, mvFloat* num) const
 {
    return forces.getItemParameterf(index,paramFlag,num);
 }
@@ -143,7 +143,7 @@ mvErrorEnum mvWorld_V2::getForceParameterf(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getForceParameter(mvIndex index, mvParamEnum paramFlag,\
-   mvOptionEnum* option)
+   mvOptionEnum* option) const
 {
    return forces.getItemParameter(index,paramFlag,option);
 }
@@ -361,7 +361,7 @@ mvIndex mvWorld_V2::createForce(mvOptionEnum fType)
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParametersv(mvIndex groupIndex,\
-   const char* param, mvFloat* array, mvCount* noOfParameters)
+   const char* param, mvFloat* array, mvCount* noOfParameters) const
 {
    mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
@@ -376,7 +376,7 @@ mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParametersv(mvIndex groupIndex,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParametersf(mvIndex groupIndex,\
-   const char* param, mvFloat* num)
+   const char* param, mvFloat* num) const
 {
    mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
@@ -391,7 +391,7 @@ mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParametersf(mvIndex groupIndex,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParameters(mvIndex groupIndex,\
-   const char* param, const char** option)
+   const char* param, const char** option) const
 {
    mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
@@ -407,7 +407,7 @@ mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParameters(mvIndex groupIndex,\
   */
 mvErrorEnum mvWorld_V2::getGroupBehaviourParametersv(mvIndex index,\
    mvIndex groupIndex, const char* param, mvFloat* array,\
-   mvCount* noOfParameters)
+   mvCount* noOfParameters) const
 {
    mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
@@ -422,7 +422,7 @@ mvErrorEnum mvWorld_V2::getGroupBehaviourParametersv(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getGroupBehaviourParametersf(mvIndex index,\
-   mvIndex groupIndex, const char* param, mvFloat* num)
+   mvIndex groupIndex, const char* param, mvFloat* num) const
 {
    mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
@@ -437,7 +437,7 @@ mvErrorEnum mvWorld_V2::getGroupBehaviourParametersf(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getGroupBehaviourParameters(mvIndex index,\
-   mvIndex groupIndex, const char* param, const char** option)
+   mvIndex groupIndex, const char* param, const char** option) const
 {
    mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
@@ -453,7 +453,7 @@ mvErrorEnum mvWorld_V2::getGroupBehaviourParameters(mvIndex index,\
   */
 mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParameterv(\
    mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* array,\
-   mvCount* noOfParameters)
+   mvCount* noOfParameters) const
 {
    mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
@@ -469,7 +469,7 @@ mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParameterv(\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParameterf(\
-   mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* num)
+   mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* num) const
 {
    mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
@@ -484,7 +484,7 @@ mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParameterf(\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParameter(\
-   mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum* option)
+   mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum* option) const
 {
    mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
@@ -500,7 +500,7 @@ mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParameter(\
   */
 mvErrorEnum mvWorld_V2::getGroupBehaviourParameterv(mvIndex index,\
    mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* array,\
-   mvCount* noOfParameters)
+   mvCount* noOfParameters) const
 {
    mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
@@ -516,7 +516,7 @@ mvErrorEnum mvWorld_V2::getGroupBehaviourParameterv(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getGroupBehaviourParameterf(mvIndex index,\
-   mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* num)
+   mvIndex groupIndex, mvParamEnum paramFlag, mvFloat* num) const
 {
    mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
@@ -531,7 +531,7 @@ mvErrorEnum mvWorld_V2::getGroupBehaviourParameterf(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getGroupBehaviourParameter(mvIndex index,\
-   mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum* option)
+   mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum* option) const
 {
    mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
@@ -802,7 +802,7 @@ mvGroupBehaviourPtr mvWorld_V2::getGroupBehaviourPtr(mvIndex index)
 mvIndex mvWorld_V2::createGroupBehaviour(mvOptionEnum type)
 {
    mvBaseBehaviourPtr temp = behavLoader->createAClassPtr(type,NULL);
-   //TODO : change group behaviour constructor to add behaviour function list
+
    if (temp == NULL)
       return MV_NO_CURRENT_INDEX;
 
@@ -814,7 +814,7 @@ mvIndex mvWorld_V2::createGroupBehaviour(mvOptionEnum type)
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentGroupParametersv(const char* param,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    return groups.getCurrentItemParametersv(param, array, noOfParameters);
 }
@@ -824,7 +824,7 @@ mvErrorEnum mvWorld_V2::getCurrentGroupParametersv(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentGroupParametersf(const char* param,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    return groups.getCurrentItemParametersf(param, num);
 }
@@ -834,7 +834,7 @@ mvErrorEnum mvWorld_V2::getCurrentGroupParametersf(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentGroupParameters(const char* param,\
-   const char** option)
+   const char** option) const
 {
    return groups.getCurrentItemParameters(param,option);
 }
@@ -844,7 +844,7 @@ mvErrorEnum mvWorld_V2::getCurrentGroupParameters(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getGroupParametersv(mvIndex index, const char* param,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    return groups.getItemParametersv(index, param, array, noOfParameters);
 }
@@ -854,7 +854,7 @@ mvErrorEnum mvWorld_V2::getGroupParametersv(mvIndex index, const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getGroupParametersf(mvIndex index, const char* param,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    return groups.getItemParametersf(index, param, num);
 }
@@ -864,7 +864,7 @@ mvErrorEnum mvWorld_V2::getGroupParametersf(mvIndex index, const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getGroupParameters(mvIndex index, const char* param,\
-   const char** option)
+   const char** option) const
 {
    return groups.getItemParameters(index, param, option);
 }
@@ -874,7 +874,7 @@ mvErrorEnum mvWorld_V2::getGroupParameters(mvIndex index, const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentGroupParameterv(mvParamEnum paramFlag,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    return groups.getCurrentItemParameterv(paramFlag, array, noOfParameters);
 }
@@ -884,7 +884,7 @@ mvErrorEnum mvWorld_V2::getCurrentGroupParameterv(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentGroupParameterf(mvParamEnum paramFlag,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    return groups.getCurrentItemParameterf(paramFlag, num);
 }
@@ -894,7 +894,7 @@ mvErrorEnum mvWorld_V2::getCurrentGroupParameterf(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentGroupParameter(mvParamEnum paramFlag,\
-   mvOptionEnum* option)
+   mvOptionEnum* option) const
 {
    return groups.getCurrentItemParameter(paramFlag, option);
 }
@@ -904,7 +904,7 @@ mvErrorEnum mvWorld_V2::getCurrentGroupParameter(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getGroupParameterv(mvIndex index,\
-   mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+   mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters) const
 {
    return groups.getItemParameterv(index, paramFlag, array, noOfParameters);
 }
@@ -914,7 +914,7 @@ mvErrorEnum mvWorld_V2::getGroupParameterv(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getGroupParameterf(mvIndex index,\
-   mvParamEnum paramFlag, mvFloat* num)
+   mvParamEnum paramFlag, mvFloat* num) const
 {
    return groups.getItemParameterf(index, paramFlag, num);
 }
@@ -924,7 +924,7 @@ mvErrorEnum mvWorld_V2::getGroupParameterf(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getGroupParameter(mvIndex index, mvParamEnum paramFlag,\
-   mvOptionEnum* option)
+   mvOptionEnum* option) const
 {
    return groups.getItemParameter(index, paramFlag, option);
 }
@@ -1180,7 +1180,7 @@ mvIndex mvWorld_V2::createGroup(const char* groupID)
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentBehaviourParametersv(const char* param,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    return behaviours.getCurrentItemParametersv(param, array, noOfParameters);
 }
@@ -1190,7 +1190,7 @@ mvErrorEnum mvWorld_V2::getCurrentBehaviourParametersv(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentBehaviourParametersf(const char* param,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    return behaviours.getCurrentItemParametersf(param,num);
 }
@@ -1200,7 +1200,7 @@ mvErrorEnum mvWorld_V2::getCurrentBehaviourParametersf(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentBehaviourParameters(const char* param,\
-   const char** option)
+   const char** option) const
 {
    return behaviours.getCurrentItemParameters(param, option);
 }
@@ -1210,7 +1210,7 @@ mvErrorEnum mvWorld_V2::getCurrentBehaviourParameters(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getBehaviourParametersv(mvIndex index,\
-   const char* param, mvFloat* array, mvCount* noOfParameters)
+   const char* param, mvFloat* array, mvCount* noOfParameters) const
 {
    return behaviours.getItemParametersv(index, param, array, noOfParameters);
 }
@@ -1220,7 +1220,7 @@ mvErrorEnum mvWorld_V2::getBehaviourParametersv(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getBehaviourParametersf(mvIndex index,\
- const char* param, mvFloat* num)
+ const char* param, mvFloat* num) const
 {
    return behaviours.getItemParametersf(index, param, num);
 }
@@ -1230,7 +1230,7 @@ mvErrorEnum mvWorld_V2::getBehaviourParametersf(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getBehaviourParameters(mvIndex index,\
-   const char* param, const char** option)
+   const char* param, const char** option) const
 {
    return behaviours.getItemParameters(index, param, option);
 }
@@ -1240,7 +1240,7 @@ mvErrorEnum mvWorld_V2::getBehaviourParameters(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentBehaviourParameterv(mvParamEnum paramFlag,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    return behaviours.getCurrentItemParameterv(paramFlag, array, noOfParameters);
 }
@@ -1250,7 +1250,7 @@ mvErrorEnum mvWorld_V2::getCurrentBehaviourParameterv(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentBehaviourParameterf(mvParamEnum paramFlag,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    return behaviours.getCurrentItemParameterf(paramFlag, num);
 }
@@ -1260,7 +1260,7 @@ mvErrorEnum mvWorld_V2::getCurrentBehaviourParameterf(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentBehaviourParameter(mvParamEnum paramFlag,\
-   mvOptionEnum* option)
+   mvOptionEnum* option) const
 {
    return behaviours.getCurrentItemParameter(paramFlag, option);
 }
@@ -1270,7 +1270,7 @@ mvErrorEnum mvWorld_V2::getCurrentBehaviourParameter(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getBehaviourParameterv(mvIndex index,\
-   mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+   mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters) const
 {
    return behaviours.getItemParameterv(index, paramFlag, array, noOfParameters);
 }
@@ -1280,7 +1280,7 @@ mvErrorEnum mvWorld_V2::getBehaviourParameterv(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getBehaviourParameterf(mvIndex index,\
-   mvParamEnum paramFlag, mvFloat* num)
+   mvParamEnum paramFlag, mvFloat* num) const
 {
    return behaviours.getItemParameterf(index, paramFlag, num);
 }
@@ -1290,7 +1290,7 @@ mvErrorEnum mvWorld_V2::getBehaviourParameterf(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getBehaviourParameter(mvIndex index,\
-   mvParamEnum paramFlag, mvOptionEnum* option)
+   mvParamEnum paramFlag, mvOptionEnum* option) const
 {
    return behaviours.getItemParameter(index, paramFlag, option);
 }
@@ -1517,7 +1517,7 @@ mvIndex mvWorld_V2::createBehaviour(mvOptionEnum bType)
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentPathwayParametersv(const char* param,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    return pathways.getCurrentItemParametersv(param, array, noOfParameters);
 }
@@ -1527,7 +1527,7 @@ mvErrorEnum mvWorld_V2::getCurrentPathwayParametersv(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentPathwayParametersf(const char* param,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    return pathways.getCurrentItemParametersf(param, num);
 }
@@ -1537,7 +1537,7 @@ mvErrorEnum mvWorld_V2::getCurrentPathwayParametersf(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentPathwayParameters(const char* param,\
-   const char** option)
+   const char** option) const
 {
    return pathways.getCurrentItemParameters(param, option);
 }
@@ -1547,7 +1547,7 @@ mvErrorEnum mvWorld_V2::getCurrentPathwayParameters(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getPathwayParametersv(mvIndex index, const char* param,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    return pathways.getItemParametersv(index, param, array, noOfParameters);
 }
@@ -1557,7 +1557,7 @@ mvErrorEnum mvWorld_V2::getPathwayParametersv(mvIndex index, const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getPathwayParametersf(mvIndex index, const char* param,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    return pathways.getItemParametersf(index, param, num);
 }
@@ -1567,7 +1567,7 @@ mvErrorEnum mvWorld_V2::getPathwayParametersf(mvIndex index, const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getPathwayParameters(mvIndex index, const char* param,\
-   const char** option)
+   const char** option) const
 {
    return pathways.getItemParameters(index, param, option);
 }
@@ -1577,7 +1577,7 @@ mvErrorEnum mvWorld_V2::getPathwayParameters(mvIndex index, const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentPathwayParameterv(mvParamEnum paramFlag,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    return pathways.getCurrentItemParameterv(paramFlag, array, noOfParameters);
 }
@@ -1587,7 +1587,7 @@ mvErrorEnum mvWorld_V2::getCurrentPathwayParameterv(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentPathwayParameterf(mvParamEnum paramFlag,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    return pathways.getCurrentItemParameterf(paramFlag, num);
 }
@@ -1597,7 +1597,7 @@ mvErrorEnum mvWorld_V2::getCurrentPathwayParameterf(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentPathwayParameter(mvParamEnum paramFlag,\
-   mvOptionEnum* option)
+   mvOptionEnum* option) const
 {
    return pathways.getCurrentItemParameter(paramFlag, option);
 }
@@ -1607,7 +1607,7 @@ mvErrorEnum mvWorld_V2::getCurrentPathwayParameter(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getPathwayParameterv(mvIndex index,\
-   mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+   mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters) const
 {
    return pathways.getItemParameterv(index, paramFlag, array,\
       noOfParameters);
@@ -1618,7 +1618,7 @@ mvErrorEnum mvWorld_V2::getPathwayParameterv(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getPathwayParameterf(mvIndex index,\
-   mvParamEnum paramFlag, mvFloat* num)
+   mvParamEnum paramFlag, mvFloat* num) const
 {
    return pathways.getItemParameterf(index, paramFlag, num);
 }
@@ -1628,7 +1628,7 @@ mvErrorEnum mvWorld_V2::getPathwayParameterf(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getPathwayParameter(mvIndex index,\
-   mvParamEnum paramFlag, mvOptionEnum* option)
+   mvParamEnum paramFlag, mvOptionEnum* option) const
 {
    return pathways.getItemParameter(index, paramFlag, option);
 }
@@ -1841,7 +1841,7 @@ mvIndex mvWorld_V2::createPathway()
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentWaypointParametersv(const char* param,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    return waypoints.getCurrentItemParametersv(param, array, noOfParameters);
 }
@@ -1851,7 +1851,7 @@ mvErrorEnum mvWorld_V2::getCurrentWaypointParametersv(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentWaypointParametersf(const char* param,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    return waypoints.getCurrentItemParametersf(param, num);
 }
@@ -1861,7 +1861,7 @@ mvErrorEnum mvWorld_V2::getCurrentWaypointParametersf(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentWaypointParameters(const char* param,\
-   const char** option)
+   const char** option) const
 {
    return waypoints.getCurrentItemParameters(param, option);
 }
@@ -1871,7 +1871,7 @@ mvErrorEnum mvWorld_V2::getCurrentWaypointParameters(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getWaypointParametersv(mvIndex index,\
-   const char* param, mvFloat* array, mvCount* noOfParameters)
+   const char* param, mvFloat* array, mvCount* noOfParameters) const
 {
    return waypoints.getItemParametersv(index, param, array, noOfParameters);
 }
@@ -1881,7 +1881,7 @@ mvErrorEnum mvWorld_V2::getWaypointParametersv(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getWaypointParametersf(mvIndex index,\
-   const char* param, mvFloat* num)
+   const char* param, mvFloat* num) const
 {
    return waypoints.getItemParametersf(index, param, num);
 }
@@ -1891,7 +1891,7 @@ mvErrorEnum mvWorld_V2::getWaypointParametersf(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getWaypointParameters(mvIndex index,\
-   const char* param, const char** option)
+   const char* param, const char** option) const
 {
    return waypoints.getItemParameters(index, param, option);
 }
@@ -1901,7 +1901,7 @@ mvErrorEnum mvWorld_V2::getWaypointParameters(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentWaypointParameterv(mvParamEnum paramFlag,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    return waypoints.getCurrentItemParameterv(paramFlag, array, noOfParameters);
 }
@@ -1911,7 +1911,7 @@ mvErrorEnum mvWorld_V2::getCurrentWaypointParameterv(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentWaypointParameterf(mvParamEnum paramFlag,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    return waypoints.getCurrentItemParameterf(paramFlag, num);
 }
@@ -1921,7 +1921,7 @@ mvErrorEnum mvWorld_V2::getCurrentWaypointParameterf(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentWaypointParameter(mvParamEnum paramFlag,\
-   mvOptionEnum* option)
+   mvOptionEnum* option) const
 {
    return waypoints.getCurrentItemParameter(paramFlag, option);
 }
@@ -1931,7 +1931,7 @@ mvErrorEnum mvWorld_V2::getCurrentWaypointParameter(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getWaypointParameterv(mvIndex index,\
-   mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+   mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters) const
 {
    return waypoints.getItemParameterv(index, paramFlag, array, noOfParameters);
 }
@@ -1941,7 +1941,7 @@ mvErrorEnum mvWorld_V2::getWaypointParameterv(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getWaypointParameterf(mvIndex index,\
-   mvParamEnum paramFlag, mvFloat* num)
+   mvParamEnum paramFlag, mvFloat* num) const
 {
    return waypoints.getItemParameterf(index, paramFlag, num);
 }
@@ -1951,7 +1951,7 @@ mvErrorEnum mvWorld_V2::getWaypointParameterf(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getWaypointParameter(mvIndex index,\
-   mvParamEnum paramFlag, mvOptionEnum* option)
+   mvParamEnum paramFlag, mvOptionEnum* option) const
 {
    return waypoints.getItemParameter(index, paramFlag, option);
 }
@@ -2165,7 +2165,7 @@ mvIndex mvWorld_V2::createWaypoint(mvOptionEnum wShape, mvFloat x = 0,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentObstacleParametersv(const char* param,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    return obstacles.getCurrentItemParametersv(param, array, noOfParameters);
 }
@@ -2175,7 +2175,7 @@ mvErrorEnum mvWorld_V2::getCurrentObstacleParametersv(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentObstacleParametersf(const char* param,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    return obstacles.getCurrentItemParametersf(param, num);
 }
@@ -2185,7 +2185,7 @@ mvErrorEnum mvWorld_V2::getCurrentObstacleParametersf(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentObstacleParameters(const char* param,\
-   const char** option)
+   const char** option) const
 {
    return obstacles.getCurrentItemParameters(param, option);
 }
@@ -2195,7 +2195,7 @@ mvErrorEnum mvWorld_V2::getCurrentObstacleParameters(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getObstacleParametersv(mvIndex index,\
-   const char* param, mvFloat* array, mvCount* noOfParameters)
+   const char* param, mvFloat* array, mvCount* noOfParameters) const
 {
    return obstacles.getItemParametersv(index, param, array, noOfParameters);
 }
@@ -2205,7 +2205,7 @@ mvErrorEnum mvWorld_V2::getObstacleParametersv(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getObstacleParametersf(mvIndex index,\
-   const char* param, mvFloat* num)
+   const char* param, mvFloat* num) const
 {
    return obstacles.getItemParametersf(index, param, num);
 }
@@ -2215,7 +2215,7 @@ mvErrorEnum mvWorld_V2::getObstacleParametersf(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getObstacleParameters(mvIndex index,\
-   const char* param, const char** option)
+   const char* param, const char** option) const
 {
    return obstacles.getItemParameters(index, param, option);
 }
@@ -2225,7 +2225,7 @@ mvErrorEnum mvWorld_V2::getObstacleParameters(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentObstacleParameterv(mvParamEnum paramFlag,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    return obstacles.getCurrentItemParameterv(paramFlag, array, noOfParameters);
 }
@@ -2235,7 +2235,7 @@ mvErrorEnum mvWorld_V2::getCurrentObstacleParameterv(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentObstacleParameterf(mvParamEnum paramFlag,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    return obstacles.getCurrentItemParameterf(paramFlag, num);
 }
@@ -2245,7 +2245,7 @@ mvErrorEnum mvWorld_V2::getCurrentObstacleParameterf(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentObstacleParameter(mvParamEnum paramFlag,\
-   mvOptionEnum* option)
+   mvOptionEnum* option) const
 {
    return obstacles.getCurrentItemParameter(paramFlag, option);
 }
@@ -2255,7 +2255,7 @@ mvErrorEnum mvWorld_V2::getCurrentObstacleParameter(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getObstacleParameterv(mvIndex index,\
-   mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+   mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters) const
 {
    return obstacles.getItemParameterv(index, paramFlag, array, noOfParameters);
 }
@@ -2265,7 +2265,7 @@ mvErrorEnum mvWorld_V2::getObstacleParameterv(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getObstacleParameterf(mvIndex index,\
-   mvParamEnum paramFlag, mvFloat* num)
+   mvParamEnum paramFlag, mvFloat* num) const
 {
    return obstacles.getItemParameterf(index, paramFlag, num);
 }
@@ -2275,7 +2275,7 @@ mvErrorEnum mvWorld_V2::getObstacleParameterf(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getObstacleParameter(mvIndex index,\
-   mvParamEnum paramFlag, mvOptionEnum* option)
+   mvParamEnum paramFlag, mvOptionEnum* option) const
 {
    return obstacles.getItemParameter(index, paramFlag, option);
 }
@@ -2509,7 +2509,7 @@ mvIndex mvWorld_V2::createObstacle(mvOptionEnum oType, mvOptionEnum oState,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentBodyParametersv(const char* param,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    return bodies.getCurrentItemParametersv(param, array, noOfParameters);
 }
@@ -2519,7 +2519,7 @@ mvErrorEnum mvWorld_V2::getCurrentBodyParametersv(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentBodyParametersf(const char* param,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    return bodies.getCurrentItemParametersf(param, num);
 }
@@ -2529,7 +2529,7 @@ mvErrorEnum mvWorld_V2::getCurrentBodyParametersf(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentBodyParameters(const char* param,\
-   const char** option)
+   const char** option) const
 {
    return bodies.getCurrentItemParameters(param, option);
 }
@@ -2539,7 +2539,7 @@ mvErrorEnum mvWorld_V2::getCurrentBodyParameters(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getBodyParametersv(mvIndex index, const char* param,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    return bodies.getItemParametersv(index, param, array, noOfParameters);
 }
@@ -2549,7 +2549,7 @@ mvErrorEnum mvWorld_V2::getBodyParametersv(mvIndex index, const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getBodyParametersf(mvIndex index, const char* param,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    return bodies.getItemParametersf(index, param, num);
 }
@@ -2559,7 +2559,7 @@ mvErrorEnum mvWorld_V2::getBodyParametersf(mvIndex index, const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getBodyParameters(mvIndex index, const char* param,\
-   const char** option)
+   const char** option) const
 {
    return bodies.getItemParameters(index, param, option);
 }
@@ -2569,7 +2569,7 @@ mvErrorEnum mvWorld_V2::getBodyParameters(mvIndex index, const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentBodyParameterv(mvParamEnum paramFlag,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    return bodies.getCurrentItemParameterv(paramFlag, array, noOfParameters);
 }
@@ -2579,7 +2579,7 @@ mvErrorEnum mvWorld_V2::getCurrentBodyParameterv(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentBodyParameterf(mvParamEnum paramFlag,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    return bodies.getCurrentItemParameterf(paramFlag, num);
 }
@@ -2589,7 +2589,7 @@ mvErrorEnum mvWorld_V2::getCurrentBodyParameterf(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentBodyParameter(mvParamEnum paramFlag,\
-   mvOptionEnum* option)
+   mvOptionEnum* option) const
 {
    return bodies.getCurrentItemParameter(paramFlag, option);
 }
@@ -2599,7 +2599,7 @@ mvErrorEnum mvWorld_V2::getCurrentBodyParameter(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getBodyParameterv(mvIndex index, mvParamEnum paramFlag,\
-   mvFloat* array, mvCount* noOfParameters)
+   mvFloat* array, mvCount* noOfParameters) const
 {
    return bodies.getItemParameterv(index, paramFlag, array, noOfParameters);
 }
@@ -2609,7 +2609,7 @@ mvErrorEnum mvWorld_V2::getBodyParameterv(mvIndex index, mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getBodyParameterf(mvIndex index, mvParamEnum paramFlag,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    return bodies.getItemParameterf(index, paramFlag, num);
 }
@@ -2619,7 +2619,7 @@ mvErrorEnum mvWorld_V2::getBodyParameterf(mvIndex index, mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getBodyParameter(mvIndex index, mvParamEnum paramFlag,\
-   mvOptionEnum* option)
+   mvOptionEnum* option) const
 {
    return bodies.getItemParameter(index, paramFlag, option);
 }
@@ -2754,6 +2754,36 @@ void mvWorld_V2::applyToAllBodiesByIndex(mvIndex worldIndex,\
    bodies.applyToAllItemsByIndex(worldIndex, someFunction, extraPtr);
 }
 
+typedef void (BodyPtrFunction)(mvBodyPtr, void*);
+
+// temporary struct
+struct mvBodyCapsuleToBodyPtrStruct
+{
+   public:
+      void* extraPtr;
+      BodyPtrFunction* someFunc;
+
+      mvBodyCapsuleToBodyPtrStruct(BodyPtrFunction* someFunction,\
+         void* modulePtr)
+         : someFunc(someFunction)
+      {
+         extraPtr = modulePtr;
+      }
+};
+
+void convertBodyCapsuleToBodyPtr(mvBodyCapsulePtr capsulePtr,\
+   void* extraPtr)
+{
+   mvBodyCapsuleToBodyPtrStruct* convertCapsulePtr =
+      (mvBodyCapsuleToBodyPtrStruct*) extraPtr;
+
+   if (convertCapsulePtr != NULL)
+   {
+      // TODO : function pointers or capsuledList
+      convertCapsulePtr->someFunc(capsulePtr->getBodyPtr(), convertCapsulePtr->extraPtr);
+   }
+}
+
 /** @brief (one liner)
   *
   * (documentation goes here)
@@ -2761,7 +2791,9 @@ void mvWorld_V2::applyToAllBodiesByIndex(mvIndex worldIndex,\
 void mvWorld_V2::applyToAllBodies(void (someFunction)(mvBodyPtr, void*),\
    void* extraPtr)
 {
-   bodies.applyToAllItems(someFunction, extraPtr);
+   mvBodyCapsuleToBodyPtrStruct converter(someFunction,extraPtr);
+
+   bodies.applyToAllItems(convertBodyCapsuleToBodyPtr, (void*) &converter);
 }
 
 /** @brief (one liner)
@@ -2806,7 +2838,17 @@ mvIndex mvWorld_V2::setCurrentBody(mvIndex index)
   */
 mvBodyPtr mvWorld_V2::getCurrentBodyPtr()
 {
-   return bodies.getCurrentClassPtr();
+   mvBodyCapsulePtr tempCapsulePtr = NULL;
+
+   tempCapsulePtr = bodies.getCurrentClassPtr();
+   if (tempCapsulePtr != NULL)
+   {
+      return tempCapsulePtr->getBodyPtr();
+   }
+   else
+   {
+      return NULL;
+   }
 }
 
 /** @brief (one liner)
@@ -2815,7 +2857,16 @@ mvBodyPtr mvWorld_V2::getCurrentBodyPtr()
   */
 mvBodyPtr mvWorld_V2::getBodyPtr(mvIndex index)
 {
-   return bodies.getClassPtr(index);
+   mvBodyCapsulePtr tempCapsulePtr = bodies.getClassPtr(index);
+
+   if (tempCapsulePtr != NULL)
+   {
+      return tempCapsulePtr->getBodyPtr();
+   }
+   else
+   {
+      return NULL;
+   }
 }
 
 /** @brief (one liner)
@@ -2825,7 +2876,20 @@ mvBodyPtr mvWorld_V2::getBodyPtr(mvIndex index)
 mvIndex mvWorld_V2::createBody(mvOptionEnum bType, mvOptionEnum bShape,\
    mvFloat x = 0, mvFloat y  = 0, mvFloat z = 0)
 {
-   return bodies.addItem(new mvBody(bType, bShape,x,y,z));
+   mvBodyPtr tempBody = new mvBody(bType, bShape,x,y,z);
+   // TODO : new bodies created by body loader
+   if (tempBody == NULL)
+   {
+      return MV_NO_CURRENT_INDEX;
+   }
+
+   mvBodyCapsulePtr bCapsulePtr = new mvBodyCapsule(tempBody);
+   if (bCapsulePtr == NULL)
+   {
+      return MV_NO_CURRENT_INDEX;
+   }
+
+   return bodies.addItem(bCapsulePtr);
 }
 
 /** @brief (one liner)
@@ -2855,6 +2919,16 @@ char* mvWorld_V2::getID() const
   */
 mvWorld_V2::mvWorld_V2(const char* id = NULL)
 {
+   isEnabled  = true;
+   applyForces = true;
+   applyGravity = true;
+   applyShifts = true;
+   applyAccelerations = true;
+   applyCollisions = true;
+   applyAllForces = true;
+   autoConvertIndex = false;
+   isRightHanded = true;
+
    mvCount strLen;
    //idString = NULL;
 
@@ -2900,6 +2974,7 @@ mvBehavFuncListPtr mvWorld_V2::getBehaviourLoader() const
 void mvWorld_V2::worldStep(mvFloat timeInSecs)
 {
    //TODO : implement theis function
+   calculateGroupBehaviours();
 }
 
 /** @brief (one liner)
@@ -2908,6 +2983,15 @@ void mvWorld_V2::worldStep(mvFloat timeInSecs)
   */
 mvErrorEnum mvWorld_V2::nudgeBody(mvIndex index, mvFloat timeInSecs)
 {
+   mvBodyPtr tempBodyPtr = getBodyPtr(index);
+
+   if (tempBodyPtr == NULL)
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+
+   calculateGroupBehaviours();
+
    //TODO : implement the function
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
@@ -2918,162 +3002,18 @@ mvErrorEnum mvWorld_V2::nudgeBody(mvIndex index, mvFloat timeInSecs)
   */
 mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
 {
+   mvBodyPtr tempBodyPtr = getCurrentBodyPtr();
+
+   if (tempBodyPtr == NULL)
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+
+   calculateGroupBehaviours();
+
    //TODO : implement the function
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
-
-/*
-//mvErrorEnum mvWorld_V2::setDefaultWaypointForBody(mvIndex waypointIndex,\
-//   mvIndex bodyIndex)
-//{
-//   mvBodyPtr tempBody = bodies.getClassPtr(bodyIndex);
-//   mvIndex convertedIndex;
-//
-//   if (tempBody == NULL)
-//   {
-//      return MV_BODY_INDEX_IS_INVALID;
-//   }
-//
-//   convertedIndex = waypoints.convertIndex(waypointIndex);
-//   if (convertedIndex == MV_NO_CURRENT_INDEX)
-//   {
-//      return MV_WAYPOINT_INDEX_IS_INVALID;
-//   }
-//   tempBody->setDefaultWaypoint(convertedIndex);
-//   return MV_NO_ERROR;
-//}
-//
-
-//mvErrorEnum mvWorld_V2::setDefaultPathwayForBody(mvIndex pathwayIndex,\
-//   mvIndex bodyIndex)
-//{
-//   mvBodyPtr tempBody = bodies.getClassPtr(bodyIndex);
-//   mvIndex convertedIndex;
-//
-//   if (tempBody == NULL)
-//   {
-//      return MV_BODY_INDEX_IS_INVALID;
-//   }
-//
-//   convertedIndex = pathways.convertIndex(pathwayIndex);
-//   if (convertedIndex == MV_NO_CURRENT_INDEX)
-//   {
-//      return MV_PATHWAY_INDEX_IS_INVALID;
-//   }
-//   tempBody->setDefaultPathway(convertedIndex);
-//   return MV_NO_ERROR;
-//}
-
-
-//mvErrorEnum mvWorld_V2::setDefaultBodyForBody(mvIndex targetIndex,\
-//   mvIndex bodyIndex)
-//{
-//   mvBodyPtr tempBody = bodies.getClassPtr(bodyIndex);
-//   mvIndex convertedIndex;
-//
-//   if (tempBody == NULL)
-//   {
-//      return MV_BODY_INDEX_IS_INVALID;
-//   }
-//
-//   convertedIndex = bodies.convertIndex(targetIndex);
-//   if (convertedIndex == MV_NO_CURRENT_INDEX)
-//   {
-//      return MV_BODY_INDEX_IS_INVALID;
-//   }
-//   tempBody->setDefaultBody(convertedIndex);
-//   return MV_NO_ERROR;
-//}
-
-
-//mvErrorEnum mvWorld_V2::setDefaultWeightForBody(mvFloat factor,\
-//   mvIndex bodyIndex)
-//{
-//   mvBodyPtr tempBody = bodies.getClassPtr(bodyIndex);
-//
-//   if (tempBody == NULL)
-//   {
-//      return MV_BODY_INDEX_IS_INVALID;
-//   }
-//
-//   return tempBody->setDefaultBehaviourFactor(factor);
-//}
-
-
-//mvErrorEnum mvWorld_V2::setDefaultWaypointForCurrentBody(mvIndex wpIndex)
-//{
-//   mvBodyPtr tempBody = bodies.getCurrentClassPtr();
-//   mvIndex convertedIndex;
-//
-//   if (tempBody == NULL)
-//   {
-//      return MV_BODY_INDEX_IS_INVALID;
-//   }
-//
-//   convertedIndex = waypoints.convertIndex(wpIndex);
-//   if (convertedIndex == MV_NO_CURRENT_INDEX)
-//   {
-//      return MV_WAYPOINT_INDEX_IS_INVALID;
-//   }
-//   tempBody->setDefaultWaypoint(convertedIndex);
-//   return MV_NO_ERROR;
-//}
-
-
-//mvErrorEnum mvWorld_V2::setDefaultPathwayForCurrentBody(mvIndex pwIndex)
-//{
-//   mvBodyPtr tempBody = bodies.getCurrentClassPtr();
-//   mvIndex convertedIndex;
-//
-//   if (tempBody == NULL)
-//   {
-//      return MV_BODY_INDEX_IS_INVALID;
-//   }
-//
-//   convertedIndex = pathways.convertIndex(pwIndex);
-//   if (convertedIndex == MV_NO_CURRENT_INDEX)
-//   {
-//      return MV_PATHWAY_INDEX_IS_INVALID;
-//   }
-//
-//   tempBody->setDefaultWaypoint(convertedIndex);
-//   return MV_NO_ERROR;
-//}
-
-
-//mvErrorEnum mvWorld_V2::setDefaultBodyForCurrentBody(mvIndex bodyIndex)
-//{
-//   mvBodyPtr tempBody = bodies.getCurrentClassPtr();
-//   mvIndex convertedIndex;
-//
-//   if (tempBody == NULL)
-//   {
-//      return MV_BODY_INDEX_IS_INVALID;
-//   }
-//
-//   convertedIndex = bodies.convertIndex(bodyIndex);
-//   if (convertedIndex == MV_NO_CURRENT_INDEX)
-//   {
-//      return MV_BODY_INDEX_IS_INVALID;
-//   }
-//
-//   tempBody->setDefaultBody(convertedIndex);
-//   return MV_NO_ERROR;
-//}
-
-
-//mvErrorEnum mvWorld_V2::setDefaultWeightForCurrentBody(mvFloat factor)
-//{
-//   mvBodyPtr tempBody = bodies.getCurrentClassPtr();
-//
-//   if (tempBody == NULL)
-//   {
-//      return MV_BODY_INDEX_IS_INVALID;
-//   }
-//
-//   return tempBody->setDefaultBehaviourFactor(factor);
-//}
-*/
 
 /** @brief (one liner)
   *
@@ -3509,7 +3449,7 @@ mvErrorEnum mvWorld_V2::setCurrentMainGroupBehaviourParametersv(\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getMainGroupBehaviourParameters(mvIndex index,\
-   const char* param, const char** option)
+   const char* param, const char** option) const
 {
    return groupBehaviours.getItemParameters(index,param, option);
 }
@@ -3519,7 +3459,7 @@ mvErrorEnum mvWorld_V2::getMainGroupBehaviourParameters(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getMainGroupBehaviourParametersi(mvIndex index,\
-   const char* param, mvIndex* paramIndex)
+   const char* param, mvIndex* paramIndex) const
 {
    return groupBehaviours.getItemParametersi(index,param, paramIndex);
 }
@@ -3529,7 +3469,7 @@ mvErrorEnum mvWorld_V2::getMainGroupBehaviourParametersi(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getMainGroupBehaviourParametersf(mvIndex index,\
-   const char* param, mvFloat* num)
+   const char* param, mvFloat* num) const
 {
    return groupBehaviours.getItemParametersf(index,param, num);
 }
@@ -3539,7 +3479,7 @@ mvErrorEnum mvWorld_V2::getMainGroupBehaviourParametersf(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getMainGroupBehaviourParametersv(mvIndex index,\
-   const char* param, mvFloat* array, mvCount* noOfParameters)
+   const char* param, mvFloat* array, mvCount* noOfParameters) const
 {
    return groupBehaviours.getItemParametersv(index,param, array,\
       noOfParameters);
@@ -3550,7 +3490,7 @@ mvErrorEnum mvWorld_V2::getMainGroupBehaviourParametersv(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentMainGroupBehaviourParameters(\
-   const char* param,const char** option)
+   const char* param,const char** option) const
 {
    return groupBehaviours.getCurrentItemParameters(param, option);
 }
@@ -3560,7 +3500,7 @@ mvErrorEnum mvWorld_V2::getCurrentMainGroupBehaviourParameters(\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentMainGroupBehaviourParametersi(\
-   const char* param, mvIndex* paramIndex)
+   const char* param, mvIndex* paramIndex) const
 {
    return groupBehaviours.getCurrentItemParametersi(param, paramIndex);
 }
@@ -3570,7 +3510,7 @@ mvErrorEnum mvWorld_V2::getCurrentMainGroupBehaviourParametersi(\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentMainGroupBehaviourParametersf(\
-   const char* param, mvFloat* num)
+   const char* param, mvFloat* num) const
 {
    return groupBehaviours.getCurrentItemParametersf(param, num);
 }
@@ -3580,7 +3520,7 @@ mvErrorEnum mvWorld_V2::getCurrentMainGroupBehaviourParametersf(\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentMainGroupBehaviourParametersv(\
-   const char* param, mvFloat* array, mvCount* noOfParameters)
+   const char* param, mvFloat* array, mvCount* noOfParameters) const
 {
    return groupBehaviours.getCurrentItemParametersv(param, array,\
       noOfParameters);
@@ -3591,7 +3531,7 @@ mvErrorEnum mvWorld_V2::getCurrentMainGroupBehaviourParametersv(\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getMainGroupBehaviourParameter(mvIndex index,\
-   mvParamEnum param, mvOptionEnum* option)
+   mvParamEnum param, mvOptionEnum* option) const
 {
    return groupBehaviours.getItemParameter(index, param, option);
 }
@@ -3601,7 +3541,7 @@ mvErrorEnum mvWorld_V2::getMainGroupBehaviourParameter(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getMainGroupBehaviourParameteri(mvIndex index,\
-   mvParamEnum param, mvIndex* paramIndex)
+   mvParamEnum param, mvIndex* paramIndex) const
 {
    return groupBehaviours.getItemParameteri(index, param, paramIndex);
 }
@@ -3611,7 +3551,7 @@ mvErrorEnum mvWorld_V2::getMainGroupBehaviourParameteri(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getMainGroupBehaviourParameterf(mvIndex index,\
-   mvParamEnum param, mvFloat* num)
+   mvParamEnum param, mvFloat* num) const
 {
    return groupBehaviours.getItemParameterf(index, param, num);
 }
@@ -3621,7 +3561,7 @@ mvErrorEnum mvWorld_V2::getMainGroupBehaviourParameterf(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getMainGroupBehaviourParameterv(mvIndex index,\
-   mvParamEnum param, mvFloat* array, mvCount* noOfParameters)
+   mvParamEnum param, mvFloat* array, mvCount* noOfParameters) const
 {
    return groupBehaviours.getItemParameterv(index, param, array,\
       noOfParameters);
@@ -3632,7 +3572,7 @@ mvErrorEnum mvWorld_V2::getMainGroupBehaviourParameterv(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentMainGroupBehaviourParameteri(\
-   mvParamEnum param, mvIndex* paramIndex)
+   mvParamEnum param, mvIndex* paramIndex) const
 {
    return groupBehaviours.getCurrentItemParameteri(param, paramIndex);
 }
@@ -3642,7 +3582,7 @@ mvErrorEnum mvWorld_V2::getCurrentMainGroupBehaviourParameteri(\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentMainGroupBehaviourParameterf(\
-   mvParamEnum param, mvFloat* num)
+   mvParamEnum param, mvFloat* num) const
 {
    return groupBehaviours.getCurrentItemParameterf(param, num);
 }
@@ -3652,7 +3592,7 @@ mvErrorEnum mvWorld_V2::getCurrentMainGroupBehaviourParameterf(\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentMainGroupBehaviourParameterv(\
-   mvParamEnum param, mvFloat* array, mvCount* noOfParameters)
+   mvParamEnum param, mvFloat* array, mvCount* noOfParameters) const
 {
    return groupBehaviours.getCurrentItemParameterv(param, array,\
       noOfParameters);
@@ -3663,7 +3603,7 @@ mvErrorEnum mvWorld_V2::getCurrentMainGroupBehaviourParameterv(\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentForceParametersi(const char* param,\
-   mvIndex* outIndex)
+   mvIndex* outIndex) const
 {
    return forces.getCurrentItemParametersi(param, outIndex);
 }
@@ -3673,7 +3613,7 @@ mvErrorEnum mvWorld_V2::getCurrentForceParametersi(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getForceParametersi(mvIndex index, const char* param,\
-   mvIndex* outIndex)
+   mvIndex* outIndex) const
 {
    return forces.getItemParametersi(index, param, outIndex);
 }
@@ -3683,7 +3623,7 @@ mvErrorEnum mvWorld_V2::getForceParametersi(mvIndex index, const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentForceParameteri(mvParamEnum paramFlag,\
-   mvIndex* outIndex)
+   mvIndex* outIndex) const
 {
    return forces.getCurrentItemParameteri(paramFlag, outIndex);
 }
@@ -3693,7 +3633,7 @@ mvErrorEnum mvWorld_V2::getCurrentForceParameteri(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getForceParameteri(mvIndex index,\
-   mvParamEnum paramFlag, mvIndex* outIndex)
+   mvParamEnum paramFlag, mvIndex* outIndex) const
 {
    return forces.getItemParameteri(index, paramFlag, outIndex);
 }
@@ -3743,7 +3683,7 @@ mvErrorEnum mvWorld_V2::setForceParameteri(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getGroupBehaviourParametersi(mvIndex index,\
-   mvIndex groupIndex, const char* param, mvIndex* outIndex)
+   mvIndex groupIndex, const char* param, mvIndex* outIndex) const
 {
    mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
@@ -3758,7 +3698,7 @@ mvErrorEnum mvWorld_V2::getGroupBehaviourParametersi(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParameteri(\
-   mvIndex groupIndex, mvParamEnum paramFlag, mvIndex* outIndex)
+   mvIndex groupIndex, mvParamEnum paramFlag, mvIndex* outIndex) const
 {
    mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
@@ -3773,7 +3713,7 @@ mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParameteri(\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getGroupBehaviourParameteri(mvIndex index,\
-   mvIndex groupIndex, mvParamEnum paramFlag, mvIndex* outIndex)
+   mvIndex groupIndex, mvParamEnum paramFlag, mvIndex* outIndex) const
 {
    mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
 
@@ -3788,7 +3728,7 @@ mvErrorEnum mvWorld_V2::getGroupBehaviourParameteri(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentGroupBehaviourParametersi(mvIndex groupIndex,\
-   const char* param, mvIndex* outIndex)
+   const char* param, mvIndex* outIndex) const
 {
    mvGroupBehaviourPtr temp = groupBehaviours.getCurrentClassPtr();
 
@@ -3864,7 +3804,7 @@ mvErrorEnum mvWorld_V2::setGroupBehaviourParameteri(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentGroupParametersi(const char* param,\
-   mvIndex* outIndex)
+   mvIndex* outIndex) const
 {
    return groups.getCurrentItemParametersi(param, outIndex);
 }
@@ -3874,7 +3814,7 @@ mvErrorEnum mvWorld_V2::getCurrentGroupParametersi(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getGroupParametersi(mvIndex index, const char* param,\
-   mvIndex* outIndex)
+   mvIndex* outIndex) const
 {
    return groups.getItemParametersi(index, param, outIndex);
 }
@@ -3884,7 +3824,7 @@ mvErrorEnum mvWorld_V2::getGroupParametersi(mvIndex index, const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentGroupParameteri(mvParamEnum paramFlag,\
-   mvIndex* outIndex)
+   mvIndex* outIndex) const
 {
    return groups.getCurrentItemParameteri(paramFlag, outIndex);
 }
@@ -3894,7 +3834,7 @@ mvErrorEnum mvWorld_V2::getCurrentGroupParameteri(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getGroupParameteri(mvIndex index,\
-   mvParamEnum paramFlag, mvIndex* outIndex)
+   mvParamEnum paramFlag, mvIndex* outIndex) const
 {
    return groups.getItemParameteri(index, paramFlag, outIndex);
 }
@@ -3944,7 +3884,7 @@ mvErrorEnum mvWorld_V2::setGroupParameteri(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentBehaviourParametersi(const char* param,\
-   mvIndex* outIndex)
+   mvIndex* outIndex) const
 {
    return behaviours.getCurrentItemParametersi(param, outIndex);
 }
@@ -3954,7 +3894,7 @@ mvErrorEnum mvWorld_V2::getCurrentBehaviourParametersi(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getBehaviourParametersi(mvIndex index,\
-   const char* param, mvIndex* outIndex)
+   const char* param, mvIndex* outIndex) const
 {
    return behaviours.getItemParametersi(index, param, outIndex);
 }
@@ -3964,7 +3904,7 @@ mvErrorEnum mvWorld_V2::getBehaviourParametersi(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentBehaviourParameteri(mvParamEnum paramFlag,\
-   mvIndex* outIndex)
+   mvIndex* outIndex) const
 {
    return behaviours.getCurrentItemParameteri(paramFlag, outIndex);
 }
@@ -3974,7 +3914,7 @@ mvErrorEnum mvWorld_V2::getCurrentBehaviourParameteri(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getBehaviourParameteri(mvIndex index,\
-   mvParamEnum paramFlag, mvIndex* outIndex)
+   mvParamEnum paramFlag, mvIndex* outIndex) const
 {
    return behaviours.getItemParameteri(index, paramFlag, outIndex);
 }
@@ -4024,7 +3964,7 @@ mvErrorEnum mvWorld_V2::setBehaviourParameteri(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentPathwayParametersi(const char* param,\
-   mvIndex* outIndex)
+   mvIndex* outIndex) const
 {
    return pathways.getCurrentItemParametersi(param, outIndex);
 }
@@ -4034,7 +3974,7 @@ mvErrorEnum mvWorld_V2::getCurrentPathwayParametersi(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getPathwayParametersi(mvIndex index,\
-   const char* param, mvIndex* outIndex)
+   const char* param, mvIndex* outIndex) const
 {
    return pathways.getItemParametersi(index, param, outIndex);
 }
@@ -4044,7 +3984,7 @@ mvErrorEnum mvWorld_V2::getPathwayParametersi(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentPathwayParameteri(mvParamEnum paramFlag,\
-   mvIndex* outIndex)
+   mvIndex* outIndex) const
 {
    return pathways.getCurrentItemParameteri(paramFlag, outIndex);
 }
@@ -4054,7 +3994,7 @@ mvErrorEnum mvWorld_V2::getCurrentPathwayParameteri(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getPathwayParameteri(mvIndex index,\
-   mvParamEnum paramFlag, mvIndex* outIndex)
+   mvParamEnum paramFlag, mvIndex* outIndex) const
 {
    return pathways.getItemParameteri(index, paramFlag, outIndex);
 }
@@ -4104,7 +4044,7 @@ mvErrorEnum mvWorld_V2::setPathwayParameteri(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentWaypointParametersi(const char* param,\
-   mvIndex* outIndex)
+   mvIndex* outIndex) const
 {
    return waypoints.getCurrentItemParametersi(param, outIndex);
 }
@@ -4114,7 +4054,7 @@ mvErrorEnum mvWorld_V2::getCurrentWaypointParametersi(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getWaypointParametersi(mvIndex index,\
-   const char* param, mvIndex* outIndex)
+   const char* param, mvIndex* outIndex) const
 {
    return waypoints.getItemParametersi(index, param, outIndex);
 }
@@ -4124,7 +4064,7 @@ mvErrorEnum mvWorld_V2::getWaypointParametersi(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentWaypointParameteri(mvParamEnum paramFlag,\
-   mvIndex* outIndex)
+   mvIndex* outIndex) const
 {
    return waypoints.getCurrentItemParameteri(paramFlag, outIndex);
 }
@@ -4134,7 +4074,7 @@ mvErrorEnum mvWorld_V2::getCurrentWaypointParameteri(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getWaypointParameteri(mvIndex index,\
-   mvParamEnum paramFlag, mvIndex* outIndex)
+   mvParamEnum paramFlag, mvIndex* outIndex) const
 {
    return waypoints.getItemParameteri(index, paramFlag, outIndex);
 }
@@ -4184,7 +4124,7 @@ mvErrorEnum mvWorld_V2::setWaypointParameteri(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentObstacleParametersi(const char* param,\
-   mvIndex* outIndex)
+   mvIndex* outIndex) const
 {
    return obstacles.getCurrentItemParametersi(param, outIndex);
 }
@@ -4194,7 +4134,7 @@ mvErrorEnum mvWorld_V2::getCurrentObstacleParametersi(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getObstacleParametersi(mvIndex index,\
-   const char* param, mvIndex* outIndex)
+   const char* param, mvIndex* outIndex) const
 {
    return obstacles.getItemParametersi(index, param, outIndex);
 }
@@ -4204,7 +4144,7 @@ mvErrorEnum mvWorld_V2::getObstacleParametersi(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentObstacleParameteri(mvParamEnum paramFlag,\
-   mvIndex* outIndex)
+   mvIndex* outIndex) const
 {
    return obstacles.getCurrentItemParameteri(paramFlag, outIndex);
 }
@@ -4214,7 +4154,7 @@ mvErrorEnum mvWorld_V2::getCurrentObstacleParameteri(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getObstacleParameteri(mvIndex index,\
-   mvParamEnum paramFlag, mvIndex* outIndex)
+   mvParamEnum paramFlag, mvIndex* outIndex) const
 {
    return obstacles.getItemParameteri(index, paramFlag, outIndex);
 }
@@ -4244,7 +4184,7 @@ mvErrorEnum mvWorld_V2::setObstacleParameteri(mvIndex index,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentBodyParametersi(const char* param,\
-   mvIndex* outIndex)
+   mvIndex* outIndex) const
 {
    return bodies.getCurrentItemParametersi(param, outIndex);
 }
@@ -4254,7 +4194,7 @@ mvErrorEnum mvWorld_V2::getCurrentBodyParametersi(const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getCurrentBodyParameteri(mvParamEnum paramFlag,\
-   mvIndex* outIndex)
+   mvIndex* outIndex) const
 {
    return bodies.getCurrentItemParameteri(paramFlag, outIndex);
 }
@@ -4264,7 +4204,7 @@ mvErrorEnum mvWorld_V2::getCurrentBodyParameteri(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getBodyParametersi(mvIndex index, const char* param,\
-   mvIndex* outIndex)
+   mvIndex* outIndex) const
 {
    return bodies.getItemParametersi(index, param, outIndex);
 }
@@ -4274,7 +4214,7 @@ mvErrorEnum mvWorld_V2::getBodyParametersi(mvIndex index, const char* param,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getBodyParameteri(mvIndex index, mvParamEnum paramFlag,\
-   mvIndex* outIndex)
+   mvIndex* outIndex) const
 {
    return bodies.getItemParameteri(index, paramFlag, outIndex);
 }
@@ -4324,30 +4264,189 @@ mvErrorEnum mvWorld_V2::setBodyParameteri(mvIndex index, mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getParameter(mvParamEnum paramFlag,\
-   mvOptionEnum* option)
+   mvOptionEnum* option) const
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (option == NULL)
+   {
+      return MV_OPTION_ENUM_DEST_IS_NULL;
+   }
+
+   switch(paramFlag)
+   {
+      //TODO : MV_TYPE,
+      case MV_IS_ENABLED:
+         if (isEnabled)
+         {
+            *option =MV_TRUE;
+         }
+         else
+         {
+            *option = MV_FALSE;
+         }
+         return MV_NO_ERROR;
+      case MV_AUTO_CONVERT_INDEX:
+         if (autoConvertIndex)
+         {
+            *option =MV_TRUE;
+         }
+         else
+         {
+            *option = MV_FALSE;
+         }
+         return MV_NO_ERROR;
+      case MV_RIGHT_HANDED:
+         if (isRightHanded)
+         {
+            *option =MV_TRUE;
+         }
+         else
+         {
+            *option = MV_FALSE;
+         }
+         return MV_NO_ERROR;
+      case MV_APPLY_FORCES:
+         if (applyForces)
+         {
+            *option =MV_TRUE;
+         }
+         else
+         {
+            *option = MV_FALSE;
+         }
+         return MV_NO_ERROR;
+      case MV_APPLY_SHIFTS:
+         if (applyShifts)
+         {
+            *option =MV_TRUE;
+         }
+         else
+         {
+            *option = MV_FALSE;
+         }
+         return MV_NO_ERROR;
+      case MV_APPLY_ACCELERATIONS:
+         if (applyAccelerations)
+         {
+            *option =MV_TRUE;
+         }
+         else
+         {
+            *option = MV_FALSE;
+         }
+         return MV_NO_ERROR;
+      case MV_APPLY_GRAVITY:
+         if (applyGravity)
+         {
+            *option =MV_TRUE;
+         }
+         else
+         {
+            *option = MV_FALSE;
+         }
+         return MV_NO_ERROR;
+      case MV_APPLY_COLLISIONS:
+         if (applyCollisions)
+         {
+            *option =MV_TRUE;
+         }
+         else
+         {
+            *option = MV_FALSE;
+         }
+         return MV_NO_ERROR;
+      case MV_APPLY_ALL_FORCES:
+         if (applyAllForces)
+         {
+            *option =MV_TRUE;
+         }
+         else
+         {
+            *option = MV_FALSE;
+         }
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_WORLD_PARAMETER;
+   }
 }
 
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getParameteri(mvParamEnum paramFlag, mvIndex* outIndex)
+mvErrorEnum mvWorld_V2::getParameteri(mvParamEnum paramFlag, mvIndex* outIndex)\
+   const
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+
+   if (outIndex == NULL)
+   {
+      return MV_INDEX_DEST_IS_NULL;
+   }
+
+   switch(paramFlag)
+   {
+      case MV_WAYPOINT:
+         *outIndex = getCurrentWaypoint();
+         return MV_NO_ERROR;
+      case MV_BODY:
+         *outIndex = getCurrentBody();
+         return MV_NO_ERROR;
+      case MV_PATHWAY:
+         *outIndex = getCurrentPathway();
+         return MV_NO_ERROR;
+      case MV_NO_OF_BODIES:
+         *outIndex = bodies.getNoOfItems();
+         return MV_NO_ERROR;
+      case MV_NO_OF_GROUPS:
+         *outIndex = groups.getNoOfItems();
+         return MV_NO_ERROR;
+      case MV_NO_OF_FORCES:
+         *outIndex = forces.getNoOfItems();
+         return MV_NO_ERROR;
+      case MV_NO_OF_WAYPOINTS:
+         *outIndex = waypoints.getNoOfItems();
+         return MV_NO_ERROR;
+      case MV_NO_OF_OBSTACLES:
+         *outIndex = obstacles.getNoOfItems();
+         return MV_NO_ERROR;
+      case MV_NO_OF_GROUP_BEHAVIOURS:
+         *outIndex = groupBehaviours.getNoOfItems();
+         return MV_NO_ERROR;
+      case MV_NO_OF_BEHAVIOURS:
+         *outIndex = behaviours.getNoOfItems();
+         return MV_NO_ERROR;
+      case MV_GROUP:
+         *outIndex = getCurrentGroup();
+         return MV_NO_ERROR;
+      case MV_OBSTACLE:
+         *outIndex = getCurrentObstacle();
+         return MV_NO_ERROR;
+      case MV_GROUP_BEHAVIOUR:
+         *outIndex = getCurrentGroupBehaviour();
+         return MV_NO_ERROR;
+      case MV_BEHAVIOUR:
+         *outIndex = getCurrentBehaviour();
+         return MV_NO_ERROR;
+      case MV_FORCE:
+         *outIndex = getCurrentForce();
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_WORLD_PARAMETER;
+   }
 }
 
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num)
+mvErrorEnum mvWorld_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (num == NULL)
+   {
+      return MV_FLOAT_DEST_IS_NULL;
+   }
+
+   // no parameter
+   return MV_INVALID_WORLD_PARAMETER;
 }
 
 /** @brief (one liner)
@@ -4355,10 +4454,23 @@ mvErrorEnum mvWorld_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num)
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
-   mvCount* noOfElements)
+   mvCount* noOfElements) const
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   /*
+   */
+   if (noOfElements == NULL)
+   {
+      return MV_COUNT_DEST_IS_NULL;
+   }
+
+   if (numArray == NULL)
+   {
+      *noOfElements = 0;
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
+   // no parameter
+   return MV_INVALID_WORLD_PARAMETER;
 }
 
 /** @brief (one liner)
@@ -4367,8 +4479,102 @@ mvErrorEnum mvWorld_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
   */
 mvErrorEnum mvWorld_V2::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   switch (paramFlag)
+   {
+      //TODO : case MV_TYPE,
+      case MV_IS_ENABLED:
+         if (option == MV_FALSE)
+         {
+            isEnabled = false;
+         }
+         else
+         {
+            isEnabled = true;
+         }
+         return MV_NO_ERROR;
+      case MV_AUTO_CONVERT_INDEX:
+         if (option == MV_FALSE)
+         {
+            autoConvertIndex = false;
+         }
+         else
+         {
+            autoConvertIndex = true;
+         }
+         return MV_NO_ERROR;
+      case MV_RIGHT_HANDED:
+         if (option == MV_FALSE)
+         {
+            isRightHanded= false;
+         }
+         else
+         {
+            isRightHanded = true;
+         }
+         return MV_NO_ERROR;
+      case MV_APPLY_FORCES:
+         if (option == MV_FALSE)
+         {
+            applyForces = false;
+         }
+         else
+         {
+            applyForces = true;
+         }
+         return MV_NO_ERROR;
+      case MV_APPLY_SHIFTS:
+         if (option == MV_FALSE)
+         {
+            applyShifts = false;
+         }
+         else
+         {
+            applyShifts = true;
+         }
+         return MV_NO_ERROR;
+      case MV_APPLY_ACCELERATIONS:
+         if (option == MV_FALSE)
+         {
+            applyAccelerations = false;
+         }
+         else
+         {
+            applyAccelerations = true;
+         }
+         return MV_NO_ERROR;
+      case MV_APPLY_GRAVITY:
+         if (option == MV_FALSE)
+         {
+            applyGravity = false;
+         }
+         else
+         {
+            applyGravity = true;
+         }
+         return MV_NO_ERROR;
+      case MV_APPLY_COLLISIONS:
+         if (option == MV_FALSE)
+         {
+            applyCollisions = false;
+         }
+         else
+         {
+            applyCollisions = true;
+         }
+         return MV_NO_ERROR;
+      case MV_APPLY_ALL_FORCES:
+         if (option == MV_FALSE)
+         {
+            applyAllForces = false;
+         }
+         else
+         {
+            applyAllForces = true;
+         }
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_WORLD_PARAMETER;
+   }
 }
 
 /** @brief (one liner)
@@ -4377,8 +4583,35 @@ mvErrorEnum mvWorld_V2::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
   */
 mvErrorEnum mvWorld_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   switch(paramFlag)
+   {
+      case MV_WAYPOINT:
+         setCurrentWaypoint(index);
+         return MV_NO_ERROR;
+      case MV_BODY:
+         setCurrentBody(index);
+         return MV_NO_ERROR;
+      case MV_PATHWAY:
+         setCurrentPathway(index);
+         return MV_NO_ERROR;
+      case MV_GROUP:
+         setCurrentGroup(index);
+         return MV_NO_ERROR;
+      case MV_OBSTACLE:
+         setCurrentObstacle(index);
+         return MV_NO_ERROR;
+      case MV_GROUP_BEHAVIOUR:
+         setCurrentGroupBehaviour(index);
+         return MV_NO_ERROR;
+      case MV_BEHAVIOUR:
+         setCurrentBehaviour(index);
+         return MV_NO_ERROR;
+      case MV_FORCE:
+         setCurrentForce(index);
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_WORLD_PARAMETER;
+   }
 }
 
 /** @brief (one liner)
@@ -4398,53 +4631,66 @@ mvErrorEnum mvWorld_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
   */
 mvErrorEnum mvWorld_V2::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (numArray == NULL)
+   {
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
+   return MV_INVALID_WORLD_PARAMETER;
 }
 
-mvIndex mvWorld_V2::getCurrentBody()
+mvIndex mvWorld_V2::getCurrentBody() const
 {
    return bodies.getCurrentIndex();
 }
 
-mvIndex mvWorld_V2::getCurrentObstacle()
+mvIndex mvWorld_V2::getCurrentObstacle() const
 {
    return obstacles.getCurrentIndex();
 }
 
-mvIndex mvWorld_V2::getCurrentWaypoint()
+mvIndex mvWorld_V2::getCurrentWaypoint() const
 {
    return waypoints.getCurrentIndex();
 }
 
-mvIndex mvWorld_V2::getCurrentForce()
+mvIndex mvWorld_V2::getCurrentForce() const
 {
    return forces.getCurrentIndex();
 }
 
-mvIndex mvWorld_V2::getCurrentGroup()
+mvIndex mvWorld_V2::getCurrentGroup() const
 {
    return groups.getCurrentIndex();
 }
 
-mvIndex mvWorld_V2::getCurrentBehaviour()
+mvIndex mvWorld_V2::getCurrentBehaviour() const
 {
    return behaviours.getCurrentIndex();
 }
 
-mvIndex mvWorld_V2::getCurrentGroupBehaviour()
+mvIndex mvWorld_V2::getCurrentGroupBehaviour() const
 {
    return groupBehaviours.getCurrentIndex();
 }
 
-mvIndex mvWorld_V2::getCurrentPathway()
+mvIndex mvWorld_V2::getCurrentPathway() const
 {
    return pathways.getCurrentIndex();
 }
 
 mvConstBodyPtr mvWorld_V2::getConstBodyPtr(mvIndex index) const
 {
-   return bodies.getConstClassPtr(index);
+   mvConstBodyCapsulePtr bCapsulePtr = bodies.getConstClassPtr(index);
+
+   if (bCapsulePtr != NULL)
+   {
+      return bCapsulePtr->getConstBodyPtr();
+   }
+   else
+   {
+      return NULL;
+   }
 }
 
 mvConstObstaclePtr mvWorld_V2::getConstObstaclePtr(mvIndex index) const

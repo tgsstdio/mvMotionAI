@@ -58,5 +58,6 @@ class mvBodyCapsule
 };
 
 typedef class mvBodyCapsule* mvBodyCapsulePtr;
+typedef class mvBodyCapsule const * const mvConstBodyCapsulePtr;
 
 #endif // MVBODYCAPSULE_H_INCLUDED
