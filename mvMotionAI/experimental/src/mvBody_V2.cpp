@@ -23,6 +23,7 @@
  */
 
 #include "mvBody_V2.h"
+#include <cstdlib>
 /** \brief mvBodyV2 constructor
  * This is a rewrite of mvBody
  */

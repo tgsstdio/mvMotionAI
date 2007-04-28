@@ -48,8 +48,6 @@
 #include MV_BEHAV_FUNC_LIST_HEADER_FILE_H_
 
 //TODO : new group behaviour functions
-//TODO : body capsule
-//TODO : waypoint capsule
 
 typedef class mvWorld_V2
 {
@@ -822,15 +820,15 @@ typedef class mvWorld_V2
       mvErrorEnum removeGroupFromCurrentGroupBehaviour(mvIndex groupIndex);
       mvErrorEnum removeCurrentGroupFromCurrentGroupBehaviour();
 
-      mvErrorEnum addBodyToGroup(mvIndex bodyIndex, mvIndex groupIndex);
-      mvErrorEnum addCurrentBodyToGroup(mvIndex groupIndex);
-      mvErrorEnum addBodyToCurrentGroup(mvIndex bodyIndex);
-      mvErrorEnum addCurrentBodyToCurrentGroup();
+      // TODO : generalisation of groups from bodies to all
+      mvErrorEnum addMemberToGroup(mvIndex memberIndex, mvIndex groupIndex);
+      mvErrorEnum addMemberToCurrentGroup(mvIndex memberIndex);
 
-      mvErrorEnum removeBodyFromGroup(mvIndex bodyIndex, mvIndex groupIndex);
-      mvErrorEnum removeCurrentBodyFromGroup(mvIndex groupIndex);
-      mvErrorEnum removeBodyFromCurrentGroup(mvIndex bodyIndex);
-      mvErrorEnum removeCurrentBodyFromCurrentGroup();
+      mvErrorEnum removeMemberFromGroup(mvIndex memberIndex, mvIndex groupIndex);
+      mvErrorEnum removeMemberFromCurrentGroup(mvIndex bodyIndex);
+
+      mvErrorEnum findMemberFromGroup(mvIndex memberIndex, mvIndex groupIndex);
+      mvErrorEnum findMemberFromCurrentGroup(mvIndex memberIndex);
 
       mvErrorEnum addWaypointToPathway(mvIndex wpIndex, mvIndex pIndex);
       mvErrorEnum addWaypointToCurrentPathway(mvIndex wpIndex);

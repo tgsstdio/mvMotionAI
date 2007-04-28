@@ -68,6 +68,7 @@ class mvGroup
       mvBodyPtr getMemberByIndex(mvIndex index);
       mvErrorEnum addMember(mvBodyPtr tempBody);
       mvErrorEnum removeMember(mvBodyPtr tempBody);
+
       mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
       mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num);

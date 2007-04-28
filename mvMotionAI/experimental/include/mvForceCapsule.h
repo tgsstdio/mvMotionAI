@@ -43,7 +43,7 @@ class mvForceCapsule
       mvErrorEnum addWaypoint(mvIndex index);
       mvErrorEnum removeWaypoint(mvIndex index);
       void clearAllWaypoints();
-      // TODO : is global force
+
       bool isGlobalForce() const;
 
       mvForcePtr getClassPtr() const;

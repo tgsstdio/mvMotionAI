@@ -20,6 +20,7 @@
  * DEALINGS IN THE SOFTWARE.
  */
 #include "mvShape.h"
+#include <cstdlib>
 
 static const mvCount MV_MAX_NO_OF_DIMENSIONS = 4;
 static const mvIndex MV_CIRCULAR_RADIUS_INDEX = 0;
@@ -413,12 +414,6 @@ mvOptionEnum mvShape::getType() const
 {
    dimensions = NULL;
    setType(sType);
-}
-
-mvShape::mvShape()
-{
-   shapeFlag = MV_NON_SHAPE;
-   dimensions = NULL;
 }
 
 mvShape::mvShape(const mvShape& rhs)

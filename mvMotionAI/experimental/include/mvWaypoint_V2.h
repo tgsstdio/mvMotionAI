@@ -33,11 +33,6 @@
 #include MV_ENUMS_HEADER_FILE_H_
 #include MV_SHAPE_HEADER_FILE_H_
 
-// TODO: set/get parameter
-// TODO: shape
-// TODO: position
-// TODO: type
-
 class mvWaypoint_V2
 {
    private:

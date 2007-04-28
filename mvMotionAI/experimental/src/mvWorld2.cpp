@@ -1118,7 +1118,7 @@ mvIndex mvWorld_V2::setCurrentGroup(mvIndex index)
   *
   * (documentation goes here)
   */
-mvGroup * mvWorld_V2::getCurrentGroupPtr()
+mvGroupPtr mvWorld_V2::getCurrentGroupPtr()
 {
    return groups.getCurrentClassPtr();
 }
@@ -1127,31 +1127,9 @@ mvGroup * mvWorld_V2::getCurrentGroupPtr()
   *
   * (documentation goes here)
   */
-mvGroup * mvWorld_V2::getGroupPtr(mvIndex index)
+mvGroupPtr mvWorld_V2::getGroupPtr(mvIndex index)
 {
    return groups.getClassPtr(index);
-}
-
-bool checkGroupsForIDMatch(mvGroupPtr currentGroup, void* extraPtr)
-{
-   const char* groupID = NULL;
-
-   if (extraPtr == NULL)
-   {
-      return false;
-   }
-
-   groupID = (const char*) extraPtr;
-
-   if (currentGroup == NULL)
-   {
-      return false;
-   }
-
-   if (strcmp(currentGroup->getID(), groupID) == 0)
-      return true;
-   else
-      return false;
 }
 
 /** @brief (one liner)
@@ -1160,7 +1138,8 @@ bool checkGroupsForIDMatch(mvGroupPtr currentGroup, void* extraPtr)
   */
 mvIndex mvWorld_V2::createGroup(const char* groupID)
 {
-   mvGroupPtr temp = NULL;
+   /*
+
 
    if (groupID == NULL)
    {
@@ -1173,8 +1152,10 @@ mvIndex mvWorld_V2::createGroup(const char* groupID)
    {
       return MV_NO_CURRENT_INDEX;
    }
+   */
+   mvGroupPtr temp = NULL;
 
-   temp = new (std::nothrow) mvGroup(groupID);
+   temp = new (std::nothrow) mvGroup();
 
    if (temp == NULL)
    {
@@ -2099,7 +2080,6 @@ mvErrorEnum mvWorld_V2::setWaypointParameter(mvIndex index,\
 void mvWorld_V2::applyToAllWaypointsByIndex(mvIndex worldIndex,\
    void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr)
 {
-   // TODO : check laer for possible changes
    waypoints.applyToAllItemsByIndex(worldIndex, someFunction, extraPtr);
 }
 
@@ -4609,8 +4589,7 @@ mvErrorEnum mvWorld_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
   */
 mvErrorEnum mvWorld_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   return MV_INVALID_WORLD_PARAMETER;
 }
 
 

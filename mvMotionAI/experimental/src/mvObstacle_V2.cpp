@@ -22,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  */
 #include "mvObstacle_V2.h"
+#include <cstdlib>
 
 mvObstacle_V2::mvObstacle_V2(mvOptionEnum oShape, mvOptionEnum oType,\
    mvFloat x, mvFloat y, mvFloat z)

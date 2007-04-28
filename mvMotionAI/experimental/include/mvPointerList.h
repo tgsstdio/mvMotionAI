@@ -56,7 +56,6 @@ class mvPointerList
       mvIndex getCurrentIndex() const;
       mvIndex setCurrentIndex(mvIndex index);
 
-      // TODO : implement this function
       void applyToAllItemsByItemIndex(void (someFunction)(mvIndex,void*),\
          void* extraPtr);
 
