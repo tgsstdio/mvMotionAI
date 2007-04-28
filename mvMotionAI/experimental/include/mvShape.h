@@ -1,3 +1,8 @@
+#ifndef MVSHAPE_H_INCLUDED
+#define MVSHAPE_H_INCLUDED
+
+#include "mvMotionAI-Types.h"
+#ifdef MV_FILE_HEADER_TAG_
 /**
  * Copyright (c) 2006, 2007 David Young.
  *
@@ -19,10 +24,8 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-#ifndef MVSHAPE_H_INCLUDED
-#define MVSHAPE_H_INCLUDED
+#endif
 
-#include "mvMotionAI-Types.h"
 #include MV_ENUMS_HEADER_FILE_H_
 
 class mvShape

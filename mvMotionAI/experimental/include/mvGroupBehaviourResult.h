@@ -1,3 +1,8 @@
+#ifndef MVGROUPBEHAVIOURRESULT_H_INCLUDED
+#define MVGROUPBEHAVIOURRESULT_H_INCLUDED
+
+#include "mvMotionAI-Types.h"
+#ifdef MV_FILE_HEADER_TAG_
 /**
  * Copyright (c) 2006, 2007 David Young.
  *
@@ -20,10 +25,8 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
-#ifndef MVGROUPBEHAVIOURRESULT_H_INCLUDED
-#define MVGROUPBEHAVIOURRESULT_H_INCLUDED
+#endif
 
-#include "mvMotionAI-Types.h"
 #include MV_GROUP_HEADER_FILE_H_
 #include MV_WORLD_HEADER_FILE_H_
 

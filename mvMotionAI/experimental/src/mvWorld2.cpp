@@ -353,7 +353,12 @@ mvIndex mvWorld_V2::createForce(mvOptionEnum fType)
    if (temp == NULL)
       return MV_NO_CURRENT_INDEX;
 
-   return forces.addItem(temp);
+   mvForceCapsulePtr tempCapsule = new (std::nothrow) mvForceCapsule(temp);
+
+   if (tempCapsule == NULL)
+      return MV_NO_CURRENT_INDEX;
+
+   return forces.addItem(tempCapsule);
 }
 
 /** @brief (one liner)
@@ -806,7 +811,11 @@ mvIndex mvWorld_V2::createGroupBehaviour(mvOptionEnum type)
    if (temp == NULL)
       return MV_NO_CURRENT_INDEX;
 
-   return groupBehaviours.addItem(new mvGroupBehaviour(temp));
+   mvGroupBehaviourPtr tempGBehav = new (std::nothrow) mvGroupBehaviour(temp);
+   if (tempGBehav== NULL)
+      return MV_NO_CURRENT_INDEX;
+
+   return groupBehaviours.addItem(tempGBehav);
 }
 
 /** @brief (one liner)
@@ -1506,10 +1515,15 @@ mvIndex mvWorld_V2::createBehaviour(mvOptionEnum bType)
    {
       return MV_NO_CURRENT_INDEX;
    }
-   else
+
+   mvBehaviourPtr temp = new (std::nothrow) mvBehaviour_V2(tempBehav);
+   if (temp == NULL)
    {
-      return behaviours.addItem(new mvBehaviour_V2(tempBehav));
+      return MV_NO_CURRENT_INDEX;
    }
+
+   return behaviours.addItem(temp);
+
 }
 
 /** @brief (one liner)
@@ -1833,7 +1847,9 @@ mvPathway * mvWorld_V2::getPathwayPtr(mvIndex index)
   */
 mvIndex mvWorld_V2::createPathway()
 {
-   return pathways.addItem(new mvPathway());
+   mvPathwayPtr temp = new (std::nothrow) mvPathway();
+
+   return pathways.addItem(temp);
 }
 
 /** @brief (one liner)
@@ -2087,34 +2103,6 @@ void mvWorld_V2::applyToAllWaypointsByIndex(mvIndex worldIndex,\
    waypoints.applyToAllItemsByIndex(worldIndex, someFunction, extraPtr);
 }
 
-typedef void (mvWaypointFunction)(mvWaypointPtr, void*);
-
-struct mvCapsuleToWaypointConverter
-{
-   public:
-      mvWaypointFunction* someFunction;
-      void* extraPtr;
-
-      mvCapsuleToWaypointConverter(mvWaypointFunction* wFunction, void* itemPtr)
-        : someFunction(wFunction)
-      {
-         extraPtr = itemPtr;
-      };
-};
-
-void mvWorld_CapsulePtr_To_Waypoint_Function(mvWaypointCapsulePtr capsulePtr,
-   void* extraPtr)
-{
-   mvCapsuleToWaypointConverter* conversion = (mvCapsuleToWaypointConverter*)
-      extraPtr;
-
-   if (capsulePtr != NULL && conversion != NULL)
-   {
-      conversion->someFunction(capsulePtr->getWaypointPtr(),\
-         conversion->extraPtr);
-   }
-}
-
 /** @brief (one liner)
   *
   * (documentation goes here)
@@ -2122,10 +2110,7 @@ void mvWorld_CapsulePtr_To_Waypoint_Function(mvWaypointCapsulePtr capsulePtr,
 void mvWorld_V2::applyToAllWaypoints(void (someFunction)(mvWaypoint*, void*),\
    void* extraPtr)
 {
-   mvCapsuleToWaypointConverter converter(someFunction, extraPtr);
-
-   waypoints.applyToAllItems(mvWorld_CapsulePtr_To_Waypoint_Function,\
-      &converter);
+   waypoints.applyToAllItems(someFunction,extraPtr);
 }
 
 /** @brief (one liner)
@@ -2170,16 +2155,7 @@ mvIndex mvWorld_V2::setCurrentWaypoint(mvIndex index)
   */
 mvWaypointPtr mvWorld_V2::getCurrentWaypointPtr()
 {
-   mvWaypointCapsulePtr capsulePtr = waypoints.getCurrentClassPtr();
-
-   if (capsulePtr != NULL)
-   {
-      return capsulePtr->getWaypointPtr();
-   }
-   else
-   {
-      return NULL;
-   }
+   return waypoints.getCurrentClassPtr();
 }
 
 /** @brief (one liner)
@@ -2188,16 +2164,7 @@ mvWaypointPtr mvWorld_V2::getCurrentWaypointPtr()
   */
 mvWaypointPtr mvWorld_V2::getWaypointPtr(mvIndex index)
 {
-   mvWaypointCapsulePtr capsulePtr = waypoints.getClassPtr(index);
-
-   if (capsulePtr != NULL)
-   {
-      return capsulePtr->getWaypointPtr();
-   }
-   else
-   {
-      return NULL;
-   }
+   return waypoints.getClassPtr(index);
 }
 
 /** @brief (one liner)
@@ -2207,14 +2174,16 @@ mvWaypointPtr mvWorld_V2::getWaypointPtr(mvIndex index)
 mvIndex mvWorld_V2::createWaypoint(mvOptionEnum wShape, mvFloat x = 0,\
    mvFloat y = 0, mvFloat z = 0)
 {
-   mvWaypointPtr tempWaypointPtr = new mvWaypoint(wShape, x, y, z);
+   mvWaypointPtr tempWaypointPtr = new (std::nothrow)\
+      mvWaypoint(wShape, x, y, z);
 
    if (tempWaypointPtr == NULL)
    {
       return MV_NO_CURRENT_INDEX;
    }
 
-   mvWaypointCapsulePtr capsulePtr = new mvWaypointCapsule(tempWaypointPtr);
+   mvWaypointCapsulePtr capsulePtr = new (std::nothrow)\
+      mvWaypointCapsule(tempWaypointPtr);
 
    if (capsulePtr == NULL)
    {
@@ -2565,7 +2534,14 @@ mvObstaclePtr mvWorld_V2::getObstaclePtr(mvIndex index)
 mvIndex mvWorld_V2::createObstacle(mvOptionEnum oType, mvOptionEnum oState,\
    mvFloat x = 0, mvFloat y = 0, mvFloat z = 0)
 {
-   return obstacles.addItem(new mvObstacle(oType, oState, x, y, z));
+   mvObstaclePtr temp = new (std::nothrow) mvObstacle(oType, oState, x, y, z);
+
+   if (temp == NULL)
+   {
+      return MV_NO_CURRENT_INDEX;
+   }
+
+   return obstacles.addItem(temp);
 }
 
 /** @brief (one liner)
@@ -2889,14 +2865,14 @@ mvBodyPtr mvWorld_V2::getBodyPtr(mvIndex index)
 mvIndex mvWorld_V2::createBody(mvOptionEnum bType, mvOptionEnum bShape,\
    mvFloat x = 0, mvFloat y  = 0, mvFloat z = 0)
 {
-   mvBodyPtr tempBody = new mvBody(bType, bShape,x,y,z);
+   mvBodyPtr tempBody = new (std::nothrow) mvBody(bType, bShape,x,y,z);
    // TODO : new bodies created by body loader
    if (tempBody == NULL)
    {
       return MV_NO_CURRENT_INDEX;
    }
 
-   mvBodyCapsulePtr bCapsulePtr = new mvBodyCapsule(tempBody);
+   mvBodyCapsulePtr bCapsulePtr = new (std::nothrow) mvBodyCapsule(tempBody);
    if (bCapsulePtr == NULL)
    {
       return MV_NO_CURRENT_INDEX;
@@ -4704,16 +4680,7 @@ mvConstObstaclePtr mvWorld_V2::getConstObstaclePtr(mvIndex index) const
 
 mvConstWaypointPtr mvWorld_V2::getConstWaypointPtr(mvIndex index) const
 {
-   mvConstWaypointCapsulePtr capsulePtr = waypoints.getConstClassPtr(index);
-
-   if (capsulePtr != NULL)
-   {
-      return capsulePtr->getConstWaypointPtr();
-   }
-   else
-   {
-      return NULL;
-   }
+   return waypoints.getConstClassPtr(index);
 }
 
 mvConstPathwayPtr mvWorld_V2::getConstPathwayPtr(mvIndex index) const
@@ -4762,7 +4729,7 @@ void mvWorld_V2::prepareIntegrationStep()
    bodies.applyToAllCapsules(mvWorld_Prepare_Body_Capsule,NULL);
 
    // TODO : reset waypoints
-
+   waypoints.applyToAllCapsules(mvWorld_Prepare_Waypoint_Capsule, NULL);
    // reset forces
 }
 

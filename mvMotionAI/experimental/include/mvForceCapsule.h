@@ -43,9 +43,11 @@ class mvForceCapsule
       mvErrorEnum addWaypoint(mvIndex index);
       mvErrorEnum removeWaypoint(mvIndex index);
       void clearAllWaypoints();
+      // TODO : is global force
+      bool isGlobalForce() const;
 
-      mvForcePtr getForcePtr() const;
-      mvConstForcePtr getConstForcePtr() const;
+      mvForcePtr getClassPtr() const;
+      mvConstForcePtr getConstClassPtr() const;
 
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
       mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option)\
@@ -61,5 +63,8 @@ class mvForceCapsule
 
       ~mvForceCapsule();
 };
+
+typedef mvForceCapsule* mvForceCapsulePtr;
+typedef mvForceCapsule const * const mvConstForceCapsulePtr;
 
 #endif // MVFORCECAPSULE_H_INCLUDED

@@ -34,6 +34,7 @@
 
 #include "mvBodyCapsule.h"
 #include "mvWaypointCapsule.h"
+#include "mvForceCapsule.h"
 
 #include MV_BASE_BEHAVIOUR_HEADER_FILE_H_
 #include MV_FORCE_HEADER_FILE_H_
@@ -54,11 +55,13 @@ typedef class mvWorld_V2
 {
    private:
       char* worldID;
-      mvPointerList<mvForcePtr, mvConstForcePtr> forces;
+      mvCapsuleList<mvForcePtr, mvConstForcePtr,\
+         mvForceCapsulePtr, mvConstForceCapsulePtr> forces;
       mvPointerList<mvObstaclePtr, mvConstObstaclePtr> obstacles;
       mvCapsuleList<mvBodyPtr, mvConstBodyPtr, mvBodyCapsulePtr,\
          mvConstBodyCapsulePtr> bodies;
-      mvPointerList<mvWaypointCapsulePtr, mvConstWaypointCapsulePtr> waypoints;
+      mvCapsuleList<mvWaypointPtr, mvConstWaypointPtr, mvWaypointCapsulePtr,\
+         mvConstWaypointCapsulePtr> waypoints;
       mvPointerList<mvPathwayPtr,mvConstPathwayPtr> pathways;
       mvPointerList<mvGroupBehaviourPtr, mvConstGroupBehaviourPtr>\
          groupBehaviours;

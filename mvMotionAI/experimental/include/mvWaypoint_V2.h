@@ -1,3 +1,9 @@
+#ifndef MVWAYPOINT_V2_H_INCLUDED
+#define MVWAYPOINT_V2_H_INCLUDED
+
+#include "mvMotionAI-Types.h"
+
+#ifdef MV_FILE_HEADER_TAG_
 /**
  * \file mvWaypoint.h
  *
@@ -21,10 +27,8 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-#ifndef MVWAYPOINT_V2_H_INCLUDED
-#define MVWAYPOINT_V2_H_INCLUDED
+#endif
 
-#include "mvMotionAI-Types.h"
 #include MV_VEC_3_HEADER_FILE_H_
 #include MV_ENUMS_HEADER_FILE_H_
 #include MV_SHAPE_HEADER_FILE_H_
