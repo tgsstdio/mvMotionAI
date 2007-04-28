@@ -159,9 +159,10 @@ typedef class mvForce const * const mvConstForcePtr;
 #define MV_FORCE_RESULT_HEADER_FILE_H_
 typedef class mvForceResult* mvForceResultPtr;
 
-#define MV_GROUP_HEADER_FILE_H_ "mvGroup.h"
-typedef class mvGroup* mvGroupPtr;
-typedef class mvGroup const * const mvConstGroupPtr;
+#define MV_GROUP_HEADER_FILE_H_ "mvGroup_V2.h"
+typedef class mvGroup_V2 mvGroup;
+typedef class mvGroup_V2* mvGroupPtr;
+typedef class mvGroup_V2 const * const mvConstGroupPtr;
 
 #define MV_GROUP_BEHAVIOUR_HEADER_FILE_H_ "mvGroupBehaviour_V2.h"
 #define MV_GROUP_BEHAVIOUR_NODE_HEADER_FILE_H_ "mvGroupBNode_V2.h"
@@ -210,6 +211,5 @@ typedef class mvShape* mvShapePtr;
 typedef class mvShape const * const mvConstShapePtr;
 
 #define MV_INDEX_SET_HEADER_FILE_H_ "mvIndexSet.h"
-
 
 #endif

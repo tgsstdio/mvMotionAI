@@ -147,7 +147,6 @@ template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCa
 mvClass mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::findItemPtrInList(\
    bool (someFunction)(mvClass, void*), void* extraPtr) const
 {
-   //TODO : implement this function
    class mvConverter<mvClass> loopConversion(someFunction, extraPtr);
 
    return itemList.findItemPtrInList(\
@@ -158,7 +157,6 @@ template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCa
 mvIndex mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::findItemInList(\
    bool (someFunction)(mvClass, void*), void* extraPtr) const
 {
-   //TODO : implement this function
    class mvConverter<mvClass> loopConversion(someFunction, extraPtr);
 
    return itemList.findItemInList(\
@@ -169,7 +167,6 @@ template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCa
 void mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::applyToAllItems(\
    void (someFunction)(mvClass, void*), void* extraPtr)
 {
-   //TODO : implement this function
    class mvConverter<mvClass> loopConversion(someFunction, extraPtr);
 
    itemList.applyToAllItems(CapsuledConverterFunction<mvClass,mvCapsulePtr>,&loopConversion);
@@ -180,7 +177,6 @@ void mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::applyT
    mvIndex worldIndex, void (someFunction)(mvIndex, mvIndex, void*),\
    void* extraPtr)
 {
-   //TODO : implement this function
    return itemList.applyToAllItemsByIndex(worldIndex, someFunction, extraPtr);
 }
 

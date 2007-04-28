@@ -1,5 +1,5 @@
-#ifndef MVSHAPE_H_INCLUDED
-#define MVSHAPE_H_INCLUDED
+#ifndef MVGROUP_V2_H_INCLUDED
+#define MVGROUP_V2_H_INCLUDED
 
 #include "mvMotionAI-Types.h"
 #ifdef MV_FILE_HEADER_TAG_
@@ -23,26 +23,32 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  */
 #endif
 
 #include MV_ENUMS_HEADER_FILE_H_
+#include MV_INDEX_SET_HEADER_FILE_H_
 
-class mvShape
+class mvGroup_V2
 {
-   private:
-      mvOptionEnum shapeFlag;
-      mvFloat* dimensions;
+   protected:
+      mvUniqueSet members;
 
    public:
-      mvShape(const mvShape& rhs);
-      mvErrorEnum setType(mvOptionEnum type);
-      const mvShape& operator=(const mvShape& rhs);
+      mvGroup_V2();
+      ~mvGroup_V2();
+      bool isActive;
 
-      mvShape(mvOptionEnum sType = MV_NON_SHAPE);
-      ~mvShape();
-      mvCount getNoOfDimensions() const;
-      mvOptionEnum getType() const;
+      mvErrorEnum addMember(mvIndex memberIndex);
+      mvErrorEnum findMember(mvIndex memberIndex) const;
+      mvErrorEnum removeMember(mvIndex memberIndex);
+      mvCount getNoOfMembers() const;
+      void clearAll();
+
+      void setToFirstMember();
+      bool areMembersFinished() const;
+      mvIndex getCurrentMember() const;
 
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
       mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option)\
@@ -55,7 +61,6 @@ class mvShape
       mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
       mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
       mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
-
 };
 
-#endif // MVSHAPE_H_INCLUDED
+#endif // MVGROUP_V2_H_INCLUDED

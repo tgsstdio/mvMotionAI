@@ -1,3 +1,8 @@
+#ifndef MV_ENUMERATIONS_H_
+#define MV_ENUMERATIONS_H_
+
+#include "mvMotionAI-Types.h"
+#ifdef MV_FILE_HEADER_TAG_
 /**
  * Copyright (c) 2006, 2007 David Young.
  *
@@ -19,10 +24,8 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+#endif
 
-#ifndef MV_ENUMERATIONS_H_
-#define MV_ENUMERATIONS_H_
-#include <cstdlib>
 // TODO : reimplement enum strings
 // TODO : alignment , cohension & separation behaviours
 enum mvOptionEnum
@@ -218,6 +221,7 @@ enum mvParamEnum
    MV_GROUP_BEHAVIOUR,
    MV_BEHAVIOUR,
    MV_FORCE,
+   MV_IS_ACTIVE,
 
    // user defined parameters
    MV_USER_PARAM_INDEX,

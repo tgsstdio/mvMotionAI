@@ -25,6 +25,8 @@
  */
 #endif
 
+#define MV_GLOBAL_FORCE_MAXIMUM_NO_OF_LINKS 0
+
 mvForceCapsule::mvForceCapsule(mvForcePtr forcePtr)
 {
    encappedForce = forcePtr;
@@ -43,6 +45,12 @@ mvErrorEnum mvForceCapsule::removeWaypoint(mvIndex index)
 void mvForceCapsule::clearAllWaypoints()
 {
    linkedWaypoints.clearAll();
+}
+
+bool mvForceCapsule::isGlobalForce() const
+{
+   return (linkedWaypoints.getNoOfIndexes()\
+      <= MV_GLOBAL_FORCE_MAXIMUM_NO_OF_LINKS);
 }
 
 mvForcePtr mvForceCapsule::getClassPtr() const

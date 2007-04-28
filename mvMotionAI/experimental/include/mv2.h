@@ -276,45 +276,6 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentBodyParametersv(\
    mvIndex worldIndex, const char* param, mvFloat* array,\
    mvCount* noOfParameters) const;
 
-/* TODO: implement the functions below */
-//change default body setting later... do we need these functions = 16
-
-/*
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultWaypointOfBody(\
-   mvIndex worldIndex, mvIndex* wayPoint, mvIndex* bodyIndex);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultPathwayOfBody(\
-   mvIndex worldIndex, mvIndex* pathway, mvIndex* bodyIndex);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultBodyOfBody(\
-   mvIndex worldIndex, mvIndex* target, mvIndex* bodyIndex);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultWeightOfBody(\
-   mvIndex worldIndex, mvFloat* weight, mvIndex bodyIndex);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultWaypointOfCurrentBody(\
-   mvIndex worldIndex, mvIndex* wayPoint);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultPathwayOfCurrentBody(\
-   mvIndex worldIndex, mvIndex* pathway);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultBodyOfCurrentBody(\
-   mvIndex worldIndex, mvIndex* target);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetDefaultWeightOfCurrentBody(\
-   mvIndex worldIndex, mvFloat* weight);
-
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultWaypointOfBody(\
-   mvIndex worldIndex, mvIndex wayPoint, mvIndex bodyIndex);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultPathwayOfBody(\
-   mvIndex worldIndex, mvIndex pathway, mvIndex bodyIndex);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultBodyOfBody(\
-   mvIndex worldIndex, mvIndex target, mvIndex bodyIndex);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultWeightOfBody(\
-   mvIndex worldIndex, mvFloat weight, mvIndex bodyIndex);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultWaypointOfCurrentBody(\
-   mvIndex worldIndex, mvIndex wayPoint);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultPathwayOfCurrentBody(\
-   mvIndex worldIndex, mvIndex pathway);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultBodyOfCurrentBody(\
-   mvIndex worldIndex, mvIndex target);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetDefaultWeightOfCurrentBody(\
-   mvIndex worldIndex, mvFloat weight);
-*/
-
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddBehaviourToBody(mvIndex worldIndex,\
    mvIndex bodyIndex, mvOptionEnum bType, mvIndex behaviourIndex,\
    mvIndex groupIndex);

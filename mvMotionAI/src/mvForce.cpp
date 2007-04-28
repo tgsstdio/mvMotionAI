@@ -23,6 +23,7 @@
  */
 
 #include "mvForce.h"
+#include <cstdlib>
 
 /**
       mvEnum forceType;

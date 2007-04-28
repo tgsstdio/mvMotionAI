@@ -116,6 +116,7 @@
 		<Unit filename="experimental\include\mvGroupBNode_V2.h" />
 		<Unit filename="experimental\include\mvGroupBehaviourResult.h" />
 		<Unit filename="experimental\include\mvGroupBehaviour_V2.h" />
+		<Unit filename="experimental\include\mvGroup_V2.h" />
 		<Unit filename="experimental\include\mvIndexSet.h" />
 		<Unit filename="experimental\include\mvObstacle_V2.h" />
 		<Unit filename="experimental\include\mvPointerList.h" />
@@ -132,6 +133,7 @@
 		<Unit filename="experimental\src\mvForceCapsule.cpp" />
 		<Unit filename="experimental\src\mvGroupBNode_V2.cpp" />
 		<Unit filename="experimental\src\mvGroupBehaviour_V2.cpp" />
+		<Unit filename="experimental\src\mvGroup_V2.cpp" />
 		<Unit filename="experimental\src\mvIndexSet.cpp" />
 		<Unit filename="experimental\src\mvObstacle_V2.cpp" />
 		<Unit filename="experimental\src\mvShape.cpp" />
@@ -140,14 +142,12 @@
 		<Unit filename="experimental\src\mvWorld2.cpp" />
 		<Unit filename="include\mvEnums.h" />
 		<Unit filename="include\mvForce.h" />
-		<Unit filename="include\mvGroup.h" />
 		<Unit filename="include\mvMotionAI-Types.h" />
 		<Unit filename="include\mvMotionAI-Utilities.h" />
 		<Unit filename="include\mvPathway.h" />
 		<Unit filename="include\mvVec3.h" />
 		<Unit filename="src\mvEnums.cpp" />
 		<Unit filename="src\mvForce.cpp" />
-		<Unit filename="src\mvGroup.cpp" />
 		<Unit filename="src\mvMotionAI-Utilities.cpp" />
 		<Unit filename="src\mvPathway.cpp" />
 		<Unit filename="src\mvVec3.cpp" />
