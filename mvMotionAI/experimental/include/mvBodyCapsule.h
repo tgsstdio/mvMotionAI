@@ -39,8 +39,8 @@ class mvBodyCapsule
       mvVec3 futureRotation;
 
       mvBodyCapsule(mvBodyPtr capsuleBody);
-      mvConstBodyPtr getConstBodyPtr() const;
-      mvBodyPtr getBodyPtr() const;
+      mvConstBodyPtr getConstClassPtr() const;
+      mvBodyPtr getClassPtr() const;
 
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
       mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option)\

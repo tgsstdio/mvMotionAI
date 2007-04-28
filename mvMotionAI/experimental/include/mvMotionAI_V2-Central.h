@@ -94,7 +94,7 @@ class mvMotionAI_V2
 {
    public:
       mvBehavFuncList bFunctions;
-      mvPointerList<mvWorldPtr> worlds;
+      mvPointerList<mvWorldPtr, mvConstWorldPtr> worlds;
 
       mvMotionAI_V2();
       mvIndex createWorld(const char* worldID);

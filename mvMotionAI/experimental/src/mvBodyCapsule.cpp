@@ -5,12 +5,12 @@ mvBodyCapsule::mvBodyCapsule(mvBodyPtr capsuleBody)
    encapsulatedBody = capsuleBody;
 }
 
-mvConstBodyPtr mvBodyCapsule::getConstBodyPtr() const
+mvConstBodyPtr mvBodyCapsule::getConstClassPtr() const
 {
-   return (mvConstBodyPtr) encapsulatedBody;
+   return (mvBody*) encapsulatedBody;
 }
 
-mvBodyPtr mvBodyCapsule::getBodyPtr() const
+mvBodyPtr mvBodyCapsule::getClassPtr() const
 {
    return encapsulatedBody;
 }

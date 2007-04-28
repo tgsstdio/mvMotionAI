@@ -30,6 +30,7 @@
 #endif
 
 #include "mvPointerList.h"
+#include "mvCapsuleList.h"
 
 #include "mvBodyCapsule.h"
 #include "mvWaypointCapsule.h"
@@ -53,14 +54,16 @@ typedef class mvWorld_V2
 {
    private:
       char* worldID;
-      mvPointerList<mvForcePtr> forces;
-      mvPointerList<mvObstaclePtr> obstacles;
-      mvPointerList<mvBodyCapsulePtr> bodies;
-      mvPointerList<mvWaypointPtr> waypoints;
-      mvPointerList<mvPathwayPtr> pathways;
-      mvPointerList<mvGroupBehaviourPtr> groupBehaviours;
-      mvPointerList<mvBehaviourPtr> behaviours;
-      mvPointerList<mvGroupPtr> groups;
+      mvPointerList<mvForcePtr, mvConstForcePtr> forces;
+      mvPointerList<mvObstaclePtr, mvConstObstaclePtr> obstacles;
+      mvCapsuleList<mvBodyPtr, mvConstBodyPtr, mvBodyCapsulePtr,\
+         mvConstBodyCapsulePtr> bodies;
+      mvPointerList<mvWaypointCapsulePtr, mvConstWaypointCapsulePtr> waypoints;
+      mvPointerList<mvPathwayPtr,mvConstPathwayPtr> pathways;
+      mvPointerList<mvGroupBehaviourPtr, mvConstGroupBehaviourPtr>\
+         groupBehaviours;
+      mvPointerList<mvBehaviourPtr, mvConstBehaviourPtr> behaviours;
+      mvPointerList<mvGroupPtr, mvConstGroupPtr> groups;
       mvBehavFuncListPtr behavLoader;
 
       /// world step functionality
@@ -72,6 +75,9 @@ typedef class mvWorld_V2
       void calculateLocalForceOnBody(mvIndex localForce, mvIndex bodyIndex);
       void calculateBehavioursOnBody(mvIndex bodyIndex);
       void finaliseIntegrationOfBody(mvIndex bodyIndex);
+
+      mvConstBodyCapsulePtr getConstBodyCapsulePtr(int index) const;
+      mvBodyCapsulePtr getBodyCapsulePtr(int index);
 
    public:
       bool isEnabled;
