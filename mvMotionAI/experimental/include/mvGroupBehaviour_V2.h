@@ -34,7 +34,7 @@ class mvGroupBehaviour_V2
 {
    private:
       mvBaseBehaviourPtr defaultGBehaviour;
-      mvPointerList<mvGroupBehaviourNodePtr> groupNodeList;
+      mvPointerList<mvGroupBehaviourNodePtr, mvGroupBehaviourNodePtr> groupNodeList;
       bool behavEnabled;
    public:
       mvGroupBehaviour_V2(mvBaseBehaviourPtr groupBehPtr);

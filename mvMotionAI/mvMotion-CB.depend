@@ -1033,25 +1033,26 @@
 	"mvEnums.h"
 	"mvMotionAI-Types.h"
 
-1177140002 source:d:\mvmotionai\mvmotionai\experimental\src\mvworld2.cpp
+1177222690 source:d:\mvmotionai\mvmotionai\experimental\src\mvworld2.cpp
 	"mvWorld2.h"
 	<cstring>
 	<new>
 
-1177140112 d:\mvmotionai\mvmotionai\experimental\include\mvworld2.h
+1177741078 d:\mvmotionai\mvmotionai\experimental\include\mvworld2.h
 	"mvMotionAI-Types.h"
 	"mvPointerList.h"
+	"mvCapsuleList.h"
 	"mvBodyCapsule.h"
 	"mvWaypointCapsule.h"
 
-1175786948 d:\mvmotionai\mvmotionai\experimental\include\mvpointerlist.h
+1177740476 d:\mvmotionai\mvmotionai\experimental\include\mvpointerlist.h
 	<vector>
 	"mvMotionAI-Types.h"
 	"mvPointerList.hpp"
 
-1175786958 d:\mvmotionai\mvmotionai\experimental\include\mvpointerlist.hpp
+1177740848 d:\mvmotionai\mvmotionai\experimental\include\mvpointerlist.hpp
 
-1175785986 d:\mvmotionai\mvmotionai\experimental\include\mvgroupbehaviour_v2.h
+1177741282 d:\mvmotionai\mvmotionai\experimental\include\mvgroupbehaviour_v2.h
 	"mvMotionAI-Types.h"
 	"mvPointerList.h"
 
@@ -1075,7 +1076,7 @@
 	"mvMotionAI_V2-Central.h"
 	<new>
 
-1173625662 d:\mvmotionai\mvmotionai\experimental\include\mvmotionai_v2-central.h
+1177741328 d:\mvmotionai\mvmotionai\experimental\include\mvmotionai_v2-central.h
 	"mvMotionAI-Types.h"
 	"mvBaseBehaviour.h"
 	"mvBehavFuncList.h"
@@ -1126,13 +1127,13 @@
 1175788110 source:d:\mvmotionai\mvmotionai\experimental\src\mvbehaviourresult.cpp
 	"mvBehaviourResult.h"
 
-1177216026 d:\mvmotionai\mvmotionai\experimental\include\mvbodycapsule.h
+1177737150 d:\mvmotionai\mvmotionai\experimental\include\mvbodycapsule.h
 	"mvMotionAI-Types.h"
 
-1176567446 d:\mvmotionai\mvmotionai\experimental\include\mvwaypointcapsule.h
+1177222536 d:\mvmotionai\mvmotionai\experimental\include\mvwaypointcapsule.h
 	"mvMotionAI-Types.h"
 
-1176450686 source:d:\mvmotionai\mvmotionai\experimental\src\mvbodycapsule.cpp
+1177740376 source:d:\mvmotionai\mvmotionai\experimental\src\mvbodycapsule.cpp
 	"mvBodyCapsule.h"
 
 1176534568 source:d:\mvmotionai\mvmotionai\experimental\src\mvindexset.cpp
@@ -1158,4 +1159,11 @@
 	"mvFactoryFunctionList.hpp"
 
 1176566586 d:\mvmotionai\mvmotionai\experimental\include\mvfactoryfunctionlist.hpp
+
+1177741514 d:\mvmotionai\mvmotionai\experimental\include\mvcapsulelist.h
+	"mvMotionAI-Types.h"
+	"mvPointerList.h"
+	"mvCapsuleList.hpp"
+
+1177741426 d:\mvmotionai\mvmotionai\experimental\include\mvcapsulelist.hpp
 

@@ -63,5 +63,6 @@ class mvWaypointCapsule
 };
 
 typedef class mvWaypointCapsule* mvWaypointCapsulePtr;
+typedef class mvWaypointCapsule const * const mvConstWaypointCapsulePtr;
 
 #endif // MVWAYPOINTCAPSULE_H_INCLUDED

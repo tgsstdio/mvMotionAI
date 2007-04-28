@@ -108,6 +108,8 @@
 		<Unit filename="experimental\include\mvBehaviour_V2.h" />
 		<Unit filename="experimental\include\mvBodyCapsule.h" />
 		<Unit filename="experimental\include\mvBody_V2.h" />
+		<Unit filename="experimental\include\mvCapsuleList.h" />
+		<Unit filename="experimental\include\mvCapsuleList.hpp" />
 		<Unit filename="experimental\include\mvFactoryFunctionList.h" />
 		<Unit filename="experimental\include\mvFactoryFunctionList.hpp" />
 		<Unit filename="experimental\include\mvForceCapsule.h" />

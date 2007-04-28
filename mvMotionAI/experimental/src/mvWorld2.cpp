@@ -2083,7 +2083,36 @@ mvErrorEnum mvWorld_V2::setWaypointParameter(mvIndex index,\
 void mvWorld_V2::applyToAllWaypointsByIndex(mvIndex worldIndex,\
    void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr)
 {
+   // TODO : check laer for possible changes
    waypoints.applyToAllItemsByIndex(worldIndex, someFunction, extraPtr);
+}
+
+typedef void (mvWaypointFunction)(mvWaypointPtr, void*);
+
+struct mvCapsuleToWaypointConverter
+{
+   public:
+      mvWaypointFunction* someFunction;
+      void* extraPtr;
+
+      mvCapsuleToWaypointConverter(mvWaypointFunction* wFunction, void* itemPtr)
+        : someFunction(wFunction)
+      {
+         extraPtr = itemPtr;
+      };
+};
+
+void mvWorld_CapsulePtr_To_Waypoint_Function(mvWaypointCapsulePtr capsulePtr,
+   void* extraPtr)
+{
+   mvCapsuleToWaypointConverter* conversion = (mvCapsuleToWaypointConverter*)
+      extraPtr;
+
+   if (capsulePtr != NULL && conversion != NULL)
+   {
+      conversion->someFunction(capsulePtr->getWaypointPtr(),\
+         conversion->extraPtr);
+   }
 }
 
 /** @brief (one liner)
@@ -2093,7 +2122,10 @@ void mvWorld_V2::applyToAllWaypointsByIndex(mvIndex worldIndex,\
 void mvWorld_V2::applyToAllWaypoints(void (someFunction)(mvWaypoint*, void*),\
    void* extraPtr)
 {
-   waypoints.applyToAllItems(someFunction, extraPtr);
+   mvCapsuleToWaypointConverter converter(someFunction, extraPtr);
+
+   waypoints.applyToAllItems(mvWorld_CapsulePtr_To_Waypoint_Function,\
+      &converter);
 }
 
 /** @brief (one liner)
@@ -2136,18 +2168,36 @@ mvIndex mvWorld_V2::setCurrentWaypoint(mvIndex index)
   *
   * (documentation goes here)
   */
-mvWaypoint * mvWorld_V2::getCurrentWaypointPtr()
+mvWaypointPtr mvWorld_V2::getCurrentWaypointPtr()
 {
-   return waypoints.getCurrentClassPtr();
+   mvWaypointCapsulePtr capsulePtr = waypoints.getCurrentClassPtr();
+
+   if (capsulePtr != NULL)
+   {
+      return capsulePtr->getWaypointPtr();
+   }
+   else
+   {
+      return NULL;
+   }
 }
 
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-mvWaypoint * mvWorld_V2::getWaypointPtr(mvIndex index)
+mvWaypointPtr mvWorld_V2::getWaypointPtr(mvIndex index)
 {
-   return waypoints.getClassPtr(index);
+   mvWaypointCapsulePtr capsulePtr = waypoints.getClassPtr(index);
+
+   if (capsulePtr != NULL)
+   {
+      return capsulePtr->getWaypointPtr();
+   }
+   else
+   {
+      return NULL;
+   }
 }
 
 /** @brief (one liner)
@@ -2157,7 +2207,21 @@ mvWaypoint * mvWorld_V2::getWaypointPtr(mvIndex index)
 mvIndex mvWorld_V2::createWaypoint(mvOptionEnum wShape, mvFloat x = 0,\
    mvFloat y = 0, mvFloat z = 0)
 {
-   return waypoints.addItem(new mvWaypoint(wShape, x, y, z));
+   mvWaypointPtr tempWaypointPtr = new mvWaypoint(wShape, x, y, z);
+
+   if (tempWaypointPtr == NULL)
+   {
+      return MV_NO_CURRENT_INDEX;
+   }
+
+   mvWaypointCapsulePtr capsulePtr = new mvWaypointCapsule(tempWaypointPtr);
+
+   if (capsulePtr == NULL)
+   {
+      return MV_NO_CURRENT_INDEX;
+   }
+
+   return waypoints.addItem(capsulePtr);
 }
 
 /** @brief (one liner)
@@ -2754,36 +2818,6 @@ void mvWorld_V2::applyToAllBodiesByIndex(mvIndex worldIndex,\
    bodies.applyToAllItemsByIndex(worldIndex, someFunction, extraPtr);
 }
 
-typedef void (BodyPtrFunction)(mvBodyPtr, void*);
-
-// temporary struct
-struct mvBodyCapsuleToBodyPtrStruct
-{
-   public:
-      void* extraPtr;
-      BodyPtrFunction* someFunc;
-
-      mvBodyCapsuleToBodyPtrStruct(BodyPtrFunction* someFunction,\
-         void* modulePtr)
-         : someFunc(someFunction)
-      {
-         extraPtr = modulePtr;
-      }
-};
-
-void convertBodyCapsuleToBodyPtr(mvBodyCapsulePtr capsulePtr,\
-   void* extraPtr)
-{
-   mvBodyCapsuleToBodyPtrStruct* convertCapsulePtr =
-      (mvBodyCapsuleToBodyPtrStruct*) extraPtr;
-
-   if (convertCapsulePtr != NULL)
-   {
-      // TODO : function pointers or capsuledList
-      convertCapsulePtr->someFunc(capsulePtr->getBodyPtr(), convertCapsulePtr->extraPtr);
-   }
-}
-
 /** @brief (one liner)
   *
   * (documentation goes here)
@@ -2791,9 +2825,7 @@ void convertBodyCapsuleToBodyPtr(mvBodyCapsulePtr capsulePtr,\
 void mvWorld_V2::applyToAllBodies(void (someFunction)(mvBodyPtr, void*),\
    void* extraPtr)
 {
-   mvBodyCapsuleToBodyPtrStruct converter(someFunction,extraPtr);
-
-   bodies.applyToAllItems(convertBodyCapsuleToBodyPtr, (void*) &converter);
+   bodies.applyToAllItems(someFunction, extraPtr);
 }
 
 /** @brief (one liner)
@@ -2838,17 +2870,7 @@ mvIndex mvWorld_V2::setCurrentBody(mvIndex index)
   */
 mvBodyPtr mvWorld_V2::getCurrentBodyPtr()
 {
-   mvBodyCapsulePtr tempCapsulePtr = NULL;
-
-   tempCapsulePtr = bodies.getCurrentClassPtr();
-   if (tempCapsulePtr != NULL)
-   {
-      return tempCapsulePtr->getBodyPtr();
-   }
-   else
-   {
-      return NULL;
-   }
+   return bodies.getCurrentClassPtr();
 }
 
 /** @brief (one liner)
@@ -2857,16 +2879,7 @@ mvBodyPtr mvWorld_V2::getCurrentBodyPtr()
   */
 mvBodyPtr mvWorld_V2::getBodyPtr(mvIndex index)
 {
-   mvBodyCapsulePtr tempCapsulePtr = bodies.getClassPtr(index);
-
-   if (tempCapsulePtr != NULL)
-   {
-      return tempCapsulePtr->getBodyPtr();
-   }
-   else
-   {
-      return NULL;
-   }
+   return bodies.getClassPtr(index);
 }
 
 /** @brief (one liner)
@@ -4681,16 +4694,7 @@ mvIndex mvWorld_V2::getCurrentPathway() const
 
 mvConstBodyPtr mvWorld_V2::getConstBodyPtr(mvIndex index) const
 {
-   mvConstBodyCapsulePtr bCapsulePtr = bodies.getConstClassPtr(index);
-
-   if (bCapsulePtr != NULL)
-   {
-      return bCapsulePtr->getConstBodyPtr();
-   }
-   else
-   {
-      return NULL;
-   }
+   return bodies.getConstClassPtr(index);
 }
 
 mvConstObstaclePtr mvWorld_V2::getConstObstaclePtr(mvIndex index) const
@@ -4700,7 +4704,16 @@ mvConstObstaclePtr mvWorld_V2::getConstObstaclePtr(mvIndex index) const
 
 mvConstWaypointPtr mvWorld_V2::getConstWaypointPtr(mvIndex index) const
 {
-   return waypoints.getConstClassPtr(index);
+   mvConstWaypointCapsulePtr capsulePtr = waypoints.getConstClassPtr(index);
+
+   if (capsulePtr != NULL)
+   {
+      return capsulePtr->getConstWaypointPtr();
+   }
+   else
+   {
+      return NULL;
+   }
 }
 
 mvConstPathwayPtr mvWorld_V2::getConstPathwayPtr(mvIndex index) const
@@ -4729,31 +4742,69 @@ mvConstForcePtr mvWorld_V2::getConstGroupForcePtr(mvIndex index) const
    return forces.getConstClassPtr(index);
 }
 
-// TODO : calculate world functions
-void mvWorld_V2::calculateGroupBehaviours() // 1
+void mvWorld_Prepare_Body_Capsule(mvBodyCapsulePtr capsulePtr, void* extraPtr)
+{
+   if (capsulePtr != NULL)
+   {
+      // TODO : reset bodies
+   }
+}
+
+void mvWorld_Prepare_Waypoint_Capsule(mvWaypointCapsulePtr capsulePtr,\
+   void* extraPtr)
 {
 
+}
+
+void mvWorld_V2::prepareIntegrationStep()
+{
+   // TODO : reset bodies
+   bodies.applyToAllCapsules(mvWorld_Prepare_Body_Capsule,NULL);
+
+   // TODO : reset waypoints
+
+   // reset forces
+}
+
+void mvWorld_V2::calculateGroupBehaviours() // 1
+{
+// TODO : calculate world functions
 }
 
 void mvWorld_V2::checkIfWaypointContainsBody(mvIndex waypointIndex,\
       mvIndex bodyIndex) // part of 2
 {
-
+// TODO : calculate world functions
 }
 
 void mvWorld_V2::calculateGlobalForceOnBody(mvIndex globalForce,\
    mvIndex bodyIndex)
 {
-
+// TODO : calculate world functions
 }
 
 void mvWorld_V2::calculateLocalForceOnBody(mvIndex localForce,\
    mvIndex bodyIndex)
 {
-
+// TODO : calculate world functions
 }
 
 void mvWorld_V2::calculateBehavioursOnBody(mvIndex bodyIndex)
 {
+// TODO : calculate world functions
+}
 
+void mvWorld_V2::finaliseIntegrationOfBody(mvIndex bodyIndex)
+{
+// TODO : calculate world functions
+}
+
+mvConstBodyCapsulePtr mvWorld_V2::getConstBodyCapsulePtr(int index) const
+{
+   return bodies.getConstCapsulePtr(index);
+}
+
+mvBodyCapsulePtr mvWorld_V2::getBodyCapsulePtr(int index)
+{
+   return bodies.getCapsulePtr(index);
 }
