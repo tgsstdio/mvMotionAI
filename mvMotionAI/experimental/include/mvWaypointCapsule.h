@@ -39,8 +39,8 @@ class mvWaypointCapsule
       mvCount noOfLinkedForces;
 
       mvWaypointCapsule(mvWaypointPtr wPoint);
-      mvConstWaypointPtr getConstWaypointPtr() const;
-      mvWaypointPtr getWaypointPtr() const;
+      mvConstWaypointPtr getConstClassPtr() const;
+      mvWaypointPtr getClassPtr() const;
 
       bool isLinkedWaypoint() const;
       void resetCapsule();

@@ -8,12 +8,12 @@ mvWaypointCapsule::mvWaypointCapsule(mvWaypointPtr wPoint)
    containsBody = false;
 }
 
-mvConstWaypointPtr mvWaypointCapsule::getConstWaypointPtr() const
+mvConstWaypointPtr mvWaypointCapsule::getConstClassPtr() const
 {
    return (mvConstWaypointPtr) encappedWaypoint;
 }
 
-mvWaypointPtr mvWaypointCapsule::getWaypointPtr() const
+mvWaypointPtr mvWaypointCapsule::getClassPtr() const
 {
    return encappedWaypoint;
 }

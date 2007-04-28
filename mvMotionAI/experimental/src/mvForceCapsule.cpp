@@ -45,12 +45,12 @@ void mvForceCapsule::clearAllWaypoints()
    linkedWaypoints.clearAll();
 }
 
-mvForcePtr mvForceCapsule::getForcePtr() const
+mvForcePtr mvForceCapsule::getClassPtr() const
 {
    return encappedForce;
 }
 
-mvConstForcePtr mvForceCapsule::getConstForcePtr() const
+mvConstForcePtr mvForceCapsule::getConstClassPtr() const
 {
    return (mvConstForcePtr) encappedForce;
 }
