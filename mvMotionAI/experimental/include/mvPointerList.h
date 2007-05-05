@@ -53,6 +53,8 @@ class mvPointerList
       mvConstClass getCurrentConstClassPtr() const;
       mvConstClass getConstClassPtr(mvIndex index) const;
       mvCount getNoOfItems() const;
+      mvCount getNoOfMaxSlots() const;
+
       mvIndex getCurrentIndex() const;
       mvIndex setCurrentIndex(mvIndex index);
 
@@ -63,6 +65,9 @@ class mvPointerList
          void* extraPtr) const;
 
       mvIndex findItemInList(bool (someFunction)(mvClass, void*),\
+         void* extraPtr) const;
+
+      mvIndex findItemInReverseInList(bool (someFunction)(mvClass, void*),\
          void* extraPtr) const;
 
       void applyToAllItems(void (someFunction)(mvClass, void*),\
