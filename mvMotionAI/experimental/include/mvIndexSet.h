@@ -25,6 +25,8 @@ class mvIndexSet
       void beginLoop();
       bool isLoopFinished() const;
       mvIndex getCurrentIndex() const;
+      //TODO : next index;
+      void nextIndex();
 
       ~mvIndexSet();
 };
@@ -46,6 +48,8 @@ class mvUniqueSet
       void beginLoop();
       bool isLoopFinished() const;
       mvIndex getCurrentIndex() const;
+      //TODO : next index;
+      void nextIndex();
 
       void clearAll();
       ~mvUniqueSet();

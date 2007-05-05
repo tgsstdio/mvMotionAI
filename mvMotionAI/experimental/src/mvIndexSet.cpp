@@ -105,6 +105,11 @@ mvIndex mvIndexSet::getCurrentIndex() const
    }
 }
 
+void mvIndexSet::nextIndex()
+{
+   ++mvCurrentIter;
+}
+
 mvIndexSet::~mvIndexSet()
 {
    clearAll();
@@ -184,6 +189,11 @@ mvIndex mvUniqueSet::getCurrentIndex() const
    {
       return *mvCurrentIter;
    }
+}
+
+void mvUniqueSet::nextIndex()
+{
+   ++mvCurrentIter;
 }
 
 void mvUniqueSet::clearAll()

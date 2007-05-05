@@ -90,7 +90,7 @@ template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCa
 mvConstClass mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getCurrentConstClassPtr()\
    const
 {
-   const mvCapsulePtr tempCapsule = itemList.getCurrentConstClassPtr();
+   mvConstCapsulePtr tempCapsule = itemList.getCurrentConstClassPtr();
 
    if (tempCapsule != NULL)
    {
