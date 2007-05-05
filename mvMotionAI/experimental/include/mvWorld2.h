@@ -49,7 +49,7 @@
 
 //TODO : new group behaviour functions
 
-typedef class mvWorld_V2
+class mvWorld_V2
 {
    private:
       char* worldID;
@@ -827,17 +827,9 @@ typedef class mvWorld_V2
       mvErrorEnum removeMemberFromGroup(mvIndex memberIndex, mvIndex groupIndex);
       mvErrorEnum removeMemberFromCurrentGroup(mvIndex bodyIndex);
 
-      mvErrorEnum findMemberFromGroup(mvIndex memberIndex, mvIndex groupIndex);
-      mvErrorEnum findMemberFromCurrentGroup(mvIndex memberIndex);
-
-      mvErrorEnum addWaypointToPathway(mvIndex wpIndex, mvIndex pIndex);
-      mvErrorEnum addWaypointToCurrentPathway(mvIndex wpIndex);
-      mvErrorEnum addCurrentWaypointToCurrentPathway();
-      mvErrorEnum addCurrentWaypointToPathway(mvIndex pIndex);
-      mvErrorEnum removeWaypointFromPathway(mvIndex wpIndex, mvIndex pIndex);
-      mvErrorEnum removeWaypointFromCurrentPathway(mvIndex wpIndex);
-      mvErrorEnum removeCurrentWaypointFromPathway(mvIndex pIndex);
-      mvErrorEnum removeCurrentWaypointFromCurrentPathway();
+      mvErrorEnum findMemberFromGroup(mvIndex memberIndex, mvIndex groupIndex)
+         const;
+      mvErrorEnum findMemberFromCurrentGroup(mvIndex memberIndex) const;
 
       mvErrorEnum setMainGroupBehaviourParameter(mvIndex index,\
          mvParamEnum param, mvOptionEnum option);
@@ -930,8 +922,30 @@ typedef class mvWorld_V2
       mvConstBehaviourPtr getConstBehaviourPtr(mvIndex index) const;
       mvConstForcePtr getConstGroupForcePtr(mvIndex index) const;
 
-      // TODO : patahway functions
-} mvWorld;
+      mvConstBodyPtr getCurrentConstBodyPtr() const;
+      mvConstObstaclePtr getCurrentConstObstaclePtr() const;
+      mvConstWaypointPtr getCurrentConstWaypointPtr() const;
+      mvConstPathwayPtr getCurrentConstPathwayPtr() const;
+      mvConstGroupPtr getCurrentConstGroupPtr() const;
+      mvConstGroupBehaviourPtr getCurrentConstGroupBehaviourPtr() const;
+      mvConstBehaviourPtr getCurrentConstBehaviourPtr() const;
+      mvConstForcePtr getCurrentConstGroupForcePtr() const;
+
+      // TODO : pathway functions
+      mvErrorEnum addNodeToPathway(mvIndex nIndex, mvIndex pIndex);
+      mvErrorEnum addNodeToCurrentPathway(mvIndex wpIndex);
+      mvErrorEnum removeNodeFromPathway(mvIndex wpIndex, mvIndex pIndex);
+      mvErrorEnum removeNodeFromCurrentPathway(mvIndex wpIndex);
+
+      mvErrorEnum addCurrentWaypointToCurrentPathway();
+      mvErrorEnum addCurrentWaypointToPathway(mvIndex pIndex);
+      mvErrorEnum removeCurrentWaypointFromPathway(mvIndex pIndex);
+      mvErrorEnum removeCurrentWaypointFromCurrentPathway();
+
+      mvErrorEnum removeAllNodesFromPathway(mvIndex pwIndex);
+      mvErrorEnum removeAllNodesFromCurrentPathway();
+
+};
 
 
 

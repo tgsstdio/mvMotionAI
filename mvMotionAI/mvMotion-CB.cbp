@@ -119,6 +119,7 @@
 		<Unit filename="experimental\include\mvGroup_V2.h" />
 		<Unit filename="experimental\include\mvIndexSet.h" />
 		<Unit filename="experimental\include\mvObstacle_V2.h" />
+		<Unit filename="experimental\include\mvPathway_V2.h" />
 		<Unit filename="experimental\include\mvPointerList.h" />
 		<Unit filename="experimental\include\mvPointerList.hpp" />
 		<Unit filename="experimental\include\mvShape.h" />

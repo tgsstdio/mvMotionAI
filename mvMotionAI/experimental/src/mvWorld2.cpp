@@ -3091,96 +3091,82 @@ mvErrorEnum mvWorld_V2::removeCurrentGroupFromCurrentGroupBehaviour()
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvWorld_V2::addBodyToGroup(mvIndex bodyIndex, mvIndex groupIndex)
-{
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
-}
 
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvWorld_V2::addCurrentBodyToGroup(mvIndex groupIndex)
-{
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvWorld_V2::addBodyToCurrentGroup(mvIndex bodyIndex)
-{
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvWorld_V2::addCurrentBodyToCurrentGroup()
-{
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvWorld_V2::removeBodyFromGroup(mvIndex bodyIndex,\
+mvErrorEnum mvWorld_V2::addMemberToGroup(mvIndex memberIndex,\
    mvIndex groupIndex)
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvGroupPtr tempGroup = getGroupPtr(groupIndex);
+
+   if (tempGroup == NULL)
+   {
+      return MV_GROUP_INDEX_IS_INVALID;
+   }
+
+   return tempGroup->addMember(memberIndex);
 }
 
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvWorld_V2::removeCurrentBodyFromGroup(mvIndex groupIndex)
+mvErrorEnum mvWorld_V2::addMemberToCurrentGroup(mvIndex memberIndex)
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvGroupPtr tempGroup = getCurrentGroupPtr();
+
+   if (tempGroup == NULL)
+   {
+      return MV_GROUP_INDEX_IS_INVALID;
+   }
+
+   return tempGroup->addMember(memberIndex);
 }
 
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvWorld_V2::removeBodyFromCurrentGroup(mvIndex bodyIndex)
+mvErrorEnum mvWorld_V2::removeMemberFromGroup(mvIndex memberIndex,\
+   mvIndex groupIndex)
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvGroupPtr tempGroup = getGroupPtr(groupIndex);
+
+   if (tempGroup == NULL)
+   {
+      return MV_GROUP_INDEX_IS_INVALID;
+   }
+
+   return tempGroup->removeMember(memberIndex);
 }
 
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvWorld_V2::removeCurrentBodyFromCurrentGroup()
+mvErrorEnum mvWorld_V2::removeMemberFromCurrentGroup(mvIndex memberIndex)
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvGroupPtr tempGroup = getCurrentGroupPtr();
+
+   if (tempGroup == NULL)
+   {
+      return MV_GROUP_INDEX_IS_INVALID;
+   }
+
+   return tempGroup->removeMember(memberIndex);
 }
 
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvWorld_V2::addWaypointToPathway(mvIndex wpIndex, mvIndex pIndex)
+mvErrorEnum mvWorld_V2::findMemberFromGroup(mvIndex memberIndex,\
+   mvIndex groupIndex) const
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvConstGroupPtr tempGroup = getConstGroupPtr(groupIndex);
+
+   if (tempGroup == NULL)
+   {
+      return MV_GROUP_INDEX_IS_INVALID;
+   }
+
+   return tempGroup->findMember(memberIndex);
 }
+
+mvErrorEnum mvWorld_V2::findMemberFromCurrentGroup(mvIndex memberIndex) const
+{
+   mvConstGroupPtr tempGroup = getCurrentConstGroupPtr();
+
+   if (tempGroup == NULL)
+   {
+      return MV_GROUP_INDEX_IS_INVALID;
+   }
+
+   return tempGroup->findMember(memberIndex);
+}
+
 
 /** @brief (one liner)
   *
@@ -3207,17 +3193,6 @@ mvErrorEnum mvWorld_V2::addCurrentWaypointToCurrentPathway()
   * (documentation goes here)
   */
 mvErrorEnum mvWorld_V2::addCurrentWaypointToPathway(mvIndex pIndex)
-{
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvWorld_V2::removeWaypointFromPathway(mvIndex wpIndex,\
-   mvIndex pIndex)
 {
    //TODO : implement the function
    return MV_FUNCTION_NOT_IMPLEMENTED;
@@ -4753,4 +4728,44 @@ mvConstBodyCapsulePtr mvWorld_V2::getConstBodyCapsulePtr(int index) const
 mvBodyCapsulePtr mvWorld_V2::getBodyCapsulePtr(int index)
 {
    return bodies.getCapsulePtr(index);
+}
+
+mvConstBodyPtr mvWorld_V2::getCurrentConstBodyPtr() const
+{
+   return bodies.getCurrentConstClassPtr();
+}
+
+mvConstObstaclePtr mvWorld_V2::getCurrentConstObstaclePtr() const
+{
+   return obstacles.getCurrentConstClassPtr();
+}
+
+mvConstWaypointPtr mvWorld_V2::getCurrentConstWaypointPtr() const
+{
+   return waypoints.getCurrentConstClassPtr();
+}
+
+mvConstPathwayPtr mvWorld_V2::getCurrentConstPathwayPtr() const
+{
+   return pathways.getCurrentClassPtr();
+}
+
+mvConstGroupPtr mvWorld_V2::getCurrentConstGroupPtr() const
+{
+   return groups.getCurrentConstClassPtr();
+}
+
+mvConstGroupBehaviourPtr mvWorld_V2::getCurrentConstGroupBehaviourPtr() const
+{
+   return groupBehaviours.getCurrentConstClassPtr();
+}
+
+mvConstBehaviourPtr mvWorld_V2::getCurrentConstBehaviourPtr() const
+{
+   return behaviours.getCurrentConstClassPtr();
+}
+
+mvConstForcePtr mvWorld_V2::getCurrentConstGroupForcePtr() const
+{
+   return forces.getCurrentConstClassPtr();
 }
