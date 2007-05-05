@@ -23,6 +23,8 @@
  *  using HPP file or template implementation
  */
 
+#define MV_FIRST_POINTER_LIST_INDEX 1
+
 // TODO : rename all functions to pointerlist
 template <class mvClass, class mvConstClass>
 mvPointerList<mvClass,mvConstClass>::mvPointerList()
@@ -322,7 +324,7 @@ void mvPointerList<mvClass,mvConstClass>::applyToAllItemsByIndex(\
    class std::vector<mvClass>::iterator i;
    class std::vector<mvClass>::iterator listEnd = listItems.end();
    mvClass tempClass = NULL;
-   mvIndex listIndex = 1;
+   mvIndex listIndex = MV_FIRST_POINTER_LIST_INDEX;
 
    for (i = listItems.begin(); i != listEnd; ++i)
    {
@@ -1217,7 +1219,7 @@ mvIndex mvPointerList<mvClass,mvConstClass>::findItemInList(\
    class std::vector<mvClass>::const_iterator i;
    mvClass currentPtr = NULL;
    class std::vector<mvClass>::const_iterator listEnd = listItems.end();
-   mvIndex count = 1;
+   mvIndex count = MV_FIRST_POINTER_LIST_INDEX;
 
    for (i = listItems.begin(); i != listEnd; ++i)
    {
@@ -1231,8 +1233,31 @@ mvIndex mvPointerList<mvClass,mvConstClass>::findItemInList(\
    }
    // if failed
    return MV_NO_CURRENT_INDEX;
-
 }
+
+template <class mvClass, class mvConstClass>
+mvIndex mvPointerList<mvClass,mvConstClass>::findItemInReverseInList(\
+   bool (someFunction)(mvClass, void*), void* extraPtr) const
+{
+   class std::vector<mvClass>::const_reverse_iterator i;
+   mvClass currentPtr = NULL;
+   class std::vector<mvClass>::const_reverse_iterator listEnd = listItems.rend();
+   mvIndex count = maxNoOfItems;
+
+   for (i = listItems.rbegin(); i != listEnd; ++i)
+   {
+      currentPtr = *i;
+      // if true
+      if (someFunction(currentPtr, extraPtr))
+      {
+         return count;
+      }
+      ++count;
+   }
+   // if failed
+   return MV_NO_CURRENT_INDEX;
+}
+
 
 template <class mvClass, class mvConstClass>
 void mvPointerList<mvClass,mvConstClass>::applyToAllItemsByItemIndex(\
@@ -1240,11 +1265,17 @@ void mvPointerList<mvClass,mvConstClass>::applyToAllItemsByItemIndex(\
 {
    class std::vector<mvClass>::iterator i;
    class std::vector<mvClass>::iterator listEnd = listItems.end();
-   mvIndex itemIndex = 1;
+   mvIndex itemIndex = MV_FIRST_POINTER_LIST_INDEX;
 
    for (i = listItems.begin(); i != listEnd; ++i)
    {
       someFunction(itemIndex, extraPtr);
       ++itemIndex;
    }
+}
+
+template <class mvClass, class mvConstClass>
+mvCount mvPointerList<mvClass,mvConstClass>::getNoOfMaxSlots() const
+{
+   return maxNoOfItems;
 }

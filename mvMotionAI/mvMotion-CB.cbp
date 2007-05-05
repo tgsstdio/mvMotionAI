@@ -137,6 +137,7 @@
 		<Unit filename="experimental\src\mvGroup_V2.cpp" />
 		<Unit filename="experimental\src\mvIndexSet.cpp" />
 		<Unit filename="experimental\src\mvObstacle_V2.cpp" />
+		<Unit filename="experimental\src\mvPathway_V2.cpp" />
 		<Unit filename="experimental\src\mvShape.cpp" />
 		<Unit filename="experimental\src\mvWaypointCapsule.cpp" />
 		<Unit filename="experimental\src\mvWaypoint_V2.cpp" />
