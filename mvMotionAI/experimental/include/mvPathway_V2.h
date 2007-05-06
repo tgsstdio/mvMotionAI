@@ -39,10 +39,12 @@ class mvPathway_V2
 
       mvPathway_V2();
       mvIndex addNode(mvIndex pWaypoint);
+      mvErrorEnum removeNodeAt(mvIndex nodeIndex);
+      mvErrorEnum removeCurrentNode();
       mvErrorEnum removeLastNodeInstance(mvIndex index);
       mvErrorEnum removeFirstNodeInstance(mvIndex index);
       mvCount getNoOfNodes() const;
-      void setCurrentNode(mvIndex nIndex);
+      mvIndex setCurrentNode(mvIndex nIndex);
 
       mvIndex getCurrentNode() const;
 
@@ -92,6 +94,44 @@ class mvPathway_V2
          mvFloat* num) const;
       mvErrorEnum getCurrentNodeParameterv(mvParamEnum paramFlag,\
          mvFloat* numArray, mvCount* noOfParameters) const;
+
+      // parameter string functions
+
+      mvErrorEnum getCurrentNodeParametersi(const char* param,\
+         mvIndex* index) const;
+      mvErrorEnum getCurrentNodeParameters(const char* param,\
+         const char** option) const;
+      mvErrorEnum getCurrentNodeParametersf(const char* param,\
+         mvFloat* num) const;
+      mvErrorEnum getCurrentNodeParametersv(const char* param,\
+         mvFloat* numArray, mvCount* noOfParameters) const;
+
+      mvErrorEnum setCurrentNodeParametersi(const char* param,\
+         mvIndex index);
+      mvErrorEnum setCurrentNodeParameters(const char* param,\
+         const char* option);
+      mvErrorEnum setCurrentNodeParametersf(const char* param,\
+         mvFloat num);
+      mvErrorEnum setCurrentNodeParametersv(const char* param,\
+         mvFloat* numArray);
+
+      mvErrorEnum getNodeParametersi(mvIndex nodeIndex, const char* param,\
+         mvIndex* index) const;
+      mvErrorEnum getNodeParameters(mvIndex nodeIndex, const char* param,\
+         const char** option) const;
+      mvErrorEnum getNodeParametersf(mvIndex nodeIndex, const char* param,\
+         mvFloat* num) const;
+      mvErrorEnum getNodeParametersv(mvIndex nodeIndex, const char* param,\
+         mvFloat* numArray, mvCount* noOfParameters) const;
+
+      mvErrorEnum setNodeParametersi(mvIndex nodeIndex, const char* param,\
+         mvIndex index);
+      mvErrorEnum setNodeParameters(mvIndex nodeIndex, const char* param,\
+         const char* option);
+      mvErrorEnum setNodeParametersf(mvIndex nodeIndex, const char* param,\
+         mvFloat num);
+      mvErrorEnum setNodeParametersv(mvIndex nodeIndex, const char* param,\
+         mvFloat* numArray);
 
       void removeAllNodes();
       ~mvPathway_V2();

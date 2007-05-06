@@ -146,12 +146,10 @@
 		<Unit filename="include\mvForce.h" />
 		<Unit filename="include\mvMotionAI-Types.h" />
 		<Unit filename="include\mvMotionAI-Utilities.h" />
-		<Unit filename="include\mvPathway.h" />
 		<Unit filename="include\mvVec3.h" />
 		<Unit filename="src\mvEnums.cpp" />
 		<Unit filename="src\mvForce.cpp" />
 		<Unit filename="src\mvMotionAI-Utilities.cpp" />
-		<Unit filename="src\mvPathway.cpp" />
 		<Unit filename="src\mvVec3.cpp" />
 		<Extensions>
 			<code_completion />

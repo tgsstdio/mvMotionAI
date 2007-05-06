@@ -179,9 +179,10 @@ typedef class mvObstacle_V2 mvObstacle;
 typedef class mvObstacle_V2* mvObstaclePtr;
 typedef class mvObstacle_V2 const * const mvConstObstaclePtr;
 
-#define MV_PATHWAY_HEADER_FILE_H_ "mvPathway.h"
-typedef class mvPathway* mvPathwayPtr;
-typedef class mvPathway const * const mvConstPathwayPtr;
+#define MV_PATHWAY_HEADER_FILE_H_ "mvPathway_V2.h"
+typedef class mvPathway_V2 mvPathway;
+typedef class mvPathway_V2* mvPathwayPtr;
+typedef class mvPathway_V2 const * const mvConstPathwayPtr;
 
 #define MV_WAYPOINT_HEADER_FILE_H_ "mvWaypoint_V2.h"
 typedef class mvWaypoint_V2 mvWaypoint;
