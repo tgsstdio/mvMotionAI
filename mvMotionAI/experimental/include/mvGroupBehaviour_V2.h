@@ -48,6 +48,9 @@ class mvGroupBehaviour_V2
       //mvOptionEnum getType();
       bool isEnabled() const;
       void setEnabled(bool value);
+      // TODO : get current node
+      mvIndex getCurrentGroupBehaviourNode() const;
+
 
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
       mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option)\

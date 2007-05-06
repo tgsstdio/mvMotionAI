@@ -3157,7 +3157,7 @@ mvErrorEnum mvWorld_V2::findMemberFromGroup(mvIndex memberIndex,\
 
 mvErrorEnum mvWorld_V2::findMemberFromCurrentGroup(mvIndex memberIndex) const
 {
-   mvConstGroupPtr tempGroup = getCurrentConstGroupPtr();
+   mvConstGroupPtr tempGroup = getConstGroupPtr(getCurrentGroup());
 
    if (tempGroup == NULL)
    {
@@ -3165,67 +3165,6 @@ mvErrorEnum mvWorld_V2::findMemberFromCurrentGroup(mvIndex memberIndex) const
    }
 
    return tempGroup->findMember(memberIndex);
-}
-
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvWorld_V2::addWaypointToCurrentPathway(mvIndex wpIndex)
-{
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvWorld_V2::addCurrentWaypointToCurrentPathway()
-{
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvWorld_V2::addCurrentWaypointToPathway(mvIndex pIndex)
-{
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvWorld_V2::removeWaypointFromCurrentPathway(mvIndex wpIndex)
-{
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvWorld_V2::removeCurrentWaypointFromPathway(mvIndex pIndex)
-{
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvWorld_V2::removeCurrentWaypointFromCurrentPathway()
-{
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
 /** @brief (one liner)
@@ -4730,42 +4669,404 @@ mvBodyCapsulePtr mvWorld_V2::getBodyCapsulePtr(int index)
    return bodies.getCapsulePtr(index);
 }
 
-mvConstBodyPtr mvWorld_V2::getCurrentConstBodyPtr() const
+mvIndex mvWorld_V2::addNodeToPathway(mvIndex nIndex, mvIndex pIndex)
 {
-   return bodies.getCurrentConstClassPtr();
+   // TODO : convert nodes
+   mvPathwayPtr tempPathway = getPathwayPtr(pIndex);
+
+   if (tempPathway == NULL)
+   {
+      return MV_PATHWAY_INDEX_IS_INVALID;
+   }
+
+   return tempPathway->addNode(nIndex);
 }
 
-mvConstObstaclePtr mvWorld_V2::getCurrentConstObstaclePtr() const
+mvIndex mvWorld_V2::addNodeToCurrentPathway(mvIndex wpIndex)
 {
-   return obstacles.getCurrentConstClassPtr();
+   mvPathwayPtr tempPathway = getCurrentPathwayPtr();
+
+   if (tempPathway == NULL)
+   {
+      return MV_PATHWAY_INDEX_IS_INVALID;
+   }
+
+   return tempPathway->addNode(wpIndex);
 }
 
-mvConstWaypointPtr mvWorld_V2::getCurrentConstWaypointPtr() const
+mvErrorEnum mvWorld_V2::removeNodeFromPathway(mvIndex wpIndex, mvIndex pIndex)
 {
-   return waypoints.getCurrentConstClassPtr();
+   mvPathwayPtr tempPathway = getPathwayPtr(pIndex);
+
+   if (tempPathway == NULL)
+   {
+      return MV_PATHWAY_INDEX_IS_INVALID;
+   }
+
+   return tempPathway->removeFirstNodeInstance(wpIndex);
 }
 
-mvConstPathwayPtr mvWorld_V2::getCurrentConstPathwayPtr() const
+mvErrorEnum mvWorld_V2::removeNodeFromCurrentPathway(mvIndex wpIndex)
 {
-   return pathways.getCurrentClassPtr();
+   mvPathwayPtr tempPathway = getCurrentPathwayPtr();
+
+   if (tempPathway == NULL)
+   {
+      return MV_PATHWAY_INDEX_IS_INVALID;
+   }
+
+   return tempPathway->removeFirstNodeInstance(wpIndex);
 }
 
-mvConstGroupPtr mvWorld_V2::getCurrentConstGroupPtr() const
+mvIndex mvWorld_V2::addCurrentWaypointToCurrentPathway()
 {
-   return groups.getCurrentConstClassPtr();
+   mvPathwayPtr tempPathway = getCurrentPathwayPtr();
+
+   if (tempPathway == NULL)
+   {
+      return MV_PATHWAY_INDEX_IS_INVALID;
+   }
+
+   return tempPathway->addNode(getCurrentWaypoint());
 }
 
-mvConstGroupBehaviourPtr mvWorld_V2::getCurrentConstGroupBehaviourPtr() const
+mvIndex mvWorld_V2::addCurrentWaypointToPathway(mvIndex pIndex)
 {
-   return groupBehaviours.getCurrentConstClassPtr();
+   mvPathwayPtr tempPathway = getPathwayPtr(pIndex);
+
+   if (tempPathway == NULL)
+   {
+      return MV_PATHWAY_INDEX_IS_INVALID;
+   }
+
+   return tempPathway->addNode(getCurrentWaypoint());
 }
 
-mvConstBehaviourPtr mvWorld_V2::getCurrentConstBehaviourPtr() const
+mvErrorEnum mvWorld_V2::removeCurrentWaypointFromPathway(mvIndex pIndex)
 {
-   return behaviours.getCurrentConstClassPtr();
+   mvPathwayPtr tempPathway = getPathwayPtr(pIndex);
+
+   if (tempPathway == NULL)
+   {
+      return MV_PATHWAY_INDEX_IS_INVALID;
+   }
+
+   return tempPathway->removeFirstNodeInstance(getCurrentWaypoint());
 }
 
-mvConstForcePtr mvWorld_V2::getCurrentConstGroupForcePtr() const
+mvErrorEnum mvWorld_V2::removeCurrentWaypointFromCurrentPathway()
 {
-   return forces.getCurrentConstClassPtr();
+   mvPathwayPtr tempPathway = getCurrentPathwayPtr();
+
+   if (tempPathway == NULL)
+   {
+      return MV_PATHWAY_INDEX_IS_INVALID;
+   }
+
+   return tempPathway->removeFirstNodeInstance(getCurrentWaypoint());
+}
+
+mvErrorEnum mvWorld_V2::removeAllNodesFromPathway(mvIndex pwIndex)
+{
+   mvPathwayPtr tempPathway = getPathwayPtr(pwIndex);
+
+   if (tempPathway == NULL)
+   {
+      return MV_PATHWAY_INDEX_IS_INVALID;
+   }
+
+   tempPathway->removeAllNodes();
+   return MV_NO_ERROR;
+}
+
+mvErrorEnum mvWorld_V2::removeAllNodesFromCurrentPathway()
+{
+   mvPathwayPtr tempPathway = getCurrentPathwayPtr();
+
+   if (tempPathway == NULL)
+   {
+      return MV_PATHWAY_INDEX_IS_INVALID;
+   }
+
+   tempPathway->removeAllNodes();
+   return MV_NO_ERROR;
+}
+
+mvIndex mvWorld_V2::getCurrentNodeOfPathway(mvIndex pwIndex)
+{
+   mvPathwayPtr tempPathway = getPathwayPtr(pwIndex);
+
+   if (tempPathway == NULL)
+   {
+      return MV_NO_CURRENT_INDEX;
+   }
+
+   return tempPathway->getCurrentNode();
+}
+
+mvIndex mvWorld_V2::getCurrentNodeOfCurrentPathway()
+{
+   mvPathwayPtr tempPathway = getCurrentPathwayPtr();
+
+   if (tempPathway == NULL)
+   {
+      return MV_NO_CURRENT_INDEX;
+   }
+
+   return tempPathway->getCurrentNode();
+}
+
+mvErrorEnum mvWorld_V2::setPathwayNodeParameteri(mvIndex pathwayIndex,\
+   mvIndex nodeIndex, mvParamEnum paramFlag, mvIndex index)
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::setPathwayNodeParameter(mvIndex pathwayIndex,\
+   mvIndex nodeIndex, mvParamEnum paramFlag, mvOptionEnum option)
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::setPathwayNodeParameterf(mvIndex pathwayIndex,\
+   mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat num)
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::setPathwayNodeParameterv(mvIndex pathwayIndex,\
+   mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* array)
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+
+mvErrorEnum mvWorld_V2::setCurrentPathwayNodeParameteri(mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvIndex index)
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::setCurrentPathwayNodeParameter(mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvOptionEnum option)
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::setCurrentPathwayNodeParameterf(mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvFloat num)
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::setCurrentPathwayNodeParameterv(mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvFloat* array)
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+
+mvErrorEnum mvWorld_V2::setPathwayNodeParametersi(mvIndex pathwayIndex,\
+   mvIndex nodeIndex, const char* param, mvIndex index)
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::setPathwayNodeParameters(mvIndex pathwayIndex,\
+   mvIndex nodeIndex, const char* param, const char* option)
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::setPathwayNodeParametersf(mvIndex pathwayIndex,\
+   mvIndex nodeIndex, const char* param, mvFloat num)
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::setPathwayNodeParametersv(mvIndex pathwayIndex,\
+   mvIndex nodeIndex, const char* param, mvFloat* array)
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+
+mvErrorEnum mvWorld_V2::setCurrentPathwayNodeParametersi(mvIndex nodeIndex,\
+   const char* param, mvIndex index)
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::setCurrentPathwayNodeParameters(mvIndex nodeIndex,\
+   const char* param, const char* option)
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::setCurrentPathwayNodeParametersf(mvIndex nodeIndex,\
+   const char* param, mvFloat num)
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::setCurrentPathwayNodeParametersv(mvIndex nodeIndex,\
+   const char* param, mvFloat* array)
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+
+mvErrorEnum mvWorld_V2::getPathwayNodeParameteri(mvIndex pathwayIndex,\
+   mvIndex nodeIndex, mvParamEnum paramFlag, mvIndex* outIndex) const
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::getPathwayNodeParameter(mvIndex pathwayIndex,\
+   mvIndex nodeIndex, mvParamEnum paramFlag, mvOptionEnum* option) const
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::getPathwayNodeParameterf(mvIndex pathwayIndex,\
+   mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* num) const
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::getPathwayNodeParameterv(mvIndex pathwayIndex,\
+   mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* array,\
+   mvCount* noOfParameters) const
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::getCurrentPathwayNodeParameteri(mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvIndex* outIndex) const
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::getCurrentPathwayNodeParameter(mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvOptionEnum* option) const
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::getCurrentPathwayNodeParameterf(mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvFloat* num) const
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::getCurrentPathwayNodeParameterv(mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters) const
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::getPathwayNodeParametersi(mvIndex pathwayIndex,\
+   mvIndex nodeIndex, const char* param, mvIndex* outIndex) const
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::getPathwayNodeParameters(mvIndex pathwayIndex,\
+   mvIndex nodeIndex, const char* param, const char** option) const
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::getPathwayNodeParametersf(mvIndex pathwayIndex,\
+   mvIndex nodeIndex, const char* param, mvFloat* num) const
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::getPathwayNodeParametersv(mvIndex pathwayIndex,\
+   mvIndex nodeIndex, const char* param, mvFloat* array,\
+   mvCount* noOfParameters) const
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+
+mvErrorEnum mvWorld_V2::getCurrentPathwayNodeParametersi(mvIndex nodeIndex,\
+   const char* param, mvIndex* outIndex) const
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::getCurrentPathwayNodeParameters(mvIndex nodeIndex,\
+   const char* param, const char** option) const
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::getCurrentPathwayNodeParametersf(mvIndex nodeIndex,\
+   const char* param, mvFloat* num) const
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvWorld_V2::getCurrentPathwayNodeParametersv(mvIndex nodeIndex,\
+   const char* param, mvFloat* array, mvCount* noOfParameters) const
+{
+   // TODO implement to pathway node functions
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvIndex mvWorld_V2::removePathwayNodeAt(mvIndex pwIndex, mvIndex nodeIndex)
+{
+   mvPathwayPtr tempPathway = getPathwayPtr(pwIndex);
+
+   if (tempPathway == NULL)
+   {
+      return MV_NO_CURRENT_INDEX;
+   }
+
+   return tempPathway->removeNodeAt(nodeIndex);
+}
+
+mvIndex mvWorld_V2::removeCurrentPathwayNodeAt(mvIndex nodeIndex)
+{
+   mvPathwayPtr tempPathway = getCurrentPathwayPtr();
+
+   if (tempPathway == NULL)
+   {
+      return MV_NO_CURRENT_INDEX;
+   }
+
+   return tempPathway->removeNodeAt(nodeIndex);
 }

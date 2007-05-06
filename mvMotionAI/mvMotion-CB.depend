@@ -24,7 +24,7 @@
 
 1162271928 
 
-1177775316 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
+1178432992 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
 
 1173704284 d:\mvmotionai\mvmotionai\include\mvbody.h
 	<vector>
@@ -423,7 +423,7 @@
 	<cstring>
 	"mvMotionAI-Types.h"
 
-1177776022 d:\mvmotionai\mvmotionai\include\mvenums.h
+1178324864 d:\mvmotionai\mvmotionai\include\mvenums.h
 	"mvMotionAI-Types.h"
 
 1161096100 d:\mvmotionai\mvmotionai\src\mvenums.cpp
@@ -1034,12 +1034,12 @@
 	"mvEnums.h"
 	"mvMotionAI-Types.h"
 
-1177816776 source:d:\mvmotionai\mvmotionai\experimental\src\mvworld2.cpp
+1178437560 source:d:\mvmotionai\mvmotionai\experimental\src\mvworld2.cpp
 	"mvWorld2.h"
 	<cstring>
 	<new>
 
-1177818222 d:\mvmotionai\mvmotionai\experimental\include\mvworld2.h
+1178438030 d:\mvmotionai\mvmotionai\experimental\include\mvworld2.h
 	"mvMotionAI-Types.h"
 	"mvPointerList.h"
 	"mvCapsuleList.h"
@@ -1047,12 +1047,12 @@
 	"mvWaypointCapsule.h"
 	"mvForceCapsule.h"
 
-1177773436 d:\mvmotionai\mvmotionai\experimental\include\mvpointerlist.h
+1178326780 d:\mvmotionai\mvmotionai\experimental\include\mvpointerlist.h
 	<vector>
 	"mvMotionAI-Types.h"
 	"mvPointerList.hpp"
 
-1177740848 d:\mvmotionai\mvmotionai\experimental\include\mvpointerlist.hpp
+1178435730 d:\mvmotionai\mvmotionai\experimental\include\mvpointerlist.hpp
 
 1177741282 d:\mvmotionai\mvmotionai\experimental\include\mvgroupbehaviour_v2.h
 	"mvMotionAI-Types.h"
@@ -1143,10 +1143,10 @@
 	"mvBodyCapsule.h"
 	<cstdlib>
 
-1176534568 source:d:\mvmotionai\mvmotionai\experimental\src\mvindexset.cpp
+1177819966 source:d:\mvmotionai\mvmotionai\experimental\src\mvindexset.cpp
 	"mvIndexSet.h"
 
-1176533422 d:\mvmotionai\mvmotionai\experimental\include\mvindexset.h
+1177819696 d:\mvmotionai\mvmotionai\experimental\include\mvindexset.h
 	"mvMotionAI-Types.h"
 	<set>
 	<vector>
@@ -1180,4 +1180,13 @@
 
 1177776144 d:\mvmotionai\mvmotionai\experimental\include\mvgroup_v2.h
 	"mvMotionAI-Types.h"
+
+1178434032 source:d:\mvmotionai\mvmotionai\experimental\src\mvpathway_v2.cpp
+	"mvPathway_v2.h"
+	<cstdlib>
+	<new>
+
+1178433758 d:\mvmotionai\mvmotionai\experimental\include\mvpathway_v2.h
+	"mvMotionAI-Types.h"
+	"mvPointerList.h"
 

@@ -912,7 +912,6 @@ class mvWorld_V2
       mvIndex getCurrentGroupBehaviour() const;
       mvIndex getCurrentPathway() const;
 
-      //TODO : new const object pointer loading
       mvConstBodyPtr getConstBodyPtr(mvIndex index) const;
       mvConstObstaclePtr getConstObstaclePtr(mvIndex index) const;
       mvConstWaypointPtr getConstWaypointPtr(mvIndex index) const;
@@ -922,29 +921,99 @@ class mvWorld_V2
       mvConstBehaviourPtr getConstBehaviourPtr(mvIndex index) const;
       mvConstForcePtr getConstGroupForcePtr(mvIndex index) const;
 
-      mvConstBodyPtr getCurrentConstBodyPtr() const;
-      mvConstObstaclePtr getCurrentConstObstaclePtr() const;
-      mvConstWaypointPtr getCurrentConstWaypointPtr() const;
-      mvConstPathwayPtr getCurrentConstPathwayPtr() const;
-      mvConstGroupPtr getCurrentConstGroupPtr() const;
-      mvConstGroupBehaviourPtr getCurrentConstGroupBehaviourPtr() const;
-      mvConstBehaviourPtr getCurrentConstBehaviourPtr() const;
-      mvConstForcePtr getCurrentConstGroupForcePtr() const;
-
-      // TODO : pathway functions
-      mvErrorEnum addNodeToPathway(mvIndex nIndex, mvIndex pIndex);
-      mvErrorEnum addNodeToCurrentPathway(mvIndex wpIndex);
+      mvIndex addNodeToPathway(mvIndex nIndex, mvIndex pIndex);
+      mvIndex addNodeToCurrentPathway(mvIndex wpIndex);
       mvErrorEnum removeNodeFromPathway(mvIndex wpIndex, mvIndex pIndex);
       mvErrorEnum removeNodeFromCurrentPathway(mvIndex wpIndex);
 
-      mvErrorEnum addCurrentWaypointToCurrentPathway();
-      mvErrorEnum addCurrentWaypointToPathway(mvIndex pIndex);
+      mvIndex addCurrentWaypointToCurrentPathway();
+      mvIndex addCurrentWaypointToPathway(mvIndex pIndex);
       mvErrorEnum removeCurrentWaypointFromPathway(mvIndex pIndex);
       mvErrorEnum removeCurrentWaypointFromCurrentPathway();
 
       mvErrorEnum removeAllNodesFromPathway(mvIndex pwIndex);
       mvErrorEnum removeAllNodesFromCurrentPathway();
 
+      mvIndex getCurrentNodeOfPathway(mvIndex pwIndex);
+      mvIndex getCurrentNodeOfCurrentPathway();
+
+      mvIndex removePathwayNodeAt(mvIndex pwIndex, mvIndex nodeIndex);
+      mvIndex removeCurrentPathwayNodeAt(mvIndex nodeIndex);
+
+      // TODO implement to pathway node functions
+      mvErrorEnum setPathwayNodeParameteri(mvIndex pathwayIndex,\
+         mvIndex nodeIndex, mvParamEnum paramFlag, mvIndex index);
+      mvErrorEnum setPathwayNodeParameter(mvIndex pathwayIndex,\
+         mvIndex nodeIndex, mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setPathwayNodeParameterf(mvIndex pathwayIndex,\
+         mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum setPathwayNodeParameterv(mvIndex pathwayIndex,\
+         mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* array);
+
+      mvErrorEnum setCurrentPathwayNodeParameteri(mvIndex nodeIndex,\
+         mvParamEnum paramFlag, mvIndex index);
+      mvErrorEnum setCurrentPathwayNodeParameter(mvIndex nodeIndex,\
+         mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setCurrentPathwayNodeParameterf(mvIndex nodeIndex,\
+         mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum setCurrentPathwayNodeParameterv(mvIndex nodeIndex,\
+         mvParamEnum paramFlag, mvFloat* array);
+
+      mvErrorEnum setPathwayNodeParametersi(mvIndex pathwayIndex,\
+         mvIndex nodeIndex, const char* param, mvIndex index);
+      mvErrorEnum setPathwayNodeParameters(mvIndex pathwayIndex,\
+         mvIndex nodeIndex, const char* param, const char* option);
+      mvErrorEnum setPathwayNodeParametersf(mvIndex pathwayIndex,\
+         mvIndex nodeIndex, const char* param, mvFloat num);
+      mvErrorEnum setPathwayNodeParametersv(mvIndex pathwayIndex,\
+         mvIndex nodeIndex, const char* param, mvFloat* array);
+
+      mvErrorEnum setCurrentPathwayNodeParametersi(mvIndex nodeIndex,\
+         const char* param, mvIndex index);
+      mvErrorEnum setCurrentPathwayNodeParameters(mvIndex nodeIndex,\
+         const char* param, const char* option);
+      mvErrorEnum setCurrentPathwayNodeParametersf(mvIndex nodeIndex,\
+         const char* param, mvFloat num);
+      mvErrorEnum setCurrentPathwayNodeParametersv(mvIndex nodeIndex,\
+         const char* param, mvFloat* array);
+
+      mvErrorEnum getPathwayNodeParameteri(mvIndex pathwayIndex,\
+         mvIndex nodeIndex, mvParamEnum paramFlag, mvIndex* outIndex) const;
+      mvErrorEnum getPathwayNodeParameter(mvIndex pathwayIndex,\
+         mvIndex nodeIndex, mvParamEnum paramFlag, mvOptionEnum* option) const;
+      mvErrorEnum getPathwayNodeParameterf(mvIndex pathwayIndex,\
+         mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* num) const;
+      mvErrorEnum getPathwayNodeParameterv(mvIndex pathwayIndex,\
+         mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* array,\
+         mvCount* noOfParameters) const;
+
+      mvErrorEnum getCurrentPathwayNodeParameteri(mvIndex nodeIndex,\
+         mvParamEnum paramFlag, mvIndex* outIndex) const;
+      mvErrorEnum getCurrentPathwayNodeParameter(mvIndex nodeIndex,\
+         mvParamEnum paramFlag, mvOptionEnum* option) const;
+      mvErrorEnum getCurrentPathwayNodeParameterf(mvIndex nodeIndex,\
+         mvParamEnum paramFlag, mvFloat* num) const;
+      mvErrorEnum getCurrentPathwayNodeParameterv(mvIndex nodeIndex,\
+         mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters) const;
+
+      mvErrorEnum getPathwayNodeParametersi(mvIndex pathwayIndex,\
+         mvIndex nodeIndex, const char* param, mvIndex* outIndex) const;
+      mvErrorEnum getPathwayNodeParameters(mvIndex pathwayIndex,\
+         mvIndex nodeIndex, const char* param, const char** option) const;
+      mvErrorEnum getPathwayNodeParametersf(mvIndex pathwayIndex,\
+         mvIndex nodeIndex, const char* param, mvFloat* num) const;
+      mvErrorEnum getPathwayNodeParametersv(mvIndex pathwayIndex,\
+         mvIndex nodeIndex, const char* param, mvFloat* array,\
+         mvCount* noOfParameters) const;
+
+      mvErrorEnum getCurrentPathwayNodeParametersi(mvIndex nodeIndex,\
+         const char* param, mvIndex* outIndex) const;
+      mvErrorEnum getCurrentPathwayNodeParameters(mvIndex nodeIndex,\
+         const char* param, const char** option) const;
+      mvErrorEnum getCurrentPathwayNodeParametersf(mvIndex nodeIndex,\
+         const char* param, mvFloat* num) const;
+      mvErrorEnum getCurrentPathwayNodeParametersv(mvIndex nodeIndex,\
+         const char* param, mvFloat* array, mvCount* noOfParameters) const;
 };
 
 

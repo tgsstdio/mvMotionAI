@@ -1,5 +1,6 @@
 #include "mvPathway_v2.h"
 #include <cstdlib>
+#include <new>
 
 bool findNodeByIndexValue(mvPathwayNodePtr* nodePtr, void* extraPtr);
 
@@ -65,7 +66,7 @@ mvErrorEnum mvPathwayNode::getParameterf(mvParamEnum paramFlag,\
 mvErrorEnum mvPathwayNode::getParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray, mvCount* noOfParameters) const
 {
-   if (count == NULL)
+   if (noOfParameters == NULL)
    {
       return MV_COUNT_DEST_IS_NULL;
    }
@@ -124,11 +125,15 @@ mvIndex mvPathway_V2::addNode(mvIndex pWaypoint)
    if (pWaypoint == MV_NO_CURRENT_INDEX)
       return MV_NO_CURRENT_INDEX;
 
-   mvPathwayNodePtr tempNode = mvPathwayNode(pWaypoint);
+   mvPathwayNodePtr tempNode = new (std::nothrow) mvPathwayNode(pWaypoint);
+
+   if (tempNode == NULL)
+      return MV_NO_CURRENT_INDEX;
+
    return nodes.addItem(tempNode);
 }
 
-bool findNodeByIndexValue(mvPathwayNodePtr* nodePtr, void* extraPtr)
+bool findNodeByIndexValue(mvPathwayNodePtr nodePtr, void* extraPtr)
 {
    if (nodePtr == NULL)
       return false;
@@ -175,7 +180,7 @@ mvCount mvPathway_V2::getNoOfNodes() const
    return nodes.getNoOfItems();
 }
 
-mvErrorEnum mvPathway_V2::setCurrentNode(mvIndex nIndex)
+mvIndex mvPathway_V2::setCurrentNode(mvIndex nIndex)
 {
    return nodes.setCurrentIndex(nIndex);
 }
@@ -190,7 +195,9 @@ mvErrorEnum mvPathway_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
    switch(paramFlag)
    {
       case MV_INDEX:
-         return setCurrentNode(index);
+         // TODO: check error function
+         setCurrentNode(index);
+         return MV_NO_ERROR;
       default:
          return MV_INVALID_PATHWAY_PARAMETER;
    }
@@ -218,57 +225,274 @@ mvErrorEnum mvPathway_V2::setParameterv(mvParamEnum paramFlag,\
    return MV_INVALID_PATHWAY_PARAMETER;
 }
 
-// TODO : implement these functions
 mvErrorEnum mvPathway_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    const
 {
+   if (index == NULL)
+   {
+      return MV_INDEX_DEST_IS_NULL;
+   }
 
+   switch(paramFlag)
+   {
+      case MV_NO_OF_WAYPOINTS:
+         *index = getNoOfNodes();
+         return MV_NO_ERROR;
+      case MV_INDEX:
+         *index = getCurrentNode();
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_PATHWAY_PARAMETER;
+   }
 }
 
 mvErrorEnum mvPathway_V2::getParameter(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
+   if (option == NULL)
+   {
+      return MV_OPTION_ENUM_DEST_IS_NULL;
+   }
 
+   // TODO : implement these functions
+   return MV_INVALID_PATHWAY_PARAMETER;
 }
-mvErrorEnum mvPathway_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num) const;
-mvErrorEnum mvPathway_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
-   mvCount* noOfParameters) const;
 
-mvErrorEnum mvPathway_V2::setNodeParameteri(mvIndex wpIndex, mvParamEnum paramFlag,\
-   mvIndex index);
-mvErrorEnum mvPathway_V2::setNodeParameter(mvIndex wpIndex, mvParamEnum paramFlag,\
-   mvOptionEnum option);
-mvErrorEnum mvPathway_V2::setNodeParameterf(mvIndex wpIndex, mvParamEnum paramFlag,\
-   mvFloat num);
-mvErrorEnum mvPathway_V2::setNodeParameterv(mvIndex wpIndex, mvParamEnum paramFlag,\
-   mvFloat* numArray);
+mvErrorEnum mvPathway_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num)\
+   const
+{
+      // TODO : implement these functions
+   if (num == NULL)
+   {
+      return MV_FLOAT_DEST_IS_NULL;
+   }
 
-mvErrorEnum mvPathway_V2::getNodeParameteri(mvIndex wpIndex, mvParamEnum paramFlag,\
-   mvIndex* index) const;
-mvErrorEnum mvPathway_V2::getNodeParameter(mvIndex wpIndex, mvParamEnum paramFlag,\
-   mvOptionEnum* option) const;
-mvErrorEnum mvPathway_V2::getNodeParameterf(mvIndex wpIndex, mvParamEnum paramFlag,\
-   mvFloat* num) const;
-mvErrorEnum mvPathway_V2::getNodeParameterv(mvIndex wpIndex, mvParamEnum paramFlag,\
-   mvFloat* numArray, mvCount* noOfParameters) const;
+   return MV_INVALID_PATHWAY_PARAMETER;
+}
+
+mvErrorEnum mvPathway_V2::getParameterv(mvParamEnum paramFlag,\
+   mvFloat* numArray, mvCount* noOfParameters) const
+{
+   if (noOfParameters == NULL)
+   {
+      return MV_COUNT_DEST_IS_NULL;
+   }
+
+   if (numArray == NULL)
+   {
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
+   return MV_INVALID_PATHWAY_PARAMETER;
+}
+
+mvErrorEnum mvPathway_V2::setNodeParameteri(mvIndex wpIndex,\
+   mvParamEnum paramFlag, mvIndex index)
+{
+   return nodes.setItemParameteri(wpIndex, paramFlag, index);
+}
+
+mvErrorEnum mvPathway_V2::setNodeParameter(mvIndex wpIndex,\
+   mvParamEnum paramFlag, mvOptionEnum option)
+{
+   return nodes.setItemParameter(wpIndex, paramFlag, option);
+}
+
+mvErrorEnum mvPathway_V2::setNodeParameterf(mvIndex wpIndex,\
+   mvParamEnum paramFlag, mvFloat num)
+{
+   return nodes.setItemParameterf(wpIndex, paramFlag, num);
+}
+
+mvErrorEnum mvPathway_V2::setNodeParameterv(mvIndex wpIndex,\
+   mvParamEnum paramFlag, mvFloat* numArray)
+{
+   return nodes.setItemParameterv(wpIndex, paramFlag, numArray);
+}
+
+mvErrorEnum mvPathway_V2::getNodeParameteri(mvIndex wpIndex,\
+   mvParamEnum paramFlag, mvIndex* index) const
+{
+   return nodes.getItemParameteri(wpIndex, paramFlag, index);
+}
+
+mvErrorEnum mvPathway_V2::getNodeParameter(mvIndex wpIndex,\
+   mvParamEnum paramFlag, mvOptionEnum* option) const
+{
+   return nodes.getItemParameter(wpIndex, paramFlag, option);
+}
+
+mvErrorEnum mvPathway_V2::getNodeParameterf(mvIndex wpIndex,\
+   mvParamEnum paramFlag, mvFloat* num) const
+{
+   return nodes.getItemParameterf(wpIndex, paramFlag, num);
+}
+
+mvErrorEnum mvPathway_V2::getNodeParameterv(mvIndex wpIndex,\
+   mvParamEnum paramFlag,  mvFloat* numArray, mvCount* noOfParameters) const
+{
+   return nodes.getItemParameterv(wpIndex, paramFlag, numArray, noOfParameters);
+}
 
 mvErrorEnum mvPathway_V2::setCurrentNodeParameteri(mvParamEnum paramFlag,\
-   mvIndex index);
+   mvIndex index)
+{
+   return nodes.setCurrentItemParameteri(paramFlag, index);
+}
+
 mvErrorEnum mvPathway_V2::setCurrentNodeParameter(mvParamEnum paramFlag,\
-   mvOptionEnum option);
+   mvOptionEnum option)
+{
+   return nodes.setCurrentItemParameter(paramFlag, option);
+}
+
 mvErrorEnum mvPathway_V2::setCurrentNodeParameterf(mvParamEnum paramFlag,\
-   mvFloat num);
+   mvFloat num)
+{
+   return nodes.setCurrentItemParameterf(paramFlag, num);
+}
+
 mvErrorEnum mvPathway_V2::setCurrentNodeParameterv(mvParamEnum paramFlag,\
-   mvFloat* numArray);
+   mvFloat* numArray)
+{
+   return nodes.setCurrentItemParameterv(paramFlag, numArray);
+}
 
 mvErrorEnum mvPathway_V2::getCurrentNodeParameteri(mvParamEnum paramFlag,\
-   mvIndex* index) const;
-mvErrorEnum mvPathway_V2::getCurrentNodeParameter(mvParamEnum paramFlag,\
-   mvOptionEnum* option) const;
-mvErrorEnum mvPathway_V2::getCurrentNodeParameterf(mvParamEnum paramFlag,\
-   mvFloat* num) const;
-mvErrorEnum mvPathway_V2::getCurrentNodeParameterv(mvParamEnum paramFlag,\
-   mvFloat* numArray, mvCount* noOfParameters) const;
+   mvIndex* index) const
+{
+   return nodes.getCurrentItemParameteri(paramFlag, index);
+}
 
-void mvPathway_V2::removeAllNodes();
-mvPathway_V2::~mvPathway_V2();
+mvErrorEnum mvPathway_V2::getCurrentNodeParameter(mvParamEnum paramFlag,\
+   mvOptionEnum* option) const
+{
+   return nodes.getCurrentItemParameter(paramFlag, option);
+}
+
+mvErrorEnum mvPathway_V2::getCurrentNodeParameterf(mvParamEnum paramFlag,\
+   mvFloat* num) const
+{
+   return nodes.getCurrentItemParameterf(paramFlag, num);
+}
+
+mvErrorEnum mvPathway_V2::getCurrentNodeParameterv(mvParamEnum paramFlag,\
+   mvFloat* numArray, mvCount* noOfParameters) const
+{
+   return nodes.getCurrentItemParameterv(paramFlag, numArray, noOfParameters);
+}
+
+void mvPathway_V2::removeAllNodes()
+{
+   nodes.deleteAllItems();
+}
+
+mvPathway_V2::~mvPathway_V2()
+{
+   removeAllNodes();
+}
+
+mvErrorEnum mvPathway_V2::getCurrentNodeParametersi(const char* param,\
+   mvIndex* index) const
+{
+   return nodes.getCurrentItemParametersi(param, index);
+}
+
+mvErrorEnum mvPathway_V2::getCurrentNodeParameters(const char* param,\
+   const char** option) const
+{
+   return nodes.getCurrentItemParameters(param, option);
+}
+
+mvErrorEnum mvPathway_V2::getCurrentNodeParametersf(const char* param,\
+   mvFloat* num) const
+{
+   return nodes.getCurrentItemParametersf(param, num);
+}
+
+mvErrorEnum mvPathway_V2::getCurrentNodeParametersv(const char* param,\
+   mvFloat* numArray, mvCount* noOfParameters) const
+{
+   return nodes.getCurrentItemParametersv(param,numArray, noOfParameters);
+}
+
+mvErrorEnum mvPathway_V2::setCurrentNodeParametersi(const char* param,\
+   mvIndex index)
+{
+   return nodes.setCurrentItemParametersi(param,index);
+}
+
+mvErrorEnum mvPathway_V2::setCurrentNodeParameters(const char* param,\
+   const char* option)
+{
+   return nodes.setCurrentItemParameters(param, option);
+}
+
+mvErrorEnum mvPathway_V2::setCurrentNodeParametersf(const char* param,\
+   mvFloat num)
+{
+   return nodes.setCurrentItemParametersf(param, num);
+}
+
+mvErrorEnum mvPathway_V2::setCurrentNodeParametersv(const char* param,\
+   mvFloat* numArray)
+{
+   return nodes.setCurrentItemParametersv(param, numArray);
+}
+
+mvErrorEnum mvPathway_V2::getNodeParametersi(mvIndex nodeIndex,\
+   const char* param, mvIndex* index) const
+{
+   return nodes.getItemParametersi(nodeIndex, param,index);
+}
+
+mvErrorEnum mvPathway_V2::getNodeParameters(mvIndex nodeIndex,\
+   const char* param, const char** option) const
+{
+   return nodes.getItemParameters(nodeIndex, param,option);
+}
+
+mvErrorEnum mvPathway_V2::getNodeParametersf(mvIndex nodeIndex,\
+   const char* param,  mvFloat* num) const
+{
+   return nodes.getItemParametersf(nodeIndex, param, num);
+}
+mvErrorEnum mvPathway_V2::getNodeParametersv(mvIndex nodeIndex,\
+   const char* param, mvFloat* numArray, mvCount* noOfParameters) const
+{
+   return nodes.getItemParametersv(nodeIndex, param, numArray, noOfParameters);
+}
+
+mvErrorEnum mvPathway_V2::setNodeParametersi(mvIndex nodeIndex,\
+   const char* param,  mvIndex index)
+{
+   return nodes.setItemParametersi(nodeIndex, param, index);
+}
+
+mvErrorEnum mvPathway_V2::setNodeParameters(mvIndex nodeIndex,\
+   const char* param, const char* option)
+{
+   return nodes.setItemParameters(nodeIndex, param, option);
+}
+
+mvErrorEnum mvPathway_V2::setNodeParametersf(mvIndex nodeIndex,\
+   const char* param, mvFloat num)
+{
+   return nodes.setItemParametersf(nodeIndex, param, num);
+}
+
+mvErrorEnum mvPathway_V2::setNodeParametersv(mvIndex nodeIndex,\
+   const char* param, mvFloat* numArray)
+{
+   return nodes.setItemParametersv(nodeIndex, param,numArray);
+}
+
+mvErrorEnum mvPathway_V2::removeNodeAt(mvIndex nodeIndex)
+{
+   return nodes.deleteItem(nodeIndex);
+}
+
+mvErrorEnum mvPathway_V2::removeCurrentNode()
+{
+   return nodes.deleteCurrentItem();
+}
