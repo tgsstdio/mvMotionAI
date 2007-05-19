@@ -8,14 +8,14 @@ mvConverter<mvClass>::mvConverter(void (*func)(mvClass,void*), void* itemPtr)
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
 mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::mvCapsuleList()
 {
-   //TODO : implement this function
+
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr,
    class mvConstCapsulePtr>
 mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::~mvCapsuleList()
 {
-   //TODO : implement this function
+
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr,
@@ -140,7 +140,8 @@ template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCa
 void mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::applyToAllItemsByItemIndex(\
    void (someFunction)(mvIndex,void*),  void* extraPtr)
 {
-   //TODO : implement this function
+   // TODO : check for errors
+   applyToAllItemsByItemIndex(someFunction, extraPtr);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>

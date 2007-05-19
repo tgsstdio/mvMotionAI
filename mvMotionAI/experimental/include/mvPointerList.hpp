@@ -25,41 +25,129 @@
 
 #define MV_FIRST_POINTER_LIST_INDEX 1
 
-//TODO : centralised conversion index function
+/**
+ * \brief offset value to index value in mvMotionAI
+ *
+ * first item in list is 1, last item is n
+ * (unlike C, where first item is 0 and last item is n - 1 )
+ */
+static const mvIndex MV_OFFSET_TO_INDEX = -1;
 
 template <class mvClass, class mvConstClass>
 mvPointerList<mvClass,mvConstClass>::mvPointerList()
 {
    maxNoOfItems = 0;
    currentIndex = MV_NO_CURRENT_INDEX;
-   autoConvertNegetiveIndex = false;
+   autoConverIndexFlag = false;
 }
 
+/**
+ *  Auto convert index :
+ *  when out of range indexes are passed to this list
+ *  if true :
+ *    they converted into either a positive index or MV_NO_CURRENT_INDEX.
+ *  if false
+ *    they will remain unusable until list is occupied with enough items.
+ *  Also when negetive indexes are applied i.e. (-1 or the last item added)
+ *  if true:
+ *  classes and items will store the index value of the last item added AT THE
+ *    TIME when it was called.
+ *  if false:
+ *  classes and items will store and retrieve the last item added in the list
+ *    for the entire life of the system.
+ */
 template <class mvClass, class mvConstClass>
-mvIndex mvPointerList<mvClass,mvConstClass>::convertIndex(mvIndex i) const
+void mvPointerList<mvClass,mvConstClass>::setAutoConvertIndex(bool value)
 {
-   mvIndex convertedIndex = i + MV_OFFSET_TO_INDEX;
+   autoConverIndexFlag = value;
+}
 
-   if (convertedIndex < 0 || convertedIndex > maxNoOfItems)
+/**
+ * \brief private function - C array bounds checking
+ */
+template <class mvClass, class mvConstClass>
+bool mvPointerList<mvClass,mvConstClass>::isIndexValid(mvIndex index) const
+{
+   return (index < 0 || index > maxNoOfItems);
+}
+
+/**
+ * \brief public function - negetive/positive mvIndex
+ * to positive/invalid mvIndex
+ */
+template <class mvClass, class mvConstClass>
+mvIndex mvPointerList<mvClass,mvConstClass>::convertIndex(mvIndex index) const
+{
+   mvIndex finalIndex;
+
+   // negetive index
+   if (autoConverIndexFlag)
    {
-      convertedIndex = MV_NO_CURRENT_INDEX;
+      if (index < 0)
+      {
+         finalIndex = changeFromMvIndexToC(index);
+         if (isIndexValid(finalIndex))
+         {
+            return MV_NO_CURRENT_INDEX;
+         }
+
+         // TODO : check for error
+         finalIndex -= MV_OFFSET_TO_INDEX;
+         return finalIndex;
+      }
+      else
+      {
+         // positive index
+         finalIndex = changeFromMvIndexToC(index);
+         if (isIndexValid(finalIndex))
+         {
+            return MV_NO_CURRENT_INDEX;
+         }
+         else
+         {
+            return index;
+         }
+      }
+   }
+   else
+   {
+      // no change
+      return index;
+   }
+}
+
+/**
+ * \brief private function - positive mvIndex to C array
+ */
+template <class mvClass, class mvConstClass>
+mvIndex mvPointerList<mvClass,mvConstClass>::changeFromMvIndexToC(mvIndex i) const
+{
+   // not really need
+   mvIndex convertedIndex;
+
+   if (i < 0)
+   {
+      convertedIndex = maxNoOfItems;
+      convertedIndex += i;
+   }
+   else
+   {
+      convertedIndex = i + MV_OFFSET_TO_INDEX;
    }
 
    return convertedIndex;
 }
 
-template <class mvClass, class mvConstClass>
-void mvPointerList<mvClass,mvConstClass>::setAutoConvertIndex(bool value)
-{
-   autoConvertNegetiveIndex = value;
-}
-
+/**
+ * \brief private function
+ */
 template <class mvClass, class mvConstClass>
 mvErrorEnum mvPointerList<mvClass,mvConstClass>::checkIndex(mvIndex& i) const
 {
-   mvIndex index = i + MV_OFFSET_TO_INDEX;
+   // conversion function
+   mvIndex index = changeFromMvIndexToC(i);
 
-   if (index < 0 || index > maxNoOfItems)
+   if (isIndexValid(index))
    {
       return MV_INDEX_VALUE_IS_INVALID;
    }
@@ -68,6 +156,9 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::checkIndex(mvIndex& i) const
    return MV_NO_ERROR;
 }
 
+/**
+ * \brief private function
+ */
 template <class mvClass, class mvConstClass>
 mvErrorEnum mvPointerList<mvClass,mvConstClass>::checkParamStringAndIndex(\
    mvIndex& i, const char* param, mvParamEnum* paramFlag) const
@@ -79,9 +170,9 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::checkParamStringAndIndex(\
       return MV_INVALID_PARAM_ENUM_STRING;
    }
 
-   index = i + MV_OFFSET_TO_INDEX;
+   index = changeFromMvIndexToC(i);
 
-   if (index < 0 || index > maxNoOfItems)
+   if (isIndexValid(index))
    {
       return MV_INDEX_VALUE_IS_INVALID;
    }

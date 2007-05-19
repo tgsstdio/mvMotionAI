@@ -38,7 +38,7 @@ class mvGroup_V2
    public:
       mvGroup_V2();
       ~mvGroup_V2();
-      bool isActive;
+      bool isEnabled;
 
       mvErrorEnum addMember(mvIndex memberIndex);
       mvErrorEnum findMember(mvIndex memberIndex) const;

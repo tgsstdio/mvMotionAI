@@ -1,8 +1,9 @@
 #include "mvGroup_V2.h"
+#include <cstdlib>
 
 mvGroup_V2::mvGroup_V2()
 {
-   isActive = true;
+   isEnabled = true;
 }
 
 mvGroup_V2::~mvGroup_V2()
@@ -53,51 +54,116 @@ mvIndex mvGroup_V2::getCurrentMember() const
 mvErrorEnum mvGroup_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    const
 {
-   //TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (index == NULL)
+   {
+      return MV_INDEX_DEST_IS_NULL;
+   }
+
+   switch(paramFlag)
+   {
+      case MV_NO_OF_BODIES:
+      case MV_NO_OF_BEHAVIOURS:
+      case MV_NO_OF_FORCES:
+      case MV_NO_OF_OBSTACLES:
+      case MV_NO_OF_WAYPOINTS:
+      case MV_NO_OF_PATHWAYS:
+      case MV_NO_OF_GROUPS:
+      case MV_NO_OF_GROUP_BEHAVIOURS:
+         *index = getNoOfMembers();
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_GROUP_PARAMETER;
+   }
 }
 
 mvErrorEnum mvGroup_V2::getParameter(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
-   //TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (option == NULL)
+   {
+      return MV_OPTION_ENUM_DEST_IS_NULL;
+   }
+
+   switch(paramFlag)
+   {
+      case MV_IS_ENABLED:
+         if (isEnabled)
+         {
+           *option = MV_TRUE;
+         }
+         else
+         {
+            *option = MV_FALSE;
+         }
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_GROUP_PARAMETER;
+   }
 }
 
 mvErrorEnum mvGroup_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
 {
-   //TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (num == NULL)
+   {
+      return MV_FLOAT_DEST_IS_NULL;
+   }
+
+   return MV_INVALID_GROUP_PARAMETER;
 }
 
 mvErrorEnum mvGroup_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
    mvCount* noOfParameters) const
 {
-   //TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (noOfParameters == NULL)
+   {
+      return MV_COUNT_DEST_IS_NULL;
+   }
+
+   if (numArray == NULL)
+   {
+      *noOfParameters = 0;
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
+   return MV_INVALID_GROUP_PARAMETER;
 }
 
 mvErrorEnum mvGroup_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
-   //TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   return MV_INVALID_GROUP_PARAMETER;
 }
 
 mvErrorEnum mvGroup_V2::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
 {
-   //TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   switch(paramFlag)
+   {
+      case MV_IS_ENABLED:
+         if (option == MV_FALSE)
+         {
+            isEnabled = false;
+         }
+         else
+         {
+            isEnabled = true;
+         }
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_GROUP_PARAMETER;
+   }
 }
 
 mvErrorEnum mvGroup_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
-   //TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   return MV_INVALID_GROUP_PARAMETER;
 }
 
 mvErrorEnum mvGroup_V2::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 {
-   //TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (numArray == NULL)
+   {
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
+   return MV_INVALID_GROUP_PARAMETER;
 }
 

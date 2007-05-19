@@ -111,14 +111,6 @@ typedef int mvCount;
 #endif
 
 /**
- * \brief offset value to index value in mvMotionAI
- *
- * first item in list is 1, last item is n
- * (unlike C, where first item is 0 and last item is n - 1 )
- */
-static const mvIndex MV_OFFSET_TO_INDEX = -1;
-
-/**
  * \brief index value returned if error as occured
  */
 static const mvIndex MV_NO_CURRENT_INDEX = 0;
