@@ -1,7 +1,4 @@
 #include "mvGroupBNode_V2.h"
-#include "mvMotionAI_V2-Central.h"
-
-// TODO : remove all C interface function calls - more modular
 
 /** @brief (one liner)
   *
@@ -109,7 +106,7 @@ mvErrorEnum mvGroupBNode_V2::getParameter(mvParamEnum paramFlag,\
    switch(paramFlag)
    {
       case MV_IS_ENABLED:
-         if (behavEnabled)
+         if (isEnabled)
          {
             *option = MV_TRUE;
          }
@@ -196,11 +193,11 @@ mvErrorEnum mvGroupBNode_V2::setParameter(mvParamEnum paramFlag,\
       case MV_IS_ENABLED:
          if (option == MV_FALSE)
          {
-            behavEnabled = false;
+            isEnabled = false;
          }
          else
          {
-            behavEnabled = true;
+            isEnabled = true;
          }
          return MV_NO_ERROR;
       default:
@@ -219,7 +216,7 @@ mvErrorEnum mvGroupBNode_V2::setParameter(mvParamEnum paramFlag,\
   *
   * (documentation goes here)
   */
-mvBaseBehaviour * mvGroupBNode_V2::getBehaviourPtr()
+mvBaseBehaviourPtr mvGroupBNode_V2::getBehaviourPtr()
 {
    return grpBehaviour;
 }
@@ -228,29 +225,12 @@ mvBaseBehaviour * mvGroupBNode_V2::getBehaviourPtr()
   *
   * (documentation goes here)
   */
-void mvGroupBNode_V2::setEnabled(bool value)
-{
-   behavEnabled = value;
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-bool mvGroupBNode_V2::isEnabled()
-{
-   return behavEnabled;
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
- mvGroupBNode_V2::mvGroupBNode_V2(mvOptionEnum gbType,\
+ mvGroupBNode_V2::mvGroupBNode_V2(\
    mvBaseBehaviour* mainBehaviour, mvIndex grpIndex)
 {
-   grpBehaviour = mvMotionAI_V2_CREATENEWBEHAVIOUR(gbType, mainBehaviour);
+   grpBehaviour = mainBehaviour;
    groupIndex = grpIndex;
+   isEnabled = true;
 }
 
 mvIndex  mvGroupBNode_V2::getGroup()

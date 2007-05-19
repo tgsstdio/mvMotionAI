@@ -25,14 +25,15 @@
 #include MV_ENUMS_HEADER_FILE_H_
 #include "mvMotionAI-Types.h"
 
-//TODO : use negetive index as wrap around array index
 template <class mvClass, class mvConstClass>
 class mvPointerList
 {
    private:
       mvIndex currentIndex;
       mvCount maxNoOfItems;
-      bool autoConvertNegetiveIndex;
+      bool autoConverIndexFlag;
+      mvIndex changeFromMvIndexToC(mvIndex i) const;
+      bool isIndexValid(mvIndex index) const;
       mvErrorEnum checkIndex(mvIndex& i) const;
       mvErrorEnum checkParamStringAndIndex(mvIndex& i, const char* param,\
          mvParamEnum* paramFlag) const;
@@ -47,13 +48,14 @@ class mvPointerList
       mvErrorEnum deleteCurrentItem();
       void deleteAllItems();
 
-      mvIndex convertIndex(mvIndex i) const;
       mvClass getClassPtr(mvIndex index) const;
       mvClass getCurrentClassPtr() const;
       mvConstClass getCurrentConstClassPtr() const;
       mvConstClass getConstClassPtr(mvIndex index) const;
       mvCount getNoOfItems() const;
       mvCount getNoOfMaxSlots() const;
+
+      mvIndex convertIndex(mvIndex index) const;
 
       mvIndex getCurrentIndex() const;
       mvIndex setCurrentIndex(mvIndex index);

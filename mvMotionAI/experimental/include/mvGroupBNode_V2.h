@@ -31,13 +31,11 @@ class mvGroupBNode_V2
    private:
       mvIndex groupIndex;
       mvBaseBehaviourPtr grpBehaviour;
-      bool behavEnabled;
 
    public:
-      mvGroupBNode_V2(mvOptionEnum gbType, mvBaseBehaviourPtr mainBehaviour,\
+      bool isEnabled;
+      mvGroupBNode_V2(mvBaseBehaviourPtr mainBehaviour,\
          mvIndex grpIndex);
-      bool isEnabled();
-      void setEnabled(bool value);
       mvBaseBehaviourPtr getBehaviourPtr();
       mvIndex getGroup();
       mvErrorEnum setParameter(mvParamEnum paramFlag,\

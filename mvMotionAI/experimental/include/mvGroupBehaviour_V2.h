@@ -23,12 +23,10 @@
 #define MVGROUPBEHAVIOUR_V2_H_INCLUDED
 
 #include "mvMotionAI-Types.h"
-//#include "mvList.h" chenged to pointer list
 #include "mvPointerList.h"
 #include MV_BASE_BEHAVIOUR_HEADER_FILE_H_
 #include MV_GROUP_BEHAVIOUR_NODE_HEADER_FILE_H_
 
-// TODO : add pointer to pointer (ptr**) to mvBehaviourFuncList
 
 class mvGroupBehaviour_V2
 {
@@ -39,18 +37,19 @@ class mvGroupBehaviour_V2
    public:
       mvGroupBehaviour_V2(mvBaseBehaviourPtr groupBehPtr);
       ~mvGroupBehaviour_V2();
-      mvErrorEnum addGroup(mvIndex groupNo);
+      // TODO : implement
+      mvErrorEnum addGroup(mvIndex groupNo, mvBaseBehaviour* behavPtr);
       mvErrorEnum removeGroup(mvIndex groupNo);
       void removeAllGroups();
       mvGroupBehaviourNodePtr getGroupNodeByIndex(mvIndex index) const;
       mvGroupBehaviourNodePtr findGroupNode(mvIndex groupIndex) const;
       mvCount getNoOfGroups() const;
       //mvOptionEnum getType();
+      // TODO : remove these functions
       bool isEnabled() const;
       void setEnabled(bool value);
       // TODO : get current node
       mvIndex getCurrentGroupBehaviourNode() const;
-
 
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
       mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option)\

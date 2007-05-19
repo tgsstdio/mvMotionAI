@@ -177,6 +177,7 @@ enum mvParamEnum
    MV_NO_OF_OBSTACLES,
    MV_NO_OF_GROUP_BEHAVIOURS,
    MV_NO_OF_BEHAVIOURS,
+   MV_NO_OF_PATHWAYS,
    MV_WIDTH,
    MV_DEPTH,
    // new enums behaviour list
@@ -221,7 +222,6 @@ enum mvParamEnum
    MV_GROUP_BEHAVIOUR,
    MV_BEHAVIOUR,
    MV_FORCE,
-   MV_IS_ACTIVE,
 
    // user defined parameters
    MV_USER_PARAM_INDEX,
@@ -241,7 +241,7 @@ enum mvParamEnum
 };
 // TODO  : duplicate invalid index range & index is invalid
 // TODO : reimplement error strings
-// TODO : unify all invalid ___ parameter together ??
+
 enum mvErrorEnum
 {
    MV_NO_ERROR = 0,
