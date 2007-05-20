@@ -6,7 +6,7 @@
   */
  mvGroupBNode_V2::~mvGroupBNode_V2()
 {
-   if (grpBehaviour != NULL)
+   if (grpBehaviour != MV_NULL)
    {
       delete grpBehaviour;
    }
@@ -19,18 +19,18 @@
 mvErrorEnum mvGroupBNode_V2::getParameterv(mvParamEnum paramFlag,\
    mvFloat* array, mvCount* noOfParameters) const
 {
-   if (noOfParameters == NULL)
+   if (noOfParameters == MV_NULL)
    {
       return MV_COUNT_DEST_IS_NULL;
    }
 
-   if (array == NULL)
+   if (array == MV_NULL)
    {
       *noOfParameters = 0;
       return MV_PARAMETER_ARRAY_IS_NULL;
    }
 
-   if (grpBehaviour  != NULL)
+   if (grpBehaviour  != MV_NULL)
    {
       return grpBehaviour ->getParameterv(paramFlag, array, noOfParameters);
    }
@@ -47,12 +47,12 @@ mvErrorEnum mvGroupBNode_V2::getParameterv(mvParamEnum paramFlag,\
 mvErrorEnum mvGroupBNode_V2::getParameterf(mvParamEnum paramFlag,\
    mvFloat* num) const
 {
-   if (num == NULL)
+   if (num == MV_NULL)
    {
       return MV_FLOAT_DEST_IS_NULL;
    }
 
-   if (grpBehaviour  != NULL)
+   if (grpBehaviour  != MV_NULL)
    {
       return grpBehaviour ->getParameterf(paramFlag, num);
    }
@@ -69,7 +69,7 @@ mvErrorEnum mvGroupBNode_V2::getParameterf(mvParamEnum paramFlag,\
 mvErrorEnum mvGroupBNode_V2::getParameteri(mvParamEnum paramFlag,\
    mvIndex* outIndex) const
 {
-   if (outIndex == NULL)
+   if (outIndex == MV_NULL)
    {
       return MV_INDEX_DEST_IS_NULL;
    }
@@ -80,7 +80,7 @@ mvErrorEnum mvGroupBNode_V2::getParameteri(mvParamEnum paramFlag,\
          *outIndex = groupIndex;
          return MV_NO_ERROR;
       default:
-         if (grpBehaviour != NULL)
+         if (grpBehaviour != MV_NULL)
          {
             return grpBehaviour ->getParameteri(paramFlag, outIndex);
          }
@@ -98,7 +98,7 @@ mvErrorEnum mvGroupBNode_V2::getParameteri(mvParamEnum paramFlag,\
 mvErrorEnum mvGroupBNode_V2::getParameter(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
-   if (option == NULL)
+   if (option == MV_NULL)
    {
       return MV_OPTION_ENUM_DEST_IS_NULL;
    }
@@ -116,7 +116,7 @@ mvErrorEnum mvGroupBNode_V2::getParameter(mvParamEnum paramFlag,\
          }
          return MV_NO_ERROR;
       default:
-         if (grpBehaviour  != NULL)
+         if (grpBehaviour  != MV_NULL)
          {
             return grpBehaviour ->getParameter(paramFlag, option);
          }
@@ -134,12 +134,12 @@ mvErrorEnum mvGroupBNode_V2::getParameter(mvParamEnum paramFlag,\
 mvErrorEnum mvGroupBNode_V2::setParameterv(mvParamEnum paramFlag,\
    mvFloat* array)
 {
-   if (array == NULL)
+   if (array == MV_NULL)
    {
       return MV_PARAMETER_ARRAY_IS_NULL;
    }
 
-   if (grpBehaviour  != NULL)
+   if (grpBehaviour  != MV_NULL)
    {
       return grpBehaviour ->setParameterv(paramFlag, array);
    }
@@ -155,7 +155,7 @@ mvErrorEnum mvGroupBNode_V2::setParameterv(mvParamEnum paramFlag,\
   */
 mvErrorEnum mvGroupBNode_V2::setParameterf( mvParamEnum paramFlag, mvFloat num)
 {
-   if (grpBehaviour != NULL)
+   if (grpBehaviour != MV_NULL)
    {
       return grpBehaviour->setParameterf(paramFlag, num);
    }
@@ -171,7 +171,7 @@ mvErrorEnum mvGroupBNode_V2::setParameterf( mvParamEnum paramFlag, mvFloat num)
   */
 mvErrorEnum mvGroupBNode_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
-   if (grpBehaviour  != NULL)
+   if (grpBehaviour  != MV_NULL)
    {
       return grpBehaviour ->setParameteri(paramFlag, index);
    }
@@ -201,7 +201,7 @@ mvErrorEnum mvGroupBNode_V2::setParameter(mvParamEnum paramFlag,\
          }
          return MV_NO_ERROR;
       default:
-         if (grpBehaviour  != NULL)
+         if (grpBehaviour  != MV_NULL)
          {
             return grpBehaviour->setParameter(paramFlag, option);
          }

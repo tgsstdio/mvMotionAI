@@ -491,10 +491,10 @@ mvErrorEnum mvItemList<mvClass>::getItemParameterv(mvIndex itemIndex,\
  *
  * Code taken from mvMotionAI-Utilities.h
  * template <class mvClass>
- * mvErrorEnum mvSetClassParameters(std::vector<mvClass*>& mvClassList,
+ * mvErrorEnum mvSetClassParameter_str(std::vector<mvClass*>& mvClassList,
  */
 template <class mvClass>
-mvErrorEnum mvItemList<mvClass>::setItemParameters(mvIndex itemIndex,\
+mvErrorEnum mvItemList<mvClass>::setItemParameter_str(mvIndex itemIndex,\
    const char* param, const char* option)
 {
    mvIndex listIndex = itemIndex;
@@ -531,11 +531,11 @@ mvErrorEnum mvItemList<mvClass>::setItemParameters(mvIndex itemIndex,\
  *
  * Code taken from mvMotionAI-Utilities.h
  * template <class mvClass>
- * mvErrorEnum mvSetClassParametersi(std::vector<mvClass*>& mvClassList,
+ * mvErrorEnum mvSetClassParameteri_str(std::vector<mvClass*>& mvClassList,
  * mvCount& noOfItems, mvIndex index, const char* paramFlag, mvIndex itemIndex)
  */
 template <class mvClass>
-mvErrorEnum mvItemList<mvClass>::setItemParametersi(mvIndex itemIndex,\
+mvErrorEnum mvItemList<mvClass>::setItemParameteri_str(mvIndex itemIndex,\
    const char* param, mvIndex index)
 {
    mvIndex listIndex = itemIndex;
@@ -560,7 +560,7 @@ mvErrorEnum mvItemList<mvClass>::setItemParametersi(mvIndex itemIndex,\
 }
 
 template <class mvClass>
-mvErrorEnum mvItemList<mvClass>::setItemParametersf(mvIndex itemIndex,\
+mvErrorEnum mvItemList<mvClass>::setItemParameterf_str(mvIndex itemIndex,\
    const char* param, mvFloat num)
 {
    mvIndex listIndex = itemIndex;
@@ -585,7 +585,7 @@ mvErrorEnum mvItemList<mvClass>::setItemParametersf(mvIndex itemIndex,\
 }
 
 template <class mvClass>
-mvErrorEnum mvItemList<mvClass>::setItemParametersv(mvIndex itemIndex,\
+mvErrorEnum mvItemList<mvClass>::setItemParameterv_str(mvIndex itemIndex,\
    const char* param, mvFloat* array)
 {
    mvIndex listIndex = itemIndex;
@@ -614,12 +614,12 @@ mvErrorEnum mvItemList<mvClass>::setItemParametersv(mvIndex itemIndex,\
  *
  *Code taken from mvMotionAI-Utilities.h, 2006
  *template <class mvClass>
- *mvErrorEnum mvGetClassParameters(std::vector<mvClass*>& mvClassList,
+ *mvErrorEnum mvGetClassParameter_str(std::vector<mvClass*>& mvClassList,
  *   mvCount& noOfItems, mvIndex index, const char* paramFlag,
  *   const char* optionFlag)
  */
 template <class mvClass>
-mvErrorEnum mvItemList<mvClass>::getItemParameters(mvIndex itemIndex,\
+mvErrorEnum mvItemList<mvClass>::getItemParameter_str(mvIndex itemIndex,\
    const char* param, const char** option)
 {
    mvIndex listIndex = itemIndex;
@@ -657,7 +657,7 @@ mvErrorEnum mvItemList<mvClass>::getItemParameters(mvIndex itemIndex,\
 
 
 template <class mvClass>
-mvErrorEnum mvItemList<mvClass>::getItemParametersi(mvIndex itemIndex,\
+mvErrorEnum mvItemList<mvClass>::getItemParameteri_str(mvIndex itemIndex,\
    const char* param, mvIndex* index)
 {
    mvIndex listIndex = itemIndex;
@@ -682,7 +682,7 @@ mvErrorEnum mvItemList<mvClass>::getItemParametersi(mvIndex itemIndex,\
 }
 
 template <class mvClass>
-mvErrorEnum mvItemList<mvClass>::getItemParametersf(mvIndex itemIndex,\
+mvErrorEnum mvItemList<mvClass>::getItemParameterf_str(mvIndex itemIndex,\
    const char* param, mvFloat* num)
 {
    mvIndex listIndex = itemIndex;
@@ -708,7 +708,7 @@ mvErrorEnum mvItemList<mvClass>::getItemParametersf(mvIndex itemIndex,\
 
 
 template <class mvClass>
-mvErrorEnum mvItemList<mvClass>::getItemParametersv(mvIndex itemIndex,\
+mvErrorEnum mvItemList<mvClass>::getItemParameterv_str(mvIndex itemIndex,\
    const char* param, mvFloat* array, mvCount* noOfParameters)
 {
    mvIndex listIndex = itemIndex;
@@ -735,7 +735,7 @@ mvErrorEnum mvItemList<mvClass>::getItemParametersv(mvIndex itemIndex,\
 
 
 template <class mvClass>
-mvErrorEnum mvItemList<mvClass>::setCurrentItemParameters(const char* param,\
+mvErrorEnum mvItemList<mvClass>::setCurrentItemParameter_str(const char* param,\
    const char* option)
 {
    mvIndex listIndex = currentIndex;
@@ -768,7 +768,7 @@ mvErrorEnum mvItemList<mvClass>::setCurrentItemParameters(const char* param,\
 
 
 template <class mvClass>
-mvErrorEnum mvItemList<mvClass>::setCurrentItemParametersi(const char* param,\
+mvErrorEnum mvItemList<mvClass>::setCurrentItemParameteri_str(const char* param,\
    mvIndex index)
 {
    mvIndex listIndex = currentIndex;
@@ -794,7 +794,7 @@ mvErrorEnum mvItemList<mvClass>::setCurrentItemParametersi(const char* param,\
 
 
 template <class mvClass>
-mvErrorEnum mvItemList<mvClass>::setCurrentItemParametersf(const char* param,\
+mvErrorEnum mvItemList<mvClass>::setCurrentItemParameterf_str(const char* param,\
    mvFloat num)
 {
    mvIndex listIndex = currentIndex;
@@ -820,7 +820,7 @@ mvErrorEnum mvItemList<mvClass>::setCurrentItemParametersf(const char* param,\
 
 
 template <class mvClass>
-mvErrorEnum mvItemList<mvClass>::setCurrentItemParametersv(const char* param,\
+mvErrorEnum mvItemList<mvClass>::setCurrentItemParameterv_str(const char* param,\
    mvFloat* array)
 {
    mvIndex listIndex = currentIndex;
@@ -846,7 +846,7 @@ mvErrorEnum mvItemList<mvClass>::setCurrentItemParametersv(const char* param,\
 
 
 template <class mvClass>
-mvErrorEnum mvItemList<mvClass>::getCurrentItemParameters(const char* param,\
+mvErrorEnum mvItemList<mvClass>::getCurrentItemParameter_str(const char* param,\
    const char** option)
 {
    mvIndex listIndex = currentIndex;
@@ -882,7 +882,7 @@ mvErrorEnum mvItemList<mvClass>::getCurrentItemParameters(const char* param,\
 }
 
 template <class mvClass>
-mvErrorEnum mvItemList<mvClass>::getCurrentItemParametersi(const char* param,\
+mvErrorEnum mvItemList<mvClass>::getCurrentItemParameteri_str(const char* param,\
    mvIndex* index)
 {
    mvIndex listIndex = currentIndex;
@@ -907,7 +907,7 @@ mvErrorEnum mvItemList<mvClass>::getCurrentItemParametersi(const char* param,\
 }
 
 template <class mvClass>
-mvErrorEnum mvItemList<mvClass>::getCurrentItemParametersf(const char* param,\
+mvErrorEnum mvItemList<mvClass>::getCurrentItemParameterf_str(const char* param,\
    mvFloat* num)
 {
    mvIndex listIndex = currentIndex;
@@ -932,7 +932,7 @@ mvErrorEnum mvItemList<mvClass>::getCurrentItemParametersf(const char* param,\
 }
 
 template <class mvClass>
-mvErrorEnum mvItemList<mvClass>::getCurrentItemParametersv(const char* param,\
+mvErrorEnum mvItemList<mvClass>::getCurrentItemParameterv_str(const char* param,\
    mvFloat* array, mvCount* noOfParameters)
 {
    mvIndex listIndex = currentIndex;

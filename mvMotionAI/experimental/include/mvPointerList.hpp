@@ -37,7 +37,7 @@ template <class mvClass, class mvConstClass>
 mvPointerList<mvClass,mvConstClass>::mvPointerList()
 {
    maxNoOfItems = 0;
-   currentIndex = MV_NO_CURRENT_INDEX;
+   currentIndex = MV_NULL;
    autoConverIndexFlag = false;
 }
 
@@ -45,7 +45,7 @@ mvPointerList<mvClass,mvConstClass>::mvPointerList()
  *  Auto convert index :
  *  when out of range indexes are passed to this list
  *  if true :
- *    they converted into either a positive index or MV_NO_CURRENT_INDEX.
+ *    they converted into either a positive index or MV_NULL.
  *  if false
  *    they will remain unusable until list is occupied with enough items.
  *  Also when negetive indexes are applied i.e. (-1 or the last item added)
@@ -88,7 +88,7 @@ mvIndex mvPointerList<mvClass,mvConstClass>::convertIndex(mvIndex index) const
          finalIndex = changeFromMvIndexToC(index);
          if (isIndexValid(finalIndex))
          {
-            return MV_NO_CURRENT_INDEX;
+            return MV_NULL;
          }
 
          // TODO : check for error
@@ -101,7 +101,7 @@ mvIndex mvPointerList<mvClass,mvConstClass>::convertIndex(mvIndex index) const
          finalIndex = changeFromMvIndexToC(index);
          if (isIndexValid(finalIndex))
          {
-            return MV_NO_CURRENT_INDEX;
+            return MV_NULL;
          }
          else
          {
@@ -192,15 +192,15 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::addItem(mvClass itemPtr)
 {
    class std::vector<mvClass>::const_iterator i;
    class std::vector<mvClass>::iterator listEnd = listItems.end();
-   mvClass currentItem = NULL;
+   mvClass currentItem = MV_NULL;
 
-   if (itemPtr == NULL)
+   if (itemPtr == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    for (i =listItems.begin(); i != listEnd; ++i)
    {
      currentItem = *i;
-     if (currentItem != NULL && itemPtr == currentItem)
+     if (currentItem != MV_NULL && itemPtr == currentItem)
      {
          return MV_UNIQUE_ITEM_ALREADY_IN_LIST;
      }
@@ -217,7 +217,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::addItem(mvClass itemPtr)
  * \brief deletes item from list by index
  *
  * If rwmoved item has the same value as the current index
- * then the current index is set to MV_NO_CURRENT_INDEX or 0
+ * then the current index is set to MV_NULL or 0
  *
  * Code taken from mvMotionAI-Utilities.h, 2006
  * mvRemoveItemFromVectorByIndex
@@ -225,7 +225,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::addItem(mvClass itemPtr)
 template <class mvClass, class mvConstClass>
 mvErrorEnum mvPointerList<mvClass,mvConstClass>::deleteItem(mvIndex index)
 {
-   mvClass tempClass = NULL;
+   mvClass tempClass = MV_NULL;
    mvIndex listIndex = index;
    mvErrorEnum error = checkIndex(listIndex);
 
@@ -235,17 +235,17 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::deleteItem(mvIndex index)
    }
 
    tempClass = listItems[listIndex];
-   if (tempClass == NULL)
+   if (tempClass == MV_NULL)
    {
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
 
    delete tempClass;
-   listItems[listIndex] = NULL;
+   listItems[listIndex] = MV_NULL;
 
    if (listIndex == currentIndex)
    {
-      currentIndex = MV_NO_CURRENT_INDEX;
+      currentIndex = MV_NULL;
    }
 
    return MV_NO_ERROR;
@@ -269,19 +269,19 @@ void mvPointerList<mvClass,mvConstClass>::deleteAllItems()
 {
    class std::vector<mvClass>::iterator i;
    class std::vector<mvClass>::iterator listEnd = listItems.end();
-   mvClass temp = NULL;
+   mvClass temp = MV_NULL;
 
    for (i = listItems.begin(); i != listEnd; ++i)
    {
       temp = *i;
-      if (temp != NULL)
+      if (temp != MV_NULL)
       {
          delete temp;
-         *i= NULL;
+         *i= MV_NULL;
       }
    }
    listItems.clear();
-   currentIndex = MV_NO_CURRENT_INDEX;
+   currentIndex = MV_NULL;
    maxNoOfItems = 0;
 }
 
@@ -307,7 +307,7 @@ mvClass mvPointerList<mvClass,mvConstClass>::getClassPtr(mvIndex index) const
 
    if (error != MV_NO_ERROR)
    {
-      return NULL;
+      return MV_NULL;
    }
 
    return listItems[listIndex];
@@ -325,12 +325,12 @@ mvCount mvPointerList<mvClass,mvConstClass>::getNoOfItems() const
    class std::vector<mvClass>::const_iterator i;
    class std::vector<mvClass>::const_iterator listEnd = listItems.end();
    mvCount totalItems = 0;
-   mvClass temp = NULL;
+   mvClass temp = MV_NULL;
 
    for (i = listItems.begin(); i != listEnd; ++i)
    {
       temp = (mvClass) *i;
-      if (temp != NULL)
+      if (temp != MV_NULL)
          ++totalItems;
    }
 
@@ -340,8 +340,6 @@ mvCount mvPointerList<mvClass,mvConstClass>::getNoOfItems() const
 template <class mvClass, class mvConstClass>
 mvIndex mvPointerList<mvClass,mvConstClass>::getCurrentIndex() const
 {
-   // TODO : negitive conversion function
-
    return currentIndex;
 }
 
@@ -349,7 +347,7 @@ mvIndex mvPointerList<mvClass,mvConstClass>::getCurrentIndex() const
  * \brief set the current index of the item list
  *
  * If index provided is valid, then current index is equal
- * to index else the new current index is  MV_NO_CURRENT_INDEX or 0
+ * to index else the new current index is  MV_NULL or 0
  */
 template <class mvClass, class mvConstClass>
 mvIndex mvPointerList<mvClass,mvConstClass>::setCurrentIndex(mvIndex index)
@@ -363,7 +361,7 @@ mvIndex mvPointerList<mvClass,mvConstClass>::setCurrentIndex(mvIndex index)
    }
    else
    {
-      currentIndex = MV_NO_CURRENT_INDEX;
+      currentIndex = MV_NULL;
    }
 
    return currentIndex;
@@ -382,13 +380,13 @@ void mvPointerList<mvClass,mvConstClass>::applyToAllItems(\
 {
    class std::vector<mvClass>::iterator i;
    class std::vector<mvClass>::iterator listEnd = listItems.end();
-   mvClass tempClass = NULL;
+   mvClass tempClass = MV_NULL;
 
    for (i = listItems.begin(); i != listEnd; ++i)
    {
       tempClass = *i;
 
-      if (tempClass != NULL)
+      if (tempClass != MV_NULL)
       {
          someFunction(tempClass,extraPtr);
       }
@@ -410,14 +408,14 @@ void mvPointerList<mvClass,mvConstClass>::applyToAllItemsByIndex(\
 {
    class std::vector<mvClass>::iterator i;
    class std::vector<mvClass>::iterator listEnd = listItems.end();
-   mvClass tempClass = NULL;
+   mvClass tempClass = MV_NULL;
    mvIndex listIndex = MV_FIRST_POINTER_LIST_INDEX;
 
    for (i = listItems.begin(); i != listEnd; ++i)
    {
       tempClass = *i;
 
-      if (tempClass != NULL)
+      if (tempClass != MV_NULL)
       {
          someFunction(worldIndex, listIndex, extraPtr);
       }
@@ -442,7 +440,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParameter(\
 {
    mvIndex listIndex = itemIndex;
    mvErrorEnum error = checkIndex(listIndex);
-   mvClass classPtr = NULL;
+   mvClass classPtr = MV_NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -450,7 +448,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParameter(\
    }
 
    classPtr = listItems[listIndex];
-   if (classPtr == NULL)
+   if (classPtr == MV_NULL)
    {
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
@@ -464,7 +462,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParameteri(\
 {
    mvIndex listIndex = itemIndex;
    mvErrorEnum error = checkIndex(listIndex);
-   mvClass classPtr = NULL;
+   mvClass classPtr = MV_NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -472,7 +470,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParameteri(\
    }
 
    classPtr = listItems[listIndex];
-   if (classPtr == NULL)
+   if (classPtr == MV_NULL)
    {
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
@@ -487,7 +485,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParameterf(\
 {
    mvIndex listIndex = itemIndex;
    mvErrorEnum error = checkIndex(listIndex);
-   mvClass classPtr = NULL;
+   mvClass classPtr = MV_NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -495,7 +493,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParameterf(\
    }
 
    classPtr = listItems[listIndex];
-   if (classPtr == NULL)
+   if (classPtr == MV_NULL)
    {
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
@@ -510,7 +508,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParameterv(\
 {
    mvIndex listIndex = itemIndex;
    mvErrorEnum error = checkIndex(listIndex);
-   mvClass classPtr = NULL;
+   mvClass classPtr = MV_NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -518,7 +516,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParameterv(\
    }
 
    classPtr = listItems[listIndex];
-   if (classPtr == NULL)
+   if (classPtr == MV_NULL)
    {
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
@@ -533,7 +531,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameter(\
 {
    mvIndex listIndex = itemIndex;
    mvErrorEnum error = checkIndex(listIndex);
-   mvClass classPtr = NULL;
+   mvClass classPtr = MV_NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -541,7 +539,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameter(\
    }
 
    classPtr = listItems[listIndex];
-   if (classPtr == NULL)
+   if (classPtr == MV_NULL)
    {
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
@@ -555,7 +553,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameteri(\
 {
    mvIndex listIndex = itemIndex;
    mvErrorEnum error = checkIndex(listIndex);
-   mvClass classPtr = NULL;
+   mvClass classPtr = MV_NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -563,7 +561,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameteri(\
    }
 
    classPtr = listItems[listIndex];
-   if (classPtr == NULL)
+   if (classPtr == MV_NULL)
    {
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
@@ -577,7 +575,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameterf(\
 {
    mvIndex listIndex = itemIndex;
    mvErrorEnum error = checkIndex(listIndex);
-   mvClass classPtr = NULL;
+   mvClass classPtr = MV_NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -585,7 +583,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameterf(\
    }
 
    classPtr = listItems[listIndex];
-   if (classPtr == NULL)
+   if (classPtr == MV_NULL)
    {
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
@@ -600,7 +598,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameterv(\
 {
    mvIndex listIndex = itemIndex;
    mvErrorEnum error = checkIndex(listIndex);
-   mvClass classPtr = NULL;
+   mvClass classPtr = MV_NULL;
 
    if (error != MV_NO_ERROR)
    {
@@ -608,7 +606,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameterv(\
    }
 
    classPtr = listItems[listIndex];
-   if (classPtr == NULL)
+   if (classPtr == MV_NULL)
    {
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
@@ -621,17 +619,17 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameterv(\
  *
  * Code taken from mvMotionAI-Utilities.h
  * template <class mvClass, class mvConstClass>
- * mvErrorEnum mvSetClassParameters(std::vector<mvClass*>& mvClassList,
+ * mvErrorEnum mvSetClassParameter_str(std::vector<mvClass*>& mvClassList,
  */
 template <class mvClass, class mvConstClass>
-mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParameters(\
+mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParameter_str(\
    mvIndex itemIndex, const char* param, const char* option)
 {
    mvIndex listIndex = itemIndex;
    mvParamEnum paramFlag;
    mvErrorEnum error = checkParamStringAndIndex(listIndex,param,&paramFlag);
    mvOptionEnum optionFlag;
-   mvClass classPtr = NULL;
+   mvClass classPtr = MV_NULL;
 
    // check if index is valid
    if (error != MV_NO_ERROR)
@@ -647,7 +645,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParameters(\
 
    // check if class at list index is not null
    classPtr = listItems[listIndex];
-   if (classPtr == NULL)
+   if (classPtr == MV_NULL)
    {
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
@@ -661,17 +659,17 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParameters(\
  *
  * Code taken from mvMotionAI-Utilities.h
  * template <class mvClass, class mvConstClass>
- * mvErrorEnum mvSetClassParametersi(std::vector<mvClass*>& mvClassList,
+ * mvErrorEnum mvSetClassParameteri_str(std::vector<mvClass*>& mvClassList,
  * mvCount& noOfItems, mvIndex index, const char* paramFlag, mvIndex itemIndex)
  */
 template <class mvClass, class mvConstClass>
-mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParametersi(\
+mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParameteri_str(\
    mvIndex itemIndex, const char* param, mvIndex index)
 {
    mvIndex listIndex = itemIndex;
    mvParamEnum paramFlag;
    mvErrorEnum error = checkParamStringAndIndex(listIndex,param,&paramFlag);
-   mvClass classPtr = NULL;
+   mvClass classPtr = MV_NULL;
 
    // check if index is valid
    if (error != MV_NO_ERROR)
@@ -681,7 +679,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParametersi(\
 
    // check if class at list index is not null
    classPtr = listItems[listIndex];
-   if (classPtr == NULL)
+   if (classPtr == MV_NULL)
    {
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
@@ -690,13 +688,13 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParametersi(\
 }
 
 template <class mvClass, class mvConstClass>
-mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParametersf(\
+mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParameterf_str(\
    mvIndex itemIndex, const char* param, mvFloat num)
 {
    mvIndex listIndex = itemIndex;
    mvParamEnum paramFlag;
    mvErrorEnum error = checkParamStringAndIndex(listIndex,param,&paramFlag);
-   mvClass classPtr = NULL;
+   mvClass classPtr = MV_NULL;
 
    // check if index is valid
    if (error != MV_NO_ERROR)
@@ -706,7 +704,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParametersf(\
 
    // check if class at list index is not null
    classPtr = listItems[listIndex];
-   if (classPtr == NULL)
+   if (classPtr == MV_NULL)
    {
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
@@ -715,13 +713,13 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParametersf(\
 }
 
 template <class mvClass, class mvConstClass>
-mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParametersv(\
+mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParameterv_str(\
    mvIndex itemIndex, const char* param, mvFloat* array)
 {
    mvIndex listIndex = itemIndex;
    mvParamEnum paramFlag;
    mvErrorEnum error = checkParamStringAndIndex(listIndex,param,&paramFlag);
-   mvClass classPtr = NULL;
+   mvClass classPtr = MV_NULL;
 
    // check if index is valid
    if (error != MV_NO_ERROR)
@@ -731,7 +729,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParametersv(\
 
    // check if class at list index is not null
    classPtr = listItems[listIndex];
-   if (classPtr == NULL)
+   if (classPtr == MV_NULL)
    {
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
@@ -744,19 +742,19 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParametersv(\
  *
  *Code taken from mvMotionAI-Utilities.h, 2006
  *template <class mvClass, class mvConstClass>
- *mvErrorEnum mvGetClassParameters(std::vector<mvClass*>& mvClassList,
+ *mvErrorEnum mvGetClassParameter_str(std::vector<mvClass*>& mvClassList,
  *   mvCount& noOfItems, mvIndex index, const char* paramFlag,
  *   const char* optionFlag)
  */
 template <class mvClass, class mvConstClass>
-mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameters(\
+mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameter_str(\
    mvIndex itemIndex, const char* param, const char** option) const
 {
    mvIndex listIndex = itemIndex;
    mvParamEnum paramFlag;
    mvErrorEnum error = checkParamStringAndIndex(listIndex,param,&paramFlag);
    mvOptionEnum optionFlag;
-   mvClass classPtr = NULL;
+   mvClass classPtr = MV_NULL;
 
    // check if index is valid
    if (error != MV_NO_ERROR)
@@ -766,7 +764,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameters(\
 
    // check if class at list index is not null
    classPtr = listItems[listIndex];
-   if (classPtr == NULL)
+   if (classPtr == MV_NULL)
    {
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
@@ -779,7 +777,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameters(\
    else
    {
       // assume it's pointer based.
-      *option = NULL;
+      *option = MV_NULL;
    }
 
    return error;
@@ -787,13 +785,13 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameters(\
 
 
 template <class mvClass, class mvConstClass>
-mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParametersi(\
+mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameteri_str(\
    mvIndex itemIndex, const char* param, mvIndex* index) const
 {
    mvIndex listIndex = itemIndex;
    mvParamEnum paramFlag;
    mvErrorEnum error = checkParamStringAndIndex(listIndex,param,&paramFlag);
-   mvClass classPtr = NULL;
+   mvClass classPtr = MV_NULL;
 
    // check if index is valid
    if (error != MV_NO_ERROR)
@@ -803,7 +801,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParametersi(\
 
    // check if class at list index is not null
    classPtr = listItems[listIndex];
-   if (classPtr == NULL)
+   if (classPtr == MV_NULL)
    {
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
@@ -812,13 +810,13 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParametersi(\
 }
 
 template <class mvClass, class mvConstClass>
-mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParametersf(\
+mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameterf_str(\
    mvIndex itemIndex, const char* param, mvFloat* num) const
 {
    mvIndex listIndex = itemIndex;
    mvParamEnum paramFlag;
    mvErrorEnum error = checkParamStringAndIndex(listIndex,param,&paramFlag);
-   mvClass classPtr = NULL;
+   mvClass classPtr = MV_NULL;
 
    // check if index is valid
    if (error != MV_NO_ERROR)
@@ -828,7 +826,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParametersf(\
 
    // check if class at list index is not null
    classPtr = listItems[listIndex];
-   if (classPtr == NULL)
+   if (classPtr == MV_NULL)
    {
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
@@ -838,14 +836,14 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParametersf(\
 
 
 template <class mvClass, class mvConstClass>
-mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParametersv(\
+mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameterv_str(\
    mvIndex itemIndex, const char* param, mvFloat* array,\
    mvCount* noOfParameters) const
 {
    mvIndex listIndex = itemIndex;
    mvParamEnum paramFlag;
    mvErrorEnum error = checkParamStringAndIndex(listIndex,param,&paramFlag);
-   mvClass classPtr = NULL;
+   mvClass classPtr = MV_NULL;
 
    // check if index is valid
    if (error != MV_NO_ERROR)
@@ -855,7 +853,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParametersv(\
 
    // check if class at list index is not null
    classPtr = listItems[listIndex];
-   if (classPtr == NULL)
+   if (classPtr == MV_NULL)
    {
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
@@ -864,63 +862,63 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParametersv(\
 }
 
 template <class mvClass, class mvConstClass>
-mvErrorEnum mvPointerList<mvClass,mvConstClass>::setCurrentItemParameters(\
+mvErrorEnum mvPointerList<mvClass,mvConstClass>::setCurrentItemParameter_str(\
    const char* param, const char* option)
 {
-   return setItemParameters(currentIndex, param, option);
+   return setItemParameter_str(currentIndex, param, option);
 }
 
 
 template <class mvClass, class mvConstClass>
-mvErrorEnum mvPointerList<mvClass,mvConstClass>::setCurrentItemParametersi(\
+mvErrorEnum mvPointerList<mvClass,mvConstClass>::setCurrentItemParameteri_str(\
    const char* param, mvIndex index)
 {
-   return setItemParametersi(currentIndex, param, index);
+   return setItemParameteri_str(currentIndex, param, index);
 }
 
 
 template <class mvClass, class mvConstClass>
-mvErrorEnum mvPointerList<mvClass,mvConstClass>::setCurrentItemParametersf(\
+mvErrorEnum mvPointerList<mvClass,mvConstClass>::setCurrentItemParameterf_str(\
    const char* param, mvFloat num)
 {
-   return setItemParametersf(currentIndex, param, num);
+   return setItemParameterf_str(currentIndex, param, num);
 }
 
 
 template <class mvClass, class mvConstClass>
-mvErrorEnum mvPointerList<mvClass,mvConstClass>::setCurrentItemParametersv(\
+mvErrorEnum mvPointerList<mvClass,mvConstClass>::setCurrentItemParameterv_str(\
    const char* param, mvFloat* array)
 {
-   return setItemParametersv(currentIndex, param, array);
+   return setItemParameterv_str(currentIndex, param, array);
 }
 
 
 template <class mvClass, class mvConstClass>
-mvErrorEnum mvPointerList<mvClass,mvConstClass>::getCurrentItemParameters(\
+mvErrorEnum mvPointerList<mvClass,mvConstClass>::getCurrentItemParameter_str(\
    const char* param, const char** option) const
 {
-   return getItemParameters(currentIndex, param, option);
+   return getItemParameter_str(currentIndex, param, option);
 }
 
 template <class mvClass, class mvConstClass>
-mvErrorEnum mvPointerList<mvClass,mvConstClass>::getCurrentItemParametersi(\
+mvErrorEnum mvPointerList<mvClass,mvConstClass>::getCurrentItemParameteri_str(\
    const char* param, mvIndex* index) const
 {
-   return getItemParametersi(currentIndex, param, index);
+   return getItemParameteri_str(currentIndex, param, index);
 }
 
 template <class mvClass, class mvConstClass>
-mvErrorEnum mvPointerList<mvClass,mvConstClass>::getCurrentItemParametersf(\
+mvErrorEnum mvPointerList<mvClass,mvConstClass>::getCurrentItemParameterf_str(\
    const char* param, mvFloat* num) const
 {
-   return getItemParametersf(currentIndex, param, num);
+   return getItemParameterf_str(currentIndex, param, num);
 }
 
 template <class mvClass, class mvConstClass>
-mvErrorEnum mvPointerList<mvClass,mvConstClass>::getCurrentItemParametersv(\
+mvErrorEnum mvPointerList<mvClass,mvConstClass>::getCurrentItemParameterv_str(\
    const char* param, mvFloat* array, mvCount* noOfParameters) const
 {
-   return getItemParametersv(currentIndex, param, array, noOfParameters);
+   return getItemParameterv_str(currentIndex, param, array, noOfParameters);
 }
 
 
@@ -986,7 +984,7 @@ mvClass mvPointerList<mvClass,mvConstClass>::findItemPtrInList(\
    bool (someFunction)(mvClass, void*), void* extraPtr) const
 {
    class std::vector<mvClass>::const_iterator i;
-   mvClass currentPtr = NULL;
+   mvClass currentPtr = MV_NULL;
    class std::vector<mvClass>::const_iterator listEnd = listItems.end();
 
    for (i = listItems.begin(); i != listEnd; ++i)
@@ -998,7 +996,7 @@ mvClass mvPointerList<mvClass,mvConstClass>::findItemPtrInList(\
       }
    }
    // if failed
-   return NULL;
+   return MV_NULL;
 }
 
 template <class mvClass, class mvConstClass>
@@ -1006,7 +1004,7 @@ mvIndex mvPointerList<mvClass,mvConstClass>::findItemInList(\
    bool (someFunction)(mvClass, void*), void* extraPtr) const
 {
    class std::vector<mvClass>::const_iterator i;
-   mvClass currentPtr = NULL;
+   mvClass currentPtr = MV_NULL;
    class std::vector<mvClass>::const_iterator listEnd = listItems.end();
    mvIndex count = MV_FIRST_POINTER_LIST_INDEX;
 
@@ -1021,7 +1019,7 @@ mvIndex mvPointerList<mvClass,mvConstClass>::findItemInList(\
       ++count;
    }
    // if failed
-   return MV_NO_CURRENT_INDEX;
+   return MV_NULL;
 }
 
 template <class mvClass, class mvConstClass>
@@ -1029,7 +1027,7 @@ mvIndex mvPointerList<mvClass,mvConstClass>::findItemInReverseInList(\
    bool (someFunction)(mvClass, void*), void* extraPtr) const
 {
    class std::vector<mvClass>::const_reverse_iterator i;
-   mvClass currentPtr = NULL;
+   mvClass currentPtr = MV_NULL;
    class std::vector<mvClass>::const_reverse_iterator listEnd = listItems.rend();
    mvIndex count = maxNoOfItems;
 
@@ -1044,7 +1042,7 @@ mvIndex mvPointerList<mvClass,mvConstClass>::findItemInReverseInList(\
       ++count;
    }
    // if failed
-   return MV_NO_CURRENT_INDEX;
+   return MV_NULL;
 }
 
 

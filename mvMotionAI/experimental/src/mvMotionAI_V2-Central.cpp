@@ -288,52 +288,52 @@ mvErrorEnum mvMotionAI_V2::setWorldParameterv(mvIndex worldIndex,\
    return worlds.setItemParameterv(worldIndex, paramFlag, numArray);
 }
 
-mvErrorEnum mvMotionAI_V2::getWorldParameters(mvIndex worldIndex,\
+mvErrorEnum mvMotionAI_V2::getWorldParameter_str(mvIndex worldIndex,\
    const char* param, const char** option)
 {
-   return worlds.getItemParameters(worldIndex, param, option);
+   return worlds.getItemParameter_str(worldIndex, param, option);
 }
 
-mvErrorEnum mvMotionAI_V2::getWorldParametersi(mvIndex worldIndex,\
+mvErrorEnum mvMotionAI_V2::getWorldParameteri_str(mvIndex worldIndex,\
    const char* param,  mvIndex* index)
 {
-   return worlds.getItemParametersi(worldIndex, param, index);
+   return worlds.getItemParameteri_str(worldIndex, param, index);
 }
 
-mvErrorEnum mvMotionAI_V2::getWorldParametersf(mvIndex worldIndex,\
+mvErrorEnum mvMotionAI_V2::getWorldParameterf_str(mvIndex worldIndex,\
    const char* param, mvFloat* num)
 {
-   return worlds.getItemParametersf(worldIndex, param, num);
+   return worlds.getItemParameterf_str(worldIndex, param, num);
 }
 
-mvErrorEnum mvMotionAI_V2::getWorldParametersv(mvIndex worldIndex,\
+mvErrorEnum mvMotionAI_V2::getWorldParameterv_str(mvIndex worldIndex,\
    const char* param, mvFloat* numArray, mvCount* noOfElements)
 {
-   return worlds.getItemParametersv(worldIndex, param, numArray, noOfElements);
+   return worlds.getItemParameterv_str(worldIndex, param, numArray, noOfElements);
 }
 
-mvErrorEnum mvMotionAI_V2::setWorldParameters(mvIndex worldIndex,\
+mvErrorEnum mvMotionAI_V2::setWorldParameter_str(mvIndex worldIndex,\
    const char* param, const char* option)
 {
-   return worlds.setItemParameters(worldIndex, param, option);
+   return worlds.setItemParameter_str(worldIndex, param, option);
 }
 
-mvErrorEnum mvMotionAI_V2::setWorldParametersi(mvIndex worldIndex,\
+mvErrorEnum mvMotionAI_V2::setWorldParameteri_str(mvIndex worldIndex,\
    const char* param, mvIndex index)
 {
-   return worlds.setItemParametersi(worldIndex, param, index);
+   return worlds.setItemParameteri_str(worldIndex, param, index);
 }
 
-mvErrorEnum mvMotionAI_V2::setWorldParametersf(mvIndex worldIndex,\
+mvErrorEnum mvMotionAI_V2::setWorldParameterf_str(mvIndex worldIndex,\
    const char* param, mvFloat num)
 {
-   return worlds.setItemParametersf(worldIndex, param, num);
+   return worlds.setItemParameterf_str(worldIndex, param, num);
 }
 
-mvErrorEnum mvMotionAI_V2::setWorldParametersv(mvIndex worldIndex,\
+mvErrorEnum mvMotionAI_V2::setWorldParameterv_str(mvIndex worldIndex,\
    const char* param, mvFloat* numArray)
 {
-   return worlds.setItemParametersv(worldIndex, param, numArray);
+   return worlds.setItemParameterv_str(worldIndex, param, numArray);
 }
 /*
  * GLOBAL FUNCTIONS
@@ -676,7 +676,7 @@ mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERS(mvIndex worldIndex,\
    if (error == MV_NO_ERROR)
    {
       modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
-      return modulePtr->setWorldParameters(worldIndex, param, option);
+      return modulePtr->setWorldParameter_str(worldIndex, param, option);
    }
    else
    {
@@ -693,7 +693,7 @@ mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERSI(mvIndex worldIndex,\
    if (error == MV_NO_ERROR)
    {
       modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
-      return modulePtr->setWorldParametersi(worldIndex, param, index);
+      return modulePtr->setWorldParameteri_str(worldIndex, param, index);
    }
    else
    {
@@ -710,7 +710,7 @@ mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERSF(mvIndex worldIndex,\
    if (error == MV_NO_ERROR)
    {
       modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
-      return modulePtr->setWorldParametersf(worldIndex, param, num);
+      return modulePtr->setWorldParameterf_str(worldIndex, param, num);
    }
    else
    {
@@ -727,7 +727,7 @@ mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERSV(mvIndex worldIndex,\
    if (error == MV_NO_ERROR)
    {
       modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
-      return modulePtr->setWorldParametersv(worldIndex, param, numArray);
+      return modulePtr->setWorldParameterv_str(worldIndex, param, numArray);
    }
    else
    {
@@ -744,7 +744,7 @@ mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERS(mvIndex worldIndex,\
    if (error == MV_NO_ERROR)
    {
       modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
-      return modulePtr->getWorldParameters(worldIndex, param, option);
+      return modulePtr->getWorldParameter_str(worldIndex, param, option);
    }
    else
    {
@@ -761,7 +761,7 @@ mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERSI(mvIndex worldIndex,\
    if (error == MV_NO_ERROR)
    {
       modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
-      return modulePtr->getWorldParametersi(worldIndex, param, index);
+      return modulePtr->getWorldParameteri_str(worldIndex, param, index);
    }
    else
    {
@@ -778,7 +778,7 @@ mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERSF(mvIndex worldIndex,\
    if (error == MV_NO_ERROR)
    {
       modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
-      return modulePtr->getWorldParametersf(worldIndex, param, num);
+      return modulePtr->getWorldParameterf_str(worldIndex, param, num);
    }
    else
    {
@@ -795,7 +795,7 @@ mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERSV(mvIndex worldIndex,\
    if (error == MV_NO_ERROR)
    {
       modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
-      return modulePtr->getWorldParametersv(worldIndex, param, numArray,\
+      return modulePtr->getWorldParameterv_str(worldIndex, param, numArray,\
          noOfElements);
    }
    else

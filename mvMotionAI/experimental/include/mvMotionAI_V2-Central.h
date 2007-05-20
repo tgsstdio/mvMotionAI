@@ -132,22 +132,22 @@ class mvMotionAI_V2
       mvErrorEnum setWorldParameterv(mvIndex worldIndex, mvParamEnum paramFlag,\
          mvFloat* numArray);
 
-      mvErrorEnum getWorldParameters(mvIndex worldIndex, const char* param,\
+      mvErrorEnum getWorldParameter_str(mvIndex worldIndex, const char* param,\
          const char** option);
-      mvErrorEnum getWorldParametersi(mvIndex worldIndex, const char* param,\
+      mvErrorEnum getWorldParameteri_str(mvIndex worldIndex, const char* param,\
          mvIndex* index);
-      mvErrorEnum getWorldParametersf(mvIndex worldIndex, const char* param,\
+      mvErrorEnum getWorldParameterf_str(mvIndex worldIndex, const char* param,\
          mvFloat* num);
-      mvErrorEnum getWorldParametersv(mvIndex worldIndex, const char* param,\
+      mvErrorEnum getWorldParameterv_str(mvIndex worldIndex, const char* param,\
          mvFloat* numArray, mvCount* noOfElements);
 
-      mvErrorEnum setWorldParameters(mvIndex worldIndex, const char* param,\
+      mvErrorEnum setWorldParameter_str(mvIndex worldIndex, const char* param,\
          const char* option);
-      mvErrorEnum setWorldParametersi(mvIndex worldIndex, const char* param,\
+      mvErrorEnum setWorldParameteri_str(mvIndex worldIndex, const char* param,\
          mvIndex index);
-      mvErrorEnum setWorldParametersf(mvIndex worldIndex, const char* param,\
+      mvErrorEnum setWorldParameterf_str(mvIndex worldIndex, const char* param,\
          mvFloat num);
-      mvErrorEnum setWorldParametersv(mvIndex worldIndex, const char* param,\
+      mvErrorEnum setWorldParameterv_str(mvIndex worldIndex, const char* param,\
          mvFloat* numArray);
 
       ~mvMotionAI_V2();

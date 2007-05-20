@@ -442,101 +442,101 @@ mvBEntryListNode * mvBEntryList::findExistingGroupEntry(mvIndex bIndex,\
    integrationMode = MV_WEIGHTED;
 }
 
-mvErrorEnum mvBEntryList::getEntryParametersi(mvIndex entryIndex,\
+mvErrorEnum mvBEntryList::getEntryParameteri_str(mvIndex entryIndex,\
    const char* param, mvIndex* outIndex)
 {
-   return entryList.getItemParametersi(entryIndex, param, outIndex);
+   return entryList.getItemParameteri_str(entryIndex, param, outIndex);
 }
 
-mvErrorEnum mvBEntryList::getEntryParameters(mvIndex entryIndex, const char* param,\
+mvErrorEnum mvBEntryList::getEntryParameter_str(mvIndex entryIndex, const char* param,\
    const char** option)
 {
-   return entryList.getItemParameters(entryIndex, param, option);
+   return entryList.getItemParameter_str(entryIndex, param, option);
 }
 
-mvErrorEnum mvBEntryList::getEntryParametersf(mvIndex entryIndex, const char* param,\
+mvErrorEnum mvBEntryList::getEntryParameterf_str(mvIndex entryIndex, const char* param,\
    mvFloat* num)
 {
-   return entryList.getItemParametersf(entryIndex, param, num);
+   return entryList.getItemParameterf_str(entryIndex, param, num);
 }
 
-mvErrorEnum mvBEntryList::getEntryParametersv(mvIndex entryIndex, const char* param,\
+mvErrorEnum mvBEntryList::getEntryParameterv_str(mvIndex entryIndex, const char* param,\
    mvFloat* numArray, mvCount* noOfParameters)
 {
-   return entryList.getItemParametersv(entryIndex, param, numArray,\
+   return entryList.getItemParameterv_str(entryIndex, param, numArray,\
       noOfParameters);
 }
 
 
-mvErrorEnum mvBEntryList::setEntryParametersi(mvIndex entryIndex,const char* param,\
+mvErrorEnum mvBEntryList::setEntryParameteri_str(mvIndex entryIndex,const char* param,\
    mvIndex paramIndex)
 {
-   return entryList.setItemParametersi(entryIndex, param, paramIndex);
+   return entryList.setItemParameteri_str(entryIndex, param, paramIndex);
 }
 
-mvErrorEnum mvBEntryList::setEntryParameters(mvIndex entryIndex,const char* param,\
+mvErrorEnum mvBEntryList::setEntryParameter_str(mvIndex entryIndex,const char* param,\
    const char* option)
 {
-   return entryList.setItemParameters(entryIndex, param, option);
+   return entryList.setItemParameter_str(entryIndex, param, option);
 }
 
-mvErrorEnum mvBEntryList::setEntryParametersf(mvIndex entryIndex,const char* param,\
+mvErrorEnum mvBEntryList::setEntryParameterf_str(mvIndex entryIndex,const char* param,\
    mvFloat num)
 {
-   return entryList.setItemParametersf(entryIndex, param, num);
+   return entryList.setItemParameterf_str(entryIndex, param, num);
 }
 
-mvErrorEnum mvBEntryList::setEntryParametersv(mvIndex entryIndex,const char* param,\
+mvErrorEnum mvBEntryList::setEntryParameterv_str(mvIndex entryIndex,const char* param,\
    mvFloat* numArray)
 {
-   return entryList.setItemParametersv(entryIndex, param, numArray);
+   return entryList.setItemParameterv_str(entryIndex, param, numArray);
 }
 
-mvErrorEnum mvBEntryList::getCurrentEntryParametersi(const char* param,\
+mvErrorEnum mvBEntryList::getCurrentEntryParameteri_str(const char* param,\
    mvIndex* outIndex)
 {
-   return entryList.getCurrentItemParametersi(param, outIndex);
+   return entryList.getCurrentItemParameteri_str(param, outIndex);
 }
 
-mvErrorEnum mvBEntryList::getCurrentEntryParameters(const char* param,\
+mvErrorEnum mvBEntryList::getCurrentEntryParameter_str(const char* param,\
    const char** option)
 {
-   return entryList.getCurrentItemParameters(param, option);
+   return entryList.getCurrentItemParameter_str(param, option);
 }
 
-mvErrorEnum mvBEntryList::getCurrentEntryParametersf(const char* param,\
+mvErrorEnum mvBEntryList::getCurrentEntryParameterf_str(const char* param,\
    mvFloat* num)
 {
-   return entryList.getCurrentItemParametersf(param, num);
+   return entryList.getCurrentItemParameterf_str(param, num);
 }
 
-mvErrorEnum mvBEntryList::getCurrentEntryParametersv(const char* param,\
+mvErrorEnum mvBEntryList::getCurrentEntryParameterv_str(const char* param,\
    mvFloat* numArray, mvCount* noOfParameters)
 {
-   return entryList.getCurrentItemParametersv(param, numArray, noOfParameters);
+   return entryList.getCurrentItemParameterv_str(param, numArray, noOfParameters);
 }
 
-mvErrorEnum mvBEntryList::setCurrentEntryParametersi(const char* param,\
+mvErrorEnum mvBEntryList::setCurrentEntryParameteri_str(const char* param,\
    mvIndex paramIndex)
 {
-   return entryList.setCurrentItemParametersi(param, paramIndex);
+   return entryList.setCurrentItemParameteri_str(param, paramIndex);
 }
 
-mvErrorEnum mvBEntryList::setCurrentEntryParameters(const char* param,\
+mvErrorEnum mvBEntryList::setCurrentEntryParameter_str(const char* param,\
    const char* option)
 {
-   return entryList.setCurrentItemParameters(param, option);
+   return entryList.setCurrentItemParameter_str(param, option);
 }
 
-mvErrorEnum mvBEntryList::setCurrentEntryParametersf(const char* param,\
+mvErrorEnum mvBEntryList::setCurrentEntryParameterf_str(const char* param,\
    mvFloat num)
 {
-   return entryList.setCurrentItemParametersf(param, num);
+   return entryList.setCurrentItemParameterf_str(param, num);
 }
 
-mvErrorEnum mvBEntryList::setCurrentEntryParametersv(const char* param,\
+mvErrorEnum mvBEntryList::setCurrentEntryParameterv_str(const char* param,\
    mvFloat* numArray)
 {
-   return entryList.setCurrentItemParametersv(param, numArray);
+   return entryList.setCurrentItemParameterv_str(param, numArray);
 }
 

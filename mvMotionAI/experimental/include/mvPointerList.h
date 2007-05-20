@@ -95,40 +95,40 @@ class mvPointerList
       mvErrorEnum getItemParameterv(mvIndex itemIndex,mvParamEnum paramFlag,\
          mvFloat* array, mvCount* noOfParameters) const;
 
-      mvErrorEnum setItemParameters(mvIndex itemIndex, const char* param,\
+      mvErrorEnum setItemParameter_str(mvIndex itemIndex, const char* param,\
          const char* option);
-      mvErrorEnum setItemParametersi(mvIndex itemIndex, const char* param,\
+      mvErrorEnum setItemParameteri_str(mvIndex itemIndex, const char* param,\
          mvIndex index);
-      mvErrorEnum setItemParametersf(mvIndex itemIndex, const char* param,\
+      mvErrorEnum setItemParameterf_str(mvIndex itemIndex, const char* param,\
          mvFloat num);
-      mvErrorEnum setItemParametersv(mvIndex itemIndex, const char* param,\
+      mvErrorEnum setItemParameterv_str(mvIndex itemIndex, const char* param,\
          mvFloat* array);
 
-      mvErrorEnum getItemParameters(mvIndex itemIndex, const char* param,\
+      mvErrorEnum getItemParameter_str(mvIndex itemIndex, const char* param,\
          const char** option) const;
-      mvErrorEnum getItemParametersi(mvIndex itemIndex, const char* param,\
+      mvErrorEnum getItemParameteri_str(mvIndex itemIndex, const char* param,\
          mvIndex* index) const;
-      mvErrorEnum getItemParametersf(mvIndex itemIndex, const char* param,\
+      mvErrorEnum getItemParameterf_str(mvIndex itemIndex, const char* param,\
          mvFloat* num) const;
-      mvErrorEnum getItemParametersv(mvIndex itemIndex, const char* param,\
+      mvErrorEnum getItemParameterv_str(mvIndex itemIndex, const char* param,\
          mvFloat* array, mvCount* noOfParameters) const;
 
-      mvErrorEnum setCurrentItemParameters(const char* param,\
+      mvErrorEnum setCurrentItemParameter_str(const char* param,\
          const char* option);
-      mvErrorEnum setCurrentItemParametersi(const char* param,\
+      mvErrorEnum setCurrentItemParameteri_str(const char* param,\
          mvIndex index);
-      mvErrorEnum setCurrentItemParametersf(const char* param,\
+      mvErrorEnum setCurrentItemParameterf_str(const char* param,\
          mvFloat num);
-      mvErrorEnum setCurrentItemParametersv(const char* param,\
+      mvErrorEnum setCurrentItemParameterv_str(const char* param,\
          mvFloat* array);
 
-      mvErrorEnum getCurrentItemParameters(const char* param,\
+      mvErrorEnum getCurrentItemParameter_str(const char* param,\
          const char** option) const;
-      mvErrorEnum getCurrentItemParametersi(const char* param,\
+      mvErrorEnum getCurrentItemParameteri_str(const char* param,\
          mvIndex* index) const;
-      mvErrorEnum getCurrentItemParametersf(const char* param,\
+      mvErrorEnum getCurrentItemParameterf_str(const char* param,\
          mvFloat* num) const;
-      mvErrorEnum getCurrentItemParametersv(const char* param,\
+      mvErrorEnum getCurrentItemParameterv_str(const char* param,\
          mvFloat* array, mvCount* noOfParameters) const;
 
       mvErrorEnum setCurrentItemParameter(mvParamEnum paramFlag,\

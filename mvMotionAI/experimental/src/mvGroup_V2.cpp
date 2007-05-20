@@ -1,5 +1,4 @@
 #include "mvGroup_V2.h"
-#include <cstdlib>
 
 mvGroup_V2::mvGroup_V2()
 {
@@ -54,7 +53,7 @@ mvIndex mvGroup_V2::getCurrentMember() const
 mvErrorEnum mvGroup_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    const
 {
-   if (index == NULL)
+   if (index == MV_NULL)
    {
       return MV_INDEX_DEST_IS_NULL;
    }
@@ -79,7 +78,7 @@ mvErrorEnum mvGroup_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
 mvErrorEnum mvGroup_V2::getParameter(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
-   if (option == NULL)
+   if (option == MV_NULL)
    {
       return MV_OPTION_ENUM_DEST_IS_NULL;
    }
@@ -103,7 +102,7 @@ mvErrorEnum mvGroup_V2::getParameter(mvParamEnum paramFlag,\
 
 mvErrorEnum mvGroup_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
 {
-   if (num == NULL)
+   if (num == MV_NULL)
    {
       return MV_FLOAT_DEST_IS_NULL;
    }
@@ -114,12 +113,12 @@ mvErrorEnum mvGroup_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
 mvErrorEnum mvGroup_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
    mvCount* noOfParameters) const
 {
-   if (noOfParameters == NULL)
+   if (noOfParameters == MV_NULL)
    {
       return MV_COUNT_DEST_IS_NULL;
    }
 
-   if (numArray == NULL)
+   if (numArray == MV_NULL)
    {
       *noOfParameters = 0;
       return MV_PARAMETER_ARRAY_IS_NULL;
@@ -159,7 +158,7 @@ mvErrorEnum mvGroup_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
 
 mvErrorEnum mvGroup_V2::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 {
-   if (numArray == NULL)
+   if (numArray == MV_NULL)
    {
       return MV_PARAMETER_ARRAY_IS_NULL;
    }

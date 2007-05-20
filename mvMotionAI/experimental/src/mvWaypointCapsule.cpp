@@ -1,9 +1,8 @@
 #include "mvWaypointCapsule.h"
-#include <cstdlib>
 
 mvWaypointCapsule::mvWaypointCapsule(mvWaypointPtr wPoint)
 {
-   encappedWaypoint = NULL;
+   encappedWaypoint = MV_NULL;
    encappedWaypoint = wPoint;
    noOfLinkedForces = 0;
    containsBody = false;
@@ -45,7 +44,7 @@ void mvWaypointCapsule::decrementCount()
 mvErrorEnum mvWaypointCapsule::getParameteri(mvParamEnum paramFlag,\
    mvIndex* index) const
 {
-   if (encappedWaypoint == NULL)
+   if (encappedWaypoint == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encappedWaypoint->getParameteri(paramFlag, index);
@@ -54,7 +53,7 @@ mvErrorEnum mvWaypointCapsule::getParameteri(mvParamEnum paramFlag,\
 mvErrorEnum mvWaypointCapsule::getParameter(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
-   if (encappedWaypoint == NULL)
+   if (encappedWaypoint == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encappedWaypoint->getParameter(paramFlag, option);
@@ -63,7 +62,7 @@ mvErrorEnum mvWaypointCapsule::getParameter(mvParamEnum paramFlag,\
 mvErrorEnum mvWaypointCapsule::getParameterf(mvParamEnum paramFlag,\
    mvFloat* num) const
 {
-   if (encappedWaypoint == NULL)
+   if (encappedWaypoint == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encappedWaypoint->getParameterf(paramFlag, num);
@@ -72,7 +71,7 @@ mvErrorEnum mvWaypointCapsule::getParameterf(mvParamEnum paramFlag,\
 mvErrorEnum mvWaypointCapsule::getParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray, mvCount* noOfParameters) const
 {
-   if (encappedWaypoint == NULL)
+   if (encappedWaypoint == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encappedWaypoint->getParameterv(paramFlag,\
@@ -82,7 +81,7 @@ mvErrorEnum mvWaypointCapsule::getParameterv(mvParamEnum paramFlag,\
 mvErrorEnum mvWaypointCapsule::setParameteri(mvParamEnum paramFlag,\
    mvIndex index)
 {
-   if (encappedWaypoint == NULL)
+   if (encappedWaypoint == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encappedWaypoint->setParameteri(paramFlag, index);
@@ -90,7 +89,7 @@ mvErrorEnum mvWaypointCapsule::setParameteri(mvParamEnum paramFlag,\
 mvErrorEnum mvWaypointCapsule::setParameter(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
-   if (encappedWaypoint == NULL)
+   if (encappedWaypoint == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encappedWaypoint->setParameter(paramFlag,option);
@@ -98,7 +97,7 @@ mvErrorEnum mvWaypointCapsule::setParameter(mvParamEnum paramFlag,\
 
 mvErrorEnum mvWaypointCapsule::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
-   if (encappedWaypoint == NULL)
+   if (encappedWaypoint == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encappedWaypoint->setParameterf(paramFlag, num);
@@ -107,7 +106,7 @@ mvErrorEnum mvWaypointCapsule::setParameterf(mvParamEnum paramFlag, mvFloat num)
 mvErrorEnum mvWaypointCapsule::setParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray)
 {
-   if (encappedWaypoint == NULL)
+   if (encappedWaypoint == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encappedWaypoint->setParameterv(paramFlag,numArray);
@@ -115,9 +114,9 @@ mvErrorEnum mvWaypointCapsule::setParameterv(mvParamEnum paramFlag,\
 
 mvWaypointCapsule::~mvWaypointCapsule()
 {
-   if (encappedWaypoint != NULL)
+   if (encappedWaypoint != MV_NULL)
    {
       delete encappedWaypoint;
-      encappedWaypoint = NULL;
+      encappedWaypoint = MV_NULL;
    }
 }

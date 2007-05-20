@@ -24,7 +24,7 @@ mvErrorEnum mvIndexSet::findIndex(mvIndex index) const
 
 mvErrorEnum mvIndexSet::addIndex(mvIndex index)
 {
-   if (index == MV_NO_CURRENT_INDEX)
+   if (index == MV_NULL)
    {
       return MV_INDEX_VALUE_IS_INVALID;
    }
@@ -97,7 +97,7 @@ mvIndex mvIndexSet::getCurrentIndex() const
 {
    if (isLoopFinished())
    {
-      return MV_NO_CURRENT_INDEX;
+      return MV_NULL;
    }
    else
    {
@@ -183,7 +183,7 @@ mvIndex mvUniqueSet::getCurrentIndex() const
 {
    if (isLoopFinished())
    {
-      return MV_NO_CURRENT_INDEX;
+      return MV_NULL;
    }
    else
    {

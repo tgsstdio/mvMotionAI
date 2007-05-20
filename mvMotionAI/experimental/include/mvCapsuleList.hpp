@@ -61,13 +61,13 @@ mvClass mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::get
 {
    mvCapsulePtr tempCapsule = itemList.getClassPtr(index);
 
-   if (tempCapsule != NULL)
+   if (tempCapsule != MV_NULL)
    {
       return tempCapsule->getClassPtr();
    }
    else
    {
-      return NULL;
+      return MV_NULL;
    }
 }
 
@@ -76,13 +76,13 @@ mvClass mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::get
 {
    mvCapsulePtr tempCapsule = itemList.getCurrentClassPtr();
 
-   if (tempCapsule != NULL)
+   if (tempCapsule != MV_NULL)
    {
       return tempCapsule->getClassPtr();
    }
    else
    {
-      return NULL;
+      return MV_NULL;
    }
 }
 
@@ -92,13 +92,13 @@ mvConstClass mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>
 {
    mvConstCapsulePtr tempCapsule = itemList.getCurrentConstClassPtr();
 
-   if (tempCapsule != NULL)
+   if (tempCapsule != MV_NULL)
    {
       return tempCapsule->getConstClassPtr();
    }
    else
    {
-      return NULL;
+      return MV_NULL;
    }
 }
 
@@ -108,13 +108,13 @@ mvConstClass mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>
 {
    mvConstCapsulePtr tempCapsule = itemList.getConstClassPtr(index);
 
-   if (tempCapsule != NULL)
+   if (tempCapsule != MV_NULL)
    {
       return tempCapsule->getConstClassPtr();
    }
    else
    {
-      return NULL;
+      return MV_NULL;
    }
 }
 
@@ -240,116 +240,116 @@ mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>:
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::setItemParameters(\
+mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::setItemParameter_str(\
    mvIndex itemIndex, const char* param, const char* option)
 {
-   return itemList.setItemParameters(itemIndex, param, option);
+   return itemList.setItemParameter_str(itemIndex, param, option);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::setItemParametersi(\
+mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::setItemParameteri_str(\
    mvIndex itemIndex, const char* param, mvIndex index)
 {
-   return itemList.setItemParametersi(itemIndex, param, index);
+   return itemList.setItemParameteri_str(itemIndex, param, index);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::setItemParametersf(\
+mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::setItemParameterf_str(\
    mvIndex itemIndex, const char* param, mvFloat num)
 {
-   return itemList.setItemParametersf(itemIndex, param, num);
+   return itemList.setItemParameterf_str(itemIndex, param, num);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::setItemParametersv(\
+mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::setItemParameterv_str(\
    mvIndex itemIndex, const char* param, mvFloat* array)
 {
-   return itemList.setItemParametersv(itemIndex, param, array);
+   return itemList.setItemParameterv_str(itemIndex, param, array);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getItemParameters(\
+mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getItemParameter_str(\
    mvIndex itemIndex, const char* param, const char** option) const
 {
-   return itemList.getItemParameters(itemIndex, param, option);
+   return itemList.getItemParameter_str(itemIndex, param, option);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getItemParametersi(\
+mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getItemParameteri_str(\
    mvIndex itemIndex, const char* param, mvIndex* index) const
 {
-   return itemList.getItemParametersi(itemIndex, param, index);
+   return itemList.getItemParameteri_str(itemIndex, param, index);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getItemParametersf(\
+mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getItemParameterf_str(\
    mvIndex itemIndex, const char* param, mvFloat* num) const
 {
-   return itemList.getItemParametersf(itemIndex, param, num);
+   return itemList.getItemParameterf_str(itemIndex, param, num);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getItemParametersv(\
+mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getItemParameterv_str(\
    mvIndex itemIndex, const char* param, mvFloat* array,\
    mvCount* noOfParameters) const
 {
-   return itemList.getItemParametersv(itemIndex, param, array, noOfParameters);
+   return itemList.getItemParameterv_str(itemIndex, param, array, noOfParameters);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::setCurrentItemParameters(\
+mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::setCurrentItemParameter_str(\
    const char* param, const char* option)
 {
-   return itemList.setCurrentItemParameters(param, option);
+   return itemList.setCurrentItemParameter_str(param, option);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::setCurrentItemParametersi(\
+mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::setCurrentItemParameteri_str(\
    const char* param, mvIndex index)
 {
-   return itemList.setCurrentItemParametersi(param, index);
+   return itemList.setCurrentItemParameteri_str(param, index);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::setCurrentItemParametersf(\
+mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::setCurrentItemParameterf_str(\
    const char* param, mvFloat num)
 {
-   return itemList.setCurrentItemParametersf(param, num);
+   return itemList.setCurrentItemParameterf_str(param, num);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::setCurrentItemParametersv(\
+mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::setCurrentItemParameterv_str(\
    const char* param, mvFloat* array)
 {
-   return itemList.setCurrentItemParametersv(param, array);
+   return itemList.setCurrentItemParameterv_str(param, array);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getCurrentItemParameters(\
+mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getCurrentItemParameter_str(\
    const char* param, const char** option) const
 {
-   return itemList.getCurrentItemParameters(param, option);
+   return itemList.getCurrentItemParameter_str(param, option);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getCurrentItemParametersi(\
+mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getCurrentItemParameteri_str(\
    const char* param, mvIndex* index) const
 {
-   return itemList.getCurrentItemParametersi(param, index);
+   return itemList.getCurrentItemParameteri_str(param, index);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getCurrentItemParametersf(\
+mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getCurrentItemParameterf_str(\
    const char* param, mvFloat* num) const
 {
-   return itemList.getCurrentItemParametersf(param, num);
+   return itemList.getCurrentItemParameterf_str(param, num);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getCurrentItemParametersv(\
+mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getCurrentItemParameterv_str(\
    const char* param, mvFloat* array, mvCount* noOfParameters) const
 {
-   return itemList.getCurrentItemParametersv(param, array, noOfParameters);
+   return itemList.getCurrentItemParameterv_str(param, array, noOfParameters);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>

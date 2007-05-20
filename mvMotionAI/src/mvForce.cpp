@@ -23,7 +23,6 @@
  */
 
 #include "mvForce.h"
-#include <cstdlib>
 
 /**
       mvEnum forceType;
@@ -96,7 +95,7 @@ mvErrorEnum mvForce::initialiseForce(mvOptionEnum fType)
    mvIndex i;
    mvCount noOfVariables;
 
-   if (variables != NULL)
+   if (variables != MV_NULL)
    {
       // copies past variables over to new settings
       noOfVariables = getNoOfForceVariables();
@@ -105,7 +104,7 @@ mvErrorEnum mvForce::initialiseForce(mvOptionEnum fType)
          tempVariables[i] = variables[i];
       }
       delete [] variables;
-      variables = NULL;
+      variables = MV_NULL;
    }
 
    switch(fType)
@@ -154,7 +153,7 @@ mvErrorEnum mvForce::initialiseForce(mvOptionEnum fType)
 
 mvForce::mvForce(mvOptionEnum fType)
 {
-   variables = NULL;
+   variables = MV_NULL;
    initialiseForce(fType);
    enableFlag = MV_TRUE;
    count = 0;
@@ -189,7 +188,7 @@ mvForce::mvForce(mvOptionEnum fType, mvFloat fx, mvFloat fy, mvFloat fz)
 {
    mvFloat len = 0;
 
-   variables = NULL;
+   variables = MV_NULL;
    initialiseForce(fType);
    enableFlag = MV_TRUE;
    centralVector.set(fx,fy,fz);
@@ -224,10 +223,10 @@ mvErrorEnum mvForce::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
 
 mvForce::~mvForce()
 {
-   if (variables != NULL)
+   if (variables != MV_NULL)
    {
       delete [] variables;
-      variables = NULL;
+      variables = MV_NULL;
    }
 }
 
@@ -251,7 +250,7 @@ bool mvForce::isGlobalForce()
 
 mvErrorEnum mvForce::getParameter(mvParamEnum paramFlag, mvOptionEnum* dest)
 {
-   if (dest != NULL)
+   if (dest != MV_NULL)
    {
       switch(paramFlag)
       {
@@ -280,7 +279,7 @@ mvErrorEnum mvForce::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
    mvVec3 tempVector;
    bool isValid = false;
 
-   if (numArray != NULL)
+   if (numArray != MV_NULL)
    {
       switch(paramFlag)
       {
@@ -364,7 +363,7 @@ mvErrorEnum mvForce::setParameterf(mvParamEnum paramFlag, mvFloat num)
    //mvFloat params[MV_MAX_NO_OF_PARAMETERS];
    bool isValid = false;
 
-   //noOfParameters = getNoOfParameters(paramFlag);
+   //noOfParameters = getNoOfParameter_str(paramFlag);
    switch(paramFlag)
    {
       default:
@@ -381,7 +380,7 @@ mvErrorEnum mvForce::setParameterf(mvParamEnum paramFlag, mvFloat num)
          if (forceType == MV_UNIFORM_ACCELERATION || forceType == MV_GRAVITY
                  || forceType == MV_DRAG_ACCELERATION || forceType == MV_GRAVITY_TO_POINT)
          {
-            if (variables != NULL)
+            if (variables != MV_NULL)
             {
                variables[MV_FORCE_ACCELERATION_VARIABLE_INDEX] = num;
             }
@@ -392,7 +391,7 @@ mvErrorEnum mvForce::setParameterf(mvParamEnum paramFlag, mvFloat num)
          if (forceType == MV_UNIFORM_FORCE || forceType == MV_DRAG_FORCE
                  || forceType == MV_DIRECTION_FORCE_TO_POINT)
          {
-            if (variables != NULL)
+            if (variables != MV_NULL)
             {
                variables[MV_FORCE_QUANTITY_VARIABLE_INDEX] = num;
             }
@@ -402,7 +401,7 @@ mvErrorEnum mvForce::setParameterf(mvParamEnum paramFlag, mvFloat num)
       case MV_MASS:
          if (forceType == MV_GRAVITY_TO_POINT)
          {
-            if (variables != NULL)
+            if (variables != MV_NULL)
             {
                variables[MV_FORCE_GRAVITIONAL_MASS_VARIABLE_INDEX] = num;
             }
@@ -412,7 +411,7 @@ mvErrorEnum mvForce::setParameterf(mvParamEnum paramFlag, mvFloat num)
       case MV_CONSTANT:
          if (forceType == MV_GRAVITY_TO_POINT)
          {
-            if (variables != NULL)
+            if (variables != MV_NULL)
             {
                variables[MV_FORCE_GRAVITY_CONSTANT_VARIABLE_INDEX] = num;
             }
@@ -423,7 +422,7 @@ mvErrorEnum mvForce::setParameterf(mvParamEnum paramFlag, mvFloat num)
          if (forceType == MV_DIRECTION_SHIFT_TO_POINT || forceType == MV_UNIFORM_SHIFT
                  || forceType == MV_DRAG_SHIFT)
          {
-            if (variables != NULL)
+            if (variables != MV_NULL)
             {
                variables[MV_FORCE_SPEED_VARIABLE_INDEX] = num;
             }
@@ -448,8 +447,8 @@ mvErrorEnum mvForce::getParameterf(mvParamEnum paramFlag, mvFloat* dest)
    //mvFloat params[MV_MAX_NO_OF_PARAMETERS];
    bool isValid = false;
 
-   //noOfParameters = getNoOfParameters(paramFlag);
-   if (dest != NULL)
+   //noOfParameters = getNoOfParameter_str(paramFlag);
+   if (dest != MV_NULL)
    {
       switch(paramFlag)
       {
@@ -467,7 +466,7 @@ mvErrorEnum mvForce::getParameterf(mvParamEnum paramFlag, mvFloat* dest)
             if (forceType == MV_UNIFORM_ACCELERATION || forceType == MV_GRAVITY
                     || forceType == MV_DRAG_ACCELERATION || forceType == MV_GRAVITY_TO_POINT)
             {
-               if (variables != NULL)
+               if (variables != MV_NULL)
                {
                   dest[0] = variables[MV_FORCE_ACCELERATION_VARIABLE_INDEX];
                }
@@ -478,7 +477,7 @@ mvErrorEnum mvForce::getParameterf(mvParamEnum paramFlag, mvFloat* dest)
             if (forceType == MV_UNIFORM_FORCE || forceType == MV_DRAG_FORCE
                     || forceType == MV_DIRECTION_FORCE_TO_POINT)
             {
-               if (variables != NULL)
+               if (variables != MV_NULL)
                {
                   dest[0] = variables[MV_FORCE_QUANTITY_VARIABLE_INDEX];
                }
@@ -488,7 +487,7 @@ mvErrorEnum mvForce::getParameterf(mvParamEnum paramFlag, mvFloat* dest)
          case MV_MASS:
             if (forceType == MV_GRAVITY_TO_POINT)
             {
-               if (variables != NULL)
+               if (variables != MV_NULL)
                {
                   dest[0] = variables[MV_FORCE_GRAVITIONAL_MASS_VARIABLE_INDEX];
                }
@@ -498,7 +497,7 @@ mvErrorEnum mvForce::getParameterf(mvParamEnum paramFlag, mvFloat* dest)
          case MV_CONSTANT:
             if (forceType == MV_GRAVITY_TO_POINT)
             {
-               if (variables != NULL)
+               if (variables != MV_NULL)
                {
                   dest[0] = variables[MV_FORCE_GRAVITY_CONSTANT_VARIABLE_INDEX];
                }
@@ -509,7 +508,7 @@ mvErrorEnum mvForce::getParameterf(mvParamEnum paramFlag, mvFloat* dest)
             if (forceType == MV_DIRECTION_SHIFT_TO_POINT || forceType == MV_UNIFORM_SHIFT
                     || forceType == MV_DRAG_SHIFT)
             {
-               if (variables != NULL)
+               if (variables != MV_NULL)
                {
                   dest[0] = variables[MV_FORCE_SPEED_VARIABLE_INDEX];
                }
@@ -545,10 +544,10 @@ mvErrorEnum mvForce::getParameterv(mvParamEnum paramFlag, mvFloat* dest, mvCount
    bool isValid = false;
    mvErrorEnum error = MV_NO_ERROR;
 
-   if (size == NULL)
+   if (size == MV_NULL)
       return MV_COUNT_DEST_IS_NULL;
 
-   if (dest != NULL)
+   if (dest != MV_NULL)
    {
       switch(paramFlag)
       {
@@ -626,7 +625,7 @@ mvErrorEnum mvForce::getParameterv(mvParamEnum paramFlag, mvFloat* dest, mvCount
             break;
       }
       // copies data from mvForce into destination array
-      noOfParameters = getNoOfParameters(paramFlag);
+      noOfParameters = getNoOfParameter_str(paramFlag);
       if (isValid)
       {
          *size = noOfParameters;
@@ -649,7 +648,7 @@ mvErrorEnum mvForce::getParameterv(mvParamEnum paramFlag, mvFloat* dest, mvCount
    }
 }
 
-mvCount mvForce::getNoOfParameters(mvParamEnum paramFlag)
+mvCount mvForce::getNoOfParameter_str(mvParamEnum paramFlag)
 {
    static const mvCount MV_NO_OF_ACCELERATION_PARAMETERS = 1;
    static const mvCount MV_NO_OF_ACCELERATION_VECTOR_PARAMETERS = 3;
