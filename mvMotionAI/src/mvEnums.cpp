@@ -231,7 +231,7 @@ const char* mvGetErrorString(mvErrorEnum enumValue)
    }
    else
    {
-      return NULL;
+      return MV_NULL;
    }
 }
 
@@ -243,7 +243,7 @@ const char* mvGetParamString(mvParamEnum param)
    }
    else
    {
-      return NULL;
+      return MV_NULL;
    }
 }
 
@@ -255,7 +255,7 @@ const char* mvGetOptionString(mvOptionEnum option)
    }
    else
    {
-      return NULL;
+      return MV_NULL;
    }
 }
 
@@ -465,7 +465,7 @@ template
    mvIndex index;
    mvCount ten = 0;
 
-   if (dest == NULL)
+   if (dest == MV_NULL)
    {
       return false;
    }

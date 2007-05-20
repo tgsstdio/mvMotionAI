@@ -1,5 +1,4 @@
 #include "mvBodyCapsule.h"
-#include <cstdlib>
 
 mvBodyCapsule::mvBodyCapsule(mvBodyPtr capsuleBody)
 {
@@ -19,7 +18,7 @@ mvBodyPtr mvBodyCapsule::getClassPtr() const
 mvErrorEnum mvBodyCapsule::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    const
 {
-   if (encapsulatedBody == NULL)
+   if (encapsulatedBody == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encapsulatedBody->getParameteri(paramFlag, index);
@@ -28,7 +27,7 @@ mvErrorEnum mvBodyCapsule::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
 mvErrorEnum mvBodyCapsule::getParameter(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
-   if (encapsulatedBody == NULL)
+   if (encapsulatedBody == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encapsulatedBody->getParameter(paramFlag, option);
@@ -37,7 +36,7 @@ mvErrorEnum mvBodyCapsule::getParameter(mvParamEnum paramFlag,\
 mvErrorEnum mvBodyCapsule::getParameterf(mvParamEnum paramFlag, mvFloat* num)\
    const
 {
-   if (encapsulatedBody == NULL)
+   if (encapsulatedBody == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encapsulatedBody->getParameterf(paramFlag, num);
@@ -46,7 +45,7 @@ mvErrorEnum mvBodyCapsule::getParameterf(mvParamEnum paramFlag, mvFloat* num)\
 mvErrorEnum mvBodyCapsule::getParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray, mvCount* noOfParameters) const
 {
-   if (encapsulatedBody == NULL)
+   if (encapsulatedBody == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encapsulatedBody->getParameterv(paramFlag,\
@@ -55,7 +54,7 @@ mvErrorEnum mvBodyCapsule::getParameterv(mvParamEnum paramFlag,\
 
 mvErrorEnum mvBodyCapsule::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
-   if (encapsulatedBody == NULL)
+   if (encapsulatedBody == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encapsulatedBody->setParameteri(paramFlag, index);
@@ -63,7 +62,7 @@ mvErrorEnum mvBodyCapsule::setParameteri(mvParamEnum paramFlag, mvIndex index)
 mvErrorEnum mvBodyCapsule::setParameter(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
-   if (encapsulatedBody == NULL)
+   if (encapsulatedBody == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encapsulatedBody->setParameter(paramFlag,option);
@@ -71,7 +70,7 @@ mvErrorEnum mvBodyCapsule::setParameter(mvParamEnum paramFlag,\
 
 mvErrorEnum mvBodyCapsule::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
-   if (encapsulatedBody == NULL)
+   if (encapsulatedBody == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encapsulatedBody->setParameterf(paramFlag, num);
@@ -80,7 +79,7 @@ mvErrorEnum mvBodyCapsule::setParameterf(mvParamEnum paramFlag, mvFloat num)
 mvErrorEnum mvBodyCapsule::setParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray)
 {
-   if (encapsulatedBody == NULL)
+   if (encapsulatedBody == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encapsulatedBody->setParameterv(paramFlag,numArray);
@@ -88,9 +87,9 @@ mvErrorEnum mvBodyCapsule::setParameterv(mvParamEnum paramFlag,\
 
 mvBodyCapsule::~mvBodyCapsule()
 {
-   if (encapsulatedBody == NULL)
+   if (encapsulatedBody == MV_NULL)
    {
       delete encapsulatedBody;
-      encapsulatedBody = NULL;
+      encapsulatedBody = MV_NULL;
    }
 }

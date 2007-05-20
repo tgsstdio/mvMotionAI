@@ -20,7 +20,6 @@
  * DEALINGS IN THE SOFTWARE.
  */
 #include "mvShape.h"
-#include <cstdlib>
 
 static const mvCount MV_MAX_NO_OF_DIMENSIONS = 4;
 static const mvIndex MV_CIRCULAR_RADIUS_INDEX = 0;
@@ -38,7 +37,7 @@ mvErrorEnum mvShape::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
    mvCount noOfDimensions;
    mvIndex i;
 
-   if (numArray == NULL)
+   if (numArray == MV_NULL)
    {
       return MV_PARAMETER_ARRAY_IS_NULL;
    }
@@ -199,13 +198,13 @@ mvErrorEnum mvShape::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
    mvCount noOfDimensions;
    mvIndex i;
 
-   if (noOfParameters == NULL)
+   if (noOfParameters == MV_NULL)
    {
       return MV_COUNT_DEST_IS_NULL;
    }
 
 
-   if (numArray == NULL)
+   if (numArray == MV_NULL)
    {
       *noOfParameters = 0;
       return MV_PARAMETER_ARRAY_IS_NULL;
@@ -266,7 +265,7 @@ mvErrorEnum mvShape::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
 {
    mvIndex tempIndex;
 
-   if (num == NULL)
+   if (num == MV_NULL)
    {
       return MV_FLOAT_DEST_IS_NULL;
    }
@@ -349,7 +348,7 @@ mvErrorEnum mvShape::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
 mvErrorEnum mvShape::getParameter(mvParamEnum paramFlag, mvOptionEnum* option)
    const
 {
-   if (option == NULL)
+   if (option == MV_NULL)
       return MV_OPTION_ENUM_DEST_IS_NULL;
 
    switch (paramFlag)
@@ -369,7 +368,7 @@ mvErrorEnum mvShape::getParameter(mvParamEnum paramFlag, mvOptionEnum* option)
 mvErrorEnum mvShape::getParameteri(mvParamEnum paramFlag, mvIndex* index)
    const
 {
-   if (index == NULL)
+   if (index == MV_NULL)
    {
       return MV_INDEX_DEST_IS_NULL;
    }
@@ -399,10 +398,10 @@ mvOptionEnum mvShape::getType() const
   */
  mvShape::~mvShape()
 {
-   if (dimensions != NULL)
+   if (dimensions != MV_NULL)
    {
       delete [] dimensions;
-      dimensions = NULL;
+      dimensions = MV_NULL;
    }
 }
 
@@ -412,7 +411,7 @@ mvOptionEnum mvShape::getType() const
   */
  mvShape::mvShape(mvOptionEnum sType)
 {
-   dimensions = NULL;
+   dimensions = MV_NULL;
    setType(sType);
 }
 
@@ -468,7 +467,7 @@ mvErrorEnum mvShape::setType(mvOptionEnum type)
    mvIndex i;
    mvCount noOfDimensions;
 
-   if (dimensions != NULL)
+   if (dimensions != MV_NULL)
    {
       noOfDimensions = getNoOfDimensions();
       for (i = 0; i < noOfDimensions; i++)
@@ -476,7 +475,7 @@ mvErrorEnum mvShape::setType(mvOptionEnum type)
          tempDims[i] = dimensions[i];
       }
       delete [] dimensions;
-      dimensions = NULL;
+      dimensions = MV_NULL;
    }
 
    switch(type)

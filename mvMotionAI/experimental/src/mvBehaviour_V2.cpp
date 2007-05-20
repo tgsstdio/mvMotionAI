@@ -20,7 +20,7 @@ mvErrorEnum mvBehaviour_V2::setParameter(mvParamEnum paramFlag,\
          }
          return MV_NO_ERROR;
       default:
-         if (behavPtr != NULL)
+         if (behavPtr != MV_NULL)
          {
             return behavPtr->setParameter(paramFlag, option);
          }
@@ -74,7 +74,7 @@ bool mvBehaviour_V2::isEnabled() const
   */
 mvErrorEnum mvBehaviour_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
-   if (behavPtr != NULL)
+   if (behavPtr != MV_NULL)
    {
       return behavPtr->setParameteri(paramFlag, index);
    }
@@ -90,7 +90,7 @@ mvErrorEnum mvBehaviour_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
   */
 mvErrorEnum mvBehaviour_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
-   if (behavPtr != NULL)
+   if (behavPtr != MV_NULL)
    {
       return behavPtr->setParameterf(paramFlag, num);
    }
@@ -106,7 +106,7 @@ mvErrorEnum mvBehaviour_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
   */
 mvErrorEnum mvBehaviour_V2::setParameterv(mvParamEnum paramFlag, mvFloat* array)
 {
-   if (behavPtr != NULL)
+   if (behavPtr != MV_NULL)
    {
       return behavPtr->setParameterv(paramFlag, array);
    }
@@ -136,7 +136,7 @@ mvErrorEnum mvBehaviour_V2::getParameter(mvParamEnum paramFlag,\
          }
          return MV_NO_ERROR;
       default:
-         if (behavPtr != NULL)
+         if (behavPtr != MV_NULL)
          {
             return behavPtr->getParameter(paramFlag, option);
          }
@@ -154,7 +154,7 @@ mvErrorEnum mvBehaviour_V2::getParameter(mvParamEnum paramFlag,\
 mvErrorEnum mvBehaviour_V2::getParameteri(mvParamEnum paramFlag,\
    mvIndex* index) const
 {
-   if (behavPtr != NULL)
+   if (behavPtr != MV_NULL)
    {
       return behavPtr->getParameteri(paramFlag, index);
    }
@@ -171,7 +171,7 @@ mvErrorEnum mvBehaviour_V2::getParameteri(mvParamEnum paramFlag,\
 mvErrorEnum mvBehaviour_V2::getParameterf(mvParamEnum paramFlag,\
    mvFloat* num) const
 {
-   if (behavPtr != NULL)
+   if (behavPtr != MV_NULL)
    {
       return behavPtr->getParameterf(paramFlag, num);
    }
@@ -188,7 +188,7 @@ mvErrorEnum mvBehaviour_V2::getParameterf(mvParamEnum paramFlag,\
 mvErrorEnum mvBehaviour_V2::getParameterv(mvParamEnum paramFlag,\
    mvFloat* array, mvCount* noOfParameters) const
 {
-   if (behavPtr != NULL)
+   if (behavPtr != MV_NULL)
    {
       return behavPtr->getParameterv(paramFlag, array, noOfParameters);
    }
@@ -204,10 +204,10 @@ mvErrorEnum mvBehaviour_V2::getParameterv(mvParamEnum paramFlag,\
   */
  mvBehaviour_V2::~mvBehaviour_V2()
 {
-   if (behavPtr != NULL)
+   if (behavPtr != MV_NULL)
    {
       delete behavPtr;
-      behavPtr = NULL;
+      behavPtr = MV_NULL;
    }
 }
 

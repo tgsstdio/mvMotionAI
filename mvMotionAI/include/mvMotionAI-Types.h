@@ -113,7 +113,7 @@ typedef int mvCount;
 /**
  * \brief index value returned if error as occured
  */
-static const mvIndex MV_NO_CURRENT_INDEX = 0;
+#define MV_NULL 0
 
 /**
  * \brief maximum array length required for set and retrieving parameters

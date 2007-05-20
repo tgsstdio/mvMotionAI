@@ -148,22 +148,22 @@ class mvWorld_V2
       mvErrorEnum setCurrentBodyParameterv(mvParamEnum paramFlag,\
          mvFloat* array);
 
-      mvErrorEnum setBodyParametersi(mvIndex index, const char* param,\
+      mvErrorEnum setBodyParameteri_str(mvIndex index, const char* param,\
          mvIndex paramIndex);
-      mvErrorEnum setBodyParameters(mvIndex index, const char* param,\
+      mvErrorEnum setBodyParameter_str(mvIndex index, const char* param,\
          const char* option);
-      mvErrorEnum setBodyParametersf(mvIndex index, const char* param,\
+      mvErrorEnum setBodyParameterf_str(mvIndex index, const char* param,\
          mvFloat num);
-      mvErrorEnum setBodyParametersv(mvIndex index, const char* param,\
+      mvErrorEnum setBodyParameterv_str(mvIndex index, const char* param,\
          mvFloat* array);
 
-      mvErrorEnum setCurrentBodyParametersi(const char* param,\
+      mvErrorEnum setCurrentBodyParameteri_str(const char* param,\
          mvIndex paramIndex);
-      mvErrorEnum setCurrentBodyParameters(const char* param,\
+      mvErrorEnum setCurrentBodyParameter_str(const char* param,\
          const char* option);
-      mvErrorEnum setCurrentBodyParametersf(const char* param,\
+      mvErrorEnum setCurrentBodyParameterf_str(const char* param,\
          mvFloat num);
-      mvErrorEnum setCurrentBodyParametersv(const char* param,\
+      mvErrorEnum setCurrentBodyParameterv_str(const char* param,\
          mvFloat* array);
 
       mvErrorEnum getBodyParameteri(mvIndex index, mvParamEnum paramFlag,\
@@ -184,22 +184,22 @@ class mvWorld_V2
       mvErrorEnum getCurrentBodyParameterv(mvParamEnum paramFlag,\
          mvFloat* array, mvCount* noOfParameters) const;
 
-      mvErrorEnum getBodyParametersi(mvIndex index, const char* param,\
+      mvErrorEnum getBodyParameteri_str(mvIndex index, const char* param,\
          mvIndex* outIndex) const;
-      mvErrorEnum getBodyParameters(mvIndex index, const char* param,\
+      mvErrorEnum getBodyParameter_str(mvIndex index, const char* param,\
          const char** option) const;
-      mvErrorEnum getBodyParametersf(mvIndex index, const char* param,\
+      mvErrorEnum getBodyParameterf_str(mvIndex index, const char* param,\
          mvFloat* num) const;
-      mvErrorEnum getBodyParametersv(mvIndex index, const char* param,\
+      mvErrorEnum getBodyParameterv_str(mvIndex index, const char* param,\
          mvFloat* array, mvCount* noOfParameters) const;
 
-      mvErrorEnum getCurrentBodyParametersi(const char* param,\
+      mvErrorEnum getCurrentBodyParameteri_str(const char* param,\
          mvIndex* outIndex) const;
-      mvErrorEnum getCurrentBodyParameters(const char* param,\
+      mvErrorEnum getCurrentBodyParameter_str(const char* param,\
          const char** option) const;
-      mvErrorEnum getCurrentBodyParametersf(const char* param, mvFloat* num)\
+      mvErrorEnum getCurrentBodyParameterf_str(const char* param, mvFloat* num)\
          const;
-      mvErrorEnum getCurrentBodyParametersv(const char* param,\
+      mvErrorEnum getCurrentBodyParameterv_str(const char* param,\
          mvFloat* array, mvCount* noOfParameters) const;
 
       // obstacle functions
@@ -235,22 +235,22 @@ class mvWorld_V2
       mvErrorEnum setCurrentObstacleParameterv(mvParamEnum paramFlag,\
          mvFloat* array);
 
-      mvErrorEnum setObstacleParametersi(mvIndex index, const char* param,\
+      mvErrorEnum setObstacleParameteri_str(mvIndex index, const char* param,\
          mvIndex paramIndex);
-      mvErrorEnum setObstacleParameters(mvIndex index, const char* param,\
+      mvErrorEnum setObstacleParameter_str(mvIndex index, const char* param,\
          const char* option);
-      mvErrorEnum setObstacleParametersf(mvIndex index, const char* param,\
+      mvErrorEnum setObstacleParameterf_str(mvIndex index, const char* param,\
          mvFloat num);
-      mvErrorEnum setObstacleParametersv(mvIndex index, const char* param,\
+      mvErrorEnum setObstacleParameterv_str(mvIndex index, const char* param,\
          mvFloat* array);
 
-      mvErrorEnum setCurrentObstacleParametersi(const char* param,\
+      mvErrorEnum setCurrentObstacleParameteri_str(const char* param,\
          mvIndex paramIndex);
-      mvErrorEnum setCurrentObstacleParameters(const char* param,\
+      mvErrorEnum setCurrentObstacleParameter_str(const char* param,\
          const char* option);
-      mvErrorEnum setCurrentObstacleParametersf(const char* param,\
+      mvErrorEnum setCurrentObstacleParameterf_str(const char* param,\
          mvFloat num);
-      mvErrorEnum setCurrentObstacleParametersv(const char* param,\
+      mvErrorEnum setCurrentObstacleParameterv_str(const char* param,\
          mvFloat* array);
 
       mvErrorEnum getObstacleParameteri(mvIndex index, mvParamEnum paramFlag,\
@@ -271,22 +271,22 @@ class mvWorld_V2
       mvErrorEnum getCurrentObstacleParameterv(mvParamEnum paramFlag,\
          mvFloat* array, mvCount* noOfParameters) const;
 
-      mvErrorEnum getObstacleParametersi(mvIndex index, const char* param,\
+      mvErrorEnum getObstacleParameteri_str(mvIndex index, const char* param,\
          mvIndex* outIndex) const;
-      mvErrorEnum getObstacleParameters(mvIndex index, const char* param,\
+      mvErrorEnum getObstacleParameter_str(mvIndex index, const char* param,\
          const char** option) const;
-      mvErrorEnum getObstacleParametersf(mvIndex index, const char* param,\
+      mvErrorEnum getObstacleParameterf_str(mvIndex index, const char* param,\
          mvFloat* num) const;
-      mvErrorEnum getObstacleParametersv(mvIndex index, const char* param,\
+      mvErrorEnum getObstacleParameterv_str(mvIndex index, const char* param,\
          mvFloat* array, mvCount* noOfParameters) const;
 
-      mvErrorEnum getCurrentObstacleParametersi(const char* param,\
+      mvErrorEnum getCurrentObstacleParameteri_str(const char* param,\
          mvIndex* outIndex) const;
-      mvErrorEnum getCurrentObstacleParameters(const char* param,\
+      mvErrorEnum getCurrentObstacleParameter_str(const char* param,\
          const char** option) const;
-      mvErrorEnum getCurrentObstacleParametersf(const char* param,\
+      mvErrorEnum getCurrentObstacleParameterf_str(const char* param,\
          mvFloat* num) const;
-      mvErrorEnum getCurrentObstacleParametersv(const char* param,\
+      mvErrorEnum getCurrentObstacleParameterv_str(const char* param,\
          mvFloat* array, mvCount* noOfParameters) const;
 
       // Waypoint functions
@@ -321,22 +321,22 @@ class mvWorld_V2
       mvErrorEnum setCurrentWaypointParameterv(mvParamEnum paramFlag,\
          mvFloat* array);
 
-      mvErrorEnum setWaypointParametersi(mvIndex index, const char* param,\
+      mvErrorEnum setWaypointParameteri_str(mvIndex index, const char* param,\
          mvIndex paramIndex);
-      mvErrorEnum setWaypointParameters(mvIndex index, const char* param,\
+      mvErrorEnum setWaypointParameter_str(mvIndex index, const char* param,\
          const char* option);
-      mvErrorEnum setWaypointParametersf(mvIndex index, const char* param,\
+      mvErrorEnum setWaypointParameterf_str(mvIndex index, const char* param,\
          mvFloat num);
-      mvErrorEnum setWaypointParametersv(mvIndex index, const char* param,\
+      mvErrorEnum setWaypointParameterv_str(mvIndex index, const char* param,\
          mvFloat* array);
 
-      mvErrorEnum setCurrentWaypointParametersi(const char* param,\
+      mvErrorEnum setCurrentWaypointParameteri_str(const char* param,\
          mvIndex paramIndex);
-      mvErrorEnum setCurrentWaypointParameters(const char* param,\
+      mvErrorEnum setCurrentWaypointParameter_str(const char* param,\
          const char* option);
-      mvErrorEnum setCurrentWaypointParametersf(const char* param,\
+      mvErrorEnum setCurrentWaypointParameterf_str(const char* param,\
          mvFloat num);
-      mvErrorEnum setCurrentWaypointParametersv(const char* param,\
+      mvErrorEnum setCurrentWaypointParameterv_str(const char* param,\
          mvFloat* array);
 
       mvErrorEnum getWaypointParameteri(mvIndex index, mvParamEnum paramFlag,\
@@ -358,22 +358,22 @@ class mvWorld_V2
          mvFloat* array, mvCount* noOfParameters) const;
 
 
-      mvErrorEnum getWaypointParametersi(mvIndex index, const char* param,\
+      mvErrorEnum getWaypointParameteri_str(mvIndex index, const char* param,\
          mvIndex* outIndex) const;
-      mvErrorEnum getWaypointParameters(mvIndex index, const char* param,\
+      mvErrorEnum getWaypointParameter_str(mvIndex index, const char* param,\
          const char** option) const;
-      mvErrorEnum getWaypointParametersf(mvIndex index, const char* param,\
+      mvErrorEnum getWaypointParameterf_str(mvIndex index, const char* param,\
          mvFloat* num) const;
-      mvErrorEnum getWaypointParametersv(mvIndex index, const char* param,\
+      mvErrorEnum getWaypointParameterv_str(mvIndex index, const char* param,\
          mvFloat* array, mvCount* noOfParameters) const;
 
-      mvErrorEnum getCurrentWaypointParametersi(const char* param,\
+      mvErrorEnum getCurrentWaypointParameteri_str(const char* param,\
          mvIndex* outIndex) const;
-      mvErrorEnum getCurrentWaypointParameters(const char* param,\
+      mvErrorEnum getCurrentWaypointParameter_str(const char* param,\
          const char** option) const;
-      mvErrorEnum getCurrentWaypointParametersf(const char* param,\
+      mvErrorEnum getCurrentWaypointParameterf_str(const char* param,\
          mvFloat* num) const;
-      mvErrorEnum getCurrentWaypointParametersv(const char* param,\
+      mvErrorEnum getCurrentWaypointParameterv_str(const char* param,\
          mvFloat* array, mvCount* noOfParameters) const;
 
       // Pathway functions
@@ -407,22 +407,22 @@ class mvWorld_V2
       mvErrorEnum setCurrentPathwayParameterv(mvParamEnum paramFlag,\
          mvFloat* array);
 
-      mvErrorEnum setPathwayParametersi(mvIndex index, const char* param,\
+      mvErrorEnum setPathwayParameteri_str(mvIndex index, const char* param,\
          mvIndex paramIndex);
-      mvErrorEnum setPathwayParameters(mvIndex index, const char* param,\
+      mvErrorEnum setPathwayParameter_str(mvIndex index, const char* param,\
          const char* option);
-      mvErrorEnum setPathwayParametersf(mvIndex index, const char* param,\
+      mvErrorEnum setPathwayParameterf_str(mvIndex index, const char* param,\
          mvFloat num);
-      mvErrorEnum setPathwayParametersv(mvIndex index, const char* param,\
+      mvErrorEnum setPathwayParameterv_str(mvIndex index, const char* param,\
          mvFloat* array);
 
-      mvErrorEnum setCurrentPathwayParametersi(const char* param,\
+      mvErrorEnum setCurrentPathwayParameteri_str(const char* param,\
          mvIndex paramIndex);
-      mvErrorEnum setCurrentPathwayParameters(const char* param,\
+      mvErrorEnum setCurrentPathwayParameter_str(const char* param,\
          const char* option);
-      mvErrorEnum setCurrentPathwayParametersf(const char* param,\
+      mvErrorEnum setCurrentPathwayParameterf_str(const char* param,\
          mvFloat num);
-      mvErrorEnum setCurrentPathwayParametersv(const char* param,\
+      mvErrorEnum setCurrentPathwayParameterv_str(const char* param,\
          mvFloat* array);
 
       mvErrorEnum getPathwayParameteri(mvIndex index, mvParamEnum paramFlag,\
@@ -443,22 +443,22 @@ class mvWorld_V2
       mvErrorEnum getCurrentPathwayParameterv(mvParamEnum paramFlag,\
          mvFloat* array, mvCount* noOfParameters) const;
 
-      mvErrorEnum getPathwayParametersi(mvIndex index, const char* param,\
+      mvErrorEnum getPathwayParameteri_str(mvIndex index, const char* param,\
          mvIndex* outIndex) const;
-      mvErrorEnum getPathwayParameters(mvIndex index, const char* param,\
+      mvErrorEnum getPathwayParameter_str(mvIndex index, const char* param,\
          const char** option) const;
-      mvErrorEnum getPathwayParametersf(mvIndex index, const char* param,\
+      mvErrorEnum getPathwayParameterf_str(mvIndex index, const char* param,\
          mvFloat* num) const;
-      mvErrorEnum getPathwayParametersv(mvIndex index, const char* param,\
+      mvErrorEnum getPathwayParameterv_str(mvIndex index, const char* param,\
          mvFloat* array, mvCount* noOfParameters) const;
 
-      mvErrorEnum getCurrentPathwayParametersi(const char* param,\
+      mvErrorEnum getCurrentPathwayParameteri_str(const char* param,\
          mvIndex* outIndex) const;
-      mvErrorEnum getCurrentPathwayParameters(const char* param,\
+      mvErrorEnum getCurrentPathwayParameter_str(const char* param,\
          const char** option) const;
-      mvErrorEnum getCurrentPathwayParametersf(const char* param,\
+      mvErrorEnum getCurrentPathwayParameterf_str(const char* param,\
          mvFloat* num) const;
-      mvErrorEnum getCurrentPathwayParametersv(const char* param,\
+      mvErrorEnum getCurrentPathwayParameterv_str(const char* param,\
          mvFloat* array, mvCount* noOfParameters) const;
 
       // Behaviour functions
@@ -492,22 +492,22 @@ class mvWorld_V2
       mvErrorEnum setCurrentBehaviourParameterv(mvParamEnum paramFlag,\
          mvFloat* array);
 
-      mvErrorEnum setBehaviourParametersi(mvIndex index, const char* param,\
+      mvErrorEnum setBehaviourParameteri_str(mvIndex index, const char* param,\
          mvIndex paramIndex);
-      mvErrorEnum setBehaviourParameters(mvIndex index, const char* param,\
+      mvErrorEnum setBehaviourParameter_str(mvIndex index, const char* param,\
          const char* option);
-      mvErrorEnum setBehaviourParametersf(mvIndex index, const char* param,\
+      mvErrorEnum setBehaviourParameterf_str(mvIndex index, const char* param,\
          mvFloat num);
-      mvErrorEnum setBehaviourParametersv(mvIndex index, const char* param,\
+      mvErrorEnum setBehaviourParameterv_str(mvIndex index, const char* param,\
          mvFloat* array);
 
-      mvErrorEnum setCurrentBehaviourParametersi(const char* param,\
+      mvErrorEnum setCurrentBehaviourParameteri_str(const char* param,\
          mvIndex paramIndex);
-      mvErrorEnum setCurrentBehaviourParameters(const char* param,\
+      mvErrorEnum setCurrentBehaviourParameter_str(const char* param,\
          const char* option);
-      mvErrorEnum setCurrentBehaviourParametersf(const char* param,\
+      mvErrorEnum setCurrentBehaviourParameterf_str(const char* param,\
          mvFloat num);
-      mvErrorEnum setCurrentBehaviourParametersv(const char* param,\
+      mvErrorEnum setCurrentBehaviourParameterv_str(const char* param,\
          mvFloat* array);
 
       mvErrorEnum getBehaviourParameteri(mvIndex index,\
@@ -528,22 +528,22 @@ class mvWorld_V2
       mvErrorEnum getCurrentBehaviourParameterv(mvParamEnum paramFlag,\
          mvFloat* array, mvCount* noOfParameters) const;
 
-      mvErrorEnum getBehaviourParametersi(mvIndex index, const char* param,\
+      mvErrorEnum getBehaviourParameteri_str(mvIndex index, const char* param,\
          mvIndex* outIndex) const;
-      mvErrorEnum getBehaviourParameters(mvIndex index, const char* param,\
+      mvErrorEnum getBehaviourParameter_str(mvIndex index, const char* param,\
          const char** option) const;
-      mvErrorEnum getBehaviourParametersf(mvIndex index, const char* param,\
+      mvErrorEnum getBehaviourParameterf_str(mvIndex index, const char* param,\
          mvFloat* num) const;
-      mvErrorEnum getBehaviourParametersv(mvIndex index, const char* param,\
+      mvErrorEnum getBehaviourParameterv_str(mvIndex index, const char* param,\
          mvFloat* array, mvCount* noOfParameters) const;
 
-      mvErrorEnum getCurrentBehaviourParametersi(const char* param,\
+      mvErrorEnum getCurrentBehaviourParameteri_str(const char* param,\
          mvIndex* outIndex) const;
-      mvErrorEnum getCurrentBehaviourParameters(const char* param,\
+      mvErrorEnum getCurrentBehaviourParameter_str(const char* param,\
          const char** option) const;
-      mvErrorEnum getCurrentBehaviourParametersf(const char* param,\
+      mvErrorEnum getCurrentBehaviourParameterf_str(const char* param,\
          mvFloat* num) const;
-      mvErrorEnum getCurrentBehaviourParametersv(const char* param,\
+      mvErrorEnum getCurrentBehaviourParameterv_str(const char* param,\
          mvFloat* array, mvCount* noOfParameters) const;
 
       // Group functions
@@ -577,22 +577,22 @@ class mvWorld_V2
       mvErrorEnum setCurrentGroupParameterv(mvParamEnum paramFlag,\
          mvFloat* array);
 
-      mvErrorEnum setGroupParametersi(mvIndex index, const char* param,\
+      mvErrorEnum setGroupParameteri_str(mvIndex index, const char* param,\
          mvIndex paramIndex);
-      mvErrorEnum setGroupParameters(mvIndex index, const char* param,\
+      mvErrorEnum setGroupParameter_str(mvIndex index, const char* param,\
          const char* option);
-      mvErrorEnum setGroupParametersf(mvIndex index, const char* param,\
+      mvErrorEnum setGroupParameterf_str(mvIndex index, const char* param,\
          mvFloat num);
-      mvErrorEnum setGroupParametersv(mvIndex index, const char* param,\
+      mvErrorEnum setGroupParameterv_str(mvIndex index, const char* param,\
          mvFloat* array);
 
-      mvErrorEnum setCurrentGroupParametersi(const char* param,\
+      mvErrorEnum setCurrentGroupParameteri_str(const char* param,\
          mvIndex paramIndex);
-      mvErrorEnum setCurrentGroupParameters(const char* param,\
+      mvErrorEnum setCurrentGroupParameter_str(const char* param,\
          const char* option);
-      mvErrorEnum setCurrentGroupParametersf(const char* param,\
+      mvErrorEnum setCurrentGroupParameterf_str(const char* param,\
          mvFloat num);
-      mvErrorEnum setCurrentGroupParametersv(const char* param,\
+      mvErrorEnum setCurrentGroupParameterv_str(const char* param,\
          mvFloat* array);
 
       mvErrorEnum getGroupParameteri(mvIndex index, mvParamEnum paramFlag,\
@@ -613,22 +613,22 @@ class mvWorld_V2
       mvErrorEnum getCurrentGroupParameterv(mvParamEnum paramFlag,\
          mvFloat* array, mvCount* noOfParameters) const;
 
-      mvErrorEnum getGroupParametersi(mvIndex index, const char* param,\
+      mvErrorEnum getGroupParameteri_str(mvIndex index, const char* param,\
          mvIndex* outIndex) const;
-      mvErrorEnum getGroupParameters(mvIndex index, const char* param,\
+      mvErrorEnum getGroupParameter_str(mvIndex index, const char* param,\
          const char** option) const;
-      mvErrorEnum getGroupParametersf(mvIndex index, const char* param,\
+      mvErrorEnum getGroupParameterf_str(mvIndex index, const char* param,\
          mvFloat* num) const;
-      mvErrorEnum getGroupParametersv(mvIndex index, const char* param,\
+      mvErrorEnum getGroupParameterv_str(mvIndex index, const char* param,\
          mvFloat* array, mvCount* noOfParameters) const;
 
-      mvErrorEnum getCurrentGroupParametersi(const char* param,\
+      mvErrorEnum getCurrentGroupParameteri_str(const char* param,\
          mvIndex* outIndex) const;
-      mvErrorEnum getCurrentGroupParameters(const char* param,\
+      mvErrorEnum getCurrentGroupParameter_str(const char* param,\
          const char** option) const;
-      mvErrorEnum getCurrentGroupParametersf(const char* param, mvFloat* num)\
+      mvErrorEnum getCurrentGroupParameterf_str(const char* param, mvFloat* num)\
          const;
-      mvErrorEnum getCurrentGroupParametersv(const char* param,\
+      mvErrorEnum getCurrentGroupParameterv_str(const char* param,\
          mvFloat* array, mvCount* noOfParameters) const;
 
       // GroupBehaviour functions
@@ -662,22 +662,22 @@ class mvWorld_V2
       mvErrorEnum setCurrentGroupBehaviourParameterv(mvIndex groupIndex,\
          mvParamEnum paramFlag, mvFloat* array);
 
-      mvErrorEnum setGroupBehaviourParametersi(mvIndex index,\
+      mvErrorEnum setGroupBehaviourParameteri_str(mvIndex index,\
          mvIndex groupIndex, const char* param, mvIndex paramIndex);
-      mvErrorEnum setGroupBehaviourParameters(mvIndex index,\
+      mvErrorEnum setGroupBehaviourParameter_str(mvIndex index,\
          mvIndex groupIndex, const char* param, const char* option);
-      mvErrorEnum setGroupBehaviourParametersf(mvIndex index,\
+      mvErrorEnum setGroupBehaviourParameterf_str(mvIndex index,\
          mvIndex groupIndex, const char* param, mvFloat num);
-      mvErrorEnum setGroupBehaviourParametersv(mvIndex index,\
+      mvErrorEnum setGroupBehaviourParameterv_str(mvIndex index,\
          mvIndex groupIndex, const char* param, mvFloat* array);
 
-      mvErrorEnum setCurrentGroupBehaviourParametersi(mvIndex groupIndex,\
+      mvErrorEnum setCurrentGroupBehaviourParameteri_str(mvIndex groupIndex,\
          const char* param, mvIndex paramIndex);
-      mvErrorEnum setCurrentGroupBehaviourParameters(mvIndex groupIndex,\
+      mvErrorEnum setCurrentGroupBehaviourParameter_str(mvIndex groupIndex,\
          const char* param, const char* option);
-      mvErrorEnum setCurrentGroupBehaviourParametersf(mvIndex groupIndex,\
+      mvErrorEnum setCurrentGroupBehaviourParameterf_str(mvIndex groupIndex,\
          const char* param, mvFloat num);
-      mvErrorEnum setCurrentGroupBehaviourParametersv(mvIndex groupIndex,\
+      mvErrorEnum setCurrentGroupBehaviourParameterv_str(mvIndex groupIndex,\
          const char* param, mvFloat* array);
 
       mvErrorEnum getGroupBehaviourParameteri(mvIndex index,\
@@ -699,23 +699,23 @@ class mvWorld_V2
       mvErrorEnum getCurrentGroupBehaviourParameterv(mvIndex groupIndex,\
          mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters) const;
 
-      mvErrorEnum getGroupBehaviourParametersi(mvIndex index,\
+      mvErrorEnum getGroupBehaviourParameteri_str(mvIndex index,\
          mvIndex groupIndex, const char* param, mvIndex* outIndex) const;
-      mvErrorEnum getGroupBehaviourParameters(mvIndex index,\
+      mvErrorEnum getGroupBehaviourParameter_str(mvIndex index,\
          mvIndex groupIndex, const char* param, const char** option) const;
-      mvErrorEnum getGroupBehaviourParametersf(mvIndex index,\
+      mvErrorEnum getGroupBehaviourParameterf_str(mvIndex index,\
          mvIndex groupIndex, const char* param, mvFloat* num) const;
-      mvErrorEnum getGroupBehaviourParametersv(mvIndex index,\
+      mvErrorEnum getGroupBehaviourParameterv_str(mvIndex index,\
          mvIndex groupIndex, const char* param, mvFloat* array,\
          mvCount* noOfParameters) const;
 
-      mvErrorEnum getCurrentGroupBehaviourParametersi(mvIndex groupIndex,\
+      mvErrorEnum getCurrentGroupBehaviourParameteri_str(mvIndex groupIndex,\
          const char* param, mvIndex* outIndex) const;
-      mvErrorEnum getCurrentGroupBehaviourParameters(mvIndex groupIndex,\
+      mvErrorEnum getCurrentGroupBehaviourParameter_str(mvIndex groupIndex,\
          const char* param, const char** option) const;
-      mvErrorEnum getCurrentGroupBehaviourParametersf(mvIndex groupIndex,\
+      mvErrorEnum getCurrentGroupBehaviourParameterf_str(mvIndex groupIndex,\
          const char* param, mvFloat* num) const;
-      mvErrorEnum getCurrentGroupBehaviourParametersv(mvIndex groupIndex,\
+      mvErrorEnum getCurrentGroupBehaviourParameterv_str(mvIndex groupIndex,\
          const char* param, mvFloat* array, mvCount* noOfParameters) const;
 
       // Force functions
@@ -749,22 +749,22 @@ class mvWorld_V2
       mvErrorEnum setCurrentForceParameterv(mvParamEnum paramFlag,\
          mvFloat* array);
 
-      mvErrorEnum setForceParametersi(mvIndex index, const char* param,\
+      mvErrorEnum setForceParameteri_str(mvIndex index, const char* param,\
          mvIndex paramIndex);
-      mvErrorEnum setForceParameters(mvIndex index, const char* param,\
+      mvErrorEnum setForceParameter_str(mvIndex index, const char* param,\
          const char* option);
-      mvErrorEnum setForceParametersf(mvIndex index, const char* param,\
+      mvErrorEnum setForceParameterf_str(mvIndex index, const char* param,\
          mvFloat num);
-      mvErrorEnum setForceParametersv(mvIndex index, const char* param,\
+      mvErrorEnum setForceParameterv_str(mvIndex index, const char* param,\
          mvFloat* array);
 
-      mvErrorEnum setCurrentForceParametersi(const char* param,\
+      mvErrorEnum setCurrentForceParameteri_str(const char* param,\
          mvIndex paramIndex);
-      mvErrorEnum setCurrentForceParameters(const char* param,\
+      mvErrorEnum setCurrentForceParameter_str(const char* param,\
          const char* option);
-      mvErrorEnum setCurrentForceParametersf(const char* param,\
+      mvErrorEnum setCurrentForceParameterf_str(const char* param,\
          mvFloat num);
-      mvErrorEnum setCurrentForceParametersv(const char* param,\
+      mvErrorEnum setCurrentForceParameterv_str(const char* param,\
          mvFloat* array);
 
       mvErrorEnum getForceParameteri(mvIndex index, mvParamEnum paramFlag,\
@@ -785,22 +785,22 @@ class mvWorld_V2
       mvErrorEnum getCurrentForceParameterv(mvParamEnum paramFlag,\
          mvFloat* array, mvCount* noOfParameters) const;
 
-      mvErrorEnum getForceParametersi(mvIndex index, const char* param,\
+      mvErrorEnum getForceParameteri_str(mvIndex index, const char* param,\
          mvIndex* outIndex) const;
-      mvErrorEnum getForceParameters(mvIndex index, const char* param,\
+      mvErrorEnum getForceParameter_str(mvIndex index, const char* param,\
          const char** option) const;
-      mvErrorEnum getForceParametersf(mvIndex index, const char* param,\
+      mvErrorEnum getForceParameterf_str(mvIndex index, const char* param,\
          mvFloat* num) const;
-      mvErrorEnum getForceParametersv(mvIndex index, const char* param,\
+      mvErrorEnum getForceParameterv_str(mvIndex index, const char* param,\
          mvFloat* array, mvCount* noOfParameters) const;
 
-      mvErrorEnum getCurrentForceParametersi(const char* param,\
+      mvErrorEnum getCurrentForceParameteri_str(const char* param,\
          mvIndex* outIndex) const;
-      mvErrorEnum getCurrentForceParameters(const char* param,\
+      mvErrorEnum getCurrentForceParameter_str(const char* param,\
          const char** option) const;
-      mvErrorEnum getCurrentForceParametersf(const char* param,\
+      mvErrorEnum getCurrentForceParameterf_str(const char* param,\
          mvFloat* num) const;
-      mvErrorEnum getCurrentForceParametersv(const char* param,\
+      mvErrorEnum getCurrentForceParameterv_str(const char* param,\
          mvFloat* array, mvCount* noOfParameters) const;
 
       mvErrorEnum addBehaviourToBody(mvIndex bodyIndex, mvOptionEnum bType,\
@@ -820,7 +820,6 @@ class mvWorld_V2
       mvErrorEnum removeGroupFromCurrentGroupBehaviour(mvIndex groupIndex);
       mvErrorEnum removeCurrentGroupFromCurrentGroupBehaviour();
 
-      // TODO : generalisation of groups from bodies to all
       mvErrorEnum addMemberToGroup(mvIndex memberIndex, mvIndex groupIndex);
       mvErrorEnum addMemberToCurrentGroup(mvIndex memberIndex);
 
@@ -849,40 +848,40 @@ class mvWorld_V2
       mvErrorEnum setCurrentMainGroupBehaviourParameterv(mvParamEnum param,\
          mvFloat* array);
 
-      mvErrorEnum setMainGroupBehaviourParametersi(mvIndex index,\
+      mvErrorEnum setMainGroupBehaviourParameteri_str(mvIndex index,\
          const char* param, mvIndex paramIndex);
-      mvErrorEnum setMainGroupBehaviourParameters(mvIndex index,\
+      mvErrorEnum setMainGroupBehaviourParameter_str(mvIndex index,\
          const char* param, const char* option);
-      mvErrorEnum setMainGroupBehaviourParametersf(mvIndex index,\
+      mvErrorEnum setMainGroupBehaviourParameterf_str(mvIndex index,\
          const char* param, mvFloat num);
-      mvErrorEnum setMainGroupBehaviourParametersv(mvIndex index,\
+      mvErrorEnum setMainGroupBehaviourParameterv_str(mvIndex index,\
          const char* param, mvFloat* array);
 
-      mvErrorEnum setCurrentMainGroupBehaviourParametersi(\
+      mvErrorEnum setCurrentMainGroupBehaviourParameteri_str(\
          const char* param, mvIndex paramIndex);
-      mvErrorEnum setCurrentMainGroupBehaviourParameters(\
+      mvErrorEnum setCurrentMainGroupBehaviourParameter_str(\
          const char* param, const char* option);
-      mvErrorEnum setCurrentMainGroupBehaviourParametersf(\
+      mvErrorEnum setCurrentMainGroupBehaviourParameterf_str(\
          const char* param, mvFloat num);
-      mvErrorEnum setCurrentMainGroupBehaviourParametersv(\
+      mvErrorEnum setCurrentMainGroupBehaviourParameterv_str(\
          const char* param, mvFloat* array);
 
-      mvErrorEnum getMainGroupBehaviourParameters(mvIndex index,\
+      mvErrorEnum getMainGroupBehaviourParameter_str(mvIndex index,\
          const char* param, const char** option) const;
-      mvErrorEnum getMainGroupBehaviourParametersi(mvIndex index,\
+      mvErrorEnum getMainGroupBehaviourParameteri_str(mvIndex index,\
          const char* param, mvIndex* paramIndex) const;
-      mvErrorEnum getMainGroupBehaviourParametersf(mvIndex index,\
+      mvErrorEnum getMainGroupBehaviourParameterf_str(mvIndex index,\
          const char* param, mvFloat* num) const;
-      mvErrorEnum getMainGroupBehaviourParametersv(mvIndex index,\
+      mvErrorEnum getMainGroupBehaviourParameterv_str(mvIndex index,\
          const char* param, mvFloat* array, mvCount* noOfParameters) const;
 
-      mvErrorEnum getCurrentMainGroupBehaviourParameters(const char* param,\
+      mvErrorEnum getCurrentMainGroupBehaviourParameter_str(const char* param,\
          const char** option) const;
-      mvErrorEnum getCurrentMainGroupBehaviourParametersi(const char* param,\
+      mvErrorEnum getCurrentMainGroupBehaviourParameteri_str(const char* param,\
          mvIndex* paramIndex) const;
-      mvErrorEnum getCurrentMainGroupBehaviourParametersf(const char* param,\
+      mvErrorEnum getCurrentMainGroupBehaviourParameterf_str(const char* param,\
          mvFloat* num) const;
-      mvErrorEnum getCurrentMainGroupBehaviourParametersv(const char* param,\
+      mvErrorEnum getCurrentMainGroupBehaviourParameterv_str(const char* param,\
          mvFloat* array, mvCount* noOfParameters) const;
 
       mvErrorEnum getMainGroupBehaviourParameter(mvIndex index,\
@@ -959,22 +958,22 @@ class mvWorld_V2
       mvErrorEnum setCurrentPathwayNodeParameterv(mvIndex nodeIndex,\
          mvParamEnum paramFlag, mvFloat* array);
 
-      mvErrorEnum setPathwayNodeParametersi(mvIndex pathwayIndex,\
+      mvErrorEnum setPathwayNodeParameteri_str(mvIndex pathwayIndex,\
          mvIndex nodeIndex, const char* param, mvIndex index);
-      mvErrorEnum setPathwayNodeParameters(mvIndex pathwayIndex,\
+      mvErrorEnum setPathwayNodeParameter_str(mvIndex pathwayIndex,\
          mvIndex nodeIndex, const char* param, const char* option);
-      mvErrorEnum setPathwayNodeParametersf(mvIndex pathwayIndex,\
+      mvErrorEnum setPathwayNodeParameterf_str(mvIndex pathwayIndex,\
          mvIndex nodeIndex, const char* param, mvFloat num);
-      mvErrorEnum setPathwayNodeParametersv(mvIndex pathwayIndex,\
+      mvErrorEnum setPathwayNodeParameterv_str(mvIndex pathwayIndex,\
          mvIndex nodeIndex, const char* param, mvFloat* array);
 
-      mvErrorEnum setCurrentPathwayNodeParametersi(mvIndex nodeIndex,\
+      mvErrorEnum setCurrentPathwayNodeParameteri_str(mvIndex nodeIndex,\
          const char* param, mvIndex index);
-      mvErrorEnum setCurrentPathwayNodeParameters(mvIndex nodeIndex,\
+      mvErrorEnum setCurrentPathwayNodeParameter_str(mvIndex nodeIndex,\
          const char* param, const char* option);
-      mvErrorEnum setCurrentPathwayNodeParametersf(mvIndex nodeIndex,\
+      mvErrorEnum setCurrentPathwayNodeParameterf_str(mvIndex nodeIndex,\
          const char* param, mvFloat num);
-      mvErrorEnum setCurrentPathwayNodeParametersv(mvIndex nodeIndex,\
+      mvErrorEnum setCurrentPathwayNodeParameterv_str(mvIndex nodeIndex,\
          const char* param, mvFloat* array);
 
       mvErrorEnum getPathwayNodeParameteri(mvIndex pathwayIndex,\
@@ -996,23 +995,23 @@ class mvWorld_V2
       mvErrorEnum getCurrentPathwayNodeParameterv(mvIndex nodeIndex,\
          mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters) const;
 
-      mvErrorEnum getPathwayNodeParametersi(mvIndex pathwayIndex,\
+      mvErrorEnum getPathwayNodeParameteri_str(mvIndex pathwayIndex,\
          mvIndex nodeIndex, const char* param, mvIndex* outIndex) const;
-      mvErrorEnum getPathwayNodeParameters(mvIndex pathwayIndex,\
+      mvErrorEnum getPathwayNodeParameter_str(mvIndex pathwayIndex,\
          mvIndex nodeIndex, const char* param, const char** option) const;
-      mvErrorEnum getPathwayNodeParametersf(mvIndex pathwayIndex,\
+      mvErrorEnum getPathwayNodeParameterf_str(mvIndex pathwayIndex,\
          mvIndex nodeIndex, const char* param, mvFloat* num) const;
-      mvErrorEnum getPathwayNodeParametersv(mvIndex pathwayIndex,\
+      mvErrorEnum getPathwayNodeParameterv_str(mvIndex pathwayIndex,\
          mvIndex nodeIndex, const char* param, mvFloat* array,\
          mvCount* noOfParameters) const;
 
-      mvErrorEnum getCurrentPathwayNodeParametersi(mvIndex nodeIndex,\
+      mvErrorEnum getCurrentPathwayNodeParameteri_str(mvIndex nodeIndex,\
          const char* param, mvIndex* outIndex) const;
-      mvErrorEnum getCurrentPathwayNodeParameters(mvIndex nodeIndex,\
+      mvErrorEnum getCurrentPathwayNodeParameter_str(mvIndex nodeIndex,\
          const char* param, const char** option) const;
-      mvErrorEnum getCurrentPathwayNodeParametersf(mvIndex nodeIndex,\
+      mvErrorEnum getCurrentPathwayNodeParameterf_str(mvIndex nodeIndex,\
          const char* param, mvFloat* num) const;
-      mvErrorEnum getCurrentPathwayNodeParametersv(mvIndex nodeIndex,\
+      mvErrorEnum getCurrentPathwayNodeParameterv_str(mvIndex nodeIndex,\
          const char* param, mvFloat* array, mvCount* noOfParameters) const;
 };
 

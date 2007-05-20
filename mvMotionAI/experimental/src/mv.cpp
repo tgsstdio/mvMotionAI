@@ -540,7 +540,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameterv(mvIndex worldIndex,\
  * not fully implemented
  * have to check if functions correctly i.e parameter returns
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameters(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameter_str(mvIndex worldIndex,\
    const char* param, const char* option)
 {
    mvWorld* worldPtr = mvGetWorldPtr(worldIndex);
@@ -582,7 +582,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameters(mvIndex worldIndex,\
    return errorFlag;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametersi(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameteri_str(mvIndex worldIndex,\
    const char* param, mvIndex* index)
 {
    mvWorld* worldPtr = mvGetWorldPtr(worldIndex);
@@ -608,7 +608,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametersi(mvIndex worldIndex,\
    return worldPtr->mvGetWorldParameteri(paramFlag,index);
 }
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametersf(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameterf_str(mvIndex worldIndex,\
    const char* param, mvFloat* num)
 {
    mvWorld* worldPtr = mvGetWorldPtr(worldIndex);
@@ -634,7 +634,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametersf(mvIndex worldIndex,\
    return worldPtr->mvGetWorldParameterf(paramFlag,num);
 }
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametersv(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameterv_str(mvIndex worldIndex,\
    const char* param, mvFloat* array, mvCount* noOfParameters)
 {
    mvWorld* worldPtr = mvGetWorldPtr(worldIndex);
@@ -714,28 +714,28 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameterv(mvIndex worldIndex,\
 }
 
 // TODO (White 2#1#): more code here
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameters(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameter_str(mvIndex worldIndex,\
    const char* param, const char* option)
 {
    // TODO : implement
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParametersi(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameteri_str(mvIndex worldIndex,\
    const char* param, mvIndex index)
 {
    // TODO : implement
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParametersf(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameterf_str(mvIndex worldIndex,\
    const char* param, mvFloat num)
 {
    // TODO : implement
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParametersv(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParameterv_str(mvIndex worldIndex,\
    const char* param, mvFloat* array)
 {
    // TODO : implement

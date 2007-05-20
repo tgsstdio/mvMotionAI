@@ -66,7 +66,7 @@ mvConstForcePtr mvForceCapsule::getConstClassPtr() const
 mvErrorEnum mvForceCapsule::getParameteri(mvParamEnum paramFlag,\
    mvIndex* index) const
 {
-   if (encappedForce == NULL)
+   if (encappedForce == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encappedForce->getParameteri(paramFlag, index);
@@ -75,7 +75,7 @@ mvErrorEnum mvForceCapsule::getParameteri(mvParamEnum paramFlag,\
 mvErrorEnum mvForceCapsule::getParameter(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
-   if (encappedForce == NULL)
+   if (encappedForce == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encappedForce->getParameter(paramFlag, option);
@@ -84,7 +84,7 @@ mvErrorEnum mvForceCapsule::getParameter(mvParamEnum paramFlag,\
 mvErrorEnum mvForceCapsule::getParameterf(mvParamEnum paramFlag,\
    mvFloat* num) const
 {
-   if (encappedForce == NULL)
+   if (encappedForce == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encappedForce->getParameterf(paramFlag, num);
@@ -93,7 +93,7 @@ mvErrorEnum mvForceCapsule::getParameterf(mvParamEnum paramFlag,\
 mvErrorEnum mvForceCapsule::getParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray, mvCount* noOfParameters) const
 {
-   if (encappedForce == NULL)
+   if (encappedForce == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encappedForce->getParameterv(paramFlag,\
@@ -102,7 +102,7 @@ mvErrorEnum mvForceCapsule::getParameterv(mvParamEnum paramFlag,\
 
 mvErrorEnum mvForceCapsule::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
-   if (encappedForce == NULL)
+   if (encappedForce == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encappedForce->setParameteri(paramFlag, index);
@@ -110,7 +110,7 @@ mvErrorEnum mvForceCapsule::setParameteri(mvParamEnum paramFlag, mvIndex index)
 mvErrorEnum mvForceCapsule::setParameter(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
-   if (encappedForce == NULL)
+   if (encappedForce == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encappedForce->setParameter(paramFlag,option);
@@ -118,7 +118,7 @@ mvErrorEnum mvForceCapsule::setParameter(mvParamEnum paramFlag,\
 
 mvErrorEnum mvForceCapsule::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
-   if (encappedForce == NULL)
+   if (encappedForce == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encappedForce->setParameterf(paramFlag, num);
@@ -127,7 +127,7 @@ mvErrorEnum mvForceCapsule::setParameterf(mvParamEnum paramFlag, mvFloat num)
 mvErrorEnum mvForceCapsule::setParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray)
 {
-   if (encappedForce == NULL)
+   if (encappedForce == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
    return encappedForce->setParameterv(paramFlag,numArray);
@@ -136,9 +136,9 @@ mvErrorEnum mvForceCapsule::setParameterv(mvParamEnum paramFlag,\
 mvForceCapsule::~mvForceCapsule()
 {
    clearAllWaypoints();
-   if (encappedForce != NULL)
+   if (encappedForce != MV_NULL)
    {
       delete encappedForce;
-      encappedForce = NULL;
+      encappedForce = MV_NULL;
    }
 }

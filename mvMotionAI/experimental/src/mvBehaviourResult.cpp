@@ -73,11 +73,11 @@ void mvResult::setToDirectional()
   */
 void mvResult::resetAll()
 {
-   //currentWorld = NULL;
-   //currentBody = NULL;
-//   currentGroupBehNode = NULL;
-   behaviourIndex = MV_NO_CURRENT_INDEX;
-   groupIndex = MV_NO_CURRENT_INDEX;
+   //currentWorld = MV_NULL;
+   //currentBody = MV_NULL;
+//   currentGroupBehNode = MV_NULL;
+   behaviourIndex = MV_NULL;
+   groupIndex = MV_NULL;
 
    isSteering = false;
    applyAccel = false;
@@ -282,9 +282,9 @@ void mvResult::setOmegaInRadians(const mvVec3& value)
 // new utility functions
 mvConstWaypointPtr mvResult::fetchWaypointPtr(mvIndex index) const
 {
-   if (currentWorld == NULL)
+   if (currentWorld == MV_NULL)
    {
-      return NULL;
+      return MV_NULL;
    }
 
    return currentWorld->getConstWaypointPtr(index);
@@ -292,9 +292,9 @@ mvConstWaypointPtr mvResult::fetchWaypointPtr(mvIndex index) const
 
 mvConstBodyPtr mvResult::fetchBodyPtr(mvIndex index) const
 {
-   if (currentWorld == NULL)
+   if (currentWorld == MV_NULL)
    {
-      return NULL;
+      return MV_NULL;
    }
 
    return currentWorld->getConstBodyPtr(index);
@@ -302,9 +302,9 @@ mvConstBodyPtr mvResult::fetchBodyPtr(mvIndex index) const
 
 mvConstGroupBehaviourPtr mvResult::fetchGroupBehaviourPtr(mvIndex index) const
 {
-   if (currentWorld == NULL)
+   if (currentWorld == MV_NULL)
    {
-      return NULL;
+      return MV_NULL;
    }
 
    return currentWorld->getConstGroupBehaviourPtr(index);
@@ -312,9 +312,9 @@ mvConstGroupBehaviourPtr mvResult::fetchGroupBehaviourPtr(mvIndex index) const
 
 mvConstPathwayPtr mvResult::fetchPathwayPtr(mvIndex index) const
 {
-   if (currentWorld == NULL)
+   if (currentWorld == MV_NULL)
    {
-      return NULL;
+      return MV_NULL;
    }
 
    return currentWorld->getConstPathwayPtr(index);
@@ -322,9 +322,9 @@ mvConstPathwayPtr mvResult::fetchPathwayPtr(mvIndex index) const
 
 mvConstGroupPtr mvResult::fetchGroupPtr(mvIndex index) const
 {
-   if (currentWorld == NULL)
+   if (currentWorld == MV_NULL)
    {
-      return NULL;
+      return MV_NULL;
    }
 
    return currentWorld->getConstGroupPtr(index);

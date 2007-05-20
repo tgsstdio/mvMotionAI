@@ -57,7 +57,7 @@ class mvForce
    private:
       void initLengthParameter(mvFloat length);
       mvErrorEnum initialiseForce(mvOptionEnum fType);
-      mvCount getNoOfParameters(mvParamEnum paramFlag);
+      mvCount getNoOfParameter_str(mvParamEnum paramFlag);
       mvCount getNoOfForceVariables();
       //mvEnum initialiseForceVariables(mvEnum fType);
       mvOptionEnum forceType;

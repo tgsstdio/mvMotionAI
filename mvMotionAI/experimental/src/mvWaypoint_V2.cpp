@@ -22,7 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  */
 #include "mvWaypoint_V2.h"
-#include <cstdlib>
+
 mvWaypoint_V2::mvWaypoint_V2(mvOptionEnum wshape, mvFloat x, mvFloat y,\
    mvFloat z)
 {
@@ -92,7 +92,7 @@ mvErrorEnum mvWaypoint_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
 {
    mvErrorEnum error;
 
-   if (index == NULL)
+   if (index == MV_NULL)
    {
       return MV_INDEX_DEST_IS_NULL;
    }
@@ -114,7 +114,7 @@ mvErrorEnum mvWaypoint_V2::getParameter(mvParamEnum paramFlag,\
 {
    mvErrorEnum error;
 
-   if (option == NULL)
+   if (option == MV_NULL)
    {
       return MV_OPTION_ENUM_DEST_IS_NULL;
    }
@@ -135,7 +135,7 @@ mvErrorEnum mvWaypoint_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num)\
 {
    mvErrorEnum error;
 
-   if (num == NULL)
+   if (num == MV_NULL)
    {
       return MV_FLOAT_DEST_IS_NULL;
    }
@@ -156,12 +156,12 @@ mvErrorEnum mvWaypoint_V2::getParameterv(mvParamEnum paramFlag,\
 {
    mvErrorEnum error;
 
-   if (noOfParameters == NULL)
+   if (noOfParameters == MV_NULL)
    {
       return MV_COUNT_DEST_IS_NULL;
    }
 
-   if (numArray == NULL)
+   if (numArray == MV_NULL)
    {
       *noOfParameters = 0;
       return MV_PARAMETER_ARRAY_IS_NULL;
@@ -252,7 +252,7 @@ mvErrorEnum mvWaypoint_V2::setParameterv(mvParamEnum paramFlag,\
 {
    mvErrorEnum error;
 
-   if (numArray == NULL)
+   if (numArray == MV_NULL)
    {
       return MV_PARAMETER_ARRAY_IS_NULL;
    }

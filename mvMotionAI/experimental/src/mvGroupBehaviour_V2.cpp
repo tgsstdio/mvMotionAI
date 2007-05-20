@@ -6,12 +6,12 @@ bool findGroupNodeByIndex(mvGroupBNode_V2* groupNodePtr, void* extraPtr)
 {
    mvIndex groupIndex;
 
-   if (groupNodePtr == NULL)
+   if (groupNodePtr == MV_NULL)
    {
       return false;
    }
 
-   if (extraPtr == NULL)
+   if (extraPtr == MV_NULL)
    {
       return false;
    }
@@ -37,7 +37,7 @@ bool findGroupNodeByIndex(mvGroupBNode_V2* groupNodePtr, void* extraPtr)
       // TODO : group behavioior functions with behaviour loading
 
    defaultGBehaviour = groupBehPtr;
-   behavEnabled = true;
+   isEnabled = true;
 }
 
 /** @brief (one liner)
@@ -47,7 +47,7 @@ bool findGroupNodeByIndex(mvGroupBNode_V2* groupNodePtr, void* extraPtr)
  mvGroupBehaviour_V2::~mvGroupBehaviour_V2()
 {
    removeAllGroups();
-   if (defaultGBehaviour == NULL)
+   if (defaultGBehaviour == MV_NULL)
    {
       delete defaultGBehaviour;
    }
@@ -61,18 +61,18 @@ mvErrorEnum mvGroupBehaviour_V2::addGroup(mvIndex groupNo, mvBaseBehaviourPtr
 {
    // first check if index exists
    mvIndex groupIndex = groupNo;
-   mvGroupBehaviourNodePtr groupNodePtr = NULL;
+   mvGroupBehaviourNodePtr groupNodePtr = MV_NULL;
 
    // first check if index exists
    if (groupNodeList.findItemPtrInList(findGroupNodeByIndex,\
-      (void*) &groupIndex) != NULL)
+      (void*) &groupIndex) != MV_NULL)
    {
       return MV_UNIQUE_ITEM_ALREADY_IN_LIST;
    }
 
    groupNodePtr = new (std::nothrow) mvGroupBNode_V2(behavPtr,groupIndex);
 
-   if (groupNodePtr == NULL)
+   if (groupNodePtr == MV_NULL)
    {
       return MV_INVALID_MEMORY_ALLOCATION;
    }
@@ -93,8 +93,8 @@ mvErrorEnum mvGroupBehaviour_V2::removeGroup(mvIndex groupNo)
    nodeIndex = groupNodeList.findItemInList(findGroupNodeByIndex,\
       (void*) &groupIndex);
 
-   // assuming MV_NO_CURRENT_INDEX (0) returned means no values was returned
-   if (nodeIndex == MV_NO_CURRENT_INDEX)
+   // assuming MV_NULL (0) returned means no values was returned
+   if (nodeIndex == MV_NULL)
    {
       return MV_ITEM_NOT_FOUND_IN_LIST;
    }
@@ -140,31 +140,6 @@ mvCount mvGroupBehaviour_V2::getNoOfGroups() const
    return groupNodeList.getNoOfItems();
 }
 
-// ** @brief (one liner)
-//  *
-//  * (documentation goes here)
-//  */
-//mvOptionEnum mvGroupBehaviour_V2::getType()
-//{
-//
-//}
-
-/** @brief (one liner)
-  *
-  */
-bool mvGroupBehaviour_V2::isEnabled() const
-{
-   return behavEnabled;
-}
-
-/** @brief (one liner)
-  *
-  */
-void mvGroupBehaviour_V2::setEnabled(bool value)
-{
-   behavEnabled = value;
-}
-
 /** @brief (one liner)
   *
   * automatically calls the behaviour's default template version of
@@ -173,7 +148,7 @@ void mvGroupBehaviour_V2::setEnabled(bool value)
 mvErrorEnum mvGroupBehaviour_V2::getParameteri(mvParamEnum paramFlag,\
    mvIndex* outIndex) const
 {
-   if (outIndex == NULL)
+   if (outIndex == MV_NULL)
    {
       return MV_INDEX_DEST_IS_NULL;
    }
@@ -187,7 +162,7 @@ mvErrorEnum mvGroupBehaviour_V2::getParameteri(mvParamEnum paramFlag,\
          *outIndex = getNoOfGroups();
          return MV_NO_ERROR;
       default:
-         if (defaultGBehaviour == NULL)
+         if (defaultGBehaviour == MV_NULL)
          {
             return defaultGBehaviour->getParameteri(paramFlag, outIndex);
          }
@@ -206,7 +181,7 @@ mvErrorEnum mvGroupBehaviour_V2::getParameteri(mvParamEnum paramFlag,\
 mvErrorEnum mvGroupBehaviour_V2::getParameter(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
-   if (option == NULL)
+   if (option == MV_NULL)
    {
       return MV_OPTION_ENUM_DEST_IS_NULL;
    }
@@ -214,7 +189,7 @@ mvErrorEnum mvGroupBehaviour_V2::getParameter(mvParamEnum paramFlag,\
    switch(paramFlag)
    {
       case MV_IS_ENABLED:
-         if (behavEnabled)
+         if (isEnabled)
          {
             *option = MV_TRUE;
          }
@@ -224,7 +199,7 @@ mvErrorEnum mvGroupBehaviour_V2::getParameter(mvParamEnum paramFlag,\
          }
          return MV_NO_ERROR;
       default:
-         if (defaultGBehaviour != NULL)
+         if (defaultGBehaviour != MV_NULL)
          {
             return defaultGBehaviour->getParameter(paramFlag, option);
          }
@@ -242,12 +217,12 @@ mvErrorEnum mvGroupBehaviour_V2::getParameter(mvParamEnum paramFlag,\
 mvErrorEnum mvGroupBehaviour_V2::getParameterf(mvParamEnum paramFlag,\
    mvFloat* num) const
 {
-   if (num == NULL)
+   if (num == MV_NULL)
    {
       return MV_FLOAT_DEST_IS_NULL;
    }
 
-   if (defaultGBehaviour != NULL)
+   if (defaultGBehaviour != MV_NULL)
    {
       return defaultGBehaviour->getParameterf(paramFlag, num);
    }
@@ -264,18 +239,18 @@ mvErrorEnum mvGroupBehaviour_V2::getParameterf(mvParamEnum paramFlag,\
 mvErrorEnum mvGroupBehaviour_V2::getParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray, mvCount* noOfParameters) const
 {
-   if (noOfParameters == NULL)
+   if (noOfParameters == MV_NULL)
    {
       return MV_COUNT_DEST_IS_NULL;
    }
 
-   if (numArray == NULL)
+   if (numArray == MV_NULL)
    {
       *noOfParameters = 0;
       return MV_PARAMETER_ARRAY_IS_NULL;
    }
 
-   if (defaultGBehaviour != NULL)
+   if (defaultGBehaviour != MV_NULL)
    {
       return defaultGBehaviour->getParameterv(paramFlag, numArray,\
          noOfParameters);
@@ -299,7 +274,7 @@ mvErrorEnum mvGroupBehaviour_V2::setParameteri(mvParamEnum paramFlag,\
          groupNodeList.setCurrentIndex(index);
          return MV_NO_ERROR;
       default:
-         if (defaultGBehaviour == NULL)
+         if (defaultGBehaviour == MV_NULL)
          {
             return defaultGBehaviour->setParameteri(paramFlag, index);
          }
@@ -322,15 +297,15 @@ mvErrorEnum mvGroupBehaviour_V2::setParameter(mvParamEnum paramFlag,\
       case MV_IS_ENABLED:
          if (option == MV_FALSE)
          {
-            behavEnabled = false;
+            isEnabled = false;
          }
          else
          {
-            behavEnabled = true;
+            isEnabled = true;
          }
          return MV_NO_ERROR;
       default:
-         if (defaultGBehaviour != NULL)
+         if (defaultGBehaviour != MV_NULL)
          {
             return defaultGBehaviour->setParameter(paramFlag, option);
          }
@@ -348,7 +323,7 @@ mvErrorEnum mvGroupBehaviour_V2::setParameter(mvParamEnum paramFlag,\
 mvErrorEnum mvGroupBehaviour_V2::setParameterf(mvParamEnum paramFlag,\
    mvFloat num)
 {
-   if (defaultGBehaviour != NULL)
+   if (defaultGBehaviour != MV_NULL)
    {
       return defaultGBehaviour->setParameterf(paramFlag, num);
    }
@@ -365,7 +340,7 @@ mvErrorEnum mvGroupBehaviour_V2::setParameterf(mvParamEnum paramFlag,\
 mvErrorEnum mvGroupBehaviour_V2::setParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray)
 {
-   if (defaultGBehaviour != NULL)
+   if (defaultGBehaviour != MV_NULL)
    {
       return defaultGBehaviour->setParameterv(paramFlag, numArray);
    }
@@ -461,40 +436,40 @@ mvErrorEnum mvGroupBehaviour_V2::setCurrentNodeParameterv(\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::getCurrentNodeParametersi(const char* param,\
+mvErrorEnum mvGroupBehaviour_V2::getCurrentNodeParameteri_str(const char* param,\
    mvIndex* index) const
 {
-   return groupNodeList.getCurrentItemParametersi(param, index);
+   return groupNodeList.getCurrentItemParameteri_str(param, index);
 }
 
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::getCurrentNodeParameters(const char* param,\
+mvErrorEnum mvGroupBehaviour_V2::getCurrentNodeParameter_str(const char* param,\
    const char** option) const
 {
-   return groupNodeList.getCurrentItemParameters(param, option);
+   return groupNodeList.getCurrentItemParameter_str(param, option);
 }
 
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::getCurrentNodeParametersf(const char* param,\
+mvErrorEnum mvGroupBehaviour_V2::getCurrentNodeParameterf_str(const char* param,\
    mvFloat* num) const
 {
-   return groupNodeList.getCurrentItemParametersf(param, num);
+   return groupNodeList.getCurrentItemParameterf_str(param, num);
 }
 
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::getCurrentNodeParametersv(const char* param,\
+mvErrorEnum mvGroupBehaviour_V2::getCurrentNodeParameterv_str(const char* param,\
    mvFloat* numArray, mvCount* noOfParameters) const
 {
-   return groupNodeList.getCurrentItemParametersv(param, numArray,\
+   return groupNodeList.getCurrentItemParameterv_str(param, numArray,\
       noOfParameters);
 }
 
@@ -502,40 +477,40 @@ mvErrorEnum mvGroupBehaviour_V2::getCurrentNodeParametersv(const char* param,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::setCurrentNodeParametersi(const char* param,\
+mvErrorEnum mvGroupBehaviour_V2::setCurrentNodeParameteri_str(const char* param,\
    mvIndex index)
 {
-   return groupNodeList.setCurrentItemParametersi(param, index);
+   return groupNodeList.setCurrentItemParameteri_str(param, index);
 }
 
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::setCurrentNodeParameters(const char* param,\
+mvErrorEnum mvGroupBehaviour_V2::setCurrentNodeParameter_str(const char* param,\
    const char* option)
 {
-   return groupNodeList.setCurrentItemParameters(param, option);
+   return groupNodeList.setCurrentItemParameter_str(param, option);
 }
 
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::setCurrentNodeParametersf(const char* param,\
+mvErrorEnum mvGroupBehaviour_V2::setCurrentNodeParameterf_str(const char* param,\
    mvFloat num)
 {
-   return groupNodeList.setCurrentItemParametersf(param, num);
+   return groupNodeList.setCurrentItemParameterf_str(param, num);
 }
 
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::setCurrentNodeParametersv(const char* param,\
+mvErrorEnum mvGroupBehaviour_V2::setCurrentNodeParameterv_str(const char* param,\
    mvFloat* numArray)
 {
-   return groupNodeList.setCurrentItemParametersv(param, numArray);
+   return groupNodeList.setCurrentItemParameterv_str(param, numArray);
 }
 
 /** @brief (one liner)
@@ -547,7 +522,7 @@ mvErrorEnum mvGroupBehaviour_V2::getGroupParameteri(mvIndex groupIndex,\
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
 
-   if (temp == NULL)
+   if (temp == MV_NULL)
    {
       return MV_ITEM_NOT_FOUND_IN_LIST;
    }
@@ -564,7 +539,7 @@ mvErrorEnum mvGroupBehaviour_V2::getGroupParameter(mvIndex groupIndex,\
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
 
-   if (temp == NULL)
+   if (temp == MV_NULL)
    {
       return MV_ITEM_NOT_FOUND_IN_LIST;
    }
@@ -577,7 +552,7 @@ mvErrorEnum mvGroupBehaviour_V2::getGroupParameterf(mvIndex groupIndex,\
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
 
-   if (temp == NULL)
+   if (temp == MV_NULL)
    {
       return MV_ITEM_NOT_FOUND_IN_LIST;
    }
@@ -594,7 +569,7 @@ mvErrorEnum mvGroupBehaviour_V2::getGroupParameterv(mvIndex groupIndex,\
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
 
-   if (temp == NULL)
+   if (temp == MV_NULL)
    {
       return MV_ITEM_NOT_FOUND_IN_LIST;
    }
@@ -611,7 +586,7 @@ mvErrorEnum mvGroupBehaviour_V2::setGroupParameteri(mvIndex groupIndex,\
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
 
-   if (temp == NULL)
+   if (temp == MV_NULL)
    {
       return MV_ITEM_NOT_FOUND_IN_LIST;
    }
@@ -628,7 +603,7 @@ mvErrorEnum mvGroupBehaviour_V2::setGroupParameter(mvIndex groupIndex,\
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
 
-   if (temp == NULL)
+   if (temp == MV_NULL)
    {
       return MV_ITEM_NOT_FOUND_IN_LIST;
    }
@@ -645,7 +620,7 @@ mvErrorEnum mvGroupBehaviour_V2::setGroupParameterf(mvIndex groupIndex,\
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
 
-   if (temp == NULL)
+   if (temp == MV_NULL)
    {
       return MV_ITEM_NOT_FOUND_IN_LIST;
    }
@@ -662,7 +637,7 @@ mvErrorEnum mvGroupBehaviour_V2::setGroupParameterv(mvIndex groupIndex,\
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
 
-   if (temp == NULL)
+   if (temp == MV_NULL)
    {
       return MV_ITEM_NOT_FOUND_IN_LIST;
    }
@@ -674,13 +649,13 @@ mvErrorEnum mvGroupBehaviour_V2::setGroupParameterv(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::getGroupParametersi(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour_V2::getGroupParameteri_str(mvIndex groupIndex,\
    const char* param, mvIndex* index) const
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
    mvParamEnum paramFlag;
 
-   if (temp == NULL)
+   if (temp == MV_NULL)
    {
       return MV_ITEM_NOT_FOUND_IN_LIST;
    }
@@ -697,7 +672,7 @@ mvErrorEnum mvGroupBehaviour_V2::getGroupParametersi(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::getGroupParameters(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour_V2::getGroupParameter_str(mvIndex groupIndex,\
    const char* param, const char** option) const
 
 {
@@ -706,7 +681,7 @@ mvErrorEnum mvGroupBehaviour_V2::getGroupParameters(mvIndex groupIndex,\
    mvOptionEnum optionFlag;
    mvErrorEnum error;
 
-   if (temp == NULL)
+   if (temp == MV_NULL)
    {
       return MV_ITEM_NOT_FOUND_IN_LIST;
    }
@@ -730,13 +705,13 @@ mvErrorEnum mvGroupBehaviour_V2::getGroupParameters(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::getGroupParametersf(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour_V2::getGroupParameterf_str(mvIndex groupIndex,\
    const char* param, mvFloat* num) const
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
    mvParamEnum paramFlag;
 
-   if (temp == NULL)
+   if (temp == MV_NULL)
    {
       return MV_ITEM_NOT_FOUND_IN_LIST;
    }
@@ -753,13 +728,13 @@ mvErrorEnum mvGroupBehaviour_V2::getGroupParametersf(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::getGroupParametersv(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour_V2::getGroupParameterv_str(mvIndex groupIndex,\
    const char* param, mvFloat* numArray, mvCount* noOfParameters) const
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
    mvParamEnum paramFlag;
 
-   if (temp == NULL)
+   if (temp == MV_NULL)
    {
       return MV_ITEM_NOT_FOUND_IN_LIST;
    }
@@ -776,13 +751,13 @@ mvErrorEnum mvGroupBehaviour_V2::getGroupParametersv(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::setGroupParametersi(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour_V2::setGroupParameteri_str(mvIndex groupIndex,\
    const char* param, mvIndex paramIndex)
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
    mvParamEnum paramFlag;
 
-   if (temp == NULL)
+   if (temp == MV_NULL)
    {
       return MV_ITEM_NOT_FOUND_IN_LIST;
    }
@@ -799,14 +774,14 @@ mvErrorEnum mvGroupBehaviour_V2::setGroupParametersi(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::setGroupParameters(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour_V2::setGroupParameter_str(mvIndex groupIndex,\
    const char* param, const char* option)
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
    mvParamEnum paramFlag;
    mvOptionEnum optionFlag;
 
-   if (temp == NULL)
+   if (temp == MV_NULL)
    {
       return MV_ITEM_NOT_FOUND_IN_LIST;
    }
@@ -828,13 +803,13 @@ mvErrorEnum mvGroupBehaviour_V2::setGroupParameters(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::setGroupParametersf(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour_V2::setGroupParameterf_str(mvIndex groupIndex,\
    const char* param, mvFloat num)
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
    mvParamEnum paramFlag;
 
-   if (temp == NULL)
+   if (temp == MV_NULL)
    {
       return MV_ITEM_NOT_FOUND_IN_LIST;
    }
@@ -851,13 +826,13 @@ mvErrorEnum mvGroupBehaviour_V2::setGroupParametersf(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::setGroupParametersv(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour_V2::setGroupParameterv_str(mvIndex groupIndex,\
    const char* param, mvFloat* numArray)
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
    mvParamEnum paramFlag;
 
-   if (temp == NULL)
+   if (temp == MV_NULL)
    {
       return MV_ITEM_NOT_FOUND_IN_LIST;
    }

@@ -23,7 +23,6 @@
  */
 
 #include "mvBody_V2.h"
-#include <cstdlib>
 /** \brief mvBodyV2 constructor
  * This is a rewrite of mvBody
  */
@@ -49,8 +48,8 @@ mvBody_V2::mvBody_V2(mvOptionEnum bType, mvOptionEnum shape, mvFloat x,\
    setSpeed(0);
    // max speed = 5
    setMaxSpeed(5);
-   // user data = NULL
-   bodyUserDataPtr = NULL;
+   // user data = MV_NULL
+   bodyUserDataPtr = MV_NULL;
    // default direction 1.0
    bodyDirection.set(0,0,1);
    // face direction
@@ -60,7 +59,7 @@ mvBody_V2::mvBody_V2(mvOptionEnum bType, mvOptionEnum shape, mvFloat x,\
 
    // domain
    bodyDomain = MV_FULL_3D;
-   bodyDomainVariables = NULL;
+   bodyDomainVariables = MV_NULL;
    setDomain(bodyDomain);
    //TODO : initialises variables
 
@@ -85,10 +84,10 @@ mvErrorEnum mvBody_V2::setBodyDirectionByVec3(const mvVec3& value)
 
 mvBody_V2::~mvBody_V2()
 {
-   if (bodyDomainVariables != NULL)
+   if (bodyDomainVariables != MV_NULL)
    {
       delete [] bodyDomainVariables;
-      bodyDomainVariables = NULL;
+      bodyDomainVariables = MV_NULL;
    }
 }
 
@@ -98,7 +97,7 @@ mvErrorEnum mvBody_V2::setDomain(mvOptionEnum bDomain)
    mvIndex i;
    mvCount noOfVariables;
 
-   if (bodyDomainVariables != NULL)
+   if (bodyDomainVariables != MV_NULL)
    {
       noOfVariables = getNoOfDomainVariables();
       for (i = 0; i < noOfVariables; ++i)
@@ -106,7 +105,7 @@ mvErrorEnum mvBody_V2::setDomain(mvOptionEnum bDomain)
          tempDomVars[i] = bodyDomainVariables[i];
       }
       delete [] bodyDomainVariables;
-      bodyDomainVariables = NULL;
+      bodyDomainVariables = MV_NULL;
    }
 
    switch(bDomain)
@@ -410,7 +409,7 @@ mvErrorEnum mvBody_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    */
    mvErrorEnum error;
 
-   if (index == NULL)
+   if (index == MV_NULL)
    {
       return MV_INDEX_DEST_IS_NULL;
    }
@@ -443,7 +442,7 @@ mvErrorEnum mvBody_V2::getParameter(mvParamEnum paramFlag,\
 {
    mvErrorEnum error;
 
-   if (option == NULL)
+   if (option == MV_NULL)
    {
       return MV_OPTION_ENUM_DEST_IS_NULL;
    }
@@ -553,7 +552,7 @@ mvErrorEnum mvBody_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
 {
    mvErrorEnum error;
 
-   if (num == NULL)
+   if (num == MV_NULL)
    {
       return MV_FLOAT_DEST_IS_NULL;
    }
@@ -604,12 +603,12 @@ mvErrorEnum mvBody_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
    mvVec3 resultVector;
    mvCount arrayCount, i;
 
-   if (noOfParameters == NULL)
+   if (noOfParameters == MV_NULL)
    {
       return MV_COUNT_DEST_IS_NULL;
    }
 
-   if (numArray == NULL)
+   if (numArray == MV_NULL)
    {
       *noOfParameters = 0;
       return MV_PARAMETER_ARRAY_IS_NULL;
@@ -927,7 +926,7 @@ mvErrorEnum mvBody_V2::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
    mvIndex i;
    mvCount arrayCount;
 
-   if (numArray == NULL)
+   if (numArray == MV_NULL)
    {
       return MV_PARAMETER_ARRAY_IS_NULL;
    }

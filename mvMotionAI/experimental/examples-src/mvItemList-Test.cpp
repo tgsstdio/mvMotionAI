@@ -22,7 +22,7 @@ int main()
       std::cout << "Add failed" << std::endl;
    }
 
-   error = forces.getCurrentItemParameters("MV_TYPE", &option);
+   error = forces.getCurrentItemParameter_str("MV_TYPE", &option);
 
    if (error)
    {

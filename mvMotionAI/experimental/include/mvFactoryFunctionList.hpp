@@ -37,7 +37,7 @@ mvErrorEnum mvFactoryFunctionList<mvClassFactory,mvClass,mvParamClass>\
    class std::map<mvOptionEnum,mvClassFactory*>::iterator checkKey;
 
    // if loader is null, return error
-   if (cFactoryPtr == NULL)
+   if (cFactoryPtr == MV_NULL)
    {
       return MV_FUNCTION_LOADER_IS_NULL;
    }
@@ -67,7 +67,7 @@ void mvFactoryFunctionList<mvClassFactory,mvClass,mvParamClass>::\
    for (i = fFunctions.begin(); i != mapEnd; ++i)
    {
       delete i->second;
-      i->second = NULL;
+      i->second = MV_NULL;
    }
    noOfValidFunctions = 0;
    fFunctions.clear();
@@ -79,20 +79,20 @@ mvClass* mvFactoryFunctionList<mvClassFactory,mvClass,mvParamClass>\
 {
    // check if behaviour key exists
    class std::map<mvOptionEnum,mvClassFactory*>::iterator checkKey;
-   mvClassFactory* fFunc = NULL;
+   mvClassFactory* fFunc = MV_NULL;
 
    checkKey = fFunctions.find(key);
 
    if (checkKey == fFunctions.end())
    {
-      return NULL;
+      return MV_NULL;
    }
 
    fFunc = checkKey->second;
-   if (fFunc != NULL)
+   if (fFunc != MV_NULL)
       return (*fFunc)(defaultClass);
    else
-      return NULL;
+      return MV_NULL;
 }
 
 template <class mvClassFactory, class mvClass, class mvParamClass>

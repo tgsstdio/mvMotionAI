@@ -118,40 +118,40 @@ class mvBEntryList
          mvFloat* numArray);
 
       // string functions
-      mvErrorEnum getEntryParametersi(mvIndex entryIndex, const char* param,\
+      mvErrorEnum getEntryParameteri_str(mvIndex entryIndex, const char* param,\
          mvIndex* outIndex);
-      mvErrorEnum getEntryParameters(mvIndex entryIndex, const char* param,\
+      mvErrorEnum getEntryParameter_str(mvIndex entryIndex, const char* param,\
          const char** option);
-      mvErrorEnum getEntryParametersf(mvIndex entryIndex, const char* param,\
+      mvErrorEnum getEntryParameterf_str(mvIndex entryIndex, const char* param,\
          mvFloat* num);
-      mvErrorEnum getEntryParametersv(mvIndex entryIndex, const char* param,\
+      mvErrorEnum getEntryParameterv_str(mvIndex entryIndex, const char* param,\
          mvFloat* numArray, mvCount* noOfParameters);
 
-      mvErrorEnum setEntryParametersi(mvIndex entryIndex,const char* param,\
+      mvErrorEnum setEntryParameteri_str(mvIndex entryIndex,const char* param,\
          mvIndex paramIndex);
-      mvErrorEnum setEntryParameters(mvIndex entryIndex,const char* param,\
+      mvErrorEnum setEntryParameter_str(mvIndex entryIndex,const char* param,\
          const char* option);
-      mvErrorEnum setEntryParametersf(mvIndex entryIndex,const char* param,\
+      mvErrorEnum setEntryParameterf_str(mvIndex entryIndex,const char* param,\
          mvFloat num);
-      mvErrorEnum setEntryParametersv(mvIndex entryIndex,const char* param,\
+      mvErrorEnum setEntryParameterv_str(mvIndex entryIndex,const char* param,\
          mvFloat* numArray);
 
-      mvErrorEnum getCurrentEntryParametersi(const char* param,\
+      mvErrorEnum getCurrentEntryParameteri_str(const char* param,\
          mvIndex* outIndex);
-      mvErrorEnum getCurrentEntryParameters(const char* param,\
+      mvErrorEnum getCurrentEntryParameter_str(const char* param,\
          const char** option);
-      mvErrorEnum getCurrentEntryParametersf(const char* param,\
+      mvErrorEnum getCurrentEntryParameterf_str(const char* param,\
          mvFloat* num);
-      mvErrorEnum getCurrentEntryParametersv(const char* param,\
+      mvErrorEnum getCurrentEntryParameterv_str(const char* param,\
          mvFloat* numArray, mvCount* noOfParameters);
 
-      mvErrorEnum setCurrentEntryParametersi(const char* param,\
+      mvErrorEnum setCurrentEntryParameteri_str(const char* param,\
          mvIndex paramIndex);
-      mvErrorEnum setCurrentEntryParameters(const char* param,\
+      mvErrorEnum setCurrentEntryParameter_str(const char* param,\
          const char* option);
-      mvErrorEnum setCurrentEntryParametersf(const char* param,\
+      mvErrorEnum setCurrentEntryParameterf_str(const char* param,\
          mvFloat num);
-      mvErrorEnum setCurrentEntryParametersv(const char* param,\
+      mvErrorEnum setCurrentEntryParameterv_str(const char* param,\
          mvFloat* numArray);
 
       // TODO : tree functions
@@ -179,22 +179,22 @@ class mvBEntryList
       mvErrorEnum getCurrentTreeEntryParameterv(mvParamEnum param,\
          mvFloat* numArray, mvCount* noOfParameters);
 
-      mvErrorEnum setCurrentTreeEntryParameters(const char* param,\
+      mvErrorEnum setCurrentTreeEntryParameter_str(const char* param,\
          mvOptionEnum option);
-      mvErrorEnum setCurrentTreeEntryParametersi(const char* param,\
+      mvErrorEnum setCurrentTreeEntryParameteri_str(const char* param,\
          mvIndex paramIndex);
-      mvErrorEnum setCurrentTreeEntryParametersf(const char* param,\
+      mvErrorEnum setCurrentTreeEntryParameterf_str(const char* param,\
          mvFloat num);
-      mvErrorEnum setCurrentTreeEntryParametersv(const char* param,\
+      mvErrorEnum setCurrentTreeEntryParameterv_str(const char* param,\
          mvFloat* numArray);
 
-      mvErrorEnum getCurrentTreeEntryParameters(const char* param,\
+      mvErrorEnum getCurrentTreeEntryParameter_str(const char* param,\
          const char** option);
-      mvErrorEnum getCurrentTreeEntryParametersi(const char* param,\
+      mvErrorEnum getCurrentTreeEntryParameteri_str(const char* param,\
          mvIndex* outIndex);
-      mvErrorEnum getCurrentTreeEntryParametersf(const char* param,\
+      mvErrorEnum getCurrentTreeEntryParameterf_str(const char* param,\
          mvFloat* num);
-      mvErrorEnum getCurrentTreeEntryParametersv(const char* param,\
+      mvErrorEnum getCurrentTreeEntryParameterv_str(const char* param,\
          mvFloat* numArray, mvCount* noOfParameters);
 
       ~mvBEntryList();
