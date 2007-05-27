@@ -2936,14 +2936,40 @@ mvBehavFuncListPtr mvWorld_V2::getBehaviourLoader() const
    return behavLoader;
 }
 
+/*
+ * private function
+ */
+void mvWorld_V2_IntegrateAllBodies(mvBodyCapsulePtr bodyPtr, void* extraPtr)
+{
+   mvWorldPtr currentWorld = (mvWorldPtr) extraPtr;
+
+   if (currentWorld != NULL)
+   {
+      currentWorld->integrateBody(bodyPtr);
+   }
+}
+
+void mvWorld_V2::integrateBody(mvBodyCapsulePtr bodyPtr)
+{
+   resetIntegrationLoop();
+   checkIfWaypointContainsBody(bodyPtr);
+   calculateAllForcesOnBody(bodyPtr);
+   calculateBehavioursOnBody(bodyPtr);
+   performIntegrationOfBody(bodyPtr);
+}
+
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
 void mvWorld_V2::worldStep(mvFloat timeInSecs)
 {
-   //TODO : implement theis function
+   prepareIntegrationStep();
    calculateGroupBehaviours();
+
+   bodies.applyToAllCapsules(mvWorld_V2_IntegrateAllBodies,this);
+
+   finaliseIntegrationStep();
 }
 
 /** @brief (one liner)
@@ -2952,17 +2978,28 @@ void mvWorld_V2::worldStep(mvFloat timeInSecs)
   */
 mvErrorEnum mvWorld_V2::nudgeBody(mvIndex index, mvFloat timeInSecs)
 {
-   mvBodyPtr tempBodyPtr = getBodyPtr(index);
+   mvBodyCapsulePtr tempCapsulePtr = getBodyCapsulePtr(index);
 
-   if (tempBodyPtr == MV_NULL)
+   if (tempCapsulePtr == MV_NULL)
    {
       return MV_BODY_INDEX_IS_INVALID;
    }
 
+   prepareIntegrationStep();
    calculateGroupBehaviours();
+   integrateBody(tempCapsulePtr);
+   finaliseIntegrationStep();
 
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   return MV_NO_ERROR;
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+void mvWorld_V2::calculateAllForcesOnBody(mvBodyCapsulePtr bodyPtr)
+{
+
 }
 
 /** @brief (one liner)
@@ -2971,18 +3008,80 @@ mvErrorEnum mvWorld_V2::nudgeBody(mvIndex index, mvFloat timeInSecs)
   */
 mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
 {
-   mvBodyPtr tempBodyPtr = getCurrentBodyPtr();
-
-   if (tempBodyPtr == MV_NULL)
-   {
-      return MV_BODY_INDEX_IS_INVALID;
-   }
-
-   calculateGroupBehaviours();
-
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   return nudgeBody(getCurrentBody(), timeInSecs);
 }
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+void mvWorld_V2::resetIntegrationLoop()
+{
+
+}
+
+void mvWorld_Prepare_Body_Capsule(mvBodyCapsulePtr capsulePtr, void* extraPtr)
+{
+   if (capsulePtr != MV_NULL)
+   {
+      // TODO : reset bodies
+   }
+}
+
+void mvWorld_Prepare_Waypoint_Capsule(mvWaypointCapsulePtr capsulePtr,\
+   void* extraPtr)
+{
+
+}
+
+void mvWorld_V2::prepareIntegrationStep()
+{
+   // TODO : reset bodies
+   bodies.applyToAllCapsules(mvWorld_Prepare_Body_Capsule,MV_NULL);
+
+   // TODO : reset waypoints
+   waypoints.applyToAllCapsules(mvWorld_Prepare_Waypoint_Capsule, MV_NULL);
+   // reset forces
+}
+
+void mvWorld_V2::calculateGroupBehaviours() // 1
+{
+// TODO : calculate world functions
+}
+
+void mvWorld_V2::checkIfWaypointContainsBody(mvBodyCapsulePtr bodyPtr) // part of 2
+{
+// TODO : calculate world functions
+}
+
+void mvWorld_V2::calculateGlobalForceOnBody(mvIndex globalForce,\
+   mvBodyCapsulePtr bodyPtr)
+{
+// TODO : calculate world functions
+}
+
+void mvWorld_V2::calculateLocalForceOnBody(mvIndex localForce,\
+   mvBodyCapsulePtr bodyPtr)
+{
+// TODO : calculate world functions
+}
+
+void mvWorld_V2::calculateBehavioursOnBody(mvBodyCapsulePtr bodyPtr)
+{
+// TODO : calculate world functions
+}
+
+void mvWorld_V2::performIntegrationOfBody(mvBodyCapsulePtr bodyPtr)
+{
+// TODO : calculate world functions
+}
+
+void mvWorld_V2::finaliseIntegrationStep()
+{
+
+}
+
+// WORLD STEP FUNCTIONS
 
 /** @brief (one liner)
   *
@@ -4600,63 +4699,6 @@ mvConstBehaviourPtr mvWorld_V2::getConstBehaviourPtr(mvIndex index) const
 mvConstForcePtr mvWorld_V2::getConstGroupForcePtr(mvIndex index) const
 {
    return forces.getConstClassPtr(index);
-}
-
-void mvWorld_Prepare_Body_Capsule(mvBodyCapsulePtr capsulePtr, void* extraPtr)
-{
-   if (capsulePtr != MV_NULL)
-   {
-      // TODO : reset bodies
-   }
-}
-
-void mvWorld_Prepare_Waypoint_Capsule(mvWaypointCapsulePtr capsulePtr,\
-   void* extraPtr)
-{
-
-}
-
-void mvWorld_V2::prepareIntegrationStep()
-{
-   // TODO : reset bodies
-   bodies.applyToAllCapsules(mvWorld_Prepare_Body_Capsule,MV_NULL);
-
-   // TODO : reset waypoints
-   waypoints.applyToAllCapsules(mvWorld_Prepare_Waypoint_Capsule, MV_NULL);
-   // reset forces
-}
-
-void mvWorld_V2::calculateGroupBehaviours() // 1
-{
-// TODO : calculate world functions
-}
-
-void mvWorld_V2::checkIfWaypointContainsBody(mvIndex waypointIndex,\
-      mvIndex bodyIndex) // part of 2
-{
-// TODO : calculate world functions
-}
-
-void mvWorld_V2::calculateGlobalForceOnBody(mvIndex globalForce,\
-   mvIndex bodyIndex)
-{
-// TODO : calculate world functions
-}
-
-void mvWorld_V2::calculateLocalForceOnBody(mvIndex localForce,\
-   mvIndex bodyIndex)
-{
-// TODO : calculate world functions
-}
-
-void mvWorld_V2::calculateBehavioursOnBody(mvIndex bodyIndex)
-{
-// TODO : calculate world functions
-}
-
-void mvWorld_V2::finaliseIntegrationOfBody(mvIndex bodyIndex)
-{
-// TODO : calculate world functions
 }
 
 mvConstBodyCapsulePtr mvWorld_V2::getConstBodyCapsulePtr(int index) const

@@ -27,9 +27,9 @@
 #define MVMOTIONAI_V2_CENTRAL_H_INCLUDED
 
 #include "mvMotionAI-Types.h"
-#include "mvBaseBehaviour.h"
-#include "mvBehavFuncList.h"
-#include "mvWorld2.h"
+#include MV_BASE_BEHAVIOUR_HEADER_FILE_H_
+#include MV_BEHAV_FUNC_LIST_HEADER_FILE_H_
+#include MV_WORLD_HEADER_FILE_H_
 //#include "mvList.h"
 
 /* TODO : implement v2 motion ai functions */

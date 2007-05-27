@@ -39,7 +39,7 @@
 /*
  * Step 1.0 : include header to use library
  */
-#include "mvMotionAI.h"
+#include "mv2.h"
 
 static float left = -1.0;
 static float right = 1.0;
@@ -78,10 +78,10 @@ char* scriptFileName = NULL;
 bool isAnimating = false;
 
 void displayMotionAI();
-void displayWaypoint(mvWaypoint *wp, void* ptr);
-void displayObstacle(mvObstacle* o, void* ptr);
-void displayBody(mvBody* p, void* extraPtr);
-void worldFunction(mvWorld* tempWorld, void* ptr);
+void displayWaypoint(mvWaypointPtr wp, void* ptr);
+void displayObstacle(mvObstaclePtr o, void* ptr);
+void displayBody(mvBodyPtr p, void* extraPtr);
+void worldFunction(mvWorldPtr tempWorld, void* ptr);
 
 int main(int argc, char** argv)
 {
@@ -108,7 +108,7 @@ int main(int argc, char** argv)
    {
       scriptFileName = defaultLuaFileName;
    }
-   mvLua_LoadScriptFile(scriptFileName);
+  // mvLua_LoadScriptFile(scriptFileName);
    init ();
 
    glutDisplayFunc(display);
@@ -183,7 +183,7 @@ void displayMotionAI()
    mvApplyToAllWorlds(worldFunction,NULL);
 }
 
-void worldFunction(mvWorld* tempWorld, void* entry)
+void worldFunction(mvWorldPtr tempWorld, void* entry)
 {
    /*
     * Step 6: Here we call other functions to draw the classes
@@ -193,9 +193,9 @@ void worldFunction(mvWorld* tempWorld, void* entry)
     */
    if (tempWorld != NULL)
    {
-      tempWorld->mvApplyToAllBodies(displayBody,NULL);
-      tempWorld->mvApplyToAllObstacles(displayObstacle,NULL);
-      tempWorld->mvApplyToAllWaypoints(displayWaypoint,NULL);
+      tempWorld->applyToAllBodies(displayBody,NULL);
+      tempWorld->applyToAllObstacles(displayObstacle,NULL);
+      tempWorld->applyToAllWaypoints(displayWaypoint,NULL);
    }
 }
 
@@ -205,7 +205,7 @@ void worldFunction(mvWorld* tempWorld, void* entry)
  * Step 6a : this function draws the mvBody type in the
  * application
  */
-void displayBody(mvBody* p,void* extraPtr)
+void displayBody(mvBodyPtr p,void* extraPtr)
 {
    mvOptionEnum tempShape;
 
@@ -216,7 +216,7 @@ void displayBody(mvBody* p,void* extraPtr)
        glPushAttrib(GL_LIGHTING_BIT);
        glDisable(GL_LIGHTING);
        glTranslatef(p->getX(),p->getY(),p->getZ());
-       tempShape = p->getShape();
+       tempShape = MV_AABOX;
        if (tempShape == MV_AABOX)
        {
          glutWireCube(1.0);
@@ -226,11 +226,11 @@ void displayBody(mvBody* p,void* extraPtr)
              glColor3f(1,0,0);
              glVertex3f(0,0,0);
              glColor3f(0,1,0);
-             glVertex3f(p->direction.getX(), p->direction.getY(), p->direction.getZ());
+             glVertex3f(p->getBodyDirection().getX(), p->getBodyDirection().getY(), p->getBodyDirection().getZ());
              glColor3f(0,1,0);
-             glVertex3f(p->direction.getX(), p->direction.getY(), p->direction.getZ());
+             glVertex3f(p->getBodyDirection().getX(), p->getBodyDirection().getY(), p->getBodyDirection().getZ());
              glColor3f(0,0,1);
-             glVertex3f( (1.0f + p->speed)* p->direction.getX(), (1.0f + p->speed)*  p->direction.getY(), (1.0f + p->speed)* p->direction.getZ());
+             glVertex3f((1.0f + p->getSpeed())* p->getBodyDirection().getX(), (1.0f + p->getSpeed())*  p->getBodyDirection().getY(), (1.0f + p->getSpeed())* p->getBodyDirection().getZ());
            glEnd();
          glPopMatrix();
          //std::cout << "SPEED : " << p->speed << std::endl;
@@ -242,7 +242,7 @@ void displayBody(mvBody* p,void* extraPtr)
            //glScalef(p->speed,p->speed,p->speed);
            glBegin(GL_LINES);
              glColor3f(1,0,0);
-             glVertex3f(p->direction.getX(), p->direction.getY(), p->direction.getZ() + 1);
+             glVertex3f(p->getBodyDirection().getX(), p->getBodyDirection().getY(), p->getBodyDirection().getZ() + 1);
              glColor3f(0,1,0);
              glVertex3f(0,0,1);
            glEnd();
@@ -261,7 +261,7 @@ void displayBody(mvBody* p,void* extraPtr)
  * Step 6b : this function draws the mvObstacle type in the
  * application
  */
-void displayObstacle(mvObstacle* o,void* extraPtr)
+void displayObstacle(mvObstaclePtr o,void* extraPtr)
 {
    //const float offsetY = 0.5;
    mvOptionEnum tempShape;
@@ -292,7 +292,7 @@ void displayObstacle(mvObstacle* o,void* extraPtr)
  * Step 6c : this function draws the mvWaypoint type in the
  * application
  */
-void displayWaypoint(mvWaypoint* wp,void* extraPtr)
+void displayWaypoint(mvWaypointPtr wp,void* extraPtr)
 {
    mvOptionEnum tempShape;
 
@@ -302,7 +302,7 @@ void displayWaypoint(mvWaypoint* wp,void* extraPtr)
        glTranslatef(wp->getX(),wp->getY(),wp->getZ());
        glColor3f(1,1,0);
        //glutSolidOctahedron();
-        tempShape = wp->getShape();
+        tempShape = MV_AABOX;
         if (tempShape == MV_AABOX)
         {
            glutSolidCube(1.0);

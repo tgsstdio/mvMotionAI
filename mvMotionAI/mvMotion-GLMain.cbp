@@ -60,6 +60,7 @@
 		</VirtualTargets>
 		<Compiler>
 			<Add directory="include" />
+			<Add directory="experimental\include" />
 		</Compiler>
 		<Linker>
 			<Add directory="lib" />

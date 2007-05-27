@@ -22,7 +22,8 @@
 #ifndef MVNULLLOADER_H_INCLUDED
 #define MVNULLLOADER_H_INCLUDED
 
-#include "mvBaseBehaviour.h"
+#include "mvMotionAI-Types.h"
+#include MV_BASE_BEHAVIOUR_HEADER_FILE_H_
 
 class mvNullLoader : public mvBaseBehaviourLoader
 {
