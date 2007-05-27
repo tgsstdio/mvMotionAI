@@ -92,14 +92,14 @@ mvIndex mvMotionAI_V2::createWorld(const char* worldID)
    // if found, reject it
    if (temp != NULL)
    {
-      return MV_NO_CURRENT_INDEX;
+      return MV_NULL;
    }
 
    temp = new (std::nothrow) mvWorld_V2(worldID);
 
    if (temp == NULL)
    {
-      return MV_NO_CURRENT_INDEX;
+      return MV_NULL;
    }
 
    return worlds.addItem(temp);
@@ -175,7 +175,7 @@ mvErrorEnum mvMotionAI_V2::loadDefaultBehaviours()
    {
       return MV_INVALID_MEMORY_ALLOCATION;
    }
-   error = bFunctions.addBehaviourFunction(MV_GROUP_ENTRY, tempLoader);
+   error = bFunctions.addFactoryFunction(MV_GROUP_ENTRY, tempLoader);
    // if error occurs
    if (error != MV_NO_ERROR)
    {
@@ -191,7 +191,7 @@ mvErrorEnum mvMotionAI_V2::loadDefaultBehaviours()
    {
       return MV_INVALID_MEMORY_ALLOCATION;
    }
-   error = bFunctions.addBehaviourFunction(MV_EXISTING_BEHAVIOUR,\
+   error = bFunctions.addFactoryFunction(MV_EXISTING_BEHAVIOUR,\
       tempLoader);
    if (error != MV_NO_ERROR)
    {
@@ -207,7 +207,7 @@ mvErrorEnum mvMotionAI_V2::loadDefaultBehaviours()
    {
       return MV_INVALID_MEMORY_ALLOCATION;
    }
-   error = bFunctions.addBehaviourFunction(MV_EXISTING_GROUP_BEHAVIOUR,\
+   error = bFunctions.addFactoryFunction(MV_EXISTING_GROUP_BEHAVIOUR,\
       tempLoader);
    if (error != MV_NO_ERROR)
    {
@@ -221,21 +221,21 @@ mvErrorEnum mvMotionAI_V2::loadDefaultBehaviours()
 }
 
 mvBaseBehaviour* mvMotionAI_V2::createNewBehaviour(mvOptionEnum type,\
-   mvBaseBehaviour* defaultBehaviour)
+   mvBaseBehaviourPtr defaultBehaviour)
 {
-   return bFunctions.createBehaviour(type, defaultBehaviour);
+   return bFunctions.createAClassPtr(type, defaultBehaviour);
 }
 
 mvMotionAI_V2::~mvMotionAI_V2()
 {
    deleteAllWorlds();
-   bFunctions.freeAllBehaviourFunctions();
+   bFunctions.freeAllFactoryFunctions();
 }
 
 mvErrorEnum mvMotionAI_V2::addBehaviourFunction(mvOptionEnum type,\
    mvBaseBehaviourLoader* loader)
 {
-   return bFunctions.addBehaviourFunction(type, loader);
+   return bFunctions.addFactoryFunction(type, loader);
 }
 
 // TODO : implement these functions
@@ -374,7 +374,7 @@ mvIndex mvMotionAI_V2_CREATEWORLD(const char* id)
    }
    else
    {
-      return MV_NO_CURRENT_INDEX;
+      return MV_NULL;
    }
 }
 
@@ -404,7 +404,7 @@ mvIndex mvMotionAI_V2_GETWORLDBYID(const char* id)
    }
    else
    {
-      return MV_NO_CURRENT_INDEX;
+      return MV_NULL;
    }
 }
 

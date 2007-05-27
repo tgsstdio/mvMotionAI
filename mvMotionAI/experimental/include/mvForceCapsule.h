@@ -38,6 +38,7 @@ class mvForceCapsule
       mvForcePtr encappedForce;
    public:
       mvUniqueSet linkedWaypoints;
+      bool isActive;
 
       mvForceCapsule(mvForcePtr forcePtr);
       mvErrorEnum addWaypoint(mvIndex index);

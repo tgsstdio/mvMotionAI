@@ -30,6 +30,7 @@
 mvForceCapsule::mvForceCapsule(mvForcePtr forcePtr)
 {
    encappedForce = forcePtr;
+   isActive = true;
 }
 
 mvErrorEnum mvForceCapsule::addWaypoint(mvIndex index)

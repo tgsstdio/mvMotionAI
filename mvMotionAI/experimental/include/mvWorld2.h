@@ -69,18 +69,24 @@ class mvWorld_V2
 
       /// world step functionality
       void prepareIntegrationStep();
+      void performIntegrationOfBody(mvBodyCapsulePtr bodyPtr);
       void calculateGroupBehaviours(); // 1
-      void checkIfWaypointContainsBody(mvIndex waypointIndex,\
-         mvIndex bodyIndex); // part of 2
-      void calculateGlobalForceOnBody(mvIndex globalForce,mvIndex bodyIndex);
-      void calculateLocalForceOnBody(mvIndex localForce, mvIndex bodyIndex);
-      void calculateBehavioursOnBody(mvIndex bodyIndex);
-      void finaliseIntegrationOfBody(mvIndex bodyIndex);
+      void checkIfWaypointContainsBody(mvBodyCapsulePtr bodyPtr);
+      void resetIntegrationLoop();
+      void calculateAllForcesOnBody(mvBodyCapsulePtr bodyPtr);
+      void calculateGlobalForceOnBody(mvIndex globalForce,
+         mvBodyCapsulePtr bodyPtr);
+      void calculateLocalForceOnBody(mvIndex localForce,
+         mvBodyCapsulePtr bodyPtr);
+      void calculateBehavioursOnBody(mvBodyCapsulePtr bodyPtr);
+      void finaliseIntegrationStep();
 
       mvConstBodyCapsulePtr getConstBodyCapsulePtr(int index) const;
       mvBodyCapsulePtr getBodyCapsulePtr(int index);
 
    public:
+      void integrateBody(mvBodyCapsulePtr bodyPtr);
+
       bool isEnabled;
       bool applyForces;
       bool applyGravity;

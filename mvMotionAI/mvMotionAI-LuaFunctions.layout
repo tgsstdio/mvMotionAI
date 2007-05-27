@@ -2,7 +2,7 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="ubuntu" />
 	<File name="examples-src\LuaFuncTest.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1711" topLine="31" />
+		<Cursor position="1859" topLine="30" />
 	</File>
 	<File name="include\mvLuaScript.h" open="0" top="0" tabpos="1">
 		<Cursor position="2243" topLine="24" />

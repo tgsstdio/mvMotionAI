@@ -428,3 +428,27 @@ mvIndex mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::fin
 {
    return itemList.findIteminList(someFunction,extraPtr);
 }
+
+template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
+mvCapsulePtr mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getCapsulePtr(mvIndex index) const
+{
+   return itemList.getClassPtr(index);
+}
+
+template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
+mvCapsulePtr mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getCurrentCapsulePtr() const
+{
+   return itemList.getCurrentClassPtr();
+}
+
+template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
+mvConstCapsulePtr mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getCurrentConstCapsulePtr() const
+{
+   return itemList.getCurrentConstClassPtr();
+}
+
+template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
+mvConstCapsulePtr mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getConstCapsulePtr(mvIndex index) const
+{
+   return itemList.getConstClassPtr(index);
+}
