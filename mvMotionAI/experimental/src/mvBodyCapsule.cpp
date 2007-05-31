@@ -3,6 +3,7 @@
 mvBodyCapsule::mvBodyCapsule(mvBodyPtr capsuleBody)
 {
    encapsulatedBody = capsuleBody;
+   performIntegration = true;
 }
 
 mvConstBodyPtr mvBodyCapsule::getConstClassPtr() const

@@ -30,24 +30,21 @@
  * - changing bodyOperation signature to 5+ parameters & return type to only one
  *   super class for result and input
  */
-#ifndef MV_BASE_BEHAVIOUR_H_
-#define MV_BASE_BEHAVIOUR_H_
+#ifndef MV_BASE_ACTION_H_
+#define MV_BASE_ACTION_H_
 
 #include "mvMotionAI-Types.h"
 #include MV_ENUMS_HEADER_FILE_H_
 #include MV_BEHAVIOUR_RESULT_HEADER_FILE_H_
 #include MV_GROUP_BEHAVIOUR_RESULT_HEADER_FILE_H_
-//#include "mvWorld2.h"
-//#include "mvVec3.h"
-//#include "mvBody.h"
 
-typedef class mvBaseBehaviour
+class mvBaseAction
 {
    private:
       mvOptionEnum bType;
 
    public:
-      mvBaseBehaviour(mvOptionEnum type);
+      mvBaseAction(mvOptionEnum type);
       mvOptionEnum getType();
 
       virtual mvErrorEnum getParameter(mvParamEnum paramFlag,\
@@ -80,16 +77,16 @@ typedef class mvBaseBehaviour
        */
       virtual bool bodyOp(mvBehaviourResultPtr resultModule) = 0;
 
-      virtual ~mvBaseBehaviour();
-} mvSuperBehaviour;
+      virtual ~mvBaseAction();
+};
 
-class mvBaseBehaviourLoader
+class mvBaseActionLoader
 {
    public:
-      virtual mvBaseBehaviourPtr operator()(\
-         mvBaseBehaviourPtr defaultBehaviour) = 0;
-      mvBaseBehaviourLoader();
-      virtual ~mvBaseBehaviourLoader(){};
+      virtual mvBaseActionPtr operator()(\
+         mvBaseActionPtr defaultBehaviour) = 0;
+      mvBaseActionLoader();
+      virtual ~mvBaseActionLoader(){};
 };
 
 #endif

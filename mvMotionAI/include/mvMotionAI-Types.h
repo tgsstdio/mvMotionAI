@@ -126,9 +126,9 @@ static const mvCount MV_MAX_NO_OF_PARAMETERS = 5;
  *
  */
 
-#define MV_BASE_BEHAVIOUR_HEADER_FILE_H_ "mvBaseBehaviour.h"
-typedef class mvBaseBehaviour* mvBaseBehaviourPtr;
-typedef class mvBaseBehaviourLoader* mvBaseBehaviourLoaderPtr;
+#define MV_BASE_ACTION_HEADER_FILE_H_ "mvBaseAction.h"
+typedef class mvBaseAction* mvBaseActionPtr;
+typedef class mvBaseActionLoader* mvBaseActionLoaderPtr;
 
 #define MV_BEHAVIOUR_HEADER_FILE_H_ "mvBehaviour_V2.h"
 typedef class mvBehaviour_V2 mvBehaviour;
@@ -142,7 +142,6 @@ typedef class mvBehaviourResult* mvBehaviourResultPtr;
 typedef class mvBody_V2 mvBody;
 typedef class mvBody_V2* mvBodyPtr;
 typedef class mvBody_V2 const * const mvConstBodyPtr;
-//#define mvBodyPtr mvBody_V2*
 
 #define MV_FORCE_HEADER_FILE_H_ "mvForce.h"
 typedef class mvForce* mvForcePtr;

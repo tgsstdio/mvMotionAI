@@ -19,72 +19,72 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-#include "mvBaseBehaviour.h"
+#include MV_BASE_ACTION_HEADER_FILE_H_
 
-mvBaseBehaviour::mvBaseBehaviour(mvOptionEnum type)
+mvBaseAction::mvBaseAction(mvOptionEnum type)
 {
    bType = type;
 }
 
-mvOptionEnum mvBaseBehaviour::getType()
+mvOptionEnum mvBaseAction::getType()
 {
    return bType;
 }
 
-mvErrorEnum mvBaseBehaviour::getParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvBaseAction::getParameter(mvParamEnum paramFlag,\
    mvOptionEnum* option)
 {
    return MV_INVALID_BEHAVIOUR_PARAMETER;
 }
 
-mvErrorEnum mvBaseBehaviour::getParameteri(mvParamEnum paramFlag, mvIndex* index)
+mvErrorEnum mvBaseAction::getParameteri(mvParamEnum paramFlag, mvIndex* index)
 {
    return MV_INVALID_BEHAVIOUR_PARAMETER;
 }
 
-mvErrorEnum mvBaseBehaviour::getParameterf(mvParamEnum paramFlag, mvFloat* num)
+mvErrorEnum mvBaseAction::getParameterf(mvParamEnum paramFlag, mvFloat* num)
 {
    return MV_INVALID_BEHAVIOUR_PARAMETER;
 }
 
-mvErrorEnum mvBaseBehaviour::getParameterv(mvParamEnum paramFlag,\
+mvErrorEnum mvBaseAction::getParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray, mvCount* noOfElements)
 {
    return MV_INVALID_BEHAVIOUR_PARAMETER;
 }
 
-mvErrorEnum mvBaseBehaviour::setParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvBaseAction::setParameter(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
    return MV_INVALID_BEHAVIOUR_PARAMETER;
 }
 
-mvErrorEnum mvBaseBehaviour::setParameteri(mvParamEnum paramFlag,\
+mvErrorEnum mvBaseAction::setParameteri(mvParamEnum paramFlag,\
    mvIndex index)
 {
    return MV_INVALID_BEHAVIOUR_PARAMETER;
 }
 
-mvErrorEnum mvBaseBehaviour::setParameterf(mvParamEnum paramFlag, mvFloat num)
+mvErrorEnum mvBaseAction::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
    return MV_INVALID_BEHAVIOUR_PARAMETER;
 }
 
-mvErrorEnum mvBaseBehaviour::setParameterv(mvParamEnum paramFlag,\
+mvErrorEnum mvBaseAction::setParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray)
 {
    return MV_INVALID_BEHAVIOUR_PARAMETER;
 }
 
-mvBaseBehaviour::~mvBaseBehaviour()
+mvBaseAction::~mvBaseAction()
 {
    // empty code
 }
 
 /**
- * \brief mvBaseBehaviourLoader constructor
+ * \brief mvBaseActionLoader constructor
  */
-mvBaseBehaviourLoader::mvBaseBehaviourLoader()
+mvBaseActionLoader::mvBaseActionLoader()
 {
    // empty code
 }

@@ -35,6 +35,7 @@
 #include "mvBodyCapsule.h"
 #include "mvWaypointCapsule.h"
 #include "mvForceCapsule.h"
+#include "mvGroupCapsule.h"
 
 #include MV_BASE_BEHAVIOUR_HEADER_FILE_H_
 #include MV_FORCE_HEADER_FILE_H_
@@ -64,7 +65,8 @@ class mvWorld_V2
       mvPointerList<mvGroupBehaviourPtr, mvConstGroupBehaviourPtr>\
          groupBehaviours;
       mvPointerList<mvBehaviourPtr, mvConstBehaviourPtr> behaviours;
-      mvPointerList<mvGroupPtr, mvConstGroupPtr> groups;
+      mvCapsuleList<mvGroupPtr, mvConstGroupPtr, mvGroupCapsulePtr,\
+         mvConstGroupCapsulePtr> groups;
       mvBehavFuncListPtr behavLoader;
 
       /// world step functionality
