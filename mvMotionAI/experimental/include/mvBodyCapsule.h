@@ -34,6 +34,7 @@ class mvBodyCapsule
    protected:
       mvBodyPtr encapsulatedBody;
    public:
+      bool performIntegration;
       mvVec3 futurePosition;
       mvVec3 futureFinalVelocity;
       mvVec3 futureRotation;

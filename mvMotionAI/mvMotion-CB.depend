@@ -203,7 +203,7 @@
 
 1161008326 pt.h"
 
-1167660102 d:\mvmotionai\mvmotionai\include\mvluascript.h
+1180277754 d:\mvmotionai\mvmotionai\include\mvluascript.h
 	"mvMotionAI-Types.h"
 	"mvEnums.h"
 	<lua.h>
@@ -1121,13 +1121,13 @@
 1179636698 source:d:\mvmotionai\mvmotionai\experimental\src\mvbehaviourresult.cpp
 	"mvBehaviourResult.h"
 
-1177737150 d:\mvmotionai\mvmotionai\experimental\include\mvbodycapsule.h
+1180359538 d:\mvmotionai\mvmotionai\experimental\include\mvbodycapsule.h
 	"mvMotionAI-Types.h"
 
 1177743810 d:\mvmotionai\mvmotionai\experimental\include\mvwaypointcapsule.h
 	"mvMotionAI-Types.h"
 
-1179636700 source:d:\mvmotionai\mvmotionai\experimental\src\mvbodycapsule.cpp
+1180359644 source:d:\mvmotionai\mvmotionai\experimental\src\mvbodycapsule.cpp
 	"mvBodyCapsule.h"
 
 1179636700 source:d:\mvmotionai\mvmotionai\experimental\src\mvindexset.cpp
@@ -1190,4 +1190,10 @@
 	"mvNullLoader.h"
 	<cstring>
 	<new>
+
+1180363008 source:d:\mvmotionai\mvmotionai\experimental\src\mvgroupcapsule.cpp
+	"mvGroupCapsule.h"
+
+1180362930 d:\mvmotionai\mvmotionai\experimental\include\mvgroupcapsule.h
+	"mvMotionAI-Types.h"
 

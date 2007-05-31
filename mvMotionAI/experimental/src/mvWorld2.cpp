@@ -1138,22 +1138,8 @@ mvGroupPtr mvWorld_V2::getGroupPtr(mvIndex index)
   */
 mvIndex mvWorld_V2::createGroup(const char* groupID)
 {
-   /*
-
-
-   if (groupID == MV_NULL)
-   {
-      return MV_INPUT_PARAM_STRING_IS_NULL;
-   }
-
-   temp = groups.findItemPtrInList(checkGroupsForIDMatch,(void*) groupID);
-
-   if (temp != MV_NULL)
-   {
-      return MV_NULL;
-   }
-   */
    mvGroupPtr temp = MV_NULL;
+   mvGroupCapsulePtr tempCapsule = NULL;
 
    temp = new (std::nothrow) mvGroup();
 
@@ -1162,7 +1148,13 @@ mvIndex mvWorld_V2::createGroup(const char* groupID)
       return MV_NULL;
    }
 
-   return groups.addItem(temp);
+   tempCapsule = new (std::nothrow) mvGroupCapsule(temp);
+   if (tempCapsule == MV_NULL)
+   {
+      return MV_NULL;
+   }
+
+   return groups.addItem(tempCapsule);
 }
 
 /** @brief (one liner)
@@ -3011,13 +3003,23 @@ mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
    return nudgeBody(getCurrentBody(), timeInSecs);
 }
 
+void mvWorld_Reset_Waypoint_Capsule(mvWaypointCapsulePtr capsulePtr,\
+   void* extraPtr)
+{
+   if (capsulePtr != MV_NULL)
+   {
+      capsulePtr->containsBody = false;
+   }
+}
+
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
 void mvWorld_V2::resetIntegrationLoop()
 {
-
+   // TODO : reset waypoints
+   waypoints.applyToAllCapsules(mvWorld_Reset_Waypoint_Capsule, MV_NULL);
 }
 
 void mvWorld_Prepare_Body_Capsule(mvBodyCapsulePtr capsulePtr, void* extraPtr)
@@ -3025,13 +3027,23 @@ void mvWorld_Prepare_Body_Capsule(mvBodyCapsulePtr capsulePtr, void* extraPtr)
    if (capsulePtr != MV_NULL)
    {
       // TODO : reset bodies
+      capsulePtr->performIntegration = false;
+      capsulePtr->futurePosition.resetXYZ();
+      capsulePtr->futureFinalVelocity.resetXYZ();
+      capsulePtr->futureRotation.resetXYZ();
    }
 }
 
-void mvWorld_Prepare_Waypoint_Capsule(mvWaypointCapsulePtr capsulePtr,\
+void mvWorld_Prepare_Force_Capsule(mvForceCapsulePtr capsulePtr,\
    void* extraPtr)
 {
+   mvWorldPtr currentWorld = (mvWorldPtr) extraPtr;
 
+   if (capsulePtr != MV_NULL && currentWorld != MV_NULL)
+   {
+      // TODO : prefilter
+      capsulePtr->isActive = true;
+   }
 }
 
 void mvWorld_V2::prepareIntegrationStep()
@@ -3039,9 +3051,8 @@ void mvWorld_V2::prepareIntegrationStep()
    // TODO : reset bodies
    bodies.applyToAllCapsules(mvWorld_Prepare_Body_Capsule,MV_NULL);
 
-   // TODO : reset waypoints
-   waypoints.applyToAllCapsules(mvWorld_Prepare_Waypoint_Capsule, MV_NULL);
    // reset forces
+   forces.applyToAllCapsules(mvWorld_Prepare_Force_Capsule, this);
 }
 
 void mvWorld_V2::calculateGroupBehaviours() // 1
@@ -3076,9 +3087,17 @@ void mvWorld_V2::performIntegrationOfBody(mvBodyCapsulePtr bodyPtr)
 // TODO : calculate world functions
 }
 
+void mvWorld_Finalise_Groups(mvGroupCapsulePtr capsulePtr, void* extraPtr)
+{
+   if (capsulePtr != MV_NULL && extraPtr != MV_NULL)
+   {
+      capsulePtr->hasChanged = false;
+   }
+}
+
 void mvWorld_V2::finaliseIntegrationStep()
 {
-
+   groups.applyToAllCapsules(mvWorld_Finalise_Groups,this);
 }
 
 // WORLD STEP FUNCTIONS
