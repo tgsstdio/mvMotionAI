@@ -43,7 +43,7 @@
  *                 pointers in declaration/implementation, using the
  *                 typedef'fed pointers types
  */
-typedef class mvA2* mvBaseBehaviourPtr2;
+typedef class mvA2* mvBaseActionPtr2;
 typedef class mvB* mvResultPtr2;
 typedef class mvC* mvWorldPtr2;
 typedef class mvD* mvGroupBehaviourPtr2;
@@ -52,7 +52,7 @@ typedef class mvF* mvBehaviourPtr2;
 typedef class mvG* mvBodyPtr2;
 typedef class mvH* mvBListPtr2;
 typedef class mvI* mvBEntryNodePtr2;
-typedef class mvJ* mvBaseBehaviourLoaderPtr2;
+typedef class mvJ* mvBaseActionLoaderPtr2;
 
 // for pointer only
 /*
@@ -77,7 +77,7 @@ typedef class mvH
 typedef class mvI
 {
    // mvBehaviouEntry
-   mvBaseBehaviourPtr2 behav;
+   mvBaseActionPtr2 behav;
 } mvBEntryNode;
 
 typedef class mvG
@@ -97,20 +97,20 @@ typedef class mvC
 typedef class mvD
 {
    // group behaviour
-   mvBaseBehaviourPtr2 beh;
+   mvBaseActionPtr2 beh;
    mvPointerList<mvGroupBehaviourNodePtr2> nodes;
 } mvGroupBehaviour;
 
 typedef class mvF
 {
    // behaviour (global)
-   mvBaseBehaviourPtr2 beh;
+   mvBaseActionPtr2 beh;
 } mvBehaviour;
 
 typedef class mvE
 {
    // group behaviour node
-   mvBaseBehaviourPtr2 beh;
+   mvBaseActionPtr2 beh;
 } mvGroupBehaviourNode;
 
 typedef class mvB
@@ -123,12 +123,12 @@ typedef class mvA2
 {
    // base behaviour
    bool do_stuff(mvResultPtr2 b);
-} mvBaseBehaviour2;
+} mvBaseAction2;
 
 typedef class mvJ
 {
-   mvBaseBehaviourPtr2 operator()(mvBaseBehaviourPtr2 db);
-} mvBaseBehaviourLoader;
+   mvBaseActionPtr2 operator()(mvBaseActionPtr2 db);
+} mvBaseActionLoader;
 
 int main(void)
 {

@@ -1,4 +1,4 @@
-#include "mvBaseBehaviour.h"
+#include "mvBaseAction.h"
 #include MV_ENUMS_HEADER_FILE_H_
 //#include <iostream>
 #include <cstdlib>
@@ -16,7 +16,7 @@ int main(void)
 {
    mvVec3 a,b,c;
    mvBehavFuncList bList;
-   mvBaseBehaviour* child;
+   mvBaseAction* child;
    int i;
 
    puts("Hekkio");
