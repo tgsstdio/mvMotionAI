@@ -105,12 +105,27 @@ mvIndex mvMotionAI_V2::createWorld(const char* worldID)
    return worlds.addItem(temp);
 }
 
+mvIndex mvMotionAI_V2::getCurrentWorld() const
+{
+   return worlds.getCurrentIndex();
+}
+
+mvIndex mvMotionAI_V2::setCurrentWorld(mvIndex index)
+{
+   return worlds.setCurrentIndex(index);
+}
+
+mvWorldPtr mvMotionAI_V2::getCurrentWorldPtr()
+{
+   return worlds.getCurrentClassPtr();
+}
+
 mvIndex mvMotionAI_V2::getWorldByID(const char* worldID)
 {
    return worlds.findItemInList(findExistingWorld, (void*) worldID);
 }
 
-mvCount mvMotionAI_V2::getNoOfWorlds()
+mvCount mvMotionAI_V2::getNoOfWorlds() const
 {
    return worlds.getNoOfItems();
 }
@@ -164,7 +179,7 @@ void mvMotionAI_V2::applyToAllWorldsByIndex(void (someFunction)(mvIndex,void*),\
 mvErrorEnum mvMotionAI_V2::loadDefaultBehaviours()
 {
    mvErrorEnum error;
-   mvBaseBehaviourLoader* tempLoader;
+   mvBaseActionLoader* tempLoader;
 
    // adding nullLoaders to protected enums such as
    // enum 1
@@ -220,8 +235,8 @@ mvErrorEnum mvMotionAI_V2::loadDefaultBehaviours()
    return MV_NO_ERROR;
 }
 
-mvBaseBehaviour* mvMotionAI_V2::createNewBehaviour(mvOptionEnum type,\
-   mvBaseBehaviourPtr defaultBehaviour)
+mvBaseAction* mvMotionAI_V2::createNewBehaviour(mvOptionEnum type,\
+   mvBaseActionPtr defaultBehaviour)
 {
    return bFunctions.createAClassPtr(type, defaultBehaviour);
 }
@@ -233,32 +248,31 @@ mvMotionAI_V2::~mvMotionAI_V2()
 }
 
 mvErrorEnum mvMotionAI_V2::addBehaviourFunction(mvOptionEnum type,\
-   mvBaseBehaviourLoader* loader)
+   mvBaseActionLoader* loader)
 {
    return bFunctions.addFactoryFunction(type, loader);
 }
 
-// TODO : implement these functions
 mvErrorEnum mvMotionAI_V2::getWorldParameter(mvIndex worldIndex,\
-   mvParamEnum paramFlag, mvOptionEnum* option)
+   mvParamEnum paramFlag, mvOptionEnum* option) const
 {
    return worlds.getItemParameter(worldIndex, paramFlag, option);
 }
 
 mvErrorEnum mvMotionAI_V2::getWorldParameteri(mvIndex worldIndex,\
-   mvParamEnum paramFlag, mvIndex* index)
+   mvParamEnum paramFlag, mvIndex* index) const
 {
    return worlds.getItemParameteri(worldIndex, paramFlag, index);
 }
 
 mvErrorEnum mvMotionAI_V2::getWorldParameterf(mvIndex worldIndex,\
-   mvParamEnum paramFlag, mvFloat* num)
+   mvParamEnum paramFlag, mvFloat* num) const
 {
    return worlds.getItemParameterf(worldIndex, paramFlag, num);
 }
 
 mvErrorEnum mvMotionAI_V2::getWorldParameterv(mvIndex worldIndex,\
-   mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfElements)
+   mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfElements) const
 {
    return worlds.getItemParameterv(worldIndex, paramFlag, numArray,\
       noOfElements);
@@ -289,25 +303,25 @@ mvErrorEnum mvMotionAI_V2::setWorldParameterv(mvIndex worldIndex,\
 }
 
 mvErrorEnum mvMotionAI_V2::getWorldParameter_str(mvIndex worldIndex,\
-   const char* param, const char** option)
+   const char* param, const char** option) const
 {
    return worlds.getItemParameter_str(worldIndex, param, option);
 }
 
 mvErrorEnum mvMotionAI_V2::getWorldParameteri_str(mvIndex worldIndex,\
-   const char* param,  mvIndex* index)
+   const char* param,  mvIndex* index) const
 {
    return worlds.getItemParameteri_str(worldIndex, param, index);
 }
 
 mvErrorEnum mvMotionAI_V2::getWorldParameterf_str(mvIndex worldIndex,\
-   const char* param, mvFloat* num)
+   const char* param, mvFloat* num) const
 {
    return worlds.getItemParameterf_str(worldIndex, param, num);
 }
 
 mvErrorEnum mvMotionAI_V2::getWorldParameterv_str(mvIndex worldIndex,\
-   const char* param, mvFloat* numArray, mvCount* noOfElements)
+   const char* param, mvFloat* numArray, mvCount* noOfElements) const
 {
    return worlds.getItemParameterv_str(worldIndex, param, numArray, noOfElements);
 }
@@ -485,7 +499,7 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS()
 }
 
 mvErrorEnum mvMotionAI_V2_ADDBEHAVIOURFUNC(mvOptionEnum bType,\
-   mvBaseBehaviourLoader* loader)
+   mvBaseActionLoaderPtr loader)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvMotionAI_V2* modulePtr = NULL;
@@ -501,8 +515,8 @@ mvErrorEnum mvMotionAI_V2_ADDBEHAVIOURFUNC(mvOptionEnum bType,\
    }
 }
 
-mvBaseBehaviour* mvMotionAI_V2_CREATENEWBEHAVIOUR(mvOptionEnum type,\
-   mvBaseBehaviour* defaultBehaviour)
+mvBaseAction* mvMotionAI_V2_CREATENEWBEHAVIOUR(mvOptionEnum type,\
+   mvBaseAction* defaultBehaviour)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvMotionAI_V2* modulePtr = NULL;
@@ -801,6 +815,54 @@ mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERSV(mvIndex worldIndex,\
    else
    {
       return error;
+   }
+}
+
+mvIndex mvMotionAI_V2_GETCURRENTWORLD()
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      return modulePtr->getCurrentWorld();
+   }
+   else
+   {
+      return MV_NULL;
+   }
+}
+
+mvWorldPtr mvMotionAI_V2_GETCURRENTWORLDPTR()
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      return modulePtr->getCurrentWorldPtr();
+   }
+   else
+   {
+      return MV_NULL;
+   }
+}
+
+mvIndex mvMotionAI_V2_SETCURRENTWORLD(mvIndex index)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      return modulePtr->setCurrentWorld(index);
+   }
+   else
+   {
+      return MV_NULL;
    }
 }
 

@@ -31,7 +31,7 @@ mvCreatePursuits::mvCreatePursuits()
   *
   * (documentation goes here)
   */
-mvBaseBehaviour* mvCreatePursuits::operator()(mvBaseBehaviour* defaultBehav)
+mvBaseAction* mvCreatePursuits::operator()(mvBaseAction* defaultBehav)
 {
    return new (std::nothrow) mvPursuit();
 }
@@ -175,7 +175,7 @@ bool mvPursuit::groupOp(mvGroupBehaviourResultPtr resultModule)
   *
   * (documentation goes here)
   */
-mvPursuit::mvPursuit() : mvBaseBehaviour(MV_PURSUIT)
+mvPursuit::mvPursuit() : mvBaseAction(MV_PURSUIT)
 {
    targetObject = MV_NO_CURRENT_INDEX;
 }

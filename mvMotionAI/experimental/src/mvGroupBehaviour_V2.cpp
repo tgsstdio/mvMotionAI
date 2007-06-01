@@ -32,7 +32,7 @@ bool findGroupNodeByIndex(mvGroupBNode_V2* groupNodePtr, void* extraPtr)
   *
   * (documentation goes here)
   */
- mvGroupBehaviour_V2::mvGroupBehaviour_V2(mvBaseBehaviourPtr groupBehPtr)
+ mvGroupBehaviour_V2::mvGroupBehaviour_V2(mvBaseActionPtr groupBehPtr)
 {
       // TODO : group behavioior functions with behaviour loading
 
@@ -56,7 +56,7 @@ bool findGroupNodeByIndex(mvGroupBNode_V2* groupNodePtr, void* extraPtr)
 /** @brief (one liner)
   *
   */
-mvErrorEnum mvGroupBehaviour_V2::addGroup(mvIndex groupNo, mvBaseBehaviourPtr
+mvErrorEnum mvGroupBehaviour_V2::addGroup(mvIndex groupNo, mvBaseActionPtr
    behavPtr)
 {
    // first check if index exists

@@ -22,7 +22,7 @@
 #include "mvSimpleFlock.h"
 #include <new>
 
-mvSimpleFlock::mvSimpleFlock() : mvBaseBehaviour(MV_SIMPLE_FLOCK)
+mvSimpleFlock::mvSimpleFlock() : mvBaseAction(MV_SIMPLE_FLOCK)
 {
    alignment = false;
    cohesion = false;
@@ -39,7 +39,7 @@ bool mvSimpleFlock::bodyOp(mvBehaviourResultPtr resultModule)
    return false;
 }
 
-mvSimpleFlockGroup::mvSimpleFlockGroup() : mvBaseBehaviour(MV_GROUP_ENTRY)
+mvSimpleFlockGroup::mvSimpleFlockGroup() : mvBaseAction(MV_GROUP_ENTRY)
 {
 
 }
@@ -55,7 +55,7 @@ bool mvSimpleFlockGroup::bodyOp(mvBehaviourResultPtr resultModule)
    return false;
 }
 
-mvBaseBehaviourPtr mvCreateSimpleFlock::operator()(mvBaseBehaviourPtr defaultBehaviour)
+mvBaseActionPtr mvCreateSimpleFlock::operator()(mvBaseActionPtr defaultBehaviour)
 {
    mvOptionEnum type;
 

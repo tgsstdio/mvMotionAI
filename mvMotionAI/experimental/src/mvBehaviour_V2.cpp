@@ -35,7 +35,7 @@ mvErrorEnum mvBehaviour_V2::setParameter(mvParamEnum paramFlag,\
   *
   * (documentation goes here)
   */
-mvBaseBehaviourPtr mvBehaviour_V2::getBehaviourPtr()
+mvBaseActionPtr mvBehaviour_V2::getBehaviourPtr()
 {
    return behavPtr;
 }
@@ -62,7 +62,7 @@ bool mvBehaviour_V2::isEnabled() const
   *
   * (documentation goes here)
   */
- mvBehaviour_V2::mvBehaviour_V2(mvBaseBehaviourPtr bPtr)
+ mvBehaviour_V2::mvBehaviour_V2(mvBaseActionPtr bPtr)
 {
    behavPtr = bPtr;
    behavEnabled = true;

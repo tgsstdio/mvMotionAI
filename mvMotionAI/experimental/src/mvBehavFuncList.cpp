@@ -33,10 +33,10 @@ mvBehavFuncList::mvBehavFuncList()
 }
 
 mvErrorEnum mvBehavFuncList::addBehaviourFunction(mvOptionEnum key,\
-   mvBaseBehaviourLoader* bFunc)
+   mvBaseActionLoader* bFunc)
 {
    // check if behaviour key exists
-   std::map<mvOptionEnum,mvBaseBehaviourLoader*>::iterator checkKey;
+   std::map<mvOptionEnum,mvBaseActionLoader*>::iterator checkKey;
 
    // if loader is null, return error
    if (bFunc == NULL)
@@ -61,7 +61,7 @@ mvErrorEnum mvBehavFuncList::addBehaviourFunction(mvOptionEnum key,\
 
 void mvBehavFuncList::freeAllBehaviourFunctions()
 {
-   std::map<mvOptionEnum,mvBaseBehaviourLoader*>::iterator i;
+   std::map<mvOptionEnum,mvBaseActionLoader*>::iterator i;
 
 #ifdef MV_DEBUG_MVBEHAVFUNCLIST_OUTPUT
    puts("Freeing All Behaviour Function Objects");
@@ -76,12 +76,12 @@ void mvBehavFuncList::freeAllBehaviourFunctions()
    bFunctions.clear();
 }
 
-mvBaseBehaviour* mvBehavFuncList::createBehaviour(mvOptionEnum key,\
-   mvBaseBehaviour* defaultBehav)
+mvBaseAction* mvBehavFuncList::createBehaviour(mvOptionEnum key,\
+   mvBaseAction* defaultBehav)
 {
    // check if behaviour key exists
-   std::map<mvOptionEnum,mvBaseBehaviourLoader*>::iterator checkKey;
-   mvBaseBehaviourLoader* bFunc = NULL;
+   std::map<mvOptionEnum,mvBaseActionLoader*>::iterator checkKey;
+   mvBaseActionLoader* bFunc = NULL;
 
    checkKey = bFunctions.find(key);
 

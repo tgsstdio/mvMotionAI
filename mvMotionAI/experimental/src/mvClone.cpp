@@ -25,7 +25,7 @@
   *
   * (documentation goes here)
   */
-mvClone::mvClone() : mvBaseBehaviour(MV_CLONE)
+mvClone::mvClone() : mvBaseAction(MV_CLONE)
 {
    targetIndex = MV_NO_CURRENT_INDEX;
 }
@@ -138,7 +138,7 @@ bool mvClone::bodyOp(mvBehaviourResultPtr resultModule)
   *
   * (documentation goes here)
   */
-mvBaseBehaviourPtr mvCreateClones::operator()(mvBaseBehaviourPtr defaultBehav)
+mvBaseActionPtr mvCreateClones::operator()(mvBaseActionPtr defaultBehav)
 {
    return new mvClone();
 }

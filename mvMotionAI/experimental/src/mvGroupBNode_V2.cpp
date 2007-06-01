@@ -216,7 +216,7 @@ mvErrorEnum mvGroupBNode_V2::setParameter(mvParamEnum paramFlag,\
   *
   * (documentation goes here)
   */
-mvBaseBehaviourPtr mvGroupBNode_V2::getBehaviourPtr()
+mvBaseActionPtr mvGroupBNode_V2::getBehaviourPtr()
 {
    return grpBehaviour;
 }
@@ -226,7 +226,7 @@ mvBaseBehaviourPtr mvGroupBNode_V2::getBehaviourPtr()
   * (documentation goes here)
   */
  mvGroupBNode_V2::mvGroupBNode_V2(\
-   mvBaseBehaviour* mainBehaviour, mvIndex grpIndex)
+   mvBaseActionPtr mainBehaviour, mvIndex grpIndex)
 {
    grpBehaviour = mainBehaviour;
    groupIndex = grpIndex;

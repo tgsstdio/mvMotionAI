@@ -22,13 +22,13 @@
 
 #include "mvNullLoader.h"
 
-mvNullLoader::mvNullLoader() : mvBaseBehaviourLoader()
+mvNullLoader::mvNullLoader() : mvBaseActionLoader()
 {
 
 }
 
-mvBaseBehaviourPtr mvNullLoader::operator()(\
-   mvBaseBehaviourPtr defaultBehaviour)
+mvBaseActionPtr mvNullLoader::operator()(\
+   mvBaseActionPtr defaultBehaviour)
 {
    return NULL;
 }

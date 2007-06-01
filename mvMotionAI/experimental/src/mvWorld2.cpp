@@ -806,7 +806,7 @@ mvGroupBehaviourPtr mvWorld_V2::getGroupBehaviourPtr(mvIndex index)
   */
 mvIndex mvWorld_V2::createGroupBehaviour(mvOptionEnum type)
 {
-   mvBaseBehaviourPtr temp = behavLoader->createAClassPtr(type,MV_NULL);
+   mvBaseActionPtr temp = behavLoader->createAClassPtr(type,MV_NULL);
 
    if (temp == MV_NULL)
       return MV_NULL;
@@ -1477,7 +1477,7 @@ mvBehaviour_V2 * mvWorld_V2::getBehaviourPtr(mvIndex index)
   */
 mvIndex mvWorld_V2::createBehaviour(mvOptionEnum bType)
 {
-   mvBaseBehaviourPtr tempBehav = MV_NULL;
+   mvBaseActionPtr tempBehav = MV_NULL;
 
    if (behavLoader != MV_NULL)
    {

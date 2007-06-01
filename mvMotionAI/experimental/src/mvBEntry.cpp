@@ -1,7 +1,7 @@
 #include "mvBEntry.h"
 // TODO: implement later
 mvBEntry::mvBEntry(mvOptionEnum type, mvIndex bIndex, mvIndex gIndex,\
-   mvBaseBehaviour* dBehaviour)
+   mvBaseActionPtr dBehaviour)
 {
    entryType = type;
    behaviourIndex = bIndex;
@@ -9,12 +9,12 @@ mvBEntry::mvBEntry(mvOptionEnum type, mvIndex bIndex, mvIndex gIndex,\
    behaviourPtr = dBehaviour;
 }
 
-void mvBEntry::setBehaviourPtr(mvBaseBehaviourPtr behavPtr)
+void mvBEntry::setBehaviourPtr(mvBaseActionPtr behavPtr)
 {
    behaviourPtr = behavPtr;
 }
 
-mvBaseBehaviourPtr mvBEntry::getBehaviourPtr() const
+mvBaseActionPtr mvBEntry::getBehaviourPtr() const
 {
    return NULL;
 }

@@ -25,7 +25,7 @@
   *
   * (documentation goes here)
   */
-mvConstBodyPtr mvResult::getCurrentBodyPtr() const
+mvConstBodyPtr mvBehaviourResult::getCurrentBodyPtr() const
 {
    return currentBody;
 }
@@ -35,7 +35,7 @@ mvConstBodyPtr mvResult::getCurrentBodyPtr() const
 //  *
 //  * (documentation goes here)
 //  */
-//mvBaseBehaviour * mvResult::getGroupBehaviourNode()
+//mvBaseAction * mvBehaviourResult::getGroupBehaviourNode()
 //{
 //   return currentGroupBehNode;
 //}
@@ -44,7 +44,7 @@ mvConstBodyPtr mvResult::getCurrentBodyPtr() const
   *
   * (documentation goes here)
   */
-mvConstWorldPtr mvResult::getWorldPtr() const
+mvConstWorldPtr mvBehaviourResult::getWorldPtr() const
 {
    return currentWorld;
 }
@@ -53,7 +53,7 @@ mvConstWorldPtr mvResult::getWorldPtr() const
   *
   * (documentation goes here)
   */
-void mvResult::setToSteering()
+void mvBehaviourResult::setToSteering()
 {
    isSteering = true;
 }
@@ -62,7 +62,7 @@ void mvResult::setToSteering()
   *
   * (documentation goes here)
   */
-void mvResult::setToDirectional()
+void mvBehaviourResult::setToDirectional()
 {
    isSteering = false;
 }
@@ -71,7 +71,7 @@ void mvResult::setToDirectional()
   *
   * default behaviour return type is directional
   */
-void mvResult::resetAll()
+void mvBehaviourResult::resetAll()
 {
    //currentWorld = MV_NULL;
    //currentBody = MV_NULL;
@@ -109,7 +109,7 @@ void mvResult::resetAll()
   *
   * (documentation goes here)
   */
-void mvResult::setQuaternion(const mvFloat* quatArray)
+void mvBehaviourResult::setQuaternion(const mvFloat* quatArray)
 {
    mvIndex i;
    for (i = 0; i < MV_QUATERNION_LENGTH; i++)
@@ -123,7 +123,7 @@ void mvResult::setQuaternion(const mvFloat* quatArray)
   *
   * (documentation goes here)
   */
-void mvResult::setDirection(const mvVec3& value)
+void mvBehaviourResult::setDirection(const mvVec3& value)
 {
    direction = value;
    applyDirection = true;
@@ -133,7 +133,7 @@ void mvResult::setDirection(const mvVec3& value)
   *
   * (documentation goes here)
   */
-void mvResult::setTorque(const mvVec3& value)
+void mvBehaviourResult::setTorque(const mvVec3& value)
 {
    torque = value;
    applyTorque = true;
@@ -143,7 +143,7 @@ void mvResult::setTorque(const mvVec3& value)
   *
   * (documentation goes here)
   */
-void mvResult::setVelocity(const mvVec3& value)
+void mvBehaviourResult::setVelocity(const mvVec3& value)
 {
    velocity = value;
    applyVelocity = true;
@@ -153,7 +153,7 @@ void mvResult::setVelocity(const mvVec3& value)
   *
   * (documentation goes here)
   */
-void mvResult::setAcceleration(const mvVec3& value)
+void mvBehaviourResult::setAcceleration(const mvVec3& value)
 {
    acceleration = value;
    applyAccel = true;
@@ -163,7 +163,7 @@ void mvResult::setAcceleration(const mvVec3& value)
   *
   * (documentation goes here)
   */
-void mvResult::setForce(const mvVec3& value)
+void mvBehaviourResult::setForce(const mvVec3& value)
 {
    force = value;
    applyForce = true;
@@ -173,7 +173,7 @@ void mvResult::setForce(const mvVec3& value)
   *
   * (documentation goes here)
   */
-void mvResult::setGroupIndex(mvIndex gIndex)
+void mvBehaviourResult::setGroupIndex(mvIndex gIndex)
 {
    groupIndex = gIndex;
 }
@@ -182,42 +182,10 @@ void mvResult::setGroupIndex(mvIndex gIndex)
   *
   * (documentation goes here)
   */
-void mvResult::setBehaviourIndex(mvIndex bIndex)
+void mvBehaviourResult::setBehaviourIndex(mvIndex bIndex)
 {
    behaviourIndex = bIndex;
 }
-
-// /** @brief (one liner)
-//  *
-//  * (documentation goes here)
-//  */
-//void mvResult::setGroupBehaviourNode(mvBaseBehaviour* groupBehPtr)
-//{
-//   currentGroupBehNode = groupBehPtr;
-//}
-
-
-/* @brief (one liner)
-  *
-  * (documentation goes here)
-  *
-  // invalid
-void mvResult::setCurrentBodyPtr(mvBodyPtr bodyPtr)
-{
-   currentBody = bodyPtr;
-}
-*/
-
-/* @brief (one liner)
-  *
-  * (documentation goes here)
-  *
-// invalid
-void mvResult::setWorldPtr(mvWorldPtr worldPtr)
-{
-   currentWorld = worldPtr;
-}
-*/
 
 /** @brief (one liner)
   *
@@ -233,7 +201,7 @@ mvBehaviourResult::mvBehaviourResult(mvConstWorldPtr worldPtr,\
   *
   * (documentation goes here)
   */
-mvIndex mvResult::getBehaviourIndex() const
+mvIndex mvBehaviourResult::getBehaviourIndex() const
 {
    return behaviourIndex;
 }
@@ -242,7 +210,7 @@ mvIndex mvResult::getBehaviourIndex() const
   *
   * (documentation goes here)
   */
-mvIndex mvResult::getGroupIndex() const
+mvIndex mvBehaviourResult::getGroupIndex() const
 {
    return groupIndex;
 }
@@ -251,7 +219,7 @@ mvIndex mvResult::getGroupIndex() const
   *
   * (documentation goes here)
   */
-void mvResult::setOmega(const mvVec3& value)
+void mvBehaviourResult::setOmega(const mvVec3& value)
 {
    omega = value;
    applyOmega = true;
@@ -261,7 +229,7 @@ void mvResult::setOmega(const mvVec3& value)
   *
   * (documentation goes here)
   */
-void mvResult::setOmegaInDegrees(const mvVec3& value)
+void mvBehaviourResult::setOmegaInDegrees(const mvVec3& value)
 {
    omega = value;
    applyOmega = true;
@@ -272,7 +240,7 @@ void mvResult::setOmegaInDegrees(const mvVec3& value)
   *
   * (documentation goes here)
   */
-void mvResult::setOmegaInRadians(const mvVec3& value)
+void mvBehaviourResult::setOmegaInRadians(const mvVec3& value)
 {
    omega = value;
    applyOmega = true;
@@ -280,7 +248,7 @@ void mvResult::setOmegaInRadians(const mvVec3& value)
 }
 
 // new utility functions
-mvConstWaypointPtr mvResult::fetchWaypointPtr(mvIndex index) const
+mvConstWaypointPtr mvBehaviourResult::fetchWaypointPtr(mvIndex index) const
 {
    if (currentWorld == MV_NULL)
    {
@@ -290,7 +258,7 @@ mvConstWaypointPtr mvResult::fetchWaypointPtr(mvIndex index) const
    return currentWorld->getConstWaypointPtr(index);
 }
 
-mvConstBodyPtr mvResult::fetchBodyPtr(mvIndex index) const
+mvConstBodyPtr mvBehaviourResult::fetchBodyPtr(mvIndex index) const
 {
    if (currentWorld == MV_NULL)
    {
@@ -300,7 +268,7 @@ mvConstBodyPtr mvResult::fetchBodyPtr(mvIndex index) const
    return currentWorld->getConstBodyPtr(index);
 }
 
-mvConstGroupBehaviourPtr mvResult::fetchGroupBehaviourPtr(mvIndex index) const
+mvConstGroupBehaviourPtr mvBehaviourResult::fetchGroupBehaviourPtr(mvIndex index) const
 {
    if (currentWorld == MV_NULL)
    {
@@ -310,7 +278,7 @@ mvConstGroupBehaviourPtr mvResult::fetchGroupBehaviourPtr(mvIndex index) const
    return currentWorld->getConstGroupBehaviourPtr(index);
 }
 
-mvConstPathwayPtr mvResult::fetchPathwayPtr(mvIndex index) const
+mvConstPathwayPtr mvBehaviourResult::fetchPathwayPtr(mvIndex index) const
 {
    if (currentWorld == MV_NULL)
    {
@@ -320,7 +288,7 @@ mvConstPathwayPtr mvResult::fetchPathwayPtr(mvIndex index) const
    return currentWorld->getConstPathwayPtr(index);
 }
 
-mvConstGroupPtr mvResult::fetchGroupPtr(mvIndex index) const
+mvConstGroupPtr mvBehaviourResult::fetchGroupPtr(mvIndex index) const
 {
    if (currentWorld == MV_NULL)
    {
