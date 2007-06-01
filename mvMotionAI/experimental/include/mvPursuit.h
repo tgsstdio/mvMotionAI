@@ -21,9 +21,9 @@
  */
 #ifndef MVPURSUIT_H_INCLUDED
 #define MVPURSUIT_H_INCLUDED
-#include "mvBaseBehaviour.h"
+#include "mvBaseAction.h"
 
-class mvPursuit : public mvBaseBehaviour
+class mvPursuit : public mvBaseAction
 {
    private:
       mvIndex targetObject;
@@ -36,11 +36,11 @@ class mvPursuit : public mvBaseBehaviour
       mvErrorEnum getParameteri(mvParamEnum param, mvIndex* index);
 };
 
-class mvCreatePursuits : public mvBaseBehaviourLoader
+class mvCreatePursuits : public mvBaseActionLoader
 {
    public:
       mvCreatePursuits();
-      mvBaseBehaviourPtr operator()(mvBaseBehaviourPtr defaultBehav);
+      mvBaseActionPtr operator()(mvBaseActionPtr defaultBehav);
       virtual ~mvCreatePursuits(){};
 };
 

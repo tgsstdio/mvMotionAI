@@ -1,8 +1,8 @@
 #ifndef MVFLEE_H_INCLUDED
 #define MVFLEE_H_INCLUDED
-#include "mvBaseBehaviour.h"
+#include "mvBaseAction.h"
 
-class mvFlee : public mvBaseBehaviour
+class mvFlee : public mvBaseAction
 {
    private:
       mvFloat length;
@@ -18,11 +18,11 @@ class mvFlee : public mvBaseBehaviour
       mvErrorEnum getParameteri(mvParamEnum param, mvIndex* index);
 };
 
-class mvCreateFlees : public mvBaseBehaviourLoader
+class mvCreateFlees : public mvBaseActionLoader
 {
    public:
       mvCreateFlees();
-      virtual mvBaseBehaviourPtr operator()(mvBaseBehaviourPtr defaultBehav);
+      virtual mvBaseActionPtr operator()(mvBaseActionPtr defaultBehav);
       virtual ~mvCreateFlees(){};
 };
 

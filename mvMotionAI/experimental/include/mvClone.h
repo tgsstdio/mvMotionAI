@@ -22,9 +22,9 @@
 
 #ifndef MVCLONE_H_INCLUDED
 #define MVCLONE_H_INCLUDED
-#include "mvBaseBehaviour.h"
+#include "mvBaseAction.h"
 
-class mvClone : public mvBaseBehaviour
+class mvClone : public mvBaseAction
 {
    private:
       mvIndex targetIndex;
@@ -40,11 +40,11 @@ class mvClone : public mvBaseBehaviour
 
 };
 
-class mvCreateClones : public mvBaseBehaviourLoader
+class mvCreateClones : public mvBaseActionLoader
 {
    public:
       mvCreateClones();
-      virtual mvBaseBehaviourPtr operator()(mvBaseBehaviourPtr defaultBehav);
+      virtual mvBaseActionPtr operator()(mvBaseActionPtr defaultBehav);
       ~mvCreateClones(){};
 };
 

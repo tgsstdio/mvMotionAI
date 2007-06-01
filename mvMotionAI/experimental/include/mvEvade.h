@@ -1,14 +1,14 @@
 #ifndef MVEVADE_H_INCLUDED
 #define MVEVADE_H_INCLUDED
-#include "mvBaseBehaviour.h"
+#include "mvBaseAction.h"
 
-class mvEvade : public mvBaseBehaviour
+class mvEvade : public mvBaseAction
 {
    public:
       mvEvade();
 }
 
-class mvCreateEvades : public mvBaseBehaviourLoader
+class mvCreateEvades : public mvBaseActionLoader
 {
 
 }
