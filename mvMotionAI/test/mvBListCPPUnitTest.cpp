@@ -287,7 +287,7 @@ void mvBListCPPUnitTest::testEntryConstructor()
    mvOptionEnum expectedType = MV_SEEK;
    mvIndex expectedGroupIndex = 14;
    mvIndex expectedBehaviourIndex = 2;
-   mvBaseBehaviourPtr expectedBehavPtr = NULL;
+   mvBaseActionPtr expectedBehavPtr = NULL;
 
    mvBEntry a(expectedType, expectedBehaviourIndex, expectedGroupIndex,\
       expectedBehavPtr);
@@ -300,7 +300,7 @@ void mvBListCPPUnitTest::testEntryConstructor()
    CPPUNIT_ASSERT_EQUAL_MESSAGE("A1d : Null Behaviour Ptr ",\
       expectedBehavPtr, a.getBehaviourPtr());
 
-   mvBaseBehaviourPtr bBehavPtr = new mvSeek();
+   mvBaseActionPtr bBehavPtr = new mvSeek();
    mvBEntry b(expectedType, expectedBehaviourIndex, expectedGroupIndex,\
       bBehavPtr);
    //
