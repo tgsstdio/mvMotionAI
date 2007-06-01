@@ -44,12 +44,12 @@
 static const mvIndex MV_VEC3_X_COMPONENT = 0;
 
 /**
- * \brief c array index equivalent to the x component
+ * \brief c array index equivalent to the y component
  */
 static const mvIndex MV_VEC3_Y_COMPONENT = 1;
 
 /**
- * \brief c array index equivalent to the x component
+ * \brief c array index equivalent to the z component
  */
 static const mvIndex MV_VEC3_Z_COMPONENT = 2;
 
