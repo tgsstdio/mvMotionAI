@@ -22,7 +22,7 @@
 #include "mvSeek.h"
 #include <new>
 
-mvSeek::mvSeek() : mvBaseBehaviour(MV_SEEK)
+mvSeek::mvSeek() : mvBaseAction(MV_SEEK)
 {
    length = 0;
    waypointIndex = MV_NO_CURRENT_INDEX;
@@ -177,7 +177,7 @@ mvCreateSeeks::mvCreateSeeks()
    // empty body
 }
 
-mvBaseBehaviour* mvCreateSeeks::operator()(mvBaseBehaviour* defaultBehav)
+mvBaseAction* mvCreateSeeks::operator()(mvBaseAction* defaultBehav)
 {
    return new (std::nothrow) mvSeek();
 }

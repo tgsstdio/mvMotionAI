@@ -313,7 +313,7 @@ mvIndex mvBEntryList::getDefaultBody() const
   * (documentation goes here)
   */
 mvErrorEnum mvBEntryList::addNewEntry(mvOptionEnum bType,\
-   mvIndex behaviourIndex, mvIndex groupIndex, mvBaseBehaviour* dBehaviour)
+   mvIndex behaviourIndex, mvIndex groupIndex, mvBaseAction* dBehaviour)
 {
    // TODO : implement this function
    return MV_FUNCTION_NOT_IMPLEMENTED;
@@ -344,7 +344,7 @@ mvErrorEnum mvBEntryList::addExistingBehaviourEntry(mvIndex behaviourIndex)
   * (documentation goes here)
   */
 mvErrorEnum mvBEntryList::addExistingGroupBehaviourEntry(\
-   mvIndex behaviourIndex, mvIndex groupIndex, mvBaseBehaviour* dBehaviour)
+   mvIndex behaviourIndex, mvIndex groupIndex, mvBaseAction* dBehaviour)
 {
    // TODO : implement this function
    return MV_FUNCTION_NOT_IMPLEMENTED;

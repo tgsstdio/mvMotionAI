@@ -181,7 +181,7 @@ bool mvFlee::bodyOp(mvBehaviourResultPtr resultModule)
   *
   * (documentation goes here)
   */
- mvFlee::mvFlee() : mvBaseBehaviour(MV_FLEE)
+ mvFlee::mvFlee() : mvBaseAction(MV_FLEE)
 {
    waypointIndex = MV_NO_CURRENT_INDEX;
    length = 0;
@@ -192,7 +192,7 @@ mvCreateFlees::mvCreateFlees()
 
 }
 
-mvBaseBehaviourPtr mvCreateFlees::operator()(mvBaseBehaviourPtr defaultBehav)
+mvBaseActionPtr mvCreateFlees::operator()(mvBaseActionPtr defaultBehav)
 {
    return new mvFlee();
 };
