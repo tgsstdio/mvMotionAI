@@ -37,7 +37,7 @@
 #include "mvForceCapsule.h"
 #include "mvGroupCapsule.h"
 
-#include MV_BASE_BEHAVIOUR_HEADER_FILE_H_
+#include MV_BASE_ACTION_HEADER_FILE_H_
 #include MV_FORCE_HEADER_FILE_H_
 #include MV_BODY_HEADER_FILE_H_
 #include MV_OBSTACLE_HEADER_FILE_H_

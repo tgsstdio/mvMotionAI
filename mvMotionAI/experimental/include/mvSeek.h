@@ -23,9 +23,9 @@
  */
 #ifndef MV_SEEK_BHEAVIOUR_OBJECT_H_
 #define MV_SEEK_BHEAVIOUR_OBJECT_H_
-#include "mvBaseBehaviour.h"
+#include "mvBaseAction.h"
 
-class mvSeek : public mvBaseBehaviour
+class mvSeek : public mvBaseAction
 {
    private:
       mvIndex waypointIndex;
@@ -42,11 +42,11 @@ class mvSeek : public mvBaseBehaviour
       mvErrorEnum getParameteri(mvParamEnum param, mvIndex* index);
 };
 
-class mvCreateSeeks : public mvBaseBehaviourLoader
+class mvCreateSeeks : public mvBaseActionLoader
 {
    public:
       mvCreateSeeks();
-      mvBaseBehaviourPtr operator()(mvBaseBehaviourPtr defaultBehav);
+      mvBaseActionPtr operator()(mvBaseActionPtr defaultBehav);
       ~mvCreateSeeks(){};
 };
 

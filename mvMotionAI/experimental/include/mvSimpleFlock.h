@@ -1,6 +1,6 @@
 #ifndef MVSIMPLEFLOCK_H_INCLUDED
 #define MVSIMPLEFLOCK_H_INCLUDED
-#include "mvBaseBehaviour.h"
+#include "mvBaseAction.h"
 
 /**
  * \brief this class is goes into the behaviour list for
@@ -8,7 +8,7 @@
  *
  * SHARED BEHAVIOUR : main group behaviour & unique entry to a body
  */
-class mvSimpleFlock : public mvBaseBehaviour
+class mvSimpleFlock : public mvBaseAction
 {
 //   private:
    public:
@@ -26,7 +26,7 @@ class mvSimpleFlock : public mvBaseBehaviour
 /**
  * \brief this class is unique to each group & behaviour instance
  */
-class mvSimpleFlockGroup : public mvBaseBehaviour
+class mvSimpleFlockGroup : public mvBaseAction
 {
 //   private:
 
@@ -47,7 +47,7 @@ class mvSimpleFlockGroup : public mvBaseBehaviour
 /*
  * \brief this class is main (top) group behaviour function
  *
-class mvSimpleFlockDefaultGroup : public mvBaseBehaviour
+class mvSimpleFlockDefaultGroup : public mvBaseAction
 {
 //   private:
 
@@ -63,11 +63,11 @@ class mvSimpleFlockDefaultGroup : public mvBaseBehaviour
 };
 */
 
-class mvCreateSimpleFlock : public mvBaseBehaviourLoader
+class mvCreateSimpleFlock : public mvBaseActionLoader
 {
    public:
       mvCreateSimpleFlock();
-      mvBaseBehaviourPtr operator()(mvBaseBehaviourPtr defaultBehaviour);
+      mvBaseActionPtr operator()(mvBaseActionPtr defaultBehaviour);
 };
 
 #endif // MVSIMPLEFLOCK_H_INCLUDED

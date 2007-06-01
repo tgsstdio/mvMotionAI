@@ -1,8 +1,3 @@
-#ifndef MVNULLLOADER_H_INCLUDED
-#define MVNULLLOADER_H_INCLUDED
-
-#include "mvMotionAI-Types.h"
-#ifdef MV_FILE_HEADER_TAG_
 /**
  * Copyright (c) 2006, 2007 David Young.
  *
@@ -23,19 +18,21 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- *
  */
-#endif
+#ifndef MVBASEFORCE_H_INCLUDED
+#define MVBASEFORCE_H_INCLUDED
 
-#include MV_BASE_ACTION_HEADER_FILE_H_
-
-class mvNullLoader : public mvBaseActionLoader
+class mvForceStatus
 {
-   public:
-      mvNullLoader();
-      mvBaseActionPtr operator()(mvBaseActionPtr defaultBehaviour);
-      virtual ~mvNullLoader(){};
 
 };
 
-#endif // MVNULLLOADER_H_INCLUDED
+typedef class forceMod* mvForceResultingPtr;
+
+class mvBaseForce
+{
+   virtual bool filter(mvForceStatus* worldStatus);
+   bool calculate(mvForceResultingPtr fResult) = 0;
+};
+
+#endif // MVBASEFORCE_H_INCLUDED

@@ -1,3 +1,4 @@
+#ifdef MV_FILE_HEADER_TAG_
 /**
  * \file TEMPLATE IMPLEMENTATION of mvFactoryFunctionrList.h
  * Copyright (c) 2006, 2007 David Young.
@@ -22,6 +23,8 @@
  *
  *  using HPP file for template implementation
  */
+#endif
+
 template <class mvClassFactory, class mvClass, class mvParamClass>
 mvFactoryFunctionList<mvClassFactory,mvClass,mvParamClass>\
    ::mvFactoryFunctionList()

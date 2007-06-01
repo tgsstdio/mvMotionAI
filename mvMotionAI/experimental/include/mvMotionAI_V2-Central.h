@@ -1,3 +1,8 @@
+#ifndef MVMOTIONAI_V2_CENTRAL_H_INCLUDED
+#define MVMOTIONAI_V2_CENTRAL_H_INCLUDED
+
+#include "mvMotionAI-Types.h"
+#ifdef MV_FILE_HEADER_TAG_
 /**
  * Copyright (c) 2006, 2007 David Young.
  *
@@ -22,12 +27,9 @@
  * 00-01-41
  * changed to pointer list
  */
+#endif
 
-#ifndef MVMOTIONAI_V2_CENTRAL_H_INCLUDED
-#define MVMOTIONAI_V2_CENTRAL_H_INCLUDED
-
-#include "mvMotionAI-Types.h"
-#include MV_BASE_BEHAVIOUR_HEADER_FILE_H_
+#include MV_BASE_ACTION_HEADER_FILE_H_
 #include MV_BEHAV_FUNC_LIST_HEADER_FILE_H_
 #include MV_WORLD_HEADER_FILE_H_
 //#include "mvList.h"
@@ -36,6 +38,9 @@
 
 void mvMotionAI_V2_INIT();
 void mvMotionAI_V2_FREE();
+mvIndex mvMotionAI_V2_GETCURRENTWORLD();
+mvWorldPtr mvMotionAI_V2_GETCURRENTWORLDPTR();
+mvIndex mvMotionAI_V2_SETCURRENTWORLD(mvIndex index);
 mvErrorEnum mvMotionAI_V2_ALLWORLDSSTEPFORWARD(mvFloat timeInSecs);
 mvIndex mvMotionAI_V2_CREATEWORLD(const char* id);
 mvErrorEnum mvMotionAI_V2_DELETEALLWORLDS();
@@ -48,9 +53,9 @@ mvErrorEnum mvMotionAI_V2_APPLYTOALLWORLDSBYINDEX(\
    void(someFunction)(mvIndex, void* extraPtr), void* extraPtr);
 mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS();
 mvErrorEnum mvMotionAI_V2_ADDBEHAVIOURFUNC(mvOptionEnum bType,\
-   mvBaseBehaviourLoaderPtr loader);
-mvBaseBehaviourPtr mvMotionAI_V2_CREATENEWBEHAVIOUR(mvOptionEnum type,\
-   mvBaseBehaviourPtr  defaultBehaviour);
+   mvBaseActionLoaderPtr loader);
+mvBaseActionPtr mvMotionAI_V2_CREATENEWBEHAVIOUR(mvOptionEnum type,\
+   mvBaseActionPtr  defaultBehaviour);
 mvErrorEnum mvMotionAI_V2_CHECKIFINITIALISED();
 
 // GLOBAL FUNCTIONS
@@ -99,7 +104,10 @@ class mvMotionAI_V2
       mvMotionAI_V2();
       mvIndex createWorld(const char* worldID);
       mvIndex getWorldByID(const char* worldID);
-      mvCount getNoOfWorlds();
+      mvCount getNoOfWorlds() const;
+      mvIndex getCurrentWorld() const;
+      mvWorldPtr getCurrentWorldPtr();
+      mvIndex setCurrentWorld(mvIndex index);
       mvWorldPtr getWorldPtr(mvIndex index);
       mvWorldPtr getWorldPtrByID(const char* worldID);
       void deleteAllWorlds();
@@ -109,19 +117,19 @@ class mvMotionAI_V2
          void* extraPtr);
       mvErrorEnum loadDefaultBehaviours();
       mvErrorEnum addBehaviourFunction(mvOptionEnum type,\
-         mvBaseBehaviourLoader* loader);
-      mvBaseBehaviour* createNewBehaviour(mvOptionEnum type,\
-         mvBaseBehaviour* defaultBehaviour);
+         mvBaseActionLoaderPtr loader);
+      mvBaseAction* createNewBehaviour(mvOptionEnum type,\
+         mvBaseAction* defaultBehaviour);
 
       // TODO : implement these functions
       mvErrorEnum getWorldParameter(mvIndex worldIndex, mvParamEnum paramFlag,\
-         mvOptionEnum* option);
+         mvOptionEnum* option) const;
       mvErrorEnum getWorldParameteri(mvIndex worldIndex, mvParamEnum paramFlag,\
-         mvIndex* index);
+         mvIndex* index) const;
       mvErrorEnum getWorldParameterf(mvIndex worldIndex, mvParamEnum paramFlag,\
-         mvFloat* num);
+         mvFloat* num) const;
       mvErrorEnum getWorldParameterv(mvIndex worldIndex, mvParamEnum paramFlag,\
-         mvFloat* numArray, mvCount* noOfElements);
+         mvFloat* numArray, mvCount* noOfElements) const;
 
       mvErrorEnum setWorldParameter(mvIndex worldIndex, mvParamEnum paramFlag,\
          mvOptionEnum option);
@@ -133,13 +141,13 @@ class mvMotionAI_V2
          mvFloat* numArray);
 
       mvErrorEnum getWorldParameter_str(mvIndex worldIndex, const char* param,\
-         const char** option);
+         const char** option) const;
       mvErrorEnum getWorldParameteri_str(mvIndex worldIndex, const char* param,\
-         mvIndex* index);
+         mvIndex* index) const;
       mvErrorEnum getWorldParameterf_str(mvIndex worldIndex, const char* param,\
-         mvFloat* num);
+         mvFloat* num) const;
       mvErrorEnum getWorldParameterv_str(mvIndex worldIndex, const char* param,\
-         mvFloat* numArray, mvCount* noOfElements);
+         mvFloat* numArray, mvCount* noOfElements) const;
 
       mvErrorEnum setWorldParameter_str(mvIndex worldIndex, const char* param,\
          const char* option);

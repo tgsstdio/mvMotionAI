@@ -24,7 +24,7 @@
 
 #include "mvMotionAI-Types.h"
 #include MV_ENUMS_HEADER_FILE_H_
-#include "mvBaseBehaviour.h"
+#include "mvBaseAction.h"
 #include "mvList.h"
 #include "mvBEntryListNode.h"
 #include "mvBEntryTreeNode.h"
@@ -59,11 +59,11 @@ class mvBEntryList
       mvErrorEnum setDefaultWeight(mvFloat factor);
 
       mvErrorEnum addExistingGroupBehaviourEntry(mvIndex behaviourIndex,\
-         mvIndex groupIndex, mvBaseBehaviour* dBehaviour);
+         mvIndex groupIndex, mvBaseAction* dBehaviour);
       mvErrorEnum addExistingBehaviourEntry(mvIndex behaviourIndex);
       mvErrorEnum addNewBehaviourEntry(mvOptionEnum behaviourType);
       mvErrorEnum addNewEntry(mvOptionEnum bType, mvIndex behaviourIndex,\
-         mvIndex groupIndex, mvBaseBehaviour* dBehaviour);
+         mvIndex groupIndex, mvBaseAction* dBehaviour);
 
       mvIndex getDefaultBody() const;
       mvIndex getDefaultWaypoint() const;

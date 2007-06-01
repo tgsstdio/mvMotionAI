@@ -1,5 +1,10 @@
+#ifndef MV_GLOBAL_FUNCTIONS_H_
+#define MV_GLOBAL_FUNCTIONS_H_
+
+#include "mvMotionAI-Types.h"
+#ifdef MV_FILE_HEADER_TAG_
 /**
- * \file mv2.h
+ * \file mvMotionAI.h
  *
  * Copyright (c) 2006, 2007 David Young.
  *
@@ -35,12 +40,10 @@
  *  - Create instead of Add
  * - mvAddWorld to mvCreateAllWorlds
  */
+#endif
 
-#ifndef MV_GLOBAL_FUNCTIONS_H_
-#define MV_GLOBAL_FUNCTIONS_H_
-#include "mvMotionAI-Types.h"
 #include MV_WORLD_HEADER_FILE_H_
-#include MV_BASE_BEHAVIOUR_HEADER_FILE_H_  //MV_BASE_BEHAVIOUR_HEADER_FILE_H_
+#include MV_BASE_ACTION_HEADER_FILE_H_  //MV_BASE_ACTION_HEADER_FILE_H_
 #include MV_ENUMS_HEADER_FILE_H_
 
 #ifdef BUILD_DLL
@@ -58,15 +61,20 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteAllWorlds();
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetWorldByID(const char* id);
 MV_GLOBAL_FUNC_PREFIX mvWorldPtr mvGetWorldPtrByID(const char* id);
 MV_GLOBAL_FUNC_PREFIX mvWorldPtr mvGetWorldPtr(mvIndex index);
+
+MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentWorld(mvIndex index);
+MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentWorld();
+MV_GLOBAL_FUNC_PREFIX mvWorldPtr mvGetCurrentWorldPtr();
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorlds(\
    void (someFunction)(mvWorldPtr,void*),void* extraPtr);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorldsByIndex(\
    void(someFunction)(mvIndex, void* extraPtr), void* extraPtr);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLoadDefaultBehaviours();
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddBehaviourFunction(mvOptionEnum bType,\
-   mvBaseBehaviourLoader* loader);
-MV_GLOBAL_FUNC_PREFIX mvBaseBehaviourPtr mvCreateNewBehaviour(mvOptionEnum type,\
-   mvBaseBehaviourPtr defaultBehaviour);
+   mvBaseActionLoader* loader);
+MV_GLOBAL_FUNC_PREFIX mvBaseActionPtr mvCreateNewBehaviour(mvOptionEnum type,\
+   mvBaseActionPtr defaultBehaviour);
 
 // enums & error functions
 MV_GLOBAL_FUNC_PREFIX const char* mvGetErrorEnumString(mvErrorEnum error);

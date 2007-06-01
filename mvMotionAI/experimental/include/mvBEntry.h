@@ -24,7 +24,7 @@
 
 #include "mvMotionAI-Types.h"
 #include MV_ENUMS_HEADER_FILE_H_
-#include MV_BASE_BEHAVIOUR_HEADER_FILE_H_
+#include MV_BASE_ACTION_HEADER_FILE_H_
 
 class mvBEntry
 {
@@ -33,13 +33,13 @@ class mvBEntry
       mvIndex groupIndex;
       mvIndex behaviourIndex;
       mvOptionEnum entryType;
-      mvBaseBehaviourPtr behaviourPtr;
+      mvBaseActionPtr behaviourPtr;
    public:
 
       mvBEntry(mvOptionEnum type, mvIndex bIndex, mvIndex gIndex,\
-         mvBaseBehaviourPtr dBehaviour);
-      void setBehaviourPtr(mvBaseBehaviourPtr behavPtr);
-      mvBaseBehaviourPtr getBehaviourPtr() const;
+         mvBaseActionPtr dBehaviour);
+      void setBehaviourPtr(mvBaseActionPtr behavPtr);
+      mvBaseActionPtr getBehaviourPtr() const;
       mvOptionEnum getType() const;
       mvIndex getGroup() const;
       mvIndex getBehaviour() const;

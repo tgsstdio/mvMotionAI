@@ -1,3 +1,8 @@
+#ifndef MVGROUPBNODE_V2_H_INCLUDED
+#define MVGROUPBNODE_V2_H_INCLUDED
+
+#include "mvMotionAI-Types.h"
+#ifdef MV_FILE_HEADER_TAG_
 /**
  * Copyright (c) 2006, 2007 David Young.
  *
@@ -18,25 +23,24 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  */
-#ifndef MVGROUPBNODE_V2_H_INCLUDED
-#define MVGROUPBNODE_V2_H_INCLUDED
+#endif
 
-#include "mvMotionAI-Types.h"
 #include MV_ENUMS_HEADER_FILE_H_
-#include MV_BASE_BEHAVIOUR_HEADER_FILE_H_
+#include MV_BASE_ACTION_HEADER_FILE_H_
 
 class mvGroupBNode_V2
 {
    private:
       mvIndex groupIndex;
-      mvBaseBehaviourPtr grpBehaviour;
+      mvBaseActionPtr grpBehaviour;
 
    public:
       bool isEnabled;
-      mvGroupBNode_V2(mvBaseBehaviourPtr mainBehaviour,\
+      mvGroupBNode_V2(mvBaseActionPtr mainBehaviour,\
          mvIndex grpIndex);
-      mvBaseBehaviourPtr getBehaviourPtr();
+      mvBaseActionPtr getBehaviourPtr();
       mvIndex getGroup();
       mvErrorEnum setParameter(mvParamEnum paramFlag,\
          mvOptionEnum option);

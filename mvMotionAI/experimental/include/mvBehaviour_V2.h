@@ -23,7 +23,7 @@
 #define MVBEHAVIOUR_V2_H_INCLUDED
 
 #include "mvMotionAI-Types.h"
-#include "mvBaseBehaviour.h"
+#include "mvBaseAction.h"
 #include MV_ENUMS_HEADER_FILE_H_
 
 /**
@@ -35,13 +35,13 @@ class mvBehaviour_V2
 {
    private:
       bool behavEnabled;
-      mvBaseBehaviourPtr behavPtr;
+      mvBaseActionPtr behavPtr;
 
    public:
-      mvBehaviour_V2(mvBaseBehaviourPtr bPtr);
+      mvBehaviour_V2(mvBaseActionPtr bPtr);
       bool isEnabled() const;
       void setEnabled(bool value);
-      mvBaseBehaviourPtr getBehaviourPtr();
+      mvBaseActionPtr getBehaviourPtr();
 
       mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
       mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);

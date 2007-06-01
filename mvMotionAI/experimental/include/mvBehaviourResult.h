@@ -44,7 +44,7 @@ typedef class mvBehaviourResult
    private:
       mvConstWorldPtr currentWorld;
       mvConstBodyPtr currentBody;
-//      mvBaseBehaviour* currentGroupBehNode;
+//      mvBaseAction* currentGroupBehNode;
       mvIndex behaviourIndex;
       mvIndex groupIndex;
 
@@ -76,7 +76,7 @@ typedef class mvBehaviourResult
 
    public:
       mvBehaviourResult(mvConstWorldPtr worldPtr, mvConstBodyPtr bodyPtr);
-//      void setGroupBehaviourNode(mvBaseBehaviour* groupBehPtr);
+//      void setGroupBehaviourNode(mvBaseAction* groupBehPtr);
 
       void setBehaviourIndex(mvIndex bIndex);
       void setGroupIndex(mvIndex gIndex);
@@ -95,7 +95,7 @@ typedef class mvBehaviourResult
       void setToSteering();
 
       mvConstWorldPtr getWorldPtr() const;
-//      mvBaseBehaviour* getGroupBehaviourNode();
+//      mvBaseAction* getGroupBehaviourNode();
       mvConstBodyPtr getCurrentBodyPtr() const;
       mvIndex getBehaviourIndex() const;
       mvIndex getGroupIndex() const;

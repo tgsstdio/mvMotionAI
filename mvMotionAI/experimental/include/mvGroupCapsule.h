@@ -1,5 +1,5 @@
-#ifndef MVNULLLOADER_H_INCLUDED
-#define MVNULLLOADER_H_INCLUDED
+#ifndef MVGROUPCAPSULE_H_INCLUDED
+#define MVGROUPCAPSULE_H_INCLUDED
 
 #include "mvMotionAI-Types.h"
 #ifdef MV_FILE_HEADER_TAG_
@@ -27,15 +27,36 @@
  */
 #endif
 
-#include MV_BASE_ACTION_HEADER_FILE_H_
+#include MV_GROUP_HEADER_FILE_H_
+#include MV_ENUMS_HEADER_FILE_H_
 
-class mvNullLoader : public mvBaseActionLoader
+class mvGroupCapsule
 {
+   private:
+      mvGroupPtr encapsuledGroup;
    public:
-      mvNullLoader();
-      mvBaseActionPtr operator()(mvBaseActionPtr defaultBehaviour);
-      virtual ~mvNullLoader(){};
+      mvGroupCapsule(mvGroupPtr group);
+      bool hasChanged;
 
+      mvGroupPtr getClassPtr() const;
+      mvConstGroupPtr getConstClassPtr() const;
+
+      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
+      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option)\
+         const;
+      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num) const;
+      mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
+         mvCount* noOfParameters) const;
+
+      mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
+      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
+
+      ~mvGroupCapsule();
 };
 
-#endif // MVNULLLOADER_H_INCLUDED
+typedef class mvGroupCapsule* mvGroupCapsulePtr;
+typedef class mvGroupCapsule const * const mvConstGroupCapsulePtr;
+
+#endif // MVGROUPCAPSULE_H_INCLUDED
