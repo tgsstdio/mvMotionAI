@@ -10,12 +10,12 @@
 //#include "mvFlee.h"
 //#include "mvClone.h"
 //#include "mvPursuit.h"
-#include "mvBehavFuncList.h"
+#include "mvActionLoaderList.h"
 
 int main(void)
 {
    mvVec3 a,b,c;
-   mvBehavFuncList bList;
+   mvActionLoaderList bList;
    mvBaseAction* child;
    int i;
 

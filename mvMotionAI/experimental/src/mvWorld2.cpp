@@ -2914,7 +2914,7 @@ mvWorld_V2::mvWorld_V2(const char* id = MV_NULL)
   *
   * (documentation goes here)
   */
-void mvWorld_V2::setBehaviourLoader(mvBehavFuncListPtr bLoaderPtr)
+void mvWorld_V2::setActionLoader(mvActionLoaderListPtr bLoaderPtr)
 {
    behavLoader = bLoaderPtr;
 }
@@ -2923,7 +2923,7 @@ void mvWorld_V2::setBehaviourLoader(mvBehavFuncListPtr bLoaderPtr)
   *
   * (documentation goes here)
   */
-mvBehavFuncListPtr mvWorld_V2::getBehaviourLoader() const
+mvActionLoaderListPtr mvWorld_V2::getActionLoader() const
 {
    return behavLoader;
 }

@@ -95,6 +95,7 @@ int main(int argc, char** argv)
     * Step 2 : initialise mvMotionAI library
     */
    mvInitMotionAI();
+   mvInitAllDefaults();
 
    /*
     * Step 3: load lua file
@@ -125,7 +126,7 @@ int main(int argc, char** argv)
    std::cout << "waypointID  : " << waypointID <<  std::endl;
    int obstacleID = mvCreateObstacle(worldID, MV_AABOX, MV_SOLID_OBSTACLE,5, 5, 0);
    std::cout << "obstacleID : " << waypointID<<  std::endl;
-   obstacleID = mvCreateObstacle(worldID, MV_AABOX, MV_SOLID_OBSTACLE,5, 5, 0);
+   obstacleID = mvCreateObstacle(worldID, MV_AABOX, MV_SOLID_OBSTACLE,3, 8, -4);
    std::cout << "obstacleID : " << waypointID <<  std::endl;
 
    glutDisplayFunc(display);
