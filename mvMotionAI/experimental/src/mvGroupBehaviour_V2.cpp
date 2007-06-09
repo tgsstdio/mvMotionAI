@@ -56,7 +56,7 @@ bool findGroupNodeByIndex(mvGroupBNode_V2* groupNodePtr, void* extraPtr)
 /** @brief (one liner)
   *
   */
-mvErrorEnum mvGroupBehaviour_V2::addGroup(mvIndex groupNo, mvBaseActionPtr
+mvIndex mvGroupBehaviour_V2::addGroup(mvIndex groupNo, mvBaseActionPtr
    behavPtr)
 {
    // first check if index exists
@@ -67,14 +67,16 @@ mvErrorEnum mvGroupBehaviour_V2::addGroup(mvIndex groupNo, mvBaseActionPtr
    if (groupNodeList.findItemPtrInList(findGroupNodeByIndex,\
       (void*) &groupIndex) != MV_NULL)
    {
-      return MV_UNIQUE_ITEM_ALREADY_IN_LIST;
+      //return MV_UNIQUE_ITEM_ALREADY_IN_LIST;
+      return MV_NULL;
    }
 
    groupNodePtr = new (std::nothrow) mvGroupBNode_V2(behavPtr,groupIndex);
 
    if (groupNodePtr == MV_NULL)
    {
-      return MV_INVALID_MEMORY_ALLOCATION;
+      //return MV_INVALID_MEMORY_ALLOCATION;
+      return MV_NULL;
    }
 
    return groupNodeList.addItem(groupNodePtr);

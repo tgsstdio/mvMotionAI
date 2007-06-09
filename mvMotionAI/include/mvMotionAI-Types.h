@@ -181,6 +181,7 @@ typedef class mvWaypoint_V2* mvWaypointPtr;
 typedef class mvWaypoint_V2 const * const mvConstWaypointPtr;
 
 #define MV_WORLD_HEADER_FILE_H_ "mvWorld2.h"
+typedef class mvWorld_V2 mvWorld;
 typedef class mvWorld_V2* mvWorldPtr;
 typedef class mvWorld_V2 const * const mvConstWorldPtr;
 

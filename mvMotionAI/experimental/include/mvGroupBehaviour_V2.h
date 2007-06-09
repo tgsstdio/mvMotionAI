@@ -41,7 +41,7 @@ class mvGroupBehaviour_V2
       bool isEnabled;
       mvGroupBehaviour_V2(mvBaseActionPtr groupBehPtr);
       ~mvGroupBehaviour_V2();
-      mvErrorEnum addGroup(mvIndex groupNo, mvBaseAction* behavPtr);
+      mvIndex addGroup(mvIndex groupNo, mvBaseAction* behavPtr);
       mvErrorEnum removeGroup(mvIndex groupNo);
       void removeAllGroups();
       mvGroupBehaviourNodePtr getGroupNodeByIndex(mvIndex index) const;

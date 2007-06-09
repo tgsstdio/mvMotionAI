@@ -188,21 +188,26 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::checkParamStringAndIndex(\
  * Code taken from mvAddUniqueItemInVector in mvMotionAI-Utilities.h , 2006
  */
 template <class mvClass, class mvConstClass>
-mvErrorEnum mvPointerList<mvClass,mvConstClass>::addItem(mvClass itemPtr)
+mvIndex mvPointerList<mvClass,mvConstClass>::addItem(mvClass itemPtr)
 {
    class std::vector<mvClass>::const_iterator i;
    class std::vector<mvClass>::iterator listEnd = listItems.end();
    mvClass currentItem = MV_NULL;
 
    if (itemPtr == MV_NULL)
-      return MV_ITEM_POINTER_IS_NULL;
+   {
+      //return MV_ITEM_POINTER_IS_NULL;
+      return MV_NULL;
+   }
 
    for (i =listItems.begin(); i != listEnd; ++i)
    {
      currentItem = *i;
-     if (currentItem != MV_NULL && itemPtr == currentItem)
+     if (itemPtr == currentItem)
      {
-         return MV_UNIQUE_ITEM_ALREADY_IN_LIST;
+         //return MV_UNIQUE_ITEM_ALREADY_IN_LIST;
+         return MV_NULL;
+
      }
    }
 
@@ -210,7 +215,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::addItem(mvClass itemPtr)
    ++maxNoOfItems;
    currentIndex = maxNoOfItems;
 
-   return MV_NO_ERROR;
+   return currentIndex;
 }
 
 /**
@@ -373,7 +378,9 @@ mvIndex mvPointerList<mvClass,mvConstClass>::setCurrentIndex(mvIndex index)
  *
  * Code taken from mvMotionAI-Utilities.h, 2006 function
  * mvApplyFunctionToAllItemsInListVector
- */
+ *
+ * NOTE : empty slots (NULL) are ignored
+*/
 template <class mvClass, class mvConstClass>
 void mvPointerList<mvClass,mvConstClass>::applyToAllItems(\
    void (someFunction)(mvClass, void*),void* extraPtr)
@@ -400,6 +407,8 @@ void mvPointerList<mvClass,mvConstClass>::applyToAllItems(\
  *
  * someFunction's function signature is the same format as the C header
  * interface
+ *
+ * NOTE : empty slots (NULL) are ignored
  */
 template <class mvClass, class mvConstClass>
 void mvPointerList<mvClass,mvConstClass>::applyToAllItemsByIndex(\
@@ -1045,7 +1054,9 @@ mvIndex mvPointerList<mvClass,mvConstClass>::findItemInReverseInList(\
    return MV_NULL;
 }
 
-
+/*
+* \brief : empty slots (NULL) are ignored
+*/
 template <class mvClass, class mvConstClass>
 void mvPointerList<mvClass,mvConstClass>::applyToAllItemsByItemIndex(\
    void (someFunction)(mvIndex,void*), void* extraPtr)

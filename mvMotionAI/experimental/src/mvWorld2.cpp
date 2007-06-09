@@ -2928,26 +2928,33 @@ mvBehavFuncListPtr mvWorld_V2::getBehaviourLoader() const
    return behavLoader;
 }
 
+struct mvWorld_IntegrateLoopHelper
+{
+   public:
+      mvWorldPtr currentWorld;
+      mvFloat timeInSecs;
+};
+
 /*
  * private function
  */
 void mvWorld_V2_IntegrateAllBodies(mvBodyCapsulePtr bodyPtr, void* extraPtr)
 {
-   mvWorldPtr currentWorld = (mvWorldPtr) extraPtr;
+   mvWorld_IntegrateLoopHelper* helpContainer =
+      (mvWorld_IntegrateLoopHelper*) extraPtr;
+   mvWorldPtr currentWorld = helpContainer->currentWorld;
+   mvFloat timeInSecs = helpContainer->timeInSecs;
 
-   if (currentWorld != NULL)
-   {
-      currentWorld->integrateBody(bodyPtr);
-   }
+   currentWorld->integrateBody(bodyPtr,timeInSecs);
 }
 
-void mvWorld_V2::integrateBody(mvBodyCapsulePtr bodyPtr)
+void mvWorld_V2::integrateBody(mvBodyCapsulePtr bodyPtr, mvFloat timeInSecs)
 {
    resetIntegrationLoop();
    checkIfWaypointContainsBody(bodyPtr);
    calculateAllForcesOnBody(bodyPtr);
    calculateBehavioursOnBody(bodyPtr);
-   performIntegrationOfBody(bodyPtr);
+   performIntegrationOfBody(bodyPtr, timeInSecs);
 }
 
 /** @brief (one liner)
@@ -2956,10 +2963,14 @@ void mvWorld_V2::integrateBody(mvBodyCapsulePtr bodyPtr)
   */
 void mvWorld_V2::worldStep(mvFloat timeInSecs)
 {
+   mvWorld_IntegrateLoopHelper helpContainer;
+
    prepareIntegrationStep();
    calculateGroupBehaviours();
 
-   bodies.applyToAllCapsules(mvWorld_V2_IntegrateAllBodies,this);
+   helpContainer.currentWorld = this;
+   helpContainer.timeInSecs = timeInSecs;
+   bodies.applyToAllCapsules(mvWorld_V2_IntegrateAllBodies,&helpContainer);
 
    finaliseIntegrationStep();
 }
@@ -2979,7 +2990,7 @@ mvErrorEnum mvWorld_V2::nudgeBody(mvIndex index, mvFloat timeInSecs)
 
    prepareIntegrationStep();
    calculateGroupBehaviours();
-   integrateBody(tempCapsulePtr);
+   integrateBody(tempCapsulePtr,timeInSecs);
    finaliseIntegrationStep();
 
    return MV_NO_ERROR;
@@ -3006,10 +3017,7 @@ mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
 void mvWorld_Reset_Waypoint_Capsule(mvWaypointCapsulePtr capsulePtr,\
    void* extraPtr)
 {
-   if (capsulePtr != MV_NULL)
-   {
-      capsulePtr->containsBody = false;
-   }
+   capsulePtr->containsBody = false;
 }
 
 /** @brief (one liner)
@@ -3024,26 +3032,19 @@ void mvWorld_V2::resetIntegrationLoop()
 
 void mvWorld_Prepare_Body_Capsule(mvBodyCapsulePtr capsulePtr, void* extraPtr)
 {
-   if (capsulePtr != MV_NULL)
-   {
-      // TODO : reset bodies
-      capsulePtr->performIntegration = false;
-      capsulePtr->futurePosition.resetXYZ();
-      capsulePtr->futureFinalVelocity.resetXYZ();
-      capsulePtr->futureRotation.resetXYZ();
-   }
+   capsulePtr->performIntegration = false;
+   capsulePtr->futurePosition.resetXYZ();
+   capsulePtr->futureFinalVelocity.resetXYZ();
+   capsulePtr->futureRotation.resetXYZ();
 }
 
 void mvWorld_Prepare_Force_Capsule(mvForceCapsulePtr capsulePtr,\
    void* extraPtr)
 {
-   mvWorldPtr currentWorld = (mvWorldPtr) extraPtr;
+   //mvWorldPtr currentWorld = (mvWorldPtr) extraPtr;
 
-   if (capsulePtr != MV_NULL && currentWorld != MV_NULL)
-   {
-      // TODO : prefilter
-      capsulePtr->isActive = true;
-   }
+   // TODO : prefilter
+   capsulePtr->isActive = true;
 }
 
 void mvWorld_V2::prepareIntegrationStep()
@@ -3080,19 +3081,57 @@ void mvWorld_V2::calculateLocalForceOnBody(mvIndex localForce,\
 void mvWorld_V2::calculateBehavioursOnBody(mvBodyCapsulePtr bodyPtr)
 {
 // TODO : calculate world functions
+
+
 }
 
-void mvWorld_V2::performIntegrationOfBody(mvBodyCapsulePtr bodyPtr)
+void mvWorld_V2::performIntegrationOfBody(mvBodyCapsulePtr bodyPtr,
+   mvFloat timeInSecs)
 {
 // TODO : calculate world functions
+   mvFloat vel[2][3], speed[2], pos[2][3], dir[3], h, c1, c2;
+   mvIndex i = 0;
+   speed[0] = 0.4;
+   speed[1] = 0.5;
+
+   h = timeInSecs;
+
+   mvVec3 velocity = bodyPtr->getClassPtr()->getVelocity();
+
+   vel[1][0] =  vel[0][0] = velocity.getX();
+   vel[1][1] = vel[0][1] = velocity.getY();
+   vel[1][2] = vel[0][2] = velocity.getZ();
+
+   pos[0][0] = bodyPtr->getClassPtr()->getPosition().getX();
+   pos[0][1] = bodyPtr->getClassPtr()->getPosition().getY();
+   pos[0][2] = bodyPtr->getClassPtr()->getPosition().getZ();
+
+   dir[0] = 1;
+   dir[1] = 0;
+   dir[2] = 0;
+
+   for (i = 0; i < 3; i++)
+   {
+      vel[0][i] += dir[i] * speed[0];
+      vel[1][i] += dir[i] * speed[1];
+      //vel[0][j] *= speed[0];
+      //vel[1][j] *= speed[1];
+
+      /*
+      * 5.1.2.6.2 calculate the position
+      */
+      c1 = h * vel[0][i];
+      c2 = h * vel[1][i];
+      pos[1][i] = pos[0][i] + 0.5 * (c1 + c2);
+   }
+
+   bodyPtr->getClassPtr()->setVelocity(vel[1][0],vel[1][1],vel[1][2]);
+   bodyPtr->getClassPtr()->setPosition(pos[1][0],pos[1][1],pos[1][2]);
 }
 
 void mvWorld_Finalise_Groups(mvGroupCapsulePtr capsulePtr, void* extraPtr)
 {
-   if (capsulePtr != MV_NULL && extraPtr != MV_NULL)
-   {
-      capsulePtr->hasChanged = false;
-   }
+   capsulePtr->hasChanged = false;
 }
 
 void mvWorld_V2::finaliseIntegrationStep()

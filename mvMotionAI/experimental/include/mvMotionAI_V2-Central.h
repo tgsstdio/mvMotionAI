@@ -118,8 +118,8 @@ class mvMotionAI_V2
       mvErrorEnum loadDefaultBehaviours();
       mvErrorEnum addBehaviourFunction(mvOptionEnum type,\
          mvBaseActionLoaderPtr loader);
-      mvBaseAction* createNewBehaviour(mvOptionEnum type,\
-         mvBaseAction* defaultBehaviour);
+      mvBaseActionPtr createNewBehaviour(mvOptionEnum type,\
+         mvBaseActionPtr defaultBehaviour);
 
       // TODO : implement these functions
       mvErrorEnum getWorldParameter(mvIndex worldIndex, mvParamEnum paramFlag,\

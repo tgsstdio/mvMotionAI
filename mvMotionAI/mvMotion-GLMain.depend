@@ -38,7 +38,7 @@
 
 1163427371 haviour.h"
 
-1180276114 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
+1180854012 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
 
 1173704284 d:\mvmotionai\mvmotionai\include\mvbody.h
 	<vector>
@@ -295,12 +295,12 @@
 	<stdio.h>
 	"lua.h"
 
-1180275688 source:d:\mvmotionai\mvmotionai\examples-src\glmain.cpp
+1181317028 source:d:\mvmotionai\mvmotionai\examples-src\glmain.cpp
 	<GL/glut.h>
 	<iostream>
 	"Camera.h"
 	<cstdlib>
-	"mv2.h"
+	"mvMotionAI.h"
 
 1157174374 d:\mvmotionai\mvmotionai\include-other\gl\glut.h
 	"freeglut_std.h"
@@ -343,4 +343,8 @@
 	<lua.h>
 	<lualib.h>
 	<lauxlib.h>
+
+1180856470 d:\mvmotionai\mvmotionai\experimental\include\mvmotionai.h
+	"mvMotionAI-Types.h"
+	"mvLuaScript.h"
 

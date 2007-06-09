@@ -2,7 +2,6 @@
 
 mvWaypointCapsule::mvWaypointCapsule(mvWaypointPtr wPoint)
 {
-   encappedWaypoint = MV_NULL;
    encappedWaypoint = wPoint;
    noOfLinkedForces = 0;
    containsBody = false;
