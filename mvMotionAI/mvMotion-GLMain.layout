@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-winXP" />
-	<File name="examples-src\GLMain.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="7597" topLine="95" />
+	<File name="examples-src\Camera.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="63" />
+	</File>
+	<File name="examples-src\GLMain.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="6877" topLine="232" />
 	</File>
 </CodeBlocks_layout_file>

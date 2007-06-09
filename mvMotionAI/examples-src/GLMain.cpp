@@ -39,7 +39,7 @@
 /*
  * Step 1.0 : include header to use library
  */
-#include "mv2.h"
+#include "mvMotionAI.h"
 
 static float left = -1.0;
 static float right = 1.0;
@@ -110,6 +110,23 @@ int main(int argc, char** argv)
    }
   // mvLua_LoadScriptFile(scriptFileName);
    init ();
+
+   // call mvMotionAI
+   int worldID = mvCreateWorld("Hello");
+   std::cout << "worldID : " << worldID <<  std::endl;
+   int bodyID = mvCreateBody(worldID,MV_PARTICLE,MV_AABOX, 0 , 4 , 0);
+   std::cout << "bodyID : " << bodyID <<  std::endl;
+
+   bodyID = mvCreateBody(worldID,MV_PARTICLE,MV_AABOX, 0 , 4 , 4);
+   std::cout << "bodyID : " << bodyID <<  std::endl;
+
+   int waypointID = mvCreateWaypoint(worldID, MV_AABOX, 0, 4 ,0);
+
+   std::cout << "waypointID  : " << waypointID <<  std::endl;
+   int obstacleID = mvCreateObstacle(worldID, MV_AABOX, MV_SOLID_OBSTACLE,5, 5, 0);
+   std::cout << "obstacleID : " << waypointID<<  std::endl;
+   obstacleID = mvCreateObstacle(worldID, MV_AABOX, MV_SOLID_OBSTACLE,5, 5, 0);
+   std::cout << "obstacleID : " << waypointID <<  std::endl;
 
    glutDisplayFunc(display);
    glutReshapeFunc(reshape);

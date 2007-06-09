@@ -71,7 +71,7 @@ class mvWorld_V2
 
       /// world step functionality
       void prepareIntegrationStep();
-      void performIntegrationOfBody(mvBodyCapsulePtr bodyPtr);
+      void performIntegrationOfBody(mvBodyCapsulePtr bodyPtr,mvFloat timeInSecs);
       void calculateGroupBehaviours(); // 1
       void checkIfWaypointContainsBody(mvBodyCapsulePtr bodyPtr);
       void resetIntegrationLoop();
@@ -87,7 +87,7 @@ class mvWorld_V2
       mvBodyCapsulePtr getBodyCapsulePtr(int index);
 
    public:
-      void integrateBody(mvBodyCapsulePtr bodyPtr);
+      void integrateBody(mvBodyCapsulePtr bodyPtr, mvFloat timeInSecs);
 
       bool isEnabled;
       bool applyForces;

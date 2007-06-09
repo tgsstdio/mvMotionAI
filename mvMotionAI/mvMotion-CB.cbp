@@ -101,8 +101,7 @@
 			<Add directory="lib-other" />
 			<Add directory="lib-other\mingw" />
 		</Linker>
-		<Unit filename="experimental\include\mv2.h" />
-		<Unit filename="experimental\include\mvBaseBehaviour.h" />
+		<Unit filename="experimental\include\mvBaseAction.h" />
 		<Unit filename="experimental\include\mvBaseForce.h" />
 		<Unit filename="experimental\include\mvBehavFuncList.h" />
 		<Unit filename="experimental\include\mvBehaviourResult.h" />
@@ -120,6 +119,7 @@
 		<Unit filename="experimental\include\mvGroupCapsule.h" />
 		<Unit filename="experimental\include\mvGroup_V2.h" />
 		<Unit filename="experimental\include\mvIndexSet.h" />
+		<Unit filename="experimental\include\mvMotionAI.h" />
 		<Unit filename="experimental\include\mvMotionAI_V2-Central.h" />
 		<Unit filename="experimental\include\mvNullLoader.h" />
 		<Unit filename="experimental\include\mvObstacle_V2.h" />
@@ -130,8 +130,7 @@
 		<Unit filename="experimental\include\mvWaypointCapsule.h" />
 		<Unit filename="experimental\include\mvWaypoint_V2.h" />
 		<Unit filename="experimental\include\mvWorld2.h" />
-		<Unit filename="experimental\src\mv2.cpp" />
-		<Unit filename="experimental\src\mvBaseBehaviour.cpp" />
+		<Unit filename="experimental\src\mvBaseAction.cpp" />
 		<Unit filename="experimental\src\mvBehaviourResult.cpp" />
 		<Unit filename="experimental\src\mvBehaviour_V2.cpp" />
 		<Unit filename="experimental\src\mvBodyCapsule.cpp" />
@@ -142,6 +141,7 @@
 		<Unit filename="experimental\src\mvGroupCapsule.cpp" />
 		<Unit filename="experimental\src\mvGroup_V2.cpp" />
 		<Unit filename="experimental\src\mvIndexSet.cpp" />
+		<Unit filename="experimental\src\mvMotionAI.cpp" />
 		<Unit filename="experimental\src\mvMotionAI_V2-Central.cpp" />
 		<Unit filename="experimental\src\mvNullLoader.cpp" />
 		<Unit filename="experimental\src\mvObstacle_V2.cpp" />

@@ -65,7 +65,7 @@ class mvCapsuleList
       mvCapsuleList();
       ~mvCapsuleList();
       void setAutoConvertIndex(bool value);
-      mvErrorEnum addItem(mvCapsulePtr capsulePtr);
+      mvIndex addItem(mvCapsulePtr capsulePtr);
       mvErrorEnum deleteItem(mvIndex index);
       mvErrorEnum deleteCurrentItem();
       void deleteAllItems();

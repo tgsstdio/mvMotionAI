@@ -3,6 +3,8 @@
 #include <cstring>
 #include <new>
 
+#include <cstdio>
+
 mvMotionAI_V2_SUPERCLASS __mv__Motion__AI__Module;
 
 // function signatures
@@ -84,7 +86,7 @@ bool findExistingWorld(mvWorld_V2* worldPtr, void* extraPtr)
 
 mvIndex mvMotionAI_V2::createWorld(const char* worldID)
 {
-   mvWorld_V2* temp = NULL;
+   mvWorldPtr temp = NULL;
 
    // check for existing world using same id
    temp = worlds.findItemPtrInList(findExistingWorld, (void*) worldID);
@@ -92,13 +94,17 @@ mvIndex mvMotionAI_V2::createWorld(const char* worldID)
    // if found, reject it
    if (temp != NULL)
    {
+      puts("FOUND SAME ID");
       return MV_NULL;
    }
 
-   temp = new (std::nothrow) mvWorld_V2(worldID);
+
+   temp = new (std::nothrow) mvWorld(worldID);
+   puts(temp->getID());
 
    if (temp == NULL)
    {
+      puts("MEMORY ERROR");
       return MV_NULL;
    }
 

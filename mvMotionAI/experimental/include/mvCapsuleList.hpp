@@ -26,7 +26,7 @@ void mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::setAut
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::addItem(\
+mvIndex mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::addItem(\
    mvCapsulePtr capsulePtr)
 {
    return itemList.addItem(capsulePtr);
