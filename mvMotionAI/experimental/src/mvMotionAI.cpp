@@ -79,9 +79,44 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorldsByIndex(\
    return mvMotionAI_V2_APPLYTOALLWORLDSBYINDEX(someFunction, extraPtr);
 }
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLoadDefaultBehaviours()
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvInitDefaultActions()
 {
-   return mvMotionAI_V2_LOADDEFAULTBEHAVIOURS();
+   return mvMotionAI_V2_INITDEFAULTACTIONS();
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvInitDefaultForces()
+{
+   return mvMotionAI_V2_FREEDEFAULTFORCES();
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvInitDefaultBodies()
+{
+   return mvMotionAI_V2_INITDEFAULTBODIES();
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvInitAllDefaults()
+{
+   return mvMotionAI_V2_INITALLDEFAULTS();
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvFreeDefaultActions()
+{
+   return mvMotionAI_V2_FREEDEFAULTACTIONS();
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvFreeDefaultForces()
+{
+   return mvMotionAI_V2_FREEDEFAULTFORCES();
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvFreeDefaultBodies()
+{
+   return mvMotionAI_V2_FREEDEFAULTBODIES();
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvFreeAllDefaults()
+{
+   return mvMotionAI_V2_FREEALLDEFAULTS();
 }
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddBehaviourFunction(mvOptionEnum bType,\

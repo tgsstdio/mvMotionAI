@@ -30,7 +30,7 @@
 #endif
 
 #include MV_BASE_ACTION_HEADER_FILE_H_
-#include MV_BEHAV_FUNC_LIST_HEADER_FILE_H_
+#include MV_ACTION_LOADER_LIST_HEADER_FILE_H_
 #include MV_WORLD_HEADER_FILE_H_
 //#include "mvList.h"
 
@@ -51,7 +51,17 @@ mvErrorEnum mvMotionAI_V2_APPLYTOALLWORLDS(\
    void (someFunction)(mvWorldPtr ,void*),void* extraPtr);
 mvErrorEnum mvMotionAI_V2_APPLYTOALLWORLDSBYINDEX(\
    void(someFunction)(mvIndex, void* extraPtr), void* extraPtr);
-mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS();
+
+mvErrorEnum mvMotionAI_V2_INITDEFAULTACTIONS();
+mvErrorEnum mvMotionAI_V2_INITDEFAULTBODIES();
+mvErrorEnum mvMotionAI_V2_INITDEFAULTFORCES();
+mvErrorEnum mvMotionAI_V2_INITALLDEFAULTS();
+
+mvErrorEnum mvMotionAI_V2_FREEDEFAULTACTIONS();
+mvErrorEnum mvMotionAI_V2_FREEDEFAULTBODIES();
+mvErrorEnum mvMotionAI_V2_FREEDEFAULTFORCES();
+mvErrorEnum mvMotionAI_V2_FREEALLDEFAULTS();
+
 mvErrorEnum mvMotionAI_V2_ADDBEHAVIOURFUNC(mvOptionEnum bType,\
    mvBaseActionLoaderPtr loader);
 mvBaseActionPtr mvMotionAI_V2_CREATENEWBEHAVIOUR(mvOptionEnum type,\
@@ -98,7 +108,7 @@ mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERSV(mvIndex worldIndex, const char* pa
 class mvMotionAI_V2
 {
    public:
-      mvBehavFuncList bFunctions;
+      mvActionLoaderList bFunctions;
       mvPointerList<mvWorldPtr, mvConstWorldPtr> worlds;
 
       mvMotionAI_V2();
@@ -115,7 +125,8 @@ class mvMotionAI_V2
       void applyToAllWorlds(void (someFunction)(mvWorldPtr,void*),void* extraPtr);
       void applyToAllWorldsByIndex(void (someFunction)(mvIndex,void*),\
          void* extraPtr);
-      mvErrorEnum loadDefaultBehaviours();
+      mvErrorEnum loadDefaultActions();
+      void freeDefaultActions();
       mvErrorEnum addBehaviourFunction(mvOptionEnum type,\
          mvBaseActionLoaderPtr loader);
       mvBaseActionPtr createNewBehaviour(mvOptionEnum type,\

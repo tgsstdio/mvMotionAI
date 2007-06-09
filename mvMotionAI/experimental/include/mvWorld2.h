@@ -46,7 +46,7 @@
 #include MV_GROUP_HEADER_FILE_H_
 #include MV_GROUP_BEHAVIOUR_HEADER_FILE_H_
 #include MV_BEHAVIOUR_HEADER_FILE_H_
-#include MV_BEHAV_FUNC_LIST_HEADER_FILE_H_
+#include MV_ACTION_LOADER_LIST_HEADER_FILE_H_
 
 //TODO : new group behaviour functions
 
@@ -67,7 +67,7 @@ class mvWorld_V2
       mvPointerList<mvBehaviourPtr, mvConstBehaviourPtr> behaviours;
       mvCapsuleList<mvGroupPtr, mvConstGroupPtr, mvGroupCapsulePtr,\
          mvConstGroupCapsulePtr> groups;
-      mvBehavFuncListPtr behavLoader;
+      mvActionLoaderListPtr behavLoader;
 
       /// world step functionality
       void prepareIntegrationStep();
@@ -104,8 +104,8 @@ class mvWorld_V2
       ~mvWorld_V2();
 
 
-      void setBehaviourLoader(mvBehavFuncListPtr bLoaderPtr);
-      mvBehavFuncListPtr getBehaviourLoader() const;
+      void setActionLoader(mvActionLoaderListPtr bLoaderPtr);
+      mvActionLoaderListPtr getActionLoader() const;
 
       // TODO : world functions
       void worldStep(mvFloat timeInSecs);

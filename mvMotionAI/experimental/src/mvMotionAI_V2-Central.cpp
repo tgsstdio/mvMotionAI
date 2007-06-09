@@ -3,8 +3,6 @@
 #include <cstring>
 #include <new>
 
-#include <cstdio>
-
 mvMotionAI_V2_SUPERCLASS __mv__Motion__AI__Module;
 
 // function signatures
@@ -94,19 +92,17 @@ mvIndex mvMotionAI_V2::createWorld(const char* worldID)
    // if found, reject it
    if (temp != NULL)
    {
-      puts("FOUND SAME ID");
       return MV_NULL;
    }
-
 
    temp = new (std::nothrow) mvWorld(worldID);
    puts(temp->getID());
 
    if (temp == NULL)
    {
-      puts("MEMORY ERROR");
       return MV_NULL;
    }
+   temp->setActionLoader(&bFunctions);
 
    return worlds.addItem(temp);
 }
@@ -182,10 +178,10 @@ void mvMotionAI_V2::applyToAllWorldsByIndex(void (someFunction)(mvIndex,void*),\
    worlds.applyToAllItemsByItemIndex(someFunction, extraPtr);
 }
 
-mvErrorEnum mvMotionAI_V2::loadDefaultBehaviours()
+mvErrorEnum mvMotionAI_V2::loadDefaultActions()
 {
    mvErrorEnum error;
-   mvBaseActionLoader* tempLoader;
+   mvBaseActionLoaderPtr tempLoader;
 
    // adding nullLoaders to protected enums such as
    // enum 1
@@ -247,10 +243,15 @@ mvBaseAction* mvMotionAI_V2::createNewBehaviour(mvOptionEnum type,\
    return bFunctions.createAClassPtr(type, defaultBehaviour);
 }
 
+void mvMotionAI_V2::freeDefaultActions()
+{
+   bFunctions.freeAllFactoryFunctions();
+}
+
 mvMotionAI_V2::~mvMotionAI_V2()
 {
    deleteAllWorlds();
-   bFunctions.freeAllFactoryFunctions();
+   freeDefaultActions();
 }
 
 mvErrorEnum mvMotionAI_V2::addBehaviourFunction(mvOptionEnum type,\
@@ -490,7 +491,32 @@ mvErrorEnum mvMotionAI_V2_APPLYTOALLWORLDSBYINDEX(\
    return error;
 }
 
-mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS()
+mvErrorEnum mvMotionAI_V2_INITDEFAULTBODIES()
+{
+   // todo : implement this function
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvMotionAI_V2_INITDEFAULTFORCES()
+{
+   // todo : implement this function
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvMotionAI_V2_INITALLDEFAULTS()
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+
+   if (error == MV_NO_ERROR)
+   {
+      mvMotionAI_V2_INITDEFAULTFORCES();
+      mvMotionAI_V2_INITDEFAULTBODIES();
+      mvMotionAI_V2_INITDEFAULTACTIONS();
+   }
+   return error;
+}
+
+mvErrorEnum mvMotionAI_V2_FREEDEFAULTACTIONS()
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvMotionAI_V2* modulePtr = NULL;
@@ -498,7 +524,46 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS()
    if (error == MV_NO_ERROR)
    {
       modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
-      modulePtr->loadDefaultBehaviours();
+      modulePtr->freeDefaultActions();
+   }
+
+   return error;
+}
+
+mvErrorEnum mvMotionAI_V2_FREEDEFAULTBODIES()
+{
+   // todo : implement this function
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvMotionAI_V2_FREEDEFAULTFORCES()
+{
+   // todo : implement this function
+   return MV_FUNCTION_NOT_IMPLEMENTED;
+}
+
+mvErrorEnum mvMotionAI_V2_FREEALLDEFAULTS()
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+
+   if (error == MV_NO_ERROR)
+   {
+      mvMotionAI_V2_FREEDEFAULTBODIES();
+      mvMotionAI_V2_FREEDEFAULTFORCES();
+      mvMotionAI_V2_INITDEFAULTACTIONS();
+   }
+   return error;
+}
+
+mvErrorEnum mvMotionAI_V2_INITDEFAULTACTIONS()
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      modulePtr->loadDefaultActions();
    }
 
    return error;

@@ -191,9 +191,9 @@ typedef class mvTimer* mvTimerPtr;
 #define MV_BENTRY_HEADER_FILE_H_ "mvBEntry.h"
 typedef class mvBEntry* mvBEntryPtr;
 
-#define MV_BEHAV_FUNC_LIST_HEADER_FILE_H_ "mvBehavFuncList.h"
-//typedef class mvBehavFuncList*  mvBehavFuncListPtr;
-#define mvBehavFuncListPtr mvBehavFuncList*
+#define MV_ACTION_LOADER_LIST_HEADER_FILE_H_ "mvActionLoaderList.h"
+//typedef class mvActionLoaderList*  mvActionLoaderListPtr;
+#define mvActionLoaderListPtr mvActionLoaderList*
 
 #define MV_VEC_3_HEADER_FILE_H_ "mvVec3.h"
 #define MV_ENUMS_HEADER_FILE_H_ "mvEnums.h"

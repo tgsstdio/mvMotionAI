@@ -70,7 +70,18 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorlds(\
    void (someFunction)(mvWorldPtr,void*),void* extraPtr);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorldsByIndex(\
    void(someFunction)(mvIndex, void* extraPtr), void* extraPtr);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLoadDefaultBehaviours();
+
+// TODO :
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvInitDefaultActions();
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvInitDefaultForces();
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvInitDefaultBodies();
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvInitAllDefaults();
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvFreeDefaultActions();
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvFreeDefaultForces();
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvFreeDefaultBodies();
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvFreeAllDefaults();
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddBehaviourFunction(mvOptionEnum bType,\
    mvBaseActionLoader* loader);
 MV_GLOBAL_FUNC_PREFIX mvBaseActionPtr mvCreateNewBehaviour(mvOptionEnum type,\
