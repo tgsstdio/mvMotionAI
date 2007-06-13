@@ -36,7 +36,7 @@ mvErrorEnum mvGroupBNode_V2::getParameterv(mvParamEnum paramFlag,\
    }
    else
    {
-      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+      return MV_ACTION_IS_NOT_INITIALISED;
    }
 }
 
@@ -58,7 +58,7 @@ mvErrorEnum mvGroupBNode_V2::getParameterf(mvParamEnum paramFlag,\
    }
    else
    {
-      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+      return MV_ACTION_IS_NOT_INITIALISED;
    }
 }
 
@@ -86,7 +86,7 @@ mvErrorEnum mvGroupBNode_V2::getParameteri(mvParamEnum paramFlag,\
          }
          else
          {
-            return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+            return MV_ACTION_IS_NOT_INITIALISED;
          }
    }
 }
@@ -122,7 +122,7 @@ mvErrorEnum mvGroupBNode_V2::getParameter(mvParamEnum paramFlag,\
          }
          else
          {
-            return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+            return MV_ACTION_IS_NOT_INITIALISED;
          }
    }
 }
@@ -145,7 +145,7 @@ mvErrorEnum mvGroupBNode_V2::setParameterv(mvParamEnum paramFlag,\
    }
    else
    {
-      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+      return MV_ACTION_IS_NOT_INITIALISED;
    }
 }
 
@@ -161,7 +161,7 @@ mvErrorEnum mvGroupBNode_V2::setParameterf( mvParamEnum paramFlag, mvFloat num)
    }
    else
    {
-      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+      return MV_ACTION_IS_NOT_INITIALISED;
    }
 }
 
@@ -177,7 +177,7 @@ mvErrorEnum mvGroupBNode_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
    }
    else
    {
-      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+      return MV_ACTION_IS_NOT_INITIALISED;
    }
 }
 
@@ -207,7 +207,7 @@ mvErrorEnum mvGroupBNode_V2::setParameter(mvParamEnum paramFlag,\
          }
          else
          {
-            return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+            return MV_ACTION_IS_NOT_INITIALISED;
          }
    }
 }
@@ -216,7 +216,7 @@ mvErrorEnum mvGroupBNode_V2::setParameter(mvParamEnum paramFlag,\
   *
   * (documentation goes here)
   */
-mvBaseActionPtr mvGroupBNode_V2::getBehaviourPtr()
+mvBaseActionPtr mvGroupBNode_V2::getActionPtr()
 {
    return grpBehaviour;
 }
@@ -237,3 +237,198 @@ mvIndex  mvGroupBNode_V2::getGroup()
 {
    return groupIndex;
 }
+
+mvGroupMemberNode::mvGroupMemberNode(mvIndex mbIndex,  mvBaseActionPtr mbAction)
+ {
+   memberIndex = mbIndex;
+   memberAction = mbAction;
+ }
+
+mvErrorEnum mvGroupMemberNode::setParameter(mvParamEnum paramFlag,\
+   mvOptionEnum option)
+{
+   if (memberAction != MV_NULL)
+   {
+      return memberAction->setParameter(paramFlag, option);
+   }
+   else
+   {
+      return MV_ACTION_IS_NOT_INITIALISED;
+   }
+}
+
+bool mvGroupMemberNode::operator<(const mvGroupMemberNode& rhs) const
+{
+   return (this->memberIndex < rhs.memberIndex);
+}
+
+bool mvGroupMemberNode:: operator== (const mvGroupMemberNode& rhs) const
+{
+   return (this->memberIndex == rhs.memberIndex);
+}
+
+mvErrorEnum mvGroupMemberNode::setParameteri(mvParamEnum paramFlag,\
+   mvIndex paramIndex)
+{
+   if (memberAction != MV_NULL)
+   {
+      return memberAction->setParameteri(paramFlag, paramIndex);
+   }
+   else
+   {
+      return MV_ACTION_IS_NOT_INITIALISED;
+   }
+}
+
+mvErrorEnum mvGroupMemberNode::setParameterf(mvParamEnum paramFlag,\
+   mvFloat num)
+{
+   if (memberAction != MV_NULL)
+   {
+      return memberAction->setParameterf(paramFlag, num);
+   }
+   else
+   {
+      return MV_ACTION_IS_NOT_INITIALISED;
+   }
+}
+
+mvErrorEnum mvGroupMemberNode::setParameterv(mvParamEnum paramFlag,\
+   mvFloat* array)
+{
+   if (memberAction != MV_NULL)
+   {
+      return memberAction->setParameterv(paramFlag, array);
+   }
+   else
+   {
+      return MV_ACTION_IS_NOT_INITIALISED;
+   }
+}
+
+mvErrorEnum mvGroupMemberNode::getParameter(mvParamEnum paramFlag,\
+   mvOptionEnum* option) const
+{
+   if (memberAction != MV_NULL)
+   {
+      return memberAction->getParameter(paramFlag, option);
+   }
+   else
+   {
+      return MV_ACTION_IS_NOT_INITIALISED;
+   }
+}
+
+mvErrorEnum mvGroupMemberNode::getParameteri(mvParamEnum paramFlag,\
+   mvIndex* outIndex) const
+{
+   if (memberAction != MV_NULL)
+   {
+      return memberAction->getParameteri(paramFlag, outIndex);
+   }
+   else
+   {
+      return MV_ACTION_IS_NOT_INITIALISED;
+   }
+}
+
+mvErrorEnum mvGroupMemberNode::getParameterf(mvParamEnum paramFlag,\
+   mvFloat* num) const
+{
+   if (memberAction != MV_NULL)
+   {
+      return memberAction->getParameterf(paramFlag, num);
+   }
+   else
+   {
+      return MV_ACTION_IS_NOT_INITIALISED;
+   }
+}
+
+mvErrorEnum mvGroupMemberNode::getParameterv(mvParamEnum paramFlag,\
+   mvFloat* array, mvCount* noOfParameters) const
+{
+   if (memberAction != MV_NULL)
+   {
+      return memberAction->getParameterv(paramFlag, array, noOfParameters);
+   }
+   else
+   {
+      return MV_ACTION_IS_NOT_INITIALISED;
+   }
+}
+
+mvGroupMemberNode::~mvGroupMemberNode()
+{
+   if (memberAction != MV_NULL)
+   {
+      delete memberAction;
+   }
+}
+
+mvGroupNodeMemberList::mvGroupNodeMemberList()
+{
+   toFirstMember();
+}
+
+void mvGroupNodeMemberList::clearAll()
+{
+   std::list<mvGroupMemberNodePtr>::iterator i;
+   std::list<mvGroupMemberNodePtr>::iterator listEnd = mbActionDataSet.end();
+   mvGroupMemberNodePtr tempNode;
+
+   for (i = mbActionDataSet.begin(); i != listEnd; ++i)
+   {
+      tempNode = *i;
+      if (tempNode != NULL)
+      {
+         delete tempNode;
+         *i = NULL;
+      }
+   }
+   mbActionDataSet.clear();
+}
+
+bool mvGroupNodeMemberList::hasAllNodesBeenVisited()
+{
+   return (currentIter == mbActionDataSet.end());
+}
+
+void mvGroupNodeMemberList::toNextMember()
+{
+   ++currentIter;
+}
+
+void mvGroupNodeMemberList::toFirstMember()
+{
+   currentIter =  mbActionDataSet.begin();
+}
+
+mvGroupMemberNodePtr mvGroupNodeMemberList::getCurrentMember()
+{
+   return MV_NULL;
+}
+
+void mvGroupNodeMemberList::insertBeforeCurrentMember(mvIndex memberIndex,\
+   mvBaseActionPtr actionPtr)
+{
+   mvGroupMemberNodePtr tempNode =
+      new (std::nothrow) mvGroupMemberNode(memberIndex, actionPtr);
+
+   mbActionDataSet.insert(currentIter,tempNode);
+}
+
+void mvGroupNodeMemberList::deleteCurrentMember()
+{
+   std::list<mvGroupMemberNodePtr>::iterator pastNode = currentIter;
+   mvGroupMemberNodePtr tempNode = *currentIter;
+   delete tempNode;
+   ++currentIter;
+   mbActionDataSet.erase(pastNode);
+}
+
+mvGroupNodeMemberList::~mvGroupNodeMemberList()
+{
+   clearAll();
+}
+

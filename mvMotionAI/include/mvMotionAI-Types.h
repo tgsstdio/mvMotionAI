@@ -160,10 +160,11 @@ typedef class mvGroup_V2 const * const mvConstGroupPtr;
 typedef class mvGroupBehaviour_V2 mvGroupBehaviour;
 typedef class mvGroupBehaviour_V2* mvGroupBehaviourPtr;
 typedef class mvGroupBNode_V2* mvGroupBehaviourNodePtr;
+typedef class mvGroupNodeMemberList* mvGroupNodeMemberListPtr;
 typedef class mvGroupBehaviour_V2 const * const mvConstGroupBehaviourPtr;
 
 #define MV_GROUP_BEHAVIOUR_RESULT_HEADER_FILE_H_ "mvGroupBehaviourResult.h"
-typedef class mvGroupBehavResult* mvGroupBehaviourResultPtr;
+typedef class mvGroupBehaviourResult* mvGroupBehaviourResultPtr;
 
 #define MV_OBSTACLE_HEADER_FILE_H_ "mvObstacle_V2.h"
 typedef class mvObstacle_V2 mvObstacle;

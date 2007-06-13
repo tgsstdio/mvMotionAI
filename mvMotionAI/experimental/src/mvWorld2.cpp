@@ -27,6 +27,8 @@
 
 #include <cstring>
 #include <new>
+#include <iostream>
+
 
 /** @brief (one liner)
   *
@@ -3056,9 +3058,163 @@ void mvWorld_V2::prepareIntegrationStep()
    forces.applyToAllCapsules(mvWorld_Prepare_Force_Capsule, this);
 }
 
+bool mvWorld_V2::hasGroupChanged(mvIndex groupNo)
+{
+   mvGroupCapsulePtr tempCapsule = groups.getCapsulePtr(groupNo);
+
+   if (tempCapsule == MV_NULL)
+   {
+      return false;
+   }
+   else
+   {
+      return tempCapsule->hasChanged;
+   }
+}
+
+struct mvWorld_GroupBehaviourNodeHelper
+{
+   public:
+      mvWorldPtr currentWorld;
+      mvOptionEnum gbType;
+      mvIndex gbIndex;
+      bool isEnabled;
+};
+
+void mvWorld_CalculateEachGroupInGroupBehaviour(mvGroupBehaviourNodePtr currentNode,
+   void* extraPtr)
+{
+
+   mvWorld_GroupBehaviourNodeHelper* container =
+      (mvWorld_GroupBehaviourNodeHelper*) extraPtr;
+   mvWorldPtr currentWorld = container->currentWorld;
+   mvOptionEnum defaultType = container->gbType;
+   mvIndex currentGBehaviour = container->gbIndex;
+   bool isEnabled = container->isEnabled;
+
+   mvIndex groupNo = currentNode->getGroup();
+   mvGroupPtr currentGroup = currentWorld->getGroupPtr(groupNo);
+   if (currentGroup == MV_NULL)
+   {
+      return;
+   }
+
+   bool hasChanged =  currentWorld->hasGroupChanged(groupNo);
+   mvBaseActionPtr groupAction = currentNode->getActionPtr();
+   mvGroupNodeMemberList& nodeMemberList = currentNode->memberDataList;
+   mvGroupMemberNodePtr memberNode = NULL;
+
+   if (hasChanged)
+   {
+      // add/remove members  in group beh node that be same as group
+      currentGroup->setToFirstMember();
+      mvIndex lhsSetIndex, rhsMemberIndex;
+
+      mvBaseActionPtr tempMemberActionPtr = NULL;
+      nodeMemberList.toFirstMember();
+      while (!currentGroup->areMembersFinished() &&
+         !nodeMemberList.hasAllNodesBeenVisited() )
+      {
+         if (nodeMemberList.hasAllNodesBeenVisited())
+         {
+            // keep adding new nodes to node member list
+            lhsSetIndex = currentGroup->getCurrentMember();
+            if (currentWorld->getActionLoader() != MV_NULL)
+            {
+               tempMemberActionPtr =
+                  currentWorld->getActionLoader()->createAClassPtr(\
+                     defaultType, groupAction);
+               nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,tempMemberActionPtr);
+               // subscription sent to body
+               currentWorld->addBehaviourToBody(lhsSetIndex,\
+                  MV_EXISTING_GROUP_BEHAVIOUR, currentGBehaviour, groupNo);
+            }
+            currentGroup->toNextMember();
+         }
+         else if (currentGroup->areMembersFinished())
+         {
+            // remove all trailing member nodes
+            nodeMemberList.deleteCurrentMember();
+         }
+         else
+         {
+            // both sides have still contain items
+
+            memberNode = nodeMemberList.getCurrentMember();
+            rhsMemberIndex = memberNode->memberIndex;
+            lhsSetIndex = currentGroup->getCurrentMember();
+
+            if (lhsSetIndex > rhsMemberIndex)
+            {
+               // remove all rhs member nodes preceding node
+               nodeMemberList.deleteCurrentMember();
+            }
+            else if (lhsSetIndex == rhsMemberIndex)
+            {
+               // skip by incrementing both lhs & rhs
+               currentGroup->toNextMember();
+               nodeMemberList.toNextMember();
+            }
+            else // (lhsSetIndex < rhsMemberIndex)
+            {
+               // insert ahead of position
+               if (currentWorld->getActionLoader() != MV_NULL)
+               {
+                  tempMemberActionPtr =
+                     currentWorld->getActionLoader()->createAClassPtr(\
+                        defaultType, groupAction);
+                  nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,tempMemberActionPtr);
+                  // subscription sent to body
+                  currentWorld->addBehaviourToBody(lhsSetIndex,\
+                     MV_EXISTING_GROUP_BEHAVIOUR, currentGBehaviour, groupNo);
+               }
+               currentGroup->toNextMember();
+            }
+         }
+      }
+   }
+
+   nodeMemberList.toFirstMember();
+   while (!nodeMemberList.hasAllNodesBeenVisited())
+   {
+      memberNode = nodeMemberList.getCurrentMember();
+      std::cout << "Member ID : " << memberNode->memberIndex << std::endl;
+   }
+
+   if (groupAction != NULL && isEnabled && currentNode->isEnabled)
+   {
+      // TODO: perform groupOp
+      mvGroupBehaviourResult groupDataModule(currentWorld,\
+         &(currentNode->memberDataList));
+
+      groupAction->groupOp(&groupDataModule);
+   }
+}
+
+void mvWorld_CalculateForEachGroupBehaviour(\
+   mvIndex groupBehaviourIndex, void* extraPtr)
+{
+   // foreach group in group behaviour
+   mvWorldPtr currentWorld =  (mvWorldPtr) extraPtr;
+   mvWorld_GroupBehaviourNodeHelper container;
+
+   mvGroupBehaviourPtr currentGroupBehav = currentWorld->getGroupBehaviourPtr(\
+      groupBehaviourIndex);
+   if (currentGroupBehav != NULL && currentGroupBehav->getDefaultActionPtr() != MV_NULL)
+   {
+      container.gbIndex = groupBehaviourIndex;
+      container.currentWorld = currentWorld;
+      container.isEnabled = currentGroupBehav->isEnabled;
+      container.gbType = currentGroupBehav->getDefaultActionPtr()->getType();
+      currentGroupBehav->groupNodeList.applyToAllItems(\
+         mvWorld_CalculateEachGroupInGroupBehaviour, &container);
+   }
+}
+
 void mvWorld_V2::calculateGroupBehaviours() // 1
 {
-// TODO : calculate world functions
+   // foreach group behaviour
+   groupBehaviours.applyToAllItemsByItemIndex(mvWorld_CalculateForEachGroupBehaviour,this);
 }
 
 void mvWorld_V2::checkIfWaypointContainsBody(mvBodyCapsulePtr bodyPtr) // part of 2
@@ -3159,8 +3315,8 @@ mvErrorEnum mvWorld_V2::addBehaviourToBody(mvIndex bodyIndex, mvOptionEnum bType
 mvErrorEnum mvWorld_V2::addBehaviourToCurrentBody(mvOptionEnum bType,\
    mvIndex behaviourIndex, mvIndex groupIndex)
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   return addBehaviourToBody(getCurrentBody(), bType,\
+      behaviourIndex, groupIndex);
 }
 
 /** @brief (one liner)
@@ -3170,8 +3326,35 @@ mvErrorEnum mvWorld_V2::addBehaviourToCurrentBody(mvOptionEnum bType,\
 mvErrorEnum mvWorld_V2::addGroupIntoGroupBehaviour(mvIndex groupIndex,\
    mvIndex groupBehaviour)
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvIndex tempGrpIndex = groups.convertIndex(groupIndex);
+
+   mvGroupBehaviourPtr tempGrpBehav = getGroupBehaviourPtr(groupBehaviour);
+
+   if (groupBehaviour == MV_NULL)
+   {
+      return MV_GROUP_BEHAVIOUR_INDEX_IS_INVALID;
+   }
+
+   mvBaseActionPtr defaultActionPtr = tempGrpBehav->getDefaultActionPtr();
+   if (defaultActionPtr == MV_NULL)
+   {
+      return MV_ACTION_IS_NOT_INITIALISED;
+   }
+
+   if (behavLoader == MV_NULL)
+   {
+      return MV_ACTION_LOADER_LIST_PTR_IS_NULL;
+   }
+
+   mvBaseActionPtr nodeActionPtr = behavLoader->createAClassPtr(
+      defaultActionPtr->getType(),defaultActionPtr);
+
+   if (nodeActionPtr == MV_NULL)
+   {
+      return MV_OPTION_ENUM_KEY_IS_INVALID;
+   }
+
+   return tempGrpBehav->addGroup(tempGrpIndex, nodeActionPtr);
 }
 
 /** @brief (one liner)
@@ -3181,8 +3364,8 @@ mvErrorEnum mvWorld_V2::addGroupIntoGroupBehaviour(mvIndex groupIndex,\
 mvErrorEnum mvWorld_V2::addCurrentGroupIntoGroupBehaviour(\
    mvIndex groupBehaviour)
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   return addGroupIntoGroupBehaviour(getCurrentGroup(),
+      groupBehaviour);
 }
 
 /** @brief (one liner)
@@ -3191,8 +3374,8 @@ mvErrorEnum mvWorld_V2::addCurrentGroupIntoGroupBehaviour(\
   */
 mvErrorEnum mvWorld_V2::addGroupIntoCurrentGroupBehaviour(mvIndex groupIndex)
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   return addGroupIntoGroupBehaviour(groupIndex,
+      getCurrentGroupBehaviour());
 }
 
 /** @brief (one liner)
@@ -3201,8 +3384,8 @@ mvErrorEnum mvWorld_V2::addGroupIntoCurrentGroupBehaviour(mvIndex groupIndex)
   */
 mvErrorEnum mvWorld_V2::addCurrentGroupIntoCurrentGroupBehaviour()
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   return addGroupIntoGroupBehaviour(getCurrentGroup(),
+      getCurrentGroupBehaviour());
 }
 
 /** @brief (one liner)
@@ -3212,8 +3395,16 @@ mvErrorEnum mvWorld_V2::addCurrentGroupIntoCurrentGroupBehaviour()
 mvErrorEnum mvWorld_V2::removeGroupFromGroupBehaviour(mvIndex groupIndex,\
    mvIndex groupBehaviour)
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvIndex tempGrpIndex = groups.convertIndex(groupIndex);
+
+   mvGroupBehaviourPtr tempGrpBehav = getGroupBehaviourPtr(groupBehaviour);
+
+   if (groupBehaviour == MV_NULL)
+   {
+      return MV_GROUP_BEHAVIOUR_INDEX_IS_INVALID;
+   }
+
+   return tempGrpBehav->removeGroup(tempGrpIndex);
 }
 
 /** @brief (one liner)
@@ -3223,8 +3414,8 @@ mvErrorEnum mvWorld_V2::removeGroupFromGroupBehaviour(mvIndex groupIndex,\
 mvErrorEnum mvWorld_V2::removeCurrentGroupFromGroupBehaviour(\
    mvIndex groupBehaviour)
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   return removeGroupFromGroupBehaviour(getCurrentGroup(),\
+      groupBehaviour);
 }
 
 /** @brief (one liner)
@@ -3234,8 +3425,8 @@ mvErrorEnum mvWorld_V2::removeCurrentGroupFromGroupBehaviour(\
 mvErrorEnum mvWorld_V2::removeGroupFromCurrentGroupBehaviour(\
    mvIndex groupIndex)
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   return removeGroupFromGroupBehaviour(groupIndex,\
+      getCurrentGroupBehaviour());
 }
 
 /** @brief (one liner)
@@ -3244,59 +3435,59 @@ mvErrorEnum mvWorld_V2::removeGroupFromCurrentGroupBehaviour(\
   */
 mvErrorEnum mvWorld_V2::removeCurrentGroupFromCurrentGroupBehaviour()
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   return removeGroupFromGroupBehaviour(getCurrentGroup(),\
+      getCurrentGroupBehaviour());
 }
 
 
-mvErrorEnum mvWorld_V2::addMemberToGroup(mvIndex memberIndex,\
+mvErrorEnum mvWorld_V2::addMemberIntoGroup(mvIndex memberIndex,\
    mvIndex groupIndex)
 {
-   mvGroupPtr tempGroup = getGroupPtr(groupIndex);
+   mvGroupCapsulePtr tempCapsule = groups.getCapsulePtr(groupIndex);
 
-   if (tempGroup == MV_NULL)
+   if (tempCapsule == MV_NULL)
    {
       return MV_GROUP_INDEX_IS_INVALID;
    }
 
-   return tempGroup->addMember(memberIndex);
+   mvGroupPtr tempGroup = tempCapsule->getClassPtr();
+
+   mvErrorEnum error = tempGroup->addMember(memberIndex);
+   if (error == MV_NO_ERROR)
+   {
+      tempCapsule->hasChanged = true;
+   }
+   return error;
 }
 
 mvErrorEnum mvWorld_V2::addMemberToCurrentGroup(mvIndex memberIndex)
 {
-   mvGroupPtr tempGroup = getCurrentGroupPtr();
-
-   if (tempGroup == MV_NULL)
-   {
-      return MV_GROUP_INDEX_IS_INVALID;
-   }
-
-   return tempGroup->addMember(memberIndex);
+   return addMemberIntoGroup(memberIndex, getCurrentGroup());
 }
 
 mvErrorEnum mvWorld_V2::removeMemberFromGroup(mvIndex memberIndex,\
    mvIndex groupIndex)
 {
-   mvGroupPtr tempGroup = getGroupPtr(groupIndex);
+   mvGroupCapsulePtr tempCapsule = groups.getCapsulePtr(groupIndex);
 
-   if (tempGroup == MV_NULL)
+   if (tempCapsule == MV_NULL)
    {
       return MV_GROUP_INDEX_IS_INVALID;
    }
 
-   return tempGroup->removeMember(memberIndex);
+   mvGroupPtr tempGroup = tempCapsule->getClassPtr();
+
+   mvErrorEnum error = tempGroup->removeMember(memberIndex);
+   if (error == MV_NO_ERROR)
+   {
+      tempCapsule->hasChanged = true;
+   }
+   return error;
 }
 
 mvErrorEnum mvWorld_V2::removeMemberFromCurrentGroup(mvIndex memberIndex)
 {
-   mvGroupPtr tempGroup = getCurrentGroupPtr();
-
-   if (tempGroup == MV_NULL)
-   {
-      return MV_GROUP_INDEX_IS_INVALID;
-   }
-
-   return tempGroup->removeMember(memberIndex);
+   return removeMemberFromGroup(memberIndex,getCurrentGroup());
 }
 
 mvErrorEnum mvWorld_V2::findMemberFromGroup(mvIndex memberIndex,\
@@ -4771,7 +4962,6 @@ mvBodyCapsulePtr mvWorld_V2::getBodyCapsulePtr(int index)
 
 mvIndex mvWorld_V2::addNodeToPathway(mvIndex nIndex, mvIndex pIndex)
 {
-   // TODO : convert nodes
    mvPathwayPtr tempPathway = getPathwayPtr(pIndex);
 
    if (tempPathway == MV_NULL)

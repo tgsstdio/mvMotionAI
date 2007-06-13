@@ -26,7 +26,7 @@ mvErrorEnum mvBehaviour_V2::setParameter(mvParamEnum paramFlag,\
          }
          else
          {
-            return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+            return MV_ACTION_IS_NOT_INITIALISED;
          }
    }
 }
@@ -80,7 +80,7 @@ mvErrorEnum mvBehaviour_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
    }
    else
    {
-      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+      return MV_ACTION_IS_NOT_INITIALISED;
    }
 }
 
@@ -96,7 +96,7 @@ mvErrorEnum mvBehaviour_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
    }
    else
    {
-      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+      return MV_ACTION_IS_NOT_INITIALISED;
    }
 }
 
@@ -112,7 +112,7 @@ mvErrorEnum mvBehaviour_V2::setParameterv(mvParamEnum paramFlag, mvFloat* array)
    }
    else
    {
-      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+      return MV_ACTION_IS_NOT_INITIALISED;
    }
 }
 
@@ -142,7 +142,7 @@ mvErrorEnum mvBehaviour_V2::getParameter(mvParamEnum paramFlag,\
          }
          else
          {
-            return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+            return MV_ACTION_IS_NOT_INITIALISED;
          }
    }
 }
@@ -160,7 +160,7 @@ mvErrorEnum mvBehaviour_V2::getParameteri(mvParamEnum paramFlag,\
    }
    else
    {
-      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+      return MV_ACTION_IS_NOT_INITIALISED;
    }
 }
 
@@ -177,7 +177,7 @@ mvErrorEnum mvBehaviour_V2::getParameterf(mvParamEnum paramFlag,\
    }
    else
    {
-      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+      return MV_ACTION_IS_NOT_INITIALISED;
    }
 }
 
@@ -194,7 +194,7 @@ mvErrorEnum mvBehaviour_V2::getParameterv(mvParamEnum paramFlag,\
    }
    else
    {
-      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+      return MV_ACTION_IS_NOT_INITIALISED;
    }
 }
 
