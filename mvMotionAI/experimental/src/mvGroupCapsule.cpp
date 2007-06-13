@@ -28,7 +28,7 @@
 mvGroupCapsule::mvGroupCapsule(mvGroupPtr group)
 {
    encapsuledGroup = group;
-   hasChanged = false;
+   hasChanged = true;
 }
 
 mvGroupPtr mvGroupCapsule::getClassPtr() const

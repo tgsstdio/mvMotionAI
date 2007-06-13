@@ -50,6 +50,11 @@ mvIndex mvGroup_V2::getCurrentMember() const
    return members.getCurrentIndex();
 }
 
+void mvGroup_V2::toNextMember()
+{
+   members.nextIndex();
+}
+
 mvErrorEnum mvGroup_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    const
 {
@@ -165,4 +170,5 @@ mvErrorEnum mvGroup_V2::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 
    return MV_INVALID_GROUP_PARAMETER;
 }
+
 

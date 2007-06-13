@@ -36,12 +36,13 @@ class mvGroupBehaviour_V2
 {
    private:
       mvBaseActionPtr defaultGBehaviour;
-      mvPointerList<mvGroupBehaviourNodePtr, mvGroupBehaviourNodePtr> groupNodeList;
    public:
+      mvPointerList<mvGroupBehaviourNodePtr, mvGroupBehaviourNodePtr>
+         groupNodeList;
       bool isEnabled;
       mvGroupBehaviour_V2(mvBaseActionPtr groupBehPtr);
       ~mvGroupBehaviour_V2();
-      mvIndex addGroup(mvIndex groupNo, mvBaseAction* behavPtr);
+      mvErrorEnum addGroup(mvIndex groupNo, mvBaseAction* behavPtr);
       mvErrorEnum removeGroup(mvIndex groupNo);
       void removeAllGroups();
       mvGroupBehaviourNodePtr getGroupNodeByIndex(mvIndex index) const;
@@ -49,6 +50,7 @@ class mvGroupBehaviour_V2
       mvCount getNoOfGroups() const;
 
       mvIndex getCurrentGroupBehaviourNode() const;
+      mvBaseActionPtr getDefaultActionPtr();
 
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
       mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option)\

@@ -49,6 +49,7 @@ class mvGroup_V2
       void setToFirstMember();
       bool areMembersFinished() const;
       mvIndex getCurrentMember() const;
+      void toNextMember();
 
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
       mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option)\

@@ -56,7 +56,7 @@ bool findGroupNodeByIndex(mvGroupBNode_V2* groupNodePtr, void* extraPtr)
 /** @brief (one liner)
   *
   */
-mvIndex mvGroupBehaviour_V2::addGroup(mvIndex groupNo, mvBaseActionPtr
+mvErrorEnum mvGroupBehaviour_V2::addGroup(mvIndex groupNo, mvBaseActionPtr
    behavPtr)
 {
    // first check if index exists
@@ -67,19 +67,24 @@ mvIndex mvGroupBehaviour_V2::addGroup(mvIndex groupNo, mvBaseActionPtr
    if (groupNodeList.findItemPtrInList(findGroupNodeByIndex,\
       (void*) &groupIndex) != MV_NULL)
    {
-      //return MV_UNIQUE_ITEM_ALREADY_IN_LIST;
-      return MV_NULL;
+      return MV_UNIQUE_ITEM_ALREADY_IN_LIST;
    }
 
    groupNodePtr = new (std::nothrow) mvGroupBNode_V2(behavPtr,groupIndex);
 
    if (groupNodePtr == MV_NULL)
    {
-      //return MV_INVALID_MEMORY_ALLOCATION;
-      return MV_NULL;
+      return MV_INVALID_MEMORY_ALLOCATION;
    }
 
-   return groupNodeList.addItem(groupNodePtr);
+   if (groupNodeList.addItem(groupNodePtr) == MV_NULL)
+   {
+      return MV_UNIQUE_ITEM_ALREADY_IN_LIST;
+   }
+   else
+   {
+      return MV_NO_ERROR;
+   }
 }
 
 /** @brief (one liner)
@@ -170,7 +175,7 @@ mvErrorEnum mvGroupBehaviour_V2::getParameteri(mvParamEnum paramFlag,\
          }
          else
          {
-            return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+            return MV_ACTION_IS_NOT_INITIALISED;
          }
    }
 }
@@ -207,7 +212,7 @@ mvErrorEnum mvGroupBehaviour_V2::getParameter(mvParamEnum paramFlag,\
          }
          else
          {
-            return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+            return MV_ACTION_IS_NOT_INITIALISED;
          }
    }
 }
@@ -230,7 +235,7 @@ mvErrorEnum mvGroupBehaviour_V2::getParameterf(mvParamEnum paramFlag,\
    }
    else
    {
-      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+      return MV_ACTION_IS_NOT_INITIALISED;
    }
 }
 
@@ -259,7 +264,7 @@ mvErrorEnum mvGroupBehaviour_V2::getParameterv(mvParamEnum paramFlag,\
    }
    else
    {
-      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+      return MV_ACTION_IS_NOT_INITIALISED;
    }
 }
 
@@ -282,7 +287,7 @@ mvErrorEnum mvGroupBehaviour_V2::setParameteri(mvParamEnum paramFlag,\
          }
          else
          {
-            return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+            return MV_ACTION_IS_NOT_INITIALISED;
          }
    }
 }
@@ -313,7 +318,7 @@ mvErrorEnum mvGroupBehaviour_V2::setParameter(mvParamEnum paramFlag,\
          }
          else
          {
-            return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+            return MV_ACTION_IS_NOT_INITIALISED;
          }
    }
 }
@@ -331,7 +336,7 @@ mvErrorEnum mvGroupBehaviour_V2::setParameterf(mvParamEnum paramFlag,\
    }
    else
    {
-      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+      return MV_ACTION_IS_NOT_INITIALISED;
    }
 }
 
@@ -348,7 +353,7 @@ mvErrorEnum mvGroupBehaviour_V2::setParameterv(mvParamEnum paramFlag,\
    }
    else
    {
-      return MV_BEHAVIOUR_IS_NOT_INITIALISED;
+      return MV_ACTION_IS_NOT_INITIALISED;
    }
 }
 
@@ -851,4 +856,10 @@ mvIndex mvGroupBehaviour_V2::getCurrentGroupBehaviourNode() const
 {
    return groupNodeList.getCurrentIndex();
 }
+
+mvBaseActionPtr mvGroupBehaviour_V2::getDefaultActionPtr()
+{
+   return defaultGBehaviour;
+}
+
 

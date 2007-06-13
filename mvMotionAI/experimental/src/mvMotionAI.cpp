@@ -5845,3 +5845,34 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetCurrentGroupBehaviourParameterv_str(\
    return error;
 }
 
+MV_GLOBAL_FUNC_PREFIX mvAddMemberIntoGroup(mvIndex worldIndex, mvIndex memberIndex,
+   mvIndex groupIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->addMemberIntoGroup(worldIndex, memberIndex,groupIndex);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvAddMemberIntoCurrentGroup(mvIndex worldIndex,\
+   mvIndex memberIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->addMemberToCurrentGroup(worldIndex, memberIndex);
+   }
+   return error;
+}

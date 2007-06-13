@@ -29,6 +29,58 @@
 
 #include MV_ENUMS_HEADER_FILE_H_
 #include MV_BASE_ACTION_HEADER_FILE_H_
+#include <list>
+
+class mvGroupMemberNode
+{
+   public:
+      mvIndex memberIndex;
+      mvBaseActionPtr memberAction;
+
+      mvGroupMemberNode(mvIndex mbIndex,  mvBaseActionPtr mbAction);
+      bool operator<(const mvGroupMemberNode& rhs) const;
+      bool operator== (const mvGroupMemberNode& rhs) const;
+      mvErrorEnum setParameter(mvParamEnum paramFlag,\
+         mvOptionEnum option);
+      mvErrorEnum setParameteri(mvParamEnum paramFlag,\
+         mvIndex paramIndex);
+      mvErrorEnum setParameterf(mvParamEnum paramFlag,\
+         mvFloat num);
+      mvErrorEnum setParameterv(mvParamEnum paramFlag,\
+         mvFloat* array);
+
+      mvErrorEnum getParameter(mvParamEnum paramFlag,\
+         mvOptionEnum* option) const;
+      mvErrorEnum getParameteri(mvParamEnum paramFlag,\
+         mvIndex* outIndex) const;
+      mvErrorEnum getParameterf(mvParamEnum paramFlag,\
+         mvFloat* num) const;
+      mvErrorEnum getParameterv(mvParamEnum paramFlag,\
+         mvFloat* array, mvCount* noOfParameters) const;
+      ~mvGroupMemberNode();
+};
+
+typedef class mvGroupMemberNode* mvGroupMemberNodePtr;
+typedef class mvGroupMemberNode const * const mvConstGroupMemberNodePtr;
+
+class mvGroupNodeMemberList
+{
+   public:
+         // TODO : use something else like a set
+      std::list<mvGroupMemberNodePtr>::iterator currentIter;
+      std::list<mvGroupMemberNodePtr> mbActionDataSet;
+
+      mvGroupNodeMemberList();
+      void clearAll();
+      bool hasAllNodesBeenVisited();
+      void toNextMember();
+      void toFirstMember();
+      mvGroupMemberNodePtr getCurrentMember();
+      void insertBeforeCurrentMember(mvIndex memberIndex,\
+         mvBaseActionPtr actionPtr);
+      void deleteCurrentMember();
+      ~mvGroupNodeMemberList();
+};
 
 class mvGroupBNode_V2
 {
@@ -37,10 +89,12 @@ class mvGroupBNode_V2
       mvBaseActionPtr grpBehaviour;
 
    public:
+      mvGroupNodeMemberList memberDataList;
+
       bool isEnabled;
       mvGroupBNode_V2(mvBaseActionPtr mainBehaviour,\
          mvIndex grpIndex);
-      mvBaseActionPtr getBehaviourPtr();
+      mvBaseActionPtr getActionPtr();
       mvIndex getGroup();
       mvErrorEnum setParameter(mvParamEnum paramFlag,\
          mvOptionEnum option);

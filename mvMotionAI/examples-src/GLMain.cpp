@@ -118,8 +118,18 @@ int main(int argc, char** argv)
    int bodyID = mvCreateBody(worldID,MV_PARTICLE,MV_AABOX, 0 , 4 , 0);
    std::cout << "bodyID : " << bodyID <<  std::endl;
 
+   int groupID = mvCreateGroup(worldID,"HELLO");
+   std::cout << "Group ID : " << groupID <<  std::endl;
+   std::cout << mvGetErrorEnumString(mvAddMemberIntoGroup(worldID, bodyID, groupID))
+      << std::endl;
+
+   int gbIndex = mvCreateGroupBehaviour(worldID, MV_SEEK);
+
    bodyID = mvCreateBody(worldID,MV_PARTICLE,MV_AABOX, 0 , 4 , 4);
    std::cout << "bodyID : " << bodyID <<  std::endl;
+
+
+
 
    int waypointID = mvCreateWaypoint(worldID, MV_AABOX, 0, 4 ,0);
 

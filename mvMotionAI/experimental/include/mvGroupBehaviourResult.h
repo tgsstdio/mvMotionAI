@@ -29,14 +29,18 @@
 
 #include MV_GROUP_HEADER_FILE_H_
 #include MV_WORLD_HEADER_FILE_H_
+#include MV_GROUP_BEHAVIOUR_NODE_HEADER_FILE_H_
 
 class mvGroupBehaviourResult
 {
    public:
       mvWorldPtr world;
-      mvGroupPtr group;
+      mvGroupNodeMemberListPtr groupMemberList;
 
-   mvGroupBehaviourResult();
+   mvGroupBehaviourResult(mvWorldPtr currentWorld,\
+      mvGroupNodeMemberListPtr currentMList);
+   mvWorldPtr getWorldPtr();
+   mvGroupNodeMemberListPtr getMemberList();
    ~mvGroupBehaviourResult();
 };
 

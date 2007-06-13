@@ -88,6 +88,7 @@ class mvWorld_V2
 
    public:
       void integrateBody(mvBodyCapsulePtr bodyPtr, mvFloat timeInSecs);
+      bool hasGroupChanged(mvIndex groupNo);
 
       bool isEnabled;
       bool applyForces;
@@ -828,8 +829,8 @@ class mvWorld_V2
       mvErrorEnum removeGroupFromCurrentGroupBehaviour(mvIndex groupIndex);
       mvErrorEnum removeCurrentGroupFromCurrentGroupBehaviour();
 
-      mvErrorEnum addMemberToGroup(mvIndex memberIndex, mvIndex groupIndex);
-      mvErrorEnum addMemberToCurrentGroup(mvIndex memberIndex);
+      mvErrorEnum addMemberIntoGroup(mvIndex memberIndex, mvIndex groupIndex);
+      mvErrorEnum addMemberIntoCurrentGroup(mvIndex memberIndex);
 
       mvErrorEnum removeMemberFromGroup(mvIndex memberIndex, mvIndex groupIndex);
       mvErrorEnum removeMemberFromCurrentGroup(mvIndex bodyIndex);
