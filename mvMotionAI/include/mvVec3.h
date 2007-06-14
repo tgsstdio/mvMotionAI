@@ -34,7 +34,6 @@
 #ifndef MV_MVVEC3_H_
 #define MV_MVVEC3_H_
 #include "mvMotionAI-Types.h"
-//#include <iostream>
 // TODO (White 2#1#): Doxygen documentation
 
 // replacement for OpenSteer's Vec3

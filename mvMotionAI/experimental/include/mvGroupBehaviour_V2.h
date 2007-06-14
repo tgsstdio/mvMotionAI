@@ -99,42 +99,6 @@ class mvGroupBehaviour_V2
          mvFloat num);
       mvErrorEnum setGroupParameterv_str(mvIndex groupIndex, const char* param,\
          mvFloat* numArray);
-
-      mvErrorEnum getCurrentNodeParameteri(mvParamEnum paramFlag,\
-         mvIndex* index) const;
-      mvErrorEnum getCurrentNodeParameter(mvParamEnum paramFlag,\
-         mvOptionEnum* option) const;
-      mvErrorEnum getCurrentNodeParameterf(mvParamEnum paramFlag,\
-         mvFloat* num) const;
-      mvErrorEnum getCurrentNodeParameterv(mvParamEnum paramFlag,\
-         mvFloat* numArray, mvCount* noOfParameters) const;
-
-      mvErrorEnum setCurrentNodeParameteri(mvParamEnum paramFlag,\
-         mvIndex index);
-      mvErrorEnum setCurrentNodeParameter(mvParamEnum paramFlag,\
-         mvOptionEnum option);
-      mvErrorEnum setCurrentNodeParameterf(mvParamEnum paramFlag,\
-         mvFloat num);
-      mvErrorEnum setCurrentNodeParameterv(mvParamEnum paramFlag,\
-         mvFloat* numArray);
-
-      mvErrorEnum getCurrentNodeParameteri_str(const char* param,\
-         mvIndex* index) const;
-      mvErrorEnum getCurrentNodeParameter_str(const char* param,\
-         const char** option) const;
-      mvErrorEnum getCurrentNodeParameterf_str(const char* param,\
-         mvFloat* num) const;
-      mvErrorEnum getCurrentNodeParameterv_str(const char* param,\
-         mvFloat* numArray, mvCount* noOfParameters) const;
-
-      mvErrorEnum setCurrentNodeParameteri_str(const char* param,\
-         mvIndex index);
-      mvErrorEnum setCurrentNodeParameter_str(const char* param,\
-         const char* option);
-      mvErrorEnum setCurrentNodeParameterf_str(const char* param,\
-         mvFloat num);
-      mvErrorEnum setCurrentNodeParameterv_str(const char* param,\
-         mvFloat* numArray);
 };
 
 #endif // MVGROUPBEHAVIOUR_V2_H_INCLUDED

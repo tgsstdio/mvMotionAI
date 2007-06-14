@@ -133,42 +133,6 @@ class mvCapsuleList
       mvErrorEnum getItemParameterv_str(mvIndex itemIndex, const char* param,\
          mvFloat* array, mvCount* noOfParameters) const;
 
-      mvErrorEnum setCurrentItemParameter_str(const char* param,\
-         const char* option);
-      mvErrorEnum setCurrentItemParameteri_str(const char* param,\
-         mvIndex index);
-      mvErrorEnum setCurrentItemParameterf_str(const char* param,\
-         mvFloat num);
-      mvErrorEnum setCurrentItemParameterv_str(const char* param,\
-         mvFloat* array);
-
-      mvErrorEnum getCurrentItemParameter_str(const char* param,\
-         const char** option) const;
-      mvErrorEnum getCurrentItemParameteri_str(const char* param,\
-         mvIndex* index) const;
-      mvErrorEnum getCurrentItemParameterf_str(const char* param,\
-         mvFloat* num) const;
-      mvErrorEnum getCurrentItemParameterv_str(const char* param,\
-         mvFloat* array, mvCount* noOfParameters) const;
-
-      mvErrorEnum setCurrentItemParameter(mvParamEnum paramFlag,\
-         mvOptionEnum option);
-      mvErrorEnum setCurrentItemParameteri(mvParamEnum paramFlag,\
-         mvIndex index);
-      mvErrorEnum setCurrentItemParameterf(mvParamEnum paramFlag,\
-         mvFloat num);
-      mvErrorEnum setCurrentItemParameterv(mvParamEnum paramFlag,\
-         mvFloat* array);
-
-      mvErrorEnum getCurrentItemParameter(mvParamEnum paramFlag,\
-         mvOptionEnum* option) const;
-      mvErrorEnum getCurrentItemParameteri(mvParamEnum paramFlag,\
-         mvIndex* index) const;
-      mvErrorEnum getCurrentItemParameterf(mvParamEnum paramFlag,\
-         mvFloat* num) const;
-      mvErrorEnum getCurrentItemParameterv(mvParamEnum paramFlag,\
-         mvFloat* array, mvCount* noOfParameters) const;
-
       mvCapsulePtr getCapsulePtr(mvIndex index) const;
       mvCapsulePtr getCurrentCapsulePtr() const;
 
