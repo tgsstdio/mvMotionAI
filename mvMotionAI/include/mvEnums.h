@@ -1,7 +1,7 @@
 #ifndef MV_ENUMERATIONS_H_
 #define MV_ENUMERATIONS_H_
 
-#include "mvMotionAI-Types.h"
+#include <mvMotionAI-Types.h>
 #ifdef MV_FILE_HEADER_TAG_
 /**
  * Copyright (c) 2006, 2007 David Young.
