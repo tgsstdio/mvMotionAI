@@ -28,8 +28,7 @@
  * - incorrect function signature;
  *   was mvGetEnumString not mvGetErrorString
  */
-#include "mvMotionAI-Types.h"
-#include "mvEnums.h"
+#include <mvEnums.h>
 #include <cstring>
 
 const char* mvOptionEnumStrings[] =
