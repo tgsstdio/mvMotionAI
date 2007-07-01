@@ -26,87 +26,6 @@
   *
   * (documentation goes here)
   */
-mvErrorEnum mvBEntryList::setCurrentEntryParameterv(mvParamEnum paramFlag,\
-   mvFloat* numArray)
-{
-   return entryList.setCurrentItemParameterv(paramFlag, numArray);
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvBEntryList::setCurrentEntryParameterf(mvParamEnum paramFlag,\
-   mvFloat num)
-{
-   return entryList.setCurrentItemParameterf(paramFlag, num);
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvBEntryList::setCurrentEntryParameter(mvParamEnum paramFlag,\
-   mvOptionEnum option)
-{
-   return entryList.setCurrentItemParameter(paramFlag, option);
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvBEntryList::setCurrentEntryParameteri(mvParamEnum paramFlag,\
-   mvIndex paramIndex)
-{
-   return entryList.setCurrentItemParameteri(paramFlag, paramIndex);
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvBEntryList::getCurrentEntryParameterv(mvParamEnum paramFlag,\
-   mvFloat* numArray, mvCount* noOfParameters)
-{
-   return entryList.getCurrentItemParameterv(paramFlag, numArray,\
-      noOfParameters);
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvBEntryList::getCurrentEntryParameterf(mvParamEnum paramFlag,\
-   mvFloat* num)
-{
-   return entryList.getCurrentItemParameterf(paramFlag, num);
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvBEntryList::getCurrentEntryParameter(mvParamEnum paramFlag,\
-   mvOptionEnum* option)
-{
-   return entryList.getCurrentItemParameter(paramFlag, option);
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvBEntryList::getCurrentEntryParameteri(mvParamEnum paramFlag,\
-   mvIndex* outIndex)
-{
-   return entryList.getCurrentItemParameteri(paramFlag, outIndex);
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
 mvErrorEnum mvBEntryList::setEntryParameterv(mvIndex entryIndex,\
    mvParamEnum paramFlag, mvFloat* numArray)
 {
@@ -148,7 +67,7 @@ mvErrorEnum mvBEntryList::setEntryParameteri(mvIndex entryIndex,\
   * (documentation goes here)
   */
 mvErrorEnum mvBEntryList::getEntryParameterv(mvIndex entryIndex,\
-   mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters)
+   mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters) const
 {
    return entryList.getItemParameterv(entryIndex,paramFlag, numArray,\
       noOfParameters);
@@ -159,10 +78,8 @@ mvErrorEnum mvBEntryList::getEntryParameterv(mvIndex entryIndex,\
   * (documentation goes here)
   */
 mvErrorEnum mvBEntryList::getEntryParameterf(mvIndex entryIndex,\
-   mvParamEnum paramFlag, mvFloat* num)
+   mvParamEnum paramFlag, mvFloat* num) const
 {
-/* TODO (White 2#1#): implement function
- */
    return entryList.getItemParameterf(entryIndex, paramFlag, num);
 }
 
@@ -171,7 +88,7 @@ mvErrorEnum mvBEntryList::getEntryParameterf(mvIndex entryIndex,\
   * (documentation goes here)
   */
 mvErrorEnum mvBEntryList::getEntryParameter(mvIndex entryIndex,\
-   mvParamEnum paramFlag, mvOptionEnum* option)
+   mvParamEnum paramFlag, mvOptionEnum* option) const
 {
    return entryList.getItemParameter(entryIndex, paramFlag, option);
 }
@@ -181,7 +98,7 @@ mvErrorEnum mvBEntryList::getEntryParameter(mvIndex entryIndex,\
   * (documentation goes here)
   */
 mvErrorEnum mvBEntryList::getEntryParameteri(mvIndex entryIndex,\
-   mvParamEnum paramFlag, mvIndex* index)
+   mvParamEnum paramFlag, mvIndex* index) const
 {
    return entryList.getItemParameteri(entryIndex, paramFlag, index);
 }
@@ -193,8 +110,12 @@ mvErrorEnum mvBEntryList::getEntryParameteri(mvIndex entryIndex,\
 mvErrorEnum mvBEntryList::setParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray)
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (numArray == NULL)
+   {
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
+   return defaultNodeTimerFlags.setParameterv(paramFlag, numArray);
 }
 
 /** @brief (one liner)
@@ -203,8 +124,7 @@ mvErrorEnum mvBEntryList::setParameterv(mvParamEnum paramFlag,\
   */
 mvErrorEnum mvBEntryList::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   return defaultNodeTimerFlags.setParameterf(paramFlag, num);
 }
 
 /** @brief (one liner)
@@ -214,8 +134,13 @@ mvErrorEnum mvBEntryList::setParameterf(mvParamEnum paramFlag, mvFloat num)
 mvErrorEnum mvBEntryList::setParameter(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   switch(paramFlag)
+   {
+      case MV_MODE:
+         return setMode(option);
+      default:
+         return defaultNodeTimerFlags.setParameter(paramFlag, index);
+   }
 }
 
 /** @brief (one liner)
@@ -224,8 +149,20 @@ mvErrorEnum mvBEntryList::setParameter(mvParamEnum paramFlag,\
   */
 mvErrorEnum mvBEntryList::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   switch(paramFlag)
+   {
+      case MV_PATHWAY:
+         defaultPathway = index;
+         return MV_NO_ERROR;
+      case MV_BODY:
+         defaultBody = index;
+         return MV_NO_ERROR;
+      case MV_WAYPOINT:
+         defaultWaypoint = index;
+         return MV_NO_ERROR;
+      default:
+         return defaultNodeTimerFlags.setParameteri(paramFlag, index);
+   }
 }
 
 /** @brief (one liner)
@@ -233,9 +170,21 @@ mvErrorEnum mvBEntryList::setParameteri(mvParamEnum paramFlag, mvIndex index)
   * (documentation goes here)
   */
 mvErrorEnum mvBEntryList::getParameterv(mvParamEnum paramFlag,\
-   mvFloat* numArray, mvCount* noOfParameters)
+   mvFloat* numArray, mvCount* noOfParameters) const
 {
+   if (noOfParameters == MV_NULL)
+   {
+      return MV_COUNT_DEST_IS_NULL;
+   }
+
+   if (numArray == MV_NULL)
+   {
+      *noOfParameters = 0;
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
    // TODO : implement this function
+   *noOfParameters = 0;
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
 
@@ -244,7 +193,7 @@ mvErrorEnum mvBEntryList::getParameterv(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvBEntryList::getParameterf(mvParamEnum paramFlag,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    // TODO : implement this function
    return MV_FUNCTION_NOT_IMPLEMENTED;
@@ -255,7 +204,7 @@ mvErrorEnum mvBEntryList::getParameterf(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvBEntryList::getParameter(mvParamEnum paramFlag,\
-   mvOptionEnum* option)
+   mvOptionEnum* option) const
 {
    // TODO : implement this function
    return MV_FUNCTION_NOT_IMPLEMENTED;
@@ -266,7 +215,7 @@ mvErrorEnum mvBEntryList::getParameter(mvParamEnum paramFlag,\
   * (documentation goes here)
   */
 mvErrorEnum mvBEntryList::getParameteri(mvParamEnum paramFlag,\
-   mvIndex* index)
+   mvIndex* index) const
 {
    // TODO : implement this function
    return MV_FUNCTION_NOT_IMPLEMENTED;
@@ -356,7 +305,7 @@ mvErrorEnum mvBEntryList::addExistingGroupBehaviourEntry(\
   */
 mvErrorEnum mvBEntryList::setDefaultWeight(mvFloat factor)
 {
-   return (factor < 0.0) ? MV_FLOAT_VALUE_IS_NOT_POSITIVE : MV_NO_ERROR;
+   return defaultNodeTimerFlags.setWeight(factor);
 }
 
 /** @brief (one liner)
@@ -401,16 +350,26 @@ mvOptionEnum mvBEntryList::getMode() const
   */
 mvErrorEnum mvBEntryList::setMode(mvOptionEnum option)
 {
-   // TODO : further implementation
-   integrationMode = option;
-   return MV_NO_ERROR;
+   switch(option)
+   {
+      case MV_WEIGHTED:
+      case MV_XOR:
+      case MV_RANDOMIZED_WEIGHTED:
+      case MV_RANDOM;
+         integrationMode = option;
+         return MV_NO_ERROR;
+      default:
+         // TODO : further implementation
+         integrationMode = MV_WEIGHTED;
+         return MV_INVALID_INTEGRATION_MODE;
+   }
 }
 
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-mvBEntryListNode * mvBEntryList::getEntry(mvIndex index)
+mvBEntryListNodePtr mvBEntryList::getEntry(mvIndex index)
 {
    return entryList.getClassPtr(index);
 }
@@ -419,7 +378,7 @@ mvBEntryListNode * mvBEntryList::getEntry(mvIndex index)
   *
   * (documentation goes here)
   */
-mvBEntryListNode * mvBEntryList::findExistingGroupEntry(mvIndex bIndex,\
+mvBEntryListNodePtr mvBEntryList::findExistingGroupEntry(mvIndex bIndex,\
    mvIndex gIndex)
 {
    return NULL;
@@ -429,44 +388,39 @@ mvBEntryListNode * mvBEntryList::findExistingGroupEntry(mvIndex bIndex,\
   *
   * (documentation goes here)
   */
- mvBEntryList::mvBEntryList(mvFloat dWeight,\
-   mvIndex dBody = MV_NO_CURRENT_INDEX,\
-   mvIndex dWaypoint = MV_NO_CURRENT_INDEX,\
-   mvIndex dPathway = MV_NO_CURRENT_INDEX)
+ mvBEntryList::mvBEntryList()
 {
-   defaultWeight = dWeight;
-   defaultBody = dBody;
-   defaultWaypoint = dWaypoint;
-   defaultPathway = dPathway;
+   defaultBody = MV_NULL;
+   defaultWaypoint = MV_NULL;
+   defaultPathway = MV_NULL;
    /* TODO : created new integration mode enums */
-   integrationMode = MV_WEIGHTED;
+   setMode(MV_WEIGHTED);
 }
 
 mvErrorEnum mvBEntryList::getEntryParameteri_str(mvIndex entryIndex,\
-   const char* param, mvIndex* outIndex)
+   const char* param, mvIndex* outIndex) const
 {
    return entryList.getItemParameteri_str(entryIndex, param, outIndex);
 }
 
 mvErrorEnum mvBEntryList::getEntryParameter_str(mvIndex entryIndex, const char* param,\
-   const char** option)
+   const char** option) const
 {
    return entryList.getItemParameter_str(entryIndex, param, option);
 }
 
 mvErrorEnum mvBEntryList::getEntryParameterf_str(mvIndex entryIndex, const char* param,\
-   mvFloat* num)
+   mvFloat* num) const
 {
    return entryList.getItemParameterf_str(entryIndex, param, num);
 }
 
 mvErrorEnum mvBEntryList::getEntryParameterv_str(mvIndex entryIndex, const char* param,\
-   mvFloat* numArray, mvCount* noOfParameters)
+   mvFloat* numArray, mvCount* noOfParameters) const
 {
    return entryList.getItemParameterv_str(entryIndex, param, numArray,\
       noOfParameters);
 }
-
 
 mvErrorEnum mvBEntryList::setEntryParameteri_str(mvIndex entryIndex,const char* param,\
    mvIndex paramIndex)
@@ -491,52 +445,3 @@ mvErrorEnum mvBEntryList::setEntryParameterv_str(mvIndex entryIndex,const char* 
 {
    return entryList.setItemParameterv_str(entryIndex, param, numArray);
 }
-
-mvErrorEnum mvBEntryList::getCurrentEntryParameteri_str(const char* param,\
-   mvIndex* outIndex)
-{
-   return entryList.getCurrentItemParameteri_str(param, outIndex);
-}
-
-mvErrorEnum mvBEntryList::getCurrentEntryParameter_str(const char* param,\
-   const char** option)
-{
-   return entryList.getCurrentItemParameter_str(param, option);
-}
-
-mvErrorEnum mvBEntryList::getCurrentEntryParameterf_str(const char* param,\
-   mvFloat* num)
-{
-   return entryList.getCurrentItemParameterf_str(param, num);
-}
-
-mvErrorEnum mvBEntryList::getCurrentEntryParameterv_str(const char* param,\
-   mvFloat* numArray, mvCount* noOfParameters)
-{
-   return entryList.getCurrentItemParameterv_str(param, numArray, noOfParameters);
-}
-
-mvErrorEnum mvBEntryList::setCurrentEntryParameteri_str(const char* param,\
-   mvIndex paramIndex)
-{
-   return entryList.setCurrentItemParameteri_str(param, paramIndex);
-}
-
-mvErrorEnum mvBEntryList::setCurrentEntryParameter_str(const char* param,\
-   const char* option)
-{
-   return entryList.setCurrentItemParameter_str(param, option);
-}
-
-mvErrorEnum mvBEntryList::setCurrentEntryParameterf_str(const char* param,\
-   mvFloat num)
-{
-   return entryList.setCurrentItemParameterf_str(param, num);
-}
-
-mvErrorEnum mvBEntryList::setCurrentEntryParameterv_str(const char* param,\
-   mvFloat* numArray)
-{
-   return entryList.setCurrentItemParameterv_str(param, numArray);
-}
-

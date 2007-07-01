@@ -33,24 +33,24 @@ class mvBEntry
       mvIndex groupIndex;
       mvIndex behaviourIndex;
       mvOptionEnum entryType;
-      mvBaseActionPtr behaviourPtr;
+      mvBaseActionPtr actionDataPtr;
    public:
 
       mvBEntry(mvOptionEnum type, mvIndex bIndex, mvIndex gIndex,\
          mvBaseActionPtr dBehaviour);
-      void setBehaviourPtr(mvBaseActionPtr behavPtr);
-      mvBaseActionPtr getBehaviourPtr() const;
-      mvOptionEnum getType() const;
+      void setActionPtr(mvBaseActionPtr behavPtr);
+      mvBaseActionPtr getActionPtr() const;
+      mvOptionEnum getEntryType() const;
       mvIndex getGroup() const;
       mvIndex getBehaviour() const;
-      void setBehaviourIndex(mvIndex index);
-      void setGroupIndex(mvIndex index);
+      void setBehaviour(mvIndex index);
+      void setGroup(mvIndex index);
 
-      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
-      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
-      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num);
+      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
+      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option) const;
+      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num) const;
       mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
-         mvCount* noOfParameters);
+         mvCount* noOfParameters) const;
 
       mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
       mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);

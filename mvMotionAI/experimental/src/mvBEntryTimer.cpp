@@ -38,7 +38,7 @@
   */
 mvErrorEnum mvTimer::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 {
-   if (numArray == NULL)
+   if (numArray == MV_NULL)
    {
       return MV_PARAMETER_ARRAY_IS_NULL;
    }
@@ -106,17 +106,17 @@ mvErrorEnum mvTimer::setParameteri(mvParamEnum paramFlag, mvIndex index)
   * MV_INVALID_TIMER_PARAMETER)
   */
 mvErrorEnum mvTimer::getParameterv(mvParamEnum paramFlag,\
-   mvFloat* numArray, mvCount* noOfParameters)
+   mvFloat* numArray, mvCount* noOfParameters) const
 {
    mvCount noOfValuesReturned = 0;
    mvErrorEnum error;
 
-   if (noOfParameters == NULL)
+   if (noOfParameters == MV_NULL)
    {
       return MV_COUNT_DEST_IS_NULL;
    }
 
-   if (numArray == NULL)
+   if (numArray == MV_NULL)
    {
       *noOfParameters = noOfValuesReturned;
       return MV_PARAMETER_ARRAY_IS_NULL;
@@ -139,9 +139,9 @@ mvErrorEnum mvTimer::getParameterv(mvParamEnum paramFlag,\
   * \return either MV_NO_ERROR (0) or any non zero (ie.
   * MV_INVALID_TIMER_PARAMETER)
   */
-mvErrorEnum mvTimer::getParameterf(mvParamEnum paramFlag, mvFloat* num)
+mvErrorEnum mvTimer::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
 {
-   if (num == NULL)
+   if (num == MV_NULL)
    {
       return MV_FLOAT_DEST_IS_NULL;
    }
@@ -166,9 +166,9 @@ mvErrorEnum mvTimer::getParameterf(mvParamEnum paramFlag, mvFloat* num)
   * MV_INVALID_TIMER_PARAMETER)
   */
 mvErrorEnum mvTimer::getParameter(mvParamEnum paramFlag,\
-   mvOptionEnum* option)
+   mvOptionEnum* option) const
 {
-   if (option == NULL)
+   if (option == MV_NULL)
    {
       return MV_OPTION_ENUM_DEST_IS_NULL;
    }
@@ -192,9 +192,9 @@ mvErrorEnum mvTimer::getParameter(mvParamEnum paramFlag,\
   * \return either MV_NO_ERROR (0) or any non zero (ie.
   * MV_INVALID_TIMER_PARAMETER)
   */
-mvErrorEnum mvTimer::getParameteri(mvParamEnum paramFlag, mvIndex* index)
+mvErrorEnum mvTimer::getParameteri(mvParamEnum paramFlag, mvIndex* index) const
 {
-   if (index == NULL)
+   if (index == MV_NULL)
    {
       return MV_INDEX_DEST_IS_NULL;
    }

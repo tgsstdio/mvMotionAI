@@ -10,12 +10,15 @@ CPPUNIT_TEST_SUITE_REGISTRATION( mvBListCPPUnitTest );
 
 void mvBListCPPUnitTest::setUp()
 {
-
+   testAction = MV_NULL;
 }
 
 void mvBListCPPUnitTest::tearDown()
 {
-
+   if (testAction)
+   {
+      delete testAction;
+   }
 }
 
 void mvBListCPPUnitTest::testEntryUtility()
@@ -281,7 +284,6 @@ void mvBListCPPUnitTest::testEntryUtility()
 
 }
 
-
 void mvBListCPPUnitTest::testEntryConstructor()
 {
    mvOptionEnum expectedType = MV_SEEK;
@@ -292,23 +294,42 @@ void mvBListCPPUnitTest::testEntryConstructor()
    mvBEntry a(expectedType, expectedBehaviourIndex, expectedGroupIndex,\
       expectedBehavPtr);
    // A : TEST CONSTRUCTOR - NULL
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("A1a : Type", expectedType, a.getType());
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A1a : Type", expectedType, a.getEntryType());
    CPPUNIT_ASSERT_EQUAL_MESSAGE("A1b : Group Index", expectedGroupIndex,\
       a.getGroup());
    CPPUNIT_ASSERT_EQUAL_MESSAGE("A1c : Behaviour Index",\
       expectedBehaviourIndex, a.getBehaviour());
    CPPUNIT_ASSERT_EQUAL_MESSAGE("A1d : Null Behaviour Ptr ",\
-      expectedBehavPtr, a.getBehaviourPtr());
+      expectedBehavPtr, a.getActionPtr());
 
-   mvBaseActionPtr bBehavPtr = new mvSeek();
+   mvBaseActionPtr testAction = new mvSeek();
+   CPPUNIT_ASSERT(testAction != NULL);
    mvBEntry b(expectedType, expectedBehaviourIndex, expectedGroupIndex,\
-      bBehavPtr);
-   //
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1a : Type", expectedType, a.getType());
+      testAction);
+   //TEST CONSTRUCTOR B
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1a : Type", expectedType, b.getEntryType());
    CPPUNIT_ASSERT_EQUAL_MESSAGE("B1b : Group Index", expectedGroupIndex,\
-      a.getGroup());
+      b.getGroup());
    CPPUNIT_ASSERT_EQUAL_MESSAGE("B1c : Behaviour Index",\
-      expectedBehaviourIndex, a.getBehaviour());
+      expectedBehaviourIndex, b.getBehaviour());
    CPPUNIT_ASSERT_EQUAL_MESSAGE("B1d : Behaviour Ptr ",\
-      bBehavPtr, a.getBehaviourPtr());
+      testAction, b.getActionPtr());
+
+   // CHANGING SETTINGS
+   a.setActionPtr(testAction);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("C1a : Behaviour Ptr ",\
+      testAction, a.getActionPtr());
+   a.setActionPtr(expectedBehavPtr);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("C1b : Null Action Ptr ",\
+      expectedBehavPtr, a.getActionPtr());
+
+   expectedGroupIndex = 67;
+   expectedBehaviourIndex = 4;
+
+   b.setGroup(expectedGroupIndex);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("C1c : Group Index", expectedGroupIndex,\
+      b.getGroup());
+   b.setBehaviour(expectedBehaviourIndex);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("C1d : Behaviour Index",\
+      expectedBehaviourIndex, b.getBehaviour());
 }
