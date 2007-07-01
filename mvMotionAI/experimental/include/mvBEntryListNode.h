@@ -25,6 +25,7 @@
 #include "mvMotionAI-Types.h"
 #include MV_ENUMS_HEADER_FILE_H_
 #include MV_BENTRY_HEADER_FILE_H_
+#include "mvBEntryUtility.h"
 #include MV_TIMER_HEADER_FILE_H_
 
 class mvBEntryListNode
@@ -33,20 +34,21 @@ class mvBEntryListNode
       mvBEntryPtr bEntryPtr;
       mvBEntryUtility entryFlags;
 
-      mvBEntryListNode(mvFloat bNodeWeight, mvBEntry* behEntry, mvFloat period,\
+      mvBEntryListNode(mvFloat bNodeWeight, mvBEntryPtr behEntry, mvFloat period,\
          mvFloat elaspedTime);
       mvBEntryPtr getEntryPtr();
       mvTimerPtr getTimer();
       mvFloat getWeight() const;
 
-      mvErrorEnum setEntryPtr(mvBEntry* behEntry);
+      void setEntryPtr(mvBEntry* behEntry);
       mvErrorEnum setWeight(mvFloat bNodeWeight);
 
-      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
-      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
-      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num);
+      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
+      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option)\
+         const;
+      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num) const;
       mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
-         mvCount* noOfParameters);
+         mvCount* noOfParameters) const;
 
       mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
       mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);

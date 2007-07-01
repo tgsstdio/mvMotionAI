@@ -22,33 +22,33 @@
 #ifndef MVBENTRYLIST_H_INCLUDED
 #define MVBENTRYLIST_H_INCLUDED
 
-#include "mvMotionAI-Types.h"
+#include <mvMotionAI-Types.h>
 #include MV_ENUMS_HEADER_FILE_H_
-#include "mvBaseAction.h"
-#include "mvList.h"
-#include "mvBEntryListNode.h"
-#include "mvBEntryTreeNode.h"
-#include "mvBEntryTree.h"
+#include MV_BASE_ACTION_HEADER_FILE_H_
+#include "mvPointerList.h"
+#include "mvBEntryUtility.h"
+#include MV_BEHAVIOUR_LIST_NODE_HEADER_FILE_H_
+//#include "mvBEntryTreeNode.h"
+//#include "mvBEntryTree.h"
 /* TODO (White 2#1#): Implement all these functions */
 
 class mvBEntryList
 {
    private:
-      mvItemList<mvBEntryListNode> entryList;
+      mvPointerList<mvBEntryListNodePtr,mvConstBEntryListNodePtr> entryList;
       mvOptionEnum integrationMode;
-      mvFloat defaultWeight;
       mvIndex defaultBody;
       mvIndex defaultWaypoint;
       mvIndex defaultPathway;
-      mvBEntryTree entryNodeTree;
+      mvBEntryUtility defaultNodeTimerFlags;
+      mvBEntryUtility bListTimerFlags;
+     // mvBEntryTree entryNodeTree;
 
    public:
-      mvBEntryList(mvFloat dWeight, mvIndex dBody, mvIndex dWaypoint,\
-         mvIndex dPathway);
-
-      mvBEntryListNode* findExistingGroupEntry(mvIndex bIndex,\
+      mvBEntryList();
+      mvBEntryListNodePtr findExistingGroupEntry(mvIndex bIndex,\
          mvIndex gIndex);
-      mvBEntryListNode* getEntry(mvIndex index);
+      mvBEntryListNodePtr getEntry(mvIndex index);
 
       mvErrorEnum setMode(mvOptionEnum option);
       mvOptionEnum getMode() const;
@@ -70,11 +70,11 @@ class mvBEntryList
       mvIndex getDefaultPathway() const;
       mvFloat getDefaultWeight() const;
 
-      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index);
-      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option);
-      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num);
+      mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
+      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option) const;
+      mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num) const;
       mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
-         mvCount* noOfParameters);
+         mvCount* noOfParameters) const;
 
       mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
       mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
@@ -82,13 +82,13 @@ class mvBEntryList
       mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
 
       mvErrorEnum getEntryParameteri(mvIndex entryIndex, mvParamEnum paramFlag,\
-         mvIndex* outIndex);
+         mvIndex* outIndex) const;
       mvErrorEnum getEntryParameter(mvIndex entryIndex, mvParamEnum paramFlag,\
-         mvOptionEnum* option);
+         mvOptionEnum* option) const;
       mvErrorEnum getEntryParameterf(mvIndex entryIndex, mvParamEnum paramFlag,\
-         mvFloat* num);
+         mvFloat* num) const;
       mvErrorEnum getEntryParameterv(mvIndex entryIndex, mvParamEnum paramFlag,\
-         mvFloat* numArray, mvCount* noOfParameters);
+         mvFloat* numArray, mvCount* noOfParameters) const;
 
       mvErrorEnum setEntryParameteri(mvIndex entryIndex,mvParamEnum paramFlag,\
          mvIndex paramIndex);
@@ -99,33 +99,15 @@ class mvBEntryList
       mvErrorEnum setEntryParameterv(mvIndex entryIndex,mvParamEnum paramFlag,\
          mvFloat* numArray);
 
-      mvErrorEnum getCurrentEntryParameteri(mvParamEnum paramFlag,\
-         mvIndex* outIndex);
-      mvErrorEnum getCurrentEntryParameter(mvParamEnum paramFlag,\
-         mvOptionEnum* option);
-      mvErrorEnum getCurrentEntryParameterf(mvParamEnum paramFlag,\
-         mvFloat* num);
-      mvErrorEnum getCurrentEntryParameterv(mvParamEnum paramFlag,\
-         mvFloat* numArray, mvCount* noOfParameters);
-
-      mvErrorEnum setCurrentEntryParameteri(mvParamEnum paramFlag,\
-         mvIndex paramIndex);
-      mvErrorEnum setCurrentEntryParameter(mvParamEnum paramFlag,\
-         mvOptionEnum option);
-      mvErrorEnum setCurrentEntryParameterf(mvParamEnum paramFlag,\
-         mvFloat num);
-      mvErrorEnum setCurrentEntryParameterv(mvParamEnum paramFlag,\
-         mvFloat* numArray);
-
       // string functions
       mvErrorEnum getEntryParameteri_str(mvIndex entryIndex, const char* param,\
-         mvIndex* outIndex);
+         mvIndex* outIndex) const;
       mvErrorEnum getEntryParameter_str(mvIndex entryIndex, const char* param,\
-         const char** option);
+         const char** option) const;
       mvErrorEnum getEntryParameterf_str(mvIndex entryIndex, const char* param,\
-         mvFloat* num);
+         mvFloat* num) const ;
       mvErrorEnum getEntryParameterv_str(mvIndex entryIndex, const char* param,\
-         mvFloat* numArray, mvCount* noOfParameters);
+         mvFloat* numArray, mvCount* noOfParameters) const;
 
       mvErrorEnum setEntryParameteri_str(mvIndex entryIndex,const char* param,\
          mvIndex paramIndex);
@@ -136,66 +118,14 @@ class mvBEntryList
       mvErrorEnum setEntryParameterv_str(mvIndex entryIndex,const char* param,\
          mvFloat* numArray);
 
-      mvErrorEnum getCurrentEntryParameteri_str(const char* param,\
-         mvIndex* outIndex);
-      mvErrorEnum getCurrentEntryParameter_str(const char* param,\
-         const char** option);
-      mvErrorEnum getCurrentEntryParameterf_str(const char* param,\
-         mvFloat* num);
-      mvErrorEnum getCurrentEntryParameterv_str(const char* param,\
-         mvFloat* numArray, mvCount* noOfParameters);
-
-      mvErrorEnum setCurrentEntryParameteri_str(const char* param,\
-         mvIndex paramIndex);
-      mvErrorEnum setCurrentEntryParameter_str(const char* param,\
-         const char* option);
-      mvErrorEnum setCurrentEntryParameterf_str(const char* param,\
-         mvFloat num);
-      mvErrorEnum setCurrentEntryParameterv_str(const char* param,\
-         mvFloat* numArray);
-
       // TODO : tree functions
+      /*
       mvErrorEnum addNewTreeNode(mvOptionEnum tMode, mvIndex entryIndex);
       mvErrorEnum addNewTreeLevel(mvOptionEnum tMode, mvIndex entryIndex);
       void deleteEntryTree();
       mvBEntryTree* getEntryTree();
       mvBEntryTreeNode* getCurrentNode();
-
-      mvErrorEnum setCurrentTreeEntryParameter(mvParamEnum param,\
-         mvOptionEnum option);
-      mvErrorEnum setCurrentTreeEntryParameteri(mvParamEnum param,\
-         mvIndex paramIndex);
-      mvErrorEnum setCurrentTreeEntryParameterf(mvParamEnum param,\
-         mvFloat num);
-      mvErrorEnum setCurrentTreeEntryParameterv(mvParamEnum param,\
-         mvFloat* numArray);
-
-      mvErrorEnum getCurrentTreeEntryParameter(mvParamEnum param,\
-         mvOptionEnum* option);
-      mvErrorEnum getCurrentTreeEntryParameteri(mvParamEnum param,\
-         mvIndex* outIndex);
-      mvErrorEnum getCurrentTreeEntryParameterf(mvParamEnum param,\
-         mvFloat* num);
-      mvErrorEnum getCurrentTreeEntryParameterv(mvParamEnum param,\
-         mvFloat* numArray, mvCount* noOfParameters);
-
-      mvErrorEnum setCurrentTreeEntryParameter_str(const char* param,\
-         mvOptionEnum option);
-      mvErrorEnum setCurrentTreeEntryParameteri_str(const char* param,\
-         mvIndex paramIndex);
-      mvErrorEnum setCurrentTreeEntryParameterf_str(const char* param,\
-         mvFloat num);
-      mvErrorEnum setCurrentTreeEntryParameterv_str(const char* param,\
-         mvFloat* numArray);
-
-      mvErrorEnum getCurrentTreeEntryParameter_str(const char* param,\
-         const char** option);
-      mvErrorEnum getCurrentTreeEntryParameteri_str(const char* param,\
-         mvIndex* outIndex);
-      mvErrorEnum getCurrentTreeEntryParameterf_str(const char* param,\
-         mvFloat* num);
-      mvErrorEnum getCurrentTreeEntryParameterv_str(const char* param,\
-         mvFloat* numArray, mvCount* noOfParameters);
+      */
 
       ~mvBEntryList();
 

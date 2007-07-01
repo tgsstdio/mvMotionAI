@@ -206,4 +206,9 @@ typedef class mvShape const * const mvConstShapePtr;
 
 #define MV_INDEX_SET_HEADER_FILE_H_ "mvIndexSet.h"
 
+#define MV_BEHAVIOUR_LIST_HEADER_FILE_H_ "mvBEntryList.h"
+#define MV_BEHAVIOUR_LIST_NODE_HEADER_FILE_H_ "mvBEntryListNode.h"
+typedef class mvBEntryListNode* mvBEntryListNodePtr;
+typedef class mvBEntryListNode const * const mvConstBEntryListNodePtr;
+
 #endif

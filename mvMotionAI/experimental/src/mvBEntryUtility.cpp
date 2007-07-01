@@ -21,7 +21,7 @@ mvErrorEnum mvBEntryUtility::setParameterf(mvParamEnum paramFlag, mvFloat num)
          if (error == MV_INVALID_TIMER_PARAMETER)
          {
             //  NOT_FOUND then not 'behaviour' parameter error
-            return MV_INVALID_BEHAVIOUR_PARAMETER;
+            return MV_INVALID_BEHAVIOUR_ENTRY_PARAMETER;
          }
          else
          {
@@ -68,7 +68,7 @@ mvErrorEnum mvBEntryUtility::setParameter(mvParamEnum paramFlag,\
          if (error == MV_INVALID_TIMER_PARAMETER)
          {
             //  NOT_FOUND then not 'behaviour' parameter error
-            return MV_INVALID_BEHAVIOUR_PARAMETER;
+            return MV_INVALID_BEHAVIOUR_ENTRY_PARAMETER;
          }
          else
          {
@@ -88,7 +88,7 @@ mvErrorEnum mvBEntryUtility::setParameteri(mvParamEnum paramFlag, mvIndex index)
    if (error == MV_INVALID_TIMER_PARAMETER)
    {
       //  NOT_FOUND then not 'behaviour' parameter error
-      return MV_INVALID_BEHAVIOUR_PARAMETER;
+      return MV_INVALID_BEHAVIOUR_ENTRY_PARAMETER;
    }
    else
    {
@@ -104,7 +104,7 @@ mvErrorEnum mvBEntryUtility::setParameteri(mvParamEnum paramFlag, mvIndex index)
   * NOTE: also calls getParameterf
   */
 mvErrorEnum mvBEntryUtility::getParameterv(mvParamEnum paramFlag,\
-   mvFloat* numArray, mvCount* noOfParameters)
+   mvFloat* numArray, mvCount* noOfParameters) const
 {
    // TODO: implement later
    /*
@@ -114,16 +114,25 @@ mvErrorEnum mvBEntryUtility::getParameterv(mvParamEnum paramFlag,\
    if (error == MV_INVALID_TIMER_PARAMETER)
    {
       //  NOT_FOUND then not 'behaviour' parameter error
-      return MV_INVALID_BEHAVIOUR_PARAMETER;
+      return MV_INVALID_BEHAVIOUR_ENTRY_PARAMETER;
    }
    else
    {
       return error;
    }
    */
+   if (noOfParameters == MV_NULL)
+   {
+      return MV_COUNT_DEST_IS_NULL;
+   }
 
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (numArray == MV_NULL)
+   {
+      *noOfParameters = 0;
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
 
+   return MV_INVALID_BEHAVIOUR_ENTRY_PARAMETER;
 }
 
 /** @brief retrieves single floating point variable of entry
@@ -132,11 +141,12 @@ mvErrorEnum mvBEntryUtility::getParameterv(mvParamEnum paramFlag,\
   *
   * NOTE : also calls its timer's getParameterf
   */
-mvErrorEnum mvBEntryUtility::getParameterf(mvParamEnum paramFlag, mvFloat* num)
+mvErrorEnum mvBEntryUtility::getParameterf(mvParamEnum paramFlag, mvFloat* num)\
+   const
 {
    mvErrorEnum error;
 
-   if (num == NULL)
+   if (num == MV_NULL)
    {
       return MV_FLOAT_DEST_IS_NULL;
    }
@@ -151,7 +161,7 @@ mvErrorEnum mvBEntryUtility::getParameterf(mvParamEnum paramFlag, mvFloat* num)
          if (error == MV_INVALID_TIMER_PARAMETER)
          {
             //  NOT_FOUND then not 'behaviour' parameter error
-            return MV_INVALID_BEHAVIOUR_PARAMETER;
+            return MV_INVALID_BEHAVIOUR_ENTRY_PARAMETER;
          }
          else
          {
@@ -167,11 +177,11 @@ mvErrorEnum mvBEntryUtility::getParameterf(mvParamEnum paramFlag, mvFloat* num)
   * NOTE : also calls its timer's getParameter
   */
 mvErrorEnum mvBEntryUtility::getParameter(mvParamEnum paramFlag,\
-   mvOptionEnum* option)
+   mvOptionEnum* option) const
 {
    mvErrorEnum error;
 
-   if (option == NULL)
+   if (option == MV_NULL)
    {
       return MV_OPTION_ENUM_DEST_IS_NULL;
    }
@@ -203,7 +213,7 @@ mvErrorEnum mvBEntryUtility::getParameter(mvParamEnum paramFlag,\
          if (error == MV_INVALID_TIMER_PARAMETER)
          {
             //  NOT_FOUND then not 'behaviour' parameter error
-            return MV_INVALID_BEHAVIOUR_PARAMETER;
+            return MV_INVALID_BEHAVIOUR_ENTRY_PARAMETER;
          }
          else
          {
@@ -217,14 +227,14 @@ mvErrorEnum mvBEntryUtility::getParameter(mvParamEnum paramFlag,\
   * \param[out] index Pointer to mvIndex memory location
   * \return if ok MV_NO_ERROR (0) else any non-zero error value
   *
-  * NOTE if index pointer is NULL, then MV_INDEX_DEST_IS_NULL is returned.
+  * NOTE if index pointer is MV_NULL, then MV_INDEX_DEST_IS_NULL is returned.
   */
 mvErrorEnum mvBEntryUtility::getParameteri(mvParamEnum paramFlag,\
-   mvIndex* index)
+   mvIndex* index) const
 {
    mvErrorEnum error;
 
-   if (index == NULL)
+   if (index == MV_NULL)
    {
       return MV_INDEX_DEST_IS_NULL;
    }
@@ -233,7 +243,7 @@ mvErrorEnum mvBEntryUtility::getParameteri(mvParamEnum paramFlag,\
    if (error == MV_INVALID_TIMER_PARAMETER)
    {
       //  NOT_FOUND then not 'behaviour' parameter error
-      return MV_INVALID_BEHAVIOUR_PARAMETER;
+      return MV_INVALID_BEHAVIOUR_ENTRY_PARAMETER;
    }
    else
    {
@@ -280,11 +290,6 @@ mvErrorEnum mvBEntryUtility::setParameterv(mvParamEnum paramFlag,\
  */
 mvErrorEnum mvBEntryUtility::setWeight(mvFloat entryWeight)
 {
-   if (entryWeight < 0.0)
-   {
-      return MV_FLOAT_VALUE_IS_NOT_POSITIVE;
-   }
-
    bWeight = entryWeight;
    return MV_NO_ERROR;
 }

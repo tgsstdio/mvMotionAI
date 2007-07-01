@@ -31,7 +31,8 @@
  */
 #ifndef MV_MOTIONAI_UTILITIES_H_
 #define MV_MOTIONAI_UTILITIES_H_
-#include "mvMotionAI-Types.h"
+
+#include <mvMotionAI-Types.h>
 #include MV_ENUMS_HEADER_FILE_H_
 
 /*

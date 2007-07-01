@@ -25,7 +25,7 @@
 mvSeek::mvSeek() : mvBaseAction(MV_SEEK)
 {
    length = 0;
-   waypointIndex = MV_NO_CURRENT_INDEX;
+   waypointIndex = MV_NULL;
 }
 
 bool mvSeek::bodyOp(mvBehaviourResultPtr resultModule)
@@ -56,8 +56,7 @@ bool mvSeek::bodyOp(mvBehaviourResultPtr resultModule)
       restult = 0.5  times [i.e averaged with] (new velocity + old velocity)
    */
    mvVec3 pos, direction, velocity;
-   const mvBodyPtr bodyPtr = NULL;
-   mvWaypointPtr point = NULL;
+
 
    // 1. check if input/output class pointer is valid
    if (resultModule == NULL)
@@ -67,14 +66,14 @@ bool mvSeek::bodyOp(mvBehaviourResultPtr resultModule)
    }
 
    // 2. check body pointer is valid
-   bodyPtr = resultModule->getCurrentBodyPtr();
+   mvConstBodyPtr bodyPtr = resultModule->getCurrentBodyPtr();
    if (bodyPtr == NULL)
    {
       return false;
    }
 
    // 3. fetch waypoint module from list
-   point = resultModule->fetchWaypointPtr(waypointIndex);
+   mvConstWaypointPtr point = resultModule->fetchWaypointPtr(waypointIndex);
    if (point == NULL)
    {
       return false;
@@ -83,14 +82,14 @@ bool mvSeek::bodyOp(mvBehaviourResultPtr resultModule)
    // pos = body->position;
    pos = bodyPtr->getPosition();
    // direction = target - pos;
-   direction.set(point->getX(), point->getY(), point->getZ());
-   direction.minusVec3(pos);
+   direction = point->getPosition();
+   direction -= pos;
    /*
     * final velocity == velocity
     * final_velocity = body->maxSpeed * direction.normalize();
     * final_velocity -= body->finalVelocity;
    */
-   velocity.setAll(direction.normalize());
+   velocity = direction.normalize();
    velocity *= bodyPtr->getMaxSpeed();
    velocity *= 0.5;
    /*

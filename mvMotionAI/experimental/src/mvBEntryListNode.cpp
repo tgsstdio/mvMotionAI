@@ -21,98 +21,227 @@
  */
 #include "mvBEntryListNode.h"
 
-mvBEntryListNode::mvBEntryListNode(mvFloat bNodeWeight = 0,\
-   mvBEntry* behEntry = NULL,\
-   mvFloat period = 1.0,
-   mvFloat elaspedTime = 0)
+mvBEntryListNode::mvBEntryListNode(mvFloat bNodeWeight,\
+   mvBEntry* behEntry, mvFloat period, mvFloat elaspedTime)
 {
-   timer.setPeriod(period);
-   timer.setElapsedTime(elaspedTime);
+   entryFlags.getTimerPtr()->setPeriod(period);
+   entryFlags.getTimerPtr()->setElapsedTime(elaspedTime);
    bEntryPtr = behEntry;
-   weight = bNodeWeight;
+   entryFlags.setWeight(bNodeWeight);
 }
 
-mvBEntry* mvBEntryListNode::getEntryPtr()
+mvBEntryPtr mvBEntryListNode::getEntryPtr()
 {
    return bEntryPtr;
 }
 
-mvBEntryTimer* mvBEntryListNode::getTimer()
+mvTimerPtr mvBEntryListNode::getTimer()
 {
-   return &timer;
+   return entryFlags.getTimerPtr();
 }
 
 mvFloat mvBEntryListNode::getWeight() const
 {
-   return weight;
+   return entryFlags.getWeight();
 }
 
-mvErrorEnum mvBEntryListNode::setEntryPtr(mvBEntry* behEntry)
+void mvBEntryListNode::setEntryPtr(mvBEntryPtr behEntry)
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   bEntryPtr = behEntry;
 }
 
 mvErrorEnum mvBEntryListNode::setWeight(mvFloat bNodeWeight)
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   return entryFlags.setWeight(bNodeWeight);
 }
 
 mvErrorEnum mvBEntryListNode::getParameteri(mvParamEnum paramFlag,\
-   mvIndex* index)
+   mvIndex* index) const
 {
-      // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (index == MV_NULL)
+   {
+      return MV_INDEX_DEST_IS_NULL;
+   }
+
+   if (bEntryPtr == NULL)
+   {
+      return MV_INVALID_BEHAVIOUR_ENTRY_INITIALIZATION;
+   }
+
+   mvErrorEnum error = entryFlags.getParameteri(paramFlag, index);
+
+   // utility then entry
+   if (error != MV_INVALID_BEHAVIOUR_ENTRY_PARAMETER)
+   {
+      return error;
+   }
+
+   return bEntryPtr->getParameteri(paramFlag, index);
 }
 
 mvErrorEnum mvBEntryListNode::getParameter(mvParamEnum paramFlag,\
-   mvOptionEnum* option)
+   mvOptionEnum* option) const
 {
-      // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (option == MV_NULL)
+   {
+      return MV_OPTION_ENUM_DEST_IS_NULL;
+   }
+
+   if (bEntryPtr == NULL)
+   {
+      return MV_INVALID_BEHAVIOUR_ENTRY_INITIALIZATION;
+   }
+
+   mvErrorEnum error = entryFlags.getParameter(paramFlag, option);
+
+   // utility then entry
+   if (error != MV_INVALID_BEHAVIOUR_ENTRY_PARAMETER)
+   {
+      return error;
+   }
+
+   return bEntryPtr->getParameter(paramFlag, option);
 }
 
 mvErrorEnum mvBEntryListNode::getParameterf(mvParamEnum paramFlag,\
-   mvFloat* num)
+   mvFloat* num) const
 {
-      // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (num == MV_NULL)
+   {
+      return MV_FLOAT_DEST_IS_NULL;
+   }
+
+   if (bEntryPtr == NULL)
+   {
+      return MV_INVALID_BEHAVIOUR_ENTRY_INITIALIZATION;
+   }
+
+   mvErrorEnum error = entryFlags.getParameterf(paramFlag, num);
+
+   // utility then entry
+   if (error != MV_INVALID_BEHAVIOUR_ENTRY_PARAMETER)
+   {
+      return error;
+   }
+
+   return bEntryPtr->getParameterf(paramFlag, num);
 }
 
 mvErrorEnum mvBEntryListNode::getParameterv(mvParamEnum paramFlag,\
-   mvFloat* numArray, mvCount* noOfParameters)
+   mvFloat* numArray, mvCount* noOfParameters) const
 {
-      // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (noOfParameters == MV_NULL)
+   {
+      return MV_COUNT_DEST_IS_NULL;
+   }
+
+   if (numArray == MV_NULL)
+   {
+      *noOfParameters = 0;
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
+   if (bEntryPtr == NULL)
+   {
+      *noOfParameters = 0;
+      return MV_INVALID_BEHAVIOUR_ENTRY_INITIALIZATION;
+   }
+
+   mvErrorEnum error = entryFlags.getParameterv(paramFlag, numArray,\
+      noOfParameters);
+
+   // utility then entry
+   if (error != MV_INVALID_BEHAVIOUR_ENTRY_PARAMETER)
+   {
+      *noOfParameters = 0;
+      return error;
+   }
+
+   return bEntryPtr->getParameterv(paramFlag, numArray,\
+      noOfParameters);
+
+   // TODO : float redirection
 }
 
 mvErrorEnum mvBEntryListNode::setParameteri(mvParamEnum paramFlag,\
    mvIndex index)
 {
-      // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (bEntryPtr == NULL)
+   {
+      return MV_INVALID_BEHAVIOUR_ENTRY_INITIALIZATION;
+   }
+
+   mvErrorEnum error = entryFlags.setParameteri(paramFlag, index);
+
+   // utility then entry
+   if (error != MV_INVALID_BEHAVIOUR_ENTRY_PARAMETER)
+   {
+      return error;
+   }
+
+   return bEntryPtr->setParameteri(paramFlag, index);
 }
 
 mvErrorEnum mvBEntryListNode::setParameter(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
-      // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (bEntryPtr == NULL)
+   {
+      return MV_INVALID_BEHAVIOUR_ENTRY_INITIALIZATION;
+   }
+
+   mvErrorEnum error = entryFlags.setParameter(paramFlag, option);
+
+   // utility then entry
+   if (error != MV_INVALID_BEHAVIOUR_ENTRY_PARAMETER)
+   {
+      return error;
+   }
+
+   return bEntryPtr->setParameter(paramFlag, option);
 }
 
 mvErrorEnum mvBEntryListNode::setParameterf(mvParamEnum paramFlag,\
    mvFloat num)
 {
-      // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (bEntryPtr == NULL)
+   {
+      return MV_INVALID_BEHAVIOUR_ENTRY_INITIALIZATION;
+   }
+
+   mvErrorEnum error = entryFlags.setParameterf(paramFlag, num);
+
+   // utility then entry
+   if (error != MV_INVALID_BEHAVIOUR_ENTRY_PARAMETER)
+   {
+      return error;
+   }
+
+   return bEntryPtr->setParameterf(paramFlag, num);
 }
 
 mvErrorEnum mvBEntryListNode::setParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray)
 {
-      // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (numArray == MV_NULL)
+   {
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
+   if (bEntryPtr == NULL)
+   {
+      return MV_INVALID_BEHAVIOUR_ENTRY_INITIALIZATION;
+   }
+
+   mvErrorEnum error = entryFlags.setParameterv(paramFlag, numArray);
+
+   // utility then entry
+   if (error != MV_INVALID_BEHAVIOUR_ENTRY_PARAMETER)
+   {
+      return error;
+   }
+
+   return bEntryPtr->setParameterv(paramFlag, numArray);
 }
 
 mvBEntryListNode::~mvBEntryListNode()

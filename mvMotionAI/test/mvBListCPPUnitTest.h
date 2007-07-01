@@ -13,6 +13,7 @@ class mvBListCPPUnitTest : public CppUnit::TestFixture
 
 
    public:
+      mvBaseActionPtr testAction;
 
       void setUp();
       // TODO : test set/get parameterv

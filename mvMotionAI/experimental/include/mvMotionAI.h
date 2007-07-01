@@ -71,7 +71,6 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorlds(\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorldsByIndex(\
    void(someFunction)(mvIndex, void* extraPtr), void* extraPtr);
 
-// TODO :
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvInitDefaultActions();
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvInitDefaultForces();
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvInitDefaultBodies();
