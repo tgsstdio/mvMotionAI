@@ -29,14 +29,6 @@
  */
 #endif
 
-#include "mvPointerList.h"
-#include "mvCapsuleList.h"
-
-#include "mvBodyCapsule.h"
-#include "mvWaypointCapsule.h"
-#include "mvForceCapsule.h"
-#include "mvGroupCapsule.h"
-
 #include MV_BASE_ACTION_HEADER_FILE_H_
 #include MV_FORCE_HEADER_FILE_H_
 #include MV_BODY_HEADER_FILE_H_
@@ -48,11 +40,20 @@
 #include MV_BEHAVIOUR_HEADER_FILE_H_
 #include MV_ACTION_LOADER_LIST_HEADER_FILE_H_
 
+#include "mvPointerList.h"
+#include "mvCapsuleList.h"
+
+#include "mvBodyCapsule.h"
+#include "mvWaypointCapsule.h"
+#include "mvForceCapsule.h"
+#include "mvGroupCapsule.h"
+#include MV_BEHAVIOUR_LIST_HEADER_FILE_H_
 //TODO : new group behaviour functions
 
 class mvWorld_V2
 {
    private:
+      mvPointerList<mvEntryListPtr, mvConstEntryListPtr> entryLists;
       char* worldID;
       mvCapsuleList<mvForcePtr, mvConstForcePtr,\
          mvForceCapsulePtr, mvConstForceCapsulePtr> forces;
@@ -639,6 +640,82 @@ class mvWorld_V2
          mvIndex nodeIndex, const char* param, mvFloat* array,\
          mvCount* noOfParameters) const;
 
+      // TODO : entry list nodes functions
+      mvErrorEnum setEntryListNodeParameteri(mvIndex listIndex,\
+         mvIndex nodeIndex, mvParamEnum paramFlag, mvIndex index);
+      mvErrorEnum setEntryListNodeParameter(mvIndex listIndex,\
+         mvIndex nodeIndex, mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setEntryListNodeParameterf(mvIndex listIndex,\
+         mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum setEntryListNodeParameterv(mvIndex listIndex,\
+         mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* array);
+
+      mvErrorEnum setEntryListNodeParameteri_str(mvIndex listIndex,\
+         mvIndex nodeIndex, const char* param, mvIndex index);
+      mvErrorEnum setEntryListNodeParameter_str(mvIndex listIndex,\
+         mvIndex nodeIndex, const char* param, const char* option);
+      mvErrorEnum setEntryListNodeParameterf_str(mvIndex listIndex,\
+         mvIndex nodeIndex, const char* param, mvFloat num);
+      mvErrorEnum setEntryListNodeParameterv_str(mvIndex listIndex,\
+         mvIndex nodeIndex, const char* param, mvFloat* array);
+
+      mvErrorEnum getEntryListNodeParameteri(mvIndex listIndex,\
+         mvIndex nodeIndex, mvParamEnum paramFlag, mvIndex* outIndex) const;
+      mvErrorEnum getEntryListNodeParameter(mvIndex listIndex,\
+         mvIndex nodeIndex, mvParamEnum paramFlag, mvOptionEnum* option) const;
+      mvErrorEnum getEntryListNodeParameterf(mvIndex listIndex,\
+         mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* num) const;
+      mvErrorEnum getEntryListNodeParameterv(mvIndex listIndex,\
+         mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* array,\
+         mvCount* noOfParameters) const;
+
+      mvErrorEnum getEntryNodeParameteri_str(mvIndex listIndex,\
+         mvIndex nodeIndex, const char* param, mvIndex* outIndex) const;
+      mvErrorEnum getEntryListNodeParameter_str(mvIndex listIndex,\
+         mvIndex nodeIndex, const char* param, const char** option) const;
+      mvErrorEnum getEntryListNodeParameterf_str(mvIndex listIndex,\
+         mvIndex nodeIndex, const char* param, mvFloat* num) const;
+      mvErrorEnum getEntryListNodeParameterv_str(mvIndex listIndex,\
+         mvIndex nodeIndex, const char* param, mvFloat* array,\
+         mvCount* noOfParameters) const;
+
+      // TODO : entry list functions
+      mvErrorEnum setEntryListParameteri(mvIndex listIndex,\
+         mvParamEnum paramFlag, mvIndex index);
+      mvErrorEnum setEntryListParameter(mvIndex listIndex,\
+         mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setEntryListParameterf(mvIndex listIndex,\
+         mvParamEnum paramFlag, mvFloat num);
+      mvErrorEnum setEntryListParameterv(mvIndex listIndex,\
+         mvParamEnum paramFlag, mvFloat* array);
+
+      mvErrorEnum setEntryListParameteri_str(mvIndex listIndex,\
+         const char* param, mvIndex index);
+      mvErrorEnum setEntryListParameter_str(mvIndex listIndex,\
+         const char* param, const char* option);
+      mvErrorEnum setEntryListParameterf_str(mvIndex listIndex,\
+         const char* param, mvFloat num);
+      mvErrorEnum setEntryListParameterv_str(mvIndex listIndex,\
+         const char* param, mvFloat* array);
+
+      mvErrorEnum getEntryListParameteri(mvIndex listIndex,\
+         mvParamEnum paramFlag, mvIndex* outIndex) const;
+      mvErrorEnum getEntryListParameter(mvIndex listIndex,\
+         mvParamEnum paramFlag, mvOptionEnum* option) const;
+      mvErrorEnum getEntryListParameterf(mvIndex listIndex,\
+         mvParamEnum paramFlag, mvFloat* num) const;
+      mvErrorEnum getEntryListParameterv(mvIndex listIndex,\
+         mvParamEnum paramFlag, mvFloat* array,\
+         mvCount* noOfParameters) const;
+
+      mvErrorEnum getEntryNodeParameteri_str(mvIndex listIndex,\
+         const char* param, mvIndex* outIndex) const;
+      mvErrorEnum getEntryListParameter_str(mvIndex listIndex,\
+         const char* param, const char** option) const;
+      mvErrorEnum getEntryListParameterf_str(mvIndex listIndex,\
+         const char* param, mvFloat* num) const;
+      mvErrorEnum getEntryListParameterv_str(mvIndex listIndex,\
+         const char* param, mvFloat* array, mvCount* noOfParameters) const;
 };
 
 

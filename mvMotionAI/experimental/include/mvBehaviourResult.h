@@ -32,9 +32,8 @@
 #include "mvMotionAI-Types.h"
 #include MV_VEC_3_HEADER_FILE_H_
 #include MV_ENUMS_HEADER_FILE_H_
-#include MV_WORLD_HEADER_FILE_H_
 #include MV_BODY_HEADER_FILE_H_
-
+#include MV_WORLD_HEADER_FILE_H_
 #define MV_QUATERNION_LENGTH 4
 
 //typedef void* mvWorldPtr;
@@ -44,7 +43,7 @@ typedef class mvBehaviourResult
    private:
       mvConstWorldPtr currentWorld;
       mvConstBodyPtr currentBody;
-//      mvBaseAction* currentGroupBehNode;
+      //mvBaseActionPtr currentGroupBehNode;
       mvIndex behaviourIndex;
       mvIndex groupIndex;
 
@@ -76,6 +75,7 @@ typedef class mvBehaviourResult
 
    public:
       mvBehaviourResult(mvConstWorldPtr worldPtr, mvConstBodyPtr bodyPtr);
+      //mvBehaviourResult(mvConstBodyPtr bodyPtr);
 //      void setGroupBehaviourNode(mvBaseAction* groupBehPtr);
 
       void setBehaviourIndex(mvIndex bIndex);
