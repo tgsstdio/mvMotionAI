@@ -20,7 +20,6 @@
  * DEALINGS IN THE SOFTWARE.
  */
 #include "mvBEntryList.h"
-/* TODO (White 2#1#): Implement all functions below */
 
 /** @brief (one liner)
   *
@@ -139,7 +138,7 @@ mvErrorEnum mvBEntryList::setParameter(mvParamEnum paramFlag,\
       case MV_MODE:
          return setMode(option);
       default:
-         return defaultNodeTimerFlags.setParameter(paramFlag, index);
+         return defaultNodeTimerFlags.setParameter(paramFlag, option);
    }
 }
 
@@ -183,9 +182,8 @@ mvErrorEnum mvBEntryList::getParameterv(mvParamEnum paramFlag,\
       return MV_PARAMETER_ARRAY_IS_NULL;
    }
 
-   // TODO : implement this function
-   *noOfParameters = 0;
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   return defaultNodeTimerFlags.getParameterv(paramFlag,\
+      numArray, noOfParameters);
 }
 
 /** @brief (one liner)
@@ -195,8 +193,12 @@ mvErrorEnum mvBEntryList::getParameterv(mvParamEnum paramFlag,\
 mvErrorEnum mvBEntryList::getParameterf(mvParamEnum paramFlag,\
    mvFloat* num) const
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (num == NULL)
+   {
+      return MV_FLOAT_DEST_IS_NULL;
+   }
+
+   return defaultNodeTimerFlags.getParameterf(paramFlag, num);
 }
 
 /** @brief (one liner)
@@ -206,8 +208,19 @@ mvErrorEnum mvBEntryList::getParameterf(mvParamEnum paramFlag,\
 mvErrorEnum mvBEntryList::getParameter(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (option == NULL)
+   {
+      return MV_OPTION_ENUM_DEST_IS_NULL;
+   }
+
+   switch(paramFlag)
+   {
+      case MV_MODE:
+         *option = getMode();
+         return MV_NO_ERROR;
+      default:
+         return defaultNodeTimerFlags.getParameter(paramFlag, option);
+   }
 }
 
 /** @brief (one liner)
@@ -217,8 +230,25 @@ mvErrorEnum mvBEntryList::getParameter(mvParamEnum paramFlag,\
 mvErrorEnum mvBEntryList::getParameteri(mvParamEnum paramFlag,\
    mvIndex* index) const
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   if (index == NULL)
+   {
+      return MV_INDEX_DEST_IS_NULL;
+   }
+
+   switch(paramFlag)
+   {
+      case MV_PATHWAY:
+         *index = getDefaultPathway();
+         return MV_NO_ERROR;
+      case MV_BODY:
+         *index = getDefaultBody();
+         return MV_NO_ERROR;
+      case MV_WAYPOINT:
+         *index = getDefaultWaypoint();
+         return MV_NO_ERROR;
+      default:
+         return defaultNodeTimerFlags.getParameteri(paramFlag, index);
+   }
 }
 
 /** @brief (one liner)
@@ -227,7 +257,7 @@ mvErrorEnum mvBEntryList::getParameteri(mvParamEnum paramFlag,\
   */
 mvFloat mvBEntryList::getDefaultWeight() const
 {
-   return defaultWeight;
+   return defaultNodeTimerFlags.getWeight();
 }
 
 /** @brief (one liner)
@@ -261,42 +291,73 @@ mvIndex mvBEntryList::getDefaultBody() const
   *
   * (documentation goes here)
   */
-mvErrorEnum mvBEntryList::addNewEntry(mvOptionEnum bType,\
-   mvIndex behaviourIndex, mvIndex groupIndex, mvBaseAction* dBehaviour)
+mvIndex mvBEntryList::addNewEntry(mvOptionEnum bType,\
+   mvIndex behaviourIndex, mvIndex groupIndex, mvBaseActionPtr dBehaviour,
+   mvFloat bNodeWeight, mvFloat period, mvFloat elaspedTime)
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   // TODO : unit test this code
+   mvBEntryListNodePtr tempNode = MV_NULL;
+   mvBaseActionPtr actionPtr = MV_NULL;
+
+   if (bType == MV_EXISTING_BEHAVIOUR || bType == MV_EXISTING_GROUP_BEHAVIOUR)
+   {
+      actionPtr = MV_NULL;
+   }
+   else if (dBehaviour == MV_NULL || bType != dBehaviour->getType())
+   {
+      return MV_NULL;
+   }
+   else
+   {
+      actionPtr = dBehaviour;
+   }
+
+   tempNode = new (std::nothrow) mvBEntryListNode(bType, behaviourIndex,
+      groupIndex, actionPtr, bNodeWeight, period, elaspedTime);
+
+   if (tempNode == MV_NULL)
+      return MV_NULL;
+
+   return entryList.addItem(tempNode);
 }
 
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvBEntryList::addNewBehaviourEntry(mvOptionEnum behaviourType)
+mvIndex mvBEntryList::addNewBehaviourEntry(mvOptionEnum behaviourType,
+   mvBaseActionPtr behaviourData)
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   return addNewEntry(behaviourType,MV_NULL,MV_NULL, behaviourData,\
+      defaultNodeTimerFlags.getWeight(),\
+      defaultNodeTimerFlags.getTimerPtr()->getPeriod(),\
+      defaultNodeTimerFlags.getTimerPtr()->getElapsedTime());
 }
 
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvBEntryList::addExistingBehaviourEntry(mvIndex behaviourIndex)
+mvIndex mvBEntryList::addExistingBehaviourEntry(mvIndex behaviourIndex)
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   return addNewEntry(MV_EXISTING_BEHAVIOUR,behaviourIndex,MV_NULL, MV_NULL,\
+      defaultNodeTimerFlags.getWeight(),\
+      defaultNodeTimerFlags.getTimerPtr()->getPeriod(),\
+      defaultNodeTimerFlags.getTimerPtr()->getElapsedTime());
 }
 
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvBEntryList::addExistingGroupBehaviourEntry(\
-   mvIndex behaviourIndex, mvIndex groupIndex, mvBaseAction* dBehaviour)
+mvIndex mvBEntryList::addExistingGroupBehaviourEntry(\
+   mvIndex behaviourIndex, mvIndex groupIndex)
 {
-   // TODO : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   return addNewEntry(MV_EXISTING_GROUP_BEHAVIOUR,\
+      behaviourIndex,groupIndex, MV_NULL,\
+      defaultNodeTimerFlags.getWeight(),\
+      defaultNodeTimerFlags.getTimerPtr()->getPeriod(),\
+      defaultNodeTimerFlags.getTimerPtr()->getElapsedTime());
 }
 
 /** @brief (one liner)
@@ -355,7 +416,7 @@ mvErrorEnum mvBEntryList::setMode(mvOptionEnum option)
       case MV_WEIGHTED:
       case MV_XOR:
       case MV_RANDOMIZED_WEIGHTED:
-      case MV_RANDOM;
+      case MV_RANDOM:
          integrationMode = option;
          return MV_NO_ERROR;
       default:
@@ -393,7 +454,6 @@ mvBEntryListNodePtr mvBEntryList::findExistingGroupEntry(mvIndex bIndex,\
    defaultBody = MV_NULL;
    defaultWaypoint = MV_NULL;
    defaultPathway = MV_NULL;
-   /* TODO : created new integration mode enums */
    setMode(MV_WEIGHTED);
 }
 
@@ -444,4 +504,19 @@ mvErrorEnum mvBEntryList::setEntryParameterv_str(mvIndex entryIndex,const char* 
    mvFloat* numArray)
 {
    return entryList.setItemParameterv_str(entryIndex, param, numArray);
+}
+
+void mvBEntryList::clearAll()
+{
+   entryList.deleteAllItems();
+}
+
+mvErrorEnum mvBEntryList::removeEntry(mvIndex entryIndex)
+{
+   return entryList.deleteItem(entryIndex);
+}
+
+mvIndex mvBEntryList::getCurrentEntry() const
+{
+   return entryList.getCurrentIndex();
 }

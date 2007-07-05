@@ -31,16 +31,16 @@
 class mvBEntryListNode
 {
    public:
-      mvBEntryPtr bEntryPtr;
+      mvBEntryPtr behaviourEntry;
       mvBEntryUtility entryFlags;
 
-      mvBEntryListNode(mvFloat bNodeWeight, mvBEntryPtr behEntry, mvFloat period,\
-         mvFloat elaspedTime);
+      mvBEntryListNode(mvOptionEnum type, mvIndex behaviourIndex,\
+         mvIndex groupIndex, mvBaseActionPtr actionPtr, mvFloat bNodeWeight,\
+         mvFloat period, mvFloat elaspedTime);
       mvBEntryPtr getEntryPtr();
       mvTimerPtr getTimer();
       mvFloat getWeight() const;
 
-      void setEntryPtr(mvBEntry* behEntry);
       mvErrorEnum setWeight(mvFloat bNodeWeight);
 
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;

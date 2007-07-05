@@ -21,18 +21,21 @@
  */
 #include "mvBEntryListNode.h"
 
-mvBEntryListNode::mvBEntryListNode(mvFloat bNodeWeight,\
-   mvBEntry* behEntry, mvFloat period, mvFloat elaspedTime)
-{
+mvBEntryListNode::mvBEntryListNode(mvOptionEnum type, mvIndex behaviourIndex,\
+   mvIndex groupIndex, mvBaseActionPtr actionPtr, mvFloat bNodeWeight,\
+   mvFloat period, mvFloat elaspedTime)
+ {
+   behaviourEntry = new (std::nothrow) mvBEntry(type, behaviourIndex,\
+      groupIndex, actionPtr);
+
    entryFlags.getTimerPtr()->setPeriod(period);
    entryFlags.getTimerPtr()->setElapsedTime(elaspedTime);
-   bEntryPtr = behEntry;
    entryFlags.setWeight(bNodeWeight);
 }
 
 mvBEntryPtr mvBEntryListNode::getEntryPtr()
 {
-   return bEntryPtr;
+   return behaviourEntry;
 }
 
 mvTimerPtr mvBEntryListNode::getTimer()
@@ -43,11 +46,6 @@ mvTimerPtr mvBEntryListNode::getTimer()
 mvFloat mvBEntryListNode::getWeight() const
 {
    return entryFlags.getWeight();
-}
-
-void mvBEntryListNode::setEntryPtr(mvBEntryPtr behEntry)
-{
-   bEntryPtr = behEntry;
 }
 
 mvErrorEnum mvBEntryListNode::setWeight(mvFloat bNodeWeight)
@@ -63,7 +61,7 @@ mvErrorEnum mvBEntryListNode::getParameteri(mvParamEnum paramFlag,\
       return MV_INDEX_DEST_IS_NULL;
    }
 
-   if (bEntryPtr == NULL)
+   if (behaviourEntry == MV_NULL)
    {
       return MV_INVALID_BEHAVIOUR_ENTRY_INITIALIZATION;
    }
@@ -76,7 +74,7 @@ mvErrorEnum mvBEntryListNode::getParameteri(mvParamEnum paramFlag,\
       return error;
    }
 
-   return bEntryPtr->getParameteri(paramFlag, index);
+   return behaviourEntry->getParameteri(paramFlag, index);
 }
 
 mvErrorEnum mvBEntryListNode::getParameter(mvParamEnum paramFlag,\
@@ -87,7 +85,7 @@ mvErrorEnum mvBEntryListNode::getParameter(mvParamEnum paramFlag,\
       return MV_OPTION_ENUM_DEST_IS_NULL;
    }
 
-   if (bEntryPtr == NULL)
+   if (behaviourEntry == MV_NULL)
    {
       return MV_INVALID_BEHAVIOUR_ENTRY_INITIALIZATION;
    }
@@ -100,7 +98,7 @@ mvErrorEnum mvBEntryListNode::getParameter(mvParamEnum paramFlag,\
       return error;
    }
 
-   return bEntryPtr->getParameter(paramFlag, option);
+   return behaviourEntry->getParameter(paramFlag, option);
 }
 
 mvErrorEnum mvBEntryListNode::getParameterf(mvParamEnum paramFlag,\
@@ -111,7 +109,7 @@ mvErrorEnum mvBEntryListNode::getParameterf(mvParamEnum paramFlag,\
       return MV_FLOAT_DEST_IS_NULL;
    }
 
-   if (bEntryPtr == NULL)
+   if (behaviourEntry == MV_NULL)
    {
       return MV_INVALID_BEHAVIOUR_ENTRY_INITIALIZATION;
    }
@@ -124,7 +122,7 @@ mvErrorEnum mvBEntryListNode::getParameterf(mvParamEnum paramFlag,\
       return error;
    }
 
-   return bEntryPtr->getParameterf(paramFlag, num);
+   return behaviourEntry->getParameterf(paramFlag, num);
 }
 
 mvErrorEnum mvBEntryListNode::getParameterv(mvParamEnum paramFlag,\
@@ -141,7 +139,7 @@ mvErrorEnum mvBEntryListNode::getParameterv(mvParamEnum paramFlag,\
       return MV_PARAMETER_ARRAY_IS_NULL;
    }
 
-   if (bEntryPtr == NULL)
+   if (behaviourEntry == MV_NULL)
    {
       *noOfParameters = 0;
       return MV_INVALID_BEHAVIOUR_ENTRY_INITIALIZATION;
@@ -157,7 +155,7 @@ mvErrorEnum mvBEntryListNode::getParameterv(mvParamEnum paramFlag,\
       return error;
    }
 
-   return bEntryPtr->getParameterv(paramFlag, numArray,\
+   return behaviourEntry->getParameterv(paramFlag, numArray,\
       noOfParameters);
 
    // TODO : float redirection
@@ -166,7 +164,7 @@ mvErrorEnum mvBEntryListNode::getParameterv(mvParamEnum paramFlag,\
 mvErrorEnum mvBEntryListNode::setParameteri(mvParamEnum paramFlag,\
    mvIndex index)
 {
-   if (bEntryPtr == NULL)
+   if (behaviourEntry == MV_NULL)
    {
       return MV_INVALID_BEHAVIOUR_ENTRY_INITIALIZATION;
    }
@@ -179,13 +177,13 @@ mvErrorEnum mvBEntryListNode::setParameteri(mvParamEnum paramFlag,\
       return error;
    }
 
-   return bEntryPtr->setParameteri(paramFlag, index);
+   return behaviourEntry->setParameteri(paramFlag, index);
 }
 
 mvErrorEnum mvBEntryListNode::setParameter(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
-   if (bEntryPtr == NULL)
+   if (behaviourEntry == MV_NULL)
    {
       return MV_INVALID_BEHAVIOUR_ENTRY_INITIALIZATION;
    }
@@ -198,13 +196,13 @@ mvErrorEnum mvBEntryListNode::setParameter(mvParamEnum paramFlag,\
       return error;
    }
 
-   return bEntryPtr->setParameter(paramFlag, option);
+   return behaviourEntry->setParameter(paramFlag, option);
 }
 
 mvErrorEnum mvBEntryListNode::setParameterf(mvParamEnum paramFlag,\
    mvFloat num)
 {
-   if (bEntryPtr == NULL)
+   if (behaviourEntry == MV_NULL)
    {
       return MV_INVALID_BEHAVIOUR_ENTRY_INITIALIZATION;
    }
@@ -217,7 +215,7 @@ mvErrorEnum mvBEntryListNode::setParameterf(mvParamEnum paramFlag,\
       return error;
    }
 
-   return bEntryPtr->setParameterf(paramFlag, num);
+   return behaviourEntry->setParameterf(paramFlag, num);
 }
 
 mvErrorEnum mvBEntryListNode::setParameterv(mvParamEnum paramFlag,\
@@ -228,7 +226,7 @@ mvErrorEnum mvBEntryListNode::setParameterv(mvParamEnum paramFlag,\
       return MV_PARAMETER_ARRAY_IS_NULL;
    }
 
-   if (bEntryPtr == NULL)
+   if (behaviourEntry == MV_NULL)
    {
       return MV_INVALID_BEHAVIOUR_ENTRY_INITIALIZATION;
    }
@@ -241,11 +239,15 @@ mvErrorEnum mvBEntryListNode::setParameterv(mvParamEnum paramFlag,\
       return error;
    }
 
-   return bEntryPtr->setParameterv(paramFlag, numArray);
+   return behaviourEntry->setParameterv(paramFlag, numArray);
 }
 
 mvBEntryListNode::~mvBEntryListNode()
 {
-
+   if (behaviourEntry)
+   {
+      delete behaviourEntry;
+      behaviourEntry = MV_NULL;
+   }
 }
 

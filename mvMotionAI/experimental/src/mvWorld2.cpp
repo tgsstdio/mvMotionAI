@@ -1797,8 +1797,21 @@ mvIndex mvWorld_V2::createBody(mvOptionEnum bType, mvOptionEnum bShape,\
    {
       return MV_NULL;
    }
+   // TODO : add corresponding entry list
+   mvEntryListPtr tempList = new (std::nothrow) mvEntryList();
+   if (tempList == MV_NULL)
+   {
+      return MV_NULL;
+   }
 
-   return bodies.addItem(bCapsulePtr);
+   if (entryLists.addItem(tempList) != MV_NULL)
+   {
+      return bodies.addItem(bCapsulePtr);
+   }
+   else
+   {
+      return MV_NULL;
+   }
 }
 
 /** @brief (one liner)

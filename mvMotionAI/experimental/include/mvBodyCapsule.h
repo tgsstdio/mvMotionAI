@@ -26,8 +26,10 @@
  *
  */
 #endif
+//#include MV_BEHAVIOUR_LIST_NODE_HEADER_FILE_H_
 
 #include MV_BODY_HEADER_FILE_H_
+
 
 class mvBodyCapsule
 {

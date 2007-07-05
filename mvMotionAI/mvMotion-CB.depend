@@ -24,7 +24,7 @@
 
 1162271928 
 
-1183186964 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
+1183643968 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
 
 1173704284 d:\mvmotionai\mvmotionai\include\mvbody.h
 	<vector>
@@ -422,7 +422,7 @@
 	<cstring>
 	"mvMotionAI-Types.h"
 
-1183174570 d:\mvmotionai\mvmotionai\include\mvenums.h
+1183298148 d:\mvmotionai\mvmotionai\include\mvenums.h
 	<mvMotionAI-Types.h>
 
 1161096100 d:\mvmotionai\mvmotionai\src\mvenums.cpp
@@ -1034,7 +1034,7 @@
 	<cstring>
 	<new>
 
-1181741486 d:\mvmotionai\mvmotionai\experimental\include\mvworld2.h
+1183643792 d:\mvmotionai\mvmotionai\experimental\include\mvworld2.h
 	"mvMotionAI-Types.h"
 	"mvPointerList.h"
 	"mvCapsuleList.h"
@@ -1054,7 +1054,7 @@
 	"mvMotionAI-Types.h"
 	"mvPointerList.h"
 
-1180708116 d:\mvmotionai\mvmotionai\experimental\include\mvbehaviourresult.h
+1183560992 d:\mvmotionai\mvmotionai\experimental\include\mvbehaviourresult.h
 	"mvMotionAI-Types.h"
 
 1181548558 d:\mvmotionai\mvmotionai\experimental\include\mvgroupbehaviourresult.h
@@ -1089,7 +1089,7 @@
 1179636700 source:d:\mvmotionai\mvmotionai\experimental\src\mvbody_v2.cpp
 	"mvBody_V2.h"
 
-1176043900 d:\mvmotionai\mvmotionai\experimental\include\mvbody_v2.h
+1183559722 d:\mvmotionai\mvmotionai\experimental\include\mvbody_v2.h
 	"mvMotionAI-Types.h"
 
 1176565240 source:d:\mvmotionai\mvmotionai\experimental\src\mvbehavfunclist.cpp
@@ -1120,7 +1120,7 @@
 1180708098 source:d:\mvmotionai\mvmotionai\experimental\src\mvbehaviourresult.cpp
 	"mvBehaviourResult.h"
 
-1180359538 d:\mvmotionai\mvmotionai\experimental\include\mvbodycapsule.h
+1183561496 d:\mvmotionai\mvmotionai\experimental\include\mvbodycapsule.h
 	"mvMotionAI-Types.h"
 
 1177743810 d:\mvmotionai\mvmotionai\experimental\include\mvwaypointcapsule.h
@@ -1225,4 +1225,35 @@
 
 1181548588 source:d:\mvmotionai\mvmotionai\experimental\src\mvgroupbehaviourresult.cpp
 	"mvGroupBehaviourResult.h"
+
+1183176786 source:d:\mvmotionai\mvmotionai\experimental\src\mvbentry.cpp
+	"mvBEntry.h"
+
+1183174910 d:\mvmotionai\mvmotionai\experimental\include\mvbentry.h
+	"mvMotionAI-Types.h"
+
+1183558316 source:d:\mvmotionai\mvmotionai\experimental\src\mvbentrylist.cpp
+	"mvBEntryList.h"
+
+1183559840 d:\mvmotionai\mvmotionai\experimental\include\mvbentrylist.h
+	<mvMotionAI-Types.h>
+	"mvPointerList.h"
+	"mvBEntryUtility.h"
+
+1183180230 d:\mvmotionai\mvmotionai\experimental\include\mvbentryutility.h
+	"mvMotionAI-Types.h"
+
+1183559310 source:d:\mvmotionai\mvmotionai\experimental\src\mvbentrylistnode.cpp
+	"mvBEntryListNode.h"
+
+1183559064 d:\mvmotionai\mvmotionai\experimental\include\mvbentrylistnode.h
+	"mvMotionAI-Types.h"
+	"mvBEntryUtility.h"
+
+1183180452 source:d:\mvmotionai\mvmotionai\experimental\src\mvbentrytimer.cpp
+	"mvMotionAI-Utilities.h"
+	"mvBEntryTimer.h"
+
+1183180288 d:\mvmotionai\mvmotionai\experimental\include\mvbentrytimer.h
+	"mvMotionAI-Types.h"
 

@@ -101,6 +101,11 @@
 			<Add directory="lib-other\mingw" />
 		</Linker>
 		<Unit filename="experimental\include\mvActionLoaderList.h" />
+		<Unit filename="experimental\include\mvBEntry.h" />
+		<Unit filename="experimental\include\mvBEntryList.h" />
+		<Unit filename="experimental\include\mvBEntryListNode.h" />
+		<Unit filename="experimental\include\mvBEntryTimer.h" />
+		<Unit filename="experimental\include\mvBEntryUtility.h" />
 		<Unit filename="experimental\include\mvBaseAction.h" />
 		<Unit filename="experimental\include\mvBaseForce.h" />
 		<Unit filename="experimental\include\mvBehaviourResult.h" />
@@ -129,6 +134,10 @@
 		<Unit filename="experimental\include\mvWaypointCapsule.h" />
 		<Unit filename="experimental\include\mvWaypoint_V2.h" />
 		<Unit filename="experimental\include\mvWorld2.h" />
+		<Unit filename="experimental\src\mvBEntry.cpp" />
+		<Unit filename="experimental\src\mvBEntryList.cpp" />
+		<Unit filename="experimental\src\mvBEntryListNode.cpp" />
+		<Unit filename="experimental\src\mvBEntryTimer.cpp" />
 		<Unit filename="experimental\src\mvBaseAction.cpp" />
 		<Unit filename="experimental\src\mvBehaviourResult.cpp" />
 		<Unit filename="experimental\src\mvBehaviour_V2.cpp" />

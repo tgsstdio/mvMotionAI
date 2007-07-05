@@ -24,10 +24,10 @@
 
 #include <mvMotionAI-Types.h>
 #include MV_ENUMS_HEADER_FILE_H_
-#include MV_BASE_ACTION_HEADER_FILE_H_
+#include MV_BEHAVIOUR_LIST_NODE_HEADER_FILE_H_
 #include "mvPointerList.h"
 #include "mvBEntryUtility.h"
-#include MV_BEHAVIOUR_LIST_NODE_HEADER_FILE_H_
+
 //#include "mvBEntryTreeNode.h"
 //#include "mvBEntryTree.h"
 /* TODO (White 2#1#): Implement all these functions */
@@ -41,7 +41,6 @@ class mvBEntryList
       mvIndex defaultWaypoint;
       mvIndex defaultPathway;
       mvBEntryUtility defaultNodeTimerFlags;
-      mvBEntryUtility bListTimerFlags;
      // mvBEntryTree entryNodeTree;
 
    public:
@@ -58,12 +57,14 @@ class mvBEntryList
       void setDefaultPathway(mvIndex pwIndex);
       mvErrorEnum setDefaultWeight(mvFloat factor);
 
-      mvErrorEnum addExistingGroupBehaviourEntry(mvIndex behaviourIndex,\
-         mvIndex groupIndex, mvBaseAction* dBehaviour);
-      mvErrorEnum addExistingBehaviourEntry(mvIndex behaviourIndex);
-      mvErrorEnum addNewBehaviourEntry(mvOptionEnum behaviourType);
-      mvErrorEnum addNewEntry(mvOptionEnum bType, mvIndex behaviourIndex,\
-         mvIndex groupIndex, mvBaseAction* dBehaviour);
+      mvIndex addExistingGroupBehaviourEntry(mvIndex behaviourIndex,\
+         mvIndex groupIndex);
+      mvIndex addExistingBehaviourEntry(mvIndex behaviourIndex);
+      mvIndex addNewBehaviourEntry(mvOptionEnum behaviourType,
+         mvBaseActionPtr behaviourData);
+      mvIndex addNewEntry(mvOptionEnum bType, mvIndex behaviourIndex,\
+         mvIndex groupIndex, mvBaseActionPtr behaviourData, mvFloat bNodeWeight,\
+         mvFloat period, mvFloat elaspedTime);
 
       mvIndex getDefaultBody() const;
       mvIndex getDefaultWaypoint() const;
@@ -127,6 +128,9 @@ class mvBEntryList
       mvBEntryTreeNode* getCurrentNode();
       */
 
+      void clearAll();
+      mvErrorEnum removeEntry(mvIndex entryIndex);
+      mvIndex getCurrentEntry() const;
       ~mvBEntryList();
 
 };
