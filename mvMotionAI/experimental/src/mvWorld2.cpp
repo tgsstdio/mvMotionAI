@@ -1731,6 +1731,7 @@ void mvWorld_V2::applyToAllBodies(void (someFunction)(mvBodyPtr, void*),\
 void mvWorld_V2::deleteAllBodies()
 {
    bodies.deleteAllItems();
+   entryLists.deleteAllItems();
 }
 
 /** @brief (one liner)
@@ -1739,6 +1740,7 @@ void mvWorld_V2::deleteAllBodies()
   */
 mvErrorEnum mvWorld_V2::deleteBody(mvIndex index)
 {
+   entryLists.deleteItem(index);
    return bodies.deleteItem(index);
 }
 
@@ -1748,6 +1750,7 @@ mvErrorEnum mvWorld_V2::deleteBody(mvIndex index)
   */
 mvErrorEnum mvWorld_V2::deleteCurrentBody()
 {
+   entryLists.deleteCurrentItem();
    return bodies.deleteCurrentItem();
 }
 
@@ -1757,6 +1760,7 @@ mvErrorEnum mvWorld_V2::deleteCurrentBody()
   */
 mvIndex mvWorld_V2::setCurrentBody(mvIndex index)
 {
+   entryLists.setCurrentIndex(index);
    return bodies.setCurrentIndex(index);
 }
 
@@ -1797,7 +1801,7 @@ mvIndex mvWorld_V2::createBody(mvOptionEnum bType, mvOptionEnum bShape,\
    {
       return MV_NULL;
    }
-   // TODO : add corresponding entry list
+
    mvEntryListPtr tempList = new (std::nothrow) mvEntryList();
    if (tempList == MV_NULL)
    {
@@ -2085,7 +2089,7 @@ void mvWorld_CalculateEachGroupInGroupBehaviour(mvGroupBehaviourNodePtr currentN
                      defaultType, groupAction);
                nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,tempMemberActionPtr);
                // subscription sent to body
-               currentWorld->addBehaviourToBody(lhsSetIndex,\
+               currentWorld->addBehaviourToList(lhsSetIndex,\
                   MV_EXISTING_GROUP_BEHAVIOUR, currentGBehaviour, groupNo);
             }
             currentGroup->toNextMember();
@@ -2124,7 +2128,7 @@ void mvWorld_CalculateEachGroupInGroupBehaviour(mvGroupBehaviourNodePtr currentN
                         defaultType, groupAction);
                   nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,tempMemberActionPtr);
                   // subscription sent to body
-                  currentWorld->addBehaviourToBody(lhsSetIndex,\
+                  currentWorld->addBehaviourToList(lhsSetIndex,\
                      MV_EXISTING_GROUP_BEHAVIOUR, currentGBehaviour, groupNo);
                }
                currentGroup->toNextMember();
@@ -2259,11 +2263,112 @@ void mvWorld_V2::finaliseIntegrationStep()
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::addBehaviourToBody(mvIndex bodyIndex, mvOptionEnum bType,\
+mvIndex mvWorld_V2::addBehaviourToList(mvIndex listIndex, mvOptionEnum bType,\
    mvIndex behaviourIndex, mvIndex groupIndex)
 {
-   //TODO : implement the function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvEntryListPtr tempList = entryLists.getClassPtr(listIndex);
+
+   if (tempList == MV_NULL)
+   {
+      return MV_NULL;
+   }
+
+   mvBaseActionPtr actionPtr = NULL;
+   mvIndex convertedBehavIndex;
+   mvIndex convertedGroupIndex;
+
+   switch(bType)
+   {
+      default:
+         if (behavLoader != MV_NULL)
+         {
+            actionPtr = behavLoader->createAClassPtr(bType, MV_NULL);
+         }
+         else
+         {
+            return MV_NULL;
+         }
+
+         // behaviour not found or reserved
+         if (actionPtr == MV_NULL)
+         {
+            return MV_NULL;
+         }
+         return tempList->addNewBehaviourEntry(bType, actionPtr);
+      case MV_EXISTING_BEHAVIOUR:
+         convertedBehavIndex = behaviours.convertIndex(behaviourIndex);
+         return tempList->addExistingBehaviourEntry(convertedBehavIndex);
+      case MV_EXISTING_GROUP_BEHAVIOUR:
+         convertedBehavIndex = groupBehaviours.convertIndex(behaviourIndex);
+         convertedGroupIndex = groups.convertIndex(groupIndex);
+         return tempList->addExistingGroupBehaviourEntry(convertedBehavIndex,\
+            convertedGroupIndex);
+   }
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvIndex mvWorld_V2::addBehaviourToList_str(mvIndex listIndex, const char* bType,\
+   mvIndex behaviourIndex, mvIndex groupIndex)
+{
+   mvOptionEnum option;
+
+   if (mvCheckAllOptionEnumsForString(bType, &option))
+   {
+      return addBehaviourToList(listIndex, option, behaviourIndex, groupIndex);
+   }
+   else
+   {
+      return MV_NULL;
+   }
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld_V2::removeBehaviourFromList(mvIndex listIndex,\
+   mvIndex entryIndex)
+{
+   mvEntryListPtr tempList = entryLists.getClassPtr(listIndex);
+
+   if (tempList == MV_NULL)
+   {
+      return MV_ITEM_NOT_FOUND_IN_LIST;
+   }
+
+   return tempList->removeEntry(entryIndex);
+}
+
+mvIndex mvWorld_V2::getCurrentEntryFromList(mvIndex listIndex) const
+{
+   mvEntryListPtr tempList = entryLists.getClassPtr(listIndex);
+
+   if (tempList == MV_NULL)
+   {
+      return MV_NULL;
+   }
+
+   return tempList->getCurrentEntry();
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld_V2::removeAllBehavioursFromList(mvIndex listIndex)
+{
+   mvEntryListPtr tempList = entryLists.getClassPtr(listIndex);
+
+   if (tempList == MV_NULL)
+   {
+      return MV_ITEM_NOT_FOUND_IN_LIST;
+   }
+
+   tempList->clearAll();
+   return MV_NO_ERROR;
 }
 
 /** @brief (one liner)
@@ -3599,4 +3704,311 @@ mvIndex mvWorld_V2::removePathwayNodeAt(mvIndex pwIndex, mvIndex nodeIndex)
    }
 
    return tempPathway->removeNodeAt(nodeIndex);
+}
+
+mvErrorEnum mvWorld_V2::setEntryListParameteri(mvIndex listIndex,\
+   mvParamEnum paramFlag, mvIndex index)
+{
+   return entryLists.setItemParameteri(listIndex, paramFlag, index);
+}
+
+mvErrorEnum mvWorld_V2::setEntryListParameter(mvIndex listIndex,\
+   mvParamEnum paramFlag, mvOptionEnum option)
+{
+   return entryLists.setItemParameter(listIndex, paramFlag, option);
+}
+
+mvErrorEnum mvWorld_V2::setEntryListParameterf(mvIndex listIndex,\
+   mvParamEnum paramFlag, mvFloat num)
+{
+   return entryLists.setItemParameterf(listIndex, paramFlag, num);
+}
+
+mvErrorEnum mvWorld_V2::setEntryListParameterv(mvIndex listIndex,\
+   mvParamEnum paramFlag, mvFloat* array)
+{
+   return entryLists.setItemParameterv(listIndex, paramFlag, array);
+}
+
+mvErrorEnum mvWorld_V2::setEntryListParameteri_str(mvIndex listIndex,\
+   const char* param, mvIndex index)
+{
+   return entryLists.setItemParameteri_str(listIndex, param, index);
+}
+
+mvErrorEnum mvWorld_V2::setEntryListParameter_str(mvIndex listIndex,\
+   const char* param, const char* option)
+{
+   return entryLists.setItemParameter_str(listIndex, param, option);
+}
+
+mvErrorEnum mvWorld_V2::setEntryListParameterf_str(mvIndex listIndex,\
+   const char* param, mvFloat num)
+{
+   return entryLists.setItemParameterf_str(listIndex, param, num);
+}
+
+mvErrorEnum mvWorld_V2::setEntryListParameterv_str(mvIndex listIndex,\
+   const char* param, mvFloat* array)
+{
+   return entryLists.setItemParameterv_str(listIndex, param, array);
+}
+
+mvErrorEnum mvWorld_V2::getEntryListParameteri(mvIndex listIndex,\
+   mvParamEnum paramFlag, mvIndex* outIndex) const
+{
+   return entryLists.getItemParameteri(listIndex, paramFlag, outIndex);
+}
+
+mvErrorEnum mvWorld_V2::getEntryListParameter(mvIndex listIndex,\
+   mvParamEnum paramFlag, mvOptionEnum* option) const
+{
+   return entryLists.getItemParameter(listIndex, paramFlag, option);
+}
+
+mvErrorEnum mvWorld_V2::getEntryListParameterf(mvIndex listIndex,\
+   mvParamEnum paramFlag, mvFloat* num) const
+{
+   return entryLists.getItemParameterf(listIndex, paramFlag, num);
+}
+
+mvErrorEnum mvWorld_V2::getEntryListParameterv(mvIndex listIndex,\
+   mvParamEnum paramFlag, mvFloat* array,\
+   mvCount* noOfParameters) const
+{
+   return entryLists.getItemParameterv(listIndex, paramFlag, array,
+      noOfParameters);
+}
+
+mvErrorEnum mvWorld_V2::getEntryNodeParameteri_str(mvIndex listIndex,\
+   const char* param, mvIndex* outIndex) const
+{
+   return entryLists.getItemParameteri_str(listIndex, param, outIndex);
+}
+
+mvErrorEnum mvWorld_V2::getEntryListParameter_str(mvIndex listIndex,\
+   const char* param, const char** option) const
+{
+   return entryLists.getItemParameter_str(listIndex, param, option);
+}
+
+mvErrorEnum mvWorld_V2::getEntryListParameterf_str(mvIndex listIndex,\
+   const char* param, mvFloat* num) const
+{
+   return entryLists.getItemParameterf_str(listIndex, param, num);
+}
+
+mvErrorEnum mvWorld_V2::getEntryListParameterv_str(mvIndex listIndex,\
+   const char* param, mvFloat* array, mvCount* noOfParameters) const
+{
+   return entryLists.getItemParameterv_str(listIndex, param, array,\
+      noOfParameters);
+}
+
+mvErrorEnum mvWorld_V2::setEntryListNodeParameteri(mvIndex listIndex,\
+   mvIndex nodeIndex, mvParamEnum paramFlag, mvIndex index)
+{
+   mvEntryListPtr tempList = entryLists.getClassPtr(listIndex);
+
+   if (tempList == MV_NULL)
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+
+   return tempList->setEntryParameteri(nodeIndex, paramFlag, index);
+}
+
+mvErrorEnum mvWorld_V2::setEntryListNodeParameter(mvIndex listIndex,\
+   mvIndex nodeIndex, mvParamEnum paramFlag, mvOptionEnum option)
+{
+   mvEntryListPtr tempList = entryLists.getClassPtr(listIndex);
+
+   if (tempList == MV_NULL)
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+
+   return tempList->setEntryParameter(nodeIndex, paramFlag, option);
+}
+
+mvErrorEnum mvWorld_V2::setEntryListNodeParameterf(mvIndex listIndex,\
+   mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat num)
+{
+   mvEntryListPtr tempList = entryLists.getClassPtr(listIndex);
+
+   if (tempList == MV_NULL)
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+
+   return tempList->setEntryParameterf(nodeIndex, paramFlag, num);
+}
+mvErrorEnum mvWorld_V2::setEntryListNodeParameterv(mvIndex listIndex,\
+   mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* array)
+{
+   mvEntryListPtr tempList = entryLists.getClassPtr(listIndex);
+
+   if (tempList == MV_NULL)
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+
+    return tempList->setEntryParameterv(nodeIndex, paramFlag, array);
+}
+
+mvErrorEnum mvWorld_V2::setEntryListNodeParameteri_str(mvIndex listIndex,\
+   mvIndex nodeIndex, const char* param, mvIndex index)
+{
+   mvEntryListPtr tempList = entryLists.getClassPtr(listIndex);
+
+   if (tempList == MV_NULL)
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+
+   return tempList->setEntryParameteri_str(nodeIndex, param, index);
+}
+mvErrorEnum mvWorld_V2::setEntryListNodeParameter_str(mvIndex listIndex,\
+   mvIndex nodeIndex, const char* param, const char* option)
+{
+   mvEntryListPtr tempList = entryLists.getClassPtr(listIndex);
+
+   if (tempList == MV_NULL)
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+
+   return tempList->setEntryParameter_str(nodeIndex, param, option);
+}
+mvErrorEnum mvWorld_V2::setEntryListNodeParameterf_str(mvIndex listIndex,\
+   mvIndex nodeIndex, const char* param, mvFloat num)
+{
+   mvEntryListPtr tempList = entryLists.getClassPtr(listIndex);
+
+   if (tempList == MV_NULL)
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+
+   return tempList->setEntryParameterf_str(nodeIndex, param, num);
+}
+mvErrorEnum mvWorld_V2::setEntryListNodeParameterv_str(mvIndex listIndex,\
+   mvIndex nodeIndex, const char* param, mvFloat* array)
+{
+   mvEntryListPtr tempList = entryLists.getClassPtr(listIndex);
+
+   if (tempList == MV_NULL)
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+
+   return tempList->setEntryParameterv_str(nodeIndex, param,  array);
+}
+
+mvErrorEnum mvWorld_V2::getEntryListNodeParameteri(mvIndex listIndex,\
+   mvIndex nodeIndex, mvParamEnum paramFlag, mvIndex* outIndex) const
+{
+   mvConstEntryListPtr tempList = entryLists.getConstClassPtr(listIndex);
+
+   if (tempList == MV_NULL)
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+
+   return tempList->getEntryParameteri(nodeIndex, paramFlag, outIndex);
+}
+
+mvErrorEnum mvWorld_V2::getEntryListNodeParameter(mvIndex listIndex,\
+   mvIndex nodeIndex, mvParamEnum paramFlag, mvOptionEnum* option) const
+{
+   mvConstEntryListPtr tempList = entryLists.getConstClassPtr(listIndex);
+
+   if (tempList == MV_NULL)
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+
+   return tempList->getEntryParameter(nodeIndex, paramFlag, option);
+}
+
+mvErrorEnum mvWorld_V2::getEntryListNodeParameterf(mvIndex listIndex,\
+   mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* num) const
+{
+   mvConstEntryListPtr tempList = entryLists.getConstClassPtr(listIndex);
+
+   if (tempList == MV_NULL)
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+
+   return tempList->getEntryParameterf(nodeIndex, paramFlag, num);
+}
+
+mvErrorEnum mvWorld_V2::getEntryListNodeParameterv(mvIndex listIndex,\
+   mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* array,\
+   mvCount* noOfParameters) const
+{
+   mvConstEntryListPtr tempList = entryLists.getConstClassPtr(listIndex);
+
+   if (tempList == MV_NULL)
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+
+   return tempList->getEntryParameterv(nodeIndex, paramFlag, array,\
+      noOfParameters);
+}
+
+mvErrorEnum mvWorld_V2::getEntryNodeParameteri_str(mvIndex listIndex,\
+   mvIndex nodeIndex, const char* param, mvIndex* outIndex) const
+{
+   mvConstEntryListPtr tempList = entryLists.getConstClassPtr(listIndex);
+
+   if (tempList == MV_NULL)
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+
+   return tempList->getEntryParameteri_str(nodeIndex, param, outIndex);
+}
+
+mvErrorEnum mvWorld_V2::getEntryListNodeParameter_str(mvIndex listIndex,\
+   mvIndex nodeIndex, const char* param, const char** option) const
+{
+   mvConstEntryListPtr tempList = entryLists.getConstClassPtr(listIndex);
+
+   if (tempList == MV_NULL)
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+
+   return tempList->getEntryParameter_str(nodeIndex, param, option);
+}
+
+mvErrorEnum mvWorld_V2::getEntryListNodeParameterf_str(mvIndex listIndex,\
+   mvIndex nodeIndex, const char* param, mvFloat* num) const
+{
+   mvConstEntryListPtr tempList = entryLists.getConstClassPtr(listIndex);
+
+   if (tempList == MV_NULL)
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+
+   return tempList->getEntryParameterf_str(nodeIndex, param, num);
+}
+
+mvErrorEnum mvWorld_V2::getEntryListNodeParameterv_str(mvIndex listIndex,\
+   mvIndex nodeIndex, const char* param, mvFloat* array,\
+   mvCount* noOfParameters) const
+{
+   mvConstEntryListPtr tempList = entryLists.getConstClassPtr(listIndex);
+
+   if (tempList == MV_NULL)
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+
+   return tempList->getEntryParameterv_str(nodeIndex, param, array,\
+      noOfParameters);
 }
