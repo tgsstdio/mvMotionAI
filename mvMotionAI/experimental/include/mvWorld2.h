@@ -523,8 +523,13 @@ class mvWorld_V2
       mvErrorEnum getForceParameterv_str(mvIndex index, const char* param,\
          mvFloat* array, mvCount* noOfParameters) const;
 
-      mvErrorEnum addBehaviourToBody(mvIndex bodyIndex, mvOptionEnum bType,\
+      mvIndex addBehaviourToList(mvIndex listIndex, mvOptionEnum bType,\
          mvIndex behaviourIndex, mvIndex groupIndex);
+      mvIndex addBehaviourToList_str(mvIndex listIndex, const char* bType,\
+         mvIndex behaviourIndex, mvIndex groupIndex);
+      mvErrorEnum removeBehaviourFromList(mvIndex listIndex, mvIndex entryIndex);
+      mvErrorEnum removeAllBehavioursFromList(mvIndex listIndex);
+      mvIndex getCurrentEntryFromList(mvIndex listIndex) const;
 
       mvErrorEnum addGroupIntoGroupBehaviour(mvIndex groupIndex,\
          mvIndex groupBehaviour);
@@ -640,7 +645,6 @@ class mvWorld_V2
          mvIndex nodeIndex, const char* param, mvFloat* array,\
          mvCount* noOfParameters) const;
 
-      // TODO : entry list nodes functions
       mvErrorEnum setEntryListNodeParameteri(mvIndex listIndex,\
          mvIndex nodeIndex, mvParamEnum paramFlag, mvIndex index);
       mvErrorEnum setEntryListNodeParameter(mvIndex listIndex,\
@@ -679,7 +683,6 @@ class mvWorld_V2
          mvIndex nodeIndex, const char* param, mvFloat* array,\
          mvCount* noOfParameters) const;
 
-      // TODO : entry list functions
       mvErrorEnum setEntryListParameteri(mvIndex listIndex,\
          mvParamEnum paramFlag, mvIndex index);
       mvErrorEnum setEntryListParameter(mvIndex listIndex,\
