@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-Release" />
-	<File name="..\experimental\include\mvBEntry.h" open="1" top="0" tabpos="0">
-		<Cursor position="1740" topLine="22" />
+	<File name="..\experimental\include\mvBEntry.h" open="0" top="0" tabpos="0">
+		<Cursor position="1740" topLine="20" />
 	</File>
-	<File name="..\experimental\include\mvBEntryList.h" open="1" top="0" tabpos="0">
-		<Cursor position="2624" topLine="44" />
+	<File name="..\experimental\include\mvBEntryList.h" open="0" top="0" tabpos="0">
+		<Cursor position="5556" topLine="111" />
 	</File>
 	<File name="..\experimental\include\mvBEntryListNode.h" open="0" top="0" tabpos="0">
 		<Cursor position="1516" topLine="20" />

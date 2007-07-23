@@ -24,6 +24,7 @@
 mvBEntryListNode::mvBEntryListNode(mvOptionEnum type, mvIndex behaviourIndex,\
    mvIndex groupIndex, mvBaseActionPtr actionPtr, mvFloat bNodeWeight,\
    mvFloat period, mvFloat elaspedTime)
+   : isEnabled(true)
  {
    behaviourEntry = new (std::nothrow) mvBEntry(type, behaviourIndex,\
       groupIndex, actionPtr);

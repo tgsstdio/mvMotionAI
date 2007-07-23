@@ -35,7 +35,7 @@ mvErrorEnum mvBehaviour_V2::setParameter(mvParamEnum paramFlag,\
   *
   * (documentation goes here)
   */
-mvBaseActionPtr mvBehaviour_V2::getBehaviourPtr()
+mvBaseActionPtr mvBehaviour_V2::getActionPtr() const
 {
    return behavPtr;
 }

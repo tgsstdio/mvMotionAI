@@ -296,7 +296,7 @@ mvIndex mvBEntryList::addNewEntry(mvOptionEnum bType,\
    mvFloat bNodeWeight, mvFloat period, mvFloat elaspedTime)
 {
    // TODO : unit test this code
-   mvBEntryListNodePtr tempNode = MV_NULL;
+   mvEntryListNodePtr tempNode = MV_NULL;
    mvBaseActionPtr actionPtr = MV_NULL;
 
    if (bType == MV_EXISTING_BEHAVIOUR || bType == MV_EXISTING_GROUP_BEHAVIOUR)
@@ -430,7 +430,7 @@ mvErrorEnum mvBEntryList::setMode(mvOptionEnum option)
   *
   * (documentation goes here)
   */
-mvBEntryListNodePtr mvBEntryList::getEntry(mvIndex index)
+mvEntryListNodePtr mvBEntryList::getEntry(mvIndex index)
 {
    return entryList.getClassPtr(index);
 }
@@ -439,7 +439,7 @@ mvBEntryListNodePtr mvBEntryList::getEntry(mvIndex index)
   *
   * (documentation goes here)
   */
-mvBEntryListNodePtr mvBEntryList::findExistingGroupEntry(mvIndex bIndex,\
+mvEntryListNodePtr mvBEntryList::findExistingGroupEntry(mvIndex bIndex,\
    mvIndex gIndex)
 {
    return NULL;
@@ -451,6 +451,7 @@ mvBEntryListNodePtr mvBEntryList::findExistingGroupEntry(mvIndex bIndex,\
   */
  mvBEntryList::mvBEntryList()
 {
+   isEnabled = true;
    defaultBody = MV_NULL;
    defaultWaypoint = MV_NULL;
    defaultPathway = MV_NULL;
@@ -519,4 +520,10 @@ mvErrorEnum mvBEntryList::removeEntry(mvIndex entryIndex)
 mvIndex mvBEntryList::getCurrentEntry() const
 {
    return entryList.getCurrentIndex();
+}
+
+void mvBEntryList::applyToAllEntries(\
+   void (someFunction)(mvEntryListNodePtr, void*), void* extraPtr)
+{
+   entryList.applyToAllItems(someFunction,extraPtr);
 }

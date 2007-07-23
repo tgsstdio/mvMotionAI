@@ -2,6 +2,7 @@
 
 mvBodyCapsule::mvBodyCapsule(mvBodyPtr capsuleBody)
 {
+   bodyIndex = MV_NULL;
    encapsulatedBody = capsuleBody;
    performIntegration = true;
 }

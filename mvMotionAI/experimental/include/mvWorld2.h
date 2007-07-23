@@ -50,6 +50,8 @@
 #include MV_BEHAVIOUR_LIST_HEADER_FILE_H_
 //TODO : new group behaviour functions
 
+
+// TODO : total system time
 class mvWorld_V2
 {
    private:
@@ -81,13 +83,17 @@ class mvWorld_V2
          mvBodyCapsulePtr bodyPtr);
       void calculateLocalForceOnBody(mvIndex localForce,
          mvBodyCapsulePtr bodyPtr);
-      void calculateBehavioursOnBody(mvBodyCapsulePtr bodyPtr);
+      void calculateBehavioursOnBody(mvBehaviourResultPtr finalResult,\
+         mvBodyCapsulePtr bodyPtr, mvFloat hTimeStep);
       void finaliseIntegrationStep();
 
       mvConstBodyCapsulePtr getConstBodyCapsulePtr(int index) const;
       mvBodyCapsulePtr getBodyCapsulePtr(int index);
 
+      mvFloat elapsedWorldTime;
+
    public:
+      mvFloat getElapsedWorldTime() const;
       void integrateBody(mvBodyCapsulePtr bodyPtr, mvFloat timeInSecs);
       bool hasGroupChanged(mvIndex groupNo);
 
@@ -596,7 +602,7 @@ class mvWorld_V2
       mvConstGroupPtr getConstGroupPtr(mvIndex index) const;
       mvConstGroupBehaviourPtr getConstGroupBehaviourPtr(mvIndex index) const;
       mvConstBehaviourPtr getConstBehaviourPtr(mvIndex index) const;
-      mvConstForcePtr getConstGroupForcePtr(mvIndex index) const;
+      mvConstForcePtr getConstForcePtr(mvIndex index) const;
 
       mvIndex addNodeToPathway(mvIndex nIndex, mvIndex pIndex);
       mvErrorEnum removeNodeFromPathway(mvIndex wpIndex, mvIndex pIndex);
@@ -719,6 +725,9 @@ class mvWorld_V2
          const char* param, mvFloat* num) const;
       mvErrorEnum getEntryListParameterv_str(mvIndex listIndex,\
          const char* param, mvFloat* array, mvCount* noOfParameters) const;
+
+      void applyToAllEntryLists(void (someFunction)(mvEntryListPtr, void*),
+         void* extraPtr);
 };
 
 

@@ -41,7 +41,7 @@ class mvBehaviour_V2
       mvBehaviour_V2(mvBaseActionPtr bPtr);
       bool isEnabled() const;
       void setEnabled(bool value);
-      mvBaseActionPtr getBehaviourPtr();
+      mvBaseActionPtr getActionPtr() const;
 
       mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
       mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);

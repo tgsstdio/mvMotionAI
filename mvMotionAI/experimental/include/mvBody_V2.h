@@ -45,6 +45,15 @@ class mvBody_V2
       // body's own velocity after (incl.) mvForces
       mvVec3 finalVelocity;
 
+      // TODO : torque/force/omega/rotation functions
+      mvVec3 finalForceVector;
+      mvVec3 bodysForceVector;
+      mvVec3 finalTorque;
+      mvVec3 bodysTorque;
+      mvVec3 finalOmega;
+      mvVec3 bodysOmega;
+      mvVec3 bodysRotation;
+
       // direction of object local to motion
       mvVec3 faceDirection;
 

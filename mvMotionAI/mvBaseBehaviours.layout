@@ -19,10 +19,10 @@
 	<File name="experimental\include\mv2.h" open="0" top="0" tabpos="0">
 		<Cursor position="56442" topLine="536" />
 	</File>
-	<File name="experimental\include\mvBEntry.h" open="1" top="0" tabpos="2">
+	<File name="experimental\include\mvBEntry.h" open="0" top="0" tabpos="2">
 		<Cursor position="1308" topLine="15" />
 	</File>
-	<File name="experimental\include\mvBEntryList.h" open="1" top="0" tabpos="1">
+	<File name="experimental\include\mvBEntryList.h" open="0" top="0" tabpos="1">
 		<Cursor position="2685" topLine="35" />
 	</File>
 	<File name="experimental\include\mvBEntryListNode.h" open="0" top="0" tabpos="2">
@@ -149,10 +149,10 @@
 		<Cursor position="1238" topLine="0" />
 	</File>
 	<File name="experimental\src\mvPursuit.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="4674" topLine="147" />
+		<Cursor position="4674" topLine="122" />
 	</File>
 	<File name="experimental\src\mvSeek.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="4871" topLine="142" />
+		<Cursor position="4871" topLine="66" />
 	</File>
 	<File name="experimental\src\mvShape.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="11275" topLine="389" />

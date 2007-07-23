@@ -216,6 +216,15 @@ mvErrorEnum mvGroupBNode_V2::setParameter(mvParamEnum paramFlag,\
   *
   * (documentation goes here)
   */
+mvGroupMemberNodePtr mvGroupBNode_V2::findMemberInNode(mvIndex memberIndex)
+{
+   return memberDataList.findMember(memberIndex);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
 mvBaseActionPtr mvGroupBNode_V2::getActionPtr()
 {
    return grpBehaviour;
@@ -389,6 +398,25 @@ void mvGroupNodeMemberList::clearAll()
    mbActionDataSet.clear();
 }
 
+mvGroupMemberNodePtr mvGroupNodeMemberList::findMember(mvIndex memberIndex)
+{
+   std::list<mvGroupMemberNodePtr>::iterator i;
+   std::list<mvGroupMemberNodePtr>::iterator listEnd = mbActionDataSet.end();
+   mvGroupMemberNodePtr tempNode;
+
+   for (i = mbActionDataSet.begin(); i != listEnd; ++i)
+   {
+      tempNode = *i;
+      if (tempNode != NULL && tempNode->memberIndex == memberIndex)
+      {
+         return tempNode;
+      }
+   }
+
+   // not found;
+   return MV_NULL;
+}
+
 bool mvGroupNodeMemberList::hasAllNodesBeenVisited()
 {
    return (currentIter == mbActionDataSet.end());
@@ -412,6 +440,11 @@ mvGroupMemberNodePtr mvGroupNodeMemberList::getCurrentMember()
 void mvGroupNodeMemberList::insertBeforeCurrentMember(mvIndex memberIndex,\
    mvBaseActionPtr actionPtr)
 {
+   if (memberIndex == MV_NULL || actionPtr == MV_NULL)
+   {
+      return;
+   }
+
    mvGroupMemberNodePtr tempNode =
       new (std::nothrow) mvGroupMemberNode(memberIndex, actionPtr);
 
