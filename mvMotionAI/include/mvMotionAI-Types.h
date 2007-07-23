@@ -162,6 +162,8 @@ typedef class mvGroupBehaviour_V2* mvGroupBehaviourPtr;
 typedef class mvGroupBNode_V2* mvGroupBehaviourNodePtr;
 typedef class mvGroupNodeMemberList* mvGroupNodeMemberListPtr;
 typedef class mvGroupBehaviour_V2 const * const mvConstGroupBehaviourPtr;
+typedef class mvGroupMemberNode* mvGroupMemberNodePtr;
+typedef class mvGroupMemberNode const * const mvConstGroupMemberNodePtr;
 
 #define MV_GROUP_BEHAVIOUR_RESULT_HEADER_FILE_H_ "mvGroupBehaviourResult.h"
 typedef class mvGroupBehaviourResult* mvGroupBehaviourResultPtr;
@@ -211,7 +213,7 @@ typedef class mvBEntryList mvEntryList;
 typedef class mvBEntryList* mvEntryListPtr;
 typedef class mvBEntryList const * const mvConstEntryListPtr;
 #define MV_BEHAVIOUR_LIST_NODE_HEADER_FILE_H_ "mvBEntryListNode.h"
-typedef class mvBEntryListNode* mvBEntryListNodePtr;
-typedef class mvBEntryListNode const * const mvConstBEntryListNodePtr;
+typedef class mvBEntryListNode* mvEntryListNodePtr;
+typedef class mvBEntryListNode const * const mvConstEntryListNodePtr;
 
 #endif

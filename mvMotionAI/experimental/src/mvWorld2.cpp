@@ -27,6 +27,7 @@
 
 #include <cstring>
 #include <new>
+#include MV_BEHAVIOUR_RESULT_HEADER_FILE_H_
 
 /** @brief (one liner)
   *
@@ -1808,8 +1809,11 @@ mvIndex mvWorld_V2::createBody(mvOptionEnum bType, mvOptionEnum bShape,\
       return MV_NULL;
    }
 
-   if (entryLists.addItem(tempList) != MV_NULL)
+   // should have same index
+   mvIndex correspondingBody = entryLists.addItem(tempList);
+   if (correspondingBody != MV_NULL)
    {
+      bCapsulePtr->bodyIndex = correspondingBody;
       return bodies.addItem(bCapsulePtr);
    }
    else
@@ -1873,6 +1877,12 @@ mvWorld_V2::mvWorld_V2(const char* id = MV_NULL)
    }
 
    behavLoader = MV_NULL;
+   elapsedWorldTime = 0;
+}
+
+mvFloat mvWorld_V2::getElapsedWorldTime() const
+{
+   return elapsedWorldTime;
 }
 
 /** @brief (one liner)
@@ -1915,10 +1925,13 @@ void mvWorld_V2_IntegrateAllBodies(mvBodyCapsulePtr bodyPtr, void* extraPtr)
 
 void mvWorld_V2::integrateBody(mvBodyCapsulePtr bodyPtr, mvFloat timeInSecs)
 {
+   mvBehaviourResult finalResult((mvConstWorldPtr) this,
+      bodyPtr->getConstClassPtr());
+
    resetIntegrationLoop();
    checkIfWaypointContainsBody(bodyPtr);
    calculateAllForcesOnBody(bodyPtr);
-   calculateBehavioursOnBody(bodyPtr);
+   calculateBehavioursOnBody(&finalResult, bodyPtr, timeInSecs);
    performIntegrationOfBody(bodyPtr, timeInSecs);
 }
 
@@ -2196,11 +2209,478 @@ void mvWorld_V2::calculateLocalForceOnBody(mvIndex localForce,\
 // TODO : calculate world functions
 }
 
-void mvWorld_V2::calculateBehavioursOnBody(mvBodyCapsulePtr bodyPtr)
+struct mvWorld_CalcBehavOnListHelper
 {
-// TODO : calculate world functions
+   public:
+      mvBehaviourResultPtr finalResult;
+      mvBodyCapsulePtr bCapsule;
+};
+
+mvBaseActionPtr initialiseResults(mvBEntryPtr nodeInfo, mvIndex bodyIndex,
+   mvConstWorldPtr currentWorld,  mvBehaviourResult& currentResult,\
+   mvBehaviourResultPtr finalResult)
+{
+   mvBaseActionPtr currentAction = MV_NULL;
+   mvBaseActionPtr groupActionPtr = MV_NULL;
+   // isolate result
+
+   if (nodeInfo == MV_NULL)
+   {
+      return MV_NULL;
+   }
+
+   mvOptionEnum nodeType = nodeInfo->getEntryType();
+   mvIndex behaviourIndex = nodeInfo->getBehaviour();
+   mvIndex groupIndex = nodeInfo->getGroup();
+
+   switch(nodeType)
+   {
+      case MV_EXISTING_BEHAVIOUR:
+         mvConstBehaviourPtr globalBehav =\
+            currentWorld->getConstBehaviourPtr(behaviourIndex);
+
+         // exit if behaviour does not exist
+         if (globalBehav == MV_NULL || !globalBehav->isEnabled())
+         {
+            return MV_NULL;
+         }
+
+         // exit if action does not exist
+         currentAction = globalBehav->getActionPtr();
+         break;
+      case MV_EXISTING_GROUP_BEHAVIOUR:
+         mvConstGroupBehaviourPtr globalGrpBehav =\
+            currentWorld->getConstGroupBehaviourPtr(behaviourIndex);
+
+         // exit if behaviour does not exist
+         if (globalGrpBehav == MV_NULL || !globalGrpBehav->isEnabled)
+         {
+            return MV_NULL;
+         }
+
+         mvConstGroupPtr checkGroupPtr =\
+            currentWorld->getConstGroupPtr(groupIndex);
+
+         // exit if group does not exist
+         if (checkGroupPtr == MV_NULL || !checkGroupPtr->isEnabled)
+         {
+            return MV_NULL;
+         }
+
+         // check if group is linked to group behaviour
+         mvGroupBehaviourNodePtr groupNodePtr =\
+            globalGrpBehav->findGroupNode(groupIndex);
+
+         if (groupNodePtr == MV_NULL || !groupNodePtr->isEnabled)
+         {
+            return MV_NULL;
+         }
+
+         groupActionPtr = groupNodePtr->getActionPtr();
+         if (groupActionPtr == MV_NULL)
+         {
+            return MV_NULL;
+         }
+
+         // find member node and action
+         mvGroupMemberNodePtr memberNodePtr = groupNodePtr->findMemberInNode(\
+            bodyIndex);
+
+         if (memberNodePtr == MV_NULL)
+         {
+            return MV_NULL;
+         }
+
+         currentAction = memberNodePtr->getActionPtr();
+         break;
+      default:
+         currentAction = nodeInfo->getActionPtr();
+         break;
+   }
+
+    // set behaviour result to variables
+   currentResult.setCurrentTimeStep(finalResult->getTimeStep());
+   currentResult.setElaspedSystemTime(finalResult->getElapsedSystemTime());
+   currentResult.setGroupBehaviourNode(groupActionPtr);
+   currentResult.setBehaviourIndex(behaviourIndex);
+   currentResult.setGroupIndex(groupIndex);
+   // TODO : prediction action
+   currentResult.setPositionPrediction(\
+      finalResult->predictPositionOfCurrentBody());
+   currentResult.setFinalPositionPrediction(\
+      finalResult->predictFinalPositionOfCurrentBody());
+   currentResult.setVelocityPrediction(\
+      finalResult->predictVelocityOfCurrentBody());
+   currentResult.setFinalVelocityPrediction(\
+      finalResult->predictFinalVelocityOfCurrentBody());
+
+   return currentAction;
+}
+
+void mvWorld_ConfineMotionVector(mvParamEnum mType, mvOptionEnum domain,
+   mvVec3& motionVector)
+{
+   switch(mType)
+   {
+      // straight line
+      case MV_VELOCITY:
+      case MV_FORCE_VECTOR:
+      case MV_ACCELERATION_VECTOR:
+      case MV_DIRECTION:
+         switch(domain)
+         {
+            //todo : case MV_ANY_PLANE:
+            //todo : case MV_ANY_LINE:
+            case MV_X_AXIS_ONLY:
+               motionVector.setY(0);
+            case MV_XY_PLANE:
+               motionVector.setZ(0);
+               break;
+            case MV_Y_AXIS_ONLY:
+               motionVector.setZ(0);
+            case MV_YZ_PLANE:
+               motionVector.setX(0);
+               break;
+            case MV_Z_AXIS_ONLY:
+               motionVector.setX(0);
+            case MV_XZ_PLANE:
+               motionVector.setY(0);
+               break;
+            default:
+            case MV_FULL_3D:
+               break;
+         }
+         break;
+      // rotation/sphere
+      case MV_ROTATION:
+      case MV_TORQUE:
+      case MV_OMEGA:
+         switch(domain)
+         {
+            //todo :case MV_ANY_PLANE:
+            //todo :case MV_ANY_LINE:
+            //todo :case MV_X_AXIS_ONLY:
+            //todo :case MV_Y_AXIS_ONLY:
+            //todo :case MV_Z_AXIS_ONLY:
+            case MV_XY_PLANE:
+               motionVector.setX(0);
+               motionVector.setY(0);
+               break;
+            case MV_XZ_PLANE:
+               motionVector.setX(0);
+               motionVector.setZ(0);
+               break;
+            case MV_YZ_PLANE:
+               motionVector.setY(0);
+               motionVector.setZ(0);
+               break;
+            default:
+            case MV_FULL_3D:
+               break;
+         }
+         break;
+      default:
+         break;
+   }
+}
+
+void mvWorld_SumBehaviourResults(mvBehaviourResultPtr summedResult,
+   const mvBehaviourResult& actionResult, bool isConfined)
+{
+   mvVec3 actionVec, totalVec;
+   mvBehaviourResult::mvMotionType currentMotion;
+   mvBehaviourResult::mvEffectType currentEffect;
+
+   const mvBehaviourResult::mvMotionType defaultMotion =
+      (actionResult.isSteeringMotionDefault()) ?
+      mvBehaviourResult::MV_STEERING_MOTION :
+      mvBehaviourResult::MV_DIRECTIONAL_MOTION;
+   const mvBehaviourResult::mvEffectType defaultEffect =
+      (actionResult.isGlobalEffectDefault())  ?
+      mvBehaviourResult::MV_GLOBAL_EFFECT :
+      mvBehaviourResult::MV_LOCAL_EFFECT;
+
+   mvConstBodyPtr currentBody = summedResult->getCurrentBodyPtr();
+
+   if (currentBody == MV_NULL)
+   {
+      return;
+   }
+
+   // add forces
+   if (actionResult.isForceSet())
+   {
+      totalVec = summedResult->getForce();
+      currentMotion = actionResult.getForceMotionType();
+      currentEffect = actionResult.getForceEffectType();
+
+      if (currentMotion == mvBehaviourResult::MV_DEFAULT_MOTION)
+      {
+         currentMotion = defaultMotion;
+      }
+
+      if (currentEffect == mvBehaviourResult::MV_DEFAULT_EFFECT)
+      {
+         currentEffect = defaultEffect;
+      }
+
+      actionVec = actionResult.getForce();
+      if (currentEffect == mvBehaviourResult::MV_LOCAL_EFFECT)
+      {
+         // TODO : delocalise function
+      }
+
+      if (isConfined)
+      {
+         mvWorld_ConfineMotionVector(MV_FORCE_VECTOR, currentBody->getDomain(),
+            actionVec);
+      }
+
+      totalVec += actionVec;
+      summedResult->setForce(totalVec, mvBehaviourResult::MV_STEERING_MOTION,
+         mvBehaviourResult::MV_GLOBAL_EFFECT);
+   }
+
+   if (actionResult.isAccelSet())
+   {
+      totalVec = summedResult->getAccel();
+      currentMotion = actionResult.getAccelMotionType();
+      currentEffect = actionResult.getAccelEffectType();
+
+      if (currentMotion == mvBehaviourResult::MV_DEFAULT_MOTION)
+      {
+         currentMotion = defaultMotion;
+      }
+
+      if (currentEffect == mvBehaviourResult::MV_DEFAULT_EFFECT)
+      {
+         currentEffect = defaultEffect;
+      }
+
+      actionVec = actionResult.getAccel();
+      if (currentEffect == mvBehaviourResult::MV_LOCAL_EFFECT)
+      {
+         // TODO : delocalise function
+      }
+
+      if (isConfined)
+      {
+         mvWorld_ConfineMotionVector(MV_ACCELERATION_VECTOR, currentBody->getDomain(),
+            actionVec);
+      }
+
+      totalVec += actionVec;
+      summedResult->setAcceleration(totalVec, mvBehaviourResult::MV_STEERING_MOTION,
+         mvBehaviourResult::MV_GLOBAL_EFFECT);
+   }
+
+   if (actionResult.isVelocitySet())
+   {
+      totalVec = summedResult->getVelocity();
+      currentMotion = actionResult.getAccelMotionType();
+      currentEffect = actionResult.getAccelEffectType();
+
+      if (currentMotion == mvBehaviourResult::MV_DEFAULT_MOTION)
+      {
+         currentMotion = defaultMotion;
+      }
+
+      if (currentEffect == mvBehaviourResult::MV_DEFAULT_EFFECT)
+      {
+         currentEffect = defaultEffect;
+      }
+
+      actionVec = actionResult.getVelocity();
+      if (currentEffect == mvBehaviourResult::MV_LOCAL_EFFECT)
+      {
+         // TODO : delocalise function
+
+      }
+
+      if (currentMotion == mvBehaviourResult::MV_DIRECTIONAL_MOTION)
+      {
+         actionVec -= currentBody->getFinalVelocity();
+      }
+
+      if (isConfined)
+      {
+         mvWorld_ConfineMotionVector(MV_VELOCITY, currentBody->getDomain(),
+            actionVec);
+      }
 
 
+      totalVec += actionVec;
+      summedResult->setVelocity(totalVec, mvBehaviourResult::MV_STEERING_MOTION,
+         mvBehaviourResult::MV_GLOBAL_EFFECT);
+   }
+
+   if (actionResult.isTorqueSet())
+   {
+      totalVec = summedResult->getTorque();
+      currentMotion = actionResult.getTorqueMotionType();
+      currentEffect = actionResult.getTorqueEffectType();
+
+      if (currentMotion == mvBehaviourResult::MV_DEFAULT_MOTION)
+      {
+         currentMotion = defaultMotion;
+      }
+
+      if (currentEffect == mvBehaviourResult::MV_DEFAULT_EFFECT)
+      {
+         currentEffect = defaultEffect;
+      }
+
+      actionVec = actionResult.getTorque();
+      if (currentEffect == mvBehaviourResult::MV_LOCAL_EFFECT)
+      {
+         // TODO : delocalise function
+      }
+
+      if (isConfined)
+      {
+         mvWorld_ConfineMotionVector(MV_TORQUE, currentBody->getDomain(),
+            actionVec);
+      }
+
+      totalVec += actionVec;
+      summedResult->setTorque(totalVec, mvBehaviourResult::MV_STEERING_MOTION,
+         mvBehaviourResult::MV_GLOBAL_EFFECT);
+   }
+
+   if (actionResult.isDirectionSet())
+   {
+      //TODO : direction addition/subtraction
+   }
+
+   if (actionResult.isOmegaSet())
+   {
+      //TODO : quaternion addition/subtraction
+   }
+
+   if (actionResult.isQuaternionSet())
+   {
+      //TODO : quaternion addition/subtraction
+   }
+
+   if (actionResult.isRotationSet())
+   {
+      //TODO : rotation addition/subtraction
+   }
+}
+
+void mvWorld_CalculateEntryByWeightedSum(mvEntryListNodePtr eNodePtr,\
+   void* extraPtr)
+{
+   if (eNodePtr->isEnabled)
+   {
+      // setting variables
+      mvWorld_CalcBehavOnListHelper* helper = (mvWorld_CalcBehavOnListHelper*)\
+         extraPtr;
+      mvBodyCapsulePtr bCapsule = helper->bCapsule;
+      mvBehaviourResultPtr finalResult = helper->finalResult;
+      mvConstWorldPtr currentWorld = finalResult->getWorldPtr();
+
+      mvBEntryPtr nodeInfo = eNodePtr->getEntryPtr();
+      bool isConfined = eNodePtr->entryFlags.confined;
+
+      mvBehaviourResult currentResult(finalResult->getWorldPtr(),
+         finalResult->getCurrentBodyPtr());
+      mvBaseActionPtr currentAction = initialiseResults(nodeInfo,\
+         bCapsule->bodyIndex, currentWorld, currentResult, finalResult);
+
+      if (currentAction != MV_NULL)
+      {
+         // calc action
+         bool addActionToResult = currentAction->bodyOp(&currentResult);
+
+         if (addActionToResult)
+         {
+            mvWorld_SumBehaviourResults(finalResult, currentResult,isConfined);
+            bCapsule->performIntegration = true;
+         }
+      }
+   }
+}
+
+void mvWorld_V2::calculateBehavioursOnBody(mvBehaviourResultPtr finalResult,\
+   mvBodyCapsulePtr bCapsulePtr, mvFloat hTimeStep)
+{
+   // TODO : code here
+
+   // Step 1 - fetch body
+   mvConstBodyPtr currentBody = bCapsulePtr->getConstClassPtr();
+
+   // Step 1b : check enable flags
+   if (!currentBody->enabled)
+   {
+      return;
+   }
+
+   // Step 2 - fetch entry list
+   mvIndex entryListIndex = bCapsulePtr->bodyIndex;
+   if (entryListIndex == MV_NULL)
+   {
+      // error
+      return;
+   }
+
+   mvEntryListPtr currentEntryList = entryLists.getClassPtr(entryListIndex);
+
+   if (currentEntryList == MV_NULL || !currentEntryList->isEnabled)
+   {
+      return;
+   }
+
+   // initialise mvbehaviour result values
+   mvWorld_CalcBehavOnListHelper helperModule;
+
+   finalResult->setCurrentTimeStep(hTimeStep);
+   finalResult->setElaspedSystemTime(this->getElapsedWorldTime());
+
+   // calculate predictions
+   // A : predict position
+   mvVec3 predictPos = currentBody->getBodyDirection();
+   predictPos *= currentBody->getSpeed() * hTimeStep;
+   predictPos += currentBody->getPosition();
+
+   // B : predict final position
+   mvVec3 predictFinalPos = currentBody->getFinalVelocity();
+   predictFinalPos *= hTimeStep;
+   predictFinalPos += currentBody->getPosition();
+   // C: predict velocity == old_vel + max_accel * time
+
+   mvVec3 predictVelocity = currentBody->getBodyDirection();
+   predictVelocity *= currentBody->getSpeed() +
+      (currentBody->getAcceleration() * hTimeStep);
+
+   // D predict final velocity => predict_vel + past_vel_by_mvforces
+   // past_vel_by_mvforces = (final_vel - vel)
+   mvVec3 predictFinalVelocity = currentBody->getBodyDirection();
+   predictFinalVelocity *= - currentBody->getSpeed();
+   predictFinalVelocity += currentBody->getFinalVelocity();
+   predictFinalVelocity += predictVelocity;
+
+   finalResult->setPositionPrediction(predictPos);
+   finalResult->setFinalPositionPrediction(predictFinalPos);
+   finalResult->setVelocityPrediction(predictVelocity);
+   finalResult->setFinalVelocityPrediction(predictFinalVelocity);
+
+   helperModule.finalResult = finalResult;
+   helperModule.bCapsule = bCapsulePtr;
+
+   // integration mode
+   mvOptionEnum integrationMode = currentEntryList->getMode();
+   switch(integrationMode)
+   {
+      case MV_WEIGHTED:
+      // TODO : case MV_XOR:
+      // TODO : case MV_TREE:
+      // TODO : case MV_RANDOM:
+      // TODO : case MV_RANDOMISED_WEIGHTED:
+      default:
+         currentEntryList->applyToAllEntries(mvWorld_CalculateEntryByWeightedSum,
+            &helperModule);
+   }
 }
 
 void mvWorld_V2::performIntegrationOfBody(mvBodyCapsulePtr bodyPtr,
@@ -3429,7 +3909,7 @@ mvConstBehaviourPtr mvWorld_V2::getConstBehaviourPtr(mvIndex index) const
    return behaviours.getConstClassPtr(index);
 }
 
-mvConstForcePtr mvWorld_V2::getConstGroupForcePtr(mvIndex index) const
+mvConstForcePtr mvWorld_V2::getConstForcePtr(mvIndex index) const
 {
    return forces.getConstClassPtr(index);
 }
@@ -4011,4 +4491,10 @@ mvErrorEnum mvWorld_V2::getEntryListNodeParameterv_str(mvIndex listIndex,\
 
    return tempList->getEntryParameterv_str(nodeIndex, param, array,\
       noOfParameters);
+}
+
+void mvWorld_V2::applyToAllEntryLists(void (someFunction)(mvEntryListPtr, void*),
+   void* extraPtr)
+{
+   entryLists.applyToAllItems(someFunction, extraPtr);
 }

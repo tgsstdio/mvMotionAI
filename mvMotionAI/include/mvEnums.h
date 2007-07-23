@@ -223,6 +223,9 @@ enum mvParamEnum
    MV_BEHAVIOUR,
    MV_FORCE,
    MV_ENTRY_TYPE,
+   MV_TORQUE,
+   MV_ROTATION,
+   MV_OMEGA,
 
    // user defined parameters
    MV_USER_PARAM_INDEX,

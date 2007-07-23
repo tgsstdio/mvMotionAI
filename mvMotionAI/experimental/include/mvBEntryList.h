@@ -35,7 +35,7 @@
 class mvBEntryList
 {
    private:
-      mvPointerList<mvBEntryListNodePtr,mvConstBEntryListNodePtr> entryList;
+      mvPointerList<mvEntryListNodePtr,mvConstEntryListNodePtr> entryList;
       mvOptionEnum integrationMode;
       mvIndex defaultBody;
       mvIndex defaultWaypoint;
@@ -45,9 +45,11 @@ class mvBEntryList
 
    public:
       mvBEntryList();
-      mvBEntryListNodePtr findExistingGroupEntry(mvIndex bIndex,\
+      // TODO : set/get parameter functions
+      bool isEnabled;
+      mvEntryListNodePtr findExistingGroupEntry(mvIndex bIndex,\
          mvIndex gIndex);
-      mvBEntryListNodePtr getEntry(mvIndex index);
+      mvEntryListNodePtr getEntry(mvIndex index);
 
       mvErrorEnum setMode(mvOptionEnum option);
       mvOptionEnum getMode() const;
@@ -118,6 +120,10 @@ class mvBEntryList
          mvFloat num);
       mvErrorEnum setEntryParameterv_str(mvIndex entryIndex,const char* param,\
          mvFloat* numArray);
+
+      void applyToAllEntries(void (someFunction)(mvEntryListNodePtr, void*),\
+         void* extraPtr);
+
 
       // TODO : tree functions
       /*
