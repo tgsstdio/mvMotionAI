@@ -203,12 +203,26 @@ mvFloat mvVec3::normalizedDotProduct(const mvVec3& v) const
  */
 mvFloat mvVec3::dot (const mvVec3& v) const
 {
+   /*
    mvFloat temp = dotXY(v);
    temp += dotZ(v);
    return temp;
+   */
+
+   mvFloat temp = getX();
+   temp *= v.getX();
+   mvFloat total = temp;
+   temp = getY();
+   temp *= v.getY();
+   total += temp;
+   temp = getZ();
+   temp *= v.getZ();
+   total += temp;
+
+   return total;
 }
 
-/**
+/*
  * \brief dot product of x components
  * \param[in] v Vector to multiplied with current vector
  * \return result as a mvFloat.
@@ -218,15 +232,16 @@ mvFloat mvVec3::dot (const mvVec3& v) const
  * Returns the dot product of the two vectors a & v as a mvFloat.
  * Dot product is calculated by result = a.x * v.x
  * Original vectors v & a is unchanged by dotx function.
- */
+ //  * /
 mvFloat mvVec3::dotX (const mvVec3& v) const
 {
    mvFloat temp = getX();
    temp *= v.getX();
    return temp;
 }
+*/
 
-/**
+/*
  * \brief dot product of y components
  * \param[in] v Vector to multiplied with current vector
  * \return result as a mvFloat.
@@ -236,15 +251,16 @@ mvFloat mvVec3::dotX (const mvVec3& v) const
  * Returns the dot product of the two vectors a & v as a mvFloat.
  * Dot product is calculated by result = a.y * v.y
  * Original vectors v & a is unchanged by doty function.
- */
+ //  * /
 mvFloat mvVec3::dotY (const mvVec3& v) const
 {
    mvFloat temp = getY();
    temp *= v.getY();
    return temp;
 }
+*/
 
-/**
+/*
  * \brief dot product of z components
  * \param[in] v Vector to multiplied with current vector
  * \return result as a mvFloat.
@@ -254,15 +270,16 @@ mvFloat mvVec3::dotY (const mvVec3& v) const
  * Returns the dot product of the two vectors a & v as a mvFloat.
  * Dot product is calculated by result = a.z * v.z
  * Original vectors v & a is unchanged by dotz function.
- */
+ *
 mvFloat mvVec3::dotZ (const mvVec3& v) const
 {
    mvFloat temp = getZ();
    temp *= v.getZ();
    return temp;
 }
+*/
 
-/**
+/*
  * \brief dot product of xy components
  * \param[in] v Vector to multiplied with current vector
  * \return result as a mvFloat.
@@ -272,15 +289,16 @@ mvFloat mvVec3::dotZ (const mvVec3& v) const
  * Returns the dot product of the two vectors a & v as a mvFloat.
  * Dot product is calculated by result = a.xy * v.xy
  * Original vectors v & a is unchanged by dotxy function.
- */
+ *
 mvFloat mvVec3::dotXY (const mvVec3& v) const
 {
    mvFloat temp = dotX(v);
    temp += dotY(v);
    return temp;
 }
+*/
 
-/**
+/*
  * \brief dot product of xz components
  * \param[in] v Vector to multiplied with current vector
  * \return result as a mvFloat.
@@ -290,15 +308,16 @@ mvFloat mvVec3::dotXY (const mvVec3& v) const
  * Returns the dot product of the two vectors a & v as a mvFloat.
  * Dot product is calculated by result = a.xz * v.xz
  * Original vectors v & a is unchanged by dotxz function.
- */
+ *
 mvFloat mvVec3::dotXZ (const mvVec3& v) const
 {
    mvFloat temp = dotX(v);
    temp += dotZ(v);
    return temp;
 }
+*/
 
-/**
+/*
  * \brief dot product of yz components
  * \param[in] v Vector to multiplied with current vector
  * \return result as a mvFloat.
@@ -308,13 +327,14 @@ mvFloat mvVec3::dotXZ (const mvVec3& v) const
  * Returns the dot product of the two vectors a & v as a mvFloat.
  * Dot product is calculated by result = a.yz * v.yz
  * Original vectors v & a is unchanged by dotyz function.
- */
+ *
 mvFloat mvVec3::dotYZ (const mvVec3& v) const
 {
    mvFloat temp = dotX(v);
    temp += dotZ(v);
    return temp;
 }
+*/
 
 /**
 * \brief length of vector
@@ -326,6 +346,7 @@ mvFloat mvVec3::length (void) const
 {
    return mvSqrt(lengthSquared());
 }
+
 
 /**
  * \brief length squared
@@ -564,56 +585,62 @@ bool mvVec3::operator!= (const mvVec3& v) const
    return !(*this ==(v));
 }
 
-/**
+/*
  * \brief reset x component
  *
  * sets x component of vector to zero
- */
+ *
 void mvVec3::resetX (void)
 {
   components[MV_VEC3_X_COMPONENT] = 0;
 }
+*/
 
-/**
+/*
  * \brief reset y component
  *
  * sets y component of vector to zero
- */
+ *
 void mvVec3::resetY (void)
 {
   components[MV_VEC3_Y_COMPONENT] = 0;
 }
+*/
 
-/**
+/*
  * \brief reset z component
  *
  * sets z component of vector to zero
- */
+ *
 void mvVec3::resetZ (void)
 {
   components[MV_VEC3_Z_COMPONENT] = 0;
 }
-/**
+*/
+
+/*
  * \brief reset vector
  *
  * set all members to zero
- */
+ *
 void mvVec3::resetXYZ(void)
 {
   components[MV_VEC3_X_COMPONENT] = 0;
   components[MV_VEC3_Y_COMPONENT] = 0;
   components[MV_VEC3_Z_COMPONENT] = 0;
 }
+*/
 
-/**
+/*
  * \brief reset vector
  *
  * set all members to zero i.e same as resetXYZ
- */
+ *
 void mvVec3::setToZeroVector(void)
 {
    resetXYZ();
 }
+*/
 
 /**
  * \brief set x component of vector
@@ -642,50 +669,55 @@ void mvVec3::setZ (const mvFloat& z)
    components[MV_VEC3_Z_COMPONENT] = z;
 }
 
-/**
+/*
  * \brief set XYZ coordinates to given three floats
  * \param[in] x X component value
  * \param[in] y Y component value
  * \param[in] z Z component value
  *
  * NOTE: similar to set but does not return C++ reference
- */
+ *
 void mvVec3::setXYZ (const mvFloat& x,const mvFloat& y,const mvFloat& z)
 {
    components[MV_VEC3_X_COMPONENT] = x;
    components[MV_VEC3_Y_COMPONENT] = y;
    components[MV_VEC3_Z_COMPONENT] = z;
 }
+*/
 
-/**
+/*
  * \brief set vector to be x unit vector or i
- */
+ *
 void mvVec3::setAsXUnitVector (void)
 {
    components[MV_VEC3_X_COMPONENT] = 1;
    components[MV_VEC3_Y_COMPONENT] = 0;
    components[MV_VEC3_Z_COMPONENT] = 0;
 }
+*/
 
-/**
+/*
  * \brief set vector to be y unit vector or j
- */
+ *
 void mvVec3::setAsYUnitVector (void)
 {
    components[MV_VEC3_X_COMPONENT] = 0;
    components[MV_VEC3_Y_COMPONENT] = 1;
    components[MV_VEC3_Z_COMPONENT] = 0;
 }
+*/
 
-/**
+/*
  * \brief set vector to be z unit vector or k
- */
+ *
+ *
 void mvVec3::setAsZUnitVector (void)
 {
    components[MV_VEC3_X_COMPONENT] = 0;
    components[MV_VEC3_Y_COMPONENT] = 0;
    components[MV_VEC3_Z_COMPONENT] = 1;
 }
+*
 
 void mvVec3::addVec3(const mvVec3& rhs)
 {
@@ -714,6 +746,7 @@ void mvVec3::divideVec3(const mvVec3& rhs)
   components[MV_VEC3_Y_COMPONENT] /= rhs.getY();
   components[MV_VEC3_Z_COMPONENT] /= rhs.getZ();
 }
+*/
 
 /**
 * \brief returns X
@@ -743,33 +776,12 @@ mvFloat mvVec3::getZ() const
 * \brief returns XYZ array pointer
 * \return const mvFloat array pointer of length 3
 */
-const mvFloat* mvVec3::getXYZ() const
+const mvFloat* mvVec3::getPointer() const
 {
    return &components[0];
 }
-
-//void mvVec3::matrixMultiply(const mvFloat* matrix, int noOfValues, int order);
 
 mvVec3 operator* (mvFloat s, const mvVec3& v)
 {
    return v*s;
 }
-
-/*
-no iostream in library - code bloat
-std::ostream& operator<< (std::ostream& o, const mvVec3& v)
-{
-   return o << "(" << v.getX() << "," << v.getY() << "," << v.getZ() << ")";
-}
-*/
-
-/** @brief set current vector to parameter
-  *
-  */
-void mvVec3::setAll(const mvVec3& rhs)
-{
-   setX(rhs.getX());
-   setY(rhs.getY());
-   setZ(rhs.getZ());
-}
-

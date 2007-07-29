@@ -988,3 +988,73 @@ void mvBody_V2::setZ(mvFloat z)
 {
    bodyPosition.setZ(z);
 }
+
+const mvVec3& mvBody_V2::getFinalForce() const
+{
+   return finalForceVector;
+}
+
+void mvBody_V2::setFinalForce(const mvVec3& vec)
+{
+   finalForceVector = vec;
+}
+
+const mvVec3& mvBody_V2::getBodysForce() const
+{
+   return bodysForceVector;
+}
+
+void mvBody_V2::setBodysForce(const mvVec3& vec)
+{
+   bodysForceVector = vec;
+}
+
+const mvVec3& mvBody_V2::getFinalTorque() const
+{
+   return finalTorque;
+}
+
+void mvBody_V2::setFinalTorque(const mvVec3& vec)
+{
+   finalTorque = vec;
+}
+
+const mvVec3& mvBody_V2::getBodysTorque() const
+{
+   return bodysTorque;
+}
+
+void mvBody_V2::setBodyTorque(const mvVec3& vec)
+{
+   bodysTorque = vec;
+}
+
+const mvVec3& mvBody_V2::getFinalOmega() const
+{
+   return finalOmega;
+}
+
+void mvBody_V2::setFinalOmega(const mvVec3& vec)
+{
+   finalOmega = vec;
+}
+
+const mvVec3& mvBody_V2::getRotation() const
+{
+   return bodysRotation;
+}
+
+void mvBody_V2::setRotation(const mvVec3& vec)
+{
+   bodysRotation = vec;
+}
+
+const mvVec3& mvBody_V2::getBodysOmega() const
+{
+   return bodysOmega;
+}
+
+void mvBody_V2::setBodysOmega(const mvVec3& vec)
+{
+   bodysOmega = vec;
+}
