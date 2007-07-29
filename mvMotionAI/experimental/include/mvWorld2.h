@@ -728,6 +728,10 @@ class mvWorld_V2
 
       void applyToAllEntryLists(void (someFunction)(mvEntryListPtr, void*),
          void* extraPtr);
+      // TODO : user data
+      mvErrorEnum setUserData(mvParamEnum objectType, mvIndex objectIndex,\
+         void* userData);
+      void* getUserData(mvParamEnum objectType, mvIndex objectIndex) const;
 };
 
 

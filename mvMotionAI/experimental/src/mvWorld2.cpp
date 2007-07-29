@@ -2010,10 +2010,17 @@ void mvWorld_V2::resetIntegrationLoop()
 
 void mvWorld_Prepare_Body_Capsule(mvBodyCapsulePtr capsulePtr, void* extraPtr)
 {
+   mvVec3 zeroVector(0,0,0);
+
    capsulePtr->performIntegration = false;
-   capsulePtr->futurePosition.resetXYZ();
-   capsulePtr->futureFinalVelocity.resetXYZ();
-   capsulePtr->futureRotation.resetXYZ();
+   capsulePtr->futureVelocity = zeroVector;
+   capsulePtr->additionalVelocity = zeroVector;
+   capsulePtr->futureForce = zeroVector;
+   capsulePtr->additionalForce = zeroVector;
+   capsulePtr->futureTorque = zeroVector;
+   capsulePtr->additionalTorque = zeroVector;
+   capsulePtr->futureOmega = zeroVector;
+   capsulePtr->additionalOmega = zeroVector;
 }
 
 void mvWorld_Prepare_Force_Capsule(mvForceCapsulePtr capsulePtr,\
@@ -4497,4 +4504,39 @@ void mvWorld_V2::applyToAllEntryLists(void (someFunction)(mvEntryListPtr, void*)
    void* extraPtr)
 {
    entryLists.applyToAllItems(someFunction, extraPtr);
+}
+
+mvErrorEnum mvWorld_V2::setUserData(mvParamEnum objectType,\
+   mvIndex objectIndex, void* userData)
+{
+   switch(objectType)
+   {
+      case MV_BODY:
+         mvBodyPtr possibleBodyPtr  = getBodyPtr(objectIndex);
+         if (possibleBodyPtr == MV_NULL)
+         {
+            return MV_BODY_INDEX_IS_INVALID;
+         }
+         possibleBodyPtr->setUserData(userData);
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_OBJECT_TYPE;
+   }
+
+}
+
+void* mvWorld_V2::getUserData(mvParamEnum objectType, mvIndex objectIndex) const
+{
+   switch(objectType)
+   {
+      case MV_BODY:
+         mvConstBodyPtr possibleBodyPtr = getConstBodyPtr(objectIndex);
+         if (possibleBodyPtr == MV_NULL)
+         {
+            return MV_NULL;
+         }
+         return possibleBodyPtr->getUserData();
+      default:
+         return MV_NULL;
+   }
 }

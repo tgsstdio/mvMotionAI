@@ -168,6 +168,21 @@ class mvBody_V2
          mvFloat z);
       ~mvBody_V2();
 
+      // TODO : functions here
+      const mvVec3& getFinalForce() const;
+      void setFinalForce(const mvVec3& vec);
+      const mvVec3& getBodysForce() const;
+      void setBodysForce(const mvVec3& vec);
+      const mvVec3& getFinalTorque() const;
+      void setFinalTorque(const mvVec3& vec);
+      const mvVec3& getBodysTorque() const;
+      void setBodyTorque(const mvVec3& vec);
+      const mvVec3& getFinalOmega() const;
+      void setFinalOmega(const mvVec3& vec);
+      const mvVec3& getRotation() const;
+      void setRotation(const mvVec3& vec);
+      const mvVec3& getBodysOmega() const;
+      void setBodysOmega(const mvVec3& vec);
 };
 
 #endif // MVBODY_V2_H_INCLUDED

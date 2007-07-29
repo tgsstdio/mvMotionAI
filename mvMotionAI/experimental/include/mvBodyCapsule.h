@@ -38,9 +38,14 @@ class mvBodyCapsule
    public:
       bool performIntegration;
       mvIndex bodyIndex;
-      mvVec3 futurePosition;
-      mvVec3 futureFinalVelocity;
-      mvVec3 futureRotation;
+      mvVec3 futureVelocity;
+      mvVec3 additionalVelocity;
+      mvVec3 futureForce;
+      mvVec3 additionalForce;
+      mvVec3 futureOmega;
+      mvVec3 additionalOmega;
+      mvVec3 futureTorque;
+      mvVec3 additionalTorque;
 
       mvBodyCapsule(mvBodyPtr capsuleBody);
       mvConstBodyPtr getConstClassPtr() const;

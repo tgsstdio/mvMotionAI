@@ -88,12 +88,15 @@ class mvVec3
 
       // leaves values same
       mvFloat dot (const mvVec3& v) const;
+
+      /*
       mvFloat dotX (const mvVec3& v) const;
       mvFloat dotY (const mvVec3& v) const;
       mvFloat dotZ (const mvVec3& v) const;
       mvFloat dotXY (const mvVec3& v) const;
       mvFloat dotXZ (const mvVec3& v) const;
       mvFloat dotYZ (const mvVec3& v) const;
+      */
 
       mvFloat length (void) const;
       mvFloat lengthSquared (void) const;
@@ -102,7 +105,6 @@ class mvVec3
       void AcrossB(const mvVec3& a,const mvVec3& b);
       mvVec3 cross(const mvVec3& rhs) const;
       const mvVec3& operator= (const mvVec3& v);
-
       const mvVec3&  set (const mvFloat _x, const mvFloat _y, const mvFloat _z);
 
       const mvVec3& operator+= (const mvVec3& v);
@@ -114,15 +116,17 @@ class mvVec3
       bool operator== (const mvVec3& v) const;
       bool operator!= (const mvVec3& v) const;
 
+      /*
       void resetX (void);
       void resetY (void);
       void resetZ (void);
       void resetXYZ(void);
-
+      */
       void setX (const mvFloat& x);
       void setY (const mvFloat& y);
       void setZ (const mvFloat& z);
 
+      /*
       void setXYZ (const mvFloat& x,const mvFloat& y,const mvFloat& z);
       void setAll(const mvVec3& rhs);
 
@@ -136,12 +140,12 @@ class mvVec3
       void timesVec3(const mvVec3& rhs);
       void divideVec3(const mvVec3& rhs);
       // TODO : inplace sign change
-
+      */
       mvFloat getX() const;
       mvFloat getY() const;
       mvFloat getZ() const;
 
-      const mvFloat* getXYZ() const;
+      const mvFloat* getPointer() const;
 
       /*
       * --------------------------------------------------------------------------
