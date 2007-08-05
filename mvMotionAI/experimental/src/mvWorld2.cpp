@@ -1928,11 +1928,12 @@ void mvWorld_V2::integrateBody(mvBodyCapsulePtr bodyPtr, mvFloat timeInSecs)
    mvBehaviourResult finalResult((mvConstWorldPtr) this,
       bodyPtr->getConstClassPtr());
 
+   finalResult.resetAll();
    resetIntegrationLoop();
    checkIfWaypointContainsBody(bodyPtr);
    calculateAllForcesOnBody(bodyPtr);
    calculateBehavioursOnBody(&finalResult, bodyPtr, timeInSecs);
-   performIntegrationOfBody(bodyPtr, timeInSecs);
+   performIntegrationOfBody(bodyPtr, &finalResult);
 }
 
 /** @brief (one liner)
@@ -1950,7 +1951,7 @@ void mvWorld_V2::worldStep(mvFloat timeInSecs)
    helpContainer.timeInSecs = timeInSecs;
    bodies.applyToAllCapsules(mvWorld_V2_IntegrateAllBodies,&helpContainer);
 
-   finaliseIntegrationStep();
+   finaliseIntegrationStep(timeInSecs);
 }
 
 /** @brief (one liner)
@@ -1969,10 +1970,17 @@ mvErrorEnum mvWorld_V2::nudgeBody(mvIndex index, mvFloat timeInSecs)
    prepareIntegrationStep();
    calculateGroupBehaviours();
    integrateBody(tempCapsulePtr,timeInSecs);
-   finaliseIntegrationStep();
+   finaliseIntegrationStep(timeInSecs);
 
    return MV_NO_ERROR;
 }
+
+struct mvWorldV2_CalcForceHelperStruct
+{
+   public:
+      mvWorldPtr currentWorld;
+      mvBodyCapsulePtr currentBody;
+};
 
 /** @brief (one liner)
   *
@@ -2691,47 +2699,229 @@ void mvWorld_V2::calculateBehavioursOnBody(mvBehaviourResultPtr finalResult,\
 }
 
 void mvWorld_V2::performIntegrationOfBody(mvBodyCapsulePtr bodyPtr,
-   mvFloat timeInSecs)
+   mvBehaviourResultPtr resultModule)
 {
+   mvVec3 tempVector;
+   // ASSUME resultModule is "NORMALISED" - global steering motions
+   // TODO : normalize bool
+
+   if (!bodyPtr->performIntegration)
+   {
+      return;
+   }
+   // set
+   bodyPtr->futureForce = resultModule->getForce();
+   bodyPtr->futureVelocity = resultModule->getVelocity();
+   bodyPtr->futureTorque = resultModule->getTorque();
+   bodyPtr->futureOmega = resultModule->getOmega();
+
+   // translate
+   // TODO : accel to force
+   // F = ma
+   tempVector = resultModule->getAccel();
+   tempVector *= bodyPtr->getConstClassPtr()->getMass();
+
+   bodyPtr->futureForce += tempVector;
+   // TODO : direction to omega
+
+   // TODO : rotation to omega
+
+   // TODO : quaternion to omega
+
+}
+
+void mvWorld_calculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
+   void *extraPtr)
+{
+   mvWorld_IntegrateLoopHelper* helperModule =
+      (mvWorld_IntegrateLoopHelper*) extraPtr;
+
+   if (!capsulePtr->performIntegration)
+   {
+      return;
+   }
+
+   /* Purpose of this is to
+    * // MOTION
+    * 13. convert all motion to velocity
+    * 10. limit the motion by
+    *    - body's max speed
+    *    - body's max acceleration
+    *    - body's max deceleration
+    * 6. calc the body's 'own' propulsion velocity
+    * 9. create the body's equivalent force
+    * 2. sum the mvForces and mvBehaviours together
+    * 4. create a final velocity and final force which are
+    *     - useful when used separately.
+    *     - exactly the same thing in different forms
+    * 1. calculate the final position of the body
+    * // ROTATION
+    * 2. sum the mvForce's rotation and mvBehaviours rotation together
+    * 15. calculate body shape's radius
+    * 14. convert all circular (motion) to omega
+    * 7. calc the body's 'own' prepulsion omega
+    * 8. create the body's equivalent torque
+    * 5. create the final omega (in degree) and torque of equivalent
+    *    value
+    * 10. limit the motion by
+    *    - body's max turning/rolling/yawing angle
+    *    - body's max turning/rolling/yawing omega
+    * 3. calculate the final rotation of the body
+    */
+
+   // calculate change in velocity = delta_vel
+   // accel = delta_vel / time_in_secs
+   // force = accel * mass
+   // torque = length * force
+
 // TODO : calculate world functions
-   mvFloat vel[2][3], speed[2], pos[2][3], dir[3], h, c1, c2;
+   mvBodyPtr currentBody = capsulePtr->getClassPtr();
+
+   mvFloat vel[2][3], pos[2][3], c1, c2;
    mvIndex i = 0;
-   speed[0] = 0.4;
-   speed[1] = 0.5;
 
-   h = timeInSecs;
+   mvFloat hTimeStep = helperModule->timeInSecs;
+   mvFloat inverse_h = 1;
+   inverse_h /= hTimeStep;
 
-   mvVec3 velocity = bodyPtr->getClassPtr()->getVelocity();
+   // 13. convert all motion to velocity
+   // currently all values are components
 
-   vel[1][0] =  vel[0][0] = velocity.getX();
-   vel[1][1] = vel[0][1] = velocity.getY();
-   vel[1][2] = vel[0][2] = velocity.getZ();
+   // force => accel
+   mvVec3 accelVec = capsulePtr->futureForce;
+   accelVec /= currentBody->getMass();
 
-   pos[0][0] = bodyPtr->getClassPtr()->getPosition().getX();
-   pos[0][1] = bodyPtr->getClassPtr()->getPosition().getY();
-   pos[0][2] = bodyPtr->getClassPtr()->getPosition().getZ();
+   // TODO : have h, h^2, 1/h, 1/h^2 timesteps
+   // deltaVelocity += accel
+   accelVec *= hTimeStep;
+   mvVec3 deltaVelocity = capsulePtr->futureVelocity;
+   deltaVelocity += accelVec;
 
-   dir[0] = 1;
-   dir[1] = 0;
-   dir[2] = 0;
+   mvFloat bodySpeed = currentBody->getSpeed();
+   mvVec3 bodyVelocity = currentBody->getVelocity();
+
+   // end velocity
+   bodyVelocity += deltaVelocity;
+    /* 10. limit the motion by
+    *    - body's max speed
+    *    - body's max acceleration
+    *    - body's max deceleration
+    */
+
+   mvFloat incrSpeedDelta = currentBody->getAcceleration();
+   incrSpeedDelta *= hTimeStep;
+
+   mvFloat decrSpeedDelta = currentBody->getDeceleration();
+   decrSpeedDelta *= hTimeStep;
+
+   mvFloat maxSpeed = currentBody->getMaxSpeed();
+   // TODO : separate reverse speed
+   mvFloat minSpeed = 0;
+
+   mvFloat compareSpeed = bodySpeed + incrSpeedDelta;
+   if (compareSpeed < maxSpeed)
+   {
+      maxSpeed = compareSpeed;
+   }
+
+   compareSpeed = bodySpeed + decrSpeedDelta;
+   if (compareSpeed > minSpeed)
+   {
+      minSpeed = compareSpeed;
+   }
+
+   mvFloat futureSpeed = bodyVelocity.length();
+   mvVec3 futureUnitVelocity = bodyVelocity.normalize();
+
+   //compareSpeed = bodySpeed + decrSpeedDelta;
+   if (futureSpeed > maxSpeed)
+   {
+      futureSpeed = maxSpeed;
+   }
+   else if (futureSpeed < minSpeed)
+   {
+      futureSpeed = minSpeed;
+   }
+
+   //* 6. calc the body's 'own' propulsion velocity
+   bodyVelocity = futureUnitVelocity;
+   bodyVelocity *= futureSpeed;
+   // saving velocity
+   deltaVelocity = currentBody->getVelocity();
+   // set velocity
+   currentBody->setVelocity(bodyVelocity);
+
+   // TODO * 9. create the body's equivalent force
+   // delta = old_vel - new vel
+   // a = delta_vel * 1/h
+   accelVec = bodyVelocity;
+   accelVec -= deltaVelocity;
+   accelVec *= inverse_h;
+   accelVec *= currentBody->getMass();
+   currentBody->setBodysForce(accelVec);
+
+    /* 4. create a final velocity and final force which are
+    *     - useful when used separately.
+    *     - exactly the same thing in different forms
+    */
+
+   // repeat steps force -> accel -> delta_vel => accel => force
+   accelVec = capsulePtr->additionalForce;
+   // add bodys' force
+   accelVec += currentBody->getBodysForce();
+   accelVec /= currentBody->getMass();
+   accelVec *= hTimeStep;
+   // accel -> delta_vel
+   deltaVelocity = accelVec;
+   deltaVelocity *= hTimeStep;
+   // sum velocities to final velocity
+   bodyVelocity = capsulePtr->additionalVelocity;
+   bodyVelocity += currentBody->getVelocity();
+   bodyVelocity += deltaVelocity;
+   // store final velocity
+   deltaVelocity = currentBody->getFinalVelocity();
+   currentBody->setFinalVelocity(bodyVelocity);
+
+   // calculating final force
+   accelVec = bodyVelocity;
+   accelVec -= deltaVelocity;
+   accelVec *= inverse_h;
+   accelVec *= currentBody->getMass();
+   currentBody->setFinalForce(accelVec);
+
+   bodyVelocity = currentBody->getFinalVelocity();
+
+   //* 1. calculate the final position of the body
+   vel[0][0] = deltaVelocity.getX();
+   vel[0][1] = deltaVelocity.getY();
+   vel[0][2] = deltaVelocity.getZ();
+   vel[1][0] = bodyVelocity.getX();
+   vel[1][1] = bodyVelocity.getY();
+   vel[1][2] = bodyVelocity.getZ();
+
+   pos[0][0] = currentBody->getPosition().getX();
+   pos[0][1] = currentBody->getPosition().getY();
+   pos[0][2] = currentBody->getPosition().getZ();
+
+   // TODO : rotation
 
    for (i = 0; i < 3; i++)
    {
-      vel[0][i] += dir[i] * speed[0];
-      vel[1][i] += dir[i] * speed[1];
+      //vel[0][i] += dir[i] * speed[0];
+      //vel[1][i] += dir[i] * speed[1];
       //vel[0][j] *= speed[0];
       //vel[1][j] *= speed[1];
 
       /*
       * 5.1.2.6.2 calculate the position
       */
-      c1 = h * vel[0][i];
-      c2 = h * vel[1][i];
+      c1 = hTimeStep * vel[0][i];
+      c2 = hTimeStep * vel[1][i];
       pos[1][i] = pos[0][i] + 0.5 * (c1 + c2);
    }
 
-   bodyPtr->getClassPtr()->setVelocity(vel[1][0],vel[1][1],vel[1][2]);
-   bodyPtr->getClassPtr()->setPosition(pos[1][0],pos[1][1],pos[1][2]);
+   //currentBody->setVelocity(vel[1][0],vel[1][1],vel[1][2]);
+   currentBody->setPosition(pos[1][0],pos[1][1],pos[1][2]);
 }
 
 void mvWorld_Finalise_Groups(mvGroupCapsulePtr capsulePtr, void* extraPtr)
@@ -2739,9 +2929,14 @@ void mvWorld_Finalise_Groups(mvGroupCapsulePtr capsulePtr, void* extraPtr)
    capsulePtr->hasChanged = false;
 }
 
-void mvWorld_V2::finaliseIntegrationStep()
+void mvWorld_V2::finaliseIntegrationStep(mvFloat timeInSecs)
 {
+   mvWorld_IntegrateLoopHelper helperModule;
+   helperModule.currentWorld = this;
+   helperModule.timeInSecs = timeInSecs;
+
    groups.applyToAllCapsules(mvWorld_Finalise_Groups,this);
+   bodies.applyToAllCapsules(mvWorld_calculateIntegrationOfBody, &helperModule);
 }
 
 // WORLD STEP FUNCTIONS

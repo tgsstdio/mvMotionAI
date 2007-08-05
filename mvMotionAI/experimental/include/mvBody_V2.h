@@ -65,9 +65,10 @@ class mvBody_V2
       // body's maximum speed possible in system
       mvFloat bodyMaxSpeed;
       // body's own velocity excluding (before) mvForces
-      mvFloat bodyCurrentSpeed;
+      //mvFloat bodyCurrentSpeed;
       // body's own unit velocity excluding (before) mvForces
-      mvVec3 bodyDirection;
+      mvVec3 bodyVelocity;
+
       // mvBody rotation
       //mvVec3 eulerAngles;
       void* bodyUserDataPtr;
@@ -92,8 +93,10 @@ class mvBody_V2
       void setX(mvFloat x);
       void setY(mvFloat y);
       void setZ(mvFloat z);
+
       const mvVec3& getPosition() const;
       mvErrorEnum setPosition(mvFloat x, mvFloat y, mvFloat z);
+      void setPosition(const mvVec3& pos);
 
       const mvVec3& getFaceDirection() const;
       mvErrorEnum setFaceDirection(mvFloat x, mvFloat y,mvFloat z);
@@ -114,22 +117,22 @@ class mvBody_V2
       mvFloat getDeceleration() const;
       mvErrorEnum setDeceleration(mvFloat dAccel);
 
-      const mvVec3& getBodyDirection() const;
+      mvVec3 getBodyDirection() const;
       mvErrorEnum setBodyDirection(mvFloat fx, mvFloat fy, mvFloat fz);
-      mvErrorEnum setBodyDirectionByVec3(const mvVec3& value);
+      mvErrorEnum setBodyDirection(const mvVec3& value);
 
       mvVec3 getFinalDirection() const;
       mvErrorEnum setFinalDirection(mvFloat fx, mvFloat fy, mvFloat fz);
-      mvErrorEnum setFinalDirectionByVec3(const mvVec3& value);
+      mvErrorEnum setFinalDirection(const mvVec3& value);
 
+      const mvVec3& getVelocity() const;
       mvErrorEnum setVelocity(mvFloat vx, mvFloat vy, mvFloat vz);
+      mvErrorEnum setVelocity(const mvVec3& value);
+
       const mvVec3& getFinalVelocity() const;
       mvErrorEnum setFinalVelocity(mvFloat x, mvFloat y, mvFloat z);
-      mvErrorEnum setVelocityByVec3(const mvVec3& value);
-      mvErrorEnum setFinalVelocityByVec3(const mvVec3& value);
-      mvErrorEnum setPositionByVec3(const mvVec3& value);
+      mvErrorEnum setFinalVelocity(const mvVec3& value);
 
-      mvVec3 getVelocity() const;
       mvFloat getFinalSpeed() const;
 
       void* getUserData() const;
