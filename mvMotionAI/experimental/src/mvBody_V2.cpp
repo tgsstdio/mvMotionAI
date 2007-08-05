@@ -50,8 +50,10 @@ mvBody_V2::mvBody_V2(mvOptionEnum bType, mvOptionEnum shape, mvFloat x,\
    setMaxSpeed(5);
    // user data = MV_NULL
    bodyUserDataPtr = MV_NULL;
+
    // default direction 1.0
-   bodyDirection.set(0,0,1);
+   //bodyDirection.set(0,0,1);
+
    // face direction
    faceDirection.set(0,0,1);
    // shape
@@ -65,20 +67,17 @@ mvBody_V2::mvBody_V2(mvOptionEnum bType, mvOptionEnum shape, mvFloat x,\
 
 }
 
-const mvVec3& mvBody_V2::getBodyDirection() const
+mvVec3 mvBody_V2::getBodyDirection() const
 {
-   return bodyDirection;
+   return bodyVelocity.normalize();
 }
 
-mvErrorEnum mvBody_V2::setBodyDirection(mvFloat bdx, mvFloat bdy, mvFloat bdz)
+mvErrorEnum mvBody_V2::setBodyDirection(const mvVec3& value)
 {
-   mvVec3 temp(bdx, bdy, bdz);
-   return setBodyDirectionByVec3(temp);
-}
-
-mvErrorEnum mvBody_V2::setBodyDirectionByVec3(const mvVec3& value)
-{
-   bodyDirection = value;
+   mvVec3 newNormalized = value.normalize();
+   mvFloat bodySpeed = getSpeed();
+   bodyVelocity = value;
+   bodyVelocity *= bodySpeed;
    return MV_NO_ERROR;
 }
 
@@ -249,8 +248,10 @@ const mvVec3& mvBody_V2::getPosition() const
 
 mvErrorEnum mvBody_V2::setPosition(mvFloat x, mvFloat y, mvFloat z)
 {
-   mvVec3 temp(x,y,z);
-   return setPositionByVec3(temp);
+   setX(x);
+   setY(y);
+   setZ(z);
+   return MV_NO_ERROR;
 }
 
 const mvVec3& mvBody_V2::getFaceDirection() const
@@ -272,13 +273,22 @@ mvErrorEnum mvBody_V2::setFaceDirectionByVec3(const mvVec3& value)
 
 mvFloat mvBody_V2::getSpeed() const
 {
-   return bodyCurrentSpeed;
+   return bodyVelocity.length();
 }
 
 mvErrorEnum mvBody_V2::setSpeed(mvFloat num)
 {
-   bodyCurrentSpeed = num;
-   return MV_NO_ERROR;
+   if (num > 0)
+   {
+      mvVec3 unitVelocity = bodyVelocity.normalize();
+      bodyVelocity = unitVelocity;
+      bodyVelocity *= num;
+      return MV_NO_ERROR;
+   }
+   else
+   {
+      return MV_FLOAT_VALUE_IS_NOT_POSITIVE;
+   }
 }
 
 mvFloat mvBody_V2::getMaxSpeed() const
@@ -332,19 +342,22 @@ mvErrorEnum mvBody_V2::setAcceleration(mvFloat accel)
    return MV_NO_ERROR;
 }
 
+
 mvVec3 mvBody_V2::getFinalDirection() const
 {
    mvVec3 temp = finalVelocity.normalize();
    return temp;
 }
 
+/*
 mvErrorEnum mvBody_V2::setFinalDirection(mvFloat fx, mvFloat fy, mvFloat fz)
 {
    mvVec3 temp(fx,fy,fz);
    return setFinalDirectionByVec3(temp);
 }
+*/
 
-mvErrorEnum mvBody_V2::setFinalDirectionByVec3(const mvVec3& value)
+mvErrorEnum mvBody_V2::setFinalDirection(const mvVec3& value)
 {
    faceDirection = value;
    return MV_NO_ERROR;
@@ -357,41 +370,36 @@ const mvVec3& mvBody_V2::getFinalVelocity() const
 
 mvErrorEnum mvBody_V2::setFinalVelocity(mvFloat x, mvFloat y, mvFloat z)
 {
-   mvVec3 temp(x,y,z);
-   return setFinalVelocityByVec3(temp);
+   finalVelocity.set(x,y,z);
+   return MV_NO_ERROR;
 }
 
 mvErrorEnum mvBody_V2::setVelocity(mvFloat vx, mvFloat vy, mvFloat vz)
 {
-   mvVec3 temp(vx,vy,vz);
-   return setVelocityByVec3(temp);
-}
-
-mvErrorEnum mvBody_V2::setVelocityByVec3(const mvVec3& value)
-{
-   bodyCurrentSpeed = value.length();
-   faceDirection = value.normalize();
+   bodyVelocity.set(vx,vy,vz);
    return MV_NO_ERROR;
 }
 
-mvErrorEnum mvBody_V2::setFinalVelocityByVec3(const mvVec3& value)
+mvErrorEnum mvBody_V2::setVelocity(const mvVec3& value)
+{
+   bodyVelocity = value;
+   return MV_NO_ERROR;
+}
+
+mvErrorEnum mvBody_V2::setFinalVelocity(const mvVec3& value)
 {
    finalVelocity = value;
    return MV_NO_ERROR;
 }
 
-mvErrorEnum mvBody_V2::setPositionByVec3(const mvVec3& value)
+void mvBody_V2::setPosition(const mvVec3& value)
 {
    bodyPosition = value;
-   return MV_NO_ERROR;
 }
 
-mvVec3 mvBody_V2::getVelocity() const
+const mvVec3& mvBody_V2::getVelocity() const
 {
-   mvVec3 temp(bodyDirection);
-   temp *= getSpeed();
-
-   return temp;
+   return bodyVelocity;
 }
 
 mvFloat mvBody_V2::getFinalSpeed() const
@@ -633,7 +641,7 @@ mvErrorEnum mvBody_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
          *noOfParameters = 3;
          return MV_NO_ERROR;
       case MV_DIRECTION:
-         resultVector = getBodyDirection();
+         resultVector = bodyVelocity.normalize();
          numArray[0] = resultVector.getX();
          numArray[1] = resultVector.getY();
          numArray[2] = resultVector.getZ();
@@ -662,7 +670,7 @@ mvErrorEnum mvBody_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
          *noOfParameters = 3;
          return MV_NO_ERROR;
       case MV_FINAL_DIRECTION:
-         resultVector = getFinalDirection();
+         resultVector = finalVelocity.normalize();
          numArray[0] = resultVector.getX();
          numArray[1] = resultVector.getY();
          numArray[2] = resultVector.getZ();

@@ -74,7 +74,8 @@ class mvWorld_V2
 
       /// world step functionality
       void prepareIntegrationStep();
-      void performIntegrationOfBody(mvBodyCapsulePtr bodyPtr,mvFloat timeInSecs);
+      void performIntegrationOfBody(mvBodyCapsulePtr bodyPtr,
+         mvBehaviourResultPtr resultModule);
       void calculateGroupBehaviours(); // 1
       void checkIfWaypointContainsBody(mvBodyCapsulePtr bodyPtr);
       void resetIntegrationLoop();
@@ -85,7 +86,7 @@ class mvWorld_V2
          mvBodyCapsulePtr bodyPtr);
       void calculateBehavioursOnBody(mvBehaviourResultPtr finalResult,\
          mvBodyCapsulePtr bodyPtr, mvFloat hTimeStep);
-      void finaliseIntegrationStep();
+      void finaliseIntegrationStep(mvFloat timeInSecs);
 
       mvConstBodyCapsulePtr getConstBodyCapsulePtr(int index) const;
       mvBodyCapsulePtr getBodyCapsulePtr(int index);
