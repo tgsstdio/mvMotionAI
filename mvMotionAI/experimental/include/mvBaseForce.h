@@ -22,17 +22,79 @@
 #ifndef MVBASEFORCE_H_INCLUDED
 #define MVBASEFORCE_H_INCLUDED
 
+#include "mvMotionAI-Types.h"
+#include MV_ENUMS_HEADER_FILE_H_
+#include MV_BEHAVIOUR_RESULT_HEADER_FILE_H_
+
 class mvForceStatus
 {
+   public:
+      bool onlyLocalForce;
+      bool onlyGlobalForce;
+      bool forcesOn;
+      bool gravityOn;
+      bool accelerationOn;
+      bool shiftsOn;
+      bool dragForceOn;
+      bool dragAccelerationOn;
+      bool dragShiftOn;
+      bool torqueOn;
+      bool omegaOn;
 
+      mvForceStatus();
+      void applyingAll();
+      void applyingNone();
+      void applyingLinearMotionOnly();
+      void applyingAngularMotionOnly();
+
+      void forLocalForceOnly();
+      void forGlobalForceOnly();
+      void applyingGravity();
+      void applyingAcceleration();
+      void applyingShifts();
+      void applyingFullDrag();
+      void applyingDragForce();
+      void applyingDragAcceleration();
+      void applyingDragShift();
+      void applyingForces();
+      void applyingTorque();
+      void applyingOmega();
 };
-
-typedef class forceMod* mvForceResultingPtr;
 
 class mvBaseForce
 {
-   virtual bool filter(mvForceStatus* worldStatus);
-   bool calculate(mvForceResultingPtr fResult) = 0;
+   private:
+      mvOptionEnum fType;
+   public:
+      mvBaseForce(mvOptionEnum type);
+      mvOptionEnum getType() const;
+
+      virtual void filter(mvForceStatus& worldStatus);
+      virtual bool calcFullForces(mvBehaviourResultPtr fResult) = 0;
+      virtual mvErrorEnum getParameteri(mvParamEnum paramFlag,\
+         mvIndex* index) const;
+      virtual mvErrorEnum getParameter(mvParamEnum paramFlag,\
+         mvOptionEnum* dest) const;
+      virtual mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* dest)\
+         const;
+      virtual mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* dest,\
+         mvCount* size) const;
+
+      virtual mvErrorEnum setParameter(mvParamEnum paramFlag,\
+         mvOptionEnum option);
+      virtual mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
+      virtual mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
+      virtual mvErrorEnum setParameterv(mvParamEnum paramFlag,\
+         mvFloat* numArray);
+      virtual ~mvBaseForce();
+};
+
+class mvForceLoader
+{
+      mvForceLoader();
+      virtual mvForcePtr operator()(\
+         void* extraPtr) = 0;
+      virtual ~mvForceLoader();
 };
 
 #endif // MVBASEFORCE_H_INCLUDED
