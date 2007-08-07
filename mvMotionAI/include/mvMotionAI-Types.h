@@ -1,7 +1,7 @@
 #ifndef MV_MOTIONAI_TYPES_H_
 #define MV_MOTIONAI_TYPES_H_
 
-#define MVMOTIONAI_TYPES_VERSION "00-01-68"
+#define MVMOTIONAI_TYPES_VERSION "00-01-78"
 
 #define MV_FILE_HEADER_TAG_ 1
 #undef MV_FILE_HEADER_TAG_
@@ -143,12 +143,16 @@ typedef class mvBody_V2 mvBody;
 typedef class mvBody_V2* mvBodyPtr;
 typedef class mvBody_V2 const * const mvConstBodyPtr;
 
+#define MV_BASE_FORCE_HEADER_FILE_H_ "mvBaseForce.h"
+typedef class mvBaseForce* mvBaseForcePtr;
+typedef class mvBaseForce const * const mvConstBaseForcePtr;
+
 #define MV_FORCE_HEADER_FILE_H_ "mvForce.h"
 typedef class mvForce* mvForcePtr;
 typedef class mvForce const * const mvConstForcePtr;
 
-#define MV_FORCE_RESULT_HEADER_FILE_H_
-typedef class mvForceResult* mvForceResultPtr;
+//#define MV_FORCE_RESULT_HEADER_FILE_H_
+//typedef class mvForceResult* mvForceResultPtr;
 
 #define MV_GROUP_HEADER_FILE_H_ "mvGroup_V2.h"
 typedef class mvGroup_V2 mvGroup;
@@ -197,6 +201,10 @@ typedef class mvBEntry* mvBEntryPtr;
 #define MV_ACTION_LOADER_LIST_HEADER_FILE_H_ "mvActionLoaderList.h"
 //typedef class mvActionLoaderList*  mvActionLoaderListPtr;
 #define mvActionLoaderListPtr mvActionLoaderList*
+
+#define MV_FORCE_LOADER_LIST_HEADER_FILE_H_ "mvForceLoaderList.h"
+//typedef class mvActionLoaderList*  mvActionLoaderListPtr;
+#define mvForceLoaderListPtr mvForceLoaderList*
 
 #define MV_VEC_3_HEADER_FILE_H_ "mvVec3.h"
 #define MV_ENUMS_HEADER_FILE_H_ "mvEnums.h"

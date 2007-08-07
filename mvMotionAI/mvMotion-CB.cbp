@@ -117,6 +117,8 @@
 		<Unit filename="experimental\include\mvFactoryFunctionList.h" />
 		<Unit filename="experimental\include\mvFactoryFunctionList.hpp" />
 		<Unit filename="experimental\include\mvForceCapsule.h" />
+		<Unit filename="experimental\include\mvForceLoaderList.h" />
+		<Unit filename="experimental\include\mvForceResult.h" />
 		<Unit filename="experimental\include\mvGroupBNode_V2.h" />
 		<Unit filename="experimental\include\mvGroupBehaviourResult.h" />
 		<Unit filename="experimental\include\mvGroupBehaviour_V2.h" />
@@ -139,6 +141,7 @@
 		<Unit filename="experimental\src\mvBEntryListNode.cpp" />
 		<Unit filename="experimental\src\mvBEntryTimer.cpp" />
 		<Unit filename="experimental\src\mvBaseAction.cpp" />
+		<Unit filename="experimental\src\mvBaseForce.cpp" />
 		<Unit filename="experimental\src\mvBehaviourResult.cpp" />
 		<Unit filename="experimental\src\mvBehaviour_V2.cpp" />
 		<Unit filename="experimental\src\mvBodyCapsule.cpp" />
