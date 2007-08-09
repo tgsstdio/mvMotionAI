@@ -66,13 +66,6 @@ enum mvOptionEnum
    MV_Y_AXIS_AA_CYLINDER,
    MV_Z_AXIS_AA_CYLINDER,
    // new enumerations
-   /*
-   MV_MINUS_AABOX,
-   MV_MINUS_SPHERE,
-   MV_MINUS_X_AXIS_AA_CYLINDER,
-   MV_MINUS_Y_AXIS_AA_CYLINDER,
-   MV_MINUS_Z_AXIS_AA_CYLINDER,
-   */
    MV_NON_SHAPE,
 
    // waypoints types
@@ -92,6 +85,7 @@ enum mvOptionEnum
    MV_FORCE_FIELD_FLUSH,
    MV_FORCE_FIELD_REPELL,
    MV_GRAVITY,
+   /*
    MV_GRAVITY_TO_POINT,
    MV_NULL_ACCELERATION,
    MV_NULL_ALL,
@@ -100,6 +94,7 @@ enum mvOptionEnum
    MV_NULL_FORCE,
    MV_NULL_GRAVITY,
    MV_NULL_SHIFT,
+   */
    MV_UNIFORM_ACCELERATION,
    MV_UNIFORM_FORCE,
    MV_UNIFORM_SHIFT,
@@ -243,7 +238,7 @@ enum mvParamEnum
 
    MV_NO_OF_PARAM_ENUMS
 };
-// TODO  : duplicate invalid index range & index is invalid
+
 // TODO : reimplement error strings
 
 enum mvErrorEnum
@@ -251,7 +246,6 @@ enum mvErrorEnum
    MV_NO_ERROR = 0,
    MV_ITEM_POINTER_IS_NULL,
    MV_ITEM_LIST_IS_EMPTY,
-   //MV_INVALID_INDEX_RANGE, // duplicate removed
    MV_UNIQUE_ITEM_ALREADY_IN_LIST,
    MV_ITEM_NOT_FOUND_IN_LIST,
    MV_ITEM_AT_INDEX_NO_LONGER_EXISTS,

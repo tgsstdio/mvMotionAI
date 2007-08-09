@@ -37,7 +37,6 @@ class mvGroupMemberNode
       mvIndex memberIndex;
       mvBaseActionPtr memberAction;
 
-      // TODO : getActionPtr
       mvBaseActionPtr getActionPtr();
       mvGroupMemberNode(mvIndex mbIndex,  mvBaseActionPtr mbAction);
       bool operator<(const mvGroupMemberNode& rhs) const;
@@ -65,11 +64,9 @@ class mvGroupMemberNode
 class mvGroupNodeMemberList
 {
    public:
-         // TODO : use something else like a set
       std::list<mvGroupMemberNodePtr>::iterator currentIter;
       std::list<mvGroupMemberNodePtr> mbActionDataSet;
 
-      // TODO : find member node in list
       mvGroupMemberNodePtr findMember(mvIndex memberIndex);
       mvGroupNodeMemberList();
       void clearAll();
@@ -92,7 +89,6 @@ class mvGroupBNode_V2
    public:
       mvGroupNodeMemberList memberDataList;
 
-      // TODO : find member node in list
       mvGroupMemberNodePtr findMemberInNode(mvIndex memberIndex);
       bool isEnabled;
       mvGroupBNode_V2(mvBaseActionPtr mainBehaviour,\

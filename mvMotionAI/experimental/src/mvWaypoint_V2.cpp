@@ -275,6 +275,6 @@ mvErrorEnum mvWaypoint_V2::setParameterv(mvParamEnum paramFlag,\
 
 mvWaypoint_V2::~mvWaypoint_V2()
 {
-   // TODO : implement this function
+
 }
 

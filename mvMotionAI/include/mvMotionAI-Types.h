@@ -146,13 +146,18 @@ typedef class mvBody_V2 const * const mvConstBodyPtr;
 #define MV_BASE_FORCE_HEADER_FILE_H_ "mvBaseForce.h"
 typedef class mvBaseForce* mvBaseForcePtr;
 typedef class mvBaseForce const * const mvConstBaseForcePtr;
+typedef class mvBaseForceLoader* mvBaseForceLoaderPtr;
 
-#define MV_FORCE_HEADER_FILE_H_ "mvForce.h"
-typedef class mvForce* mvForcePtr;
-typedef class mvForce const * const mvConstForcePtr;
+//#define MV_FORCE_HEADER_FILE_H_ "mvForce.h"
+//typedef class mvForce* mvForcePtr;
+//typedef class mvForce const * const mvConstForcePtr;
 
-//#define MV_FORCE_RESULT_HEADER_FILE_H_
-//typedef class mvForceResult* mvForceResultPtr;
+#define MV_FORCE_RESULT_HEADER_FILE_H_ "mvForceResult.h"
+typedef class mvForceResult* mvForceResultPtr;
+
+#define MV_FORCE_CAPSULE_HEADER_FILE "mvForceCapsule.h"
+typedef class mvForceCapsule* mvForceCapsulePtr;
+typedef class mvForceCapsule const * const mvConstForceCapsulePtr;
 
 #define MV_GROUP_HEADER_FILE_H_ "mvGroup_V2.h"
 typedef class mvGroup_V2 mvGroup;

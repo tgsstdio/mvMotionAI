@@ -44,6 +44,7 @@
 
 #include MV_WORLD_HEADER_FILE_H_
 #include MV_BASE_ACTION_HEADER_FILE_H_
+#include MV_BASE_FORCE_HEADER_FILE_H_
 #include MV_ENUMS_HEADER_FILE_H_
 
 #ifdef BUILD_DLL
@@ -81,8 +82,12 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvFreeDefaultForces();
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvFreeDefaultBodies();
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvFreeAllDefaults();
 
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddForceFunction(mvOptionEnum bType,\
+   mvBaseForceLoaderPtr loader);
+MV_GLOBAL_FUNC_PREFIX mvBaseForcePtr mvCreateNewForce(mvOptionEnum type);
+
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddBehaviourFunction(mvOptionEnum bType,\
-   mvBaseActionLoader* loader);
+   mvBaseActionLoaderPtr loader);
 MV_GLOBAL_FUNC_PREFIX mvBaseActionPtr mvCreateNewBehaviour(mvOptionEnum type,\
    mvBaseActionPtr defaultBehaviour);
 
@@ -154,7 +159,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehaviours(\
    mvIndex worldIndex, void (someFunction)(mvGroupBehaviourPtr,void*),\
    void* extraPtr);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllForces(mvIndex worldIndex,\
-   void (someFunction)(mvForcePtr,void*),void* extraPtr);
+   void (someFunction)(mvBaseForcePtr,void*),void* extraPtr);
 
 /*
  * mvIndex foreach functions = 8
@@ -237,9 +242,20 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParameterv_str(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameter_str)\
    ;
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddBehaviourToBody(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvIndex mvAddBehaviourToList(mvIndex worldIndex,\
    mvIndex bodyIndex, mvOptionEnum bType, mvIndex behaviourIndex,\
    mvIndex groupIndex);
+// TODO : add behaviour functions
+MV_GLOBAL_FUNC_PREFIX mvIndex mvAddBehaviourToList_str(mvIndex worldIndex,\
+   mvIndex listIndex, const char* bType, mvIndex behaviourIndex,\
+   mvIndex groupIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveBehaviourFromList(mvIndex worldIndex,\
+   mvIndex listIndex,\
+   mvIndex entryIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllBehavioursFromList(\
+   mvIndex worldIndex, mvIndex listIndex);
+MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentEntryFromList(mvIndex worldIndex,\
+   mvIndex listIndex);
 
 ////mvObstacle 41 functions =  9 + 16 + 16
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateObstacle(mvIndex worldIndex,\
@@ -424,10 +440,10 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBehaviourParameterv_str(mvIndex worldInde
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateForce(mvIndex worldIndex,\
    mvOptionEnum fType);
-MV_GLOBAL_FUNC_PREFIX mvForcePtr mvGetForcePtr(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvBaseForcePtr mvGetForcePtr(mvIndex worldIndex,\
 	 mvIndex index);
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentForce(mvIndex worldIndex);
-MV_GLOBAL_FUNC_PREFIX mvForcePtr mvGetCurrentForcePtr(mvIndex worldIndex);
+MV_GLOBAL_FUNC_PREFIX mvBaseForcePtr mvGetCurrentForcePtr(mvIndex worldIndex);
 MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentForce(mvIndex worldIndex,\
    mvIndex index);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteCurrentForce(mvIndex worldIndex);

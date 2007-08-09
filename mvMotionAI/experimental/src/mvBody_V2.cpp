@@ -23,6 +23,8 @@
  */
 
 #include "mvBody_V2.h"
+#include <new>
+
 /** \brief mvBodyV2 constructor
  * This is a rewrite of mvBody
  */
@@ -128,7 +130,11 @@ mvErrorEnum mvBody_V2::setDomain(mvOptionEnum bDomain)
    noOfVariables = getNoOfDomainVariables();
    if (noOfVariables > 0)
    {
-      bodyDomainVariables = new mvFloat[noOfVariables];
+      bodyDomainVariables = new (std::nothrow) mvFloat[noOfVariables];
+      if (bodyDomainVariables == MV_NULL)
+      {
+         return MV_INVALID_MEMORY_ALLOCATION;
+      }
    }
 
    for (i = 0; i < noOfVariables; ++i)
@@ -411,10 +417,6 @@ mvFloat mvBody_V2::getFinalSpeed() const
 mvErrorEnum mvBody_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    const
 {
-   /*
-   MV_NO_OF_SHAPE_DIMENSIONS,
-   MV_NO_OF_BEHAVIOURS,
-   */
    mvErrorEnum error;
 
    if (index == MV_NULL)
@@ -424,14 +426,10 @@ mvErrorEnum mvBody_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
 
    switch(paramFlag)
    {
-      // TODO : case MV_NO_OF_BEHAVIOURS:
-
       case MV_NO_OF_DOMAIN_VARIABLES:
          *index = getNoOfDomainVariables();
          return MV_NO_ERROR;
       default:
-         //TODO : behaviour list
-
          // shape parameter
          error = bodyShape.getParameteri(paramFlag,index);
          if (error != MV_INVALID_SHAPE_PARAMETER)
@@ -457,11 +455,6 @@ mvErrorEnum mvBody_V2::getParameter(mvParamEnum paramFlag,\
 
    switch(paramFlag)
    {
-      /*
-      case MV_SHAPE:
-         *option = bodyShape.getType();
-         return MV_NO_ERROR;
-      */
       case MV_TYPE:
          *option = getType();
          return MV_NO_ERROR;
@@ -539,7 +532,6 @@ mvErrorEnum mvBody_V2::getParameter(mvParamEnum paramFlag,\
          }
          return MV_NO_ERROR;
       default:
-         // TODO : pass behaviour list
 
          // check shape then return error
          error = bodyShape.getParameter(paramFlag,option);
@@ -587,8 +579,6 @@ mvErrorEnum mvBody_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
          *num = getFinalSpeed();
          return MV_NO_ERROR;
       default:
-         // TODO : pass behaviour list
-
          // check shape then return error
          error = bodyShape.getParameterf(paramFlag, num);
 
@@ -749,8 +739,6 @@ mvErrorEnum mvBody_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
                return MV_NO_ERROR;
          }
       default:
-         // TODO : behaviour list
-
          // shape's getParameterv
          error = bodyShape.getParameterv(paramFlag, numArray, noOfParameters);
          if (error != MV_INVALID_SHAPE_PARAMETER)
@@ -777,8 +765,6 @@ mvErrorEnum mvBody_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
    mvErrorEnum error;
 
-   // TODO : behaviour list
-
    // shape set parameter
    error = bodyShape.setParameteri(paramFlag, index);
 
@@ -799,7 +785,6 @@ mvErrorEnum mvBody_V2::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
    switch(paramFlag)
    {
       default:
-         // TODO : behaviour list
 
          // shape
          error = bodyShape.setParameter(paramFlag, option);
@@ -813,11 +798,6 @@ mvErrorEnum mvBody_V2::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
          }
       case MV_SHAPE:
          return setShape(option);
-      /*
-      already implemented
-      case MV_TYPE:
-         return setType(option);
-      */
       case MV_DOMAIN:
          return setDomain(option);
       case MV_IS_ENABLED:
@@ -942,6 +922,9 @@ mvErrorEnum mvBody_V2::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
    switch(paramFlag)
    {
       // TODO: case MV_FORCE_VECTOR:
+      // TODO: case MV_TORQUE:
+      // TODO: case MV_FINAL_VELOCITY
+      // TODO: case MV_FINAL_TORQUE
       case MV_VELOCITY:
          return setVelocity(numArray[0],numArray[1],numArray[2]);
       // TODO :case MV_ACCELERATION_VECTOR:
@@ -969,7 +952,6 @@ mvErrorEnum mvBody_V2::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
                return MV_INVALID_DOMAIN;
          }
       default:
-         // TODO: behaviour list
 
          // shape setParamterv
          error = bodyShape.setParameterv(paramFlag, numArray);

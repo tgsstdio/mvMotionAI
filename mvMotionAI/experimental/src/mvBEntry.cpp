@@ -1,5 +1,5 @@
 #include "mvBEntry.h"
-// TODO: implement later
+
 mvBEntry::mvBEntry(mvOptionEnum type, mvIndex bIndex, mvIndex gIndex,\
    mvBaseActionPtr dBehaviour)
 {

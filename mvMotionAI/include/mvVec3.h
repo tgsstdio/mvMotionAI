@@ -34,7 +34,6 @@
 #ifndef MV_MVVEC3_H_
 #define MV_MVVEC3_H_
 #include "mvMotionAI-Types.h"
-// TODO (White 2#1#): Doxygen documentation
 
 // replacement for OpenSteer's Vec3
 /**
@@ -139,7 +138,6 @@ class mvVec3
       void minusVec3(const mvVec3& rhs);
       void timesVec3(const mvVec3& rhs);
       void divideVec3(const mvVec3& rhs);
-      // TODO : inplace sign change
       */
       mvFloat getX() const;
       mvFloat getY() const;
@@ -155,10 +153,6 @@ class mvVec3
       // void matrixMultiply(const mvFloat* matrix, int noOfValues, int order);
       friend mvVec3 operator* (float s, const mvVec3& v);
       //friend std::ostream& operator<< (std::ostream& o, const mvVec3& v);
-
-// TODO (White 2#1#): Distance function between to two points
-// TODO (White 2#1#): Distance sqaured between two points
-
 };
 
 

@@ -302,5 +302,5 @@ mvErrorEnum mvObstacle_V2::setParameterv(mvParamEnum paramFlag,\
 
 mvObstacle_V2::~mvObstacle_V2()
 {
-   // TODO : implement this function
+
 }

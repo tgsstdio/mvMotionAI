@@ -34,8 +34,6 @@ bool findGroupNodeByIndex(mvGroupBNode_V2* groupNodePtr, void* extraPtr)
   */
  mvGroupBehaviour_V2::mvGroupBehaviour_V2(mvBaseActionPtr groupBehPtr)
 {
-      // TODO : group behavioior functions with behaviour loading
-
    defaultGBehaviour = groupBehPtr;
    isEnabled = true;
 }

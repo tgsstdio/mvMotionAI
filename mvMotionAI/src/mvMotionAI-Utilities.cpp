@@ -40,6 +40,7 @@
  */
 
 /* TODO (White 2#1#): Include high precision as well */
+// TODO : include automake's config.h
 // #ifdef WIN32 is MVC++ 6 tag
 
 mvFloat mvFloor (mvFloat x)

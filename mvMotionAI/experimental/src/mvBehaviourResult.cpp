@@ -72,8 +72,6 @@ void mvBehaviourResult::setToDirectional()
   */
 void mvBehaviourResult::resetAll()
 {
-   //currentWorld = MV_NULL;
-   //currentBody = MV_NULL;
    currentGroupBehNode = MV_NULL;
    behaviourIndex = MV_NULL;
    groupIndex = MV_NULL;
@@ -109,22 +107,6 @@ void mvBehaviourResult::resetAll()
    quaternionEffectType = mvBehaviourResult::MV_DEFAULT_EFFECT;
    rotationEffectType = mvBehaviourResult::MV_DEFAULT_EFFECT;
 
-   // TODO : decide if reset should be used
-   /*
-   force.resetXYZ();
-   acceleration.resetXYZ();
-   velocity.resetXYZ();
-   direction.resetXYZ();
-   torque.resetXYZ();
-   omega.resetXYZ();
-
-   // reset quaternion
-   mvIndex i;
-   for (i = 0; i < MV_QUATERNION_LENGTH; i++)
-   {
-      quaternion[MV_QUATERNION_LENGTH] = 0.0;
-   }
-   */
 }
 
 /** @brief (one liner)
@@ -410,7 +392,7 @@ bool  mvBehaviourResult::isSteeringMotionDefault() const
    return isDefaultMotionSteering;
 }
 
-mvConstForcePtr mvBehaviourResult::fetchForcePtr(mvIndex index) const
+mvConstBaseForcePtr mvBehaviourResult::fetchForcePtr(mvIndex index) const
 {
    if (currentWorld == MV_NULL)
    {

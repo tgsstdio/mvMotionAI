@@ -386,7 +386,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllBehaviours(mvIndex worldIndex,\
 }
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehaviours(\
-   mvIndex worldIndex, void (someFunction)(mvGroupBehaviour_V2*,void*),\
+   mvIndex worldIndex, void (someFunction)(mvGroupBehaviourPtr,void*),\
    void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
@@ -404,7 +404,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehaviours(\
 }
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllForces(mvIndex worldIndex,\
-   void (someFunction)(mvForce*,void*),void* extraPtr)
+   void (someFunction)(mvBaseForcePtr,void*),void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -564,7 +564,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllForcesByIndex(mvIndex worldIndex,\
 
    return error;
 }
-// TODO : implement theses functions
+
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBody(mvIndex worldIndex,\
    mvOptionEnum bType, mvOptionEnum bShape, mvFloat x, mvFloat y, mvFloat z)
 {
@@ -948,23 +948,96 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParameterv_str(mvIndex worldIndex,\
    return error;
 }
 
-
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddBehaviourToBody(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvIndex mvAddBehaviourToList(mvIndex worldIndex,\
    mvIndex bodyIndex, mvOptionEnum bType, mvIndex behaviourIndex,\
    mvIndex groupIndex)
 {
-   // TODO : function later implementation
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   //mvWorldPtr worldPtr = MV_NULL;
+   mvWorldPtr worldPtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
-      return MV_FUNCTION_NOT_IMPLEMENTED;
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->addBehaviourToList(bodyIndex, bType, behaviourIndex,\
+         groupIndex);
+   }
+   else
+   {
+      return MV_NULL;
+   }
+}
+
+MV_GLOBAL_FUNC_PREFIX mvIndex mvAddBehaviourToList_str(mvIndex worldIndex,\
+   mvIndex listIndex, const char* bType, mvIndex behaviourIndex,\
+   mvIndex groupIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_NULL;
+      return worldPtr->addBehaviourToList_str(listIndex, bType,
+         behaviourIndex, groupIndex);
+   }
+   else
+   {
+      return MV_NULL;
+   }
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveBehaviourFromList(mvIndex worldIndex,\
+   mvIndex listIndex, mvIndex entryIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->removeBehaviourFromList(listIndex, entryIndex);
    }
    return error;
 }
 
-// TODO : obstacle functions CHECK IF OBSTACLE FUNCTION WORKS
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllBehavioursFromList(\
+   mvIndex worldIndex, mvIndex listIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->removeAllBehavioursFromList(listIndex);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentEntryFromList(mvIndex worldIndex,\
+   mvIndex listIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getCurrentEntryFromList(listIndex);
+   }
+   return error;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateObstacle(mvIndex worldIndex,\
    mvOptionEnum oShape, mvOptionEnum oState, mvFloat x, mvFloat y, mvFloat z)
 {
@@ -1361,7 +1434,6 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentObstacleAsWorldBoundary(\
    return error;
 }
 
-// TODO : waypoint functions
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateWaypoint(mvIndex worldIndex,\
 	mvOptionEnum wShape, mvFloat x, mvFloat y, mvFloat z)
 {
@@ -2111,7 +2183,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateForce(mvIndex worldIndex,\
    return MV_NULL;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvForcePtr mvGetForcePtr(mvIndex worldIndex,\
+MV_GLOBAL_FUNC_PREFIX mvBaseForcePtr mvGetForcePtr(mvIndex worldIndex,\
    mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
@@ -2142,7 +2214,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentForce(mvIndex worldIndex)
    return MV_NULL;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvForcePtr mvGetCurrentForcePtr(mvIndex worldIndex)
+MV_GLOBAL_FUNC_PREFIX mvBaseForcePtr mvGetCurrentForcePtr(mvIndex worldIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -2860,7 +2932,6 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayParameterv_str(mvIndex worldIndex,
    return error;
 }
 
-//TODO : group functions
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroup(mvIndex worldIndex,\
    const char* groupName)
 {
@@ -3244,9 +3315,8 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupParameterv_str(mvIndex worldIndex,\
    return error;
 }
 
-// TODO : GROUP BEHAVIOUR FUNCTIONS
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroupBehaviour(mvIndex worldIndex,\
-	 mvOptionEnum gbType)
+   mvOptionEnum gbType)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -3369,8 +3439,6 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteAllGroupBehaviours(mvIndex worldIndex)
    return error;
 }
 
-// TODO : error functions
-
 MV_GLOBAL_FUNC_PREFIX const char* mvGetErrorEnumString(mvErrorEnum error)
 {
    return mvGetErrorString(error);
@@ -3386,7 +3454,6 @@ MV_GLOBAL_FUNC_PREFIX const char* mvGetOptionEnumString(mvOptionEnum option)
    return mvGetOptionString(option);
 }
 
-// TODO : group behaviour parameter functions
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameteri(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
 	mvParamEnum paramFlag, mvIndex paramIndex)

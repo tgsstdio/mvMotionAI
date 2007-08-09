@@ -30,7 +30,6 @@
 
 //#include "mvBEntryTreeNode.h"
 //#include "mvBEntryTree.h"
-/* TODO (White 2#1#): Implement all these functions */
 
 class mvBEntryList
 {
@@ -45,7 +44,6 @@ class mvBEntryList
 
    public:
       mvBEntryList();
-      // TODO : set/get parameter functions
       bool isEnabled;
       mvEntryListNodePtr findExistingGroupEntry(mvIndex bIndex,\
          mvIndex gIndex);

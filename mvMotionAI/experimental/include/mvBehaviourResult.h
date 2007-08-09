@@ -38,7 +38,7 @@
 
 //typedef void* mvWorldPtr;
 
-typedef class mvBehaviourResult
+class mvBehaviourResult
 {
    public:
       enum mvMotionType
@@ -57,7 +57,6 @@ typedef class mvBehaviourResult
 
       mvBehaviourResult(mvConstWorldPtr worldPtr, mvConstBodyPtr bodyPtr);
 
-      // TODO: new internal setting
       void     setBehaviourIndex(mvIndex bIndex);
       void     setGroupIndex(mvIndex gIndex);
       void     setElaspedSystemTime(mvFloat timeInSecs);
@@ -170,7 +169,7 @@ typedef class mvBehaviourResult
       mvConstGroupBehaviourPtr fetchGroupBehaviourPtr(mvIndex gbIndex) const;
       mvConstPathwayPtr fetchPathwayPtr(mvIndex index) const;
       mvConstGroupPtr fetchGroupPtr(mvIndex index) const;
-      mvConstForcePtr fetchForcePtr(mvIndex index) const;
+      mvConstBaseForcePtr fetchForcePtr(mvIndex index) const;
       const mvVec3& predictPositionOfCurrentBody() const;
       const mvVec3& predictFinalPositionOfCurrentBody() const;
       const mvVec3& predictVelocityOfCurrentBody() const;
@@ -231,10 +230,9 @@ typedef class mvBehaviourResult
       mvVec3 brFutureVelocity;
       mvVec3 brFutureFinalVelocity;
 
-      // TODO : current time step
       mvFloat currentTimeStep;
       mvFloat elapsedSystemTime;
-} mvResult;
+};
 
 
 #endif // MVBEHAVIOURRESULT_H_INCLUDED
