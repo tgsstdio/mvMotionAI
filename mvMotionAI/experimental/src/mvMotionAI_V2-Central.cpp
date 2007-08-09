@@ -103,6 +103,7 @@ mvIndex mvMotionAI_V2::createWorld(const char* worldID)
       return MV_NULL;
    }
    temp->setActionLoader(&bFunctions);
+   temp->setForceLoader(&fFunctions);
 
    return worlds.addItem(temp);
 }
@@ -174,7 +175,6 @@ void mvMotionAI_V2::applyToAllWorlds(void (someFunction)(mvWorld_V2*,void*),\
 void mvMotionAI_V2::applyToAllWorldsByIndex(void (someFunction)(mvIndex,void*),\
    void* extraPtr)
 {
-   //TODO : implement function
    worlds.applyToAllItemsByItemIndex(someFunction, extraPtr);
 }
 
@@ -248,10 +248,32 @@ void mvMotionAI_V2::freeDefaultActions()
    bFunctions.freeAllFactoryFunctions();
 }
 
+mvErrorEnum mvMotionAI_V2::loadDefaultForces()
+{
+   return MV_NO_ERROR;
+}
+
+void mvMotionAI_V2::freeDefaultForces()
+{
+   fFunctions.freeAllFactoryFunctions();
+}
+
+mvErrorEnum mvMotionAI_V2::addForceFunction(mvOptionEnum type,\
+   mvBaseForceLoaderPtr loader)
+{
+   return fFunctions.addFactoryFunction(type, loader);
+}
+
+mvBaseForcePtr mvMotionAI_V2::createNewForce(mvOptionEnum type)
+{
+   return fFunctions.createAClassPtr(type,NULL);
+}
+
 mvMotionAI_V2::~mvMotionAI_V2()
 {
    deleteAllWorlds();
    freeDefaultActions();
+   freeDefaultForces();
 }
 
 mvErrorEnum mvMotionAI_V2::addBehaviourFunction(mvOptionEnum type,\
@@ -538,8 +560,16 @@ mvErrorEnum mvMotionAI_V2_FREEDEFAULTBODIES()
 
 mvErrorEnum mvMotionAI_V2_FREEDEFAULTFORCES()
 {
-   // todo : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      modulePtr->freeDefaultForces();
+   }
+
+   return error;
 }
 
 mvErrorEnum mvMotionAI_V2_FREEALLDEFAULTS()
@@ -586,8 +616,8 @@ mvErrorEnum mvMotionAI_V2_ADDBEHAVIOURFUNC(mvOptionEnum bType,\
    }
 }
 
-mvBaseAction* mvMotionAI_V2_CREATENEWBEHAVIOUR(mvOptionEnum type,\
-   mvBaseAction* defaultBehaviour)
+mvBaseActionPtr mvMotionAI_V2_CREATENEWBEHAVIOUR(mvOptionEnum type,\
+   mvBaseActionPtr defaultBehaviour)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvMotionAI_V2* modulePtr = NULL;
@@ -596,6 +626,39 @@ mvBaseAction* mvMotionAI_V2_CREATENEWBEHAVIOUR(mvOptionEnum type,\
    {
       modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
       return modulePtr->createNewBehaviour(type, defaultBehaviour);
+   }
+   else
+   {
+      return NULL;
+   }
+}
+
+mvErrorEnum mvMotionAI_V2_ADDFORCEFUNC(mvOptionEnum fType,\
+   mvBaseForceLoaderPtr loader)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      return modulePtr->addForceFunction(fType, loader);
+   }
+   else
+   {
+      return error;
+   }
+}
+
+mvBaseForcePtr mvMotionAI_V2_CREATENEWFORCE(mvOptionEnum type)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      return modulePtr->createNewForce(type);
    }
    else
    {

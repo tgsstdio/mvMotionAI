@@ -163,7 +163,7 @@ void mvWorld_V2::applyToAllForcesByIndex(mvIndex worldIndex,\
   *
   * (documentation goes here)
   */
-void mvWorld_V2::applyToAllForces(void (someFunction)(mvForcePtr, void*),\
+void mvWorld_V2::applyToAllForces(void (someFunction)(mvBaseForcePtr, void*),\
    void* extraPtr)
 {
    forces.applyToAllItems(someFunction,extraPtr);
@@ -209,7 +209,7 @@ mvIndex mvWorld_V2::setCurrentForce(mvIndex index)
   *
   * (documentation goes here)
   */
-mvForcePtr mvWorld_V2::getCurrentForcePtr()
+mvBaseForcePtr mvWorld_V2::getCurrentForcePtr()
 {
    return forces.getCurrentClassPtr();
 }
@@ -218,7 +218,7 @@ mvForcePtr mvWorld_V2::getCurrentForcePtr()
   *
   * (documentation goes here)
   */
-mvForcePtr mvWorld_V2::getForcePtr(mvIndex index)
+mvBaseForcePtr mvWorld_V2::getForcePtr(mvIndex index)
 {
    return forces.getClassPtr(index);
 }
@@ -229,7 +229,13 @@ mvForcePtr mvWorld_V2::getForcePtr(mvIndex index)
   */
 mvIndex mvWorld_V2::createForce(mvOptionEnum fType)
 {
-   mvForcePtr temp = new (std::nothrow) mvForce(fType);
+   mvBaseForcePtr temp = MV_NULL;
+   if (forceLoader == MV_NULL)
+   {
+      return MV_NULL;
+   }
+
+   temp = forceLoader->createAClassPtr(fType,MV_NULL);
 
    if (temp == MV_NULL)
       return MV_NULL;
@@ -1863,13 +1869,13 @@ mvWorld_V2::mvWorld_V2(const char* id = MV_NULL)
    //idString = MV_NULL;
 
    /*
-    *c string copy
+    * TODO : remove c strcopy - unsafe
     */
    if (id != MV_NULL)
    {
       strLen = strlen(id) + 1;
       worldID = new char[strLen];
-      strcpy(worldID,id);
+      strncpy(worldID,id,strLen);
    }
    else
    {
@@ -1877,7 +1883,18 @@ mvWorld_V2::mvWorld_V2(const char* id = MV_NULL)
    }
 
    behavLoader = MV_NULL;
+   forceLoader = MV_NULL;
    elapsedWorldTime = 0;
+}
+
+void mvWorld_V2::setForceLoader(mvForceLoaderListPtr fLoaderPtr)
+{
+   forceLoader = fLoaderPtr;
+}
+
+mvForceLoaderListPtr mvWorld_V2::getForceLoaderPtr() const
+{
+   return forceLoader;
 }
 
 mvFloat mvWorld_V2::getElapsedWorldTime() const
@@ -1952,6 +1969,7 @@ void mvWorld_V2::worldStep(mvFloat timeInSecs)
    bodies.applyToAllCapsules(mvWorld_V2_IntegrateAllBodies,&helpContainer);
 
    finaliseIntegrationStep(timeInSecs);
+   elapsedWorldTime += timeInSecs;
 }
 
 /** @brief (one liner)
@@ -1971,6 +1989,7 @@ mvErrorEnum mvWorld_V2::nudgeBody(mvIndex index, mvFloat timeInSecs)
    calculateGroupBehaviours();
    integrateBody(tempCapsulePtr,timeInSecs);
    finaliseIntegrationStep(timeInSecs);
+   elapsedWorldTime += timeInSecs;
 
    return MV_NO_ERROR;
 }
@@ -4111,7 +4130,7 @@ mvConstBehaviourPtr mvWorld_V2::getConstBehaviourPtr(mvIndex index) const
    return behaviours.getConstClassPtr(index);
 }
 
-mvConstForcePtr mvWorld_V2::getConstForcePtr(mvIndex index) const
+mvConstBaseForcePtr mvWorld_V2::getConstForcePtr(mvIndex index) const
 {
    return forces.getConstClassPtr(index);
 }

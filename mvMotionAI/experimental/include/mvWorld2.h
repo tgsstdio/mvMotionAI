@@ -30,7 +30,7 @@
 #endif
 
 #include MV_BASE_ACTION_HEADER_FILE_H_
-#include MV_FORCE_HEADER_FILE_H_
+#include MV_BASE_FORCE_HEADER_FILE_H_
 #include MV_BODY_HEADER_FILE_H_
 #include MV_OBSTACLE_HEADER_FILE_H_
 #include MV_WAYPOINT_HEADER_FILE_H_
@@ -39,25 +39,23 @@
 #include MV_GROUP_BEHAVIOUR_HEADER_FILE_H_
 #include MV_BEHAVIOUR_HEADER_FILE_H_
 #include MV_ACTION_LOADER_LIST_HEADER_FILE_H_
+#include MV_FORCE_LOADER_LIST_HEADER_FILE_H_
 
 #include "mvPointerList.h"
 #include "mvCapsuleList.h"
 
 #include "mvBodyCapsule.h"
 #include "mvWaypointCapsule.h"
-#include "mvForceCapsule.h"
+#include MV_FORCE_CAPSULE_HEADER_FILE
 #include "mvGroupCapsule.h"
 #include MV_BEHAVIOUR_LIST_HEADER_FILE_H_
-//TODO : new group behaviour functions
 
-
-// TODO : total system time
 class mvWorld_V2
 {
    private:
       mvPointerList<mvEntryListPtr, mvConstEntryListPtr> entryLists;
       char* worldID;
-      mvCapsuleList<mvForcePtr, mvConstForcePtr,\
+      mvCapsuleList<mvBaseForcePtr, mvConstBaseForcePtr,\
          mvForceCapsulePtr, mvConstForceCapsulePtr> forces;
       mvPointerList<mvObstaclePtr, mvConstObstaclePtr> obstacles;
       mvCapsuleList<mvBodyPtr, mvConstBodyPtr, mvBodyCapsulePtr,\
@@ -92,6 +90,7 @@ class mvWorld_V2
       mvBodyCapsulePtr getBodyCapsulePtr(int index);
 
       mvFloat elapsedWorldTime;
+      mvForceLoaderListPtr forceLoader;
 
    public:
       mvFloat getElapsedWorldTime() const;
@@ -112,9 +111,11 @@ class mvWorld_V2
       char* getID() const;
       ~mvWorld_V2();
 
-
       void setActionLoader(mvActionLoaderListPtr bLoaderPtr);
       mvActionLoaderListPtr getActionLoader() const;
+
+      void setForceLoader(mvForceLoaderListPtr fLoaderPtr);
+      mvForceLoaderListPtr getForceLoaderPtr() const;
 
       // TODO : world functions
       void worldStep(mvFloat timeInSecs);
@@ -483,13 +484,13 @@ class mvWorld_V2
 
       // Force functions
       mvIndex createForce(mvOptionEnum fType);
-      mvForcePtr getForcePtr(mvIndex index);
-      mvForcePtr getCurrentForcePtr();
+      mvBaseForcePtr getForcePtr(mvIndex index);
+      mvBaseForcePtr getCurrentForcePtr();
       mvIndex setCurrentForce(mvIndex index);
       mvErrorEnum deleteCurrentForce();
       mvErrorEnum deleteForce(mvIndex index);
       void deleteAllForces();
-      void applyToAllForces(void (someFunction)(mvForcePtr, void*),\
+      void applyToAllForces(void (someFunction)(mvBaseForcePtr, void*),\
          void* extraPtr);
       void applyToAllForcesByIndex(mvIndex worldIndex,\
          void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
@@ -603,7 +604,7 @@ class mvWorld_V2
       mvConstGroupPtr getConstGroupPtr(mvIndex index) const;
       mvConstGroupBehaviourPtr getConstGroupBehaviourPtr(mvIndex index) const;
       mvConstBehaviourPtr getConstBehaviourPtr(mvIndex index) const;
-      mvConstForcePtr getConstForcePtr(mvIndex index) const;
+      mvConstBaseForcePtr getConstForcePtr(mvIndex index) const;
 
       mvIndex addNodeToPathway(mvIndex nIndex, mvIndex pIndex);
       mvErrorEnum removeNodeFromPathway(mvIndex wpIndex, mvIndex pIndex);
@@ -729,7 +730,6 @@ class mvWorld_V2
 
       void applyToAllEntryLists(void (someFunction)(mvEntryListPtr, void*),
          void* extraPtr);
-      // TODO : user data
       mvErrorEnum setUserData(mvParamEnum objectType, mvIndex objectIndex,\
          void* userData);
       void* getUserData(mvParamEnum objectType, mvIndex objectIndex) const;

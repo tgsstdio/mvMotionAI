@@ -24,7 +24,7 @@
 
 #include "mvMotionAI-Types.h"
 #include MV_ENUMS_HEADER_FILE_H_
-#include MV_BEHAVIOUR_RESULT_HEADER_FILE_H_
+#include MV_FORCE_RESULT_HEADER_FILE_H_
 
 class mvForceStatus
 {
@@ -40,6 +40,8 @@ class mvForceStatus
       bool dragShiftOn;
       bool torqueOn;
       bool omegaOn;
+      bool rotationOn;
+      bool quaternionOn;
 
       mvForceStatus();
       void applyingAll();
@@ -56,9 +58,11 @@ class mvForceStatus
       void applyingDragForce();
       void applyingDragAcceleration();
       void applyingDragShift();
-      void applyingForces();
+      void applyingForce();
       void applyingTorque();
       void applyingOmega();
+      void applyingRotation();
+      void applyingQuaternion();
 };
 
 class mvBaseForce
@@ -66,11 +70,13 @@ class mvBaseForce
    private:
       mvOptionEnum fType;
    public:
+      // TODO : enabled features
+      bool isEnabled;
       mvBaseForce(mvOptionEnum type);
       mvOptionEnum getType() const;
 
       virtual void filter(mvForceStatus& worldStatus);
-      virtual bool calcFullForces(mvBehaviourResultPtr fResult) = 0;
+      virtual bool calcFullForces(mvForceResultPtr fResult) = 0;
       virtual mvErrorEnum getParameteri(mvParamEnum paramFlag,\
          mvIndex* index) const;
       virtual mvErrorEnum getParameter(mvParamEnum paramFlag,\
@@ -89,12 +95,13 @@ class mvBaseForce
       virtual ~mvBaseForce();
 };
 
-class mvForceLoader
+class mvBaseForceLoader
 {
-      mvForceLoader();
-      virtual mvForcePtr operator()(\
+   public:
+      mvBaseForceLoader();
+      virtual mvBaseForcePtr operator()(\
          void* extraPtr) = 0;
-      virtual ~mvForceLoader();
+      virtual ~mvBaseForceLoader();
 };
 
 #endif // MVBASEFORCE_H_INCLUDED

@@ -24,7 +24,7 @@
 
 #include "mvVec3.h"
 #include "mvMotionAI-Utilities.h"
-// TODO (White 2#1#): Doxygen documentation
+
 /**
  * \brief constructor
  *

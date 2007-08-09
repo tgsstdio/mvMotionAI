@@ -27,7 +27,7 @@
 
 #define MV_GLOBAL_FORCE_MAXIMUM_NO_OF_LINKS 0
 
-mvForceCapsule::mvForceCapsule(mvForcePtr forcePtr)
+mvForceCapsule::mvForceCapsule(mvBaseForcePtr forcePtr)
 {
    encappedForce = forcePtr;
    isActive = true;
@@ -54,14 +54,14 @@ bool mvForceCapsule::isGlobalForce() const
       <= MV_GLOBAL_FORCE_MAXIMUM_NO_OF_LINKS);
 }
 
-mvForcePtr mvForceCapsule::getClassPtr() const
+mvBaseForcePtr mvForceCapsule::getClassPtr() const
 {
    return encappedForce;
 }
 
-mvConstForcePtr mvForceCapsule::getConstClassPtr() const
+mvConstBaseForcePtr mvForceCapsule::getConstClassPtr() const
 {
-   return (mvConstForcePtr) encappedForce;
+   return (mvConstBaseForcePtr) encappedForce;
 }
 
 mvErrorEnum mvForceCapsule::getParameteri(mvParamEnum paramFlag,\

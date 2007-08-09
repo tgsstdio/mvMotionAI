@@ -194,7 +194,6 @@ mvErrorEnum mvPathway_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
    switch(paramFlag)
    {
       case MV_INDEX:
-         // TODO: check error function
          setCurrentNode(index);
          return MV_NO_ERROR;
       default:
@@ -289,7 +288,6 @@ mvErrorEnum mvPathway_V2::getParameter(mvParamEnum paramFlag,\
 mvErrorEnum mvPathway_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num)\
    const
 {
-      // TODO : implement these functions
    if (num == MV_NULL)
    {
       return MV_FLOAT_DEST_IS_NULL;

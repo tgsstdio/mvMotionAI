@@ -29,11 +29,16 @@
 #include MV_ENUMS_HEADER_FILE_H_
 #include MV_SHAPE_HEADER_FILE_H_
 
-//TODO : rotation
-//TODO: behaviour list
-//TODO: max force
 //TODO: up vector
-//TODO: confusion between direction/rotation/orientation
+/**
+ * confusion between direction/rotation/orientation cleared up
+ * PARTICLE
+ *  - straight line/no rotational change
+ * VEHICLE
+ *  - motion & rotation 'change' together i.e. dependant on each other
+ * DUAL_BODY
+ * - motion and rotation independant
+ */
 
 class mvBody_V2
 {
@@ -45,7 +50,6 @@ class mvBody_V2
       // body's own velocity after (incl.) mvForces
       mvVec3 finalVelocity;
 
-      // TODO : torque/force/omega/rotation functions
       mvVec3 finalForceVector;
       mvVec3 bodysForceVector;
       mvVec3 finalTorque;
@@ -171,7 +175,6 @@ class mvBody_V2
          mvFloat z);
       ~mvBody_V2();
 
-      // TODO : functions here
       const mvVec3& getFinalForce() const;
       void setFinalForce(const mvVec3& vec);
       const mvVec3& getBodysForce() const;

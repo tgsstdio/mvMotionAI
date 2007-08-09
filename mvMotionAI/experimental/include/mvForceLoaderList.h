@@ -23,7 +23,7 @@
 #define MVFORCELOADERLIST_H_INCLUDED
 
 #include "mvMotionAI-Types.h"
-
+#include MV_BASE_FORCE_HEADER_FILE_H_
 #include "mvFactoryFunctionList.h"
 
 typedef class mvFactoryFunctionList<mvBaseForceLoader,mvBaseForce,\

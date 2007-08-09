@@ -117,6 +117,8 @@ void mvForceStatus::applyingAll()
    dragShiftOn = true;
    torqueOn = true;
    omegaOn = true;
+   rotationOn = true;
+   quaternionOn = true;
 }
 
 void mvForceStatus::applyingNone()
@@ -132,75 +134,94 @@ void mvForceStatus::applyingNone()
    dragShiftOn = false;
    torqueOn = false;
    omegaOn = false;
+   rotationOn = false;
+   quaternionOn = false;
 }
 
-// TODO : force status flags
 void mvForceStatus::applyingLinearMotionOnly()
 {
-
+   forcesOn = true;
+   gravityOn = true;
+   accelerationOn = true;
+   shiftsOn = true;
 }
 
 void mvForceStatus::applyingAngularMotionOnly()
 {
-
+   torqueOn = true;
+   omegaOn = true;
+   rotationOn = true;
+   quaternionOn = true;
 }
 
 void mvForceStatus::forLocalForceOnly()
 {
-
+   onlyLocalForce = true;
 }
 
 void mvForceStatus::forGlobalForceOnly()
 {
-
+   onlyGlobalForce = true;
 }
 
 void mvForceStatus::applyingGravity()
 {
-
+   gravityOn = false;
 }
 void mvForceStatus::applyingAcceleration()
 {
-
+   accelerationOn = true;
 }
 
 void mvForceStatus::applyingShifts()
 {
-
+   shiftsOn = false;
 }
 
 void mvForceStatus::applyingFullDrag()
 {
-
+   dragForceOn = true;
+   dragAccelerationOn = true;
+   dragShiftOn = true;
 }
 
 void mvForceStatus::applyingDragForce()
 {
-
+   dragForceOn = true;
 }
 
 void mvForceStatus::applyingDragAcceleration()
 {
-
+   dragAccelerationOn = true;
 }
 
 void mvForceStatus::applyingDragShift()
 {
-
+   dragShiftOn = true;
 }
 
-void mvForceStatus::applyingForces()
+void mvForceStatus::applyingForce()
 {
-
+   forcesOn = true;
 }
 
 void mvForceStatus::applyingTorque()
 {
-
+   torqueOn = true;
 }
 
 void mvForceStatus::applyingOmega()
 {
+   omegaOn = true;
+}
 
+void mvForceStatus::applyingRotation()
+{
+   rotationOn = true;
+}
+
+void mvForceStatus::applyingQuaternion()
+{
+   quaternionOn = true;
 }
 

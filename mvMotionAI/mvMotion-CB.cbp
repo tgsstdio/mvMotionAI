@@ -147,6 +147,7 @@
 		<Unit filename="experimental\src\mvBodyCapsule.cpp" />
 		<Unit filename="experimental\src\mvBody_V2.cpp" />
 		<Unit filename="experimental\src\mvForceCapsule.cpp" />
+		<Unit filename="experimental\src\mvForceResult.cpp" />
 		<Unit filename="experimental\src\mvGroupBNode_V2.cpp" />
 		<Unit filename="experimental\src\mvGroupBehaviourResult.cpp" />
 		<Unit filename="experimental\src\mvGroupBehaviour_V2.cpp" />
@@ -163,12 +164,10 @@
 		<Unit filename="experimental\src\mvWaypoint_V2.cpp" />
 		<Unit filename="experimental\src\mvWorld2.cpp" />
 		<Unit filename="include\mvEnums.h" />
-		<Unit filename="include\mvForce.h" />
 		<Unit filename="include\mvMotionAI-Types.h" />
 		<Unit filename="include\mvMotionAI-Utilities.h" />
 		<Unit filename="include\mvVec3.h" />
 		<Unit filename="src\mvEnums.cpp" />
-		<Unit filename="src\mvForce.cpp" />
 		<Unit filename="src\mvMotionAI-Utilities.cpp" />
 		<Unit filename="src\mvVec3.cpp" />
 		<Extensions>

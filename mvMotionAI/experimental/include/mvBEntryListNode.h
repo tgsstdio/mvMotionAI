@@ -33,7 +33,6 @@ class mvBEntryListNode
    public:
       mvBEntryPtr behaviourEntry;
       mvBEntryUtility entryFlags;
-      // TODO : parameter functions
       bool isEnabled;
 
       mvBEntryListNode(mvOptionEnum type, mvIndex behaviourIndex,\

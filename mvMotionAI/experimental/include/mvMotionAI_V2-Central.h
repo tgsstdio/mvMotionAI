@@ -31,6 +31,8 @@
 
 #include MV_BASE_ACTION_HEADER_FILE_H_
 #include MV_ACTION_LOADER_LIST_HEADER_FILE_H_
+#include MV_BASE_FORCE_HEADER_FILE_H_
+#include MV_FORCE_LOADER_LIST_HEADER_FILE_H_
 #include MV_WORLD_HEADER_FILE_H_
 //#include "mvList.h"
 
@@ -61,6 +63,10 @@ mvErrorEnum mvMotionAI_V2_FREEDEFAULTACTIONS();
 mvErrorEnum mvMotionAI_V2_FREEDEFAULTBODIES();
 mvErrorEnum mvMotionAI_V2_FREEDEFAULTFORCES();
 mvErrorEnum mvMotionAI_V2_FREEALLDEFAULTS();
+
+mvErrorEnum mvMotionAI_V2_ADDFORCEFUNC(mvOptionEnum fType,\
+   mvBaseForceLoaderPtr loader);
+mvBaseForcePtr mvMotionAI_V2_CREATENEWFORCE(mvOptionEnum type);
 
 mvErrorEnum mvMotionAI_V2_ADDBEHAVIOURFUNC(mvOptionEnum bType,\
    mvBaseActionLoaderPtr loader);
@@ -109,6 +115,7 @@ class mvMotionAI_V2
 {
    public:
       mvActionLoaderList bFunctions;
+      mvForceLoaderList fFunctions;
       mvPointerList<mvWorldPtr, mvConstWorldPtr> worlds;
 
       mvMotionAI_V2();
@@ -132,7 +139,12 @@ class mvMotionAI_V2
       mvBaseActionPtr createNewBehaviour(mvOptionEnum type,\
          mvBaseActionPtr defaultBehaviour);
 
-      // TODO : implement these functions
+      mvErrorEnum loadDefaultForces();
+      void freeDefaultForces();
+      mvErrorEnum addForceFunction(mvOptionEnum type,\
+         mvBaseForceLoaderPtr loader);
+      mvBaseForcePtr createNewForce(mvOptionEnum type);
+
       mvErrorEnum getWorldParameter(mvIndex worldIndex, mvParamEnum paramFlag,\
          mvOptionEnum* option) const;
       mvErrorEnum getWorldParameteri(mvIndex worldIndex, mvParamEnum paramFlag,\

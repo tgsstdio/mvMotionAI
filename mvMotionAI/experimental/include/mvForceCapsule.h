@@ -29,26 +29,26 @@
 #endif
 
 #include MV_ENUMS_HEADER_FILE_H_
-#include MV_FORCE_HEADER_FILE_H_
+#include MV_BASE_FORCE_HEADER_FILE_H_
 #include MV_INDEX_SET_HEADER_FILE_H_
 
 class mvForceCapsule
 {
    private:
-      mvForcePtr encappedForce;
+      mvBaseForcePtr encappedForce;
    public:
       mvUniqueSet linkedWaypoints;
       bool isActive;
 
-      mvForceCapsule(mvForcePtr forcePtr);
+      mvForceCapsule(mvBaseForcePtr forcePtr);
       mvErrorEnum addWaypoint(mvIndex index);
       mvErrorEnum removeWaypoint(mvIndex index);
       void clearAllWaypoints();
 
       bool isGlobalForce() const;
 
-      mvForcePtr getClassPtr() const;
-      mvConstForcePtr getConstClassPtr() const;
+      mvBaseForcePtr getClassPtr() const;
+      mvConstBaseForcePtr getConstClassPtr() const;
 
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
       mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option)\
@@ -64,8 +64,5 @@ class mvForceCapsule
 
       ~mvForceCapsule();
 };
-
-typedef mvForceCapsule* mvForceCapsulePtr;
-typedef mvForceCapsule const * const mvConstForceCapsulePtr;
 
 #endif // MVFORCECAPSULE_H_INCLUDED
