@@ -221,6 +221,9 @@ enum mvParamEnum
    MV_TORQUE,
    MV_ROTATION,
    MV_OMEGA,
+   MV_FINAL_FORCE,
+   MV_FINAL_TORQUE,
+   MV_FINAL_OMEGA,
 
    // user defined parameters
    MV_USER_PARAM_INDEX,
@@ -324,10 +327,29 @@ enum mvErrorEnum
    MV_INVALID_BEHAVIOUR_ENTRY_PARAMETER,
    MV_INVALID_INTEGRATION_MODE,
    MV_INVALID_OBJECT_TYPE,
+   MV_FUNCTION_LOADER_LIST_PTR_IS_NULL,
 
    MV_ERROR_ENUM_IS_NOT_FOUND, // odd error
    MV_NO_OF_ERROR_ENUMS
 };
+
+// internal use only
+enum mvMotionTypeEnum
+{
+   MV_DEFAULT_MOTION = 0,
+   MV_STEERING_MOTION,
+   MV_DIRECTIONAL_MOTION
+};
+
+enum mvEffectTypeEnum
+{
+   MV_DEFAULT_EFFECT = 0,
+   MV_GLOBAL_EFFECT,
+   MV_LOCAL_EFFECT
+};
+
+const char* mvGetMotionTypeString(mvMotionTypeEnum mType);
+const char* mvGetEffectTypeString(mvEffectTypeEnum eType);
 
 const char* mvGetErrorString(mvErrorEnum error);
 const char* mvGetParamString(mvParamEnum param);
