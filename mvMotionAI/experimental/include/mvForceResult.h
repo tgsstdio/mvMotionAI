@@ -10,90 +10,63 @@
 
 class mvForceResult
 {
-   private:
-      mvConstWorldPtr currentWorld;
-      mvConstBodyPtr currentBody;
-
-      bool applyForce;
-      bool applyAccel;
-      bool applyShift;
-      bool applyGravity;
-      bool applyDragForce;
-      bool applyDragAccel;
-      bool applyDragShift;
-      // rotation change
-      bool applyTorque;
-      bool applyOmega;
-      bool applyQuaternion;
-      bool omegaInDegrees;
-      bool rotationInDegrees;
-      bool applyRotation;
-
-      mvVec3 force;
-      mvVec3 acceleration;
-      mvVec3 shiftVec;
-      mvVec3 dragForce;
-      mvVec3 dragAcceleration;
-      mvVec3 dragShift;
-      mvVec3 torque;
-      mvVec3 omega;
-      mvVec3 rotation;
-      mvFloat quaternion[MV_FORCE_QUATERNION_LENGTH];
-
-      // predicted items.
-      mvVec3 brFuturePosition;
-      mvVec3 brFutureFinalPosition;
-      mvVec3 brFutureVelocity;
-      mvVec3 brFutureFinalVelocity;
-
-      // TODO : current time step
-      mvFloat currentTimeStep;
-      mvFloat elapsedSystemTime;
-
+   // TODO : add effect and motion type to functions
    public:
-
       mvForceResult(mvConstWorldPtr world,
          mvConstBodyPtr body);
       bool           isDragForceSet() const;
-      const mvVec3&  getDragForce() const;
-
-      bool           isForceSet() const;
-      const mvVec3&  getForce() const;
-
+      mvFloat        getDragForce() const;
+      bool           isDragAccelerationSet() const;
+      mvFloat        getDragAcceleration() const;
       bool           isGravitySet() const;
       const mvVec3&  getGravity() const;
-
-      bool           isDragAccelerationSet() const;
-      const mvVec3&  getDragAcceleration() const;
-
+      bool           isDragShiftSet() const;
+      mvFloat        getDragShift() const;
+      bool           isForceSet() const;
+      const mvVec3&  getForce() const;
       bool           isAccelerationSet() const;
       const mvVec3&  getAcceleration() const;
-
       bool           isShiftSet() const;
       const mvVec3&  getShift() const;
-
-      bool           isDragShiftSet() const;
-      const mvVec3&  getDragShift() const;
-
       bool           isTorqueSet() const;
       const mvVec3&  getTorque() const;
-
       bool           isOmegaSet() const;
       const mvVec3&  getOmega() const;
       bool           isOmegaInDegrees() const;
-
       bool           isRotationSet() const;
       const mvVec3&  getRotation() const;
       bool           isRotationInDegrees() const;
-
       bool           isQuaternionSet() const;
       const mvFloat* getQuaternion() const;
+      bool           isDirectionSet() const;
+      const mvVec3&  getDirection() const;
 
-      // user utility functions
-      mvFloat           getTimeStep() const;
-      mvFloat           getElapsedSystemTime() const;
       void     setElaspedSystemTime(mvFloat timeInSecs);
       void     setCurrentTimeStep(mvFloat timeInSecs);
+      void     setPositionPrediction(const mvVec3& pos);
+      void     setFinalPositionPrediction(const mvVec3& pos);
+      void     setVelocityPrediction(const mvVec3& pos);
+      void     setFinalVelocityPrediction(const mvVec3& pos);
+
+      mvMotionTypeEnum   getForceMotionType() const;
+      mvEffectTypeEnum   getForceEffectType() const;
+      mvMotionTypeEnum   getAccelerationMotionType() const;
+      mvEffectTypeEnum   getAccelerationEffectType() const;
+      mvMotionTypeEnum   getDirectionMotionType() const;
+      mvEffectTypeEnum   getDirectionEffectType() const;
+      mvMotionTypeEnum   getTorqueMotionType() const;
+      mvEffectTypeEnum   getTorqueEffectType() const;
+      mvMotionTypeEnum   getOmegaMotionType() const;
+      mvEffectTypeEnum   getOmegaEffectType() const;
+      mvMotionTypeEnum   getShiftMotionType() const;
+      mvEffectTypeEnum   getShiftEffectType() const;
+      mvMotionTypeEnum   getQuaternionMotionType() const;
+      mvEffectTypeEnum   getQuaternionEffectType() const;
+      mvMotionTypeEnum   getGravityMotionType() const;
+      mvEffectTypeEnum   getGravityEffectType() const;
+      mvMotionTypeEnum   getRotationMotionType() const;
+      mvEffectTypeEnum   getRotationEffectType() const;
+
 
       // TODO: conversion functions
       /*
@@ -105,27 +78,51 @@ class mvForceResult
       mvVec3     convertGlobalToLocal(const mvVec3& v) const;
       */
 
-      void setForce(const mvVec3& value);
-      void setAcceleration(const mvVec3& value);
-      void setGravity(const mvVec3& value);
-      void setShift(const mvVec3& value);
-      void setDragForce(const mvVec3& value);
-      void setDragAcceleration(const mvVec3& value);
-      void setDragShift(const mvVec3& value);
+      void setForce(const mvVec3& value,
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
+      void setAcceleration(const mvVec3& value,
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
+      void setGravity(const mvVec3& value,
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
+      void setShift(const mvVec3& value,
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
+      void setTorque(const mvVec3& value,
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
+      void setQuaternion(const mvFloat* quatArray,
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
+      void setDirection(const mvVec3& value,
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
+      void setOmegaInDegrees(const mvVec3& value,
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
+      void setOmegaInRadians(const mvVec3& value,
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
+      void setRotationInDegrees(const mvVec3& value,
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
+      void setRotationInRadians(const mvVec3& value,
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
 
-      void setTorque(const mvVec3& value);
-      void setQuaternion(const mvFloat* quatArray);
-      void setOmega(const mvVec3& value);
-      void setOmegaInDegrees(const mvVec3& value);
-      void setOmegaInRadians(const mvVec3& value);
-
-      void setRotationInDegrees(const mvVec3& value);
-      void setRotationInRadians(const mvVec3& value);
+      void setDragForce(mvFloat value);
+      void setDragAcceleration(mvFloat value);
+      void setDragShift(mvFloat value);
 
       void resetAll();
       mvConstWorldPtr getWorldPtr() const;
       mvConstBodyPtr getCurrentBodyPtr() const;
 
+      // user utility functions
+      mvFloat           getTimeStep() const;
+      mvFloat           getElapsedSystemTime() const;
       mvConstWaypointPtr fetchWaypointPtr(mvIndex index) const;
       mvConstBodyPtr fetchBodyPtr(mvIndex index) const;
       mvConstGroupBehaviourPtr fetchGroupBehaviourPtr(mvIndex gbIndex) const;
@@ -137,6 +134,78 @@ class mvForceResult
       const mvVec3& predictFinalPositionOfCurrentBody() const;
       const mvVec3& predictVelocityOfCurrentBody() const;
       const mvVec3& predictFinalVelocityOfCurrentBody() const;
+
+      void  setToLocalEffect();
+      void  setToGlobalEffect();
+      void  setToDirectional();
+      void  setToSteering();
+      bool  isGlobalEffectDefault() const;
+      bool  isSteeringMotionDefault() const;
+   private:
+      mvConstWorldPtr currentWorld;
+      mvConstBodyPtr currentBody;
+
+      bool applyForce;
+      bool applyAccel;
+      bool applyShift;
+      bool applyGravity;
+      bool applyTorque;
+      bool applyOmega;
+      bool applyDirection;
+      bool applyQuaternion;
+      bool applyRotation;
+
+      mvMotionTypeEnum forceMotion;
+      mvMotionTypeEnum accelMotion;
+      mvMotionTypeEnum shiftMotion;
+      mvMotionTypeEnum gravityMotion;
+      mvMotionTypeEnum torqueMotion;
+      mvMotionTypeEnum omegaMotion;
+      mvMotionTypeEnum directionMotion;
+      mvMotionTypeEnum quaternionMotion;
+      mvMotionTypeEnum rotationMotion;
+
+      mvEffectTypeEnum forceEffect;
+      mvEffectTypeEnum accelEffect;
+      mvEffectTypeEnum shiftEffect;
+      mvEffectTypeEnum gravityEffect;
+      mvEffectTypeEnum torqueEffect;
+      mvEffectTypeEnum omegaEffect;
+      mvEffectTypeEnum directionEffect;
+      mvEffectTypeEnum quaternionEffect;
+      mvEffectTypeEnum rotationEffect;
+
+      bool omegaInDegrees;
+      bool rotationInDegrees;
+      bool applyDragForce;
+      bool applyDragAccel;
+      bool applyDragShift;
+
+      bool isDefaultMotionSteering;
+      bool isDefaultEffectGlobal;
+
+      mvVec3 force;
+      mvVec3 gravity;
+      mvVec3 acceleration;
+      mvVec3 shiftVec;
+      mvFloat dragForce;
+      mvFloat dragAcceleration;
+      mvFloat dragShift;
+      mvVec3 torque;
+      mvVec3 omega;
+      mvVec3 rotation;
+      mvVec3 direction;
+      mvFloat quaternion[MV_FORCE_QUATERNION_LENGTH];
+
+      // predicted items.
+      mvVec3 brFuturePosition;
+      mvVec3 brFutureFinalPosition;
+      mvVec3 brFutureVelocity;
+      mvVec3 brFutureFinalVelocity;
+
+      // TODO : current time step
+      mvFloat currentTimeStep;
+      mvFloat elapsedSystemTime;
 };
 
 #endif // MVFORCERESULT_H_INCLUDED

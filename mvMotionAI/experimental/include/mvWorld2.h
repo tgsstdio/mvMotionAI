@@ -681,7 +681,7 @@ class mvWorld_V2
          mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* array,\
          mvCount* noOfParameters) const;
 
-      mvErrorEnum getEntryNodeParameteri_str(mvIndex listIndex,\
+      mvErrorEnum getEntryListNodeParameteri_str(mvIndex listIndex,\
          mvIndex nodeIndex, const char* param, mvIndex* outIndex) const;
       mvErrorEnum getEntryListNodeParameter_str(mvIndex listIndex,\
          mvIndex nodeIndex, const char* param, const char** option) const;
@@ -719,7 +719,7 @@ class mvWorld_V2
          mvParamEnum paramFlag, mvFloat* array,\
          mvCount* noOfParameters) const;
 
-      mvErrorEnum getEntryNodeParameteri_str(mvIndex listIndex,\
+      mvErrorEnum getEntryListParameteri_str(mvIndex listIndex,\
          const char* param, mvIndex* outIndex) const;
       mvErrorEnum getEntryListParameter_str(mvIndex listIndex,\
          const char* param, const char** option) const;

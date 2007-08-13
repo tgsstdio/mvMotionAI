@@ -41,20 +41,8 @@
 class mvBehaviourResult
 {
    public:
-      enum mvMotionType
-      {
-         MV_DEFAULT_MOTION,
-         MV_STEERING_MOTION,
-         MV_DIRECTIONAL_MOTION
-      };
 
-      enum mvEffectType
-      {
-         MV_DEFAULT_EFFECT,
-         MV_GLOBAL_EFFECT,
-         MV_LOCAL_EFFECT
-      };
-
+      // TODO : remove local namespace of these enums
       mvBehaviourResult(mvConstWorldPtr worldPtr, mvConstBodyPtr bodyPtr);
 
       void     setBehaviourIndex(mvIndex bIndex);
@@ -69,38 +57,38 @@ class mvBehaviourResult
 
       bool           isForceSet() const;
       const mvVec3&  getForce() const;
-      mvMotionType   getForceMotionType() const;
-      mvEffectType   getForceEffectType() const;
-      bool           isAccelSet() const;
-      const mvVec3&  getAccel() const;
-      mvMotionType   getAccelMotionType() const;
-      mvEffectType   getAccelEffectType() const;
+      mvMotionTypeEnum   getForceMotionType() const;
+      mvEffectTypeEnum   getForceEffectType() const;
+      bool           isAccelerationSet() const;
+      const mvVec3&  getAcceleration() const;
+      mvMotionTypeEnum   getAccelerationMotionType() const;
+      mvEffectTypeEnum   getAccelerationEffectType() const;
       bool           isDirectionSet() const;
       const mvVec3&  getDirection() const;
-      mvMotionType   getDirectionMotionType() const;
-      mvEffectType   getDirectionEffectType() const;
+      mvMotionTypeEnum   getDirectionMotionType() const;
+      mvEffectTypeEnum   getDirectionEffectType() const;
       bool           isTorqueSet() const;
       const mvVec3&  getTorque() const;
-      mvMotionType   getTorqueMotionType() const;
-      mvEffectType   getTorqueEffectType() const;
+      mvMotionTypeEnum   getTorqueMotionType() const;
+      mvEffectTypeEnum   getTorqueEffectType() const;
       bool           isOmegaSet() const;
       const mvVec3&  getOmega() const;
-      mvMotionType   getOmegaMotionType() const;
-      mvEffectType   getOmegaEffectType() const;
+      mvMotionTypeEnum   getOmegaMotionType() const;
+      mvEffectTypeEnum   getOmegaEffectType() const;
       bool           isOmegaInDegrees() const;
       bool           isVelocitySet() const;
       const mvVec3&  getVelocity() const;
-      mvMotionType   getVelocityMotionType() const;
-      mvEffectType   getVelocityEffectType() const;
+      mvMotionTypeEnum   getVelocityMotionType() const;
+      mvEffectTypeEnum   getVelocityEffectType() const;
       bool           isQuaternionSet() const;
       const mvFloat* getQuaternion() const;
-      mvMotionType   getQuaternionMotionType() const;
-      mvEffectType   getQuaternionEffectType() const;
+      mvMotionTypeEnum   getQuaternionMotionType() const;
+      mvEffectTypeEnum   getQuaternionEffectType() const;
 
       bool           isRotationSet() const;
       const mvVec3&  getRotation() const;
-      mvMotionType   getRotationMotionType() const;
-      mvEffectType   getRotationEffectType() const;
+      mvMotionTypeEnum   getRotationMotionType() const;
+      mvEffectTypeEnum   getRotationEffectType() const;
       bool           isRotationInDegrees() const;
 
       // user utility functions
@@ -123,39 +111,39 @@ class mvBehaviourResult
       */
 
       void setForce(const mvVec3& value,\
-         mvMotionType mType = MV_DEFAULT_MOTION,\
-         mvEffectType eType = MV_DEFAULT_EFFECT);
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,\
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
       void setAcceleration(const mvVec3& value,\
-         mvMotionType mType = MV_DEFAULT_MOTION,\
-         mvEffectType eType = MV_DEFAULT_EFFECT);
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,\
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
       void setVelocity(const mvVec3& value,\
-         mvMotionType mType = MV_DEFAULT_MOTION,\
-         mvEffectType eType = MV_DEFAULT_EFFECT);
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,\
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
       void setTorque(const mvVec3& value,\
-         mvMotionType mType = MV_DEFAULT_MOTION,\
-         mvEffectType eType = MV_DEFAULT_EFFECT);
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,\
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
       void setDirection(const mvVec3& value,\
-         mvMotionType mType = MV_DEFAULT_MOTION,\
-         mvEffectType eType = MV_DEFAULT_EFFECT);
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,\
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
       void setQuaternion(const mvFloat* quatArray,\
-         mvMotionType mType = MV_DEFAULT_MOTION,\
-         mvEffectType eType = MV_DEFAULT_EFFECT);
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,\
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
       void setOmega(const mvVec3& value,\
-         mvMotionType mType = MV_DEFAULT_MOTION,\
-         mvEffectType eType = MV_DEFAULT_EFFECT);
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,\
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
       void setOmegaInDegrees(const mvVec3& value,\
-         mvMotionType mType = MV_DEFAULT_MOTION,\
-         mvEffectType eType = MV_DEFAULT_EFFECT);
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,\
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
       void setOmegaInRadians(const mvVec3& value,\
-         mvMotionType mType = MV_DEFAULT_MOTION,\
-         mvEffectType eType = MV_DEFAULT_EFFECT);
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,\
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
 
       void setRotationInDegrees(const mvVec3& value,\
-         mvMotionType mType = MV_DEFAULT_MOTION,\
-         mvEffectType eType = MV_DEFAULT_EFFECT);
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,\
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
       void setRotationInRadians(const mvVec3& value,\
-         mvMotionType mType = MV_DEFAULT_MOTION,\
-         mvEffectType eType = MV_DEFAULT_EFFECT);
+         mvMotionTypeEnum mType = MV_DEFAULT_MOTION,\
+         mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
 
       void setToDirectional();
       void setToSteering();
@@ -185,23 +173,23 @@ class mvBehaviourResult
       bool isDefaultMotionSteering;
       bool isDefaultEffectGlobal;
 
-      mvMotionType accelMotionType;
-      mvMotionType velocityMotionType;
-      mvMotionType directionMotionType;
-      mvMotionType forceMotionType;
-      mvMotionType torqueMotionType;
-      mvMotionType omegaMotionType;
-      mvMotionType rotationMotionType;
-      mvMotionType quaternionMotionType;
+      mvMotionTypeEnum accelMotionType;
+      mvMotionTypeEnum velocityMotionType;
+      mvMotionTypeEnum directionMotionType;
+      mvMotionTypeEnum forceMotionType;
+      mvMotionTypeEnum torqueMotionType;
+      mvMotionTypeEnum omegaMotionType;
+      mvMotionTypeEnum rotationMotionType;
+      mvMotionTypeEnum quaternionMotionType;
 
-      mvEffectType accelEffectType;
-      mvEffectType velocityEffectType;
-      mvEffectType directionEffectType;
-      mvEffectType forceEffectType;
-      mvEffectType torqueEffectType;
-      mvEffectType omegaEffectType;
-      mvEffectType rotationEffectType;
-      mvEffectType quaternionEffectType;
+      mvEffectTypeEnum accelEffectType;
+      mvEffectTypeEnum velocityEffectType;
+      mvEffectTypeEnum directionEffectType;
+      mvEffectTypeEnum forceEffectType;
+      mvEffectTypeEnum torqueEffectType;
+      mvEffectTypeEnum omegaEffectType;
+      mvEffectTypeEnum rotationEffectType;
+      mvEffectTypeEnum quaternionEffectType;
 
       bool applyAccel;
       bool applyVelocity;

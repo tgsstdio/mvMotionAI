@@ -119,6 +119,7 @@
 		<Unit filename="experimental\include\mvForceCapsule.h" />
 		<Unit filename="experimental\include\mvForceLoaderList.h" />
 		<Unit filename="experimental\include\mvForceResult.h" />
+		<Unit filename="experimental\include\mvGravityForce.h" />
 		<Unit filename="experimental\include\mvGroupBNode_V2.h" />
 		<Unit filename="experimental\include\mvGroupBehaviourResult.h" />
 		<Unit filename="experimental\include\mvGroupBehaviour_V2.h" />
@@ -148,6 +149,7 @@
 		<Unit filename="experimental\src\mvBody_V2.cpp" />
 		<Unit filename="experimental\src\mvForceCapsule.cpp" />
 		<Unit filename="experimental\src\mvForceResult.cpp" />
+		<Unit filename="experimental\src\mvGravityForce.cpp" />
 		<Unit filename="experimental\src\mvGroupBNode_V2.cpp" />
 		<Unit filename="experimental\src\mvGroupBehaviourResult.cpp" />
 		<Unit filename="experimental\src\mvGroupBehaviour_V2.cpp" />

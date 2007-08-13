@@ -1,7 +1,16 @@
 #include "mvMotionAI_V2-Central.h"
-#include "mvNullLoader.h"
 #include <cstring>
 #include <new>
+
+/**
+ * default behaviours/actions
+ */
+#include "mvNullLoader.h"
+
+/**
+ * default forces
+ */
+#include "mvGravityForce.h"
 
 mvMotionAI_V2_SUPERCLASS __mv__Motion__AI__Module;
 
@@ -178,10 +187,16 @@ void mvMotionAI_V2::applyToAllWorldsByIndex(void (someFunction)(mvIndex,void*),\
    worlds.applyToAllItemsByItemIndex(someFunction, extraPtr);
 }
 
-mvErrorEnum mvMotionAI_V2::loadDefaultActions()
+mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(mvActionLoaderListPtr
+   loader)
 {
    mvErrorEnum error;
    mvBaseActionLoaderPtr tempLoader;
+
+   if (loader == MV_NULL)
+   {
+      return MV_FUNCTION_LOADER_LIST_PTR_IS_NULL;
+   }
 
    // adding nullLoaders to protected enums such as
    // enum 1
@@ -192,7 +207,7 @@ mvErrorEnum mvMotionAI_V2::loadDefaultActions()
    {
       return MV_INVALID_MEMORY_ALLOCATION;
    }
-   error = bFunctions.addFactoryFunction(MV_GROUP_ENTRY, tempLoader);
+   error = loader->addFactoryFunction(MV_GROUP_ENTRY, tempLoader);
    // if error occurs
    if (error != MV_NO_ERROR)
    {
@@ -208,7 +223,7 @@ mvErrorEnum mvMotionAI_V2::loadDefaultActions()
    {
       return MV_INVALID_MEMORY_ALLOCATION;
    }
-   error = bFunctions.addFactoryFunction(MV_EXISTING_BEHAVIOUR,\
+   error = loader->addFactoryFunction(MV_EXISTING_BEHAVIOUR,\
       tempLoader);
    if (error != MV_NO_ERROR)
    {
@@ -224,7 +239,7 @@ mvErrorEnum mvMotionAI_V2::loadDefaultActions()
    {
       return MV_INVALID_MEMORY_ALLOCATION;
    }
-   error = bFunctions.addFactoryFunction(MV_EXISTING_GROUP_BEHAVIOUR,\
+   error = loader->addFactoryFunction(MV_EXISTING_GROUP_BEHAVIOUR,\
       tempLoader);
    if (error != MV_NO_ERROR)
    {
@@ -235,6 +250,34 @@ mvErrorEnum mvMotionAI_V2::loadDefaultActions()
    // now adding defined functions
    //TODO : add more behaviours
    return MV_NO_ERROR;
+}
+
+mvErrorEnum mvMotionAI_V2_LOADDEFAULTFORCES(mvForceLoaderListPtr
+   loader)
+{
+   mvErrorEnum error;
+   mvBaseForceLoaderPtr tempLoader;
+
+   if (loader == MV_NULL)
+   {
+      return MV_FUNCTION_LOADER_LIST_PTR_IS_NULL;
+   }
+
+   tempLoader = new mvGravityForceLoader();
+   error = loader->addFactoryFunction(MV_GRAVITY,\
+      tempLoader);
+   if (error != MV_NO_ERROR)
+   {
+      delete tempLoader;
+      return error;
+   }
+
+   return MV_NO_ERROR;
+}
+
+mvErrorEnum mvMotionAI_V2::loadDefaultActions()
+{
+   return mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(&bFunctions);
 }
 
 mvBaseAction* mvMotionAI_V2::createNewBehaviour(mvOptionEnum type,\
@@ -250,7 +293,7 @@ void mvMotionAI_V2::freeDefaultActions()
 
 mvErrorEnum mvMotionAI_V2::loadDefaultForces()
 {
-   return MV_NO_ERROR;
+   return mvMotionAI_V2_LOADDEFAULTFORCES(&fFunctions);
 }
 
 void mvMotionAI_V2::freeDefaultForces()
@@ -513,16 +556,26 @@ mvErrorEnum mvMotionAI_V2_APPLYTOALLWORLDSBYINDEX(\
    return error;
 }
 
+/*
 mvErrorEnum mvMotionAI_V2_INITDEFAULTBODIES()
 {
    // todo : implement this function
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
+*/
 
 mvErrorEnum mvMotionAI_V2_INITDEFAULTFORCES()
 {
-   // todo : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvMotionAI_V2* modulePtr = NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
+      modulePtr->loadDefaultForces();
+   }
+
+   return error;
 }
 
 mvErrorEnum mvMotionAI_V2_INITALLDEFAULTS()
@@ -532,7 +585,7 @@ mvErrorEnum mvMotionAI_V2_INITALLDEFAULTS()
    if (error == MV_NO_ERROR)
    {
       mvMotionAI_V2_INITDEFAULTFORCES();
-      mvMotionAI_V2_INITDEFAULTBODIES();
+     // mvMotionAI_V2_INITDEFAULTBODIES();
       mvMotionAI_V2_INITDEFAULTACTIONS();
    }
    return error;
@@ -551,12 +604,13 @@ mvErrorEnum mvMotionAI_V2_FREEDEFAULTACTIONS()
 
    return error;
 }
-
+/*
 mvErrorEnum mvMotionAI_V2_FREEDEFAULTBODIES()
 {
    // todo : implement this function
    return MV_FUNCTION_NOT_IMPLEMENTED;
 }
+*/
 
 mvErrorEnum mvMotionAI_V2_FREEDEFAULTFORCES()
 {
@@ -578,7 +632,7 @@ mvErrorEnum mvMotionAI_V2_FREEALLDEFAULTS()
 
    if (error == MV_NO_ERROR)
    {
-      mvMotionAI_V2_FREEDEFAULTBODIES();
+    //  mvMotionAI_V2_FREEDEFAULTBODIES();
       mvMotionAI_V2_FREEDEFAULTFORCES();
       mvMotionAI_V2_INITDEFAULTACTIONS();
    }

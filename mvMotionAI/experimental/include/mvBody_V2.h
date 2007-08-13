@@ -182,7 +182,7 @@ class mvBody_V2
       const mvVec3& getFinalTorque() const;
       void setFinalTorque(const mvVec3& vec);
       const mvVec3& getBodysTorque() const;
-      void setBodyTorque(const mvVec3& vec);
+      void setBodysTorque(const mvVec3& vec);
       const mvVec3& getFinalOmega() const;
       void setFinalOmega(const mvVec3& vec);
       const mvVec3& getRotation() const;

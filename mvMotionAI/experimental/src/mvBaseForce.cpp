@@ -3,11 +3,23 @@
 mvBaseForce::mvBaseForce(mvOptionEnum type)
 {
    fType = type;
+   isForceEnabled = true;
+   userData = MV_NULL;
 }
 
 mvOptionEnum mvBaseForce::getType() const
 {
    return fType;
+}
+
+bool mvBaseForce::isEnabled() const
+{
+   return isForceEnabled;
+}
+
+void mvBaseForce::setEnabled(bool value)
+{
+   isForceEnabled = value;
 }
 
 void mvBaseForce::filter(mvForceStatus& worldStatus)
@@ -34,7 +46,21 @@ mvErrorEnum mvBaseForce::getParameter(mvParamEnum paramFlag,\
       return MV_OPTION_ENUM_DEST_IS_NULL;
    }
 
-   return MV_INVALID_FORCE_PARAMETER;
+   switch(paramFlag)
+   {
+      case MV_IS_ENABLED:
+         if (isForceEnabled)
+         {
+            *dest = MV_TRUE;
+         }
+         else
+         {
+            *dest = MV_FALSE;
+         }
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_FORCE_PARAMETER;
+   }
 }
 
 mvErrorEnum mvBaseForce::getParameterf(mvParamEnum paramFlag, mvFloat* dest)\
@@ -68,7 +94,21 @@ mvErrorEnum mvBaseForce::getParameterv(mvParamEnum paramFlag, mvFloat* dest,\
 mvErrorEnum mvBaseForce::setParameter(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
-   return MV_INVALID_FORCE_PARAMETER;
+   switch(paramFlag)
+   {
+      case MV_IS_ENABLED:
+         if (option == MV_FALSE)
+         {
+            isForceEnabled = false;
+         }
+         else
+         {
+            isForceEnabled = true;
+         }
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_FORCE_PARAMETER;
+   }
 }
 
 mvErrorEnum mvBaseForce::setParameteri(mvParamEnum paramFlag, mvIndex index)
@@ -95,6 +135,16 @@ mvErrorEnum mvBaseForce::setParameterv(mvParamEnum paramFlag,\
 mvBaseForce::~mvBaseForce()
 {
 
+}
+
+void* mvBaseForce::getUserData() const
+{
+   return userData;
+}
+
+void mvBaseForce::setUserData(void* tempData)
+{
+   userData = tempData;
 }
 
 // force status

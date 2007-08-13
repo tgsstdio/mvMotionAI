@@ -55,18 +55,24 @@ mvErrorEnum mvMotionAI_V2_APPLYTOALLWORLDSBYINDEX(\
    void(someFunction)(mvIndex, void* extraPtr), void* extraPtr);
 
 mvErrorEnum mvMotionAI_V2_INITDEFAULTACTIONS();
-mvErrorEnum mvMotionAI_V2_INITDEFAULTBODIES();
+//mvErrorEnum mvMotionAI_V2_INITDEFAULTBODIES();
 mvErrorEnum mvMotionAI_V2_INITDEFAULTFORCES();
 mvErrorEnum mvMotionAI_V2_INITALLDEFAULTS();
 
 mvErrorEnum mvMotionAI_V2_FREEDEFAULTACTIONS();
-mvErrorEnum mvMotionAI_V2_FREEDEFAULTBODIES();
+//mvErrorEnum mvMotionAI_V2_FREEDEFAULTBODIES();
 mvErrorEnum mvMotionAI_V2_FREEDEFAULTFORCES();
 mvErrorEnum mvMotionAI_V2_FREEALLDEFAULTS();
 
 mvErrorEnum mvMotionAI_V2_ADDFORCEFUNC(mvOptionEnum fType,\
    mvBaseForceLoaderPtr loader);
 mvBaseForcePtr mvMotionAI_V2_CREATENEWFORCE(mvOptionEnum type);
+
+// todo : global C default behaviour/force loading functions
+mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(mvActionLoaderListPtr
+   loader);
+mvErrorEnum mvMotionAI_V2_LOADDEFAULTFORCES(mvForceLoaderListPtr
+   loader);
 
 mvErrorEnum mvMotionAI_V2_ADDBEHAVIOURFUNC(mvOptionEnum bType,\
    mvBaseActionLoaderPtr loader);
