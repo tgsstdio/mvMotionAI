@@ -89,23 +89,23 @@ void mvBehaviourResult::resetAll()
    applyQuaternion = false;
    applyRotation = false;
 
-   accelMotionType = mvBehaviourResult::MV_DEFAULT_MOTION;
-   velocityMotionType = mvBehaviourResult::MV_DEFAULT_MOTION;
-   directionMotionType = mvBehaviourResult::MV_DEFAULT_MOTION;
-   forceMotionType = mvBehaviourResult::MV_DEFAULT_MOTION;
-   torqueMotionType = mvBehaviourResult::MV_DEFAULT_MOTION;
-   omegaMotionType = mvBehaviourResult::MV_DEFAULT_MOTION;
-   quaternionMotionType = mvBehaviourResult::MV_DEFAULT_MOTION;
-   rotationMotionType = mvBehaviourResult::MV_DEFAULT_MOTION;
+   accelMotionType = MV_DEFAULT_MOTION;
+   velocityMotionType = MV_DEFAULT_MOTION;
+   directionMotionType = MV_DEFAULT_MOTION;
+   forceMotionType = MV_DEFAULT_MOTION;
+   torqueMotionType = MV_DEFAULT_MOTION;
+   omegaMotionType = MV_DEFAULT_MOTION;
+   quaternionMotionType = MV_DEFAULT_MOTION;
+   rotationMotionType = MV_DEFAULT_MOTION;
 
-   accelEffectType = mvBehaviourResult::MV_DEFAULT_EFFECT;
-   velocityEffectType = mvBehaviourResult::MV_DEFAULT_EFFECT;
-   directionEffectType = mvBehaviourResult::MV_DEFAULT_EFFECT;
-   forceEffectType = mvBehaviourResult::MV_DEFAULT_EFFECT;
-   torqueEffectType = mvBehaviourResult::MV_DEFAULT_EFFECT;
-   omegaEffectType = mvBehaviourResult::MV_DEFAULT_EFFECT;
-   quaternionEffectType = mvBehaviourResult::MV_DEFAULT_EFFECT;
-   rotationEffectType = mvBehaviourResult::MV_DEFAULT_EFFECT;
+   accelEffectType = MV_DEFAULT_EFFECT;
+   velocityEffectType = MV_DEFAULT_EFFECT;
+   directionEffectType = MV_DEFAULT_EFFECT;
+   forceEffectType = MV_DEFAULT_EFFECT;
+   torqueEffectType = MV_DEFAULT_EFFECT;
+   omegaEffectType = MV_DEFAULT_EFFECT;
+   quaternionEffectType = MV_DEFAULT_EFFECT;
+   rotationEffectType = MV_DEFAULT_EFFECT;
 
 }
 
@@ -114,7 +114,7 @@ void mvBehaviourResult::resetAll()
   * (documentation goes here)
   */
 void mvBehaviourResult::setQuaternion(const mvFloat* quatArray,\
-   mvBehaviourResult::mvMotionType mType, mvBehaviourResult::mvEffectType eType)
+   mvMotionTypeEnum mType, mvEffectTypeEnum eType)
 {
    mvIndex i;
    for (i = 0; i < MV_QUATERNION_LENGTH; i++)
@@ -122,6 +122,8 @@ void mvBehaviourResult::setQuaternion(const mvFloat* quatArray,\
       quaternion[i] = quatArray[i];
    }
    applyQuaternion = true;
+   quaternionEffectType = eType;
+   quaternionMotionType = mType;
 }
 
 /** @brief (one liner)
@@ -129,7 +131,7 @@ void mvBehaviourResult::setQuaternion(const mvFloat* quatArray,\
   * (documentation goes here)
   */
 void mvBehaviourResult::setDirection(const mvVec3& value,\
-   mvBehaviourResult::mvMotionType mType, mvBehaviourResult::mvEffectType eType)
+   mvMotionTypeEnum mType, mvEffectTypeEnum eType)
 {
    direction = value;
    directionMotionType = mType;
@@ -142,7 +144,7 @@ void mvBehaviourResult::setDirection(const mvVec3& value,\
   * (documentation goes here)
   */
 void mvBehaviourResult::setTorque(const mvVec3& value,\
-   mvBehaviourResult::mvMotionType mType, mvBehaviourResult::mvEffectType eType)
+   mvMotionTypeEnum mType, mvEffectTypeEnum eType)
 {
    torque = value;
    torqueMotionType = mType;
@@ -155,7 +157,7 @@ void mvBehaviourResult::setTorque(const mvVec3& value,\
   * (documentation goes here)
   */
 void mvBehaviourResult::setVelocity(const mvVec3& value,\
-   mvBehaviourResult::mvMotionType mType, mvBehaviourResult::mvEffectType eType)
+   mvMotionTypeEnum mType, mvEffectTypeEnum eType)
 {
    velocity = value;
    velocityMotionType = mType;
@@ -168,7 +170,7 @@ void mvBehaviourResult::setVelocity(const mvVec3& value,\
   * (documentation goes here)
   */
 void mvBehaviourResult::setAcceleration(const mvVec3& value,\
-   mvBehaviourResult::mvMotionType mType, mvBehaviourResult::mvEffectType eType)
+   mvMotionTypeEnum mType, mvEffectTypeEnum eType)
 {
    acceleration = value;
    accelMotionType = mType;
@@ -181,7 +183,7 @@ void mvBehaviourResult::setAcceleration(const mvVec3& value,\
   * (documentation goes here)
   */
 void mvBehaviourResult::setForce(const mvVec3& value,\
-   mvBehaviourResult::mvMotionType mType, mvBehaviourResult::mvEffectType eType)
+   mvMotionTypeEnum mType, mvEffectTypeEnum eType)
 {
    force = value;
    forceMotionType = mType;
@@ -214,6 +216,11 @@ void mvBehaviourResult::setBehaviourIndex(mvIndex bIndex)
 mvBehaviourResult::mvBehaviourResult(mvConstWorldPtr worldPtr,\
    mvConstBodyPtr bodyPtr) : currentWorld(worldPtr), currentBody(bodyPtr)
 {
+   elapsedSystemTime = 0;
+   currentTimeStep = 0;
+   currentGroupBehNode = MV_NULL;
+   behaviourIndex = MV_NULL;
+   groupIndex = MV_NULL;
    resetAll();
 }
 
@@ -240,7 +247,7 @@ mvIndex mvBehaviourResult::getGroupIndex() const
   * (documentation goes here)
   */
 void mvBehaviourResult::setOmega(const mvVec3& value,\
-   mvBehaviourResult::mvMotionType mType, mvBehaviourResult::mvEffectType eType)
+   mvMotionTypeEnum mType, mvEffectTypeEnum eType)
 {
    omega = value;
    omegaMotionType = mType;
@@ -253,7 +260,7 @@ void mvBehaviourResult::setOmega(const mvVec3& value,\
   * (documentation goes here)
   */
 void mvBehaviourResult::setOmegaInDegrees(const mvVec3& value,\
-   mvBehaviourResult::mvMotionType mType, mvBehaviourResult::mvEffectType eType)
+   mvMotionTypeEnum mType, mvEffectTypeEnum eType)
 {
    omega = value;
    omegaMotionType = mType;
@@ -267,7 +274,7 @@ void mvBehaviourResult::setOmegaInDegrees(const mvVec3& value,\
   * (documentation goes here)
   */
 void mvBehaviourResult::setOmegaInRadians(const mvVec3& value,\
-   mvBehaviourResult::mvMotionType mType, mvBehaviourResult::mvEffectType eType)
+   mvMotionTypeEnum mType, mvEffectTypeEnum eType)
 {
    omega = value;
    omegaMotionType = mType;
@@ -432,32 +439,32 @@ const mvVec3& mvBehaviourResult::getForce() const
    return force;
 }
 
-mvBehaviourResult::mvMotionType mvBehaviourResult::getForceMotionType() const
+mvMotionTypeEnum mvBehaviourResult::getForceMotionType() const
 {
    return forceMotionType;
 }
 
-mvBehaviourResult::mvEffectType mvBehaviourResult::getForceEffectType() const
+mvEffectTypeEnum mvBehaviourResult::getForceEffectType() const
 {
    return forceEffectType;
 }
 
-bool mvBehaviourResult::isAccelSet() const
+bool mvBehaviourResult::isAccelerationSet() const
 {
    return applyAccel;
 }
 
-const mvVec3& mvBehaviourResult::getAccel() const
+const mvVec3& mvBehaviourResult::getAcceleration() const
 {
    return acceleration;
 }
 
-mvBehaviourResult::mvMotionType mvBehaviourResult::getAccelMotionType() const
+mvMotionTypeEnum mvBehaviourResult::getAccelerationMotionType() const
 {
    return accelMotionType;
 }
 
-mvBehaviourResult::mvEffectType mvBehaviourResult::getAccelEffectType() const
+mvEffectTypeEnum mvBehaviourResult::getAccelerationEffectType() const
 {
    return accelEffectType;
 }
@@ -472,12 +479,12 @@ const mvVec3& mvBehaviourResult::getDirection() const
    return direction;
 }
 
-mvBehaviourResult::mvMotionType mvBehaviourResult::getDirectionMotionType() const
+mvMotionTypeEnum mvBehaviourResult::getDirectionMotionType() const
 {
    return directionMotionType;
 }
 
-mvBehaviourResult::mvEffectType mvBehaviourResult::getDirectionEffectType() const
+mvEffectTypeEnum mvBehaviourResult::getDirectionEffectType() const
 {
    return directionEffectType;
 }
@@ -492,12 +499,12 @@ const mvVec3& mvBehaviourResult::getTorque() const
    return torque;
 }
 
-mvBehaviourResult::mvMotionType mvBehaviourResult::getTorqueMotionType() const
+mvMotionTypeEnum mvBehaviourResult::getTorqueMotionType() const
 {
    return torqueMotionType;
 }
 
-mvBehaviourResult::mvEffectType mvBehaviourResult::getTorqueEffectType() const
+mvEffectTypeEnum mvBehaviourResult::getTorqueEffectType() const
 {
    return torqueEffectType;
 }
@@ -512,12 +519,12 @@ const mvVec3& mvBehaviourResult::getOmega() const
    return omega;
 }
 
-mvBehaviourResult::mvMotionType mvBehaviourResult::getOmegaMotionType() const
+mvMotionTypeEnum mvBehaviourResult::getOmegaMotionType() const
 {
    return omegaMotionType;
 }
 
-mvBehaviourResult::mvEffectType mvBehaviourResult::getOmegaEffectType() const
+mvEffectTypeEnum mvBehaviourResult::getOmegaEffectType() const
 {
    return omegaEffectType;
 }
@@ -537,12 +544,12 @@ const mvVec3& mvBehaviourResult::getVelocity() const
    return velocity;
 }
 
-mvBehaviourResult::mvMotionType mvBehaviourResult::getVelocityMotionType() const
+mvMotionTypeEnum mvBehaviourResult::getVelocityMotionType() const
 {
    return velocityMotionType;
 }
 
-mvBehaviourResult::mvEffectType mvBehaviourResult::getVelocityEffectType() const
+mvEffectTypeEnum mvBehaviourResult::getVelocityEffectType() const
 {
    return velocityEffectType;
 }
@@ -557,12 +564,12 @@ const mvFloat* mvBehaviourResult::getQuaternion() const
    return quaternion;
 }
 
-mvBehaviourResult::mvMotionType mvBehaviourResult::getQuaternionMotionType() const
+mvMotionTypeEnum mvBehaviourResult::getQuaternionMotionType() const
 {
    return quaternionMotionType;
 }
 
-mvBehaviourResult::mvEffectType mvBehaviourResult::getQuaternionEffectType() const
+mvEffectTypeEnum mvBehaviourResult::getQuaternionEffectType() const
 {
    return quaternionEffectType;
 }
@@ -577,13 +584,13 @@ const mvVec3&  mvBehaviourResult::getRotation() const
    return rotation;
 }
 
-mvBehaviourResult::mvMotionType  mvBehaviourResult::getRotationMotionType()\
+mvMotionTypeEnum  mvBehaviourResult::getRotationMotionType()\
    const
 {
    return rotationMotionType;
 }
 
-mvBehaviourResult::mvEffectType  mvBehaviourResult::getRotationEffectType()\
+mvEffectTypeEnum  mvBehaviourResult::getRotationEffectType()\
    const
 {
       return rotationEffectType;
@@ -595,8 +602,8 @@ bool mvBehaviourResult::isRotationInDegrees() const
 }
 
 void mvBehaviourResult::setRotationInDegrees(const mvVec3& value,\
-   mvBehaviourResult::mvMotionType mType,\
-   mvBehaviourResult::mvEffectType eType)
+   mvMotionTypeEnum mType,\
+   mvEffectTypeEnum eType)
 {
    rotation = value;
    rotationMotionType = mType;
@@ -606,8 +613,8 @@ void mvBehaviourResult::setRotationInDegrees(const mvVec3& value,\
 }
 
 void mvBehaviourResult::setRotationInRadians(const mvVec3& value,\
-   mvBehaviourResult::mvMotionType mType,\
-   mvBehaviourResult::mvEffectType eType)
+   mvMotionTypeEnum mType,\
+   mvEffectTypeEnum eType)
 {
    rotation = value;
    rotationMotionType = mType;

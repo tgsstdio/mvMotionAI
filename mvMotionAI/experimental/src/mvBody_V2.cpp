@@ -65,7 +65,7 @@ mvBody_V2::mvBody_V2(mvOptionEnum bType, mvOptionEnum shape, mvFloat x,\
    bodyDomain = MV_FULL_3D;
    bodyDomainVariables = MV_NULL;
    setDomain(bodyDomain);
-   //TODO : initialises variables
+   //TODO : initialises variables ... add more later
 
 }
 
@@ -559,7 +559,6 @@ mvErrorEnum mvBody_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
 
    switch(paramFlag)
    {
-      // TODO : MV_FORCE_QUANTITY
       case MV_SPEED:
          *num = getSpeed();
          return MV_NO_ERROR;
@@ -614,8 +613,55 @@ mvErrorEnum mvBody_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
 
    switch(paramFlag)
    {
-      // TODO : case MV_FORCE_VECTOR:
-      //TODO : case MV_ACCELERATION_VECTOR:
+      case MV_TORQUE:
+         resultVector = getBodysTorque();
+         numArray[0] = resultVector.getX();
+         numArray[1] = resultVector.getY();
+         numArray[2] = resultVector.getZ();
+         *noOfParameters = 3;
+         return MV_NO_ERROR;
+      case MV_ROTATION:
+         resultVector = getRotation();
+         numArray[0] = resultVector.getX();
+         numArray[1] = resultVector.getY();
+         numArray[2] = resultVector.getZ();
+         *noOfParameters = 3;
+         return MV_NO_ERROR;
+      case MV_OMEGA:
+         resultVector = getBodysOmega();
+         numArray[0] = resultVector.getX();
+         numArray[1] = resultVector.getY();
+         numArray[2] = resultVector.getZ();
+         *noOfParameters = 3;
+         return MV_NO_ERROR;
+      case MV_FINAL_FORCE:
+         resultVector = getFinalForce();
+         numArray[0] = resultVector.getX();
+         numArray[1] = resultVector.getY();
+         numArray[2] = resultVector.getZ();
+         *noOfParameters = 3;
+         return MV_NO_ERROR;
+      case MV_FINAL_TORQUE:
+         resultVector = getFinalTorque();
+         numArray[0] = resultVector.getX();
+         numArray[1] = resultVector.getY();
+         numArray[2] = resultVector.getZ();
+         *noOfParameters = 3;
+         return MV_NO_ERROR;
+      case MV_FINAL_OMEGA:
+         resultVector = getFinalOmega();
+         numArray[0] = resultVector.getX();
+         numArray[1] = resultVector.getY();
+         numArray[2] = resultVector.getZ();
+         *noOfParameters = 3;
+         return MV_NO_ERROR;
+      case MV_FORCE_VECTOR:
+         resultVector = getBodysForce();
+         numArray[0] = resultVector.getX();
+         numArray[1] = resultVector.getY();
+         numArray[2] = resultVector.getZ();
+         *noOfParameters = 3;
+         return MV_NO_ERROR;
       case MV_VELOCITY:
          resultVector = getVelocity();
          numArray[0] = resultVector.getX();
@@ -876,6 +922,7 @@ mvErrorEnum mvBody_V2::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
 mvErrorEnum mvBody_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
    mvErrorEnum error;
+   mvVec3 tempVector;
 
    switch (paramFlag)
    {
@@ -889,11 +936,12 @@ mvErrorEnum mvBody_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
          return setDeceleration(num);
       case MV_MASS:
          return setMass(num);
-      // TODO: case MV_FORCE_QUANTITY:
-      // TODO: case MV_FINAL_SPEED:
+      case MV_FINAL_SPEED:
+         tempVector = getFinalDirection();
+         tempVector *= num;
+         setFinalVelocity(tempVector);
+         return MV_NO_ERROR;
       default:
-         // TODO: pass on to behaviour list
-
          // shape set parameterf
          error = bodyShape.setParameterf(paramFlag, num);
          if (error != MV_INVALID_SHAPE_PARAMETER)
@@ -913,6 +961,7 @@ mvErrorEnum mvBody_V2::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
    mvOptionEnum option;
    mvIndex i;
    mvCount arrayCount;
+   mvVec3 tempVector;
 
    if (numArray == MV_NULL)
    {
@@ -921,13 +970,36 @@ mvErrorEnum mvBody_V2::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 
    switch(paramFlag)
    {
-      // TODO: case MV_FORCE_VECTOR:
-      // TODO: case MV_TORQUE:
-      // TODO: case MV_FINAL_VELOCITY
-      // TODO: case MV_FINAL_TORQUE
+      case MV_FORCE_VECTOR:
+         tempVector.set(numArray[0],numArray[1],numArray[2]);
+         setBodysForce(tempVector);
+         return MV_NO_ERROR;
+      case MV_TORQUE:
+         tempVector.set(numArray[0],numArray[1],numArray[2]);
+         setBodysTorque(tempVector);
+         return MV_NO_ERROR;
+      case MV_FINAL_VELOCITY:
+         tempVector.set(numArray[0],numArray[1],numArray[2]);
+         setFinalVelocity(tempVector);
+         return MV_NO_ERROR;
+      case MV_FINAL_TORQUE:
+         tempVector.set(numArray[0],numArray[1],numArray[2]);
+         setFinalTorque(tempVector);
+         return MV_NO_ERROR;
+      case MV_ROTATION:
+         tempVector.set(numArray[0],numArray[1],numArray[2]);
+         setRotation(tempVector);
+         return MV_NO_ERROR;
+      case MV_OMEGA:
+         tempVector.set(numArray[0],numArray[1],numArray[2]);
+         setBodysOmega(tempVector);
+         return MV_NO_ERROR;
+      case MV_FINAL_OMEGA:
+         tempVector.set(numArray[0],numArray[1],numArray[2]);
+         setFinalOmega(tempVector);
+         return MV_NO_ERROR;
       case MV_VELOCITY:
          return setVelocity(numArray[0],numArray[1],numArray[2]);
-      // TODO :case MV_ACCELERATION_VECTOR:
       case MV_POSITION:
          return setPosition(numArray[0],numArray[1],numArray[2]);
       case MV_DIRECTION:
@@ -1014,7 +1086,7 @@ const mvVec3& mvBody_V2::getBodysTorque() const
    return bodysTorque;
 }
 
-void mvBody_V2::setBodyTorque(const mvVec3& vec)
+void mvBody_V2::setBodysTorque(const mvVec3& vec)
 {
    bodysTorque = vec;
 }

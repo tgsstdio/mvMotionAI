@@ -2422,17 +2422,15 @@ void mvWorld_SumBehaviourResults(mvBehaviourResultPtr summedResult,
    const mvBehaviourResult& actionResult, bool isConfined)
 {
    mvVec3 actionVec, totalVec;
-   mvBehaviourResult::mvMotionType currentMotion;
-   mvBehaviourResult::mvEffectType currentEffect;
+   mvMotionTypeEnum currentMotion;
+   mvEffectTypeEnum currentEffect;
 
-   const mvBehaviourResult::mvMotionType defaultMotion =
+   const mvMotionTypeEnum defaultMotion =
       (actionResult.isSteeringMotionDefault()) ?
-      mvBehaviourResult::MV_STEERING_MOTION :
-      mvBehaviourResult::MV_DIRECTIONAL_MOTION;
-   const mvBehaviourResult::mvEffectType defaultEffect =
+      MV_STEERING_MOTION : MV_DIRECTIONAL_MOTION;
+   const mvEffectTypeEnum defaultEffect =
       (actionResult.isGlobalEffectDefault())  ?
-      mvBehaviourResult::MV_GLOBAL_EFFECT :
-      mvBehaviourResult::MV_LOCAL_EFFECT;
+      MV_GLOBAL_EFFECT : MV_LOCAL_EFFECT;
 
    mvConstBodyPtr currentBody = summedResult->getCurrentBodyPtr();
 
@@ -2448,18 +2446,18 @@ void mvWorld_SumBehaviourResults(mvBehaviourResultPtr summedResult,
       currentMotion = actionResult.getForceMotionType();
       currentEffect = actionResult.getForceEffectType();
 
-      if (currentMotion == mvBehaviourResult::MV_DEFAULT_MOTION)
+      if (currentMotion == MV_DEFAULT_MOTION)
       {
          currentMotion = defaultMotion;
       }
 
-      if (currentEffect == mvBehaviourResult::MV_DEFAULT_EFFECT)
+      if (currentEffect == MV_DEFAULT_EFFECT)
       {
          currentEffect = defaultEffect;
       }
 
       actionVec = actionResult.getForce();
-      if (currentEffect == mvBehaviourResult::MV_LOCAL_EFFECT)
+      if (currentEffect == MV_LOCAL_EFFECT)
       {
          // TODO : delocalise function
       }
@@ -2471,28 +2469,28 @@ void mvWorld_SumBehaviourResults(mvBehaviourResultPtr summedResult,
       }
 
       totalVec += actionVec;
-      summedResult->setForce(totalVec, mvBehaviourResult::MV_STEERING_MOTION,
-         mvBehaviourResult::MV_GLOBAL_EFFECT);
+      summedResult->setForce(totalVec, MV_STEERING_MOTION,
+         MV_GLOBAL_EFFECT);
    }
 
-   if (actionResult.isAccelSet())
+   if (actionResult.isAccelerationSet())
    {
-      totalVec = summedResult->getAccel();
-      currentMotion = actionResult.getAccelMotionType();
-      currentEffect = actionResult.getAccelEffectType();
+      totalVec = summedResult->getAcceleration();
+      currentMotion = actionResult.getAccelerationMotionType();
+      currentEffect = actionResult.getAccelerationEffectType();
 
-      if (currentMotion == mvBehaviourResult::MV_DEFAULT_MOTION)
+      if (currentMotion == MV_DEFAULT_MOTION)
       {
          currentMotion = defaultMotion;
       }
 
-      if (currentEffect == mvBehaviourResult::MV_DEFAULT_EFFECT)
+      if (currentEffect == MV_DEFAULT_EFFECT)
       {
          currentEffect = defaultEffect;
       }
 
-      actionVec = actionResult.getAccel();
-      if (currentEffect == mvBehaviourResult::MV_LOCAL_EFFECT)
+      actionVec = actionResult.getAcceleration();
+      if (currentEffect == MV_LOCAL_EFFECT)
       {
          // TODO : delocalise function
       }
@@ -2504,34 +2502,34 @@ void mvWorld_SumBehaviourResults(mvBehaviourResultPtr summedResult,
       }
 
       totalVec += actionVec;
-      summedResult->setAcceleration(totalVec, mvBehaviourResult::MV_STEERING_MOTION,
-         mvBehaviourResult::MV_GLOBAL_EFFECT);
+      summedResult->setAcceleration(totalVec, MV_STEERING_MOTION,
+         MV_GLOBAL_EFFECT);
    }
 
    if (actionResult.isVelocitySet())
    {
       totalVec = summedResult->getVelocity();
-      currentMotion = actionResult.getAccelMotionType();
-      currentEffect = actionResult.getAccelEffectType();
+      currentMotion = actionResult.getVelocityMotionType();
+      currentEffect = actionResult.getVelocityEffectType();
 
-      if (currentMotion == mvBehaviourResult::MV_DEFAULT_MOTION)
+      if (currentMotion == MV_DEFAULT_MOTION)
       {
          currentMotion = defaultMotion;
       }
 
-      if (currentEffect == mvBehaviourResult::MV_DEFAULT_EFFECT)
+      if (currentEffect == MV_DEFAULT_EFFECT)
       {
          currentEffect = defaultEffect;
       }
 
       actionVec = actionResult.getVelocity();
-      if (currentEffect == mvBehaviourResult::MV_LOCAL_EFFECT)
+      if (currentEffect == MV_LOCAL_EFFECT)
       {
          // TODO : delocalise function
 
       }
 
-      if (currentMotion == mvBehaviourResult::MV_DIRECTIONAL_MOTION)
+      if (currentMotion == MV_DIRECTIONAL_MOTION)
       {
          actionVec -= currentBody->getFinalVelocity();
       }
@@ -2544,8 +2542,8 @@ void mvWorld_SumBehaviourResults(mvBehaviourResultPtr summedResult,
 
 
       totalVec += actionVec;
-      summedResult->setVelocity(totalVec, mvBehaviourResult::MV_STEERING_MOTION,
-         mvBehaviourResult::MV_GLOBAL_EFFECT);
+      summedResult->setVelocity(totalVec, MV_STEERING_MOTION,
+         MV_GLOBAL_EFFECT);
    }
 
    if (actionResult.isTorqueSet())
@@ -2554,18 +2552,18 @@ void mvWorld_SumBehaviourResults(mvBehaviourResultPtr summedResult,
       currentMotion = actionResult.getTorqueMotionType();
       currentEffect = actionResult.getTorqueEffectType();
 
-      if (currentMotion == mvBehaviourResult::MV_DEFAULT_MOTION)
+      if (currentMotion == MV_DEFAULT_MOTION)
       {
          currentMotion = defaultMotion;
       }
 
-      if (currentEffect == mvBehaviourResult::MV_DEFAULT_EFFECT)
+      if (currentEffect == MV_DEFAULT_EFFECT)
       {
          currentEffect = defaultEffect;
       }
 
       actionVec = actionResult.getTorque();
-      if (currentEffect == mvBehaviourResult::MV_LOCAL_EFFECT)
+      if (currentEffect == MV_LOCAL_EFFECT)
       {
          // TODO : delocalise function
       }
@@ -2577,8 +2575,8 @@ void mvWorld_SumBehaviourResults(mvBehaviourResultPtr summedResult,
       }
 
       totalVec += actionVec;
-      summedResult->setTorque(totalVec, mvBehaviourResult::MV_STEERING_MOTION,
-         mvBehaviourResult::MV_GLOBAL_EFFECT);
+      summedResult->setTorque(totalVec, MV_STEERING_MOTION,
+         MV_GLOBAL_EFFECT);
    }
 
    if (actionResult.isDirectionSet())
@@ -2737,7 +2735,7 @@ void mvWorld_V2::performIntegrationOfBody(mvBodyCapsulePtr bodyPtr,
    // translate
    // TODO : accel to force
    // F = ma
-   tempVector = resultModule->getAccel();
+   tempVector = resultModule->getAcceleration();
    tempVector *= bodyPtr->getConstClassPtr()->getMass();
 
    bodyPtr->futureForce += tempVector;
@@ -4481,7 +4479,7 @@ mvErrorEnum mvWorld_V2::getEntryListParameterv(mvIndex listIndex,\
       noOfParameters);
 }
 
-mvErrorEnum mvWorld_V2::getEntryNodeParameteri_str(mvIndex listIndex,\
+mvErrorEnum mvWorld_V2::getEntryListParameteri_str(mvIndex listIndex,\
    const char* param, mvIndex* outIndex) const
 {
    return entryLists.getItemParameteri_str(listIndex, param, outIndex);
@@ -4660,7 +4658,7 @@ mvErrorEnum mvWorld_V2::getEntryListNodeParameterv(mvIndex listIndex,\
       noOfParameters);
 }
 
-mvErrorEnum mvWorld_V2::getEntryNodeParameteri_str(mvIndex listIndex,\
+mvErrorEnum mvWorld_V2::getEntryListNodeParameteri_str(mvIndex listIndex,\
    mvIndex nodeIndex, const char* param, mvIndex* outIndex) const
 {
    mvConstEntryListPtr tempList = entryLists.getConstClassPtr(listIndex);

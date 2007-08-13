@@ -69,11 +69,15 @@ class mvBaseForce
 {
    private:
       mvOptionEnum fType;
+      bool isForceEnabled;
+      void* userData;
    public:
-      // TODO : enabled features
-      bool isEnabled;
       mvBaseForce(mvOptionEnum type);
       mvOptionEnum getType() const;
+      bool isEnabled() const;
+      void setEnabled(bool value);
+      void* getUserData() const;
+      void setUserData(void* tempData);
 
       virtual void filter(mvForceStatus& worldStatus);
       virtual bool calcFullForces(mvForceResultPtr fResult) = 0;
