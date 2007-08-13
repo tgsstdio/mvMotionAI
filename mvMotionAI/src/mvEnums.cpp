@@ -526,3 +526,41 @@ bool mvCheckAllOptionEnumsForString(const char* optionString, mvOptionEnum* dest
    return binarySearchOfEnumStrings<mvOptionEnum>(optionString,dest,&mvOptionEnumStrings[0],
    orderedOptionEnums,MV_NO_OF_OPTION_ENUMS,MV_NON_OPTION_ENUM);
 }
+
+const char* mvMotionAI_MotionType_DescriptStrings[] =
+{
+   "MV_DEFAULT_MOTION",
+   "MV_STEERING_MOTION",
+   "MV_DIRECTIONAL_MOTION",
+};
+
+const char* mvMotionAI_EffectType_DescriptStrings[] =
+{
+   "MV_DEFAULT_EFFECT",
+   "MV_GLOBAL_EFFECT",
+   "MV_LOCAL_EFFECT",
+};
+
+const char* mvGetMotionTypeString(mvMotionTypeEnum mType)
+{
+   if (mType >= MV_DEFAULT_MOTION && mType <= MV_DIRECTIONAL_MOTION)
+   {
+      return mvMotionAI_MotionType_DescriptStrings[mType];
+   }
+   else
+   {
+      return MV_NULL;
+   }
+}
+
+const char* mvGetEffectTypeString(mvEffectTypeEnum eType)
+{
+   if (eType >= MV_DEFAULT_EFFECT && eType <= MV_LOCAL_EFFECT)
+   {
+      return mvMotionAI_MotionType_DescriptStrings[eType];
+   }
+   else
+   {
+      return MV_NULL;
+   }
+}
