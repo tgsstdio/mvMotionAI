@@ -144,6 +144,7 @@ class mvVec3
       mvFloat getZ() const;
 
       const mvFloat* getPointer() const;
+      void  toZeroVec();
 
       /*
       * --------------------------------------------------------------------------

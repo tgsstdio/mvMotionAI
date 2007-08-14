@@ -631,6 +631,18 @@ void mvVec3::resetXYZ(void)
 }
 */
 
+/**
+ * \brief reset vector
+ *
+ * set all members to zero
+ */
+void  mvVec3::toZeroVec()
+{
+  components[MV_VEC3_X_COMPONENT] = 0;
+  components[MV_VEC3_Y_COMPONENT] = 0;
+  components[MV_VEC3_Z_COMPONENT] = 0;
+}
+
 /*
  * \brief reset vector
  *
