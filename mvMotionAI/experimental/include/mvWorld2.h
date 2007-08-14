@@ -77,14 +77,13 @@ class mvWorld_V2
       void calculateGroupBehaviours(); // 1
       void checkIfWaypointContainsBody(mvBodyCapsulePtr bodyPtr);
       void resetIntegrationLoop();
-      void calculateAllForcesOnBody(mvBodyCapsulePtr bodyPtr);
-      void calculateGlobalForceOnBody(mvIndex globalForce,
-         mvBodyCapsulePtr bodyPtr);
-      void calculateLocalForceOnBody(mvIndex localForce,
-         mvBodyCapsulePtr bodyPtr);
-      void calculateBehavioursOnBody(mvBehaviourResultPtr finalResult,\
-         mvBodyCapsulePtr bodyPtr, mvFloat hTimeStep);
+      void calculateAllForcesOnBody(mvBodyCapsulePtr bodyPtr,\
+         mvForceResultPtr finalForceResult);
+      void calculateBehavioursOnBody(mvBodyCapsulePtr bodyPtr,
+         mvBehaviourResultPtr finalResult);
       void finaliseIntegrationStep(mvFloat timeInSecs);
+      void initialiseCommonVariables(mvBehaviourResultPtr behavResult,
+         mvForceResultPtr forceResult, mvFloat hTimeStep);
 
       mvConstBodyCapsulePtr getConstBodyCapsulePtr(int index) const;
       mvBodyCapsulePtr getBodyCapsulePtr(int index);

@@ -1940,17 +1940,69 @@ void mvWorld_V2_IntegrateAllBodies(mvBodyCapsulePtr bodyPtr, void* extraPtr)
    currentWorld->integrateBody(bodyPtr,timeInSecs);
 }
 
+void mvWorld_V2::initialiseCommonVariables(mvBehaviourResultPtr behavResult,
+   mvForceResultPtr forceResult, mvFloat hTimeStep)
+{
+   mvConstBodyPtr currentBody = behavResult->getCurrentBodyPtr();
+   behavResult->resetAll();
+   forceResult->resetAll();
+
+   behavResult->setCurrentTimeStep(hTimeStep);
+   behavResult->setElaspedSystemTime(this->getElapsedWorldTime());
+
+   forceResult->setCurrentTimeStep(hTimeStep);
+   forceResult->setElaspedSystemTime(this->getElapsedWorldTime());
+
+   // calculate predictions
+   // A : predict position
+   mvVec3 predictPos = currentBody->getVelocity();
+   predictPos *= hTimeStep;
+   predictPos += currentBody->getPosition();
+
+   // B : predict final position
+   mvVec3 predictFinalPos = currentBody->getFinalVelocity();
+   predictFinalPos *= hTimeStep;
+   predictFinalPos += currentBody->getPosition();
+
+   // C: predict velocity == old_vel + max_accel * time
+   // TODO : use current force
+   mvVec3 predictVelocity = currentBody->getBodyDirection();
+   predictVelocity *= currentBody->getSpeed() +
+      (currentBody->getAcceleration() * hTimeStep);
+
+   // D predict final velocity => predict_vel + past_vel_by_mvforces
+   // past_vel_by_mvforces = (final_vel - vel)
+   // TODO : use final force
+   mvVec3 predictFinalVelocity;
+   predictFinalVelocity.toZeroVec();
+   predictFinalVelocity -= currentBody->getVelocity();
+   predictFinalVelocity += currentBody->getFinalVelocity();
+   predictFinalVelocity += predictVelocity;
+
+   behavResult->setPositionPrediction(predictPos);
+   behavResult->setFinalPositionPrediction(predictFinalPos);
+   behavResult->setVelocityPrediction(predictVelocity);
+   behavResult->setFinalVelocityPrediction(predictFinalVelocity);
+
+   forceResult->setPositionPrediction(predictPos);
+   forceResult->setFinalPositionPrediction(predictFinalPos);
+   forceResult->setVelocityPrediction(predictVelocity);
+   forceResult->setFinalVelocityPrediction(predictFinalVelocity);
+}
+
 void mvWorld_V2::integrateBody(mvBodyCapsulePtr bodyPtr, mvFloat timeInSecs)
 {
-   mvBehaviourResult finalResult((mvConstWorldPtr) this,
+   mvBehaviourResult finalBehavResult((mvConstWorldPtr) this,
+      bodyPtr->getConstClassPtr());
+   mvForceResult finalForceResult((mvConstWorldPtr) this,
       bodyPtr->getConstClassPtr());
 
-   finalResult.resetAll();
    resetIntegrationLoop();
    checkIfWaypointContainsBody(bodyPtr);
-   calculateAllForcesOnBody(bodyPtr);
-   calculateBehavioursOnBody(&finalResult, bodyPtr, timeInSecs);
-   performIntegrationOfBody(bodyPtr, &finalResult);
+   initialiseCommonVariables(&finalBehavResult,&finalForceResult,timeInSecs);
+   calculateBehavioursOnBody(bodyPtr, &finalBehavResult);
+   calculateAllForcesOnBody(bodyPtr, &finalForceResult);
+   performIntegrationOfBody(bodyPtr, &finalBehavResult);
 }
 
 /** @brief (one liner)
@@ -1999,15 +2051,66 @@ struct mvWorldV2_CalcForceHelperStruct
    public:
       mvWorldPtr currentWorld;
       mvBodyCapsulePtr currentBody;
+      mvForceResultPtr finalResult;
 };
+
+void mvWorld_CalculateGlobalForceOnBody(mvForceCapsulePtr fCapsulePtr,
+   mvBodyCapsulePtr bodyPtr, mvForceResultPtr finalResult)
+{
+   // current force parameters
+   mvForceResult currentResult(finalResult->getWorldPtr(),
+      finalResult->getCurrentBodyPtr());
+
+   // transfer values across
+}
+
+void mvWorld_CalculateLocalForceOnBody(mvForceCapsulePtr fCapsulePtr,
+   mvBodyCapsulePtr bodyPtr, mvForceResultPtr finalResult)
+{
+
+}
+
+void mvWorld_CalculateForceOnSingleBody(mvForceCapsulePtr fCapsulePtr,\
+   void* extraPtr)
+{
+   mvBaseForcePtr currentForce = fCapsulePtr->getClassPtr();
+   mvWorldV2_CalcForceHelperStruct* helper =\
+      (mvWorldV2_CalcForceHelperStruct*) extraPtr;
+   mvForceStatus forceStatus;
+
+   // check if enabled.
+   if (currentForce->isEnabled())
+   {
+      // check this world force filter
+      forceStatus.applyingNone();
+      currentForce->filter(forceStatus);
+
+      if (fCapsulePtr->isGlobalForce())
+      {
+         mvWorld_CalculateGlobalForceOnBody(fCapsulePtr,
+            helper->currentBody, helper->finalResult);
+      }
+      else
+      {
+            mvWorld_CalculateLocalForceOnBody(fCapsulePtr,
+               helper->currentBody, helper->finalResult);
+      }
+   }
+}
 
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-void mvWorld_V2::calculateAllForcesOnBody(mvBodyCapsulePtr bodyPtr)
+void mvWorld_V2::calculateAllForcesOnBody(mvBodyCapsulePtr bodyPtr,\
+   mvForceResultPtr finalForceResult)
 {
+   mvWorldV2_CalcForceHelperStruct helper;
+   helper.currentWorld = this;
+   helper.currentBody = bodyPtr;
+   helper.finalResult = finalForceResult;
 
+   forces.applyToAllCapsules(mvWorld_CalculateForceOnSingleBody, &helper);
 }
 
 /** @brief (one liner)
@@ -2037,7 +2140,8 @@ void mvWorld_V2::resetIntegrationLoop()
 
 void mvWorld_Prepare_Body_Capsule(mvBodyCapsulePtr capsulePtr, void* extraPtr)
 {
-   mvVec3 zeroVector(0,0,0);
+   mvVec3 zeroVector;
+   zeroVector.toZeroVec();
 
    capsulePtr->performIntegration = false;
    capsulePtr->futureVelocity = zeroVector;
@@ -2231,6 +2335,7 @@ void mvWorld_V2::checkIfWaypointContainsBody(mvBodyCapsulePtr bodyPtr) // part o
 // TODO : calculate world functions
 }
 
+/*
 void mvWorld_V2::calculateGlobalForceOnBody(mvIndex globalForce,\
    mvBodyCapsulePtr bodyPtr)
 {
@@ -2242,6 +2347,7 @@ void mvWorld_V2::calculateLocalForceOnBody(mvIndex localForce,\
 {
 // TODO : calculate world functions
 }
+*/
 
 struct mvWorld_CalcBehavOnListHelper
 {
@@ -2634,8 +2740,8 @@ void mvWorld_CalculateEntryByWeightedSum(mvEntryListNodePtr eNodePtr,\
    }
 }
 
-void mvWorld_V2::calculateBehavioursOnBody(mvBehaviourResultPtr finalResult,\
-   mvBodyCapsulePtr bCapsulePtr, mvFloat hTimeStep)
+void mvWorld_V2::calculateBehavioursOnBody(mvBodyCapsulePtr bCapsulePtr,\
+   mvBehaviourResultPtr finalResult)
 {
    // TODO : code here
 
@@ -2665,37 +2771,6 @@ void mvWorld_V2::calculateBehavioursOnBody(mvBehaviourResultPtr finalResult,\
 
    // initialise mvbehaviour result values
    mvWorld_CalcBehavOnListHelper helperModule;
-
-   finalResult->setCurrentTimeStep(hTimeStep);
-   finalResult->setElaspedSystemTime(this->getElapsedWorldTime());
-
-   // calculate predictions
-   // A : predict position
-   mvVec3 predictPos = currentBody->getBodyDirection();
-   predictPos *= currentBody->getSpeed() * hTimeStep;
-   predictPos += currentBody->getPosition();
-
-   // B : predict final position
-   mvVec3 predictFinalPos = currentBody->getFinalVelocity();
-   predictFinalPos *= hTimeStep;
-   predictFinalPos += currentBody->getPosition();
-   // C: predict velocity == old_vel + max_accel * time
-
-   mvVec3 predictVelocity = currentBody->getBodyDirection();
-   predictVelocity *= currentBody->getSpeed() +
-      (currentBody->getAcceleration() * hTimeStep);
-
-   // D predict final velocity => predict_vel + past_vel_by_mvforces
-   // past_vel_by_mvforces = (final_vel - vel)
-   mvVec3 predictFinalVelocity = currentBody->getBodyDirection();
-   predictFinalVelocity *= - currentBody->getSpeed();
-   predictFinalVelocity += currentBody->getFinalVelocity();
-   predictFinalVelocity += predictVelocity;
-
-   finalResult->setPositionPrediction(predictPos);
-   finalResult->setFinalPositionPrediction(predictFinalPos);
-   finalResult->setVelocityPrediction(predictVelocity);
-   finalResult->setFinalVelocityPrediction(predictFinalVelocity);
 
    helperModule.finalResult = finalResult;
    helperModule.bCapsule = bCapsulePtr;
