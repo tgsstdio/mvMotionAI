@@ -95,6 +95,10 @@ class mvWorld_V2
       mvFloat getElapsedWorldTime() const;
       void integrateBody(mvBodyCapsulePtr bodyPtr, mvFloat timeInSecs);
       bool hasGroupChanged(mvIndex groupNo);
+      /** \brief
+       * internal function - info is useless out of integration loop
+       */
+      bool doesWaypointContainBody(mvIndex wPointIndex) const;
 
       bool isEnabled;
       bool applyForces;
@@ -103,6 +107,7 @@ class mvWorld_V2
       bool applyAccelerations;
       bool applyCollisions;
       bool applyAllForces;
+      bool applyAllDragForces;
       bool autoConvertIndex;
       bool isRightHanded;
 
@@ -117,7 +122,7 @@ class mvWorld_V2
       mvForceLoaderListPtr getForceLoaderPtr() const;
 
       // TODO : world functions
-      void worldStep(mvFloat timeInSecs);
+      mvErrorEnum worldStep(mvFloat timeInSecs);
       mvErrorEnum nudgeBody(mvIndex bodyIndex, mvFloat timeInSecs);
       mvErrorEnum nudgeCurrentBody(mvFloat timeInSecs);
 
