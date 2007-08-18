@@ -29,6 +29,10 @@
 #include <new>
 #include MV_BEHAVIOUR_RESULT_HEADER_FILE_H_
 
+template <class mvFinalResultObject, class mvCurrentResultObject>
+void mvWorld_InitialiseCurrentResultObject(mvFinalResultObject* finalResult,
+   mvCurrentResultObject* currentResult);
+
 /** @brief (one liner)
   *
   * (documentation goes here)
@@ -2009,19 +2013,27 @@ void mvWorld_V2::integrateBody(mvBodyCapsulePtr bodyPtr, mvFloat timeInSecs)
   *
   * (documentation goes here)
   */
-void mvWorld_V2::worldStep(mvFloat timeInSecs)
+mvErrorEnum mvWorld_V2::worldStep(mvFloat timeInSecs)
 {
    mvWorld_IntegrateLoopHelper helpContainer;
 
-   prepareIntegrationStep();
-   calculateGroupBehaviours();
+   if (isEnabled)
+   {
+      prepareIntegrationStep();
+      calculateGroupBehaviours();
 
-   helpContainer.currentWorld = this;
-   helpContainer.timeInSecs = timeInSecs;
-   bodies.applyToAllCapsules(mvWorld_V2_IntegrateAllBodies,&helpContainer);
+      helpContainer.currentWorld = this;
+      helpContainer.timeInSecs = timeInSecs;
+      bodies.applyToAllCapsules(mvWorld_V2_IntegrateAllBodies,&helpContainer);
 
-   finaliseIntegrationStep(timeInSecs);
-   elapsedWorldTime += timeInSecs;
+      finaliseIntegrationStep(timeInSecs);
+      elapsedWorldTime += timeInSecs;
+      return MV_NO_ERROR;
+   }
+   else
+   {
+      return MV_ITEM_IS_NOT_ENABLED;
+   }
 }
 
 /** @brief (one liner)
@@ -2037,13 +2049,19 @@ mvErrorEnum mvWorld_V2::nudgeBody(mvIndex index, mvFloat timeInSecs)
       return MV_BODY_INDEX_IS_INVALID;
    }
 
-   prepareIntegrationStep();
-   calculateGroupBehaviours();
-   integrateBody(tempCapsulePtr,timeInSecs);
-   finaliseIntegrationStep(timeInSecs);
-   elapsedWorldTime += timeInSecs;
-
-   return MV_NO_ERROR;
+   if (isEnabled)
+   {
+      prepareIntegrationStep();
+      calculateGroupBehaviours();
+      integrateBody(tempCapsulePtr,timeInSecs);
+      finaliseIntegrationStep(timeInSecs);
+      elapsedWorldTime += timeInSecs;
+      return MV_NO_ERROR;
+   }
+   else
+   {
+      return MV_ITEM_IS_NOT_ENABLED;
+   }
 }
 
 struct mvWorldV2_CalcForceHelperStruct
@@ -2054,20 +2072,84 @@ struct mvWorldV2_CalcForceHelperStruct
       mvForceResultPtr finalResult;
 };
 
-void mvWorld_CalculateGlobalForceOnBody(mvForceCapsulePtr fCapsulePtr,
-   mvBodyCapsulePtr bodyPtr, mvForceResultPtr finalResult)
+template <class mvFinalResultObject, class mvCurrentResultObject>
+void mvWorld_InitialiseCurrentResultObject(mvFinalResultObject* finalResult,
+   mvCurrentResultObject* currentResult)
 {
-   // current force parameters
-   mvForceResult currentResult(finalResult->getWorldPtr(),
-      finalResult->getCurrentBodyPtr());
-
    // transfer values across
+   currentResult->setCurrentTimeStep(finalResult->getTimeStep());
+   currentResult->setElaspedSystemTime(finalResult->getElapsedSystemTime());
+
+   currentResult->setPositionPrediction(\
+      finalResult->predictPositionOfCurrentBody());
+   currentResult->setFinalPositionPrediction(\
+      finalResult->predictFinalPositionOfCurrentBody());
+   currentResult->setVelocityPrediction(\
+      finalResult->predictVelocityOfCurrentBody());
+   currentResult->setFinalVelocityPrediction(\
+      finalResult->predictFinalVelocityOfCurrentBody());
 }
 
-void mvWorld_CalculateLocalForceOnBody(mvForceCapsulePtr fCapsulePtr,
-   mvBodyCapsulePtr bodyPtr, mvForceResultPtr finalResult)
+void mvWorld_InitialCurrentForceResult(mvForceResultPtr finalResult,
+   mvForceResultPtr currentResult)
 {
+   mvWorld_InitialiseCurrentResultObject<mvForceResult, mvForceResult>
+      (finalResult, currentResult);
+}
 
+bool mvWorld_CalculateGlobalForceOnBody(mvBaseForcePtr currentForce,
+   mvForceResultPtr currentResult)
+{
+  // calculate force
+   if (currentForce)
+   {
+      return currentForce->calcFullForces(currentResult);
+   }
+   else
+   {
+      return false;
+   }
+}
+
+bool mvWorld_V2::doesWaypointContainBody(mvIndex wPointIndex) const
+{
+   mvConstWaypointCapsulePtr tempCapsulePtr =\
+      waypoints.getConstCapsulePtr(wPointIndex);
+
+   if (tempCapsulePtr)
+   {
+      return tempCapsulePtr->containsBody;
+   }
+   else
+   {
+      return false;
+   }
+}
+
+bool mvWorld_CalculateLocalForceOnBody(mvForceCapsulePtr fCapsulePtr,
+   mvBaseForcePtr currentForce, mvForceResultPtr currentResult)
+{
+   // current force parameters
+   // check if any waypoints contain this body from this force's assigned wpoints
+   mvConstWorldPtr currentWorld = currentResult->getWorldPtr();
+   mvUniqueSet& linkedWaypoints = fCapsulePtr->linkedWaypoints;
+
+   // start loop
+   linkedWaypoints.beginLoop();
+   while(!linkedWaypoints.isLoopFinished()
+   && !currentWorld->doesWaypointContainBody(linkedWaypoints.getCurrentIndex()))
+   {
+      linkedWaypoints.nextIndex();
+   }
+
+   // hopefully ends correctly
+   if (linkedWaypoints.isLoopFinished())
+   {
+      return false;
+   }
+
+   // if true for any waypoints
+   return currentForce->calcFullForces(currentResult);
 }
 
 void mvWorld_CalculateForceOnSingleBody(mvForceCapsulePtr fCapsulePtr,\
@@ -2078,22 +2160,40 @@ void mvWorld_CalculateForceOnSingleBody(mvForceCapsulePtr fCapsulePtr,\
       (mvWorldV2_CalcForceHelperStruct*) extraPtr;
    mvForceStatus forceStatus;
 
+   mvForceResultPtr finalResult = helper->finalResult;
    // check if enabled.
    if (currentForce->isEnabled())
    {
+      // store
+      mvForceResult currentResult(helper->currentWorld,
+         finalResult->getCurrentBodyPtr());
+      bool hasCalcForce = true;
+
       // check this world force filter
       forceStatus.applyingNone();
       currentForce->filter(forceStatus);
 
-      if (fCapsulePtr->isGlobalForce())
+      // pre action filter
+      // stop force if not to be apply to all bodies
+      if (fCapsulePtr->isGlobalForce() && !forceStatus.onlyLocalForce)
       {
-         mvWorld_CalculateGlobalForceOnBody(fCapsulePtr,
-            helper->currentBody, helper->finalResult);
+         mvWorld_InitialCurrentForceResult(finalResult, &currentResult);
+         hasCalcForce = mvWorld_CalculateGlobalForceOnBody(currentForce,\
+            &currentResult);
       }
-      else
+      // continue with local action if not restricted to being global force
+      else if (!forceStatus.onlyGlobalForce)
       {
-            mvWorld_CalculateLocalForceOnBody(fCapsulePtr,
-               helper->currentBody, helper->finalResult);
+         mvWorld_InitialCurrentForceResult(finalResult, &currentResult);
+         hasCalcForce = mvWorld_CalculateLocalForceOnBody(fCapsulePtr,
+            currentForce, &currentResult);
+      }
+
+      if (hasCalcForce)
+      {
+         // post calculation filter
+
+         // sum forces
       }
    }
 }
@@ -2110,7 +2210,10 @@ void mvWorld_V2::calculateAllForcesOnBody(mvBodyCapsulePtr bodyPtr,\
    helper.currentBody = bodyPtr;
    helper.finalResult = finalForceResult;
 
-   forces.applyToAllCapsules(mvWorld_CalculateForceOnSingleBody, &helper);
+   if (applyAllForces)
+   {
+      forces.applyToAllCapsules(mvWorld_CalculateForceOnSingleBody, &helper);
+   }
 }
 
 /** @brief (one liner)
@@ -2140,18 +2243,15 @@ void mvWorld_V2::resetIntegrationLoop()
 
 void mvWorld_Prepare_Body_Capsule(mvBodyCapsulePtr capsulePtr, void* extraPtr)
 {
-   mvVec3 zeroVector;
-   zeroVector.toZeroVec();
-
    capsulePtr->performIntegration = false;
-   capsulePtr->futureVelocity = zeroVector;
-   capsulePtr->additionalVelocity = zeroVector;
-   capsulePtr->futureForce = zeroVector;
-   capsulePtr->additionalForce = zeroVector;
-   capsulePtr->futureTorque = zeroVector;
-   capsulePtr->additionalTorque = zeroVector;
-   capsulePtr->futureOmega = zeroVector;
-   capsulePtr->additionalOmega = zeroVector;
+   capsulePtr->futureVelocity.toZeroVec();
+   capsulePtr->additionalVelocity.toZeroVec();
+   capsulePtr->futureForce.toZeroVec();
+   capsulePtr->additionalForce.toZeroVec();
+   capsulePtr->futureTorque.toZeroVec();
+   capsulePtr->additionalTorque.toZeroVec();
+   capsulePtr->futureOmega.toZeroVec();
+   capsulePtr->additionalOmega.toZeroVec();
 }
 
 void mvWorld_Prepare_Force_Capsule(mvForceCapsulePtr capsulePtr,\
@@ -2335,20 +2435,6 @@ void mvWorld_V2::checkIfWaypointContainsBody(mvBodyCapsulePtr bodyPtr) // part o
 // TODO : calculate world functions
 }
 
-/*
-void mvWorld_V2::calculateGlobalForceOnBody(mvIndex globalForce,\
-   mvBodyCapsulePtr bodyPtr)
-{
-// TODO : calculate world functions
-}
-
-void mvWorld_V2::calculateLocalForceOnBody(mvIndex localForce,\
-   mvBodyCapsulePtr bodyPtr)
-{
-// TODO : calculate world functions
-}
-*/
-
 struct mvWorld_CalcBehavOnListHelper
 {
    public:
@@ -2439,11 +2525,13 @@ mvBaseActionPtr initialiseResults(mvBEntryPtr nodeInfo, mvIndex bodyIndex,
    }
 
     // set behaviour result to variables
-   currentResult.setCurrentTimeStep(finalResult->getTimeStep());
-   currentResult.setElaspedSystemTime(finalResult->getElapsedSystemTime());
+
    currentResult.setGroupBehaviourNode(groupActionPtr);
    currentResult.setBehaviourIndex(behaviourIndex);
    currentResult.setGroupIndex(groupIndex);
+   /*
+   currentResult.setCurrentTimeStep(finalResult->getTimeStep());
+   currentResult.setElaspedSystemTime(finalResult->getElapsedSystemTime());
    // TODO : prediction action
    currentResult.setPositionPrediction(\
       finalResult->predictPositionOfCurrentBody());
@@ -2453,6 +2541,9 @@ mvBaseActionPtr initialiseResults(mvBEntryPtr nodeInfo, mvIndex bodyIndex,
       finalResult->predictVelocityOfCurrentBody());
    currentResult.setFinalVelocityPrediction(\
       finalResult->predictFinalVelocityOfCurrentBody());
+   */
+   mvWorld_InitialiseCurrentResultObject<mvBehaviourResult, mvBehaviourResult>
+      (finalResult, &currentResult);
 
    return currentAction;
 }

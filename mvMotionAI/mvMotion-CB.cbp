@@ -137,6 +137,7 @@
 		<Unit filename="experimental\include\mvWaypointCapsule.h" />
 		<Unit filename="experimental\include\mvWaypoint_V2.h" />
 		<Unit filename="experimental\include\mvWorld2.h" />
+		<Unit filename="experimental\include\mvWorld2_Functions.h" />
 		<Unit filename="experimental\src\mvBEntry.cpp" />
 		<Unit filename="experimental\src\mvBEntryList.cpp" />
 		<Unit filename="experimental\src\mvBEntryListNode.cpp" />
