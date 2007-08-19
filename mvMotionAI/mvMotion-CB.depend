@@ -1080,13 +1080,13 @@
 	"mvMotionAI-Types.h"
 	"mvFactoryFunctionList.h"
 
-1184249458 source:d:\mvmotionai\mvmotionai\experimental\src\mvgroupbnode_v2.cpp
+1187507792 source:d:\mvmotionai\mvmotionai\experimental\src\mvgroupbnode_v2.cpp
 	"mvGroupBNode_V2.h"
 
 1184077684 source:d:\mvmotionai\mvmotionai\experimental\src\mvbehaviour_v2.cpp
 	"mvBehaviour_V2.h"
 
-1187506428 source:d:\mvmotionai\mvmotionai\experimental\src\mvbody_v2.cpp
+1187507944 source:d:\mvmotionai\mvmotionai\experimental\src\mvbody_v2.cpp
 	"mvBody_V2.h"
 	<new>
 
@@ -1234,7 +1234,7 @@
 1183174910 d:\mvmotionai\mvmotionai\experimental\include\mvbentry.h
 	"mvMotionAI-Types.h"
 
-1184079116 source:d:\mvmotionai\mvmotionai\experimental\src\mvbentrylist.cpp
+1187507116 source:d:\mvmotionai\mvmotionai\experimental\src\mvbentrylist.cpp
 	"mvBEntryList.h"
 
 1186670220 d:\mvmotionai\mvmotionai\experimental\include\mvbentrylist.h
@@ -1265,22 +1265,25 @@
 1186981182 d:\mvmotionai\mvmotionai\experimental\include\mvbaseforce.h
 	"mvMotionAI-Types.h"
 
-1187505016 source:d:\mvmotionai\mvmotionai\experimental\src\mvforceresult.cpp
+1187507674 source:d:\mvmotionai\mvmotionai\experimental\src\mvforceresult.cpp
 	"mvForceResult.h"
 
 1187505018 d:\mvmotionai\mvmotionai\experimental\include\mvforceresult.h
 	"mvMotionAI-Types.h"
 
-1186979350 source:d:\mvmotionai\mvmotionai\experimental\src\mvgravityforce.cpp
+1187508018 source:d:\mvmotionai\mvmotionai\experimental\src\mvgravityforce.cpp
 	"mvGravityForce.h"
 	<new>
 
-1186980304 d:\mvmotionai\mvmotionai\experimental\include\mvgravityforce.h
+1187508102 d:\mvmotionai\mvmotionai\experimental\include\mvgravityforce.h
 	"mvMotionAI-Types.h"
 
 1187504144 d:\mvmotionai\mvmotionai\experimental\src\mvworld2_functions.h
 	"mvMotionAI-Types.h"
 
-1187504506 source:d:\mvmotionai\mvmotionai\experimental\src\mvworld2_functions.cpp
+1187507472 source:d:\mvmotionai\mvmotionai\experimental\src\mvworld2_functions.cpp
 	"mvWorld2_Functions.h"
+
+1183300504 source:d:\mvmotionai\mvmotionai\experimental\src\mvbentryutility.cpp
+	"mvBEntryUtility.h"
 

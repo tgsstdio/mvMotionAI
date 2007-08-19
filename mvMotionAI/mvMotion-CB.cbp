@@ -141,6 +141,7 @@
 		<Unit filename="experimental\src\mvBEntryList.cpp" />
 		<Unit filename="experimental\src\mvBEntryListNode.cpp" />
 		<Unit filename="experimental\src\mvBEntryTimer.cpp" />
+		<Unit filename="experimental\src\mvBEntryUtility.cpp" />
 		<Unit filename="experimental\src\mvBaseAction.cpp" />
 		<Unit filename="experimental\src\mvBaseForce.cpp" />
 		<Unit filename="experimental\src\mvBehaviourResult.cpp" />

@@ -28,8 +28,8 @@
 					<Add library="mvMotionAI-mingw" />
 					<Add library="lua5" />
 					<Add library="lualib5" />
-					<Add library="glu32" />
 					<Add library="glut32" />
+					<Add library="glu32" />
 					<Add library="opengl32" />
 					<Add directory="lib" />
 					<Add directory="lib-other\mingw" />
@@ -70,6 +70,7 @@
 		<Unit filename="examples-src\GLMain.cpp" />
 		<Extensions>
 			<code_completion />
+			<envvars />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

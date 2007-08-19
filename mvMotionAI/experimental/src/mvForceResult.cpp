@@ -580,3 +580,23 @@ void mvForceResult::disableDragShift()
 {
    applyDragShift = false;
 }
+
+bool  mvForceResult::isGlobalEffectDefault() const
+{
+   return isDefaultEffectGlobal;
+}
+
+bool  mvForceResult::isSteeringMotionDefault() const
+{
+   return isDefaultMotionSteering;
+}
+
+void  mvForceResult::setToLocalEffect()
+{
+   isDefaultEffectGlobal = false;
+}
+
+void  mvForceResult::setToGlobalEffect()
+{
+   isDefaultEffectGlobal = true;
+}

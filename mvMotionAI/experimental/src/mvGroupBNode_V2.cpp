@@ -276,6 +276,11 @@ bool mvGroupMemberNode:: operator== (const mvGroupMemberNode& rhs) const
    return (this->memberIndex == rhs.memberIndex);
 }
 
+mvBaseActionPtr mvGroupMemberNode::getActionPtr()
+{
+   return memberAction;
+}
+
 mvErrorEnum mvGroupMemberNode::setParameteri(mvParamEnum paramFlag,\
    mvIndex paramIndex)
 {

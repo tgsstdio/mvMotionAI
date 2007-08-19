@@ -13,7 +13,7 @@ class mvGravityForce : public mvBaseForce
       mvGravityForce();
       virtual void filter(mvForceStatus& worldStatus);
       virtual bool calcFullForces(mvForceResultPtr fResult);
-      ~mvGravityForce();
+      virtual ~mvGravityForce();
 };
 
 class mvGravityForceLoader : public mvBaseForceLoader
@@ -22,7 +22,10 @@ class mvGravityForceLoader : public mvBaseForceLoader
       mvGravityForceLoader();
       virtual mvBaseForcePtr operator()(\
          void* extraPtr);
-      ~mvGravityForceLoader();
+      virtual ~mvGravityForceLoader()
+      {
+
+      }
 };
 
 #endif // MVGRAVITYFORCE_H_INCLUDED
