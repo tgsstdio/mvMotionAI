@@ -74,6 +74,12 @@ mvVec3 mvBody_V2::getBodyDirection() const
    return bodyVelocity.normalize();
 }
 
+mvErrorEnum mvBody_V2::setBodyDirection(mvFloat x, mvFloat y, mvFloat z)
+{
+   mvVec3 temp(x,y,z);
+   return setBodyDirection(temp);
+}
+
 mvErrorEnum mvBody_V2::setBodyDirection(const mvVec3& value)
 {
    mvVec3 newNormalized = value.normalize();
@@ -531,7 +537,7 @@ mvErrorEnum mvBody_V2::getParameter(mvParamEnum paramFlag,\
             *option = MV_FALSE;
          }
          return MV_NO_ERROR;
-      case MV_APPLY_DRAG_FORCES:
+      case MV_APPLY_ALL_DRAG_FORCES:
          if (applyAllDragForces)
          {
             *option = MV_TRUE;
@@ -926,7 +932,7 @@ mvErrorEnum mvBody_V2::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
             applyAllForces = true;
          }
          return MV_NO_ERROR;
-      case MV_APPLY_DRAG_FORCES:
+      case MV_APPLY_ALL_DRAG_FORCES:
          if (option == MV_FALSE)
          {
             applyAllDragForces = false;

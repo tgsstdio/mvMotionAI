@@ -128,9 +128,6 @@ int main(int argc, char** argv)
    bodyID = mvCreateBody(worldID,MV_PARTICLE,MV_AABOX, 0 , 4 , 4);
    std::cout << "bodyID : " << bodyID <<  std::endl;
 
-
-
-
    int waypointID = mvCreateWaypoint(worldID, MV_AABOX, 0, 4 ,0);
 
    std::cout << "waypointID  : " << waypointID <<  std::endl;
@@ -138,6 +135,7 @@ int main(int argc, char** argv)
    std::cout << "obstacleID : " << waypointID<<  std::endl;
    obstacleID = mvCreateObstacle(worldID, MV_AABOX, MV_SOLID_OBSTACLE,3, 8, -4);
    std::cout << "obstacleID : " << waypointID <<  std::endl;
+
 
    glutDisplayFunc(display);
    glutReshapeFunc(reshape);

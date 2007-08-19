@@ -36,7 +36,7 @@ void mvWorld_V2_IntegrateAllBodies(mvBodyCapsulePtr bodyPtr, void* extraPtr)
    currentWorld->integrateBody(bodyPtr,timeInSecs);
 }
 
-void mvWorld_InitialCurrentForceResult(mvForceResultPtr finalResult,
+void mvWorld_V2_InitialCurrentForceResult(mvForceResultPtr finalResult,
    mvForceResultPtr currentResult)
 {
    mvWorld_V2_InitialiseCurrentResultObject<mvForceResult, mvForceResult>

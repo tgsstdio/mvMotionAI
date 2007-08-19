@@ -38,7 +38,7 @@
 
 1163427371 haviour.h"
 
-1181369798 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
+1187453734 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
 
 1173704284 d:\mvmotionai\mvmotionai\include\mvbody.h
 	<vector>
@@ -295,7 +295,7 @@
 	<stdio.h>
 	"lua.h"
 
-1181370980 source:d:\mvmotionai\mvmotionai\examples-src\glmain.cpp
+1181549440 source:d:\mvmotionai\mvmotionai\examples-src\glmain.cpp
 	<GL/glut.h>
 	<iostream>
 	"Camera.h"
@@ -344,7 +344,6 @@
 	<lualib.h>
 	<lauxlib.h>
 
-1181370250 d:\mvmotionai\mvmotionai\experimental\include\mvmotionai.h
+1186985436 d:\mvmotionai\mvmotionai\experimental\include\mvmotionai.h
 	"mvMotionAI-Types.h"
-	"mvLuaScript.h"
 

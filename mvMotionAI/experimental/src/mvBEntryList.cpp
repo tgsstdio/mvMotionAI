@@ -458,6 +458,11 @@ mvEntryListNodePtr mvBEntryList::findExistingGroupEntry(mvIndex bIndex,\
    setMode(MV_WEIGHTED);
 }
 
+mvBEntryList::~mvBEntryList()
+{
+
+}
+
 mvErrorEnum mvBEntryList::getEntryParameteri_str(mvIndex entryIndex,\
    const char* param, mvIndex* outIndex) const
 {

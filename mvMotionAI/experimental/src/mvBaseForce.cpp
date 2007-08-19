@@ -147,6 +147,17 @@ void mvBaseForce::setUserData(void* tempData)
    userData = tempData;
 }
 
+// force loader
+mvBaseForceLoader::mvBaseForceLoader()
+{
+
+}
+
+mvBaseForceLoader::~mvBaseForceLoader()
+{
+
+}
+
 // force status
 
 mvForceStatus::mvForceStatus()

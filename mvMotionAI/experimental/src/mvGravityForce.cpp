@@ -25,7 +25,7 @@ mvGravityForce::~mvGravityForce()
 
 }
 
-mvGravityForceLoader::mvGravityForceLoader()
+mvGravityForceLoader::mvGravityForceLoader() : mvBaseForceLoader()
 {
 
 }
@@ -34,9 +34,4 @@ mvBaseForcePtr mvGravityForceLoader::operator()(\
    void* extraPtr)
 {
    return new mvGravityForce();
-}
-
-mvGravityForceLoader::~mvGravityForceLoader()
-{
-
 }
