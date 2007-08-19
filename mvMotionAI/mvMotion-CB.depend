@@ -24,7 +24,7 @@
 
 1162271928 
 
-1186667634 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
+1187453734 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
 
 1173704284 d:\mvmotionai\mvmotionai\include\mvbody.h
 	<vector>
@@ -422,7 +422,7 @@
 	<cstring>
 	"mvMotionAI-Types.h"
 
-1187273958 d:\mvmotionai\mvmotionai\include\mvenums.h
+1187506448 d:\mvmotionai\mvmotionai\include\mvenums.h
 	<mvMotionAI-Types.h>
 
 1161096100 d:\mvmotionai\mvmotionai\src\mvenums.cpp
@@ -1029,12 +1029,13 @@
 	"mvEnums.h"
 	"mvMotionAI-Types.h"
 
-1187101620 source:d:\mvmotionai\mvmotionai\experimental\src\mvworld2.cpp
+1187506460 source:d:\mvmotionai\mvmotionai\experimental\src\mvworld2.cpp
 	"mvWorld2.h"
 	<cstring>
 	<new>
+	"mvWorld2_Functions.h"
 
-1187101312 d:\mvmotionai\mvmotionai\experimental\include\mvworld2.h
+1187453764 d:\mvmotionai\mvmotionai\experimental\include\mvworld2.h
 	"mvMotionAI-Types.h"
 	"mvPointerList.h"
 	"mvCapsuleList.h"
@@ -1085,11 +1086,11 @@
 1184077684 source:d:\mvmotionai\mvmotionai\experimental\src\mvbehaviour_v2.cpp
 	"mvBehaviour_V2.h"
 
-1186760358 source:d:\mvmotionai\mvmotionai\experimental\src\mvbody_v2.cpp
+1187506428 source:d:\mvmotionai\mvmotionai\experimental\src\mvbody_v2.cpp
 	"mvBody_V2.h"
 	<new>
 
-1186760140 d:\mvmotionai\mvmotionai\experimental\include\mvbody_v2.h
+1187506426 d:\mvmotionai\mvmotionai\experimental\include\mvbody_v2.h
 	"mvMotionAI-Types.h"
 
 1176565240 source:d:\mvmotionai\mvmotionai\experimental\src\mvbehavfunclist.cpp
@@ -1264,10 +1265,10 @@
 1186981182 d:\mvmotionai\mvmotionai\experimental\include\mvbaseforce.h
 	"mvMotionAI-Types.h"
 
-1186928020 source:d:\mvmotionai\mvmotionai\experimental\src\mvforceresult.cpp
+1187505016 source:d:\mvmotionai\mvmotionai\experimental\src\mvforceresult.cpp
 	"mvForceResult.h"
 
-1186927978 d:\mvmotionai\mvmotionai\experimental\include\mvforceresult.h
+1187505018 d:\mvmotionai\mvmotionai\experimental\include\mvforceresult.h
 	"mvMotionAI-Types.h"
 
 1186979350 source:d:\mvmotionai\mvmotionai\experimental\src\mvgravityforce.cpp
@@ -1276,4 +1277,10 @@
 
 1186980304 d:\mvmotionai\mvmotionai\experimental\include\mvgravityforce.h
 	"mvMotionAI-Types.h"
+
+1187504144 d:\mvmotionai\mvmotionai\experimental\src\mvworld2_functions.h
+	"mvMotionAI-Types.h"
+
+1187504506 source:d:\mvmotionai\mvmotionai\experimental\src\mvworld2_functions.cpp
+	"mvWorld2_Functions.h"
 

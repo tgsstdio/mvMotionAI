@@ -107,7 +107,7 @@
 		<Cursor position="1380" topLine="1" />
 	</File>
 	<File name="experimental\include\mvWorld2.h" open="0" top="0" tabpos="6">
-		<Cursor position="4168" topLine="81" />
+		<Cursor position="1776" topLine="21" />
 	</File>
 	<File name="experimental\src\mvBEntry.cpp" open="0" top="0" tabpos="34">
 		<Cursor position="23" topLine="0" />
@@ -187,14 +187,20 @@
 	<File name="experimental\src\mvWaypoint_V2.cpp" open="0" top="0" tabpos="30">
 		<Cursor position="6081" topLine="234" />
 	</File>
-	<File name="experimental\src\mvWorld2.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="78754" topLine="4879" />
+	<File name="experimental\src\mvWorld2.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="49826" topLine="2202" />
 	</File>
-	<File name="include\mvEnums.h" open="1" top="0" tabpos="1">
+	<File name="experimental\src\mvWorld2_Functions.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="15381" topLine="440" />
+	</File>
+	<File name="experimental\src\mvWorld2_Functions.h" open="1" top="0" tabpos="2">
+		<Cursor position="2682" topLine="0" />
+	</File>
+	<File name="include\mvEnums.h" open="0" top="0" tabpos="1">
 		<Cursor position="8425" topLine="306" />
 	</File>
 	<File name="include\mvMotionAI-Types.h" open="0" top="0" tabpos="2">
-		<Cursor position="6811" topLine="188" />
+		<Cursor position="4015" topLine="122" />
 	</File>
 	<File name="include\mvMotionAI-Utilities.h" open="0" top="0" tabpos="29">
 		<Cursor position="81" topLine="0" />

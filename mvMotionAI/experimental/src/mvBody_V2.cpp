@@ -531,6 +531,16 @@ mvErrorEnum mvBody_V2::getParameter(mvParamEnum paramFlag,\
             *option = MV_FALSE;
          }
          return MV_NO_ERROR;
+      case MV_APPLY_DRAG_FORCES:
+         if (applyAllDragForces)
+         {
+            *option = MV_TRUE;
+         }
+         else
+         {
+            *option = MV_FALSE;
+         }
+         return MV_NO_ERROR;
       default:
 
          // check shape then return error
@@ -914,6 +924,16 @@ mvErrorEnum mvBody_V2::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
          else
          {
             applyAllForces = true;
+         }
+         return MV_NO_ERROR;
+      case MV_APPLY_DRAG_FORCES:
+         if (option == MV_FALSE)
+         {
+            applyAllDragForces = false;
+         }
+         else
+         {
+            applyAllDragForces = true;
          }
          return MV_NO_ERROR;
    }
