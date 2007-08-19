@@ -28,8 +28,8 @@
 	<File name="experimental\include\mvBehaviour_V2.h" open="0" top="0" tabpos="7">
 		<Cursor position="1510" topLine="22" />
 	</File>
-	<File name="experimental\include\mvBodyCapsule.h" open="0" top="0" tabpos="18">
-		<Cursor position="2019" topLine="21" />
+	<File name="experimental\include\mvBodyCapsule.h" open="1" top="1" tabpos="5">
+		<Cursor position="1373" topLine="30" />
 	</File>
 	<File name="experimental\include\mvBody_V2.h" open="0" top="0" tabpos="3">
 		<Cursor position="3933" topLine="107" />
@@ -106,8 +106,8 @@
 	<File name="experimental\include\mvWaypoint_V2.h" open="0" top="0" tabpos="31">
 		<Cursor position="1380" topLine="1" />
 	</File>
-	<File name="experimental\include\mvWorld2.h" open="0" top="0" tabpos="6">
-		<Cursor position="8267" topLine="383" />
+	<File name="experimental\include\mvWorld2.h" open="1" top="0" tabpos="4">
+		<Cursor position="3050" topLine="54" />
 	</File>
 	<File name="experimental\src\mvBEntry.cpp" open="0" top="0" tabpos="34">
 		<Cursor position="23" topLine="0" />
@@ -187,14 +187,14 @@
 	<File name="experimental\src\mvWaypoint_V2.cpp" open="0" top="0" tabpos="30">
 		<Cursor position="6081" topLine="234" />
 	</File>
-	<File name="experimental\src\mvWorld2.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="77628" topLine="3241" />
+	<File name="experimental\src\mvWorld2.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="51926" topLine="2177" />
 	</File>
-	<File name="experimental\src\mvWorld2_Functions.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="1688" topLine="21" />
+	<File name="experimental\src\mvWorld2_Functions.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="21476" topLine="523" />
 	</File>
-	<File name="experimental\src\mvWorld2_Functions.h" open="0" top="0" tabpos="2">
-		<Cursor position="2516" topLine="56" />
+	<File name="experimental\src\mvWorld2_Functions.h" open="1" top="0" tabpos="2">
+		<Cursor position="559" topLine="0" />
 	</File>
 	<File name="include\mvEnums.h" open="0" top="0" tabpos="1">
 		<Cursor position="5078" topLine="182" />

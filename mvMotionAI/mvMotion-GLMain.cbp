@@ -28,7 +28,7 @@
 					<Add library="mvMotionAI-mingw" />
 					<Add library="lua5" />
 					<Add library="lualib5" />
-					<Add library="glut32" />
+					<Add library="lib-other\freeglut.lib" />
 					<Add library="glu32" />
 					<Add library="opengl32" />
 					<Add directory="lib" />

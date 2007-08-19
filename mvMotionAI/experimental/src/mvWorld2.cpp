@@ -1983,7 +1983,7 @@ void mvWorld_V2::integrateBody(mvBodyCapsulePtr bodyPtr, mvFloat timeInSecs)
    initialiseCommonVariables(&finalBehavResult,&finalForceResult,timeInSecs);
    calculateBehavioursOnBody(bodyPtr, &finalBehavResult);
    calculateAllForcesOnBody(bodyPtr, &finalForceResult);
-   performIntegrationOfBody(bodyPtr, &finalBehavResult);
+   performIntegrationOfBody(bodyPtr, &finalBehavResult, &finalForceResult);
 }
 
 /** @brief (one liner)
@@ -2177,8 +2177,8 @@ void mvWorld_V2::calculateBehavioursOnBody(mvBodyCapsulePtr bCapsulePtr,\
    }
 }
 
-void mvWorld_V2::performIntegrationOfBody(mvBodyCapsulePtr bodyPtr,
-   mvBehaviourResultPtr resultModule)
+void mvWorld_V2::performIntegrationOfBody(mvBodyCapsulePtr bodyPtr,\
+   mvBehaviourResultPtr behavResModule, mvForceResultPtr forceResModule)
 {
    mvVec3 tempVector;
    // ASSUME resultModule is "NORMALISED" - global steering motions
@@ -2189,18 +2189,29 @@ void mvWorld_V2::performIntegrationOfBody(mvBodyCapsulePtr bodyPtr,
       return;
    }
    // set
-   bodyPtr->futureForce = resultModule->getForce();
-   bodyPtr->futureVelocity = resultModule->getVelocity();
-   bodyPtr->futureTorque = resultModule->getTorque();
-   bodyPtr->futureOmega = resultModule->getOmega();
+   mvFloat bodyMass = bodyPtr->getConstClassPtr()->getMass();
+
+   bodyPtr->futureForce = behavResModule->getForce();
+   tempVector = behavResModule->getAcceleration();
+   tempVector *= bodyMass;
+   bodyPtr->futureForce += tempVector;
+
+   bodyPtr->futureVelocity = behavResModule->getVelocity();
+   bodyPtr->futureTorque = behavResModule->getTorque();
+   bodyPtr->futureOmega = behavResModule->getOmega();
+
+   // TODO : add force variables to capsule
+   bodyPtr->additionalForce = forceResModule->getForce();
+   bodyPtr->additionalForce += forceResModule->getGravity();
+   tempVector = forceResModule->getAcceleration();
+   tempVector *= bodyMass;
+   bodyPtr->additionalForce += tempVector;
+
+   bodyPtr->additionalVelocity = forceResModule->getShift();
+   bodyPtr->additionalTorque = forceResModule->getTorque();
+   bodyPtr->additionalOmega = forceResModule->getOmega();
 
    // translate
-   // TODO : accel to force
-   // F = ma
-   tempVector = resultModule->getAcceleration();
-   tempVector *= bodyPtr->getConstClassPtr()->getMass();
-
-   bodyPtr->futureForce += tempVector;
    // TODO : direction to omega
 
    // TODO : rotation to omega

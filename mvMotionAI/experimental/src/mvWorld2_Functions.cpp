@@ -534,6 +534,33 @@ void mvWorld_V2_SumForceResults(mvForceResultPtr summedResult,
       summedResult->setShift(totalVec, MV_STEERING_MOTION,
          MV_GLOBAL_EFFECT);
    }
+
+   if (actionResult.isGravitySet())
+   {
+      totalVec = summedResult->getGravity();
+      currentMotion = actionResult.getGravityMotionType();
+      currentEffect = actionResult.getGravityEffectType();
+
+      if (currentMotion == MV_DEFAULT_MOTION)
+      {
+         currentMotion = defaultMotion;
+      }
+
+      if (currentEffect == MV_DEFAULT_EFFECT)
+      {
+         currentEffect = defaultEffect;
+      }
+
+      actionVec = actionResult.getGravity();
+      if (currentEffect == MV_LOCAL_EFFECT)
+      {
+         // TODO : delocalise function
+      }
+
+      totalVec += actionVec;
+      summedResult->setGravity(totalVec, MV_STEERING_MOTION,
+         MV_GLOBAL_EFFECT);
+   }
 }
 
 void mvWorld_V2_SumBehaviourResults(mvBehaviourResultPtr summedResult,
@@ -643,6 +670,8 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
          // TODO : delocalise function
       }
       // TODO : check if before or after delocal
+
+
       totalVec *= weight;
 
       if (isConfined)
