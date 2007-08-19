@@ -10,7 +10,6 @@
 
 class mvForceResult
 {
-   // TODO : add effect and motion type to functions
    public:
       mvForceResult(mvConstWorldPtr world,
          mvConstBodyPtr body);
@@ -141,6 +140,20 @@ class mvForceResult
       void  setToSteering();
       bool  isGlobalEffectDefault() const;
       bool  isSteeringMotionDefault() const;
+
+      // integration loop
+      void disableForce();
+      void disableAccel();
+      void disableShift();
+      void disableGravity();
+      void disableTorque();
+      void disableOmega();
+      void disableDirection();
+      void disableQuaternion();
+      void disableRotation();
+      void disableDragForce();
+      void disableDragAccel();
+      void disableDragShift();
    private:
       mvConstWorldPtr currentWorld;
       mvConstBodyPtr currentBody;
@@ -154,6 +167,9 @@ class mvForceResult
       bool applyDirection;
       bool applyQuaternion;
       bool applyRotation;
+      bool applyDragForce;
+      bool applyDragAccel;
+      bool applyDragShift;
 
       mvMotionTypeEnum forceMotion;
       mvMotionTypeEnum accelMotion;
@@ -177,9 +193,6 @@ class mvForceResult
 
       bool omegaInDegrees;
       bool rotationInDegrees;
-      bool applyDragForce;
-      bool applyDragAccel;
-      bool applyDragShift;
 
       bool isDefaultMotionSteering;
       bool isDefaultEffectGlobal;
@@ -203,7 +216,6 @@ class mvForceResult
       mvVec3 brFutureVelocity;
       mvVec3 brFutureFinalVelocity;
 
-      // TODO : current time step
       mvFloat currentTimeStep;
       mvFloat elapsedSystemTime;
 };

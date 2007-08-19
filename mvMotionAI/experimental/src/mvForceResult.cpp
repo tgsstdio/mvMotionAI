@@ -520,3 +520,63 @@ void mvForceResult::resetAll()
    isDefaultEffectGlobal = true;
 
 }
+
+void mvForceResult::disableForce()
+{
+   applyForce = false;
+}
+
+void mvForceResult::disableAccel()
+{
+   applyAccel = false;
+}
+
+void mvForceResult::disableShift()
+{
+   applyShift = false;
+}
+
+void mvForceResult::disableGravity()
+{
+   applyGravity = false;
+}
+
+void mvForceResult::disableTorque()
+{
+   applyTorque = false;
+}
+
+void mvForceResult::disableOmega()
+{
+   applyOmega = false;
+}
+
+void mvForceResult::disableDirection()
+{
+   applyDirection = false;
+}
+
+void mvForceResult::disableQuaternion()
+{
+   applyQuaternion = false;
+}
+
+void mvForceResult::disableRotation()
+{
+   applyRotation = false;
+}
+
+void mvForceResult::disableDragForce()
+{
+   applyDragForce = false;
+}
+
+void mvForceResult::disableDragAccel()
+{
+   applyDragAccel = false;
+}
+
+void mvForceResult::disableDragShift()
+{
+   applyDragShift = false;
+}

@@ -46,8 +46,8 @@
 
 #include "mvBodyCapsule.h"
 #include "mvWaypointCapsule.h"
-#include MV_FORCE_CAPSULE_HEADER_FILE
 #include "mvGroupCapsule.h"
+#include MV_FORCE_CAPSULE_HEADER_FILE
 #include MV_BEHAVIOUR_LIST_HEADER_FILE_H_
 
 class mvWorld_V2

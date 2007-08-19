@@ -229,4 +229,10 @@ typedef class mvBEntryList const * const mvConstEntryListPtr;
 typedef class mvBEntryListNode* mvEntryListNodePtr;
 typedef class mvBEntryListNode const * const mvConstEntryListNodePtr;
 
+#define MV_POINTER_LIST_HEADER_FILE_H_ "mvPointerList.h"
+#define MV_CAPSULE_LIST_HEADER_FILE_H_ "mvCapsuleList.h"
+#define MV_BODY_CAPSULE_HEADER_FILE_H_ "mvBodyCapsule.h"
+#define MV_WAYPOINT_CAPSULE_HEADER_FILE_H_ "mvWaypointCapsule.h"
+#define MV_GROUP_CAPSULE_HEADER_FILE_H_ "mvGroupCapsule.h"
+
 #endif

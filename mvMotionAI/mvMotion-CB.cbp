@@ -137,7 +137,6 @@
 		<Unit filename="experimental\include\mvWaypointCapsule.h" />
 		<Unit filename="experimental\include\mvWaypoint_V2.h" />
 		<Unit filename="experimental\include\mvWorld2.h" />
-		<Unit filename="experimental\include\mvWorld2_Functions.h" />
 		<Unit filename="experimental\src\mvBEntry.cpp" />
 		<Unit filename="experimental\src\mvBEntryList.cpp" />
 		<Unit filename="experimental\src\mvBEntryListNode.cpp" />
@@ -166,6 +165,8 @@
 		<Unit filename="experimental\src\mvWaypointCapsule.cpp" />
 		<Unit filename="experimental\src\mvWaypoint_V2.cpp" />
 		<Unit filename="experimental\src\mvWorld2.cpp" />
+		<Unit filename="experimental\src\mvWorld2_Functions.cpp" />
+		<Unit filename="experimental\src\mvWorld2_Functions.h" />
 		<Unit filename="include\mvEnums.h" />
 		<Unit filename="include\mvMotionAI-Types.h" />
 		<Unit filename="include\mvMotionAI-Utilities.h" />

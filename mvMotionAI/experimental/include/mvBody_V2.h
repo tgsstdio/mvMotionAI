@@ -30,6 +30,7 @@
 #include MV_SHAPE_HEADER_FILE_H_
 
 //TODO: up vector
+// TODO : separate reverse speed
 /**
  * confusion between direction/rotation/orientation cleared up
  * PARTICLE
@@ -170,6 +171,7 @@ class mvBody_V2
       bool applyGravity;
       bool applyCollisions;
       bool applyAllForces;
+      bool applyAllDragForces;
 
       mvBody_V2(mvOptionEnum bType, mvOptionEnum shape, mvFloat x, mvFloat y,\
          mvFloat z);
