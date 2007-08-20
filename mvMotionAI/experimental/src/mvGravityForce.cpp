@@ -16,6 +16,12 @@ void mvGravityForce::filter(mvForceStatus& worldStatus)
 
 bool mvGravityForce::calcFullForces(mvForceResultPtr fResult)
 {
+   // todo : some type of mvMotionAI : ASSERT
+   if (fResult == MV_NULL)
+   {
+      return false;
+   }
+
    fResult->setGravity(gravityForce,MV_STEERING_MOTION, MV_GLOBAL_EFFECT);
    return true;
 }
@@ -33,5 +39,5 @@ mvGravityForceLoader::mvGravityForceLoader() : mvBaseForceLoader()
 mvBaseForcePtr mvGravityForceLoader::operator()(\
    void* extraPtr)
 {
-   return new mvGravityForce();
+   return new (std::nothrow) mvGravityForce();
 }

@@ -11,6 +11,9 @@
  * default forces
  */
 #include "mvGravityForce.h"
+#include "mvUniformForce.h"
+#include "mvUniformAccelForce.h"
+#include "mvUniformShiftForce.h"
 
 mvMotionAI_V2_SUPERCLASS __mv__Motion__AI__Module;
 
@@ -20,15 +23,15 @@ void updatingWorlds(mvWorld_V2* worldPtr, void* extraPtr);
 
 mvMotionAI_V2_SUPERCLASS::mvMotionAI_V2_SUPERCLASS()
 {
-   centralPtr = NULL;
+   centralPtr = MV_NULL;
 }
 
 mvErrorEnum  mvMotionAI_V2_SUPERCLASS::initMotionAI()
 {
-   if (centralPtr == NULL)
+   if (centralPtr == MV_NULL)
    {
       centralPtr = new mvMotionAI_V2();
-      if (centralPtr == NULL)
+      if (centralPtr == MV_NULL)
          return MV_INVALID_MEMORY_ALLOCATION;
    }
    return MV_NO_ERROR;
@@ -36,10 +39,10 @@ mvErrorEnum  mvMotionAI_V2_SUPERCLASS::initMotionAI()
 
 void mvMotionAI_V2_SUPERCLASS::freeMotionAI()
 {
-   if (centralPtr != NULL)
+   if (centralPtr != MV_NULL)
    {
       delete centralPtr;
-      centralPtr = NULL;
+      centralPtr = MV_NULL;
    }
 }
 
@@ -60,15 +63,15 @@ mvMotionAI_V2::mvMotionAI_V2()
 
 bool findExistingWorld(mvWorld_V2* worldPtr, void* extraPtr)
 {
-   const char* worldID = NULL;
-   const char* existingID = NULL;
+   const char* worldID = MV_NULL;
+   const char* existingID = MV_NULL;
 
-   if (worldPtr == NULL)
+   if (worldPtr == MV_NULL)
    {
       return false;
    }
 
-   if (extraPtr == NULL)
+   if (extraPtr == MV_NULL)
    {
       return false;
    }
@@ -76,7 +79,7 @@ bool findExistingWorld(mvWorld_V2* worldPtr, void* extraPtr)
    worldID = (const char*) extraPtr;
    existingID = worldPtr->getID();
 
-   if (existingID == NULL)
+   if (existingID == MV_NULL)
    {
       return false;
    }
@@ -93,13 +96,13 @@ bool findExistingWorld(mvWorld_V2* worldPtr, void* extraPtr)
 
 mvIndex mvMotionAI_V2::createWorld(const char* worldID)
 {
-   mvWorldPtr temp = NULL;
+   mvWorldPtr temp = MV_NULL;
 
    // check for existing world using same id
    temp = worlds.findItemPtrInList(findExistingWorld, (void*) worldID);
 
    // if found, reject it
-   if (temp != NULL)
+   if (temp != MV_NULL)
    {
       return MV_NULL;
    }
@@ -107,7 +110,7 @@ mvIndex mvMotionAI_V2::createWorld(const char* worldID)
    temp = new (std::nothrow) mvWorld(worldID);
    puts(temp->getID());
 
-   if (temp == NULL)
+   if (temp == MV_NULL)
    {
       return MV_NULL;
    }
@@ -161,7 +164,7 @@ void updatingWorlds(mvWorld_V2* worldPtr, void* extraPtr)
 {
    mvFloat timeInSecs = 0;
 
-   if (worldPtr != NULL && extraPtr != NULL)
+   if (worldPtr != MV_NULL && extraPtr != MV_NULL)
    {
       timeInSecs = *((mvFloat*) extraPtr);
       worldPtr->worldStep(timeInSecs);
@@ -200,10 +203,10 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(mvActionLoaderListPtr
 
    // adding nullLoaders to protected enums such as
    // enum 1
-   tempLoader = NULL;
+   tempLoader = MV_NULL;
    tempLoader = new (std::nothrow) mvNullLoader();
    // check for memory errors
-   if (tempLoader == NULL)
+   if (tempLoader == MV_NULL)
    {
       return MV_INVALID_MEMORY_ALLOCATION;
    }
@@ -216,10 +219,10 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(mvActionLoaderListPtr
    }
 
    // enum 2
-   tempLoader = NULL;
+   tempLoader = MV_NULL;
    tempLoader = new (std::nothrow) mvNullLoader();
    // check for memory errors
-   if (tempLoader == NULL)
+   if (tempLoader == MV_NULL)
    {
       return MV_INVALID_MEMORY_ALLOCATION;
    }
@@ -232,10 +235,10 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(mvActionLoaderListPtr
    }
 
    // enum 3
-   tempLoader = NULL;
+   tempLoader = MV_NULL;
    tempLoader = new (std::nothrow) mvNullLoader();
    // check for memory errors
-   if (tempLoader == NULL)
+   if (tempLoader == MV_NULL)
    {
       return MV_INVALID_MEMORY_ALLOCATION;
    }
@@ -263,7 +266,8 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTFORCES(mvForceLoaderListPtr
       return MV_FUNCTION_LOADER_LIST_PTR_IS_NULL;
    }
 
-   tempLoader = new mvGravityForceLoader();
+   tempLoader = MV_NULL;
+   tempLoader = new (std::nothrow) mvGravityForceLoader();
    error = loader->addFactoryFunction(MV_GRAVITY,\
       tempLoader);
    if (error != MV_NO_ERROR)
@@ -271,6 +275,37 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTFORCES(mvForceLoaderListPtr
       delete tempLoader;
       return error;
    }
+
+   tempLoader = MV_NULL;
+   tempLoader = new (std::nothrow) mvUniformForceLoader();
+   error = loader->addFactoryFunction(MV_UNIFORM_FORCE,\
+      tempLoader);
+   if (error != MV_NO_ERROR)
+   {
+      delete tempLoader;
+      return error;
+   }
+
+   tempLoader = MV_NULL;
+   tempLoader = new (std::nothrow) mvUniformAccelForceLoader();
+   error = loader->addFactoryFunction(MV_UNIFORM_ACCELERATION,\
+      tempLoader);
+   if (error != MV_NO_ERROR)
+   {
+      delete tempLoader;
+      return error;
+   }
+
+   tempLoader = MV_NULL;
+   tempLoader = new (std::nothrow) mvUniformShiftForceLoader();
+   error = loader->addFactoryFunction(MV_UNIFORM_SHIFT,\
+      tempLoader);
+   if (error != MV_NO_ERROR)
+   {
+      delete tempLoader;
+      return error;
+   }
+   // todo : add more forces
 
    return MV_NO_ERROR;
 }
@@ -309,7 +344,7 @@ mvErrorEnum mvMotionAI_V2::addForceFunction(mvOptionEnum type,\
 
 mvBaseForcePtr mvMotionAI_V2::createNewForce(mvOptionEnum type)
 {
-   return fFunctions.createAClassPtr(type,NULL);
+   return fFunctions.createAClassPtr(type,MV_NULL);
 }
 
 mvMotionAI_V2::~mvMotionAI_V2()
@@ -438,7 +473,7 @@ void mvMotionAI_V2_FREE()
 mvErrorEnum mvMotionAI_V2_ALLWORLDSSTEPFORWARD(mvFloat timeInSecs)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -451,7 +486,7 @@ mvErrorEnum mvMotionAI_V2_ALLWORLDSSTEPFORWARD(mvFloat timeInSecs)
 mvIndex mvMotionAI_V2_CREATEWORLD(const char* id)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -467,7 +502,7 @@ mvIndex mvMotionAI_V2_CREATEWORLD(const char* id)
 mvErrorEnum mvMotionAI_V2_DELETEALLWORLDS()
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -481,7 +516,7 @@ mvErrorEnum mvMotionAI_V2_DELETEALLWORLDS()
 mvIndex mvMotionAI_V2_GETWORLDBYID(const char* id)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -497,7 +532,7 @@ mvIndex mvMotionAI_V2_GETWORLDBYID(const char* id)
 mvWorld_V2* mvMotionAI_V2_GETWORLDPTRBYID(const char* id)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -506,14 +541,14 @@ mvWorld_V2* mvMotionAI_V2_GETWORLDPTRBYID(const char* id)
    }
    else
    {
-      return NULL;
+      return MV_NULL;
    }
 }
 
 mvWorld_V2* mvMotionAI_V2_GETWORLDPTR(mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -522,7 +557,7 @@ mvWorld_V2* mvMotionAI_V2_GETWORLDPTR(mvIndex index)
    }
    else
    {
-      return NULL;
+      return MV_NULL;
    }
 }
 
@@ -530,7 +565,7 @@ mvErrorEnum mvMotionAI_V2_APPLYTOALLWORLDS(\
    void (someFunction)(mvWorld_V2*,void*),void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -545,7 +580,7 @@ mvErrorEnum mvMotionAI_V2_APPLYTOALLWORLDSBYINDEX(\
    void(someFunction)(mvIndex, void* extraPtr), void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -567,7 +602,7 @@ mvErrorEnum mvMotionAI_V2_INITDEFAULTBODIES()
 mvErrorEnum mvMotionAI_V2_INITDEFAULTFORCES()
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -594,7 +629,7 @@ mvErrorEnum mvMotionAI_V2_INITALLDEFAULTS()
 mvErrorEnum mvMotionAI_V2_FREEDEFAULTACTIONS()
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -615,7 +650,7 @@ mvErrorEnum mvMotionAI_V2_FREEDEFAULTBODIES()
 mvErrorEnum mvMotionAI_V2_FREEDEFAULTFORCES()
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -642,7 +677,7 @@ mvErrorEnum mvMotionAI_V2_FREEALLDEFAULTS()
 mvErrorEnum mvMotionAI_V2_INITDEFAULTACTIONS()
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -657,7 +692,7 @@ mvErrorEnum mvMotionAI_V2_ADDBEHAVIOURFUNC(mvOptionEnum bType,\
    mvBaseActionLoaderPtr loader)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -674,7 +709,7 @@ mvBaseActionPtr mvMotionAI_V2_CREATENEWBEHAVIOUR(mvOptionEnum type,\
    mvBaseActionPtr defaultBehaviour)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -683,7 +718,7 @@ mvBaseActionPtr mvMotionAI_V2_CREATENEWBEHAVIOUR(mvOptionEnum type,\
    }
    else
    {
-      return NULL;
+      return MV_NULL;
    }
 }
 
@@ -691,7 +726,7 @@ mvErrorEnum mvMotionAI_V2_ADDFORCEFUNC(mvOptionEnum fType,\
    mvBaseForceLoaderPtr loader)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -707,7 +742,7 @@ mvErrorEnum mvMotionAI_V2_ADDFORCEFUNC(mvOptionEnum fType,\
 mvBaseForcePtr mvMotionAI_V2_CREATENEWFORCE(mvOptionEnum type)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -716,13 +751,13 @@ mvBaseForcePtr mvMotionAI_V2_CREATENEWFORCE(mvOptionEnum type)
    }
    else
    {
-      return NULL;
+      return MV_NULL;
    }
 }
 
 mvErrorEnum mvMotionAI_V2_CHECKIFINITIALISED()
 {
-   if (__mv__Motion__AI__Module.getMotionAI_V2_Ptr() != NULL)
+   if (__mv__Motion__AI__Module.getMotionAI_V2_Ptr() != MV_NULL)
    {
       return MV_NO_ERROR;
    }
@@ -736,7 +771,7 @@ mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETER(mvIndex worldIndex,\
    mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -753,7 +788,7 @@ mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERI(mvIndex worldIndex,\
    mvParamEnum paramFlag, mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -770,7 +805,7 @@ mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERF(mvIndex worldIndex,\
    mvParamEnum paramFlag, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -787,7 +822,7 @@ mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERV(mvIndex worldIndex,\
    mvParamEnum paramFlag, mvFloat* numArray)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -804,7 +839,7 @@ mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETER(mvIndex worldIndex,\
    mvParamEnum paramFlag, mvOptionEnum* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -821,7 +856,7 @@ mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERI(mvIndex worldIndex,\
    mvParamEnum paramFlag, mvIndex* index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -838,7 +873,7 @@ mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERF(mvIndex worldIndex,\
    mvParamEnum paramFlag, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -855,7 +890,7 @@ mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERV(mvIndex worldIndex,\
    mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfElements)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -873,7 +908,7 @@ mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERS(mvIndex worldIndex,\
    const char* param, const char* option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -890,7 +925,7 @@ mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERSI(mvIndex worldIndex,\
    const char* param, mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -907,7 +942,7 @@ mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERSF(mvIndex worldIndex,\
    const char* param, mvFloat num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -924,7 +959,7 @@ mvErrorEnum mvMotionAI_V2_SETWORLDPARAMETERSV(mvIndex worldIndex,\
    const char* param, mvFloat* numArray)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -941,7 +976,7 @@ mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERS(mvIndex worldIndex,\
    const char* param, const char** option)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -958,7 +993,7 @@ mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERSI(mvIndex worldIndex,\
    const char* param, mvIndex* index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -975,7 +1010,7 @@ mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERSF(mvIndex worldIndex,\
    const char* param, mvFloat* num)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -992,7 +1027,7 @@ mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERSV(mvIndex worldIndex,\
    const char* param, mvFloat* numArray, mvCount* noOfElements)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1009,7 +1044,7 @@ mvErrorEnum mvMotionAI_V2_GETWORLDPARAMETERSV(mvIndex worldIndex,\
 mvIndex mvMotionAI_V2_GETCURRENTWORLD()
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1025,7 +1060,7 @@ mvIndex mvMotionAI_V2_GETCURRENTWORLD()
 mvWorldPtr mvMotionAI_V2_GETCURRENTWORLDPTR()
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {
@@ -1041,7 +1076,7 @@ mvWorldPtr mvMotionAI_V2_GETCURRENTWORLDPTR()
 mvIndex mvMotionAI_V2_SETCURRENTWORLD(mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = NULL;
+   mvMotionAI_V2* modulePtr = MV_NULL;
 
    if (error == MV_NO_ERROR)
    {

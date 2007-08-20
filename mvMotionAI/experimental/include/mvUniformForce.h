@@ -8,7 +8,7 @@
 class mvUniformForce: public mvBaseForce
 {
    private:
-      mvVec3 uniformForce;
+      mvVec3 uForce;
    public:
       mvUniformForce();
       virtual void filter(mvForceStatus& worldStatus);

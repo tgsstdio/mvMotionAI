@@ -70,6 +70,7 @@
 			<Target title="mingw-winXP-debug">
 				<Option output="lib\libmvMotionAI-mingw-debug.a" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
+				<Option object_output=".objs-debug" />
 				<Option type="2" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -123,7 +124,9 @@
 		<Unit filename="experimental\include\mvFactoryFunctionList.hpp" />
 		<Unit filename="experimental\include\mvForceCapsule.h" />
 		<Unit filename="experimental\include\mvForceLoaderList.h" />
-		<Unit filename="experimental\include\mvForceResult.h" />
+		<Unit filename="experimental\include\mvForceResult.h">
+			<Option virtualFolder="mvBaseForces\" />
+		</Unit>
 		<Unit filename="experimental\include\mvGravityForce.h">
 			<Option virtualFolder="mvBaseForces\" />
 		</Unit>
@@ -141,10 +144,16 @@
 		<Unit filename="experimental\include\mvPointerList.h" />
 		<Unit filename="experimental\include\mvPointerList.hpp" />
 		<Unit filename="experimental\include\mvShape.h" />
+		<Unit filename="experimental\include\mvUniformAccelForce.h">
+			<Option virtualFolder="mvBaseForces\" />
+		</Unit>
 		<Unit filename="experimental\include\mvUniformForce.h">
 			<Option virtualFolder="mvBaseForces\" />
 		</Unit>
-		<Unit filename="experimental\include\mvWaypointCapsule.h" />
+		<Unit filename="experimental\include\mvUniformShiftForce.h" />
+		<Unit filename="experimental\include\mvWaypointCapsule.h">
+			<Option virtualFolder="mvBaseForces\" />
+		</Unit>
 		<Unit filename="experimental\include\mvWaypoint_V2.h" />
 		<Unit filename="experimental\include\mvWorld2.h" />
 		<Unit filename="experimental\src\mvBEntry.cpp" />
@@ -163,7 +172,9 @@
 		<Unit filename="experimental\src\mvBodyCapsule.cpp" />
 		<Unit filename="experimental\src\mvBody_V2.cpp" />
 		<Unit filename="experimental\src\mvForceCapsule.cpp" />
-		<Unit filename="experimental\src\mvForceResult.cpp" />
+		<Unit filename="experimental\src\mvForceResult.cpp">
+			<Option virtualFolder="mvBaseForces\" />
+		</Unit>
 		<Unit filename="experimental\src\mvGravityForce.cpp">
 			<Option virtualFolder="mvBaseForces\" />
 		</Unit>
@@ -179,6 +190,15 @@
 		<Unit filename="experimental\src\mvObstacle_V2.cpp" />
 		<Unit filename="experimental\src\mvPathway_V2.cpp" />
 		<Unit filename="experimental\src\mvShape.cpp" />
+		<Unit filename="experimental\src\mvUniformAccelForce.cpp">
+			<Option virtualFolder="mvBaseForces\" />
+		</Unit>
+		<Unit filename="experimental\src\mvUniformForce.cpp">
+			<Option virtualFolder="mvBaseForces\" />
+		</Unit>
+		<Unit filename="experimental\src\mvUniformShiftForce.cpp">
+			<Option virtualFolder="mvBaseForces\" />
+		</Unit>
 		<Unit filename="experimental\src\mvWaypointCapsule.cpp" />
 		<Unit filename="experimental\src\mvWaypoint_V2.cpp" />
 		<Unit filename="experimental\src\mvWorld2.cpp" />

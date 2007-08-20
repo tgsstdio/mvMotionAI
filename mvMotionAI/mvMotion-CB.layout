@@ -19,7 +19,7 @@
 	<File name="experimental\include\mvBaseAction.h" open="0" top="0" tabpos="11">
 		<Cursor position="3406" topLine="46" />
 	</File>
-	<File name="experimental\include\mvBaseForce.h" open="1" top="0" tabpos="6">
+	<File name="experimental\include\mvBaseForce.h" open="0" top="0" tabpos="6">
 		<Cursor position="2431" topLine="33" />
 	</File>
 	<File name="experimental\include\mvBehaviourResult.h" open="0" top="0" tabpos="3">
@@ -34,7 +34,7 @@
 	<File name="experimental\include\mvBody_V2.h" open="0" top="0" tabpos="3">
 		<Cursor position="3933" topLine="107" />
 	</File>
-	<File name="experimental\include\mvCapsuleList.h" open="1" top="0" tabpos="8">
+	<File name="experimental\include\mvCapsuleList.h" open="0" top="0" tabpos="8">
 		<Cursor position="5492" topLine="51" />
 	</File>
 	<File name="experimental\include\mvCapsuleList.hpp" open="0" top="0" tabpos="25">
@@ -52,11 +52,11 @@
 	<File name="experimental\include\mvForceLoaderList.h" open="0" top="0" tabpos="20">
 		<Cursor position="1291" topLine="0" />
 	</File>
-	<File name="experimental\include\mvForceResult.h" open="1" top="0" tabpos="5">
-		<Cursor position="7427" topLine="143" />
+	<File name="experimental\include\mvForceResult.h" open="0" top="0" tabpos="5">
+		<Cursor position="3348" topLine="71" />
 	</File>
-	<File name="experimental\include\mvGravityForce.h" open="1" top="1" tabpos="12">
-		<Cursor position="460" topLine="0" />
+	<File name="experimental\include\mvGravityForce.h" open="0" top="0" tabpos="12">
+		<Cursor position="72" topLine="0" />
 	</File>
 	<File name="experimental\include\mvGroupBNode_V2.h" open="0" top="0" tabpos="25">
 		<Cursor position="1492" topLine="25" />
@@ -100,14 +100,20 @@
 	<File name="experimental\include\mvShape.h" open="0" top="0" tabpos="26">
 		<Cursor position="1368" topLine="0" />
 	</File>
+	<File name="experimental\include\mvUniformAccelForce.h" open="0" top="0" tabpos="0">
+		<Cursor position="313" topLine="0" />
+	</File>
+	<File name="experimental\include\mvUniformForce.h" open="0" top="0" tabpos="0">
+		<Cursor position="72" topLine="0" />
+	</File>
 	<File name="experimental\include\mvWaypointCapsule.h" open="0" top="0" tabpos="12">
-		<Cursor position="1474" topLine="27" />
+		<Cursor position="1637" topLine="0" />
 	</File>
 	<File name="experimental\include\mvWaypoint_V2.h" open="0" top="0" tabpos="31">
 		<Cursor position="1380" topLine="1" />
 	</File>
-	<File name="experimental\include\mvWorld2.h" open="1" top="0" tabpos="7">
-		<Cursor position="3280" topLine="59" />
+	<File name="experimental\include\mvWorld2.h" open="0" top="0" tabpos="7">
+		<Cursor position="3954" topLine="71" />
 	</File>
 	<File name="experimental\src\mvBEntry.cpp" open="0" top="0" tabpos="34">
 		<Cursor position="23" topLine="0" />
@@ -121,7 +127,7 @@
 	<File name="experimental\src\mvBaseAction.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1170" topLine="0" />
 	</File>
-	<File name="experimental\src\mvBaseForce.cpp" open="1" top="0" tabpos="3">
+	<File name="experimental\src\mvBaseForce.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="3291" topLine="176" />
 	</File>
 	<File name="experimental\src\mvBehaviourResult.cpp" open="0" top="0" tabpos="6">
@@ -133,17 +139,17 @@
 	<File name="experimental\src\mvBodyCapsule.cpp" open="0" top="0" tabpos="13">
 		<Cursor position="109" topLine="45" />
 	</File>
-	<File name="experimental\src\mvBody_V2.cpp" open="1" top="0" tabpos="11">
+	<File name="experimental\src\mvBody_V2.cpp" open="0" top="0" tabpos="11">
 		<Cursor position="1895" topLine="59" />
 	</File>
 	<File name="experimental\src\mvForceCapsule.cpp" open="0" top="0" tabpos="15">
 		<Cursor position="1603" topLine="41" />
 	</File>
-	<File name="experimental\src\mvForceResult.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="9327" topLine="471" />
+	<File name="experimental\src\mvForceResult.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="6096" topLine="304" />
 	</File>
 	<File name="experimental\src\mvGravityForce.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="421" topLine="0" />
+		<Cursor position="781" topLine="0" />
 	</File>
 	<File name="experimental\src\mvGroupBNode_V2.cpp" open="0" top="0" tabpos="26">
 		<Cursor position="5853" topLine="246" />
@@ -163,11 +169,11 @@
 	<File name="experimental\src\mvIndexSet.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="3449" topLine="168" />
 	</File>
-	<File name="experimental\src\mvMotionAI.cpp" open="1" top="0" tabpos="9">
+	<File name="experimental\src\mvMotionAI.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="805" topLine="27" />
 	</File>
-	<File name="experimental\src\mvMotionAI_V2-Central.cpp" open="1" top="0" tabpos="10">
-		<Cursor position="6685" topLine="237" />
+	<File name="experimental\src\mvMotionAI_V2-Central.cpp" open="0" top="0" tabpos="10">
+		<Cursor position="6780" topLine="289" />
 	</File>
 	<File name="experimental\src\mvNullLoader.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1205" topLine="0" />
@@ -181,20 +187,29 @@
 	<File name="experimental\src\mvShape.cpp" open="0" top="0" tabpos="18">
 		<Cursor position="1167" topLine="7" />
 	</File>
+	<File name="experimental\src\mvUniformAccelForce.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="413" topLine="3" />
+	</File>
+	<File name="experimental\src\mvUniformForce.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="579" topLine="0" />
+	</File>
+	<File name="experimental\src\mvUniformShiftForce.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="291" topLine="0" />
+	</File>
 	<File name="experimental\src\mvWaypointCapsule.cpp" open="0" top="0" tabpos="18">
 		<Cursor position="391" topLine="0" />
 	</File>
 	<File name="experimental\src\mvWaypoint_V2.cpp" open="0" top="0" tabpos="30">
 		<Cursor position="6081" topLine="234" />
 	</File>
-	<File name="experimental\src\mvWorld2.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="52567" topLine="2241" />
+	<File name="experimental\src\mvWorld2.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="49758" topLine="2125" />
 	</File>
-	<File name="experimental\src\mvWorld2_Functions.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="30859" topLine="935" />
+	<File name="experimental\src\mvWorld2_Functions.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="129" topLine="0" />
 	</File>
 	<File name="experimental\src\mvWorld2_Functions.h" open="0" top="0" tabpos="2">
-		<Cursor position="559" topLine="0" />
+		<Cursor position="435" topLine="45" />
 	</File>
 	<File name="include\mvEnums.h" open="0" top="0" tabpos="1">
 		<Cursor position="5078" topLine="182" />
@@ -209,7 +224,7 @@
 		<Cursor position="4990" topLine="113" />
 	</File>
 	<File name="src\mvEnums.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="13996" topLine="520" />
+		<Cursor position="12178" topLine="470" />
 	</File>
 	<File name="src\mvMotionAI-Utilities.cpp" open="0" top="0" tabpos="38">
 		<Cursor position="1972" topLine="94" />
