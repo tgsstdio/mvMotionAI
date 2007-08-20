@@ -519,6 +519,7 @@ void mvForceResult::resetAll()
    isDefaultMotionSteering = true;
    isDefaultEffectGlobal = true;
 
+
 }
 
 void mvForceResult::disableForce()

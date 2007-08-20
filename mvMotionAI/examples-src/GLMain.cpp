@@ -136,6 +136,8 @@ int main(int argc, char** argv)
    obstacleID = mvCreateObstacle(worldID, MV_AABOX, MV_SOLID_OBSTACLE,3, 8, -4);
    std::cout << "obstacleID : " << waypointID <<  std::endl;
 
+   int forceID = mvCreateForce(worldID,MV_GRAVITY);
+   std::cout << "forceID : " << forceID <<  std::endl;
 
    glutDisplayFunc(display);
    glutReshapeFunc(reshape);
@@ -361,7 +363,9 @@ void animate(void)
       * Step 7 : To animate mvMotionAI, add elapsed time in seconds to step
       * the worlds forward.
       */
-     mvAllWorldsStepForward(timeInSecs);
+      std::cout << "BEFORE" <<std::endl;
+      mvAllWorldsStepForward(timeInSecs);
+      std::cout << "AFTER" <<std::endl;
    }
    displayFrameRate(noOfFrames);
    glutPostRedisplay();

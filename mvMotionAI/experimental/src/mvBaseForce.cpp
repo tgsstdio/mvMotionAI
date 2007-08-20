@@ -162,13 +162,13 @@ mvBaseForceLoader::~mvBaseForceLoader()
 
 mvForceStatus::mvForceStatus()
 {
+   onlyLocalForce = false;
+   onlyGlobalForce = false;
    applyingNone();
 }
 
 void mvForceStatus::applyingAll()
 {
-   onlyLocalForce = false;
-   onlyGlobalForce = false;
    forcesOn = true;
    gravityOn = true;
    accelerationOn = true;
@@ -184,8 +184,6 @@ void mvForceStatus::applyingAll()
 
 void mvForceStatus::applyingNone()
 {
-   onlyLocalForce = true;
-   onlyGlobalForce = true;
    forcesOn = false;
    gravityOn = false;
    accelerationOn = false;

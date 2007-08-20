@@ -29,6 +29,7 @@
 #include <new>
 #include MV_BEHAVIOUR_RESULT_HEADER_FILE_H_
 #include "mvWorld2_Functions.h"
+#include <iostream>
 
 /** @brief (one liner)
   *
@@ -2184,32 +2185,72 @@ void mvWorld_V2::performIntegrationOfBody(mvBodyCapsulePtr bodyPtr,\
    // ASSUME resultModule is "NORMALISED" - global steering motions
    // TODO : normalize bool
 
-   if (!bodyPtr->performIntegration)
-   {
-      return;
-   }
    // set
    mvFloat bodyMass = bodyPtr->getConstClassPtr()->getMass();
 
-   bodyPtr->futureForce = behavResModule->getForce();
-   tempVector = behavResModule->getAcceleration();
-   tempVector *= bodyMass;
-   bodyPtr->futureForce += tempVector;
+   if (bodyPtr->performIntegration)
+   {
+      if (behavResModule->isForceSet())
+      {
+         bodyPtr->futureForce += behavResModule->getForce();
+      }
 
-   bodyPtr->futureVelocity = behavResModule->getVelocity();
-   bodyPtr->futureTorque = behavResModule->getTorque();
-   bodyPtr->futureOmega = behavResModule->getOmega();
+      if (behavResModule->isAccelerationSet())
+      {
+         tempVector = behavResModule->getAcceleration();
+         tempVector *= bodyMass;
+         bodyPtr->futureForce += tempVector;
+      }
+
+      if (behavResModule->isVelocitySet())
+      {
+         bodyPtr->futureVelocity += behavResModule->getVelocity();
+      }
+
+      if (behavResModule->isTorqueSet())
+      {
+         bodyPtr->futureTorque += behavResModule->getTorque();
+      }
+
+      if (behavResModule->isOmegaSet())
+      {
+         bodyPtr->futureOmega += behavResModule->getOmega();
+      }
+   }
+
 
    // TODO : add force variables to capsule
-   bodyPtr->additionalForce = forceResModule->getForce();
-   bodyPtr->additionalForce += forceResModule->getGravity();
-   tempVector = forceResModule->getAcceleration();
-   tempVector *= bodyMass;
-   bodyPtr->additionalForce += tempVector;
+   if (forceResModule->isForceSet())
+   {
+      bodyPtr->additionalForce += forceResModule->getForce();
+   }
 
-   bodyPtr->additionalVelocity = forceResModule->getShift();
-   bodyPtr->additionalTorque = forceResModule->getTorque();
-   bodyPtr->additionalOmega = forceResModule->getOmega();
+   if (forceResModule->isGravitySet())
+   {
+      bodyPtr->additionalForce += forceResModule->getGravity();
+   }
+
+   if (forceResModule->isAccelerationSet())
+   {
+      tempVector = forceResModule->getAcceleration();
+      tempVector *= bodyMass;
+      bodyPtr->additionalForce += tempVector;
+   }
+
+   if (forceResModule->isShiftSet())
+   {
+      bodyPtr->additionalVelocity += forceResModule->getShift();
+   }
+
+   if (forceResModule->isTorqueSet())
+   {
+      bodyPtr->additionalTorque = forceResModule->getTorque();
+   }
+
+   if (forceResModule->isOmegaSet())
+   {
+      bodyPtr->additionalOmega = forceResModule->getOmega();
+   }
 
    // translate
    // TODO : direction to omega

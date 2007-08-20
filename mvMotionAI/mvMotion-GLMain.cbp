@@ -26,8 +26,6 @@
 				</Compiler>
 				<Linker>
 					<Add library="mvMotionAI-mingw" />
-					<Add library="lua5" />
-					<Add library="lualib5" />
 					<Add library="lib-other\freeglut.lib" />
 					<Add library="glu32" />
 					<Add library="opengl32" />
@@ -46,8 +44,6 @@
 				</Compiler>
 				<Linker>
 					<Add library="mvMotionAI-ubuntu" />
-					<Add library="lua50" />
-					<Add library="lualib50" />
 					<Add library="glut" />
 					<Add library="GLU" />
 					<Add library="GL" />
@@ -68,6 +64,7 @@
 		<Unit filename="examples-src\Camera.cpp" />
 		<Unit filename="examples-src\Camera.h" />
 		<Unit filename="examples-src\GLMain.cpp" />
+		<Unit filename="experimental\include\mvUniformForce.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
