@@ -1,4 +1,5 @@
 #include "mvWorld2_Functions.h"
+#include <iostream>
 
 template <class mvFinalResultObject, class mvCurrentResultObject>
 void mvWorld_V2_InitialiseCurrentResultObject(mvFinalResultObject* finalResult,
@@ -102,6 +103,7 @@ void mvWorld_V2_CalculateForceOnSingleBody(mvForceCapsulePtr fCapsulePtr,\
    mvConstWorldPtr currentWorld = helper->currentWorld;
    mvConstBodyPtr currentBody = finalResult->getCurrentBodyPtr();
    // check if enabled.
+
    if (currentForce->isEnabled() && currentBody->applyAllForces)
    {
       // store
@@ -138,6 +140,7 @@ void mvWorld_V2_CalculateForceOnSingleBody(mvForceCapsulePtr fCapsulePtr,\
 
          if (!(currentWorld->applyGravity && currentBody->applyGravity))
          {
+            std::cout << " DISABLE GRAVITY\n";
             currentResult.disableGravity();
          }
 
@@ -165,7 +168,8 @@ void mvWorld_V2_CalculateForceOnSingleBody(mvForceCapsulePtr fCapsulePtr,\
          // sum forces
          mvWorld_V2_SumForceResults(finalResult,currentResult);
       }
-   }
+    }
+
 }
 
 void mvWorld_V2_ResetWaypointCapsule(mvWaypointCapsulePtr capsulePtr,\
@@ -817,11 +821,6 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
    mvWorld_V2_IntegrateLoopHelper* helperModule =
       (mvWorld_V2_IntegrateLoopHelper*) extraPtr;
 
-   if (!capsulePtr->performIntegration)
-   {
-      return;
-   }
-
    /* Purpose of this is to
     * // MOTION
     * 13. convert all motion to velocity
@@ -861,97 +860,116 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
    mvFloat vel[2][3], pos[2][3], c1, c2;
    mvIndex i = 0;
 
+   mvVec3 accelVec, deltaVelocity, bodyVelocity;
    mvFloat hTimeStep = helperModule->timeInSecs;
+   mvFloat bodyMass = currentBody->getMass();
+   mvVec3 zeroVector;
    mvFloat inverse_h = 1;
    inverse_h /= hTimeStep;
 
-   // 13. convert all motion to velocity
-   // currently all values are components
+   zeroVector.toZeroVec();
 
-   // force => accel
-   mvVec3 accelVec = capsulePtr->futureForce;
-   accelVec /= currentBody->getMass();
-
-   // TODO : have h, h^2, 1/h, 1/h^2 timesteps
-   // deltaVelocity += accel
-   accelVec *= hTimeStep;
-   mvVec3 deltaVelocity = capsulePtr->futureVelocity;
-   deltaVelocity += accelVec;
-
-   mvFloat bodySpeed = currentBody->getSpeed();
-   mvVec3 bodyVelocity = currentBody->getVelocity();
-
-   // end velocity
-   bodyVelocity += deltaVelocity;
-    /* 10. limit the motion by
-    *    - body's max speed
-    *    - body's max acceleration
-    *    - body's max deceleration
-    */
-
-   mvFloat incrSpeedDelta = currentBody->getAcceleration();
-   incrSpeedDelta *= hTimeStep;
-
-   mvFloat decrSpeedDelta = currentBody->getDeceleration();
-   decrSpeedDelta *= hTimeStep;
-
-   mvFloat maxSpeed = currentBody->getMaxSpeed();
-
-   mvFloat minSpeed = 0;
-
-   mvFloat compareSpeed = bodySpeed + incrSpeedDelta;
-   if (compareSpeed < maxSpeed)
+   if (capsulePtr->performIntegration)
    {
-      maxSpeed = compareSpeed;
-   }
+      // 13. convert all motion to velocity
+      // currently all values are components
 
-   compareSpeed = bodySpeed + decrSpeedDelta;
-   if (compareSpeed > minSpeed)
+      // force => accel
+      accelVec = capsulePtr->futureForce;
+      accelVec /= bodyMass;
+
+      // TODO : have h, h^2, 1/h, 1/h^2 timesteps
+      // deltaVelocity += accel
+      accelVec *= hTimeStep;
+      deltaVelocity = capsulePtr->futureVelocity;
+      deltaVelocity += accelVec;
+
+      mvFloat bodySpeed = currentBody->getSpeed();
+      bodyVelocity = currentBody->getVelocity();
+
+      // end velocity
+      bodyVelocity += deltaVelocity;
+       /* 10. limit the motion by
+       *    - body's max speed
+       *    - body's max acceleration
+       *    - body's max deceleration
+       */
+
+      mvFloat incrSpeedDelta = currentBody->getAcceleration();
+      incrSpeedDelta *= hTimeStep;
+
+      mvFloat decrSpeedDelta = currentBody->getDeceleration();
+      decrSpeedDelta *= hTimeStep;
+
+      mvFloat maxSpeed = currentBody->getMaxSpeed();
+
+      mvFloat minSpeed = 0;
+
+      mvFloat compareSpeed = bodySpeed + incrSpeedDelta;
+      if (compareSpeed < maxSpeed)
+      {
+         maxSpeed = compareSpeed;
+      }
+
+      compareSpeed = bodySpeed + decrSpeedDelta;
+      if (compareSpeed > minSpeed)
+      {
+         minSpeed = compareSpeed;
+      }
+
+      mvFloat futureSpeed = bodyVelocity.length();
+      mvVec3 futureUnitVelocity = bodyVelocity.normalize();
+
+      //compareSpeed = bodySpeed + decrSpeedDelta;
+      if (futureSpeed > maxSpeed)
+      {
+         futureSpeed = maxSpeed;
+      }
+      else if (futureSpeed < minSpeed)
+      {
+         futureSpeed = minSpeed;
+      }
+
+      //* 6. calc the body's 'own' propulsion velocity
+      bodyVelocity = futureUnitVelocity;
+      bodyVelocity *= futureSpeed;
+      // saving velocity
+      deltaVelocity = currentBody->getVelocity();
+      // set velocity
+      currentBody->setVelocity(bodyVelocity);
+
+      // 9. create the body's equivalent force
+      // delta = old_vel - new vel
+      // a = delta_vel * 1/h
+      accelVec = bodyVelocity;
+      accelVec -= deltaVelocity;
+      accelVec *= inverse_h;
+      accelVec *= bodyMass;
+      currentBody->setBodysForce(accelVec);
+   }
+   else
    {
-      minSpeed = compareSpeed;
+      // reset force & torque values of body
+      //currentBody->setTorque(zeroVector);
+      currentBody->setBodysForce(zeroVector);
    }
-
-   mvFloat futureSpeed = bodyVelocity.length();
-   mvVec3 futureUnitVelocity = bodyVelocity.normalize();
-
-   //compareSpeed = bodySpeed + decrSpeedDelta;
-   if (futureSpeed > maxSpeed)
-   {
-      futureSpeed = maxSpeed;
-   }
-   else if (futureSpeed < minSpeed)
-   {
-      futureSpeed = minSpeed;
-   }
-
-   //* 6. calc the body's 'own' propulsion velocity
-   bodyVelocity = futureUnitVelocity;
-   bodyVelocity *= futureSpeed;
-   // saving velocity
-   deltaVelocity = currentBody->getVelocity();
-   // set velocity
-   currentBody->setVelocity(bodyVelocity);
-
-   // 9. create the body's equivalent force
-   // delta = old_vel - new vel
-   // a = delta_vel * 1/h
-   accelVec = bodyVelocity;
-   accelVec -= deltaVelocity;
-   accelVec *= inverse_h;
-   accelVec *= currentBody->getMass();
-   currentBody->setBodysForce(accelVec);
 
     /* 4. create a final velocity and final force which are
     *     - useful when used separately.
     *     - exactly the same thing in different forms
     */
 
+   mvVec3 pastVelocity = currentBody->getFinalVelocity();
+   std::cout << "Past Vecel: " << pastVelocity.getX() << " " <<
+      pastVelocity.getY() << " " << pastVelocity.getZ() << std::endl;
    // repeat steps force -> accel -> delta_vel => accel => force
    accelVec = capsulePtr->additionalForce;
+
    // add bodys' force
    accelVec += currentBody->getBodysForce();
-   accelVec /= currentBody->getMass();
+   accelVec /= bodyMass;
    accelVec *= hTimeStep;
+
    // accel -> delta_vel
    deltaVelocity = accelVec;
    deltaVelocity *= hTimeStep;
@@ -960,22 +978,25 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
    bodyVelocity += currentBody->getVelocity();
    bodyVelocity += deltaVelocity;
    // store final velocity
-   deltaVelocity = currentBody->getFinalVelocity();
+   bodyVelocity += pastVelocity;
    currentBody->setFinalVelocity(bodyVelocity);
 
    // calculating final force
    accelVec = bodyVelocity;
-   accelVec -= deltaVelocity;
+   accelVec -= pastVelocity;
    accelVec *= inverse_h;
-   accelVec *= currentBody->getMass();
+   accelVec *= bodyMass;
    currentBody->setFinalForce(accelVec);
 
    bodyVelocity = currentBody->getFinalVelocity();
 
+   std::cout << "Body Vecel: " << bodyVelocity.getX() << " " <<
+      bodyVelocity.getY() << " " << bodyVelocity.getZ() << std::endl;
+
    //* 1. calculate the final position of the body
-   vel[0][0] = deltaVelocity.getX();
-   vel[0][1] = deltaVelocity.getY();
-   vel[0][2] = deltaVelocity.getZ();
+   vel[0][0] = pastVelocity.getX();
+   vel[0][1] = pastVelocity.getY();
+   vel[0][2] = pastVelocity.getZ();
    vel[1][0] = bodyVelocity.getX();
    vel[1][1] = bodyVelocity.getY();
    vel[1][2] = bodyVelocity.getZ();
