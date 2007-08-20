@@ -2227,7 +2227,9 @@ void mvWorld_V2::performIntegrationOfBody(mvBodyCapsulePtr bodyPtr,\
 
    if (forceResModule->isGravitySet())
    {
-      bodyPtr->additionalForce += forceResModule->getGravity();
+      tempVector = forceResModule->getGravity();
+      tempVector *= bodyMass;
+      bodyPtr->additionalForce += tempVector;
    }
 
    if (forceResModule->isAccelerationSet())

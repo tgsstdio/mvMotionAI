@@ -1,6 +1,9 @@
 #include "mvWorld2_Functions.h"
 #include <iostream>
 
+#define MV_WORLD_V2_FUNCTIONS_DEBUG
+#undef MV_WORLD_V2_FUNCTIONS_DEBUG
+
 template <class mvFinalResultObject, class mvCurrentResultObject>
 void mvWorld_V2_InitialiseCurrentResultObject(mvFinalResultObject* finalResult,
    mvCurrentResultObject* currentResult);
@@ -140,7 +143,6 @@ void mvWorld_V2_CalculateForceOnSingleBody(mvForceCapsulePtr fCapsulePtr,\
 
          if (!(currentWorld->applyGravity && currentBody->applyGravity))
          {
-            std::cout << " DISABLE GRAVITY\n";
             currentResult.disableGravity();
          }
 
@@ -960,23 +962,40 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
     */
 
    mvVec3 pastVelocity = currentBody->getFinalVelocity();
-   std::cout << "Past Vecel: " << pastVelocity.getX() << " " <<
-      pastVelocity.getY() << " " << pastVelocity.getZ() << std::endl;
+   /*
+
+   */
    // repeat steps force -> accel -> delta_vel => accel => force
    accelVec = capsulePtr->additionalForce;
 
    // add bodys' force
+   // accel = f / m
    accelVec += currentBody->getBodysForce();
    accelVec /= bodyMass;
-   accelVec *= hTimeStep;
 
+   // delta_vel  = a * h
+   accelVec *= hTimeStep;
    // accel -> delta_vel
    deltaVelocity = accelVec;
-   deltaVelocity *= hTimeStep;
+   //deltaVelocity *= hTimeStep;
    // sum velocities to final velocity
-   bodyVelocity = capsulePtr->additionalVelocity;
-   bodyVelocity += currentBody->getVelocity();
+   bodyVelocity = currentBody->getVelocity();
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
+   std::cout << "Body Vecel 0: " << bodyVelocity.getX() << " " <<
+      bodyVelocity.getY() << " " << bodyVelocity.getZ() << std::endl;
+#endif
+
+   bodyVelocity += capsulePtr->additionalVelocity;
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
+   std::cout << "Body Vecel 1: " << bodyVelocity.getX() << " " <<
+      bodyVelocity.getY() << " " << bodyVelocity.getZ() << std::endl;
+#endif
+
    bodyVelocity += deltaVelocity;
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
+   std::cout << "Body Vecel 2: " << bodyVelocity.getX() << " " <<
+      bodyVelocity.getY() << " " << bodyVelocity.getZ() << std::endl;
+#endif
    // store final velocity
    bodyVelocity += pastVelocity;
    currentBody->setFinalVelocity(bodyVelocity);
@@ -987,11 +1006,18 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
    accelVec *= inverse_h;
    accelVec *= bodyMass;
    currentBody->setFinalForce(accelVec);
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
+   std::cout << "Force Vec : " << accelVec.getX() << " " <<
+      accelVec.getY() << " " << accelVec.getZ() << std::endl;
+#endif
 
    bodyVelocity = currentBody->getFinalVelocity();
-
-   std::cout << "Body Vecel: " << bodyVelocity.getX() << " " <<
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
+   std::cout << "Past Vecel : " << pastVelocity.getX() << " " <<
+      pastVelocity.getY() << " " << pastVelocity.getZ() << std::endl;
+   std::cout << "Body Vecel 3: " << bodyVelocity.getX() << " " <<
       bodyVelocity.getY() << " " << bodyVelocity.getZ() << std::endl;
+#endif
 
    //* 1. calculate the final position of the body
    vel[0][0] = pastVelocity.getX();
@@ -1019,11 +1045,18 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
       */
       c1 = hTimeStep * vel[0][i];
       c2 = hTimeStep * vel[1][i];
-      pos[1][i] = pos[0][i] + 0.5 * (c1 + c2);
+      pos[1][i] =  0.5 * (c1 + c2);
+      pos[1][i] += pos[0][i];
    }
 
    //currentBody->setVelocity(vel[1][0],vel[1][1],vel[1][2]);
    currentBody->setPosition(pos[1][0],pos[1][1],pos[1][2]);
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
+   std::cout << "Current Time : " << helperModule->currentWorld->getElapsedWorldTime()
+      << " Time Step : " << hTimeStep << std::endl;
+   std::cout << "New Position: " << pos[1][0] << " " <<
+      pos[1][1] << " " << pos[1][2] << std::endl;
+#endif
 }
 
 void mvWorld_V2_FinaliseGroups(mvGroupCapsulePtr capsulePtr, void* extraPtr)

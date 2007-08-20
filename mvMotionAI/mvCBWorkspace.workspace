@@ -3,7 +3,9 @@
 	<Workspace title="mvMotionAI Code Blocks Workspace">
 		<Project filename="mvMotionAI-LuaFunctions.cbp" />
 		<Project filename="mvMotionAI-TypeSizes.cbp" />
-		<Project filename="mvMotion-GLMain.cbp" active="1" />
+		<Project filename="mvMotion-GLMain.cbp" active="1">
+			<Depends filename="mvMotion-CB.cbp" />
+		</Project>
 		<Project filename="mvMotion-CB.cbp" />
 		<Project filename="CPPUnit Static Library.cbp" />
 		<Project filename="mvBaseBehaviours.cbp">
