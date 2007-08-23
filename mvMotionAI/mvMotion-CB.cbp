@@ -5,7 +5,7 @@
 		<Option title="mvMotionAI static library" />
 		<Option pch_mode="0" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="mvBaseActions\;mvBaseForces\;" />
+		<Option virtualFolders="mvBaseActions\;mvBaseForces\;mvEntryList Files\;" />
 		<Build>
 			<Target title="default">
 				<Option output="lib\libmvMotionAI.a" prefix_auto="1" extension_auto="1" />
@@ -14,11 +14,6 @@
 				<Option compiler="gcc" />
 				<Option projectResourceIncludeDirsRelation="2" />
 				<Compiler>
-					<Add option="-Os" />
-					<Add option="-O3" />
-					<Add option="-O2" />
-					<Add option="-O1" />
-					<Add option="-O" />
 					<Add option="-Wall" />
 					<Add directory="include" />
 					<Add directory="experimental\include" />
@@ -103,18 +98,30 @@
 			<Add directory="lib-other\mingw" />
 		</Linker>
 		<Unit filename="experimental\include\mvActionLoaderList.h" />
-		<Unit filename="experimental\include\mvBEntry.h" />
-		<Unit filename="experimental\include\mvBEntryList.h" />
-		<Unit filename="experimental\include\mvBEntryListNode.h" />
-		<Unit filename="experimental\include\mvBEntryTimer.h" />
-		<Unit filename="experimental\include\mvBEntryUtility.h" />
+		<Unit filename="experimental\include\mvBEntry.h">
+			<Option virtualFolder="mvEntryList Files\" />
+		</Unit>
+		<Unit filename="experimental\include\mvBEntryList.h">
+			<Option virtualFolder="mvEntryList Files\" />
+		</Unit>
+		<Unit filename="experimental\include\mvBEntryListNode.h">
+			<Option virtualFolder="mvEntryList Files\" />
+		</Unit>
+		<Unit filename="experimental\include\mvBEntryTimer.h">
+			<Option virtualFolder="mvEntryList Files\" />
+		</Unit>
+		<Unit filename="experimental\include\mvBEntryUtility.h">
+			<Option virtualFolder="mvEntryList Files\" />
+		</Unit>
 		<Unit filename="experimental\include\mvBaseAction.h">
 			<Option virtualFolder="mvBaseActions\" />
 		</Unit>
 		<Unit filename="experimental\include\mvBaseForce.h">
 			<Option virtualFolder="mvBaseForces\" />
 		</Unit>
-		<Unit filename="experimental\include\mvBehaviourResult.h" />
+		<Unit filename="experimental\include\mvBehaviourResult.h">
+			<Option virtualFolder="mvBaseActions\" />
+		</Unit>
 		<Unit filename="experimental\include\mvBehaviour_V2.h" />
 		<Unit filename="experimental\include\mvBodyCapsule.h" />
 		<Unit filename="experimental\include\mvBody_V2.h" />
@@ -131,18 +138,25 @@
 			<Option virtualFolder="mvBaseForces\" />
 		</Unit>
 		<Unit filename="experimental\include\mvGroupBNode_V2.h" />
-		<Unit filename="experimental\include\mvGroupBehaviourResult.h" />
+		<Unit filename="experimental\include\mvGroupBehaviourResult.h">
+			<Option virtualFolder="mvBaseActions\" />
+		</Unit>
 		<Unit filename="experimental\include\mvGroupBehaviour_V2.h" />
 		<Unit filename="experimental\include\mvGroupCapsule.h" />
 		<Unit filename="experimental\include\mvGroup_V2.h" />
 		<Unit filename="experimental\include\mvIndexSet.h" />
 		<Unit filename="experimental\include\mvMotionAI.h" />
 		<Unit filename="experimental\include\mvMotionAI_V2-Central.h" />
-		<Unit filename="experimental\include\mvNullLoader.h" />
+		<Unit filename="experimental\include\mvNullLoader.h">
+			<Option virtualFolder="mvBaseActions\" />
+		</Unit>
 		<Unit filename="experimental\include\mvObstacle_V2.h" />
 		<Unit filename="experimental\include\mvPathway_V2.h" />
 		<Unit filename="experimental\include\mvPointerList.h" />
 		<Unit filename="experimental\include\mvPointerList.hpp" />
+		<Unit filename="experimental\include\mvSeek.h">
+			<Option virtualFolder="mvBaseActions\" />
+		</Unit>
 		<Unit filename="experimental\include\mvShape.h" />
 		<Unit filename="experimental\include\mvUniformAccelForce.h">
 			<Option virtualFolder="mvBaseForces\" />
@@ -150,24 +164,38 @@
 		<Unit filename="experimental\include\mvUniformForce.h">
 			<Option virtualFolder="mvBaseForces\" />
 		</Unit>
-		<Unit filename="experimental\include\mvUniformShiftForce.h" />
+		<Unit filename="experimental\include\mvUniformShiftForce.h">
+			<Option virtualFolder="mvBaseForces\" />
+		</Unit>
 		<Unit filename="experimental\include\mvWaypointCapsule.h">
 			<Option virtualFolder="mvBaseForces\" />
 		</Unit>
 		<Unit filename="experimental\include\mvWaypoint_V2.h" />
 		<Unit filename="experimental\include\mvWorld2.h" />
-		<Unit filename="experimental\src\mvBEntry.cpp" />
-		<Unit filename="experimental\src\mvBEntryList.cpp" />
-		<Unit filename="experimental\src\mvBEntryListNode.cpp" />
-		<Unit filename="experimental\src\mvBEntryTimer.cpp" />
-		<Unit filename="experimental\src\mvBEntryUtility.cpp" />
+		<Unit filename="experimental\src\mvBEntry.cpp">
+			<Option virtualFolder="mvEntryList Files\" />
+		</Unit>
+		<Unit filename="experimental\src\mvBEntryList.cpp">
+			<Option virtualFolder="mvEntryList Files\" />
+		</Unit>
+		<Unit filename="experimental\src\mvBEntryListNode.cpp">
+			<Option virtualFolder="mvEntryList Files\" />
+		</Unit>
+		<Unit filename="experimental\src\mvBEntryTimer.cpp">
+			<Option virtualFolder="mvEntryList Files\" />
+		</Unit>
+		<Unit filename="experimental\src\mvBEntryUtility.cpp">
+			<Option virtualFolder="mvEntryList Files\" />
+		</Unit>
 		<Unit filename="experimental\src\mvBaseAction.cpp">
 			<Option virtualFolder="mvBaseActions\" />
 		</Unit>
 		<Unit filename="experimental\src\mvBaseForce.cpp">
 			<Option virtualFolder="mvBaseForces\" />
 		</Unit>
-		<Unit filename="experimental\src\mvBehaviourResult.cpp" />
+		<Unit filename="experimental\src\mvBehaviourResult.cpp">
+			<Option virtualFolder="mvBaseActions\" />
+		</Unit>
 		<Unit filename="experimental\src\mvBehaviour_V2.cpp" />
 		<Unit filename="experimental\src\mvBodyCapsule.cpp" />
 		<Unit filename="experimental\src\mvBody_V2.cpp" />
@@ -179,16 +207,23 @@
 			<Option virtualFolder="mvBaseForces\" />
 		</Unit>
 		<Unit filename="experimental\src\mvGroupBNode_V2.cpp" />
-		<Unit filename="experimental\src\mvGroupBehaviourResult.cpp" />
+		<Unit filename="experimental\src\mvGroupBehaviourResult.cpp">
+			<Option virtualFolder="mvBaseActions\" />
+		</Unit>
 		<Unit filename="experimental\src\mvGroupBehaviour_V2.cpp" />
 		<Unit filename="experimental\src\mvGroupCapsule.cpp" />
 		<Unit filename="experimental\src\mvGroup_V2.cpp" />
 		<Unit filename="experimental\src\mvIndexSet.cpp" />
 		<Unit filename="experimental\src\mvMotionAI.cpp" />
 		<Unit filename="experimental\src\mvMotionAI_V2-Central.cpp" />
-		<Unit filename="experimental\src\mvNullLoader.cpp" />
+		<Unit filename="experimental\src\mvNullLoader.cpp">
+			<Option virtualFolder="mvBaseActions\" />
+		</Unit>
 		<Unit filename="experimental\src\mvObstacle_V2.cpp" />
 		<Unit filename="experimental\src\mvPathway_V2.cpp" />
+		<Unit filename="experimental\src\mvSeek.cpp">
+			<Option virtualFolder="mvBaseActions\" />
+		</Unit>
 		<Unit filename="experimental\src\mvShape.cpp" />
 		<Unit filename="experimental\src\mvUniformAccelForce.cpp">
 			<Option virtualFolder="mvBaseForces\" />

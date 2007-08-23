@@ -6,6 +6,7 @@
  * default behaviours/actions
  */
 #include "mvNullLoader.h"
+#include "mvSeek.h"
 
 /**
  * default forces
@@ -243,6 +244,22 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(mvActionLoaderListPtr
       return MV_INVALID_MEMORY_ALLOCATION;
    }
    error = loader->addFactoryFunction(MV_EXISTING_GROUP_BEHAVIOUR,\
+      tempLoader);
+   if (error != MV_NO_ERROR)
+   {
+      delete tempLoader;
+      return error;
+   }
+
+   // enum 4 seek
+   tempLoader = MV_NULL;
+   tempLoader = new (std::nothrow) mvCreateSeeks();
+   // check for memory errors
+   if (tempLoader == MV_NULL)
+   {
+      return MV_INVALID_MEMORY_ALLOCATION;
+   }
+   error = loader->addFactoryFunction(MV_SEEK,\
       tempLoader);
    if (error != MV_NO_ERROR)
    {

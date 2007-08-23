@@ -256,8 +256,8 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParameterv_str(mvIndex worldIndex,\
    ;
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvAddBehaviourToList(mvIndex worldIndex,\
-   mvIndex bodyIndex, mvOptionEnum bType, mvIndex behaviourIndex,\
-   mvIndex groupIndex);
+   mvIndex bodyIndex, mvOptionEnum bType, mvIndex behaviourIndex = MV_NULL,\
+   mvIndex groupIndex = MV_NULL);
 MV_GLOBAL_FUNC_PREFIX mvIndex mvAddBehaviourToList_str(mvIndex worldIndex,\
    mvIndex listIndex, const char* bType, mvIndex behaviourIndex,\
    mvIndex groupIndex);
@@ -832,88 +832,101 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveGroupFromGroupBehaviour(\
 
 //TODO : behaviour state functions using current body
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameteri(\
-   mvIndex listIndex, mvIndex nodeIndex, mvParamEnum paramFlag, mvIndex index);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameter(\
-   mvIndex listIndex, mvIndex nodeIndex, mvParamEnum paramFlag,\
-   mvOptionEnum option);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameterf(\
-   mvIndex listIndex, mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat num);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameterv(\
-   mvIndex listIndex, mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* array);
-
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameteri_str(\
-   mvIndex listIndex, mvIndex nodeIndex, const char* param, mvIndex index);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameter_str(\
-   mvIndex listIndex, mvIndex nodeIndex, const char* param, const char* option);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameterf_str(\
-   mvIndex listIndex, mvIndex nodeIndex, const char* param, mvFloat num);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameterv_str(\
-   mvIndex listIndex, mvIndex nodeIndex, const char* param, mvFloat* array);
-
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameteri(\
-   mvIndex listIndex, mvIndex nodeIndex, mvParamEnum paramFlag,\
-   mvIndex* outIndex);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameter(\
-   mvIndex listIndex, mvIndex nodeIndex, mvParamEnum paramFlag,\
-   mvOptionEnum* option);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameterf(\
-   mvIndex listIndex, mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* num);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameterv(\
-   mvIndex listIndex, mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* array,\
-   mvCount* noOfParameters);
-
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameteri_str(\
-   mvIndex listIndex, mvIndex nodeIndex, const char* param, mvIndex* outIndex);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameter_str(\
-   mvIndex listIndex,mvIndex nodeIndex, const char* param, const char** option);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameterf_str(\
-   mvIndex listIndex, mvIndex nodeIndex, const char* param, mvFloat* num);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameterv_str(\
-   mvIndex listIndex, mvIndex nodeIndex, const char* param, mvFloat* array,\
-   mvCount* noOfParameters);
-
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameteri(mvIndex listIndex,\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex,\
    mvParamEnum paramFlag, mvIndex index);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameter(mvIndex listIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameter(
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex,\
    mvParamEnum paramFlag, mvOptionEnum option);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameterf(mvIndex listIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameterf(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex,\
    mvParamEnum paramFlag, mvFloat num);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameterv(mvIndex listIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameterv(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex,\
    mvParamEnum paramFlag, mvFloat* array);
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameteri_str(\
-   mvIndex listIndex, const char* param, mvIndex index);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameter_str(\
-   mvIndex listIndex, const char* param, const char* option);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameterf_str(\
-   mvIndex listIndex, const char* param, mvFloat num);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameterv_str(\
-   mvIndex listIndex, const char* param, mvFloat* array);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameteri_str(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex, const char* param,\
+   mvIndex index);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameter_str(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex, const char* param,\
+   const char* option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameterf_str(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex, const char* param,\
+   mvFloat num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameterv_str(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex, const char* param,\
+   mvFloat* array);
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameteri(mvIndex listIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameteri(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex,\
    mvParamEnum paramFlag, mvIndex* outIndex);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameter(mvIndex listIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameter(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex,\
    mvParamEnum paramFlag, mvOptionEnum* option);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameterf(mvIndex listIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameterf(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex,\
    mvParamEnum paramFlag, mvFloat* num);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameterv(mvIndex listIndex,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameterv(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex,\
    mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters);
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameteri_str(\
-   mvIndex listIndex, const char* param, mvIndex* outIndex);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameter_str(\
-   mvIndex listIndex, const char* param, const char** option);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameterf_str(\
-   mvIndex listIndex, const char* param, mvFloat* num);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameterv_str(\
-   mvIndex listIndex, const char* param, mvFloat* array,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameteri_str(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex, const char* param,\
+   mvIndex* outIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameter_str(\
+   mvIndex worldIndex, mvIndex listIndex,mvIndex nodeIndex, const char* param,
+   const char** option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameterf_str(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex, const char* param,\
+   mvFloat* num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameterv_str(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex, const char* param,\
+   mvFloat* array, mvCount* noOfParameters);
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameteri(mvIndex worldIndex,\
+   mvIndex listIndex, mvParamEnum paramFlag, mvIndex index);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameter(mvIndex worldIndex,\
+   mvIndex listIndex, mvParamEnum paramFlag, mvOptionEnum option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameterf(mvIndex worldIndex,\
+   mvIndex listIndex, mvParamEnum paramFlag, mvFloat num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameterv(mvIndex worldIndex,\
+   mvIndex listIndex, mvParamEnum paramFlag, mvFloat* array);
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameteri_str(\
+   mvIndex worldIndex, mvIndex listIndex, const char* param, mvIndex index);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameter_str(\
+   mvIndex worldIndex, mvIndex listIndex, const char* param, const char* option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameterf_str(\
+   mvIndex worldIndex, mvIndex listIndex, const char* param, mvFloat num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameterv_str(\
+   mvIndex worldIndex, mvIndex listIndex, const char* param, mvFloat* array);
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameteri(mvIndex worldIndex,\
+   mvIndex listIndex, mvParamEnum paramFlag, mvIndex* outIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameter(mvIndex worldIndex,\
+   mvIndex listIndex, mvParamEnum paramFlag, mvOptionEnum* option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameterf(mvIndex worldIndex,\
+   mvIndex listIndex, mvParamEnum paramFlag, mvFloat* num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameterv(mvIndex worldIndex,\
+   mvIndex listIndex, mvParamEnum paramFlag, mvFloat* array,\
    mvCount* noOfParameters);
 
-MV_GLOBAL_FUNC_PREFIX void mvApplyToAllEntryLists(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameteri_str(\
+   mvIndex worldIndex, mvIndex listIndex, const char* param, mvIndex* outIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameter_str(\
+   mvIndex worldIndex, mvIndex listIndex, const char* param,\
+   const char** option);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameterf_str(\
+   mvIndex worldIndex, mvIndex listIndex, const char* param, mvFloat* num);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameterv_str(\
+   mvIndex worldIndex, mvIndex listIndex, const char* param, mvFloat* array,\
+   mvCount* noOfParameters);
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllEntryLists(mvIndex worldIndex,\
    void (someFunction)(mvEntryListPtr, void*), void* extraPtr);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetUserData(mvParamEnum objectType,\
-   mvIndex objectIndex, void* userData);
-MV_GLOBAL_FUNC_PREFIX void* mvGetUserData(mvParamEnum objectType,\
-   mvIndex objectIndex);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetUserData(mvIndex worldIndex,\
+   mvParamEnum objectType, mvIndex objectIndex, void* userData);
+MV_GLOBAL_FUNC_PREFIX void* mvGetUserData(mvIndex worldIndex,\
+   mvParamEnum objectType, mvIndex objectIndex);
 #endif
 

@@ -320,14 +320,22 @@ void mvWorld_V2_CalculateForEachGroupBehaviour(\
 
    mvGroupBehaviourPtr currentGroupBehav = currentWorld->getGroupBehaviourPtr(\
       groupBehaviourIndex);
-   if (currentGroupBehav != NULL && currentGroupBehav->getDefaultActionPtr() != MV_NULL)
+
+   if (currentGroupBehav != MV_NULL)
    {
-      container.gbIndex = groupBehaviourIndex;
-      container.currentWorld = currentWorld;
-      container.isEnabled = currentGroupBehav->isEnabled;
-      container.gbType = currentGroupBehav->getDefaultActionPtr()->getType();
-      currentGroupBehav->groupNodeList.applyToAllItems(\
-         mvWorld_V2_CalculateEachGroupInGroupBehaviour, &container);
+      mvBaseActionPtr defaultActionPtr =\
+         currentGroupBehav->getDefaultActionPtr();
+
+      if (defaultActionPtr != MV_NULL)
+      {
+         container.gbIndex = groupBehaviourIndex;
+         container.currentWorld = currentWorld;
+         container.isEnabled = currentGroupBehav->isEnabled;
+         const mvOptionEnum nodeType = defaultActionPtr->getType();
+         container.gbType = nodeType;
+         currentGroupBehav->groupNodeList.applyToAllItems(\
+            mvWorld_V2_CalculateEachGroupInGroupBehaviour, &container);
+      }
    }
 }
 
@@ -344,7 +352,7 @@ mvBaseActionPtr mvWorld_V2_InitialiseResults(mvBEntryPtr nodeInfo, mvIndex bodyI
       return MV_NULL;
    }
 
-   mvOptionEnum nodeType = nodeInfo->getEntryType();
+   const mvOptionEnum nodeType = nodeInfo->getEntryType();
    mvIndex behaviourIndex = nodeInfo->getBehaviour();
    mvIndex groupIndex = nodeInfo->getGroup();
 

@@ -3774,3 +3774,638 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddMemberIntoGroup(mvIndex worldIndex, mvInd
    return error;
 }
 
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddGroupIntoGroupBehaviour(\
+   mvIndex worldIndex,mvIndex groupIndex, mvIndex groupBehaviour)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->addGroupIntoGroupBehaviour(groupIndex, groupBehaviour);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveGroupFromGroupBehaviour(\
+   mvIndex worldIndex, mvIndex groupIndex, mvIndex groupBehaviour)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->removeGroupFromGroupBehaviour(groupIndex,\
+         groupBehaviour);
+   }
+   return error;
+}
+
+//TODO : behaviour state functions using current body
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameteri(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvIndex index)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setEntryListNodeParameteri(listIndex, nodeIndex,\
+         paramFlag, index);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameter(
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvOptionEnum option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setEntryListNodeParameter(listIndex, nodeIndex,\
+         paramFlag, option);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameterf(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvFloat num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setEntryListNodeParameterf(listIndex, nodeIndex,\
+         paramFlag, num);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameterv(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvFloat* array)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setEntryListNodeParameterv(listIndex, nodeIndex,\
+         paramFlag, array);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameteri_str(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex, const char* param,\
+   mvIndex index)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setEntryListNodeParameteri_str(listIndex, nodeIndex,\
+         param, index);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameter_str(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex, const char* param,\
+   const char* option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setEntryListNodeParameter_str(listIndex, nodeIndex,\
+         param, option);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameterf_str(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex, const char* param,\
+   mvFloat num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setEntryListNodeParameterf_str(listIndex, nodeIndex,\
+         param, num);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameterv_str(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex, const char* param,\
+   mvFloat* array)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setEntryListNodeParameterv_str(listIndex, nodeIndex,\
+         param, array);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameteri(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvIndex* outIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getEntryListNodeParameteri(listIndex, nodeIndex,\
+         paramFlag, outIndex);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameter(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getEntryListNodeParameter(listIndex, nodeIndex,\
+         paramFlag, option);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameterf(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvFloat* num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getEntryListNodeParameterf(listIndex, nodeIndex,\
+         paramFlag, num);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameterv(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getEntryListNodeParameterv(listIndex, nodeIndex,\
+         paramFlag, array, noOfParameters);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameteri_str(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex, const char* param,\
+   mvIndex* outIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getEntryListNodeParameteri_str(listIndex, nodeIndex,\
+         param, outIndex);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameter_str(\
+   mvIndex worldIndex, mvIndex listIndex,mvIndex nodeIndex, const char* param,
+   const char** option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getEntryListNodeParameter_str(listIndex, nodeIndex,\
+         param, option);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameterf_str(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex, const char* param,\
+   mvFloat* num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getEntryListNodeParameterf_str(listIndex, nodeIndex,\
+         param, num);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListNodeParameterv_str(\
+   mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex, const char* param,\
+   mvFloat* array, mvCount* noOfParameters)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getEntryListNodeParameterv_str(listIndex, nodeIndex,\
+         param, array, noOfParameters);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameteri(mvIndex worldIndex,\
+   mvIndex listIndex, mvParamEnum paramFlag, mvIndex index)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setEntryListParameteri(listIndex, paramFlag, index);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameter(mvIndex worldIndex,\
+   mvIndex listIndex, mvParamEnum paramFlag, mvOptionEnum option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setEntryListParameter(listIndex, paramFlag, option);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameterf(mvIndex worldIndex,\
+   mvIndex listIndex, mvParamEnum paramFlag, mvFloat num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setEntryListParameterf(listIndex, paramFlag, num);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameterv(mvIndex worldIndex,\
+   mvIndex listIndex, mvParamEnum paramFlag, mvFloat* array)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setEntryListParameterv(listIndex, paramFlag, array);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameteri_str(\
+   mvIndex worldIndex, mvIndex listIndex, const char* param, mvIndex index)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setEntryListParameteri_str(listIndex, param, index);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameter_str(\
+   mvIndex worldIndex, mvIndex listIndex, const char* param, const char* option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setEntryListParameter_str(listIndex, param, option);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameterf_str(\
+   mvIndex worldIndex, mvIndex listIndex, const char* param, mvFloat num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setEntryListParameterf_str(listIndex, param, num);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListParameterv_str(\
+   mvIndex worldIndex, mvIndex listIndex, const char* param, mvFloat* array)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setEntryListParameterv_str(listIndex, param, array);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameteri(mvIndex worldIndex,\
+   mvIndex listIndex, mvParamEnum paramFlag, mvIndex* outIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getEntryListParameteri(listIndex, paramFlag, outIndex);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameter(mvIndex worldIndex,\
+   mvIndex listIndex, mvParamEnum paramFlag, mvOptionEnum* option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getEntryListParameter(listIndex, paramFlag, option);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameterf(mvIndex worldIndex,\
+   mvIndex listIndex, mvParamEnum paramFlag, mvFloat* num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getEntryListParameterf(listIndex, paramFlag, num);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameterv(mvIndex worldIndex,\
+   mvIndex listIndex, mvParamEnum paramFlag, mvFloat* array,\
+   mvCount* noOfParameters)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getEntryListParameterv(listIndex, paramFlag, array,
+         noOfParameters);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameteri_str(\
+   mvIndex worldIndex, mvIndex listIndex, const char* param, mvIndex* outIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getEntryListParameteri_str(listIndex, param, outIndex);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameter_str(\
+   mvIndex worldIndex, mvIndex listIndex, const char* param,\
+   const char** option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getEntryListParameter_str(listIndex, param, option);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameterf_str(\
+   mvIndex worldIndex, mvIndex listIndex, const char* param, mvFloat* num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getEntryListParameterf_str(listIndex, param, num);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetEntryListParameterv_str(\
+   mvIndex worldIndex, mvIndex listIndex, const char* param, mvFloat* array,\
+   mvCount* noOfParameters)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->getEntryListParameterv_str(listIndex, param, array,
+         noOfParameters);
+   }
+   return error;
+}
+
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllEntryLists(mvIndex worldIndex,\
+   void (someFunction)(mvEntryListPtr, void*), void* extraPtr)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      worldPtr->applyToAllEntryLists(someFunction, extraPtr);
+      return MV_NO_ERROR;
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetUserData(mvIndex worldIndex,\
+   mvParamEnum objectType, mvIndex objectIndex, void* userData)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setUserData(objectType,objectIndex,userData);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX void* mvGetUserData(mvIndex worldIndex,\
+   mvParamEnum objectType, mvIndex objectIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_NULL;
+      }
+      return worldPtr->getUserData(objectType,objectIndex);
+   }
+   return MV_NULL;
+}
+

@@ -22,10 +22,10 @@
 #include "mvSeek.h"
 #include <new>
 
-mvSeek::mvSeek() : mvBaseAction(MV_SEEK)
+mvSeek::mvSeek() : mvBaseAction(MV_SEEK),
+   length(0),  waypointIndex(MV_NULL)
 {
-   length = 0;
-   waypointIndex = MV_NULL;
+
 }
 
 bool mvSeek::bodyOp(mvBehaviourResultPtr resultModule)
@@ -57,7 +57,6 @@ bool mvSeek::bodyOp(mvBehaviourResultPtr resultModule)
    */
    mvVec3 pos, direction, velocity;
 
-
    // 1. check if input/output class pointer is valid
    if (resultModule == NULL)
    {
@@ -67,14 +66,14 @@ bool mvSeek::bodyOp(mvBehaviourResultPtr resultModule)
 
    // 2. check body pointer is valid
    mvConstBodyPtr bodyPtr = resultModule->getCurrentBodyPtr();
-   if (bodyPtr == NULL)
+   if (bodyPtr == MV_NULL)
    {
       return false;
    }
 
    // 3. fetch waypoint module from list
    mvConstWaypointPtr point = resultModule->fetchWaypointPtr(waypointIndex);
-   if (point == NULL)
+   if (point == MV_NULL)
    {
       return false;
    }
@@ -104,8 +103,20 @@ bool mvSeek::bodyOp(mvBehaviourResultPtr resultModule)
    return true;
 }
 
+mvSeek::~mvSeek()
+{
+
+}
+
 mvErrorEnum mvSeek::setParameterf(mvParamEnum param, mvFloat num)
 {
+   mvErrorEnum error = mvBaseAction::setParameterf(param, num);
+
+   if (error != MV_INVALID_BEHAVIOUR_PARAMETER)
+   {
+      return error;
+   }
+
    if (param == MV_LENGTH)
    {
       length = num;
@@ -119,6 +130,13 @@ mvErrorEnum mvSeek::setParameterf(mvParamEnum param, mvFloat num)
 
 mvErrorEnum mvSeek::setParameteri(mvParamEnum param, mvIndex index)
 {
+   mvErrorEnum error = mvBaseAction::setParameteri(param, index);
+
+   if (error != MV_INVALID_BEHAVIOUR_PARAMETER)
+   {
+      return error;
+   }
+
    if (param == MV_WAYPOINT)
    {
       waypointIndex = index;
@@ -130,11 +148,13 @@ mvErrorEnum mvSeek::setParameteri(mvParamEnum param, mvIndex index)
    }
 }
 
-mvErrorEnum mvSeek::getParameterf(mvParamEnum param, mvFloat* num)
+mvErrorEnum mvSeek::getParameterf(mvParamEnum param, mvFloat* num) const
 {
-   if (num == NULL)
+   mvErrorEnum error = mvBaseAction::getParameterf(param, num);
+
+   if (error != MV_INVALID_BEHAVIOUR_PARAMETER)
    {
-      return MV_FLOAT_DEST_IS_NULL;
+      return error;
    }
 
    if (param == MV_LENGTH)
@@ -148,21 +168,23 @@ mvErrorEnum mvSeek::getParameterf(mvParamEnum param, mvFloat* num)
    }
 }
 
-mvErrorEnum mvSeek::getParameteri(mvParamEnum param, mvIndex* index)
+mvErrorEnum mvSeek::getParameteri(mvParamEnum param, mvIndex* index) const
 {
-   if (index == NULL)
+   mvErrorEnum error = mvBaseAction::getParameteri(param, index);
+
+   if (error != MV_INVALID_BEHAVIOUR_PARAMETER)
    {
-      return MV_INDEX_DEST_IS_NULL;
+      return error;
    }
 
-   if (param == MV_WAYPOINT)
+   switch(param)
    {
-      *index = waypointIndex;
-      return MV_NO_ERROR;
-   }
-   else
-   {
-      return MV_INVALID_BEHAVIOUR_PARAMETER;
+      case MV_WAYPOINT:
+         *index = waypointIndex;
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_BEHAVIOUR_PARAMETER;
+
    }
 }
 

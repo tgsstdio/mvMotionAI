@@ -129,6 +129,9 @@ int main(int argc, char** argv)
    std::cout << "bodyID : " << bodyID <<  std::endl;
 
    int waypointID = mvCreateWaypoint(worldID, MV_AABOX, 0, 4 ,0);
+   int entryID = mvAddBehaviourToList(worldID,bodyID,MV_SEEK);
+
+   //mvSetEntryListNodeParameteri(world
 
    std::cout << "waypointID  : " << waypointID <<  std::endl;
    int obstacleID = mvCreateObstacle(worldID, MV_AABOX, MV_SOLID_OBSTACLE,5, 5, 0);
