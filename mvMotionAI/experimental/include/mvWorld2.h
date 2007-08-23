@@ -72,7 +72,7 @@ class mvWorld_V2
 
       /// world step functionality
       void prepareIntegrationStep();
-      void performIntegrationOfBody(mvBodyCapsulePtr bodyPtr,
+      void setFinalBodyCapsuleVariables(mvBodyCapsulePtr bodyPtr,
          mvBehaviourResultPtr behavResModule,
          mvForceResultPtr forceResModule);
       void calculateGroupBehaviours(); // 1

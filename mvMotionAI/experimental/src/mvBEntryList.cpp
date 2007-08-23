@@ -303,7 +303,11 @@ mvIndex mvBEntryList::addNewEntry(mvOptionEnum bType,\
    {
       actionPtr = MV_NULL;
    }
-   else if (dBehaviour == MV_NULL || bType != dBehaviour->getType())
+   else if (dBehaviour == MV_NULL)
+   {
+      return MV_NULL;
+   }
+   else if (bType != dBehaviour->getType())
    {
       return MV_NULL;
    }

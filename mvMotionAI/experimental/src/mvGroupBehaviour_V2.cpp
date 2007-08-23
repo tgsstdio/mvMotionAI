@@ -692,7 +692,7 @@ mvIndex mvGroupBehaviour_V2::getCurrentGroupBehaviourNode() const
    return groupNodeList.getCurrentIndex();
 }
 
-mvBaseActionPtr mvGroupBehaviour_V2::getDefaultActionPtr()
+mvBaseActionPtr mvGroupBehaviour_V2::getDefaultActionPtr() const
 {
    return defaultGBehaviour;
 }

@@ -28,26 +28,27 @@
 class mvSeek : public mvBaseAction
 {
    private:
-      mvIndex waypointIndex;
       mvFloat length;
+      mvIndex waypointIndex;
 
    public:
       mvSeek();
 	   virtual bool groupOp(mvGroupBehaviourResultPtr resultModule);
       virtual bool bodyOp(mvBehaviourResultPtr resultModule);
 
-      mvErrorEnum setParameterf(mvParamEnum param, mvFloat num);
-      mvErrorEnum setParameteri(mvParamEnum param, mvIndex index);
-      mvErrorEnum getParameterf(mvParamEnum param, mvFloat* num);
-      mvErrorEnum getParameteri(mvParamEnum param, mvIndex* index);
+      virtual mvErrorEnum setParameterf(mvParamEnum param, mvFloat num);
+      virtual mvErrorEnum setParameteri(mvParamEnum param, mvIndex index);
+      virtual mvErrorEnum getParameterf(mvParamEnum param, mvFloat* num) const;
+      virtual mvErrorEnum getParameteri(mvParamEnum param, mvIndex* index) const;
+      virtual ~mvSeek();
 };
 
 class mvCreateSeeks : public mvBaseActionLoader
 {
    public:
       mvCreateSeeks();
-      mvBaseActionPtr operator()(mvBaseActionPtr defaultBehav);
-      ~mvCreateSeeks(){};
+      virtual mvBaseActionPtr operator()(mvBaseActionPtr defaultBehav);
+      virtual ~mvCreateSeeks(){};
 };
 
 #endif

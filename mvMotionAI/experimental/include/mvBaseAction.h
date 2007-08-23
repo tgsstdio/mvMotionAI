@@ -45,16 +45,16 @@ class mvBaseAction
 
    public:
       mvBaseAction(mvOptionEnum type);
-      mvOptionEnum getType();
+      mvOptionEnum getType() const;
 
       virtual mvErrorEnum getParameter(mvParamEnum paramFlag,\
-         mvOptionEnum* option);
+         mvOptionEnum* option) const;
       virtual mvErrorEnum getParameteri(mvParamEnum paramFlag,\
-         mvIndex* index);
+         mvIndex* index) const;
       virtual mvErrorEnum getParameterf(mvParamEnum paramFlag,\
-         mvFloat* num);
+         mvFloat* num) const;
       virtual mvErrorEnum getParameterv(mvParamEnum paramFlag,\
-         mvFloat* numArray, mvCount* noOfElements);
+         mvFloat* numArray, mvCount* noOfElements) const;
 
       virtual mvErrorEnum setParameter(mvParamEnum paramFlag,\
          mvOptionEnum option);

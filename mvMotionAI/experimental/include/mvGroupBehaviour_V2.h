@@ -50,7 +50,7 @@ class mvGroupBehaviour_V2
       mvCount getNoOfGroups() const;
 
       mvIndex getCurrentGroupBehaviourNode() const;
-      mvBaseActionPtr getDefaultActionPtr();
+      mvBaseActionPtr getDefaultActionPtr() const;
 
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
       mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option)\

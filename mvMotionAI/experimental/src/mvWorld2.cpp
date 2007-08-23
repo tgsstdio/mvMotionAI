@@ -1984,7 +1984,7 @@ void mvWorld_V2::integrateBody(mvBodyCapsulePtr bodyPtr, mvFloat timeInSecs)
    initialiseCommonVariables(&finalBehavResult,&finalForceResult,timeInSecs);
    calculateBehavioursOnBody(bodyPtr, &finalBehavResult);
    calculateAllForcesOnBody(bodyPtr, &finalForceResult);
-   performIntegrationOfBody(bodyPtr, &finalBehavResult, &finalForceResult);
+   setFinalBodyCapsuleVariables(bodyPtr, &finalBehavResult, &finalForceResult);
 }
 
 /** @brief (one liner)
@@ -2178,7 +2178,7 @@ void mvWorld_V2::calculateBehavioursOnBody(mvBodyCapsulePtr bCapsulePtr,\
    }
 }
 
-void mvWorld_V2::performIntegrationOfBody(mvBodyCapsulePtr bodyPtr,\
+void mvWorld_V2::setFinalBodyCapsuleVariables(mvBodyCapsulePtr bodyPtr,\
    mvBehaviourResultPtr behavResModule, mvForceResultPtr forceResModule)
 {
    mvVec3 tempVector;
@@ -2403,7 +2403,7 @@ mvErrorEnum mvWorld_V2::addGroupIntoGroupBehaviour(mvIndex groupIndex,\
       return MV_GROUP_BEHAVIOUR_INDEX_IS_INVALID;
    }
 
-   mvBaseActionPtr defaultActionPtr = tempGrpBehav->getDefaultActionPtr();
+   const mvBaseActionPtr defaultActionPtr = tempGrpBehav->getDefaultActionPtr();
    if (defaultActionPtr == MV_NULL)
    {
       return MV_ACTION_IS_NOT_INITIALISED;

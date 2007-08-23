@@ -26,30 +26,65 @@ mvBaseAction::mvBaseAction(mvOptionEnum type)
    bType = type;
 }
 
-mvOptionEnum mvBaseAction::getType()
+mvOptionEnum mvBaseAction::getType() const
 {
    return bType;
 }
 
 mvErrorEnum mvBaseAction::getParameter(mvParamEnum paramFlag,\
-   mvOptionEnum* option)
+   mvOptionEnum* option) const
 {
+   if (option == MV_NULL)
+   {
+      return MV_OPTION_ENUM_DEST_IS_NULL;
+   }
+
+   switch (paramFlag)
+   {
+      case MV_TYPE:
+         *option = getType();
+         return MV_NO_ERROR;
+      default:
+         return MV_INVALID_BEHAVIOUR_PARAMETER;
+   }
+}
+
+mvErrorEnum mvBaseAction::getParameteri(mvParamEnum paramFlag,\
+   mvIndex* index) const
+{
+   if (index == MV_NULL)
+   {
+      return MV_INDEX_DEST_IS_NULL;
+   }
+
    return MV_INVALID_BEHAVIOUR_PARAMETER;
 }
 
-mvErrorEnum mvBaseAction::getParameteri(mvParamEnum paramFlag, mvIndex* index)
+mvErrorEnum mvBaseAction::getParameterf(mvParamEnum paramFlag,\
+   mvFloat* num) const
 {
-   return MV_INVALID_BEHAVIOUR_PARAMETER;
-}
+   if (num == MV_NULL)
+   {
+      return MV_FLOAT_DEST_IS_NULL;
+   }
 
-mvErrorEnum mvBaseAction::getParameterf(mvParamEnum paramFlag, mvFloat* num)
-{
    return MV_INVALID_BEHAVIOUR_PARAMETER;
 }
 
 mvErrorEnum mvBaseAction::getParameterv(mvParamEnum paramFlag,\
-   mvFloat* numArray, mvCount* noOfElements)
+   mvFloat* numArray, mvCount* noOfElements) const
 {
+   if (noOfElements == MV_NULL)
+   {
+      return MV_COUNT_DEST_IS_NULL;
+   }
+
+   if (numArray == MV_NULL)
+   {
+      *noOfElements = 0;
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
    return MV_INVALID_BEHAVIOUR_PARAMETER;
 }
 
@@ -73,6 +108,11 @@ mvErrorEnum mvBaseAction::setParameterf(mvParamEnum paramFlag, mvFloat num)
 mvErrorEnum mvBaseAction::setParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray)
 {
+   if (numArray == MV_NULL)
+   {
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
    return MV_INVALID_BEHAVIOUR_PARAMETER;
 }
 
