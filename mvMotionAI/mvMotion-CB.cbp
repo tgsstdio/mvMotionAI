@@ -129,6 +129,9 @@
 		<Unit filename="experimental\include\mvCapsuleList.hpp" />
 		<Unit filename="experimental\include\mvFactoryFunctionList.h" />
 		<Unit filename="experimental\include\mvFactoryFunctionList.hpp" />
+		<Unit filename="experimental\include\mvFlee.h">
+			<Option virtualFolder="mvBaseActions\" />
+		</Unit>
 		<Unit filename="experimental\include\mvForceCapsule.h" />
 		<Unit filename="experimental\include\mvForceLoaderList.h" />
 		<Unit filename="experimental\include\mvForceResult.h">
@@ -154,6 +157,9 @@
 		<Unit filename="experimental\include\mvPathway_V2.h" />
 		<Unit filename="experimental\include\mvPointerList.h" />
 		<Unit filename="experimental\include\mvPointerList.hpp" />
+		<Unit filename="experimental\include\mvPursuit.h">
+			<Option virtualFolder="mvBaseActions\" />
+		</Unit>
 		<Unit filename="experimental\include\mvSeek.h">
 			<Option virtualFolder="mvBaseActions\" />
 		</Unit>
@@ -199,6 +205,9 @@
 		<Unit filename="experimental\src\mvBehaviour_V2.cpp" />
 		<Unit filename="experimental\src\mvBodyCapsule.cpp" />
 		<Unit filename="experimental\src\mvBody_V2.cpp" />
+		<Unit filename="experimental\src\mvFlee.cpp">
+			<Option virtualFolder="mvBaseActions\" />
+		</Unit>
 		<Unit filename="experimental\src\mvForceCapsule.cpp" />
 		<Unit filename="experimental\src\mvForceResult.cpp">
 			<Option virtualFolder="mvBaseForces\" />
@@ -221,6 +230,9 @@
 		</Unit>
 		<Unit filename="experimental\src\mvObstacle_V2.cpp" />
 		<Unit filename="experimental\src\mvPathway_V2.cpp" />
+		<Unit filename="experimental\src\mvPursuit.cpp">
+			<Option virtualFolder="mvBaseActions\" />
+		</Unit>
 		<Unit filename="experimental\src\mvSeek.cpp">
 			<Option virtualFolder="mvBaseActions\" />
 		</Unit>

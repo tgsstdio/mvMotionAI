@@ -25,7 +25,7 @@
   *
   * (documentation goes here)
   */
-mvErrorEnum mvFlee::getParameteri(mvParamEnum param, mvIndex* index)
+mvErrorEnum mvFlee::getParameteri(mvParamEnum param, mvIndex* index) const
 {
    if (index == NULL)
    {
@@ -47,7 +47,7 @@ mvErrorEnum mvFlee::getParameteri(mvParamEnum param, mvIndex* index)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvFlee::getParameterf(mvParamEnum param, mvFloat* num)
+mvErrorEnum mvFlee::getParameterf(mvParamEnum param, mvFloat* num) const
 {
    if (num == NULL)
    {
@@ -105,7 +105,6 @@ mvErrorEnum mvFlee::setParameterf(mvParamEnum param, mvFloat num)
   */
 bool mvFlee::groupOp(mvGroupBehaviourResultPtr resultModule)
 {
-   puts("FLEE GROUP OPERATION");
    return false;
 }
 
@@ -137,38 +136,29 @@ bool mvFlee::bodyOp(mvBehaviourResultPtr resultModule)
    */
 // TODO: incorporate length into equation
    mvVec3 targetPos, direction, velocity;
-   mvWaypointPtr point = NULL;
-   mvBodyPtr b = NULL;
-   mvWorldPtr world = NULL;
 
-   if (resultModule == NULL)
+   if (resultModule == MV_NULL)
    {
       return false;
    }
 
-   world = resultModule->getWorld();
-   if (world == NULL)
+   mvConstBodyPtr currentBody = resultModule->getCurrentBodyPtr();
+   if (currentBody == MV_NULL)
    {
       return false;
    }
 
-   b = resultModule->getBody();
-   if (b == NULL)
-   {
-      return false;
-   }
-
-   point = world->getWaypointPtr(waypointIndex);
+   mvConstWaypointPtr point = resultModule->fetchWaypointPtr(waypointIndex);
    if (point == NULL)
    {
       return false;
    }
 
-   direction.setAll(b->position);
-   targetPos.set(point->getX(), point->getY(), point->getZ());
-   direction.minusVec3(targetPos);
+   direction = currentBody->getPosition();
+   targetPos = point->getPosition();
+   direction -= targetPos;
    velocity = direction.normalize();
-   velocity *= b->maxSpeed;
+   velocity *= currentBody->getMaxSpeed();
    velocity *= 0.5;
 
    resultModule->setVelocity(velocity);
@@ -183,7 +173,7 @@ bool mvFlee::bodyOp(mvBehaviourResultPtr resultModule)
   */
  mvFlee::mvFlee() : mvBaseAction(MV_FLEE)
 {
-   waypointIndex = MV_NO_CURRENT_INDEX;
+   waypointIndex = MV_NULL;
    length = 0;
 }
 
@@ -195,7 +185,7 @@ mvCreateFlees::mvCreateFlees()
 mvBaseActionPtr mvCreateFlees::operator()(mvBaseActionPtr defaultBehav)
 {
    return new mvFlee();
-};
+}
 
 
 

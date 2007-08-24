@@ -95,7 +95,17 @@ int main(int argc, char** argv)
     * Step 2 : initialise mvMotionAI library
     */
    mvInitMotionAI();
-   mvInitAllDefaults();
+   mvErrorEnum initError = mvInitDefaultActions();
+   if (initError != MV_NO_ERROR)
+   {
+      puts("MV INIT ACTIONS ERROR");
+   }
+
+   initError = mvInitDefaultForces();
+   if (initError != MV_NO_ERROR)
+   {
+      puts("MV INIT FORCES ERROR");
+   }
 
    /*
     * Step 3: load lua file
@@ -115,6 +125,15 @@ int main(int argc, char** argv)
    // call mvMotionAI
    int worldID = mvCreateWorld("Hello");
    std::cout << "worldID : " << worldID <<  std::endl;
+
+   int waypointID = mvCreateWaypoint(worldID, MV_AABOX, 7, 4 ,0);
+   std::cout << "waypointID  : " << waypointID <<  std::endl;
+   int obstacleID = mvCreateObstacle(worldID, MV_AABOX, MV_SOLID_OBSTACLE,5, 5, 0);
+   std::cout << "obstacleID : " << waypointID<<  std::endl;
+   obstacleID = mvCreateObstacle(worldID, MV_AABOX, MV_SOLID_OBSTACLE,3, 8, -4);
+   std::cout << "obstacleID : " << waypointID <<  std::endl;
+
+
    int bodyID = mvCreateBody(worldID,MV_PARTICLE,MV_AABOX, 0 , 4 , 0);
    std::cout << "bodyID : " << bodyID <<  std::endl;
 
@@ -123,24 +142,35 @@ int main(int argc, char** argv)
    std::cout << mvGetErrorEnumString(mvAddMemberIntoGroup(worldID, bodyID, groupID))
       << std::endl;
 
-   int gbIndex = mvCreateGroupBehaviour(worldID, MV_SEEK);
+   //int gbIndex = mvCreateGroupBehaviour(worldID, MV_SEEK);
 
-   bodyID = mvCreateBody(worldID,MV_PARTICLE,MV_AABOX, 0 , 4 , 4);
-   std::cout << "bodyID : " << bodyID <<  std::endl;
+   int bodyID2 = mvCreateBody(worldID,MV_PARTICLE,MV_AABOX, 0 , 4 , 4);
+   std::cout << "bodyID : " << bodyID2 <<  std::endl;
+   int entryID = mvAddBehaviourToList(worldID,bodyID2,MV_SEEK);
+   mvSetEntryListNodeParameteri(worldID,bodyID2,entryID,MV_WAYPOINT,waypointID);
 
-   int waypointID = mvCreateWaypoint(worldID, MV_AABOX, 0, 4 ,0);
-   int entryID = mvAddBehaviourToList(worldID,bodyID,MV_SEEK);
+   entryID = mvAddBehaviourToList(worldID, bodyID, MV_PURSUIT);
+   mvSetEntryListNodeParameteri(worldID, bodyID, entryID, MV_BODY, bodyID2);
+   entryID = mvAddBehaviourToList(worldID, bodyID, MV_FLEE);
+   mvSetEntryListNodeParameteri(worldID, bodyID, entryID, MV_WAYPOINT, waypointID);
+   mvErrorEnum paramError = mvSetEntryListNodeParameter(worldID, bodyID,
+      entryID, MV_IS_ENABLED, MV_TRUE);
+   /*
+   if (paramError != MV_NO_ERROR)
+   {
+      puts("WEIGHT PARAMETER ERROR");
+   }
+   */
 
-   //mvSetEntryListNodeParameteri(world
 
-   std::cout << "waypointID  : " << waypointID <<  std::endl;
-   int obstacleID = mvCreateObstacle(worldID, MV_AABOX, MV_SOLID_OBSTACLE,5, 5, 0);
-   std::cout << "obstacleID : " << waypointID<<  std::endl;
-   obstacleID = mvCreateObstacle(worldID, MV_AABOX, MV_SOLID_OBSTACLE,3, 8, -4);
-   std::cout << "obstacleID : " << waypointID <<  std::endl;
-
-   int forceID = mvCreateForce(worldID,MV_UNIFORM_SHIFT);
-   std::cout << "forceID : " << forceID <<  std::endl;
+   //entryID = mvAddBehaviourToList(worldID, bodyID, MV_PURSUIT);
+   if (entryID == MV_NULL)
+   {
+      puts("ENTRY ID");
+   }
+   //mvSetEntryListNodeParameteri(worldID,bodyID2,entryID,MV_BODY,bodyID);
+   //int forceID = mvCreateForce(worldID,MV_UNIFORM_SHIFT);
+   //std::cout << "forceID : " << forceID <<  std::endl;
 
    glutDisplayFunc(display);
    glutReshapeFunc(reshape);
@@ -254,14 +284,16 @@ void displayBody(mvBodyPtr p,void* extraPtr)
          glPushMatrix();
            //glScalef(p->speed,p->speed,p->speed);
            glBegin(GL_LINES);
+            // RED TO GREEN - own velocity
              glColor3f(1,0,0);
              glVertex3f(0,0,0);
              glColor3f(0,1,0);
-             glVertex3f(p->getBodyDirection().getX(), p->getBodyDirection().getY(), p->getBodyDirection().getZ());
+             glVertex3f(p->getVelocity().getX(), p->getVelocity().getY(), p->getVelocity().getZ());
+             // GREEN TO BLUE - final velocity
              glColor3f(0,1,0);
-             glVertex3f(p->getBodyDirection().getX(), p->getBodyDirection().getY(), p->getBodyDirection().getZ());
+             glVertex3f(0,1,0);
              glColor3f(0,0,1);
-             glVertex3f((1.0f + p->getSpeed())* p->getBodyDirection().getX(), (1.0f + p->getSpeed())*  p->getBodyDirection().getY(), (1.0f + p->getSpeed())* p->getBodyDirection().getZ());
+             glVertex3f(p->getFinalVelocity().getX(), 1.0f + p->getFinalVelocity().getY(), p->getFinalVelocity().getZ());
            glEnd();
          glPopMatrix();
          //std::cout << "SPEED : " << p->speed << std::endl;
@@ -396,7 +428,7 @@ void displayFrameRate(long int frameNo)
     std::cout << "TPF : " << tpfCurrent << " +/- " << tpfCurrent - tpfPrevious <<std::endl;
     tpfPrevious = tpfCurrent;
     noOfSeconds++;
-    if (noOfSeconds > 1)
+    if (noOfSeconds > 10)
     {
       exit(0);
     }

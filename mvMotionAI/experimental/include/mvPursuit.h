@@ -21,7 +21,10 @@
  */
 #ifndef MVPURSUIT_H_INCLUDED
 #define MVPURSUIT_H_INCLUDED
-#include "mvBaseAction.h"
+
+#include "mvMotionAI-Types.h"
+#include MV_ENUMS_HEADER_FILE_H_
+#include MV_BASE_ACTION_HEADER_FILE_H_
 
 class mvPursuit : public mvBaseAction
 {
@@ -32,8 +35,8 @@ class mvPursuit : public mvBaseAction
       mvPursuit();
 	   virtual bool groupOp(mvGroupBehaviourResultPtr resultModule);
       virtual bool bodyOp(mvBehaviourResultPtr resultModule);
-      mvErrorEnum setParameteri(mvParamEnum param, mvIndex index);
-      mvErrorEnum getParameteri(mvParamEnum param, mvIndex* index);
+      virtual mvErrorEnum setParameteri(mvParamEnum param, mvIndex index);
+      virtual mvErrorEnum getParameteri(mvParamEnum param, mvIndex* index) const;
 };
 
 class mvCreatePursuits : public mvBaseActionLoader

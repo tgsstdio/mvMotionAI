@@ -7,6 +7,8 @@
  */
 #include "mvNullLoader.h"
 #include "mvSeek.h"
+#include "mvPursuit.h"
+#include "mvFlee.h"
 
 /**
  * default forces
@@ -260,6 +262,38 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(mvActionLoaderListPtr
       return MV_INVALID_MEMORY_ALLOCATION;
    }
    error = loader->addFactoryFunction(MV_SEEK,\
+      tempLoader);
+   if (error != MV_NO_ERROR)
+   {
+      delete tempLoader;
+      return error;
+   }
+
+   // enum 5 pursuit
+   tempLoader = MV_NULL;
+   tempLoader = new (std::nothrow) mvCreatePursuits();
+   // check for memory errors
+   if (tempLoader == MV_NULL)
+   {
+      return MV_INVALID_MEMORY_ALLOCATION;
+   }
+   error = loader->addFactoryFunction(MV_PURSUIT,\
+      tempLoader);
+   if (error != MV_NO_ERROR)
+   {
+      delete tempLoader;
+      return error;
+   }
+
+   // enum 6 seek
+   tempLoader = MV_NULL;
+   tempLoader = new (std::nothrow) mvCreateFlees();
+   // check for memory errors
+   if (tempLoader == MV_NULL)
+   {
+      return MV_INVALID_MEMORY_ALLOCATION;
+   }
+   error = loader->addFactoryFunction(MV_FLEE,\
       tempLoader);
    if (error != MV_NO_ERROR)
    {

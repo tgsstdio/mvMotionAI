@@ -339,8 +339,15 @@ mvFloat mvBody_V2::getDeceleration() const
 
 mvErrorEnum mvBody_V2::setDeceleration(mvFloat dAccel)
 {
-   bodyDeaccel = dAccel;
-   return MV_NO_ERROR;
+   if (dAccel >= 0)
+   {
+      bodyDeaccel = dAccel;
+      return MV_NO_ERROR;
+   }
+   else
+   {
+      return MV_FLOAT_VALUE_IS_NOT_POSITIVE;
+   }
 }
 
 mvFloat mvBody_V2::getAcceleration() const
@@ -350,8 +357,15 @@ mvFloat mvBody_V2::getAcceleration() const
 
 mvErrorEnum mvBody_V2::setAcceleration(mvFloat accel)
 {
-   bodyAccel = accel;
-   return MV_NO_ERROR;
+   if (accel >= 0)
+   {
+      bodyAccel = accel;
+      return MV_NO_ERROR;
+   }
+   else
+   {
+      return MV_FLOAT_VALUE_IS_NOT_POSITIVE;
+   }
 }
 
 

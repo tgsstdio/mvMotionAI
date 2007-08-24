@@ -33,7 +33,7 @@ class mvBEntryListNode
    public:
       mvBEntryPtr behaviourEntry;
       mvBEntryUtility entryFlags;
-      bool isEnabled;
+      bool isEnabled() const;
 
       mvBEntryListNode(mvOptionEnum type, mvIndex behaviourIndex,\
          mvIndex groupIndex, mvBaseActionPtr actionPtr, mvFloat bNodeWeight,\
