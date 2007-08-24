@@ -1,6 +1,9 @@
 #ifndef MVFLEE_H_INCLUDED
 #define MVFLEE_H_INCLUDED
-#include "mvBaseAction.h"
+
+#include "mvMotionAI-Types.h"
+#include MV_ENUMS_HEADER_FILE_H_
+#include MV_BASE_ACTION_HEADER_FILE_H_
 
 class mvFlee : public mvBaseAction
 {
@@ -14,8 +17,8 @@ class mvFlee : public mvBaseAction
       bool bodyOp(mvBehaviourResultPtr resultModule);
       mvErrorEnum setParameterf(mvParamEnum param, mvFloat num);
       mvErrorEnum setParameteri(mvParamEnum param, mvIndex index);
-      mvErrorEnum getParameterf(mvParamEnum param, mvFloat* num);
-      mvErrorEnum getParameteri(mvParamEnum param, mvIndex* index);
+      virtual mvErrorEnum getParameterf(mvParamEnum param, mvFloat* num) const;
+      virtual mvErrorEnum getParameteri(mvParamEnum param, mvIndex* index) const;
 };
 
 class mvCreateFlees : public mvBaseActionLoader

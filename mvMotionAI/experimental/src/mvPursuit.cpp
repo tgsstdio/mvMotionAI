@@ -25,7 +25,7 @@
 mvCreatePursuits::mvCreatePursuits()
 {
 
-};
+}
 
 /** @brief (one liner)
   *
@@ -40,7 +40,7 @@ mvBaseAction* mvCreatePursuits::operator()(mvBaseAction* defaultBehav)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvPursuit::getParameteri(mvParamEnum param, mvIndex* index)
+mvErrorEnum mvPursuit::getParameteri(mvParamEnum param, mvIndex* index) const
 {
    if (index == NULL)
    {
@@ -102,9 +102,6 @@ mvVec3 mvBehaviour_Calculate_Pursuit(mvBody* currentBody, mvBody* targetBody)
 }
 */
    mvVec3 targetDir, desiredVelocity, nextPos, velocity;
-   mvBodyPtr body = NULL;
-   mvBodyPtr target = NULL;
-   mvWorldPtr world = NULL;
    mvFloat period = 0;
 
    if (resultModule == NULL)
@@ -112,47 +109,41 @@ mvVec3 mvBehaviour_Calculate_Pursuit(mvBody* currentBody, mvBody* targetBody)
       return false;
    }
 
-   world = resultModule->getWorld();
-   if (world == NULL)
-   {
-      return false;
-   }
-
-   body = resultModule->getBody();
+   mvConstBodyPtr body = resultModule->getCurrentBodyPtr();
    if (body == NULL)
    {
       return false;
    }
 
-   target = world->getBodyPtr(targetObject);
+   mvConstBodyPtr target = resultModule->fetchBodyPtr(targetObject);
    if (target == NULL)
    {
       return false;
    }
 
-   targetDir.setAll(target->position);
-   targetDir.minusVec3(body->position);
+   targetDir = target->getPosition();
+   targetDir -= body->getPosition();
 
    period = targetDir.length();
-   period /= body->maxSpeed;
+   period /= body->getMaxSpeed();
 
    // nextPos = targetBody->position +
    //(targetBody->direction * targetBody->speed *
    // (dist/currentBody->maxSpeed));
 
-   nextPos.setAll(target->direction);
-   nextPos *= target->speed;
+   nextPos = target->getFinalVelocity();
    nextPos *= period;
-   nextPos.addVec3(target->position);
+   nextPos += target->getPosition();
 
    // desiredVelocity = (nextPos - currentBody->position).normalize()
    // * currentBody->maxSpeed;
    // finalVelocity = desiredVelocity;
    // finalVelocity *= 0.5;
-   desiredVelocity.setAll(nextPos);
-   desiredVelocity.minusVec3(body->position);
+   desiredVelocity = nextPos;
+   desiredVelocity -= body->getPosition();
    velocity = desiredVelocity.normalize();
-   velocity *= body->maxSpeed;
+   velocity *= body->getMaxSpeed();
+   //velocity += resultModule->getVelocity();
    velocity *= 0.5;
 
    resultModule->setVelocity(velocity);
@@ -167,7 +158,6 @@ mvVec3 mvBehaviour_Calculate_Pursuit(mvBody* currentBody, mvBody* targetBody)
   */
 bool mvPursuit::groupOp(mvGroupBehaviourResultPtr resultModule)
 {
-   puts("PURSUIT - GROUP OPERATION");
    return false;
 }
 
@@ -177,5 +167,5 @@ bool mvPursuit::groupOp(mvGroupBehaviourResultPtr resultModule)
   */
 mvPursuit::mvPursuit() : mvBaseAction(MV_PURSUIT)
 {
-   targetObject = MV_NO_CURRENT_INDEX;
+   targetObject = MV_NULL;
 }

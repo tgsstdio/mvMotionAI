@@ -23,7 +23,10 @@
  */
 #ifndef MV_SEEK_BHEAVIOUR_OBJECT_H_
 #define MV_SEEK_BHEAVIOUR_OBJECT_H_
-#include "mvBaseAction.h"
+
+#include "mvMotionAI-Types.h"
+#include MV_ENUMS_HEADER_FILE_H_
+#include MV_BASE_ACTION_HEADER_FILE_H_
 
 class mvSeek : public mvBaseAction
 {

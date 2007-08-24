@@ -616,15 +616,14 @@ void mvWorld_V2_SumBehaviourResults(mvBehaviourResultPtr summedResult,
       if (currentEffect == MV_LOCAL_EFFECT)
       {
          // TODO : delocalise function
-
       }
 
+      totalVec *= weight;
       if (currentMotion == MV_DIRECTIONAL_MOTION)
       {
          actionVec -= currentBody->getFinalVelocity();
       }
       // TODO : check if before or after delocal or confining
-      totalVec *= weight;
 
       if (isConfined)
       {
@@ -793,7 +792,7 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
 void mvWorld_V2_CalculateEntryByWeightedSum(mvEntryListNodePtr eNodePtr,\
    void* extraPtr)
 {
-   if (eNodePtr->isEnabled)
+   if (eNodePtr->isEnabled())
    {
       // setting variables
       mvWorld_V2_CalcBehavOnListHelper* helper = (mvWorld_V2_CalcBehavOnListHelper*)\
@@ -921,7 +920,7 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
          maxSpeed = compareSpeed;
       }
 
-      compareSpeed = bodySpeed + decrSpeedDelta;
+      compareSpeed = bodySpeed - decrSpeedDelta;
       if (compareSpeed > minSpeed)
       {
          minSpeed = compareSpeed;

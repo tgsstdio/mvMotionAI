@@ -24,7 +24,6 @@
 mvBEntryListNode::mvBEntryListNode(mvOptionEnum type, mvIndex behaviourIndex,\
    mvIndex groupIndex, mvBaseActionPtr actionPtr, mvFloat bNodeWeight,\
    mvFloat period, mvFloat elaspedTime)
-   : isEnabled(true)
  {
    behaviourEntry = new (std::nothrow) mvBEntry(type, behaviourIndex,\
       groupIndex, actionPtr);
@@ -47,6 +46,11 @@ mvTimerPtr mvBEntryListNode::getTimer()
 mvFloat mvBEntryListNode::getWeight() const
 {
    return entryFlags.getWeight();
+}
+
+bool mvBEntryListNode::isEnabled() const
+{
+   return entryFlags.enabled;
 }
 
 mvErrorEnum mvBEntryListNode::setWeight(mvFloat bNodeWeight)
