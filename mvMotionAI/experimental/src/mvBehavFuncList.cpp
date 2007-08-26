@@ -19,7 +19,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-#include "mvBehavFuncList.h"
+#include <mvBehavFuncList.h>
 
 #ifdef MV_WORLD_DEBUG_OUTPUT_FLAG
 #include <cstdlib>

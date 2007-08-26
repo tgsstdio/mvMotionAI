@@ -589,7 +589,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetNodeInPathwayParameter_str(\
   ;
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetNodeInPathwayParameteri_str(\
-   mvIndex worldIndex, mvIndex index, const char* param, mvIndex* index);
+   mvIndex worldIndex, mvIndex index, const char* param, mvIndex* outIndex);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetNodeInPathwayParameterf_str(\
    mvIndex worldIndex, mvIndex index, const char* param, mvFloat* num);
@@ -601,28 +601,28 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetNodeInPathwayParameterv_str(\
 // SET
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetNodeInPathwayParameter(\
-   mvIndex worldIndex, mvIndex index, mvParamEnum param, mvOptionEnum option);
+   mvIndex worldIndex, mvIndex nodeIndex, mvParamEnum param, mvOptionEnum option);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetNodeInPathwayParameteri(\
-   mvIndex worldIndex, mvIndex index, mvParamEnum param, mvIndex index);
+   mvIndex worldIndex, mvIndex nodeIndex, mvParamEnum param, mvIndex paramIndex);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetNodeInPathwayParameterv(\
-   mvIndex worldIndex, mvIndex index, mvParamEnum param, mvFloat* array);
+   mvIndex worldIndex, mvIndex nodeIndex, mvParamEnum param, mvFloat* array);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetNodeInPathwayParameter_str(\
-   mvIndex worldIndex, mvIndex index, const char* param, const char* option);
+   mvIndex worldIndex, mvIndex nodeIndex, const char* param, const char* option);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetNodeInPathwayParameteri_str(\
-   mvIndex worldIndex, mvIndex index, const char* param, mvIndex index);
+   mvIndex worldIndex, mvIndex nodeIndex, const char* param, mvIndex paramIndex);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetNodeInPathwayParameterf_str(\
-   mvIndex worldIndex, mvIndex index, const char* param, mvFloat num);
+   mvIndex worldIndex, mvIndex nodeIndex, const char* param, mvFloat num);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetNodeInPathwayParameterv_str(\
-   mvIndex worldIndex, mvIndex index, const char* param, mvFloat* array);
+   mvIndex worldIndex, mvIndex nodeIndex, const char* param, mvFloat* array);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetNodeInCurrentPathwayParameter(\
-   mvIndex worldIndex, mvIndex index, mvParamEnum param, mvOptionEnum option);
+   mvIndex worldIndex, mvIndex nodeIndex, mvParamEnum param, mvOptionEnum option);
 
 
 //=============

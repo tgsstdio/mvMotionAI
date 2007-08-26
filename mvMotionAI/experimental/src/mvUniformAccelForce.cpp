@@ -40,5 +40,5 @@ mvUniformAccelForceLoader::mvUniformAccelForceLoader()
 
 mvBaseForcePtr mvUniformAccelForceLoader::operator()(void* extraPtr)
 {
-   return new (std::nothrow) mvUniformAccelForce();
+   return new mvUniformAccelForce();
 }

@@ -190,8 +190,13 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::checkParamStringAndIndex(\
 template <class mvClass, class mvConstClass>
 mvIndex mvPointerList<mvClass,mvConstClass>::addItem(mvClass itemPtr)
 {
-   class std::vector<mvClass>::const_iterator i;
+#ifdef VISUAL_C_VER_6
+   typename std::vector<mvClass>::iterator i;
+   typename std::vector<mvClass>::iterator listEnd = listItems.end();
+#else
+   class std::vector<mvClass>::iterator i;
    class std::vector<mvClass>::iterator listEnd = listItems.end();
+#endif
    mvClass currentItem = MV_NULL;
 
    if (itemPtr == MV_NULL)
@@ -200,7 +205,7 @@ mvIndex mvPointerList<mvClass,mvConstClass>::addItem(mvClass itemPtr)
       return MV_NULL;
    }
 
-   for (i =listItems.begin(); i != listEnd; ++i)
+   for (i = listItems.begin(); i != listEnd; ++i)
    {
      currentItem = *i;
      if (itemPtr == currentItem)
@@ -272,8 +277,13 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::deleteCurrentItem()
 template <class mvClass, class mvConstClass>
 void mvPointerList<mvClass,mvConstClass>::deleteAllItems()
 {
+#ifdef VISUAL_C_VER_6
+   typename std::vector<mvClass>::iterator i;
+   typename std::vector<mvClass>::iterator listEnd = listItems.end();
+#else
    class std::vector<mvClass>::iterator i;
    class std::vector<mvClass>::iterator listEnd = listItems.end();
+#endif
    mvClass temp = MV_NULL;
 
    for (i = listItems.begin(); i != listEnd; ++i)
@@ -327,8 +337,14 @@ mvClass mvPointerList<mvClass,mvConstClass>::getCurrentClassPtr() const
 template <class mvClass, class mvConstClass>
 mvCount mvPointerList<mvClass,mvConstClass>::getNoOfItems() const
 {
+#ifdef VISUAL_C_VER_6
+   typename std::vector<mvClass>::const_iterator i;
+   typename std::vector<mvClass>::const_iterator listEnd = listItems.end();
+#else
    class std::vector<mvClass>::const_iterator i;
    class std::vector<mvClass>::const_iterator listEnd = listItems.end();
+#endif
+
    mvCount totalItems = 0;
    mvClass temp = MV_NULL;
 
@@ -385,8 +401,14 @@ template <class mvClass, class mvConstClass>
 void mvPointerList<mvClass,mvConstClass>::applyToAllItems(\
    void (someFunction)(mvClass, void*),void* extraPtr)
 {
+#ifdef VISUAL_C_VER_6
+   typename std::vector<mvClass>::iterator i;
+   typename std::vector<mvClass>::iterator listEnd = listItems.end();
+#else
    class std::vector<mvClass>::iterator i;
    class std::vector<mvClass>::iterator listEnd = listItems.end();
+#endif
+
    mvClass tempClass = MV_NULL;
 
    for (i = listItems.begin(); i != listEnd; ++i)
@@ -415,8 +437,13 @@ void mvPointerList<mvClass,mvConstClass>::applyToAllItemsByIndex(\
    mvIndex worldIndex, void (someFunction)(mvIndex, mvIndex, void*),\
    void* extraPtr)
 {
+#ifdef VISUAL_C_VER_6
+   typename std::vector<mvClass>::iterator i;
+   typename std::vector<mvClass>::iterator listEnd = listItems.end();
+#else
    class std::vector<mvClass>::iterator i;
    class std::vector<mvClass>::iterator listEnd = listItems.end();
+#endif 
    mvClass tempClass = MV_NULL;
    mvIndex listIndex = MV_FIRST_POINTER_LIST_INDEX;
 
@@ -874,9 +901,16 @@ template <class mvClass, class mvConstClass>
 mvClass mvPointerList<mvClass,mvConstClass>::findItemPtrInList(\
    bool (someFunction)(mvClass, void*), void* extraPtr) const
 {
+#ifdef VISUAL_C_VER_6
+   typename std::vector<mvClass>::const_iterator i;
+   typename std::vector<mvClass>::const_iterator listEnd = listItems.end();   
+#else
    class std::vector<mvClass>::const_iterator i;
-   mvClass currentPtr = MV_NULL;
    class std::vector<mvClass>::const_iterator listEnd = listItems.end();
+#endif
+
+   mvClass currentPtr = MV_NULL;
+
 
    for (i = listItems.begin(); i != listEnd; ++i)
    {
@@ -894,9 +928,16 @@ template <class mvClass, class mvConstClass>
 mvIndex mvPointerList<mvClass,mvConstClass>::findItemInList(\
    bool (someFunction)(mvClass, void*), void* extraPtr) const
 {
+#ifdef VISUAL_C_VER_6
+   typename std::vector<mvClass>::const_iterator i;
+   typename std::vector<mvClass>::const_iterator listEnd = listItems.end();   
+#else
    class std::vector<mvClass>::const_iterator i;
-   mvClass currentPtr = MV_NULL;
    class std::vector<mvClass>::const_iterator listEnd = listItems.end();
+#endif
+
+   mvClass currentPtr = MV_NULL;
+
    mvIndex count = MV_FIRST_POINTER_LIST_INDEX;
 
    for (i = listItems.begin(); i != listEnd; ++i)
@@ -917,9 +958,16 @@ template <class mvClass, class mvConstClass>
 mvIndex mvPointerList<mvClass,mvConstClass>::findItemInReverseInList(\
    bool (someFunction)(mvClass, void*), void* extraPtr) const
 {
+#ifdef VISUAL_C_VER_6
+   typename std::vector<mvClass>::const_reverse_iterator i;
+   typename std::vector<mvClass>::const_reverse_iterator listEnd = listItems.rend();
+#else
    class std::vector<mvClass>::const_reverse_iterator i;
-   mvClass currentPtr = MV_NULL;
    class std::vector<mvClass>::const_reverse_iterator listEnd = listItems.rend();
+#endif
+
+   mvClass currentPtr = MV_NULL;
+
    mvIndex count = maxNoOfItems;
 
    for (i = listItems.rbegin(); i != listEnd; ++i)
@@ -943,8 +991,14 @@ template <class mvClass, class mvConstClass>
 void mvPointerList<mvClass,mvConstClass>::applyToAllItemsByItemIndex(\
    void (someFunction)(mvIndex,void*), void* extraPtr)
 {
+#ifdef VISUAL_C_VER_6
+   typename std::vector<mvClass>::iterator i;
+   typename std::vector<mvClass>::iterator listEnd = listItems.end();
+#else
    class std::vector<mvClass>::iterator i;
    class std::vector<mvClass>::iterator listEnd = listItems.end();
+#endif
+
    mvIndex itemIndex = MV_FIRST_POINTER_LIST_INDEX;
 
    for (i = listItems.begin(); i != listEnd; ++i)

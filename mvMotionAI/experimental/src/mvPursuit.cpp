@@ -20,7 +20,6 @@
  * DEALINGS IN THE SOFTWARE.
  */
 #include "mvPursuit.h"
-#include <new>
 
 mvCreatePursuits::mvCreatePursuits()
 {
@@ -33,7 +32,7 @@ mvCreatePursuits::mvCreatePursuits()
   */
 mvBaseAction* mvCreatePursuits::operator()(mvBaseAction* defaultBehav)
 {
-   return new (std::nothrow) mvPursuit();
+   return new mvPursuit();
 }
 
 /** @brief (one liner)
@@ -42,7 +41,7 @@ mvBaseAction* mvCreatePursuits::operator()(mvBaseAction* defaultBehav)
   */
 mvErrorEnum mvPursuit::getParameteri(mvParamEnum param, mvIndex* index) const
 {
-   if (index == NULL)
+   if (index == MV_NULL)
    {
       return MV_INDEX_DEST_IS_NULL;
    }
@@ -110,13 +109,13 @@ mvVec3 mvBehaviour_Calculate_Pursuit(mvBody* currentBody, mvBody* targetBody)
    }
 
    mvConstBodyPtr body = resultModule->getCurrentBodyPtr();
-   if (body == NULL)
+   if (body == MV_NULL)
    {
       return false;
    }
 
    mvConstBodyPtr target = resultModule->fetchBodyPtr(targetObject);
-   if (target == NULL)
+   if (target == MV_NULL)
    {
       return false;
    }

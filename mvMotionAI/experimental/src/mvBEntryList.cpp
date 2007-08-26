@@ -316,7 +316,7 @@ mvIndex mvBEntryList::addNewEntry(mvOptionEnum bType,\
       actionPtr = dBehaviour;
    }
 
-   tempNode = new (std::nothrow) mvBEntryListNode(bType, behaviourIndex,
+   tempNode = new mvBEntryListNode(bType, behaviourIndex,
       groupIndex, actionPtr, bNodeWeight, period, elaspedTime);
 
    if (tempNode == MV_NULL)

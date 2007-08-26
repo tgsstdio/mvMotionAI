@@ -1,5 +1,4 @@
 #include "mvPathway_v2.h"
-#include <new>
 
 bool findNodeByIndexValue(mvPathwayNodePtr* nodePtr, void* extraPtr);
 
@@ -124,7 +123,7 @@ mvIndex mvPathway_V2::addNode(mvIndex pWaypoint)
    if (pWaypoint == MV_NULL)
       return MV_NULL;
 
-   mvPathwayNodePtr tempNode = new (std::nothrow) mvPathwayNode(pWaypoint);
+   mvPathwayNodePtr tempNode = new mvPathwayNode(pWaypoint);
 
    if (tempNode == MV_NULL)
       return MV_NULL;

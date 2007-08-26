@@ -451,7 +451,7 @@ void mvGroupNodeMemberList::insertBeforeCurrentMember(mvIndex memberIndex,\
    }
 
    mvGroupMemberNodePtr tempNode =
-      new (std::nothrow) mvGroupMemberNode(memberIndex, actionPtr);
+      new mvGroupMemberNode(memberIndex, actionPtr);
 
    mbActionDataSet.insert(currentIter,tempNode);
 }

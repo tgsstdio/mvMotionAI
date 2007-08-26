@@ -23,7 +23,6 @@
  */
 
 #include "mvBody_V2.h"
-#include <new>
 
 /** \brief mvBodyV2 constructor
  * This is a rewrite of mvBody
@@ -136,7 +135,7 @@ mvErrorEnum mvBody_V2::setDomain(mvOptionEnum bDomain)
    noOfVariables = getNoOfDomainVariables();
    if (noOfVariables > 0)
    {
-      bodyDomainVariables = new (std::nothrow) mvFloat[noOfVariables];
+      bodyDomainVariables = new mvFloat[noOfVariables];
       if (bodyDomainVariables == MV_NULL)
       {
          return MV_INVALID_MEMORY_ALLOCATION;
