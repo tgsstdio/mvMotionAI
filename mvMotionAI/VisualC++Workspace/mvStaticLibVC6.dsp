@@ -41,7 +41,8 @@ RSC=rc.exe
 # PROP Intermediate_Dir "Release"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
-# ADD CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
+# ADD CPP /nologo /W3 /GX /O2 /I "../include" /I "../experimental/include" /D "NDEBUG" /D "WIN32" /D "_MBCS" /D "_LIB" /D "VISUAL_C_VER_6" /FD /c
+# SUBTRACT CPP /YX
 # ADD BASE RSC /l 0xc09 /d "NDEBUG"
 # ADD RSC /l 0xc09 /d "NDEBUG"
 BSC32=bscmake.exe
@@ -49,7 +50,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo
+# ADD LIB32 /nologo /out:"../lib/libmvMotionAI-vc6.lib"
 
 !ELSEIF  "$(CFG)" == "mvStaticLibVC6 - Win32 Debug"
 
@@ -64,7 +65,7 @@ LIB32=link.exe -lib
 # PROP Intermediate_Dir "Debug"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
-# ADD CPP /nologo /W3 /Gm /GX /ZI /Od /I "../include" /I "../include-other" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /FD /GZ /c
+# ADD CPP /nologo /W3 /Gm /GX /ZI /Od /I "../experimental/include" /I "../include" /D "_DEBUG" /D "WIN32" /D "_MBCS" /D "_LIB" /D "VISUAL_C_VER_6" /FD /GZ /c
 # SUBTRACT CPP /YX
 # ADD BASE RSC /l 0xc09 /d "_DEBUG"
 # ADD RSC /l 0xc09 /d "_DEBUG"
@@ -73,7 +74,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo
+# ADD LIB32 /nologo /out:"../lib/libmvMotionAI-vc6-debug.lib"
 
 !ENDIF 
 
@@ -81,112 +82,12 @@ LIB32=link.exe -lib
 
 # Name "mvStaticLibVC6 - Win32 Release"
 # Name "mvStaticLibVC6 - Win32 Debug"
-# Begin Group "Source Files - src"
+# Begin Group "Source - src folder"
 
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
-SOURCE="..\src\mvBehaviour-Central.cpp"
-# End Source File
-# Begin Source File
-
-SOURCE="..\src\mvBehaviour-Clone.cpp"
-# End Source File
-# Begin Source File
-
-SOURCE="..\src\mvBehaviour-Entry.cpp"
-# End Source File
-# Begin Source File
-
-SOURCE="..\src\mvBehaviour-Flee.cpp"
-# End Source File
-# Begin Source File
-
-SOURCE="..\src\mvBehaviour-List.cpp"
-# End Source File
-# Begin Source File
-
-SOURCE="..\src\mvBehaviour-Pursuit.cpp"
-# End Source File
-# Begin Source File
-
-SOURCE="..\src\mvBehaviour-Seek.cpp"
-# End Source File
-# Begin Source File
-
-SOURCE="..\src\mvBehaviour-SimpleFlock.cpp"
-# End Source File
-# Begin Source File
-
-SOURCE="..\src\mvBehaviour-Type.cpp"
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\mvBehaviour.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\mvBody.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=..\src\mvEnums.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\mvForce.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\mvGroup.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\mvGroupBehaviour.cpp
-# End Source File
-# Begin Source File
-
-SOURCE="..\src\mvLuaScript-Behaviour.cpp"
-# End Source File
-# Begin Source File
-
-SOURCE="..\src\mvLuaScript-Body.cpp"
-# End Source File
-# Begin Source File
-
-SOURCE="..\src\mvLuaScript-Force.cpp"
-# End Source File
-# Begin Source File
-
-SOURCE="..\src\mvLuaScript-Group.cpp"
-# End Source File
-# Begin Source File
-
-SOURCE="..\src\mvLuaScript-GroupBehaviour.cpp"
-# End Source File
-# Begin Source File
-
-SOURCE="..\src\mvLuaScript-Obstacle.cpp"
-# End Source File
-# Begin Source File
-
-SOURCE="..\src\mvLuaScript-Pathway.cpp"
-# End Source File
-# Begin Source File
-
-SOURCE="..\src\mvLuaScript-Utilities.cpp"
-# End Source File
-# Begin Source File
-
-SOURCE="..\src\mvLuaScript-Waypoint.cpp"
-# End Source File
-# Begin Source File
-
-SOURCE="..\src\mvLuaScript-World.cpp"
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\mvLuaScript.cpp
 # End Source File
 # Begin Source File
 
@@ -194,31 +95,7 @@ SOURCE="..\src\mvMotionAI-Utilities.cpp"
 # End Source File
 # Begin Source File
 
-SOURCE=..\src\mvMotionAI.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\mvObstacle.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\mvPathway.cpp
-# End Source File
-# Begin Source File
-
-SOURCE="..\src\mvScript-Utilities.cpp"
-# End Source File
-# Begin Source File
-
 SOURCE=..\src\mvVec3.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\mvWaypoint.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\src\mvWorld.cpp
 # End Source File
 # End Group
 # Begin Group "Headers - include folder"
@@ -226,107 +103,7 @@ SOURCE=..\src\mvWorld.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE="..\include\mvBehaviour-Central.h"
-# End Source File
-# Begin Source File
-
-SOURCE="..\include\mvBehaviour-Clone.h"
-# End Source File
-# Begin Source File
-
-SOURCE="..\include\mvBehaviour-Entry.h"
-# End Source File
-# Begin Source File
-
-SOURCE="..\include\mvBehaviour-Flee.h"
-# End Source File
-# Begin Source File
-
-SOURCE="..\include\mvBehaviour-List.h"
-# End Source File
-# Begin Source File
-
-SOURCE="..\include\mvBehaviour-Pursuit.h"
-# End Source File
-# Begin Source File
-
-SOURCE="..\include\mvBehaviour-Seek.h"
-# End Source File
-# Begin Source File
-
-SOURCE="..\include\mvBehaviour-SimpleFlock.h"
-# End Source File
-# Begin Source File
-
-SOURCE="..\include\mvBehaviour-Type.h"
-# End Source File
-# Begin Source File
-
-SOURCE=..\include\mvBehaviour.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\include\mvBody.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\include\mvEnums.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\include\mvForce.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\include\mvGroup.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\include\mvGroupBehaviour.h
-# End Source File
-# Begin Source File
-
-SOURCE="..\include\mvLuaScript-Behaviour.h"
-# End Source File
-# Begin Source File
-
-SOURCE="..\include\mvLuaScript-Body.h"
-# End Source File
-# Begin Source File
-
-SOURCE="..\include\mvLuaScript-Force.h"
-# End Source File
-# Begin Source File
-
-SOURCE="..\include\mvLuaScript-Group.h"
-# End Source File
-# Begin Source File
-
-SOURCE="..\include\mvLuaScript-GroupBehaviour.h"
-# End Source File
-# Begin Source File
-
-SOURCE="..\include\mvLuaScript-Obstacle.h"
-# End Source File
-# Begin Source File
-
-SOURCE="..\include\mvLuaScript-Pathway.h"
-# End Source File
-# Begin Source File
-
-SOURCE="..\include\mvLuaScript-Utilities.h"
-# End Source File
-# Begin Source File
-
-SOURCE="..\include\mvLuaScript-Waypoint.h"
-# End Source File
-# Begin Source File
-
-SOURCE="..\include\mvLuaScript-World.h"
-# End Source File
-# Begin Source File
-
-SOURCE=..\include\mvLuaScript.h
 # End Source File
 # Begin Source File
 
@@ -338,95 +115,351 @@ SOURCE="..\include\mvMotionAI-Utilities.h"
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvMotionAI.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\include\mvObstacle.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\include\mvPathway.h
-# End Source File
-# Begin Source File
-
-SOURCE="..\include\mvScript-Utilities.h"
-# End Source File
-# Begin Source File
-
-SOURCE=..\include\mvTarget.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\include\mvVec3.h
 # End Source File
-# Begin Source File
-
-SOURCE=..\include\mvWaypoint.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\include\mvWorld.h
-# End Source File
 # End Group
-# Begin Group "Headers - Experimental"
+# Begin Group "Headers - experimental/include"
 
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\experimental\include\mvBaseBehaviour.h
-
-!IF  "$(CFG)" == "mvStaticLibVC6 - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "mvStaticLibVC6 - Win32 Debug"
-
-# PROP Exclude_From_Build 1
-
-!ENDIF 
-
+SOURCE=..\experimental\include\mvActionLoaderList.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\experimental\include\mvGlobalFunctions.h
-
-!IF  "$(CFG)" == "mvStaticLibVC6 - Win32 Release"
-
-!ELSEIF  "$(CFG)" == "mvStaticLibVC6 - Win32 Debug"
-
-# PROP Exclude_From_Build 1
-
-!ENDIF 
-
+SOURCE=..\experimental\include\mvBehaviour_V2.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\experimental\include\mvList.h
+SOURCE=..\experimental\include\mvBehaviourResult.h
+# End Source File
+# Begin Source File
 
-!IF  "$(CFG)" == "mvStaticLibVC6 - Win32 Release"
+SOURCE=..\experimental\include\mvBody_V2.h
+# End Source File
+# Begin Source File
 
-!ELSEIF  "$(CFG)" == "mvStaticLibVC6 - Win32 Debug"
+SOURCE=..\experimental\include\mvBodyCapsule.h
+# End Source File
+# Begin Source File
 
-# PROP Exclude_From_Build 1
+SOURCE=..\experimental\include\mvCapsuleList.h
+# End Source File
+# Begin Source File
 
-!ENDIF 
+SOURCE=..\experimental\include\mvCapsuleList.hpp
+# End Source File
+# Begin Source File
 
+SOURCE=..\experimental\include\mvFactoryFunctionList.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvFactoryFunctionList.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvForceCapsule.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvForceLoaderList.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvGBNodeMemberList.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvGroup_V2.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvGroupBehaviour_V2.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvGroupBNode_V2.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvGroupCapsule.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvIndexSet.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvMotionAI.h
+# End Source File
+# Begin Source File
+
+SOURCE="..\experimental\include\mvMotionAI_V2-Central.h"
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvObstacle_V2.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvPathway_V2.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvPointerList.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvPointerList.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvShape.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvWaypoint_V2.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvWaypointCapsule.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvWorld2.h
 # End Source File
 # End Group
-# Begin Group "Source - Experimental"
+# Begin Group "Source - experimental/src"
 
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\experimental\src\mvBaseBehaviour.cpp
+SOURCE=..\experimental\src\mvBehaviour_V2.cpp
+# End Source File
+# Begin Source File
 
-!IF  "$(CFG)" == "mvStaticLibVC6 - Win32 Release"
+SOURCE=..\experimental\src\mvBehaviourResult.cpp
+# End Source File
+# Begin Source File
 
-!ELSEIF  "$(CFG)" == "mvStaticLibVC6 - Win32 Debug"
+SOURCE=..\experimental\src\mvBody_V2.cpp
+# End Source File
+# Begin Source File
 
-# PROP Exclude_From_Build 1
+SOURCE=..\experimental\src\mvBodyCapsule.cpp
+# End Source File
+# Begin Source File
 
-!ENDIF 
+SOURCE=..\experimental\src\mvForceCapsule.cpp
+# End Source File
+# Begin Source File
 
+SOURCE=..\experimental\src\mvGroup_V2.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvGroupBehaviour_V2.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvGroupBNode_V2.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvGroupCapsule.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvIndexSet.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvMotionAI.cpp
+# End Source File
+# Begin Source File
+
+SOURCE="..\experimental\src\mvMotionAI_V2-Central.cpp"
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvObstacle_V2.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvPathway_V2.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvShape.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvWaypoint_V2.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvWaypointCapsule.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvWorld2.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvWorld2_Functions.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvWorld2_Functions.h
+# End Source File
+# End Group
+# Begin Group "mvBaseForces"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\experimental\src\mvBaseForce.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvBaseForce.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvForceResult.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvForceResult.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvGravityForce.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvGravityForce.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvUniformAccelForce.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvUniformAccelForce.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvUniformForce.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvUniformForce.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvUniformShiftForce.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvUniformShiftForce.h
+# End Source File
+# End Group
+# Begin Group "mvBaseActions"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\experimental\src\mvBaseAction.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvBaseAction.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvFlee.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvFlee.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvGroupBehaviourResult.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvGroupBehaviourResult.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvNullLoader.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvNullLoader.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvPursuit.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvPursuit.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvSeek.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvSeek.h
+# End Source File
+# End Group
+# Begin Group "mvEntryList"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=..\experimental\src\mvBEntry.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvBEntry.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvBEntryList.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvBEntryList.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvBEntryListNode.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvBEntryListNode.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvBEntryTimer.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvBEntryTimer.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\src\mvBEntryUtility.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=..\experimental\include\mvBEntryUtility.h
 # End Source File
 # End Group
 # End Target

@@ -25,7 +25,7 @@ mvBEntryListNode::mvBEntryListNode(mvOptionEnum type, mvIndex behaviourIndex,\
    mvIndex groupIndex, mvBaseActionPtr actionPtr, mvFloat bNodeWeight,\
    mvFloat period, mvFloat elaspedTime)
  {
-   behaviourEntry = new (std::nothrow) mvBEntry(type, behaviourIndex,\
+   behaviourEntry = new mvBEntry(type, behaviourIndex,\
       groupIndex, actionPtr);
 
    entryFlags.getTimerPtr()->setPeriod(period);

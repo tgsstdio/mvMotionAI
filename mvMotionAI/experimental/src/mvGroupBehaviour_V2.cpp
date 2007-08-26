@@ -1,6 +1,4 @@
 #include "mvGroupBehaviour_V2.h"
-#include "mvMotionAI_V2-Central.h"
-#include <new>
 
 bool findGroupNodeByIndex(mvGroupBNode_V2* groupNodePtr, void* extraPtr)
 {
@@ -68,7 +66,7 @@ mvErrorEnum mvGroupBehaviour_V2::addGroup(mvIndex groupNo, mvBaseActionPtr
       return MV_UNIQUE_ITEM_ALREADY_IN_LIST;
    }
 
-   groupNodePtr = new (std::nothrow) mvGroupBNode_V2(behavPtr,groupIndex);
+   groupNodePtr = new mvGroupBNode_V2(behavPtr,groupIndex);
 
    if (groupNodePtr == MV_NULL)
    {

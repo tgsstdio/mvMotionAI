@@ -1,6 +1,5 @@
 #include "mvMotionAI_V2-Central.h"
 #include <cstring>
-#include <new>
 
 /**
  * default behaviours/actions
@@ -110,7 +109,7 @@ mvIndex mvMotionAI_V2::createWorld(const char* worldID)
       return MV_NULL;
    }
 
-   temp = new (std::nothrow) mvWorld(worldID);
+   temp = new mvWorld(worldID);
    puts(temp->getID());
 
    if (temp == MV_NULL)
@@ -207,7 +206,7 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(mvActionLoaderListPtr
    // adding nullLoaders to protected enums such as
    // enum 1
    tempLoader = MV_NULL;
-   tempLoader = new (std::nothrow) mvNullLoader();
+   tempLoader = new mvNullLoader();
    // check for memory errors
    if (tempLoader == MV_NULL)
    {
@@ -223,7 +222,7 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(mvActionLoaderListPtr
 
    // enum 2
    tempLoader = MV_NULL;
-   tempLoader = new (std::nothrow) mvNullLoader();
+   tempLoader = new mvNullLoader();
    // check for memory errors
    if (tempLoader == MV_NULL)
    {
@@ -239,7 +238,7 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(mvActionLoaderListPtr
 
    // enum 3
    tempLoader = MV_NULL;
-   tempLoader = new (std::nothrow) mvNullLoader();
+   tempLoader = new mvNullLoader();
    // check for memory errors
    if (tempLoader == MV_NULL)
    {
@@ -255,7 +254,7 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(mvActionLoaderListPtr
 
    // enum 4 seek
    tempLoader = MV_NULL;
-   tempLoader = new (std::nothrow) mvCreateSeeks();
+   tempLoader = new mvCreateSeeks();
    // check for memory errors
    if (tempLoader == MV_NULL)
    {
@@ -271,7 +270,7 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(mvActionLoaderListPtr
 
    // enum 5 pursuit
    tempLoader = MV_NULL;
-   tempLoader = new (std::nothrow) mvCreatePursuits();
+   tempLoader = new mvCreatePursuits();
    // check for memory errors
    if (tempLoader == MV_NULL)
    {
@@ -287,7 +286,7 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(mvActionLoaderListPtr
 
    // enum 6 seek
    tempLoader = MV_NULL;
-   tempLoader = new (std::nothrow) mvCreateFlees();
+   tempLoader = new mvCreateFlees();
    // check for memory errors
    if (tempLoader == MV_NULL)
    {
@@ -318,7 +317,7 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTFORCES(mvForceLoaderListPtr
    }
 
    tempLoader = MV_NULL;
-   tempLoader = new (std::nothrow) mvGravityForceLoader();
+   tempLoader = new mvGravityForceLoader();
    error = loader->addFactoryFunction(MV_GRAVITY,\
       tempLoader);
    if (error != MV_NO_ERROR)
@@ -328,7 +327,7 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTFORCES(mvForceLoaderListPtr
    }
 
    tempLoader = MV_NULL;
-   tempLoader = new (std::nothrow) mvUniformForceLoader();
+   tempLoader = new mvUniformForceLoader();
    error = loader->addFactoryFunction(MV_UNIFORM_FORCE,\
       tempLoader);
    if (error != MV_NO_ERROR)
@@ -338,7 +337,7 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTFORCES(mvForceLoaderListPtr
    }
 
    tempLoader = MV_NULL;
-   tempLoader = new (std::nothrow) mvUniformAccelForceLoader();
+   tempLoader = new mvUniformAccelForceLoader();
    error = loader->addFactoryFunction(MV_UNIFORM_ACCELERATION,\
       tempLoader);
    if (error != MV_NO_ERROR)
@@ -348,7 +347,7 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTFORCES(mvForceLoaderListPtr
    }
 
    tempLoader = MV_NULL;
-   tempLoader = new (std::nothrow) mvUniformShiftForceLoader();
+   tempLoader = new mvUniformShiftForceLoader();
    error = loader->addFactoryFunction(MV_UNIFORM_SHIFT,\
       tempLoader);
    if (error != MV_NO_ERROR)

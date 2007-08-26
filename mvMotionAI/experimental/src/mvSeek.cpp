@@ -20,7 +20,6 @@
  * DEALINGS IN THE SOFTWARE.
  */
 #include "mvSeek.h"
-#include <new>
 
 mvSeek::mvSeek() : mvBaseAction(MV_SEEK),
    length(0),  waypointIndex(MV_NULL)
@@ -58,7 +57,7 @@ bool mvSeek::bodyOp(mvBehaviourResultPtr resultModule)
    mvVec3 pos, direction, velocity;
 
    // 1. check if input/output class pointer is valid
-   if (resultModule == NULL)
+   if (resultModule == MV_NULL)
    {
       // 1.a exit here & apply no operation
       return false;
@@ -200,5 +199,5 @@ mvCreateSeeks::mvCreateSeeks()
 
 mvBaseAction* mvCreateSeeks::operator()(mvBaseAction* defaultBehav)
 {
-   return new (std::nothrow) mvSeek();
+   return new mvSeek();
 }

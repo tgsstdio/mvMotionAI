@@ -148,29 +148,68 @@ template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCa
 mvClass mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::findItemPtrInList(\
    bool (someFunction)(mvClass, void*), void* extraPtr) const
 {
+#ifdef VISUAL_C_VER_6
+   typename mvConverter<mvClass> loopConversion(someFunction, extraPtr);
+#else
    class mvConverter<mvClass> loopConversion(someFunction, extraPtr);
+#endif 
 
    return itemList.findItemPtrInList(\
-      CapsuledConverterFunction<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>, loopConversion);
+      CapsuledConverterFunction<mvClass,mvConstClass>, loopConversion);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
 mvIndex mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::findItemInList(\
    bool (someFunction)(mvClass, void*), void* extraPtr) const
 {
+#ifdef VISUAL_C_VER_6
+   typename mvConverter<mvClass> loopConversion(someFunction, extraPtr);
+#else
    class mvConverter<mvClass> loopConversion(someFunction, extraPtr);
+#endif 
 
    return itemList.findItemInList(\
-      CapsuledConverterFunction<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>, loopConversion);
+      CapsuledConverterFunction<mvClass,mvConstClass>, loopConversion);
 }
+
+#ifdef VISUAL_C_VER_6
+template <typename mvClass, typename mvCapsulePtr>
+void CapsuledConverterFunction_VC6(mvCapsulePtr itemPtr, void* extraPtr)
+{
+   mvConverter<mvClass>* converter = (mvConverter<mvClass>*) extraPtr;
+
+   if (itemPtr != MV_NULL && converter != MV_NULL)
+   {
+      converter->someFunction(itemPtr->getClassPtr(), converter->extraPtr);
+   }
+}
+#endif
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
 void mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::applyToAllItems(\
    void (someFunction)(mvClass, void*), void* extraPtr)
 {
-   class mvConverter<mvClass> loopConversion(someFunction, extraPtr);
+#ifdef VISUAL_C_VER_6
+   // rewrite function - no argument passing of function template instance in VC6
+   typename std::vector<mvCapsulePtr>::iterator i;
+   typename std::vector<mvCapsulePtr>::iterator listEnd = itemList.listItems.end();
 
+   mvCapsulePtr tempClass = MV_NULL;
+
+   for (i = itemList.listItems.begin(); i != listEnd; ++i)
+   {
+      tempClass = *i;
+
+      if (tempClass != MV_NULL && tempClass->getClassPtr() != MV_NULL)
+      {
+         someFunction(tempClass->getClassPtr(),extraPtr);
+      }
+   }
+
+#else
+   class mvConverter<mvClass> loopConversion(someFunction, extraPtr);
    itemList.applyToAllItems(CapsuledConverterFunction<mvClass,mvCapsulePtr>,&loopConversion);
+#endif
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
@@ -178,7 +217,7 @@ void mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::applyT
    mvIndex worldIndex, void (someFunction)(mvIndex, mvIndex, void*),\
    void* extraPtr)
 {
-   return itemList.applyToAllItemsByIndex(worldIndex, someFunction, extraPtr);
+   itemList.applyToAllItemsByIndex(worldIndex, someFunction, extraPtr);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>

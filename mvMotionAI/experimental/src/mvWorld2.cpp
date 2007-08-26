@@ -26,7 +26,6 @@
 #endif
 
 #include <cstring>
-#include <new>
 #include MV_BEHAVIOUR_RESULT_HEADER_FILE_H_
 #include "mvWorld2_Functions.h"
 #include <iostream>
@@ -242,7 +241,7 @@ mvIndex mvWorld_V2::createForce(mvOptionEnum fType)
    if (temp == MV_NULL)
       return MV_NULL;
 
-   mvForceCapsulePtr tempCapsule = new (std::nothrow) mvForceCapsule(temp);
+   mvForceCapsulePtr tempCapsule = new mvForceCapsule(temp);
 
    if (tempCapsule == MV_NULL)
       return MV_NULL;
@@ -518,7 +517,7 @@ mvIndex mvWorld_V2::createGroupBehaviour(mvOptionEnum type)
    if (temp == MV_NULL)
       return MV_NULL;
 
-   mvGroupBehaviourPtr tempGBehav = new (std::nothrow) mvGroupBehaviour(temp);
+   mvGroupBehaviourPtr tempGBehav = new mvGroupBehaviour(temp);
    if (tempGBehav== MV_NULL)
       return MV_NULL;
 
@@ -652,7 +651,7 @@ mvErrorEnum mvWorld_V2::setGroupParameter(mvIndex index,\
 void mvWorld_V2::applyToAllGroupsByIndex(mvIndex worldIndex,\
    void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr)
 {
-   return groups.applyToAllItemsByIndex(worldIndex, someFunction, extraPtr);
+   groups.applyToAllItemsByIndex(worldIndex, someFunction, extraPtr);
 }
 
 /** @brief (one liner)
@@ -662,7 +661,7 @@ void mvWorld_V2::applyToAllGroupsByIndex(mvIndex worldIndex,\
 void mvWorld_V2::applyToAllGroups(void (someFunction)(mvGroup*, void*),\
    void* extraPtr)
 {
-   return groups.applyToAllItems(someFunction, extraPtr);
+   groups.applyToAllItems(someFunction, extraPtr);
 }
 
 /** @brief (one liner)
@@ -728,14 +727,14 @@ mvIndex mvWorld_V2::createGroup(const char* groupID)
    mvGroupPtr temp = MV_NULL;
    mvGroupCapsulePtr tempCapsule = NULL;
 
-   temp = new (std::nothrow) mvGroup();
+   temp = new mvGroup();
 
    if (temp == MV_NULL)
    {
       return MV_NULL;
    }
 
-   tempCapsule = new (std::nothrow) mvGroupCapsule(temp);
+   tempCapsule = new mvGroupCapsule(temp);
    if (tempCapsule == MV_NULL)
    {
       return MV_NULL;
@@ -861,7 +860,7 @@ mvErrorEnum mvWorld_V2::setBehaviourParameter(mvIndex index,\
 void mvWorld_V2::applyToAllBehavioursByIndex(mvIndex worldIndex,\
    void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr)
 {
-   return behaviours.applyToAllItemsByIndex(worldIndex, someFunction, extraPtr);
+   behaviours.applyToAllItemsByIndex(worldIndex, someFunction, extraPtr);
 }
 
 /** @brief (one liner)
@@ -871,7 +870,7 @@ void mvWorld_V2::applyToAllBehavioursByIndex(mvIndex worldIndex,\
 void mvWorld_V2::applyToAllBehaviours(void (someFunction)(mvBehaviour_V2*, void*),\
    void* extraPtr)
 {
-   return behaviours.applyToAllItems(someFunction, extraPtr);
+   behaviours.applyToAllItems(someFunction, extraPtr);
 }
 
 /** @brief (one liner)
@@ -946,7 +945,7 @@ mvIndex mvWorld_V2::createBehaviour(mvOptionEnum bType)
       return MV_NULL;
    }
 
-   mvBehaviourPtr temp = new (std::nothrow) mvBehaviour_V2(tempBehav);
+   mvBehaviourPtr temp = new mvBehaviour_V2(tempBehav);
    if (temp == MV_NULL)
    {
       return MV_NULL;
@@ -1157,7 +1156,7 @@ mvPathway * mvWorld_V2::getPathwayPtr(mvIndex index)
   */
 mvIndex mvWorld_V2::createPathway()
 {
-   mvPathwayPtr temp = new (std::nothrow) mvPathway();
+   mvPathwayPtr temp = new mvPathway();
 
    return pathways.addItem(temp);
 }
@@ -1363,16 +1362,14 @@ mvWaypointPtr mvWorld_V2::getWaypointPtr(mvIndex index)
 mvIndex mvWorld_V2::createWaypoint(mvOptionEnum wShape, mvFloat x = 0,\
    mvFloat y = 0, mvFloat z = 0)
 {
-   mvWaypointPtr tempWaypointPtr = new (std::nothrow)\
-      mvWaypoint(wShape, x, y, z);
+   mvWaypointPtr tempWaypointPtr = new mvWaypoint(wShape, x, y, z);
 
    if (tempWaypointPtr == MV_NULL)
    {
       return MV_NULL;
    }
 
-   mvWaypointCapsulePtr capsulePtr = new (std::nothrow)\
-      mvWaypointCapsule(tempWaypointPtr);
+   mvWaypointCapsulePtr capsulePtr = new mvWaypointCapsule(tempWaypointPtr);
 
    if (capsulePtr == MV_NULL)
    {
@@ -1583,7 +1580,7 @@ mvObstaclePtr mvWorld_V2::getObstaclePtr(mvIndex index)
 mvIndex mvWorld_V2::createObstacle(mvOptionEnum oType, mvOptionEnum oState,\
    mvFloat x = 0, mvFloat y = 0, mvFloat z = 0)
 {
-   mvObstaclePtr temp = new (std::nothrow) mvObstacle(oType, oState, x, y, z);
+   mvObstaclePtr temp = new mvObstacle(oType, oState, x, y, z);
 
    if (temp == MV_NULL)
    {
@@ -1798,20 +1795,20 @@ mvBodyPtr mvWorld_V2::getBodyPtr(mvIndex index)
 mvIndex mvWorld_V2::createBody(mvOptionEnum bType, mvOptionEnum bShape,\
    mvFloat x = 0, mvFloat y  = 0, mvFloat z = 0)
 {
-   mvBodyPtr tempBody = new (std::nothrow) mvBody(bType, bShape,x,y,z);
+   mvBodyPtr tempBody = new mvBody(bType, bShape,x,y,z);
    // TODO : new bodies created by body loader
    if (tempBody == MV_NULL)
    {
       return MV_NULL;
    }
 
-   mvBodyCapsulePtr bCapsulePtr = new (std::nothrow) mvBodyCapsule(tempBody);
+   mvBodyCapsulePtr bCapsulePtr = new mvBodyCapsule(tempBody);
    if (bCapsulePtr == MV_NULL)
    {
       return MV_NULL;
    }
 
-   mvEntryListPtr tempList = new (std::nothrow) mvEntryList();
+   mvEntryListPtr tempList = new mvEntryList();
    if (tempList == MV_NULL)
    {
       return MV_NULL;
@@ -4058,10 +4055,13 @@ void mvWorld_V2::applyToAllEntryLists(void (someFunction)(mvEntryListPtr, void*)
 mvErrorEnum mvWorld_V2::setUserData(mvParamEnum objectType,\
    mvIndex objectIndex, void* userData)
 {
+   mvBaseForcePtr possibleForce = NULL;
+   mvBodyPtr possibleBodyPtr = NULL;
+
    switch(objectType)
    {
       case MV_FORCE:
-         mvBaseForcePtr possibleForce = getForcePtr(objectIndex);
+         possibleForce = getForcePtr(objectIndex);
          if (possibleForce == MV_NULL)
          {
             return MV_FORCE_INDEX_IS_INVALID;
@@ -4069,7 +4069,7 @@ mvErrorEnum mvWorld_V2::setUserData(mvParamEnum objectType,\
          possibleForce->setUserData(userData);
          return MV_NO_ERROR;
       case MV_BODY:
-         mvBodyPtr possibleBodyPtr  = getBodyPtr(objectIndex);
+         possibleBodyPtr  = getBodyPtr(objectIndex);
          if (possibleBodyPtr == MV_NULL)
          {
             return MV_BODY_INDEX_IS_INVALID;
@@ -4084,10 +4084,12 @@ mvErrorEnum mvWorld_V2::setUserData(mvParamEnum objectType,\
 
 void* mvWorld_V2::getUserData(mvParamEnum objectType, mvIndex objectIndex) const
 {
+   mvConstBodyPtr possibleBodyPtr = getConstBodyPtr(objectIndex);
+   mvConstBaseForcePtr possibleForcePtr = getConstForcePtr(objectIndex);
+
    switch(objectType)
    {
       case MV_BODY:
-         mvConstBodyPtr possibleBodyPtr = getConstBodyPtr(objectIndex);
          if (possibleBodyPtr == MV_NULL)
          {
             return MV_NULL;
@@ -4097,7 +4099,6 @@ void* mvWorld_V2::getUserData(mvParamEnum objectType, mvIndex objectIndex) const
             return possibleBodyPtr->getUserData();
          }
       case MV_FORCE:
-         mvConstBaseForcePtr possibleForcePtr = getConstForcePtr(objectIndex);
          if (possibleForcePtr == MV_NULL)
          {
             return MV_NULL;

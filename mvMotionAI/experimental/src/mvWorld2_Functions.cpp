@@ -356,12 +356,18 @@ mvBaseActionPtr mvWorld_V2_InitialiseResults(mvBEntryPtr nodeInfo, mvIndex bodyI
    mvIndex behaviourIndex = nodeInfo->getBehaviour();
    mvIndex groupIndex = nodeInfo->getGroup();
 
+   mvConstGroupBehaviourPtr globalGrpBehav =\
+      currentWorld->getConstGroupBehaviourPtr(behaviourIndex);
+   mvConstBehaviourPtr globalBehav =\
+      currentWorld->getConstBehaviourPtr(behaviourIndex);
+   mvGroupMemberNodePtr memberNodePtr = NULL;
+   mvGroupBehaviourNodePtr groupNodePtr = NULL;
+   mvConstGroupPtr checkGroupPtr =\
+      currentWorld->getConstGroupPtr(groupIndex);
+
    switch(nodeType)
    {
       case MV_EXISTING_BEHAVIOUR:
-         mvConstBehaviourPtr globalBehav =\
-            currentWorld->getConstBehaviourPtr(behaviourIndex);
-
          // exit if behaviour does not exist
          if (globalBehav == MV_NULL || !globalBehav->isEnabled())
          {
@@ -372,17 +378,11 @@ mvBaseActionPtr mvWorld_V2_InitialiseResults(mvBEntryPtr nodeInfo, mvIndex bodyI
          currentAction = globalBehav->getActionPtr();
          break;
       case MV_EXISTING_GROUP_BEHAVIOUR:
-         mvConstGroupBehaviourPtr globalGrpBehav =\
-            currentWorld->getConstGroupBehaviourPtr(behaviourIndex);
-
          // exit if behaviour does not exist
          if (globalGrpBehav == MV_NULL || !globalGrpBehav->isEnabled)
          {
             return MV_NULL;
          }
-
-         mvConstGroupPtr checkGroupPtr =\
-            currentWorld->getConstGroupPtr(groupIndex);
 
          // exit if group does not exist
          if (checkGroupPtr == MV_NULL || !checkGroupPtr->isEnabled)
@@ -391,8 +391,7 @@ mvBaseActionPtr mvWorld_V2_InitialiseResults(mvBEntryPtr nodeInfo, mvIndex bodyI
          }
 
          // check if group is linked to group behaviour
-         mvGroupBehaviourNodePtr groupNodePtr =\
-            globalGrpBehav->findGroupNode(groupIndex);
+         groupNodePtr = globalGrpBehav->findGroupNode(groupIndex);
 
          if (groupNodePtr == MV_NULL || !groupNodePtr->isEnabled)
          {
@@ -406,7 +405,7 @@ mvBaseActionPtr mvWorld_V2_InitialiseResults(mvBEntryPtr nodeInfo, mvIndex bodyI
          }
 
          // find member node and action
-         mvGroupMemberNodePtr memberNodePtr = groupNodePtr->findMemberInNode(\
+         memberNodePtr = groupNodePtr->findMemberInNode(\
             bodyIndex);
 
          if (memberNodePtr == MV_NULL)

@@ -1,5 +1,4 @@
 #include "mvUniformForce.h"
-#include <new>
 
 mvUniformForce::mvUniformForce()
    : mvBaseForce(MV_UNIFORM_FORCE),
@@ -39,5 +38,5 @@ mvUniformForceLoader::mvUniformForceLoader()
 
 mvBaseForcePtr mvUniformForceLoader::operator()(void* extraPtr)
 {
-   return new (std::nothrow) mvUniformForce();
+   return new mvUniformForce();
 }

@@ -1,5 +1,4 @@
 #include "mvGravityForce.h"
-#include <new>
 
 mvGravityForce::mvGravityForce()
   : mvBaseForce(MV_GRAVITY),
@@ -39,5 +38,5 @@ mvGravityForceLoader::mvGravityForceLoader() : mvBaseForceLoader()
 mvBaseForcePtr mvGravityForceLoader::operator()(\
    void* extraPtr)
 {
-   return new (std::nothrow) mvGravityForce();
+   return new mvGravityForce();
 }
