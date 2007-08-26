@@ -16,14 +16,8 @@
 
 1164422138 I.h"
 
-1173594288 d:\mvmotionai\mvmotionai\include\mvmotionai.h
-	<cstdlib>
-	<vector>
-	"mvWorld.h"
+1188016098 d:\mvmotionai\mvmotionai\include\mvmotionai.h
 	"mvMotionAI-Types.h"
-	<lua.h>
-	<lualib.h>
-	<lauxlib.h>
 
 1173594238 d:\mvmotionai\mvmotionai\include\mvworld.h
 	"mvMotionAI-Types.h"
