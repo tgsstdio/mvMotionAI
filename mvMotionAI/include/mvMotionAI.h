@@ -49,7 +49,7 @@
 #include MV_ACTION_LOADER_LIST_HEADER_FILE_H_
 #include MV_FORCE_LOADER_LIST_HEADER_FILE_H_
 
-#ifdef BUILD_DLL
+#ifdef MV_BUILD_DLL
 #define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
 #else
 #define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)

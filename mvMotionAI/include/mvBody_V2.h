@@ -41,7 +41,14 @@
  * - motion and rotation independant
  */
 
-class mvBody_V2
+// DLL library function
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
+class MV_GLOBAL_FUNC_PREFIX mvBody_V2
 {
    private:
       // position in 3D world

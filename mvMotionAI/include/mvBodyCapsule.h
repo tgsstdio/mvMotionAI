@@ -30,8 +30,13 @@
 
 #include MV_BODY_HEADER_FILE_H_
 
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
 
-class mvBodyCapsule
+class MV_GLOBAL_FUNC_PREFIX mvBodyCapsule
 {
    protected:
       mvBodyPtr encapsulatedBody;

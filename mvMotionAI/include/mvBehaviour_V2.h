@@ -26,12 +26,18 @@
 #include "mvBaseAction.h"
 #include MV_ENUMS_HEADER_FILE_H_
 
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
 /**
  * \class mvBehaviour
  * \brief a global behaviour that all bodies can use.
  */
 
-class mvBehaviour_V2
+class MV_GLOBAL_FUNC_PREFIX mvBehaviour_V2
 {
    private:
       bool behavEnabled;

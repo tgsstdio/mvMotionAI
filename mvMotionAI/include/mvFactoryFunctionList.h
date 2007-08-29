@@ -30,9 +30,15 @@
 #include <map>
 #include MV_ENUMS_HEADER_FILE_H_
 
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
 // derived template
 template <class mvClassFactory, class mvClass, class mvParamClass>
-class mvFactoryFunctionList
+class MV_GLOBAL_FUNC_PREFIX mvFactoryFunctionList
 {
    private:
       mvCount noOfValidFunctions;

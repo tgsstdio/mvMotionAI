@@ -31,7 +31,13 @@
 #include MV_WORLD_HEADER_FILE_H_
 #include MV_GROUP_BEHAVIOUR_NODE_HEADER_FILE_H_
 
-class mvGroupBehaviourResult
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
+class MV_GLOBAL_FUNC_PREFIX mvGroupBehaviourResult
 {
    public:
       mvWorldPtr world;

@@ -65,7 +65,14 @@ static const mvCount MV_VEC3_NO_OF_COMPONENTS = 3;
  * this class contains an array of mvFloat (or floating variables) which are
  * used to store details such as position, velocity and force in 3D space.
  */
-class mvVec3
+
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
+class MV_GLOBAL_FUNC_PREFIX mvVec3
 {
    private:
       mvFloat components[MV_VEC3_NO_OF_COMPONENTS]; /*!< mvFloat array */

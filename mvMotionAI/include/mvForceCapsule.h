@@ -32,7 +32,13 @@
 #include MV_BASE_FORCE_HEADER_FILE_H_
 #include MV_INDEX_SET_HEADER_FILE_H_
 
-class mvForceCapsule
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
+class MV_GLOBAL_FUNC_PREFIX mvForceCapsule
 {
    private:
       mvBaseForcePtr encappedForce;

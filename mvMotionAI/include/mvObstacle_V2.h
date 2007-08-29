@@ -32,7 +32,13 @@
 #include MV_SHAPE_HEADER_FILE_H_
 #include MV_VEC_3_HEADER_FILE_H_
 
-class mvObstacle_V2
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
+class MV_GLOBAL_FUNC_PREFIX mvObstacle_V2
 {
    private:
       mvShape obShape;

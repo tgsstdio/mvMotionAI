@@ -38,7 +38,13 @@
 #include MV_BEHAVIOUR_RESULT_HEADER_FILE_H_
 #include MV_GROUP_BEHAVIOUR_RESULT_HEADER_FILE_H_
 
-class mvBaseAction
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
+class MV_GLOBAL_FUNC_PREFIX mvBaseAction
 {
    private:
       mvOptionEnum bType;
@@ -80,7 +86,7 @@ class mvBaseAction
       virtual ~mvBaseAction();
 };
 
-class mvBaseActionLoader
+class MV_GLOBAL_FUNC_PREFIX mvBaseActionLoader
 {
    public:
       virtual mvBaseActionPtr operator()(\

@@ -30,7 +30,13 @@
 #include MV_GROUP_HEADER_FILE_H_
 #include MV_ENUMS_HEADER_FILE_H_
 
-class mvGroupCapsule
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
+class MV_GLOBAL_FUNC_PREFIX mvGroupCapsule
 {
    private:
       mvGroupPtr encapsuledGroup;

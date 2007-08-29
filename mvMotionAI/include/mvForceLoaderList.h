@@ -26,7 +26,13 @@
 #include MV_BASE_FORCE_HEADER_FILE_H_
 #include "mvFactoryFunctionList.h"
 
-typedef class mvFactoryFunctionList<mvBaseForceLoader,mvBaseForce,\
-   void*> mvForceLoaderList;
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
+typedef class MV_GLOBAL_FUNC_PREFIX mvFactoryFunctionList<mvBaseForceLoader,\
+   mvBaseForce, void*> mvForceLoaderList;
 
 #endif // MVFORCELOADERLIST_H_INCLUDED

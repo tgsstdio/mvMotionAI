@@ -50,7 +50,14 @@
 #include MV_FORCE_CAPSULE_HEADER_FILE
 #include MV_BEHAVIOUR_LIST_HEADER_FILE_H_
 
-class mvWorld_V2
+// DLL library function
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
+class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
 {
    private:
       mvPointerList<mvEntryListPtr, mvConstEntryListPtr> entryLists;
