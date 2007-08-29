@@ -31,7 +31,13 @@
 #include MV_BASE_ACTION_HEADER_FILE_H_
 #include <list>
 
-class mvGroupMemberNode
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
+class MV_GLOBAL_FUNC_PREFIX mvGroupMemberNode
 {
    public:
       mvIndex memberIndex;
@@ -61,7 +67,7 @@ class mvGroupMemberNode
       ~mvGroupMemberNode();
 };
 
-class mvGroupNodeMemberList
+class MV_GLOBAL_FUNC_PREFIX mvGroupNodeMemberList
 {
    public:
       std::list<mvGroupMemberNodePtr>::iterator currentIter;
@@ -80,7 +86,7 @@ class mvGroupNodeMemberList
       ~mvGroupNodeMemberList();
 };
 
-class mvGroupBNode_V2
+class MV_GLOBAL_FUNC_PREFIX mvGroupBNode_V2
 {
    private:
       mvIndex groupIndex;

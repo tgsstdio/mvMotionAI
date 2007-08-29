@@ -26,7 +26,13 @@
 #include MV_ENUMS_HEADER_FILE_H_
 #include MV_FORCE_RESULT_HEADER_FILE_H_
 
-class mvForceStatus
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
+class MV_GLOBAL_FUNC_PREFIX mvForceStatus
 {
    public:
       bool onlyLocalForce;
@@ -65,7 +71,7 @@ class mvForceStatus
       void applyingQuaternion();
 };
 
-class mvBaseForce
+class MV_GLOBAL_FUNC_PREFIX mvBaseForce
 {
    private:
       mvOptionEnum fType;
@@ -99,7 +105,7 @@ class mvBaseForce
       virtual ~mvBaseForce();
 };
 
-class mvBaseForceLoader
+class MV_GLOBAL_FUNC_PREFIX mvBaseForceLoader
 {
    public:
       mvBaseForceLoader();

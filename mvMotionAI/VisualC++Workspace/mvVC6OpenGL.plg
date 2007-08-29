@@ -3,14 +3,173 @@
 <pre>
 <h1>Build Log</h1>
 <h3>
+--------------------Configuration: mvStaticLibVC6 - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\WHITE2~1\LOCALS~1\Temp\RSPD.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /I "../include" /I "../experimental/include" /D "NDEBUG" /D "WIN32" /D "_MBCS" /D "_LIB" /D "VISUAL_C_VER_6" /Fo"Release/" /Fd"Release/" /FD /c 
+"D:\mvMotionAI\mvMotionAI\src\mvBaseAction.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvBaseForce.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvBehaviour_V2.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvBehaviourResult.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvBEntry.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvBEntryList.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvBEntryListNode.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvBEntryTimer.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvBEntryUtility.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvBody_V2.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvBodyCapsule.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvEnums.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvFlee.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvForceCapsule.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvForceResult.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvGravityForce.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvGroup_V2.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvGroupBehaviour_V2.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvGroupBehaviourResult.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvGroupBNode_V2.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvGroupCapsule.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvIndexSet.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvMotionAI-Utilities.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvMotionAI.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvMotionAI_V2-Central.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvNullLoader.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvObstacle_V2.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvPathway_V2.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvPursuit.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvSeek.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvShape.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvUniformAccelForce.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvUniformForce.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvUniformShiftForce.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvVec3.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvWaypoint_V2.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvWaypointCapsule.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvWorld2.cpp"
+"D:\mvMotionAI\mvMotionAI\src\mvWorld2_Functions.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\WHITE2~1\LOCALS~1\Temp\RSPD.tmp" 
+Creating temporary file "C:\DOCUME~1\WHITE2~1\LOCALS~1\Temp\RSPE.tmp" with contents
+[
+/nologo /out:"../lib/libmvMotionAI-vc6.lib" 
+".\Release\mvBaseAction.obj"
+".\Release\mvBaseForce.obj"
+".\Release\mvBehaviour_V2.obj"
+".\Release\mvBehaviourResult.obj"
+".\Release\mvBEntry.obj"
+".\Release\mvBEntryList.obj"
+".\Release\mvBEntryListNode.obj"
+".\Release\mvBEntryTimer.obj"
+".\Release\mvBEntryUtility.obj"
+".\Release\mvBody_V2.obj"
+".\Release\mvBodyCapsule.obj"
+".\Release\mvEnums.obj"
+".\Release\mvFlee.obj"
+".\Release\mvForceCapsule.obj"
+".\Release\mvForceResult.obj"
+".\Release\mvGravityForce.obj"
+".\Release\mvGroup_V2.obj"
+".\Release\mvGroupBehaviour_V2.obj"
+".\Release\mvGroupBehaviourResult.obj"
+".\Release\mvGroupBNode_V2.obj"
+".\Release\mvGroupCapsule.obj"
+".\Release\mvIndexSet.obj"
+".\Release\mvMotionAI-Utilities.obj"
+".\Release\mvMotionAI.obj"
+".\Release\mvMotionAI_V2-Central.obj"
+".\Release\mvNullLoader.obj"
+".\Release\mvObstacle_V2.obj"
+".\Release\mvPathway_V2.obj"
+".\Release\mvPursuit.obj"
+".\Release\mvSeek.obj"
+".\Release\mvShape.obj"
+".\Release\mvUniformAccelForce.obj"
+".\Release\mvUniformForce.obj"
+".\Release\mvUniformShiftForce.obj"
+".\Release\mvVec3.obj"
+".\Release\mvWaypoint_V2.obj"
+".\Release\mvWaypointCapsule.obj"
+".\Release\mvWorld2.obj"
+".\Release\mvWorld2_Functions.obj"
+]
+Creating command line "link.exe -lib @C:\DOCUME~1\WHITE2~1\LOCALS~1\Temp\RSPE.tmp"
+<h3>Output Window</h3>
+Compiling...
+mvBaseAction.cpp
+mvBaseForce.cpp
+mvBehaviour_V2.cpp
+mvBehaviourResult.cpp
+mvBEntry.cpp
+mvBEntryList.cpp
+mvBEntryListNode.cpp
+mvBEntryTimer.cpp
+mvBEntryUtility.cpp
+mvBody_V2.cpp
+mvBodyCapsule.cpp
+mvEnums.cpp
+mvFlee.cpp
+mvForceCapsule.cpp
+mvForceResult.cpp
+mvGravityForce.cpp
+D:\mvMotionAI\mvMotionAI\src\mvGravityForce.cpp(6) : warning C4305: 'argument' : truncation from 'const double' to 'const float'
+mvGroup_V2.cpp
+mvGroupBehaviour_V2.cpp
+mvGroupBehaviourResult.cpp
+mvGroupBNode_V2.cpp
+Generating Code...
+Compiling...
+mvGroupCapsule.cpp
+mvIndexSet.cpp
+mvMotionAI-Utilities.cpp
+mvMotionAI.cpp
+mvMotionAI_V2-Central.cpp
+mvNullLoader.cpp
+mvObstacle_V2.cpp
+mvPathway_V2.cpp
+mvPursuit.cpp
+mvSeek.cpp
+mvShape.cpp
+mvUniformAccelForce.cpp
+mvUniformForce.cpp
+mvUniformShiftForce.cpp
+mvVec3.cpp
+mvWaypoint_V2.cpp
+mvWaypointCapsule.cpp
+mvWorld2.cpp
+mvWorld2_Functions.cpp
+Generating Code...
+Creating library...
+<h3>
 --------------------Configuration: mvVC6OpenGL - Win32 Release--------------------
 </h3>
 <h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\WHITE2~1\LOCALS~1\Temp\RSPF.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /I "../include" /I "../include-other" /I "../experimental/include" /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fo"mvVC6OpenGL___Win32_Release/" /Fd"mvVC6OpenGL___Win32_Release/" /FD /c 
+"D:\mvMotionAI\mvMotionAI\examples-src\Camera.cpp"
+"D:\mvMotionAI\mvMotionAI\examples-src\GLMain.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\WHITE2~1\LOCALS~1\Temp\RSPF.tmp" 
+Creating temporary file "C:\DOCUME~1\WHITE2~1\LOCALS~1\Temp\RSP10.tmp" with contents
+[
+freeglut.lib ../lib/libmvMotionAI-vc6.lib /nologo /subsystem:console /incremental:no /pdb:"mvVC6OpenGL___Win32_Release/mvMotionAI-vc6.pdb" /machine:I386 /out:"../bin/mvMotionAI-vc6.exe" /libpath:"../lib-other" 
+".\mvVC6OpenGL___Win32_Release\Camera.obj"
+".\mvVC6OpenGL___Win32_Release\GLMain.obj"
+"\mvMotionAI\mvMotionAI\lib\libmvMotionAI-vc6.lib"
+]
+Creating command line "link.exe @C:\DOCUME~1\WHITE2~1\LOCALS~1\Temp\RSP10.tmp"
+<h3>Output Window</h3>
+Compiling...
+Camera.cpp
+GLMain.cpp
+Generating Code...
+Linking...
 
 
 
 <h3>Results</h3>
-mvMotionAI-vc6.exe - 0 error(s), 0 warning(s)
+mvMotionAI-vc6.exe - 0 error(s), 1 warning(s)
 </pre>
 </body>
 </html>

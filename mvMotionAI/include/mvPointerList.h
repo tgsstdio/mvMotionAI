@@ -25,8 +25,14 @@
 #include MV_ENUMS_HEADER_FILE_H_
 #include "mvMotionAI-Types.h"
 
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
 template <class mvClass, class mvConstClass>
-class mvPointerList
+class MV_GLOBAL_FUNC_PREFIX mvPointerList
 {
    private:
       mvIndex currentIndex;

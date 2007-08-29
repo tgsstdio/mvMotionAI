@@ -26,7 +26,13 @@
 
 #include "mvFactoryFunctionList.h"
 
-typedef class mvFactoryFunctionList<mvBaseActionLoader,mvBaseAction,\
-   mvBaseActionPtr> mvActionLoaderList;
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
+typedef class MV_GLOBAL_FUNC_PREFIX mvFactoryFunctionList<mvBaseActionLoader,\
+   mvBaseAction, mvBaseActionPtr> mvActionLoaderList;
 
 #endif // MVBEHAVFUNCLIST_H_INCLUDED

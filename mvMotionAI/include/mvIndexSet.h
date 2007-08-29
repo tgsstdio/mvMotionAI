@@ -31,7 +31,13 @@
 #include <set>
 #include <vector>
 
-class mvIndexSet
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
+class MV_GLOBAL_FUNC_PREFIX mvIndexSet
 {
    private:
       std::vector<mvIndex> indexes;
@@ -55,7 +61,7 @@ class mvIndexSet
       ~mvIndexSet();
 };
 
-class mvUniqueSet
+class MV_GLOBAL_FUNC_PREFIX mvUniqueSet
 {
    private:
       std::set<mvIndex> indexes;

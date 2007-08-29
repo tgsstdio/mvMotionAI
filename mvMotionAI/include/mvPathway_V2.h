@@ -31,7 +31,13 @@
 #include MV_VEC_3_HEADER_FILE_H_
 #include "mvPointerList.h"
 
-class mvPathwayNode
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
+class MV_GLOBAL_FUNC_PREFIX mvPathwayNode
 {
    private:
       mvIndex nodeIndex;
@@ -57,7 +63,7 @@ class mvPathwayNode
 typedef mvPathwayNode* mvPathwayNodePtr;
 typedef mvPathwayNode const * const mvConstPathwayNodePtr;
 
-class mvPathway_V2
+class MV_GLOBAL_FUNC_PREFIX mvPathway_V2
 {
    public:
       bool isEnabled;

@@ -31,8 +31,13 @@
 #include MV_BASE_ACTION_HEADER_FILE_H_
 #include MV_GROUP_BEHAVIOUR_NODE_HEADER_FILE_H_
 
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
 
-class mvGroupBehaviour_V2
+class MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour_V2
 {
    private:
       mvBaseActionPtr defaultGBehaviour;

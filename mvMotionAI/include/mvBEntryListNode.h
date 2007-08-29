@@ -28,7 +28,13 @@
 #include "mvBEntryUtility.h"
 #include MV_TIMER_HEADER_FILE_H_
 
-class mvBEntryListNode
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
+class MV_GLOBAL_FUNC_PREFIX mvBEntryListNode
 {
    public:
       mvBEntryPtr behaviourEntry;
