@@ -148,7 +148,7 @@ template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCa
 mvClass mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::findItemPtrInList(\
    bool (someFunction)(mvClass, void*), void* extraPtr) const
 {
-#ifdef VISUAL_C_VER_6
+#if defined(VISUAL_C_VER_6) || defined(VISUAL_C_VER_8)
    typename mvConverter<mvClass> loopConversion(someFunction, extraPtr);
 #else
    class mvConverter<mvClass> loopConversion(someFunction, extraPtr);
@@ -162,7 +162,7 @@ template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCa
 mvIndex mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::findItemInList(\
    bool (someFunction)(mvClass, void*), void* extraPtr) const
 {
-#ifdef VISUAL_C_VER_6
+#if defined(VISUAL_C_VER_6) || defined(VISUAL_C_VER_8)
    typename mvConverter<mvClass> loopConversion(someFunction, extraPtr);
 #else
    class mvConverter<mvClass> loopConversion(someFunction, extraPtr);
@@ -189,11 +189,17 @@ template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCa
 void mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::applyToAllItems(\
    void (someFunction)(mvClass, void*), void* extraPtr)
 {
-#ifdef VISUAL_C_VER_6
+#if defined VISUAL_C_VER_6
    // rewrite function - no argument passing of function template instance in VC6
    typename std::vector<mvCapsulePtr>::iterator i;
    typename std::vector<mvCapsulePtr>::iterator listEnd = itemList.listItems.end();
+#elif defined VISUAL_C_VER_8 
+   typename mvConverter<mvClass> loopConversion(someFunction, extraPtr);
+#else
+   class mvConverter<mvClass> loopConversion(someFunction, extraPtr);
+#endif
 
+#ifdef VISUAL_C_VER_6
    mvCapsulePtr tempClass = MV_NULL;
 
    for (i = itemList.listItems.begin(); i != listEnd; ++i)
@@ -205,11 +211,11 @@ void mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::applyT
          someFunction(tempClass->getClassPtr(),extraPtr);
       }
    }
-
 #else
-   class mvConverter<mvClass> loopConversion(someFunction, extraPtr);
    itemList.applyToAllItems(CapsuledConverterFunction<mvClass,mvCapsulePtr>,&loopConversion);
 #endif
+
+
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>

@@ -37,7 +37,7 @@ mvErrorEnum mvFactoryFunctionList<mvClassFactory,mvClass,mvParamClass>\
    ::addFactoryFunction(mvOptionEnum key, mvClassFactory* cFactoryPtr)
 {
    // check if behaviour key exists
-#ifdef VISUAL_C_VER_6
+#if defined(VISUAL_C_VER_6) || defined(VISUAL_C_VER_8)
    typename std::map<mvOptionEnum,mvClassFactory*>::iterator checkKey;
 #else
    class std::map<mvOptionEnum,mvClassFactory*>::iterator checkKey;
@@ -67,7 +67,7 @@ template <class mvClassFactory, class mvClass, class mvParamClass>
 void mvFactoryFunctionList<mvClassFactory,mvClass,mvParamClass>::\
    freeAllFactoryFunctions()
 {
-#ifdef VISUAL_C_VER_6
+#if defined(VISUAL_C_VER_6) || defined(VISUAL_C_VER_8)
    typename std::map<mvOptionEnum,mvClassFactory*>::iterator i;
    typename std::map<mvOptionEnum,mvClassFactory*>::iterator mapEnd;
 #else
@@ -90,7 +90,7 @@ mvClass* mvFactoryFunctionList<mvClassFactory,mvClass,mvParamClass>\
    ::createAClassPtr(mvOptionEnum key, mvParamClass defaultClass)
 {
    // check if behaviour key exists
-#ifdef VISUAL_C_VER_6
+#if defined(VISUAL_C_VER_6) || defined(VISUAL_C_VER_8)
    typename std::map<mvOptionEnum,mvClassFactory*>::iterator checkKey;
 #else
    class std::map<mvOptionEnum,mvClassFactory*>::iterator checkKey;

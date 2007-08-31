@@ -1,7 +1,7 @@
 #ifndef MV_MOTIONAI_TYPES_H_
 #define MV_MOTIONAI_TYPES_H_
 
-#define MVMOTIONAI_TYPES_VERSION "00-01-78"
+#define MVMOTIONAI_TYPES_VERSION "00-01-95"
 
 #define MV_FILE_HEADER_TAG_ 1
 #undef MV_FILE_HEADER_TAG_
@@ -71,6 +71,12 @@ typedef double mvFloat;
 #else
 typedef float mvFloat;
 #endif
+
+/**
+ * \brief mvChar - char & string variables
+ */
+typedef char mvChar;
+typedef const mvChar* mvConstStringPtr;
 
 /*
  * INDEXES & COUNT - used in mvVec3 and other places
@@ -147,10 +153,6 @@ typedef class mvBody_V2 const * const mvConstBodyPtr;
 typedef class mvBaseForce* mvBaseForcePtr;
 typedef class mvBaseForce const * const mvConstBaseForcePtr;
 typedef class mvBaseForceLoader* mvBaseForceLoaderPtr;
-
-//#define MV_FORCE_HEADER_FILE_H_ "mvForce.h"
-//typedef class mvForce* mvForcePtr;
-//typedef class mvForce const * const mvConstForcePtr;
 
 #define MV_FORCE_RESULT_HEADER_FILE_H_ "mvForceResult.h"
 typedef class mvForceResult* mvForceResultPtr;
