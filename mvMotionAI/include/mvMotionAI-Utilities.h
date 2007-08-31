@@ -53,4 +53,12 @@ mvFloat mvArcTan(mvFloat theta);
 mvFloat mvFMod(mvFloat num, mvFloat denom);
 mvFloat mvModf(mvFloat x, mvFloat* intPart);
 
+#ifndef MV_WIDE_STRING_CHAR
+#define mvInitConstString(s)
+#else
+#define mvInitConstString(s) Ls
+#endif
+
+mvIndex mvStringCompare(mvConstStringPtr str1, mvConstStringPtr str2);
+
 #endif
