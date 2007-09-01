@@ -420,8 +420,3 @@ mvErrorEnum mvPathway_V2::removeNodeAt(mvIndex nodeIndex)
 {
    return nodes.deleteItem(nodeIndex);
 }
-
-mvErrorEnum mvPathway_V2::removeCurrentNode()
-{
-   return nodes.deleteCurrentItem();
-}

@@ -61,7 +61,7 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
 {
    private:
       mvPointerList<mvEntryListPtr, mvConstEntryListPtr> entryLists;
-      char* worldID;
+      //char* worldID;
       mvCapsuleList<mvBaseForcePtr, mvConstBaseForcePtr,\
          mvForceCapsulePtr, mvConstForceCapsulePtr> forces;
       mvPointerList<mvObstaclePtr, mvConstObstaclePtr> obstacles;
@@ -98,6 +98,7 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
 
       mvFloat elapsedWorldTime;
       mvForceLoaderListPtr forceLoader;
+      void* wUserData;
 
    public:
       mvFloat getElapsedWorldTime() const;
@@ -119,9 +120,10 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
       bool autoConvertIndex;
       bool isRightHanded;
 
-      mvWorld_V2(const char* worldID);
-      char* getID() const;
+      mvWorld_V2();
       ~mvWorld_V2();
+      void setWorldUserData(void* tempData);
+      void* getWorldUserData() const;
 
       void setActionLoader(mvActionLoaderListPtr bLoaderPtr);
       mvActionLoaderListPtr getActionLoader() const;
@@ -152,7 +154,6 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
       mvBodyPtr getBodyPtr(mvIndex index);
       mvBodyPtr getCurrentBodyPtr();
       mvIndex setCurrentBody(mvIndex index);
-      mvErrorEnum deleteCurrentBody();
       mvErrorEnum deleteBody(mvIndex index);
       void deleteAllBodies();
       void applyToAllBodies(void (someFunction)(mvBodyPtr, void*),\
@@ -202,7 +203,6 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
       mvObstaclePtr getObstaclePtr(mvIndex index);
       mvObstaclePtr getCurrentObstaclePtr();
       mvIndex setCurrentObstacle(mvIndex index);
-      mvErrorEnum deleteCurrentObstacle();
       mvErrorEnum deleteObstacle(mvIndex index);
       void deleteAllObstacles();
       void applyToAllObstacles(void (someFunction)(mvObstaclePtr, void*),\
@@ -252,7 +252,6 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
       mvWaypointPtr getWaypointPtr(mvIndex index);
       mvWaypointPtr getCurrentWaypointPtr();
       mvIndex setCurrentWaypoint(mvIndex index);
-      mvErrorEnum deleteCurrentWaypoint();
       mvErrorEnum deleteWaypoint(mvIndex index);
       void deleteAllWaypoints();
       void applyToAllWaypoints(void (someFunction)(mvWaypointPtr, void*),\
@@ -301,7 +300,6 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
       mvPathwayPtr getPathwayPtr(mvIndex index);
       mvPathwayPtr getCurrentPathwayPtr();
       mvIndex setCurrentPathway(mvIndex index);
-      mvErrorEnum deleteCurrentPathway();
       mvErrorEnum deletePathway(mvIndex index);
       void deleteAllPathways();
       void applyToAllPathways(void (someFunction)(mvPathwayPtr, void*),\
@@ -350,7 +348,6 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
       mvBehaviourPtr getBehaviourPtr(mvIndex index);
       mvBehaviourPtr getCurrentBehaviourPtr();
       mvIndex setCurrentBehaviour(mvIndex index);
-      mvErrorEnum deleteCurrentBehaviour();
       mvErrorEnum deleteBehaviour(mvIndex index);
       void deleteAllBehaviours();
       void applyToAllBehaviours(void (someFunction)(mvBehaviourPtr, void*),\
@@ -399,7 +396,6 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
       mvGroupPtr getGroupPtr(mvIndex index);
       mvGroupPtr getCurrentGroupPtr();
       mvIndex setCurrentGroup(mvIndex index);
-      mvErrorEnum deleteCurrentGroup();
       mvErrorEnum deleteGroup(mvIndex index);
       void deleteAllGroups();
       void applyToAllGroups(void (someFunction)(mvGroupPtr, void*),\
@@ -448,7 +444,6 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
       mvGroupBehaviourPtr getGroupBehaviourPtr(mvIndex index);
       mvGroupBehaviourPtr getCurrentGroupBehaviourPtr();
       mvIndex setCurrentGroupBehaviour(mvIndex index);
-      mvErrorEnum deleteCurrentGroupBehaviour();
       mvErrorEnum deleteGroupBehaviour(mvIndex index);
       void deleteAllGroupBehaviours();
       void applyToAllGroupBehaviours(\
@@ -499,7 +494,6 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
       mvBaseForcePtr getForcePtr(mvIndex index);
       mvBaseForcePtr getCurrentForcePtr();
       mvIndex setCurrentForce(mvIndex index);
-      mvErrorEnum deleteCurrentForce();
       mvErrorEnum deleteForce(mvIndex index);
       void deleteAllForces();
       void applyToAllForces(void (someFunction)(mvBaseForcePtr, void*),\
@@ -623,9 +617,9 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
 
       mvErrorEnum removeAllNodesFromPathway(mvIndex pwIndex);
 
-      mvIndex getCurrentNodeOfPathway(mvIndex pwIndex);
+      mvIndex getCurrentNodeOfPathway(mvIndex pwIndex) const;
 
-      mvIndex removePathwayNodeAt(mvIndex pwIndex, mvIndex nodeIndex);
+      mvErrorEnum removePathwayNodeAt(mvIndex pwIndex, mvIndex nodeIndex);
 
       mvErrorEnum setPathwayNodeParameteri(mvIndex pathwayIndex,\
          mvIndex nodeIndex, mvParamEnum paramFlag, mvIndex index);

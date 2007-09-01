@@ -42,24 +42,14 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAllWorldsStepForward(mvFloat timeInSecs)
    return mvMotionAI_V2_ALLWORLDSSTEPFORWARD(timeInSecs);
 }
 
-MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateWorld(const char* id)
+MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateWorld()
 {
-   return mvMotionAI_V2_CREATEWORLD(id);
+   return mvMotionAI_V2_CREATEWORLD();
 }
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteAllWorlds()
 {
    return mvMotionAI_V2_DELETEALLWORLDS();
-}
-
-MV_GLOBAL_FUNC_PREFIX mvIndex mvGetWorldByID(const char* id)
-{
-   return mvMotionAI_V2_GETWORLDBYID(id);
-}
-
-MV_GLOBAL_FUNC_PREFIX mvWorldPtr mvGetWorldPtrByID(const char* id)
-{
-   return mvMotionAI_V2_GETWORLDPTRBYID(id);
 }
 
 MV_GLOBAL_FUNC_PREFIX mvWorldPtr mvGetWorldPtr(mvIndex index)
@@ -659,21 +649,6 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentBody(mvIndex worldIndex,\
    return MV_NULL;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteCurrentBody(mvIndex worldIndex)
-{
-   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorldPtr worldPtr = MV_NULL;
-
-   if (error == MV_NO_ERROR)
-   {
-      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
-      if (worldPtr == MV_NULL)
-         return MV_INVALID_WORLD_INDEX;
-      return worldPtr->deleteCurrentBody();
-   }
-   return error;
-}
-
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteBody(mvIndex worldIndex,\
    mvIndex index)
 {
@@ -1135,21 +1110,6 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentObstacle(mvIndex worldIndex,\
    return MV_NULL;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteCurrentObstacle(mvIndex worldIndex)
-{
-   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorldPtr worldPtr = MV_NULL;
-
-   if (error == MV_NO_ERROR)
-   {
-      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
-      if (worldPtr == MV_NULL)
-         return MV_INVALID_WORLD_INDEX;
-      return worldPtr->deleteCurrentObstacle();
-   }
-   return error;
-}
-
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteObstacle(mvIndex worldIndex,\
    mvIndex index)
 {
@@ -1528,21 +1488,6 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentWaypoint(mvIndex worldIndex,\
    return MV_NULL;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteCurrentWaypoint(mvIndex worldIndex)
-{
-   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorldPtr worldPtr = MV_NULL;
-
-   if (error == MV_NO_ERROR)
-   {
-      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
-      if (worldPtr == MV_NULL)
-         return MV_INVALID_WORLD_INDEX;
-      return worldPtr->deleteCurrentWaypoint();
-   }
-   return error;
-}
-
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteWaypoint(mvIndex worldIndex,\
    mvIndex index)
 {
@@ -1896,21 +1841,6 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentBehaviour(mvIndex worldIndex,\
    return MV_NULL;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteCurrentBehaviour(mvIndex worldIndex)
-{
-   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorldPtr worldPtr = MV_NULL;
-
-   if (error == MV_NO_ERROR)
-   {
-      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
-      if (worldPtr == MV_NULL)
-         return MV_INVALID_WORLD_INDEX;
-      return worldPtr->deleteCurrentBehaviour();
-   }
-   return error;
-}
-
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteBehaviour(mvIndex worldIndex,\
    mvIndex index)
 {
@@ -2259,21 +2189,6 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentForce(mvIndex worldIndex,\
       return worldPtr->setCurrentForce(index);
    }
    return MV_NULL;
-}
-
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteCurrentForce(mvIndex worldIndex)
-{
-   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorldPtr worldPtr = MV_NULL;
-
-   if (error == MV_NO_ERROR)
-   {
-      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
-      if (worldPtr == MV_NULL)
-         return MV_INVALID_WORLD_INDEX;
-      return worldPtr->deleteCurrentForce();
-   }
-   return error;
 }
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteForce(mvIndex worldIndex,\
@@ -2641,21 +2556,6 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentPathway(mvIndex worldIndex,\
       return worldPtr->setCurrentPathway(index);
    }
    return MV_NULL;
-}
-
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteCurrentPathway(mvIndex worldIndex)
-{
-   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorldPtr worldPtr = MV_NULL;
-
-   if (error == MV_NO_ERROR)
-   {
-      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
-      if (worldPtr == MV_NULL)
-         return MV_INVALID_WORLD_INDEX;
-      return worldPtr->deleteCurrentPathway();
-   }
-   return error;
 }
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeletePathway(mvIndex worldIndex,\
@@ -3026,21 +2926,6 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentGroup(mvIndex worldIndex,\
    return MV_NULL;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteCurrentGroup(mvIndex worldIndex)
-{
-   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorldPtr worldPtr = MV_NULL;
-
-   if (error == MV_NO_ERROR)
-   {
-      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
-      if (worldPtr == MV_NULL)
-         return MV_INVALID_WORLD_INDEX;
-      return worldPtr->deleteCurrentGroup();
-   }
-   return error;
-}
-
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteGroup(mvIndex worldIndex,\
    mvIndex index)
 {
@@ -3407,21 +3292,6 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentGroupBehaviour(mvIndex worldIndex,\
       return worldPtr->setCurrentGroupBehaviour(index);
    }
    return MV_NULL;
-}
-
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteCurrentGroupBehaviour(mvIndex worldIndex)
-{
-   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvWorldPtr worldPtr = MV_NULL;
-
-   if (error == MV_NO_ERROR)
-   {
-      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
-      if (worldPtr == MV_NULL)
-         return MV_INVALID_WORLD_INDEX;
-      return worldPtr->deleteCurrentGroupBehaviour();
-   }
-   return error;
 }
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteGroupBehaviour(mvIndex worldIndex,\
@@ -4409,3 +4279,413 @@ MV_GLOBAL_FUNC_PREFIX void* mvGetUserData(mvIndex worldIndex,\
    return MV_NULL;
 }
 
+MV_GLOBAL_FUNC_PREFIX mvIndex mvAddNodeToPathway(mvIndex worldIndex,\
+   mvIndex nIndex, mvIndex pIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->addNodeToPathway(nIndex,pIndex);
+   }
+   return MV_NULL;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveNodeFromPathway(mvIndex worldIndex,\
+   mvIndex wpIndex, mvIndex pIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->removeNodeFromPathway(wpIndex,pIndex);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllNodesFromPathway(\
+   mvIndex worldIndex,mvIndex pwIndex, mvIndex nodeIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->removeNodeFromPathway(pwIndex,nodeIndex);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentNodeOfPathway(mvIndex worldIndex,\
+   mvIndex pwIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_NULL;
+      }
+      return worldPtr->getCurrentNodeOfPathway(pwIndex);
+   }
+   return MV_NULL;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemovePathwayNodeAt(mvIndex worldIndex,\
+   mvIndex pwIndex, mvIndex nodeIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->removePathwayNodeAt(pwIndex,nodeIndex);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetPathwayNodeParameteri(\
+   mvIndex worldIndex,mvIndex pathwayIndex,  mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvIndex index)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->setPathwayNodeParameteri(pathwayIndex, nodeIndex,\
+         paramFlag, index);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetPathwayNodeParameter(mvIndex worldIndex,\
+   mvIndex pathwayIndex, mvIndex nodeIndex, mvParamEnum paramFlag,\
+   mvOptionEnum option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->setPathwayNodeParameter(pathwayIndex, nodeIndex,\
+         paramFlag, option);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetPathwayNodeParameterf(\
+   mvIndex worldIndex,mvIndex pathwayIndex, mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvFloat num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->setPathwayNodeParameterf(pathwayIndex, nodeIndex,\
+         paramFlag, num);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetPathwayNodeParameterv(\
+   mvIndex worldIndex,mvIndex pathwayIndex, mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvFloat* array)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->setPathwayNodeParameterv(pathwayIndex, nodeIndex,\
+         paramFlag, array);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetPathwayNodeParameteri_str(\
+   mvIndex worldIndex,mvIndex pathwayIndex, mvIndex nodeIndex,\
+   const char* param, mvIndex index)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->setPathwayNodeParameteri_str(pathwayIndex, nodeIndex,\
+         param, index);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetPathwayNodeParameter_str(\
+   mvIndex worldIndex,mvIndex pathwayIndex, mvIndex nodeIndex,\
+   const char* param, const char* option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->setPathwayNodeParameter_str(pathwayIndex, nodeIndex,\
+         param, option);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetPathwayNodeParameterf_str(\
+   mvIndex worldIndex,mvIndex pathwayIndex, mvIndex nodeIndex,\
+   const char* param, mvFloat num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->setPathwayNodeParameterf_str(pathwayIndex, nodeIndex,\
+         param, num);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetPathwayNodeParameterv_str(\
+   mvIndex worldIndex,mvIndex pathwayIndex, mvIndex nodeIndex,\
+   const char* param, mvFloat* array)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->setPathwayNodeParameterv_str(pathwayIndex, nodeIndex,\
+         param, array);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayNodeParameteri(\
+   mvIndex worldIndex,mvIndex pathwayIndex, mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvIndex* outIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->getPathwayNodeParameteri(pathwayIndex, nodeIndex,\
+         paramFlag, outIndex);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayNodeParameter(mvIndex worldIndex,\
+   mvIndex pathwayIndex, mvIndex nodeIndex, mvParamEnum paramFlag,\
+   mvOptionEnum* option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->getPathwayNodeParameter(pathwayIndex, nodeIndex,\
+         paramFlag, option);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayNodeParameterf(\
+   mvIndex worldIndex,mvIndex pathwayIndex, mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvFloat* num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->getPathwayNodeParameterf(pathwayIndex, nodeIndex,\
+         paramFlag, num);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayNodeParameterv(\
+   mvIndex worldIndex,mvIndex pathwayIndex, mvIndex nodeIndex,\
+   mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->getPathwayNodeParameterv(pathwayIndex, nodeIndex,\
+         paramFlag, array, noOfParameters);
+   }
+   return error;
+}
+
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayNodeParameteri_str(\
+   mvIndex worldIndex,mvIndex pathwayIndex, mvIndex nodeIndex,\
+   const char* param, mvIndex* outIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->getPathwayNodeParameteri_str(pathwayIndex, nodeIndex,\
+         param, outIndex);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayNodeParameter_str(\
+   mvIndex worldIndex,mvIndex pathwayIndex, mvIndex nodeIndex,\
+   const char* param, const char** option)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->getPathwayNodeParameter_str(pathwayIndex, nodeIndex,\
+         param, option);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayNodeParameterf_str(\
+   mvIndex worldIndex,mvIndex pathwayIndex, mvIndex nodeIndex,\
+   const char* param, mvFloat* num)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->getPathwayNodeParameterf_str(pathwayIndex, nodeIndex,\
+         param, num);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayNodeParameterv_str(\
+   mvIndex worldIndex,mvIndex pathwayIndex, mvIndex nodeIndex,\
+   const char* param, mvFloat* array, mvCount* noOfParameters)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->getPathwayNodeParameterv_str(pathwayIndex, nodeIndex,\
+         param, array, noOfParameters);
+   }
+   return error;
+}

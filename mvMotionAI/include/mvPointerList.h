@@ -51,7 +51,6 @@ class MV_GLOBAL_FUNC_PREFIX mvPointerList
       void setAutoConvertIndex(bool value);
       mvIndex addItem(mvClass itemPtr);
       mvErrorEnum deleteItem(mvIndex index);
-      mvErrorEnum deleteCurrentItem();
       void deleteAllItems();
 
       mvClass getClassPtr(mvIndex index) const;
