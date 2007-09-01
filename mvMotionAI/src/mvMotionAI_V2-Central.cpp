@@ -62,7 +62,7 @@ mvMotionAI_V2::mvMotionAI_V2()
 {
    // EMPTY
 }
-
+/*
 bool findExistingWorld(mvWorld_V2* worldPtr, void* extraPtr)
 {
    const char* worldID = MV_NULL;
@@ -95,23 +95,13 @@ bool findExistingWorld(mvWorld_V2* worldPtr, void* extraPtr)
       return false;
    }
 }
+*/
 
-mvIndex mvMotionAI_V2::createWorld(const char* worldID)
+mvIndex mvMotionAI_V2::createWorld()
 {
    mvWorldPtr temp = MV_NULL;
 
-   // check for existing world using same id
-   temp = worlds.findItemPtrInList(findExistingWorld, (void*) worldID);
-
-   // if found, reject it
-   if (temp != MV_NULL)
-   {
-      return MV_NULL;
-   }
-
-   temp = new mvWorld(worldID);
-   puts(temp->getID());
-
+   temp = new mvWorld();
    if (temp == MV_NULL)
    {
       return MV_NULL;
@@ -137,10 +127,12 @@ mvWorldPtr mvMotionAI_V2::getCurrentWorldPtr()
    return worlds.getCurrentClassPtr();
 }
 
+/*
 mvIndex mvMotionAI_V2::getWorldByID(const char* worldID)
 {
    return worlds.findItemInList(findExistingWorld, (void*) worldID);
 }
+*/
 
 mvCount mvMotionAI_V2::getNoOfWorlds() const
 {
@@ -151,11 +143,12 @@ mvWorld_V2* mvMotionAI_V2::getWorldPtr(mvIndex index)
 {
    return worlds.getClassPtr(index);
 }
-
+/*
 mvWorld_V2* mvMotionAI_V2::getWorldPtrByID(const char* worldID)
 {
    return worlds.findItemPtrInList(findExistingWorld, (void*) worldID);
 }
+*/
 
 void mvMotionAI_V2::deleteAllWorlds()
 {
@@ -533,7 +526,7 @@ mvErrorEnum mvMotionAI_V2_ALLWORLDSSTEPFORWARD(mvFloat timeInSecs)
    return error;
 }
 
-mvIndex mvMotionAI_V2_CREATEWORLD(const char* id)
+mvIndex mvMotionAI_V2_CREATEWORLD()
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvMotionAI_V2* modulePtr = MV_NULL;
@@ -541,7 +534,7 @@ mvIndex mvMotionAI_V2_CREATEWORLD(const char* id)
    if (error == MV_NO_ERROR)
    {
       modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
-      return modulePtr->createWorld(id);
+      return modulePtr->createWorld();
    }
    else
    {
@@ -561,38 +554,6 @@ mvErrorEnum mvMotionAI_V2_DELETEALLWORLDS()
    }
 
    return error;
-}
-
-mvIndex mvMotionAI_V2_GETWORLDBYID(const char* id)
-{
-   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = MV_NULL;
-
-   if (error == MV_NO_ERROR)
-   {
-      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
-      return modulePtr->getWorldByID(id);
-   }
-   else
-   {
-      return MV_NULL;
-   }
-}
-
-mvWorld_V2* mvMotionAI_V2_GETWORLDPTRBYID(const char* id)
-{
-   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
-   mvMotionAI_V2* modulePtr = MV_NULL;
-
-   if (error == MV_NO_ERROR)
-   {
-      modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
-      return modulePtr->getWorldPtrByID(id);
-   }
-   else
-   {
-      return MV_NULL;
-   }
 }
 
 mvWorld_V2* mvMotionAI_V2_GETWORLDPTR(mvIndex index)

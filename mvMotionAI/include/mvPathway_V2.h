@@ -72,7 +72,6 @@ class MV_GLOBAL_FUNC_PREFIX mvPathway_V2
       mvPathway_V2();
       mvIndex addNode(mvIndex pWaypoint);
       mvErrorEnum removeNodeAt(mvIndex nodeIndex);
-      mvErrorEnum removeCurrentNode();
       mvErrorEnum removeLastNodeInstance(mvIndex index);
       mvErrorEnum removeFirstNodeInstance(mvIndex index);
       mvCount getNoOfNodes() const;

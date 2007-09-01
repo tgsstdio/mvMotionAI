@@ -192,15 +192,6 @@ mvErrorEnum mvWorld_V2::deleteForce(mvIndex index)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::deleteCurrentForce()
-{
-   return forces.deleteCurrentItem();
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
 mvIndex mvWorld_V2::setCurrentForce(mvIndex index)
 {
    return forces.setCurrentIndex(index);
@@ -474,15 +465,6 @@ mvErrorEnum mvWorld_V2::deleteGroupBehaviour(mvIndex index)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::deleteCurrentGroupBehaviour()
-{
-   return groupBehaviours.deleteCurrentItem();
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
 mvIndex mvWorld_V2::setCurrentGroupBehaviour(mvIndex index)
 {
    return groupBehaviours.setCurrentIndex(index);
@@ -686,15 +668,6 @@ mvErrorEnum mvWorld_V2::deleteGroup(mvIndex index)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::deleteCurrentGroup()
-{
-   return groups.deleteCurrentItem();
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
 mvIndex mvWorld_V2::setCurrentGroup(mvIndex index)
 {
    return groups.setCurrentIndex(index);
@@ -889,15 +862,6 @@ void mvWorld_V2::deleteAllBehaviours()
 mvErrorEnum mvWorld_V2::deleteBehaviour(mvIndex index)
 {
    return behaviours.deleteItem(index);
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvWorld_V2::deleteCurrentBehaviour()
-{
-   return behaviours.deleteCurrentItem();
 }
 
 /** @brief (one liner)
@@ -1118,15 +1082,6 @@ mvErrorEnum mvWorld_V2::deletePathway(mvIndex index)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::deleteCurrentPathway()
-{
-   return pathways.deleteCurrentItem();
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
 mvIndex mvWorld_V2::setCurrentPathway(mvIndex index)
 {
    return pathways.setCurrentIndex(index);
@@ -1317,15 +1272,6 @@ void mvWorld_V2::deleteAllWaypoints()
 mvErrorEnum mvWorld_V2::deleteWaypoint(mvIndex index)
 {
    return waypoints.deleteItem(index);
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvErrorEnum mvWorld_V2::deleteCurrentWaypoint()
-{
-   return waypoints.deleteCurrentItem();
 }
 
 /** @brief (one liner)
@@ -1541,15 +1487,6 @@ mvErrorEnum mvWorld_V2::deleteObstacle(mvIndex index)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::deleteCurrentObstacle()
-{
-   return obstacles.deleteCurrentItem();
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
 mvIndex mvWorld_V2::setCurrentObstacle(mvIndex index)
 {
    return obstacles.setCurrentIndex(index);
@@ -1754,16 +1691,6 @@ mvErrorEnum mvWorld_V2::deleteBody(mvIndex index)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::deleteCurrentBody()
-{
-   entryLists.deleteCurrentItem();
-   return bodies.deleteCurrentItem();
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
 mvIndex mvWorld_V2::setCurrentBody(mvIndex index)
 {
    entryLists.setCurrentIndex(index);
@@ -1833,26 +1760,24 @@ mvIndex mvWorld_V2::createBody(mvOptionEnum bType, mvOptionEnum bShape,\
   */
  mvWorld_V2::~mvWorld_V2()
 {
-   if (worldID != MV_NULL)
-   {
-      delete worldID;
-   }
+
 }
 
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-char* mvWorld_V2::getID() const
+void mvWorld_V2::setWorldUserData(void* tempData)
 {
-   return worldID;
+   wUserData = tempData;
+}
+
+void* mvWorld_V2::getWorldUserData() const
+{
+   return wUserData;
 }
 
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-mvWorld_V2::mvWorld_V2(const char* id = MV_NULL)
+mvWorld_V2::mvWorld_V2()
 {
    isEnabled  = true;
    applyForces = true;
@@ -1864,23 +1789,7 @@ mvWorld_V2::mvWorld_V2(const char* id = MV_NULL)
    autoConvertIndex = false;
    isRightHanded = true;
 
-   mvCount strLen;
-   //idString = MV_NULL;
-
-   /*
-    * TODO : remove c strcopy - unsafe
-    */
-   if (id != MV_NULL)
-   {
-      strLen = strlen(id) + 1;
-      worldID = new char[strLen];
-      strncpy(worldID,id,strLen);
-   }
-   else
-   {
-      worldID = MV_NULL;
-   }
-
+   wUserData = MV_NULL;
    behavLoader = MV_NULL;
    forceLoader = MV_NULL;
    elapsedWorldTime = 0;
@@ -3727,13 +3636,13 @@ mvErrorEnum mvWorld_V2::getPathwayNodeParameterv_str(mvIndex pathwayIndex,\
       noOfParameters);
 }
 
-mvIndex mvWorld_V2::removePathwayNodeAt(mvIndex pwIndex, mvIndex nodeIndex)
+mvErrorEnum mvWorld_V2::removePathwayNodeAt(mvIndex pwIndex, mvIndex nodeIndex)
 {
    mvPathwayPtr tempPathway = getPathwayPtr(pwIndex);
 
    if (tempPathway == MV_NULL)
    {
-      return MV_NULL;
+      return MV_PATHWAY_INDEX_IS_INVALID;
    }
 
    return tempPathway->removeNodeAt(nodeIndex);
@@ -4110,4 +4019,16 @@ void* mvWorld_V2::getUserData(mvParamEnum objectType, mvIndex objectIndex) const
       default:
          return MV_NULL;
    }
+}
+
+mvIndex mvWorld_V2::getCurrentNodeOfPathway(mvIndex pwIndex) const
+{
+   mvConstPathwayPtr tempPathway = getConstPathwayPtr(pwIndex);
+
+   if (tempPathway == MV_NULL)
+   {
+      return MV_NULL;
+   }
+
+   return tempPathway->getCurrentNode();
 }

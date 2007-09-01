@@ -123,7 +123,7 @@ int main(int argc, char** argv)
    init ();
 
    // call mvMotionAI
-   int worldID = mvCreateWorld("Hello");
+   int worldID = mvCreateWorld();
    std::cout << "worldID : " << worldID <<  std::endl;
 
    int waypointID = mvCreateWaypoint(worldID, MV_AABOX, 7, 4 ,0);

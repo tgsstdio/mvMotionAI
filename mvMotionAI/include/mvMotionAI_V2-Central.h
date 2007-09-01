@@ -44,10 +44,8 @@ mvIndex mvMotionAI_V2_GETCURRENTWORLD();
 mvWorldPtr mvMotionAI_V2_GETCURRENTWORLDPTR();
 mvIndex mvMotionAI_V2_SETCURRENTWORLD(mvIndex index);
 mvErrorEnum mvMotionAI_V2_ALLWORLDSSTEPFORWARD(mvFloat timeInSecs);
-mvIndex mvMotionAI_V2_CREATEWORLD(const char* id);
+mvIndex mvMotionAI_V2_CREATEWORLD();
 mvErrorEnum mvMotionAI_V2_DELETEALLWORLDS();
-mvIndex mvMotionAI_V2_GETWORLDBYID(const char* id);
-mvWorldPtr mvMotionAI_V2_GETWORLDPTRBYID(const char* id);
 mvWorldPtr mvMotionAI_V2_GETWORLDPTR(mvIndex index);
 mvErrorEnum mvMotionAI_V2_APPLYTOALLWORLDS(\
    void (someFunction)(mvWorldPtr ,void*),void* extraPtr);
@@ -125,14 +123,12 @@ class mvMotionAI_V2
       mvPointerList<mvWorldPtr, mvConstWorldPtr> worlds;
 
       mvMotionAI_V2();
-      mvIndex createWorld(const char* worldID);
-      mvIndex getWorldByID(const char* worldID);
+      mvIndex createWorld();
       mvCount getNoOfWorlds() const;
       mvIndex getCurrentWorld() const;
       mvWorldPtr getCurrentWorldPtr();
       mvIndex setCurrentWorld(mvIndex index);
       mvWorldPtr getWorldPtr(mvIndex index);
-      mvWorldPtr getWorldPtrByID(const char* worldID);
       void deleteAllWorlds();
       void allWorldsStepForward(mvFloat timeInSecs);
       void applyToAllWorlds(void (someFunction)(mvWorldPtr,void*),void* extraPtr);

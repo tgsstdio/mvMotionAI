@@ -39,12 +39,6 @@ mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>:
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::deleteCurrentItem()
-{
-   return itemList.deleteCurrentItem();
-}
-
-template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
 void mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::deleteAllItems()
 {
    itemList.deleteAllItems();
@@ -152,7 +146,7 @@ mvClass mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::fin
    typename mvConverter<mvClass> loopConversion(someFunction, extraPtr);
 #else
    class mvConverter<mvClass> loopConversion(someFunction, extraPtr);
-#endif 
+#endif
 
    return itemList.findItemPtrInList(\
       CapsuledConverterFunction<mvClass,mvConstClass>, loopConversion);
@@ -166,7 +160,7 @@ mvIndex mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::fin
    typename mvConverter<mvClass> loopConversion(someFunction, extraPtr);
 #else
    class mvConverter<mvClass> loopConversion(someFunction, extraPtr);
-#endif 
+#endif
 
    return itemList.findItemInList(\
       CapsuledConverterFunction<mvClass,mvConstClass>, loopConversion);
@@ -193,7 +187,7 @@ void mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::applyT
    // rewrite function - no argument passing of function template instance in VC6
    typename std::vector<mvCapsulePtr>::iterator i;
    typename std::vector<mvCapsulePtr>::iterator listEnd = itemList.listItems.end();
-#elif defined VISUAL_C_VER_8 
+#elif defined VISUAL_C_VER_8
    typename mvConverter<mvClass> loopConversion(someFunction, extraPtr);
 #else
    class mvConverter<mvClass> loopConversion(someFunction, extraPtr);
