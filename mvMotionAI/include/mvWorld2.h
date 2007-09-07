@@ -83,7 +83,8 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
          mvBehaviourResultPtr behavResModule,
          mvForceResultPtr forceResModule);
       void calculateGroupBehaviours(); // 1
-      void checkIfWaypointContainsBody(mvBodyCapsulePtr bodyPtr);
+      void checkIfWaypointContainsBody(mvBodyCapsulePtr bodyPtr, mvUniqueSet*
+         waypointList);
       void resetIntegrationLoop();
       void calculateAllForcesOnBody(mvBodyCapsulePtr bodyPtr,\
          mvForceResultPtr finalForceResult);
@@ -739,6 +740,14 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
       mvErrorEnum setUserData(mvParamEnum objectType, mvIndex objectIndex,\
          void* userData);
       void* getUserData(mvParamEnum objectType, mvIndex objectIndex) const;
+
+      mvErrorEnum addForceIntoWaypoint(mvIndex forceIndex,\
+         mvIndex waypointIndex);
+      mvErrorEnum removeForceFromWaypoint(mvIndex forceIndex,\
+         mvIndex waypointIndex);
+      // TODO : remove all
+      mvErrorEnum removeAllWaypointsFromForce(mvIndex forceIndex);
+      mvErrorEnum removeAllForcesFromWaypoint(mvIndex waypointIndex);
 };
 
 

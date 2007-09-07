@@ -86,11 +86,11 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvInitDefaultActions()
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvInitDefaultForces()
 {
-   return mvMotionAI_V2_FREEDEFAULTFORCES();
+   return mvMotionAI_V2_INITDEFAULTFORCES();
 }
 
+/* TODO : implementation later*/
 /*
-TODO : implementation later
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvInitDefaultBodies()
 {
    return mvMotionAI_V2_INITDEFAULTBODIES();
@@ -112,8 +112,8 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvFreeDefaultForces()
    return mvMotionAI_V2_FREEDEFAULTFORCES();
 }
 
+/*TODO : implementation later*/
 /*
-TODO : implementation later
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvFreeDefaultBodies()
 {
    return mvMotionAI_V2_FREEDEFAULTBODIES();
@@ -4686,6 +4686,115 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayNodeParameterv_str(\
       }
       return worldPtr->getPathwayNodeParameterv_str(pathwayIndex, nodeIndex,\
          param, array, noOfParameters);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldUserData(mvIndex worldIndex,
+   void* tempData)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      worldPtr->setWorldUserData(tempData);
+      return MV_NO_ERROR;
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX void* mvGetWorldUserData(mvIndex worldIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_NULL;
+      }
+      return worldPtr->getWorldUserData();
+   }
+   return MV_NULL;
+}
+
+// TODO : add waypoints to forces
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddForceIntoWaypoint(mvIndex worldIndex,\
+   mvIndex forceIndex, mvIndex waypointIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->addForceIntoWaypoint(forceIndex, waypointIndex);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveForceFromWaypoint(mvIndex worldIndex,\
+   mvIndex forceIndex, mvIndex waypointIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->removeForceFromWaypoint(forceIndex, waypointIndex);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllWaypointsFromForce(\
+   mvIndex worldIndex, mvIndex forceIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->removeAllWaypointsFromForce(forceIndex);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllForcesFromWaypoint(\
+   mvIndex worldIndex, mvIndex waypointIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->removeAllForcesFromWaypoint(waypointIndex);
    }
    return error;
 }

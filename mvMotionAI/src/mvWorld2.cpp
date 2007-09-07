@@ -222,21 +222,29 @@ mvBaseForcePtr mvWorld_V2::getForcePtr(mvIndex index)
 mvIndex mvWorld_V2::createForce(mvOptionEnum fType)
 {
    mvBaseForcePtr temp = MV_NULL;
+   mvForceCapsulePtr tempCapsule = MV_NULL;
+
    if (forceLoader == MV_NULL)
    {
       return MV_NULL;
    }
+   std::cout << "Hello World 1" << std::endl;
 
+   std::cout << forceLoader->getNoOfFactoryFunctions() << std::endl;
    temp = forceLoader->createAClassPtr(fType,MV_NULL);
-
    if (temp == MV_NULL)
+   {
       return MV_NULL;
+   }
+   std::cout << "Hello World 2" << std::endl;
 
-   mvForceCapsulePtr tempCapsule = new mvForceCapsule(temp);
-
+   tempCapsule = new mvForceCapsule(temp);
    if (tempCapsule == MV_NULL)
+   {
       return MV_NULL;
+   }
 
+   std::cout << "Hello World 3" << std::endl;
    return forces.addItem(tempCapsule);
 }
 
@@ -1884,9 +1892,10 @@ void mvWorld_V2::integrateBody(mvBodyCapsulePtr bodyPtr, mvFloat timeInSecs)
       bodyPtr->getConstClassPtr());
    mvForceResult finalForceResult((mvConstWorldPtr) this,
       bodyPtr->getConstClassPtr());
+   mvUniqueSet waypointsList;
 
    resetIntegrationLoop();
-   checkIfWaypointContainsBody(bodyPtr);
+   checkIfWaypointContainsBody(bodyPtr,&waypointsList);
    initialiseCommonVariables(&finalBehavResult,&finalForceResult,timeInSecs);
    calculateBehavioursOnBody(bodyPtr, &finalBehavResult);
    calculateAllForcesOnBody(bodyPtr, &finalForceResult);
@@ -2029,9 +2038,131 @@ void mvWorld_V2::calculateGroupBehaviours() // 1
    groupBehaviours.applyToAllItemsByItemIndex(mvWorld_V2_CalculateForEachGroupBehaviour,this);
 }
 
-void mvWorld_V2::checkIfWaypointContainsBody(mvBodyCapsulePtr bodyPtr) // part of 2
+void mvWorld_V2::checkIfWaypointContainsBody(mvBodyCapsulePtr bodyPtr,
+   mvUniqueSet* waypointList) // part of 2
 {
 // TODO : calculate world functions
+   mvWorld_V2_LocalForceCalculationHelper helperModule;
+   helperModule.bCapsule = bodyPtr;
+   helperModule.waypointList = waypointList;
+   mvFloat tempVariable;
+   mvVec3 minValues, maxValues;
+   mvFloat bodyRadius, bodyLength;
+   mvFloat dimensions[MV_VEC3_NO_OF_COMPONENTS];
+   mvCount noOfDimensions;
+   mvErrorEnum error;
+   const mvFloat* arrayPtr = NULL;
+
+    // generate shape info body
+   mvConstShapePtr bodyShapePtr = bodyPtr->getConstClassPtr()->getShape();
+   helperModule.bodyShape = bodyShapePtr->getType();
+   mvVec3 bodyPos = bodyPtr->getConstClassPtr()->getPosition();
+
+   // set empty
+   for (int i = 0; i < MV_VEC3_NO_OF_COMPONENTS; ++i)
+   {
+      helperModule.calcDimensions[i] = false;
+   }
+
+   if (helperModule.bodyShape == MV_AABOX)
+   {
+      error = bodyShapePtr->getParameterv(MV_SHAPE_DIMENSIONS,\
+         &dimensions[0], &noOfDimensions);
+      if (error == MV_NO_ERROR && noOfDimensions == MV_VEC3_NO_OF_COMPONENTS)
+      {
+         // copy and fill aabox info
+         arrayPtr  = bodyPos.getPointer();
+         for (int i = 0; i < MV_VEC3_NO_OF_COMPONENTS; ++i)
+         {
+            helperModule.aabbMaxValues[i] = arrayPtr[i];
+            helperModule.aabbMinValues[i] = arrayPtr[i];
+            tempVariable = 0.5;
+            tempVariable *= dimensions[i];
+            helperModule.aabbMaxValues[i] -= tempVariable;
+            helperModule.aabbMinValues[i] += tempVariable;
+            helperModule.calcDimensions[i] = true;
+         }
+      }
+      else
+      {
+         // exit
+         return;
+      }
+   }
+   else if (helperModule.bodyShape == MV_SPHERE)
+   {
+      error = bodyShapePtr->getParameterf(MV_RADIUS,&bodyRadius);
+      if (error == MV_NO_ERROR)
+      {
+         helperModule.bodyRadius = bodyRadius;
+         helperModule.bodyRadiusSq = bodyRadius;
+         helperModule.bodyRadiusSq *= bodyRadius;
+
+         // copy and fill aabox info
+         for (int i = 0; i < MV_VEC3_NO_OF_COMPONENTS; ++i)
+         {
+            helperModule.calcDimensions[i] = true;
+         }
+      }
+      else
+      {
+         // exit
+         return;
+      }
+   }
+   else if (helperModule.bodyShape == MV_X_AXIS_AA_CYLINDER ||
+      helperModule.bodyShape == MV_Y_AXIS_AA_CYLINDER ||
+      helperModule.bodyShape == MV_Z_AXIS_AA_CYLINDER)
+   {
+      // TODO : fill out cylinder data
+      error = bodyShapePtr->getParameterf(MV_RADIUS,&bodyRadius);
+      if (error != MV_NO_ERROR)
+      {
+         return;
+      }
+
+      error = bodyShapePtr->getParameterf(MV_LENGTH,&bodyLength);
+      if (error != MV_NO_ERROR)
+      {
+         return;
+      }
+
+      if (helperModule.bodyShape == MV_X_AXIS_AA_CYLINDER)
+      {
+         helperModule.bodyOddAxisIndex = MV_VEC3_X_COMPONENT;
+      }
+      else if (helperModule.bodyShape == MV_Y_AXIS_AA_CYLINDER)
+      {
+         helperModule.bodyOddAxisIndex = MV_VEC3_Y_COMPONENT;
+      }
+      else
+      {
+         helperModule.bodyOddAxisIndex = MV_VEC3_Z_COMPONENT;
+      }
+
+      arrayPtr  = bodyPos.getPointer();
+      helperModule.aabbMaxValues[helperModule.bodyOddAxisIndex]
+         = arrayPtr[helperModule.bodyOddAxisIndex];
+      helperModule.aabbMinValues[helperModule.bodyOddAxisIndex]
+         = arrayPtr[helperModule.bodyOddAxisIndex];
+
+      tempVariable = 0.5;
+      tempVariable *= bodyLength;
+      helperModule.aabbMaxValues[helperModule.bodyOddAxisIndex] -= tempVariable;
+      helperModule.aabbMinValues[helperModule.bodyOddAxisIndex] += tempVariable;
+
+      helperModule.bodyRadius = bodyRadius;
+      helperModule.bodyRadiusSq = bodyRadius;
+      helperModule.bodyRadiusSq *= bodyRadius;
+   }
+   else
+   {
+      // default
+      return;
+   }
+
+   // loop over all forces - just local forces
+   forces.applyToAllCapsules(mvWorldV2_CompareLocalForceToBody, &helperModule);
 }
 
 void mvWorld_V2::calculateBehavioursOnBody(mvBodyCapsulePtr bCapsulePtr,\
@@ -4031,4 +4162,75 @@ mvIndex mvWorld_V2::getCurrentNodeOfPathway(mvIndex pwIndex) const
    }
 
    return tempPathway->getCurrentNode();
+}
+
+mvErrorEnum mvWorld_V2::addForceIntoWaypoint(mvIndex forceIndex,\
+   mvIndex waypointIndex)
+{
+   mvForceCapsulePtr tempCapsulePtr = forces.getCapsulePtr(forceIndex);
+
+   if (tempCapsulePtr == MV_NULL)
+   {
+      return MV_FORCE_INDEX_IS_INVALID;
+   }
+
+   // convert index
+   mvIndex convertedWpIndex = waypoints.convertIndex(waypointIndex);
+
+   if (convertedWpIndex == MV_NULL)
+   {
+      return MV_WAYPOINT_INDEX_IS_INVALID;
+   }
+
+   return tempCapsulePtr->addWaypoint(convertedWpIndex);
+}
+
+mvErrorEnum mvWorld_V2::removeForceFromWaypoint(mvIndex forceIndex,\
+   mvIndex waypointIndex)
+{
+   mvForceCapsulePtr tempCapsulePtr = forces.getCapsulePtr(forceIndex);
+
+   if (tempCapsulePtr == MV_NULL)
+   {
+      return MV_FORCE_INDEX_IS_INVALID;
+   }
+
+   // convert index
+   mvIndex convertedWpIndex = waypoints.convertIndex(waypointIndex);
+
+   if (convertedWpIndex == MV_NULL)
+   {
+      return MV_WAYPOINT_INDEX_IS_INVALID;
+   }
+
+   return tempCapsulePtr->removeWaypoint(convertedWpIndex);
+}
+
+mvErrorEnum mvWorld_V2::removeAllWaypointsFromForce(mvIndex forceIndex)
+{
+   mvForceCapsulePtr tempCapsulePtr = forces.getCapsulePtr(forceIndex);
+
+   if (tempCapsulePtr == MV_NULL)
+   {
+      return MV_FORCE_INDEX_IS_INVALID;
+   }
+
+   tempCapsulePtr->clearAllWaypoints();
+   return MV_NO_ERROR;
+}
+
+mvErrorEnum mvWorld_V2::removeAllForcesFromWaypoint(mvIndex waypointIndex)
+{
+   // convert index
+   mvIndex convertedWpIndex = waypoints.convertIndex(waypointIndex);
+
+   if (convertedWpIndex == MV_NULL)
+   {
+      return MV_WAYPOINT_INDEX_IS_INVALID;
+   }
+
+   forces.applyToAllCapsules(mvWorldV2_RemoveAWaypointFromAllForceCapsules,
+      &convertedWpIndex);
+
+   return MV_NO_ERROR;
 }

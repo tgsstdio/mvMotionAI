@@ -3,6 +3,7 @@
 
 #include "mvMotionAI-Types.h"
 #include MV_ENUMS_HEADER_FILE_H_
+#include MV_INDEX_SET_HEADER_FILE_H_
 #include MV_WORLD_HEADER_FILE_H_
 #include MV_FORCE_RESULT_HEADER_FILE_H_
 #include MV_BEHAVIOUR_RESULT_HEADER_FILE_H_
@@ -93,5 +94,25 @@ void mvWorld_V2_FinaliseGroups(mvGroupCapsulePtr capsulePtr, void* extraPtr);
 
 void mvWorld_V2_InitialiseCurrentBehavResult(mvBehaviourResultPtr finalResult,\
    mvBehaviourResultPtr currentResult);
+
+struct mvWorld_V2_LocalForceCalculationHelper
+{
+   mvBodyCapsulePtr bCapsule;
+   mvUniqueSet* waypointList;
+   mvOptionEnum bodyShape;
+   bool calcDimensions[MV_VEC3_NO_OF_COMPONENTS];
+   mvFloat aabbMinValues[MV_VEC3_NO_OF_COMPONENTS];
+   mvFloat aabbMaxValues[MV_VEC3_NO_OF_COMPONENTS];
+   mvFloat bodyRadiusSq;
+   mvFloat bodyRadius;
+   mvIndex bodyOddAxisIndex;
+};
+
+void mvWorldV2_CompareLocalForceToBody(mvForceCapsulePtr fCapsulePtr,\
+   void* extraPtr);
+
+void mvWorldV2_RemoveAWaypointFromAllForceCapsules(\
+   mvForceCapsulePtr fCapsulePtr, void* extraPtr);
+
 
 #endif // MVWORLD2_FUNCTIONS_H_INCLUDED
