@@ -119,3 +119,10 @@ mvFactoryFunctionList<mvClassFactory,mvClass,mvParamClass>\
    freeAllFactoryFunctions();
    noOfValidFunctions = 0;
 }
+
+template <class mvClassFactory, class mvClass, class mvParamClass>
+mvCount mvFactoryFunctionList<mvClassFactory,mvClass,mvParamClass>\
+   ::getNoOfFactoryFunctions() const
+{
+   return noOfValidFunctions;
+}

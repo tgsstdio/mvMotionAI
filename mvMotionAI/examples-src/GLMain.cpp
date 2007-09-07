@@ -149,12 +149,22 @@ int main(int argc, char** argv)
    int entryID = mvAddBehaviourToList(worldID,bodyID2,MV_SEEK);
    mvSetEntryListNodeParameteri(worldID,bodyID2,entryID,MV_WAYPOINT,waypointID);
 
+   int forceID = mvCreateForce(worldID, MV_GRAVITY);
+   std::cout << "forceID : " << forceID <<  std::endl;
+   mvErrorEnum paramError = mvAddForceIntoWaypoint(worldID, forceID, waypointID);
+   if (paramError == MV_FORCE_INDEX_IS_INVALID)
+   {
+      puts("HELLO");
+   }
+
+   /*
    entryID = mvAddBehaviourToList(worldID, bodyID, MV_PURSUIT);
    mvSetEntryListNodeParameteri(worldID, bodyID, entryID, MV_BODY, bodyID2);
    entryID = mvAddBehaviourToList(worldID, bodyID, MV_FLEE);
    mvSetEntryListNodeParameteri(worldID, bodyID, entryID, MV_WAYPOINT, waypointID);
    mvErrorEnum paramError = mvSetEntryListNodeParameter(worldID, bodyID,
       entryID, MV_IS_ENABLED, MV_TRUE);
+   */
    /*
    if (paramError != MV_NO_ERROR)
    {
@@ -169,8 +179,10 @@ int main(int argc, char** argv)
       puts("ENTRY ID");
    }
    //mvSetEntryListNodeParameteri(worldID,bodyID2,entryID,MV_BODY,bodyID);
-   //int forceID = mvCreateForce(worldID,MV_UNIFORM_SHIFT);
-   //std::cout << "forceID : " << forceID <<  std::endl;
+   forceID = mvCreateForce(worldID,MV_UNIFORM_SHIFT);
+   std::cout << "forceID : " << forceID <<  std::endl;
+   forceID = mvCreateForce(worldID,MV_UNIFORM_ACCELERATION);
+   std::cout << "forceID : " << forceID <<  std::endl;
 
    glutDisplayFunc(display);
    glutReshapeFunc(reshape);

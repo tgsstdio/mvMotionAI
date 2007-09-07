@@ -1,5 +1,6 @@
 #include "mvMotionAI_V2-Central.h"
 #include <cstring>
+#include <iostream>
 
 /**
  * default behaviours/actions
@@ -349,6 +350,7 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTFORCES(mvForceLoaderListPtr
       return error;
    }
    // todo : add more forces
+   std::cout<< "No Of FF " << loader->getNoOfFactoryFunctions() << std::endl;
 
    return MV_NO_ERROR;
 }

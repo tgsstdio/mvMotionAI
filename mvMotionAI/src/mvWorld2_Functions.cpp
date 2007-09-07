@@ -677,14 +677,12 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
       }
 
       actionVec = actionResult.getForce();
+      totalVec *= weight;
       if (currentEffect == MV_LOCAL_EFFECT)
       {
          // TODO : delocalise function
       }
       // TODO : check if before or after delocal
-
-
-      totalVec *= weight;
 
       if (isConfined)
       {
@@ -714,12 +712,12 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
       }
 
       actionVec = actionResult.getAcceleration();
+      // TODO : check if before or after delocal or confining
+      totalVec *= weight;
       if (currentEffect == MV_LOCAL_EFFECT)
       {
          // TODO : delocalise function
       }
-      // TODO : check if before or after delocal or confining
-      totalVec *= weight;
 
       if (isConfined)
       {
@@ -749,12 +747,12 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
       }
 
       actionVec = actionResult.getTorque();
+      totalVec *= weight;
       if (currentEffect == MV_LOCAL_EFFECT)
       {
          // TODO : delocalise function
       }
       // TODO : check if before or after delocal or confining
-      totalVec *= weight;
 
       if (isConfined)
       {
@@ -1068,4 +1066,18 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
 void mvWorld_V2_FinaliseGroups(mvGroupCapsulePtr capsulePtr, void* extraPtr)
 {
    capsulePtr->hasChanged = false;
+}
+
+void mvWorldV2_CompareLocalForceToBody(mvForceCapsulePtr fCapsulePtr,\
+   void* extraPtr)
+{
+   std::cout << "Hello World" << std::endl;
+}
+
+void mvWorldV2_RemoveAWaypointFromAllForceCapsules(\
+   mvForceCapsulePtr fCapsulePtr, void* extraPtr)
+{
+   mvIndex* currentWaypoint = (mvIndex*) extraPtr;
+
+   fCapsulePtr->removeWaypoint(*currentWaypoint);
 }
