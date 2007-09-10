@@ -37,6 +37,7 @@ class mvWaypointCapsule
    public:
       bool containsBody;
       mvCount noOfLinkedForces;
+      mvIndex waypointIndex;
 
       mvWaypointCapsule(mvWaypointPtr wPoint);
       mvConstWaypointPtr getConstClassPtr() const;

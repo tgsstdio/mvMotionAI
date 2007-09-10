@@ -21,9 +21,11 @@ struct mvWorld_V2_IntegrateLoopHelper
 
 void mvWorld_V2_IntegrateAllBodies(mvBodyCapsulePtr bodyPtr, void* extraPtr);
 
-struct mvWorld_V2_CalcForceHelperStruct
+class mvWorld_V2_CalcForceHelperStruct
 {
    public:
+      mvWorld_V2_CalcForceHelperStruct(mvUniqueSet& insideWPList);
+      mvUniqueSet& waypointList;
       mvWorldPtr currentWorld;
       mvBodyCapsulePtr currentBody;
       mvForceResultPtr finalResult;
@@ -36,7 +38,8 @@ bool mvWorld_V2_CalculateGlobalForceOnBody(mvBaseForcePtr currentForce,
    mvForceResultPtr currentResult);
 
 bool mvWorld_V2_CalculateLocalForceOnBody(mvForceCapsulePtr fCapsulePtr,
-   mvBaseForcePtr currentForce, mvForceResultPtr currentResult);
+   mvBaseForcePtr currentForce, mvForceResultPtr currentResult,\
+   mvUniqueSet& waypointList);
 
 void mvWorld_V2_CalculateForceOnSingleBody(mvForceCapsulePtr fCapsulePtr,\
    void* extraPtr);
@@ -95,24 +98,37 @@ void mvWorld_V2_FinaliseGroups(mvGroupCapsulePtr capsulePtr, void* extraPtr);
 void mvWorld_V2_InitialiseCurrentBehavResult(mvBehaviourResultPtr finalResult,\
    mvBehaviourResultPtr currentResult);
 
-struct mvWorld_V2_LocalForceCalculationHelper
+class mvWorld_V2_LocalForceCalculationHelper
 {
-   mvBodyCapsulePtr bCapsule;
-   mvUniqueSet* waypointList;
-   mvOptionEnum bodyShape;
-   bool calcDimensions[MV_VEC3_NO_OF_COMPONENTS];
-   mvFloat aabbMinValues[MV_VEC3_NO_OF_COMPONENTS];
-   mvFloat aabbMaxValues[MV_VEC3_NO_OF_COMPONENTS];
-   mvFloat bodyRadiusSq;
-   mvFloat bodyRadius;
-   mvIndex bodyOddAxisIndex;
+   public:
+      mvWorld_V2_LocalForceCalculationHelper(mvUniqueSet& wList);
+
+      mvBodyCapsulePtr bCapsule;
+      mvUniqueSet& waypointList;
+      mvVec3 shapePos;
+      mvOptionEnum bodyShape;
+      bool calcDimensions[MV_VEC3_NO_OF_COMPONENTS];
+      mvFloat aabbMinValues[MV_VEC3_NO_OF_COMPONENTS];
+      mvFloat aabbMaxValues[MV_VEC3_NO_OF_COMPONENTS];
+      mvFloat bodyRadiusSq;
+      mvFloat bodyRadius;
+      mvIndex bodyOddAxisIndex;
 };
 
-void mvWorldV2_CompareLocalForceToBody(mvForceCapsulePtr fCapsulePtr,\
+void mvWorldV2_CheckWaypointLocality(mvWaypointCapsulePtr fCapsulePtr,\
    void* extraPtr);
 
 void mvWorldV2_RemoveAWaypointFromAllForceCapsules(\
    mvForceCapsulePtr fCapsulePtr, void* extraPtr);
 
+bool mvWorldV2_InitialiseInsideWaypointHelperStruct(\
+   mvWorld_V2_LocalForceCalculationHelper& helper, mvConstShapePtr shapePtr,
+   const mvVec3& currentPosition);
+
+bool mvAABBtoAABB_Collision(mvWorld_V2_LocalForceCalculationHelper* firstBox,
+   mvWorld_V2_LocalForceCalculationHelper* secondBox, mvIndex componentIndex);
+
+bool mvSpheretoSphere_Colision(const mvVec3& firstShapePos,
+   const mvVec3& secondShapePos, mvFloat firstRadiusSq, mvFloat secondRadiusSq);
 
 #endif // MVWORLD2_FUNCTIONS_H_INCLUDED

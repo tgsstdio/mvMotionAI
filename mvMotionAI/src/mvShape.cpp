@@ -466,6 +466,12 @@ mvErrorEnum mvShape::setType(mvOptionEnum type)
    mvFloat tempDims[MV_MAX_NO_OF_DIMENSIONS];
    mvIndex i;
    mvCount noOfDimensions;
+   bool firstTime[MV_MAX_NO_OF_DIMENSIONS];
+
+   for (i = 0; i < MV_MAX_NO_OF_DIMENSIONS; i++)
+   {
+      firstTime[i] = true;
+   }
 
    if (dimensions != MV_NULL)
    {
@@ -473,6 +479,7 @@ mvErrorEnum mvShape::setType(mvOptionEnum type)
       for (i = 0; i < noOfDimensions; i++)
       {
          tempDims[i] = dimensions[i];
+         firstTime[i] = false;
       }
       delete [] dimensions;
       dimensions = MV_NULL;
@@ -504,7 +511,15 @@ mvErrorEnum mvShape::setType(mvOptionEnum type)
 
    for (i = 0; i < noOfDimensions; i++)
    {
-      dimensions[i] = tempDims[i];
+      if (firstTime[i])
+      {
+         dimensions[i] = 1;
+      }
+      else
+      {
+         dimensions[i] = tempDims[i];
+      }
    }
+
    return MV_NO_ERROR;
 }

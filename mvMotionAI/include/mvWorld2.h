@@ -83,11 +83,11 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
          mvBehaviourResultPtr behavResModule,
          mvForceResultPtr forceResModule);
       void calculateGroupBehaviours(); // 1
-      void checkIfWaypointContainsBody(mvBodyCapsulePtr bodyPtr, mvUniqueSet*
+      void checkIfWaypointContainsBody(mvBodyCapsulePtr bodyPtr, mvUniqueSet&
          waypointList);
       void resetIntegrationLoop();
       void calculateAllForcesOnBody(mvBodyCapsulePtr bodyPtr,\
-         mvForceResultPtr finalForceResult);
+         mvForceResultPtr finalForceResult, mvUniqueSet& waypointList);
       void calculateBehavioursOnBody(mvBodyCapsulePtr bodyPtr,
          mvBehaviourResultPtr finalResult);
       void finaliseIntegrationStep(mvFloat timeInSecs);
@@ -105,10 +105,11 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
       mvFloat getElapsedWorldTime() const;
       void integrateBody(mvBodyCapsulePtr bodyPtr, mvFloat timeInSecs);
       bool hasGroupChanged(mvIndex groupNo);
+
       /** \brief
        * internal function - info is useless out of integration loop
        */
-      bool doesWaypointContainBody(mvIndex wPointIndex) const;
+      mvIndex convertWaypointIndex(mvIndex wPointIndex) const;
 
       bool isEnabled;
       bool applyForces;
