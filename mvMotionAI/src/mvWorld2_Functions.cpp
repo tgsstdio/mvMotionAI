@@ -69,7 +69,8 @@ bool mvWorld_V2_CalculateGlobalForceOnBody(mvBaseForcePtr currentForce,
 }
 
 bool mvWorld_V2_CalculateLocalForceOnBody(mvForceCapsulePtr fCapsulePtr,
-   mvBaseForcePtr currentForce, mvForceResultPtr currentResult)
+   mvBaseForcePtr currentForce, mvForceResultPtr currentResult,\
+   mvUniqueSet& waypointList)
 {
    // current force parameters
    // check if any waypoints contain this body from this force's assigned wpoints
@@ -79,7 +80,10 @@ bool mvWorld_V2_CalculateLocalForceOnBody(mvForceCapsulePtr fCapsulePtr,
    // start loop
    linkedWaypoints.beginLoop();
    while(!linkedWaypoints.isLoopFinished()
-   && !currentWorld->doesWaypointContainBody(linkedWaypoints.getCurrentIndex()))
+   && waypointList.findIndex(\
+      currentWorld->convertWaypointIndex(linkedWaypoints.getCurrentIndex())
+      )
+      == MV_ITEM_NOT_FOUND_IN_LIST)
    {
       linkedWaypoints.nextIndex();
    }
@@ -130,7 +134,7 @@ void mvWorld_V2_CalculateForceOnSingleBody(mvForceCapsulePtr fCapsulePtr,\
       {
          mvWorld_V2_InitialCurrentForceResult(finalResult, &currentResult);
          hasCalcForce = mvWorld_V2_CalculateLocalForceOnBody(fCapsulePtr,
-            currentForce, &currentResult);
+            currentForce, &currentResult,helper->waypointList);
       }
 
       if (hasCalcForce)
@@ -1068,10 +1072,205 @@ void mvWorld_V2_FinaliseGroups(mvGroupCapsulePtr capsulePtr, void* extraPtr)
    capsulePtr->hasChanged = false;
 }
 
-void mvWorldV2_CompareLocalForceToBody(mvForceCapsulePtr fCapsulePtr,\
+void mvWorldV2_CheckWaypointLocality(mvWaypointCapsulePtr wCapsulePtr,\
    void* extraPtr)
 {
-   std::cout << "Hello World" << std::endl;
+   mvWorld_V2_LocalForceCalculationHelper* bodyHelper =
+      (mvWorld_V2_LocalForceCalculationHelper*) extraPtr;
+
+   // skip associated waypoints
+   if (bodyHelper == MV_NULL || wCapsulePtr == MV_NULL ||
+      !wCapsulePtr->isLinkedWaypoint())
+   {
+      //std::cout << "Skip Local Waypoint Check " << std::endl;
+      return;
+   }
+
+   // set waypoint variables
+   mvConstWaypointPtr currentWaypoint = wCapsulePtr->getConstClassPtr();
+
+   if (currentWaypoint == MV_NULL)
+   {
+      return;
+   }
+
+   mvConstShapePtr currentWpShape = currentWaypoint->getShape();
+   mvVec3 wpPos = currentWaypoint->getPosition();
+   mvWorld_V2_LocalForceCalculationHelper wpShapeData(bodyHelper->waypointList);
+
+   // invalid type - abort
+   if (!mvWorldV2_InitialiseInsideWaypointHelperStruct(wpShapeData,
+      currentWpShape,wpPos))
+   {
+      return;
+   }
+
+   // TODO : complete this
+
+   // check aabox - aabox
+   bool bodyInsideWaypoint = false;
+   if (bodyHelper->bodyShape == MV_AABOX && wpShapeData.bodyShape == MV_AABOX)
+   {
+      //std::cout << "Box check" << std::endl;
+      bodyInsideWaypoint = true;
+      for (int i = 0; i < MV_VEC3_NO_OF_COMPONENTS; ++i)
+      {
+         if (!mvAABBtoAABB_Collision(bodyHelper,&wpShapeData, i))
+         {
+            // outside region
+           // std::cout << "Outside Box" << std::endl;
+            bodyInsideWaypoint = false;
+            break;
+         }
+      }
+   }
+   // sphere - sphere collisions
+   else if (bodyHelper->bodyShape == MV_SPHERE &&\
+      wpShapeData.bodyShape == MV_SPHERE)
+   {
+      bodyInsideWaypoint = mvSpheretoSphere_Colision(bodyHelper->shapePos,
+         wpShapeData.shapePos, bodyHelper->bodyRadiusSq,
+         wpShapeData.bodyRadiusSq);
+   }
+
+   if (bodyInsideWaypoint)
+   {
+      /*
+      std::cout << "Inside Waypoint : " <<
+         wCapsulePtr->waypointIndex <<
+         " NO : " << wCapsulePtr->noOfLinkedForces << std::endl;
+      */
+      // if inside, add to list
+      bodyHelper->waypointList.addIndex(wCapsulePtr->waypointIndex);
+   }
+}
+
+bool mvWorldV2_InitialiseInsideWaypointHelperStruct(\
+   mvWorld_V2_LocalForceCalculationHelper& helper, mvConstShapePtr shapePtr,
+   const mvVec3& currentPosition)
+{
+   mvFloat tempVariable;
+   mvVec3 minValues, maxValues;
+   mvFloat bodyRadius, bodyLength;
+   mvFloat dimensions[MV_VEC3_NO_OF_COMPONENTS];
+   mvCount noOfDimensions;
+   mvErrorEnum error;
+   const mvFloat* arrayPtr = NULL;
+
+
+   if (shapePtr == MV_NULL)
+   {
+      return false;
+   }
+
+   // set type flag
+   helper.bodyShape = shapePtr->getType();
+   helper.shapePos = currentPosition;
+
+   // set empty
+   for (int i = 0; i < MV_VEC3_NO_OF_COMPONENTS; ++i)
+   {
+      helper.calcDimensions[i] = false;
+   }
+
+   if (helper.bodyShape == MV_AABOX)
+   {
+      error = shapePtr->getParameterv(MV_SHAPE_DIMENSIONS,\
+         &dimensions[0], &noOfDimensions);
+      if (error == MV_NO_ERROR && noOfDimensions == MV_VEC3_NO_OF_COMPONENTS)
+      {
+         // copy and fill aabox info
+         arrayPtr  = currentPosition.getPointer();
+         for (int i = 0; i < MV_VEC3_NO_OF_COMPONENTS; ++i)
+         {
+            helper.aabbMaxValues[i] = arrayPtr[i];
+            helper.aabbMinValues[i] = arrayPtr[i];
+            tempVariable = 0.5;
+            tempVariable *= dimensions[i];
+            helper.aabbMaxValues[i] += tempVariable;
+            helper.aabbMinValues[i] -= tempVariable;
+            helper.calcDimensions[i] = true;
+         }
+      }
+      else
+      {
+         // exit
+         return false;
+      }
+   }
+   else if (helper.bodyShape == MV_SPHERE)
+   {
+      error = shapePtr->getParameterf(MV_RADIUS,&bodyRadius);
+      if (error == MV_NO_ERROR)
+      {
+         helper.bodyRadius = bodyRadius;
+         helper.bodyRadiusSq = bodyRadius;
+         helper.bodyRadiusSq *= bodyRadius;
+
+         // copy and fill aabox info
+         for (int i = 0; i < MV_VEC3_NO_OF_COMPONENTS; ++i)
+         {
+            helper.calcDimensions[i] = true;
+         }
+      }
+      else
+      {
+         // exit
+         return false;
+      }
+   }
+   else if (helper.bodyShape == MV_X_AXIS_AA_CYLINDER ||
+      helper.bodyShape == MV_Y_AXIS_AA_CYLINDER ||
+      helper.bodyShape == MV_Z_AXIS_AA_CYLINDER)
+   {
+      // TODO : fill out cylinder data
+      error = shapePtr->getParameterf(MV_RADIUS,&bodyRadius);
+      if (error != MV_NO_ERROR)
+      {
+         return false;
+      }
+
+      error = shapePtr->getParameterf(MV_LENGTH,&bodyLength);
+      if (error != MV_NO_ERROR)
+      {
+         return false;
+      }
+
+      if (helper.bodyShape == MV_X_AXIS_AA_CYLINDER)
+      {
+         helper.bodyOddAxisIndex = MV_VEC3_X_COMPONENT;
+      }
+      else if (helper.bodyShape == MV_Y_AXIS_AA_CYLINDER)
+      {
+         helper.bodyOddAxisIndex = MV_VEC3_Y_COMPONENT;
+      }
+      else
+      {
+         helper.bodyOddAxisIndex = MV_VEC3_Z_COMPONENT;
+      }
+
+      arrayPtr = currentPosition.getPointer();
+      helper.aabbMaxValues[helper.bodyOddAxisIndex]
+         = arrayPtr[helper.bodyOddAxisIndex];
+      helper.aabbMinValues[helper.bodyOddAxisIndex]
+         = arrayPtr[helper.bodyOddAxisIndex];
+
+      tempVariable = 0.5;
+      tempVariable *= bodyLength;
+      helper.aabbMinValues[helper.bodyOddAxisIndex] -= tempVariable;
+      helper.aabbMaxValues[helper.bodyOddAxisIndex] += tempVariable;
+
+      helper.bodyRadius = bodyRadius;
+      helper.bodyRadiusSq = bodyRadius;
+      helper.bodyRadiusSq *= bodyRadius;
+   }
+   else
+   {
+      // default
+      return false;
+   }
+
+   return true;
 }
 
 void mvWorldV2_RemoveAWaypointFromAllForceCapsules(\
@@ -1081,3 +1280,95 @@ void mvWorldV2_RemoveAWaypointFromAllForceCapsules(\
 
    fCapsulePtr->removeWaypoint(*currentWaypoint);
 }
+
+bool mvAABBtoAABB_Collision(mvWorld_V2_LocalForceCalculationHelper* firstBox,
+   mvWorld_V2_LocalForceCalculationHelper* secondBox, mvIndex componentIndex)
+{
+   // TODO : internal check removal
+   if (firstBox == MV_NULL || secondBox == MV_NULL)
+   {
+      return false;
+   }
+
+   mvFloat firstBoxMin = firstBox->aabbMinValues[componentIndex];
+   mvFloat firstBoxMax = firstBox->aabbMaxValues[componentIndex];
+   mvFloat secondBoxMin = secondBox->aabbMinValues[componentIndex];
+   mvFloat secondBoxMax = secondBox->aabbMaxValues[componentIndex];
+
+   /*
+   std::cout << "1stBMin : " << firstBoxMin
+      << " 1stBMax : " << firstBoxMax
+      << " 2ndBMin : " << secondBoxMin
+      << " 2ndBMax  :  " << secondBoxMax << std::endl;
+   */
+
+   if (firstBoxMin > secondBoxMax || secondBoxMin > firstBoxMax)
+   {
+      return false;
+   }
+   else
+   {
+      return true;
+   }
+}
+
+/*
+bool SpheretoAABB_Collision(float** aabb_dims, float* sphere_pos, float sphere_radius)
+{
+  int i;
+  float distSq = 0.0f;
+  const int minIndex = 0;
+  const int maxIndex = 1;
+  float delta;
+
+  float radiusSq = sphere_radius;
+  radiusSq *= sphere_radius;
+
+  for (i = 0; i < MAX_NO_OF_VECTORS_COMPONENTS; ++i)
+  {
+    if (sphere_pos[i] > aabb_dims[MV_AABB_MIN_INDEX][i])
+    {
+      delta = sphere_pos[i];
+      delta -= aabb_dims[MV_AABB_MIN_INDEX][i];
+      delta *= delta;
+      distSq += delta;
+    }
+    else if (sphere_pos[i] > aabb_dims[MV_AABB_MAX_INDEX][i])
+    {
+      delta = sphere_pos[i];
+      delta -= aabb_dims[MV_AABB_MAX_INDEX][i];
+      delta *= delta;
+      distSq += delta;
+    }
+  }
+  return (distSq < radiusSq) ? true : false;
+}
+*/
+
+
+bool mvSpheretoSphere_Colision(const mvVec3& firstShapePos,
+   const mvVec3& secondShapePos, mvFloat firstRadiusSq, mvFloat secondRadiusSq)
+{
+  mvVec3 diff = secondShapePos;
+  diff -= firstShapePos;
+
+  mvFloat totalRadius = firstRadiusSq;
+  totalRadius += secondRadiusSq;
+
+  mvFloat distSq = diff.dot(diff);
+
+  return (distSq < totalRadius);
+}
+
+mvWorld_V2_LocalForceCalculationHelper::mvWorld_V2_LocalForceCalculationHelper(\
+   mvUniqueSet& wList) : waypointList(wList)
+{
+
+}
+
+mvWorld_V2_CalcForceHelperStruct::mvWorld_V2_CalcForceHelperStruct(\
+   mvUniqueSet& waypointList) : waypointList(waypointList)
+{
+
+}
+

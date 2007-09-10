@@ -139,6 +139,11 @@ mvErrorEnum mvUniqueSet::findIndex(mvIndex index) const
 
 mvErrorEnum mvUniqueSet::addIndex(mvIndex index)
 {
+   if (index == MV_NULL)
+   {
+      return MV_INDEX_VALUE_IS_INVALID;
+   }
+
    if (findIndex(index) == MV_NO_ERROR)
    {
       return MV_UNIQUE_ITEM_ALREADY_IN_LIST;
@@ -176,7 +181,7 @@ void mvUniqueSet::beginLoop()
 
 bool mvUniqueSet::isLoopFinished() const
 {
-   return (mvCurrentIter != indexes.end());
+   return (mvCurrentIter == indexes.end());
 }
 
 mvIndex mvUniqueSet::getCurrentIndex() const

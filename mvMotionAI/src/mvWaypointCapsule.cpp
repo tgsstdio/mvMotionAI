@@ -4,6 +4,7 @@ mvWaypointCapsule::mvWaypointCapsule(mvWaypointPtr wPoint)
 {
    encappedWaypoint = wPoint;
    noOfLinkedForces = 0;
+   waypointIndex = MV_NULL;
    containsBody = false;
 }
 
@@ -19,7 +20,7 @@ mvWaypointPtr mvWaypointCapsule::getClassPtr() const
 
 bool mvWaypointCapsule::isLinkedWaypoint() const
 {
-   return (noOfLinkedForces <= 0);
+   return (noOfLinkedForces > 0);
 }
 
 void mvWaypointCapsule::resetCapsule()

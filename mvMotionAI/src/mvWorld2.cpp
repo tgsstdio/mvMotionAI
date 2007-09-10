@@ -228,7 +228,6 @@ mvIndex mvWorld_V2::createForce(mvOptionEnum fType)
    {
       return MV_NULL;
    }
-   std::cout << "Hello World 1" << std::endl;
 
    std::cout << forceLoader->getNoOfFactoryFunctions() << std::endl;
    temp = forceLoader->createAClassPtr(fType,MV_NULL);
@@ -236,7 +235,6 @@ mvIndex mvWorld_V2::createForce(mvOptionEnum fType)
    {
       return MV_NULL;
    }
-   std::cout << "Hello World 2" << std::endl;
 
    tempCapsule = new mvForceCapsule(temp);
    if (tempCapsule == MV_NULL)
@@ -244,7 +242,6 @@ mvIndex mvWorld_V2::createForce(mvOptionEnum fType)
       return MV_NULL;
    }
 
-   std::cout << "Hello World 3" << std::endl;
    return forces.addItem(tempCapsule);
 }
 
@@ -1330,7 +1327,9 @@ mvIndex mvWorld_V2::createWaypoint(mvOptionEnum wShape, mvFloat x = 0,\
       return MV_NULL;
    }
 
-   return waypoints.addItem(capsulePtr);
+   mvIndex waypointIndex =  waypoints.addItem(capsulePtr);
+   capsulePtr->waypointIndex = waypointIndex;
+   return waypointIndex;
 }
 
 /** @brief (one liner)
@@ -1895,10 +1894,10 @@ void mvWorld_V2::integrateBody(mvBodyCapsulePtr bodyPtr, mvFloat timeInSecs)
    mvUniqueSet waypointsList;
 
    resetIntegrationLoop();
-   checkIfWaypointContainsBody(bodyPtr,&waypointsList);
+   checkIfWaypointContainsBody(bodyPtr,waypointsList);
    initialiseCommonVariables(&finalBehavResult,&finalForceResult,timeInSecs);
    calculateBehavioursOnBody(bodyPtr, &finalBehavResult);
-   calculateAllForcesOnBody(bodyPtr, &finalForceResult);
+   calculateAllForcesOnBody(bodyPtr, &finalForceResult, waypointsList);
    setFinalBodyCapsuleVariables(bodyPtr, &finalBehavResult, &finalForceResult);
 }
 
@@ -1957,18 +1956,18 @@ mvErrorEnum mvWorld_V2::nudgeBody(mvIndex index, mvFloat timeInSecs)
    }
 }
 
-bool mvWorld_V2::doesWaypointContainBody(mvIndex wPointIndex) const
+mvIndex mvWorld_V2::convertWaypointIndex(mvIndex wPointIndex) const
 {
    mvConstWaypointCapsulePtr tempCapsulePtr =\
       waypoints.getConstCapsulePtr(wPointIndex);
 
    if (tempCapsulePtr)
    {
-      return tempCapsulePtr->containsBody;
+      return tempCapsulePtr->waypointIndex;
    }
    else
    {
-      return false;
+      return MV_NULL;
    }
 }
 
@@ -1977,9 +1976,9 @@ bool mvWorld_V2::doesWaypointContainBody(mvIndex wPointIndex) const
   * (documentation goes here)
   */
 void mvWorld_V2::calculateAllForcesOnBody(mvBodyCapsulePtr bodyPtr,\
-   mvForceResultPtr finalForceResult)
+   mvForceResultPtr finalForceResult, mvUniqueSet& waypointList)
 {
-   mvWorld_V2_CalcForceHelperStruct helper;
+   mvWorld_V2_CalcForceHelperStruct helper(waypointList);
    helper.currentWorld = this;
    helper.currentBody = bodyPtr;
    helper.finalResult = finalForceResult;
@@ -2039,130 +2038,34 @@ void mvWorld_V2::calculateGroupBehaviours() // 1
 }
 
 void mvWorld_V2::checkIfWaypointContainsBody(mvBodyCapsulePtr bodyPtr,
-   mvUniqueSet* waypointList) // part of 2
+   mvUniqueSet& waypointList) // part of 2
 {
 // TODO : calculate world functions
-   mvWorld_V2_LocalForceCalculationHelper helperModule;
+   mvWorld_V2_LocalForceCalculationHelper helperModule(waypointList);
    helperModule.bCapsule = bodyPtr;
-   helperModule.waypointList = waypointList;
-   mvFloat tempVariable;
-   mvVec3 minValues, maxValues;
-   mvFloat bodyRadius, bodyLength;
-   mvFloat dimensions[MV_VEC3_NO_OF_COMPONENTS];
-   mvCount noOfDimensions;
-   mvErrorEnum error;
-   const mvFloat* arrayPtr = NULL;
 
     // generate shape info body
    mvConstShapePtr bodyShapePtr = bodyPtr->getConstClassPtr()->getShape();
-   helperModule.bodyShape = bodyShapePtr->getType();
    mvVec3 bodyPos = bodyPtr->getConstClassPtr()->getPosition();
 
-   // set empty
-   for (int i = 0; i < MV_VEC3_NO_OF_COMPONENTS; ++i)
+   if(!mvWorldV2_InitialiseInsideWaypointHelperStruct(helperModule,\
+      bodyShapePtr,bodyPos))
    {
-      helperModule.calcDimensions[i] = false;
-   }
-
-   if (helperModule.bodyShape == MV_AABOX)
-   {
-      error = bodyShapePtr->getParameterv(MV_SHAPE_DIMENSIONS,\
-         &dimensions[0], &noOfDimensions);
-      if (error == MV_NO_ERROR && noOfDimensions == MV_VEC3_NO_OF_COMPONENTS)
-      {
-         // copy and fill aabox info
-         arrayPtr  = bodyPos.getPointer();
-         for (int i = 0; i < MV_VEC3_NO_OF_COMPONENTS; ++i)
-         {
-            helperModule.aabbMaxValues[i] = arrayPtr[i];
-            helperModule.aabbMinValues[i] = arrayPtr[i];
-            tempVariable = 0.5;
-            tempVariable *= dimensions[i];
-            helperModule.aabbMaxValues[i] -= tempVariable;
-            helperModule.aabbMinValues[i] += tempVariable;
-            helperModule.calcDimensions[i] = true;
-         }
-      }
-      else
-      {
-         // exit
-         return;
-      }
-   }
-   else if (helperModule.bodyShape == MV_SPHERE)
-   {
-      error = bodyShapePtr->getParameterf(MV_RADIUS,&bodyRadius);
-      if (error == MV_NO_ERROR)
-      {
-         helperModule.bodyRadius = bodyRadius;
-         helperModule.bodyRadiusSq = bodyRadius;
-         helperModule.bodyRadiusSq *= bodyRadius;
-
-         // copy and fill aabox info
-         for (int i = 0; i < MV_VEC3_NO_OF_COMPONENTS; ++i)
-         {
-            helperModule.calcDimensions[i] = true;
-         }
-      }
-      else
-      {
-         // exit
-         return;
-      }
-   }
-   else if (helperModule.bodyShape == MV_X_AXIS_AA_CYLINDER ||
-      helperModule.bodyShape == MV_Y_AXIS_AA_CYLINDER ||
-      helperModule.bodyShape == MV_Z_AXIS_AA_CYLINDER)
-   {
-      // TODO : fill out cylinder data
-      error = bodyShapePtr->getParameterf(MV_RADIUS,&bodyRadius);
-      if (error != MV_NO_ERROR)
-      {
-         return;
-      }
-
-      error = bodyShapePtr->getParameterf(MV_LENGTH,&bodyLength);
-      if (error != MV_NO_ERROR)
-      {
-         return;
-      }
-
-      if (helperModule.bodyShape == MV_X_AXIS_AA_CYLINDER)
-      {
-         helperModule.bodyOddAxisIndex = MV_VEC3_X_COMPONENT;
-      }
-      else if (helperModule.bodyShape == MV_Y_AXIS_AA_CYLINDER)
-      {
-         helperModule.bodyOddAxisIndex = MV_VEC3_Y_COMPONENT;
-      }
-      else
-      {
-         helperModule.bodyOddAxisIndex = MV_VEC3_Z_COMPONENT;
-      }
-
-      arrayPtr  = bodyPos.getPointer();
-      helperModule.aabbMaxValues[helperModule.bodyOddAxisIndex]
-         = arrayPtr[helperModule.bodyOddAxisIndex];
-      helperModule.aabbMinValues[helperModule.bodyOddAxisIndex]
-         = arrayPtr[helperModule.bodyOddAxisIndex];
-
-      tempVariable = 0.5;
-      tempVariable *= bodyLength;
-      helperModule.aabbMaxValues[helperModule.bodyOddAxisIndex] -= tempVariable;
-      helperModule.aabbMinValues[helperModule.bodyOddAxisIndex] += tempVariable;
-
-      helperModule.bodyRadius = bodyRadius;
-      helperModule.bodyRadiusSq = bodyRadius;
-      helperModule.bodyRadiusSq *= bodyRadius;
-   }
-   else
-   {
-      // default
       return;
    }
 
    // loop over all forces - just local forces
-   forces.applyToAllCapsules(mvWorldV2_CompareLocalForceToBody, &helperModule);
+   waypoints.applyToAllCapsules(mvWorldV2_CheckWaypointLocality, &helperModule);
+
+   // check waypoints
+
+   waypointList.beginLoop();
+   while(!waypointList.isLoopFinished())
+   {
+      std::cout << "Index : " << waypointList.getCurrentIndex() << std::endl;
+      waypointList.nextIndex();
+   }
+
 }
 
 void mvWorld_V2::calculateBehavioursOnBody(mvBodyCapsulePtr bCapsulePtr,\
@@ -4167,6 +4070,8 @@ mvIndex mvWorld_V2::getCurrentNodeOfPathway(mvIndex pwIndex) const
 mvErrorEnum mvWorld_V2::addForceIntoWaypoint(mvIndex forceIndex,\
    mvIndex waypointIndex)
 {
+   mvWaypointCapsulePtr tempWaypointPtr = NULL;
+   mvErrorEnum error;
    mvForceCapsulePtr tempCapsulePtr = forces.getCapsulePtr(forceIndex);
 
    if (tempCapsulePtr == MV_NULL)
@@ -4176,18 +4081,30 @@ mvErrorEnum mvWorld_V2::addForceIntoWaypoint(mvIndex forceIndex,\
 
    // convert index
    mvIndex convertedWpIndex = waypoints.convertIndex(waypointIndex);
+   //std::cout << "Converted Index : " << convertedWpIndex << std::endl;
 
    if (convertedWpIndex == MV_NULL)
    {
       return MV_WAYPOINT_INDEX_IS_INVALID;
    }
 
-   return tempCapsulePtr->addWaypoint(convertedWpIndex);
+
+   error = tempCapsulePtr->addWaypoint(convertedWpIndex);
+   if (error == MV_NO_ERROR)
+   {
+      // increment count
+      tempWaypointPtr = waypoints.getCapsulePtr(convertedWpIndex);
+      tempWaypointPtr->incrementCount();
+   }
+
+   return error;
 }
 
 mvErrorEnum mvWorld_V2::removeForceFromWaypoint(mvIndex forceIndex,\
    mvIndex waypointIndex)
 {
+   mvWaypointCapsulePtr tempWaypointPtr = NULL;
+   mvErrorEnum error;
    mvForceCapsulePtr tempCapsulePtr = forces.getCapsulePtr(forceIndex);
 
    if (tempCapsulePtr == MV_NULL)
@@ -4203,7 +4120,14 @@ mvErrorEnum mvWorld_V2::removeForceFromWaypoint(mvIndex forceIndex,\
       return MV_WAYPOINT_INDEX_IS_INVALID;
    }
 
-   return tempCapsulePtr->removeWaypoint(convertedWpIndex);
+   error = tempCapsulePtr->removeWaypoint(convertedWpIndex);
+   if (error == MV_NO_ERROR)
+   {
+      // increment count
+      tempWaypointPtr = waypoints.getCapsulePtr(convertedWpIndex);
+      tempWaypointPtr->decrementCount();
+   }
+   return error;
 }
 
 mvErrorEnum mvWorld_V2::removeAllWaypointsFromForce(mvIndex forceIndex)

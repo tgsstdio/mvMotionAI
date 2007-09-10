@@ -65,6 +65,8 @@ static char buffer[BUFFER_SIZE];
 void displayFrameRate(long int frameNo);
 void drawText(GLint x, GLint y, char* s, int windowWidth,
               int windowHeight, GLfloat r, GLfloat g, GLfloat b);
+void drawGLShape(int drawMode, mvConstShapePtr shapePtr,
+   const mvVec3& pos, float r, float g, float b);
 void init();
 void reshape(int w, int h);
 void keyboard(unsigned char key,int x, int y);
@@ -123,18 +125,27 @@ int main(int argc, char** argv)
    init ();
 
    // call mvMotionAI
+   mvErrorEnum paramError;
    int worldID = mvCreateWorld();
    std::cout << "worldID : " << worldID <<  std::endl;
 
    int waypointID = mvCreateWaypoint(worldID, MV_AABOX, 7, 4 ,0);
+   float boxDims[] = {3,1,5};
+   mvSetWaypointParameterv(worldID,waypointID,MV_SHAPE_DIMENSIONS, &boxDims[0]);
    std::cout << "waypointID  : " << waypointID <<  std::endl;
+
+   waypointID = mvCreateWaypoint(worldID, MV_SPHERE, -2, 4 ,0);
+   std::cout << "waypointID  : " << waypointID <<  std::endl;
+   waypointID = mvCreateWaypoint(worldID, MV_AABOX, -2, 4 ,0);
+   mvSetWaypointParameterv(worldID,waypointID,MV_SHAPE_DIMENSIONS, &boxDims[0]);
+
    int obstacleID = mvCreateObstacle(worldID, MV_AABOX, MV_SOLID_OBSTACLE,5, 5, 0);
    std::cout << "obstacleID : " << waypointID<<  std::endl;
    obstacleID = mvCreateObstacle(worldID, MV_AABOX, MV_SOLID_OBSTACLE,3, 8, -4);
    std::cout << "obstacleID : " << waypointID <<  std::endl;
 
 
-   int bodyID = mvCreateBody(worldID,MV_PARTICLE,MV_AABOX, 0 , 4 , 0);
+   int bodyID = mvCreateBody(worldID,MV_PARTICLE,MV_SPHERE, 0 , 4 , 0);
    std::cout << "bodyID : " << bodyID <<  std::endl;
 
    int groupID = mvCreateGroup(worldID,"HELLO");
@@ -144,18 +155,25 @@ int main(int argc, char** argv)
 
    //int gbIndex = mvCreateGroupBehaviour(worldID, MV_SEEK);
 
-   int bodyID2 = mvCreateBody(worldID,MV_PARTICLE,MV_AABOX, 0 , 4 , 4);
+   int bodyID2 = mvCreateBody(worldID,MV_PARTICLE,MV_SPHERE, 0 , 4 , 4);
    std::cout << "bodyID : " << bodyID2 <<  std::endl;
    int entryID = mvAddBehaviourToList(worldID,bodyID2,MV_SEEK);
-   mvSetEntryListNodeParameteri(worldID,bodyID2,entryID,MV_WAYPOINT,waypointID);
+   mvSetEntryListNodeParameteri(worldID,bodyID2,entryID,MV_WAYPOINT,-1);
+   paramError = mvSetBodyParameter(worldID, bodyID, MV_APPLY_FORCES, MV_FALSE);
+
+   if (paramError != MV_NO_ERROR) puts("ERROR FOUND");
+
 
    int forceID = mvCreateForce(worldID, MV_GRAVITY);
    std::cout << "forceID : " << forceID <<  std::endl;
-   mvErrorEnum paramError = mvAddForceIntoWaypoint(worldID, forceID, waypointID);
-   if (paramError == MV_FORCE_INDEX_IS_INVALID)
-   {
-      puts("HELLO");
-   }
+
+
+   paramError = mvAddForceIntoWaypoint(worldID, -1, -1);
+   if (paramError != MV_NO_ERROR) puts("ERROR FOUND 2");
+
+   paramError = mvAddForceIntoWaypoint(worldID, -1, -2);
+   if (paramError != MV_NO_ERROR) puts("ERROR FOUND 2");
+
 
    /*
    entryID = mvAddBehaviourToList(worldID, bodyID, MV_PURSUIT);
@@ -179,10 +197,10 @@ int main(int argc, char** argv)
       puts("ENTRY ID");
    }
    //mvSetEntryListNodeParameteri(worldID,bodyID2,entryID,MV_BODY,bodyID);
-   forceID = mvCreateForce(worldID,MV_UNIFORM_SHIFT);
-   std::cout << "forceID : " << forceID <<  std::endl;
-   forceID = mvCreateForce(worldID,MV_UNIFORM_ACCELERATION);
-   std::cout << "forceID : " << forceID <<  std::endl;
+  // forceID = mvCreateForce(worldID,MV_UNIFORM_SHIFT);
+   //std::cout << "forceID : " << forceID <<  std::endl;
+  // forceID = mvCreateForce(worldID,MV_UNIFORM_ACCELERATION);
+   //std::cout << "forceID : " << forceID <<  std::endl;
 
    glutDisplayFunc(display);
    glutReshapeFunc(reshape);
@@ -284,51 +302,28 @@ void displayBody(mvBodyPtr p,void* extraPtr)
 
    if (p != NULL)
    {
-     glPushMatrix();
-       glColor3f(1,1,1);
-       glPushAttrib(GL_LIGHTING_BIT);
-       glDisable(GL_LIGHTING);
-       glTranslatef(p->getX(),p->getY(),p->getZ());
-       tempShape = MV_AABOX;
-       if (tempShape == MV_AABOX)
-       {
-         glutWireCube(1.0);
-         glPushMatrix();
-           //glScalef(p->speed,p->speed,p->speed);
-           glBegin(GL_LINES);
-            // RED TO GREEN - own velocity
-             glColor3f(1,0,0);
-             glVertex3f(0,0,0);
-             glColor3f(0,1,0);
-             glVertex3f(p->getVelocity().getX(), p->getVelocity().getY(), p->getVelocity().getZ());
-             // GREEN TO BLUE - final velocity
-             glColor3f(0,1,0);
-             glVertex3f(0,1,0);
-             glColor3f(0,0,1);
-             glVertex3f(p->getFinalVelocity().getX(), 1.0f + p->getFinalVelocity().getY(), p->getFinalVelocity().getZ());
-           glEnd();
-         glPopMatrix();
-         //std::cout << "SPEED : " << p->speed << std::endl;
-       }
-       else if (tempShape == MV_SPHERE)
-       {
-         glutWireSphere(1.0,20,20);
-         glPushMatrix();
-           //glScalef(p->speed,p->speed,p->speed);
-           glBegin(GL_LINES);
-             glColor3f(1,0,0);
-             glVertex3f(p->getBodyDirection().getX(), p->getBodyDirection().getY(), p->getBodyDirection().getZ() + 1);
-             glColor3f(0,1,0);
-             glVertex3f(0,0,1);
-           glEnd();
-         glPopMatrix();
-       }
-       else
-       {
-         glutWireOctahedron();
-       }
-       glPopAttrib();
-     glPopMatrix();
+      glPushAttrib(GL_LIGHTING_BIT);
+      glDisable(GL_LIGHTING);
+      // Direction
+      glPushMatrix();
+         glTranslatef(p->getX(),p->getY(),p->getZ());
+         glBegin(GL_LINES);
+         // RED TO GREEN - own velocity
+         glColor3f(1,0,0);
+         glVertex3f(0,0,0);
+         glColor3f(0,1,0);
+         glVertex3f(p->getVelocity().getX(), p->getVelocity().getY(), p->getVelocity().getZ());
+         // GREEN TO BLUE - final velocity
+         glColor3f(0,1,0);
+         glVertex3f(0,1,0);
+         glColor3f(0,0,1);
+         glVertex3f(p->getFinalVelocity().getX(), 1.0f + p->getFinalVelocity().getY(), p->getFinalVelocity().getZ());
+         glEnd();
+      glPopMatrix();
+      glPopAttrib();
+
+      drawGLShape(GL_FILL, p->getShape(),p->getPosition(), 1, 1, 1);
+
    }
 }
 
@@ -343,24 +338,81 @@ void displayObstacle(mvObstaclePtr o,void* extraPtr)
 
    if (o != NULL)
    {
-     glPushMatrix();
-       glTranslatef(o->getX(),o->getY(),o->getZ());
-       glColor3f(1,0,0);
-       tempShape = o->getType();
-       if (tempShape == MV_AABOX)
-       {
-         glutSolidCube(1.0);
-       }
-       else if (tempShape == MV_SPHERE)
-       {
-         glutSolidSphere(1.0,20,20);
-       }
-       else
-       {
-         glutSolidOctahedron();
-       }
-     glPopMatrix();
+      drawGLShape(GL_FILL, o->getShape(),
+         o->getPosition(), 1, 0, 1);
    }
+}
+
+void drawGLShape(int drawMode, mvConstShapePtr shapePtr,
+   const mvVec3& pos, float r, float g, float b)
+{
+   mvOptionEnum tempShape;
+   mvFloat radius, length;
+   mvFloat aaboxDimensions[MV_VEC3_NO_OF_COMPONENTS];
+   mvCount noOfDimensions;
+   mvErrorEnum error;
+
+   glPushMatrix();
+      glTranslatef(pos.getX(),pos.getY(),pos.getZ());
+      tempShape = shapePtr->getType();
+      if (tempShape == MV_AABOX)
+      {
+         error = shapePtr->getParameterv(MV_SHAPE_DIMENSIONS,
+         &aaboxDimensions[0],  &noOfDimensions);
+         if (error == MV_NO_ERROR)
+         {
+            glScalef(aaboxDimensions[0], aaboxDimensions[1],\
+            aaboxDimensions[2]);
+            glColor3f(r,g,b);
+         }
+         else
+         {
+            glColor3f(1,0,0);
+         }
+         if (drawMode == GL_LINE)
+         {
+            glutWireCube(1.0);
+         }
+         else
+         {
+            glutSolidCube(1.0);
+         }
+      }
+      else if (tempShape == MV_SPHERE)
+      {
+         error = shapePtr->getParameterf(MV_RADIUS, &radius);
+         if (error == MV_NO_ERROR)
+         {
+            glColor3f(r,g,b);
+         }
+         else
+         {
+            glColor3f(1,0,0);
+            radius = 1;
+         }
+
+         if (drawMode == GL_LINE)
+         {
+            glutWireSphere(radius,20,20);
+         }
+         else
+         {
+            glutSolidSphere(radius,20,20);
+         }
+      }
+      else
+      {
+         if (drawMode == GL_LINE)
+         {
+            glutWireOctahedron();
+         }
+         else
+         {
+            glutSolidOctahedron();
+         }
+
+      }
+   glPopMatrix();
 }
 
 /*
@@ -369,28 +421,10 @@ void displayObstacle(mvObstaclePtr o,void* extraPtr)
  */
 void displayWaypoint(mvWaypointPtr wp,void* extraPtr)
 {
-   mvOptionEnum tempShape;
-
    if (wp != NULL)
    {
-     glPushMatrix();
-       glTranslatef(wp->getX(),wp->getY(),wp->getZ());
-       glColor3f(1,1,0);
-       //glutSolidOctahedron();
-        tempShape = MV_AABOX;
-        if (tempShape == MV_AABOX)
-        {
-           glutSolidCube(1.0);
-        }
-        else if (tempShape == MV_SPHERE)
-        {
-           glutSolidSphere(1.0,20,20);
-        }
-        else
-        {
-          glutSolidOctahedron();
-        }
-     glPopMatrix();
+      drawGLShape(GL_LINE, wp->getShape(),
+         wp->getPosition(), 1, 1, 0);
    }
 }
 
@@ -440,10 +474,12 @@ void displayFrameRate(long int frameNo)
     std::cout << "TPF : " << tpfCurrent << " +/- " << tpfCurrent - tpfPrevious <<std::endl;
     tpfPrevious = tpfCurrent;
     noOfSeconds++;
+    /*
     if (noOfSeconds > 10)
     {
       exit(0);
     }
+    */
   }
 }
 
