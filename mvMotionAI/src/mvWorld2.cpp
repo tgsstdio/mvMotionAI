@@ -2058,14 +2058,14 @@ void mvWorld_V2::checkIfWaypointContainsBody(mvBodyCapsulePtr bodyPtr,
    waypoints.applyToAllCapsules(mvWorldV2_CheckWaypointLocality, &helperModule);
 
    // check waypoints
-
+   /*
    waypointList.beginLoop();
    while(!waypointList.isLoopFinished())
    {
       std::cout << "Index : " << waypointList.getCurrentIndex() << std::endl;
       waypointList.nextIndex();
    }
-
+   */
 }
 
 void mvWorld_V2::calculateBehavioursOnBody(mvBodyCapsulePtr bCapsulePtr,\

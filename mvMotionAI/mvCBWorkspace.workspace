@@ -3,7 +3,10 @@
 	<Workspace title="mvMotionAI Code Blocks Workspace">
 		<Project filename="mvMotionAI-LuaFunctions.cbp" />
 		<Project filename="mvMotionAI-TypeSizes.cbp" />
-		<Project filename="mvMotion-GLMain.cbp" active="1">
+		<Project filename="CustomAction.cbp" active="1">
+			<Depends filename="mvMotion-CB.cbp" />
+		</Project>
+		<Project filename="mvMotion-GLMain.cbp">
 			<Depends filename="mvMotion-CB.cbp" />
 		</Project>
 		<Project filename="mvMotion-CB.cbp" />
