@@ -777,6 +777,42 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
    if (actionResult.isOmegaSet())
    {
       //TODO : quaternion addition/subtraction
+      totalVec = summedResult->getOmega();
+      currentMotion = actionResult.getOmegaMotionType();
+      currentEffect = actionResult.getOmegaEffectType();
+
+      if (currentMotion == MV_DEFAULT_MOTION)
+      {
+         currentMotion = defaultMotion;
+      }
+
+      if (currentEffect == MV_DEFAULT_EFFECT)
+      {
+         currentEffect = defaultEffect;
+      }
+
+      actionVec = actionResult.getOmega();
+      if(actionResult.isOmegaInDegrees())
+      {
+         // TODO convert degrees in radains
+      }
+
+      totalVec *= weight;
+      if (currentEffect == MV_LOCAL_EFFECT)
+      {
+         // TODO : delocalise function
+      }
+      // TODO : check if before or after delocal or confining
+
+      if (isConfined)
+      {
+         mvWorld_V2_ConfineMotionVector(MV_OMEGA, currentBody->getDomain(),
+            totalVec);
+      }
+
+      totalVec += actionVec;
+      summedResult->setOmegaInRadians(totalVec, MV_STEERING_MOTION,
+         MV_GLOBAL_EFFECT);
    }
 
    if (actionResult.isQuaternionSet())
@@ -786,7 +822,44 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
 
    if (actionResult.isRotationSet())
    {
-      //TODO : rotation addition/subtraction
+      totalVec = summedResult->getRotation();
+      currentMotion = actionResult.getRotationMotionType();
+      currentEffect = actionResult.getRotationEffectType();
+
+      if (currentMotion == MV_DEFAULT_MOTION)
+      {
+         currentMotion = defaultMotion;
+      }
+
+      if (currentEffect == MV_DEFAULT_EFFECT)
+      {
+         currentEffect = defaultEffect;
+      }
+
+      actionVec = actionResult.getRotation();
+
+      if(actionResult.isRotationInDegrees())
+      {
+         // TODO convert degrees in radains
+      }
+
+      totalVec *= weight;
+      if (currentEffect == MV_LOCAL_EFFECT)
+      {
+         // TODO : delocalise function
+        // actionVec -= currentBody->getRotation();
+      }
+      // TODO : check if before or after delocal or confining
+
+      if (isConfined)
+      {
+         mvWorld_V2_ConfineMotionVector(MV_ROTATION, currentBody->getDomain(),
+            totalVec);
+      }
+
+      totalVec += actionVec;
+      summedResult->setRotationInRadians(totalVec, MV_STEERING_MOTION,
+         MV_GLOBAL_EFFECT);
    }
 }
 
