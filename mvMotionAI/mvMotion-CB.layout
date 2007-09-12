@@ -88,8 +88,8 @@
 	<File name="include\mvMotionAI-Utilities.h" open="0" top="0" tabpos="2">
 		<Cursor position="1534" topLine="20" />
 	</File>
-	<File name="include\mvMotionAI.h" open="0" top="0" tabpos="7">
-		<Cursor position="19524" topLine="256" />
+	<File name="include\mvMotionAI.h" open="1" top="0" tabpos="7">
+		<Cursor position="42203" topLine="802" />
 	</File>
 	<File name="include\mvMotionAI_V2-Central.h" open="0" top="0" tabpos="37">
 		<Cursor position="5579" topLine="172" />
@@ -109,8 +109,8 @@
 	<File name="include\mvShape.h" open="0" top="0" tabpos="4">
 		<Cursor position="1306" topLine="27" />
 	</File>
-	<File name="include\mvVec3.h" open="0" top="0" tabpos="6">
-		<Cursor position="2027" topLine="35" />
+	<File name="include\mvVec3.h" open="1" top="0" tabpos="4">
+		<Cursor position="2775" topLine="68" />
 	</File>
 	<File name="include\mvWaypointCapsule.h" open="0" top="0" tabpos="0">
 		<Cursor position="1503" topLine="33" />
@@ -121,8 +121,8 @@
 	<File name="include\mvWorld2.h" open="0" top="0" tabpos="6">
 		<Cursor position="4491" topLine="98" />
 	</File>
-	<File name="src\mvBody_V2.cpp" open="0" top="0" tabpos="14">
-		<Cursor position="21398" topLine="894" />
+	<File name="src\mvBody_V2.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="1819" topLine="31" />
 	</File>
 	<File name="src\mvEnums.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="11677" topLine="453" />
@@ -145,6 +145,9 @@
 	<File name="src\mvPathway_V2.cpp" open="0" top="0" tabpos="40">
 		<Cursor position="9712" topLine="386" />
 	</File>
+	<File name="src\mvSeek.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="3218" topLine="57" />
+	</File>
 	<File name="src\mvShape.cpp" open="0" top="0" tabpos="15">
 		<Cursor position="13619" topLine="453" />
 	</File>
@@ -157,10 +160,10 @@
 	<File name="src\mvWorld2.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="48600" topLine="2037" />
 	</File>
-	<File name="src\mvWorld2_Functions.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="36815" topLine="1162" />
+	<File name="src\mvWorld2_Functions.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="5279" topLine="120" />
 	</File>
-	<File name="src\mvWorld2_Functions.h" open="0" top="0" tabpos="4">
-		<Cursor position="1171" topLine="12" />
+	<File name="src\mvWorld2_Functions.h" open="1" top="0" tabpos="2">
+		<Cursor position="3403" topLine="101" />
 	</File>
 </CodeBlocks_layout_file>

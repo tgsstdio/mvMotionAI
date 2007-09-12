@@ -145,7 +145,7 @@ int main(int argc, char** argv)
    std::cout << "obstacleID : " << waypointID <<  std::endl;
 
 
-   int bodyID = mvCreateBody(worldID,MV_PARTICLE,MV_SPHERE, 0 , 4 , 0);
+   int bodyID = mvCreateBody(worldID,MV_PARTICLE,MV_SPHERE, 1 , 4 , 0);
    std::cout << "bodyID : " << bodyID <<  std::endl;
 
    int groupID = mvCreateGroup(worldID,"HELLO");
@@ -155,12 +155,21 @@ int main(int argc, char** argv)
 
    //int gbIndex = mvCreateGroupBehaviour(worldID, MV_SEEK);
 
-   int bodyID2 = mvCreateBody(worldID,MV_PARTICLE,MV_SPHERE, 0 , 4 , 4);
+   int bodyID2 = mvCreateBody(worldID,MV_PARTICLE,MV_AABOX, 0 , 4 , 20);
    std::cout << "bodyID : " << bodyID2 <<  std::endl;
    int entryID = mvAddBehaviourToList(worldID,bodyID2,MV_SEEK);
    mvSetEntryListNodeParameteri(worldID,bodyID2,entryID,MV_WAYPOINT,-1);
-   paramError = mvSetBodyParameter(worldID, bodyID, MV_APPLY_FORCES, MV_FALSE);
+   paramError = mvSetEntryListNodeParameter(worldID,bodyID2,entryID,MV_IS_CONFINED,MV_TRUE);
+   if (paramError != MV_NO_ERROR) puts("ERROR FOUND");
+   paramError = mvSetBodyParameter(worldID, bodyID2, MV_APPLY_GRAVITY, MV_FALSE);
+   //paramError = mvSetBodyParameter(worldID, bodyID2, MV_DOMAIN, MV_Z_AXIS_ONLY);
+   if (paramError != MV_NO_ERROR) puts("ERROR FOUND");
 
+   paramError = mvSetBodyParameterf(worldID, bodyID2, MV_MAX_SPEED, 15);
+   paramError = mvSetBodyParameterf(worldID, bodyID2, MV_ACCELERATION, 5);
+   if (paramError != MV_NO_ERROR) puts("ERROR FOUND");
+
+   paramError = mvSetWorldParameter(worldID,MV_APPLY_ALL_FORCES, MV_FALSE);
    if (paramError != MV_NO_ERROR) puts("ERROR FOUND");
 
 
@@ -314,10 +323,13 @@ void displayBody(mvBodyPtr p,void* extraPtr)
          glColor3f(0,1,0);
          glVertex3f(p->getVelocity().getX(), p->getVelocity().getY(), p->getVelocity().getZ());
          // GREEN TO BLUE - final velocity
-         glColor3f(0,1,0);
-         glVertex3f(0,1,0);
-         glColor3f(0,0,1);
-         glVertex3f(p->getFinalVelocity().getX(), 1.0f + p->getFinalVelocity().getY(), p->getFinalVelocity().getZ());
+         glEnd();
+         glTranslatef(0,1,0);
+         glBegin(GL_LINES);
+            glColor3f(0,1,0);
+            glVertex3f(0,0,0);
+            glColor3f(0,0,1);
+            glVertex3f(p->getFinalVelocity().getX(), p->getFinalVelocity().getY(), p->getFinalVelocity().getZ());
          glEnd();
       glPopMatrix();
       glPopAttrib();
