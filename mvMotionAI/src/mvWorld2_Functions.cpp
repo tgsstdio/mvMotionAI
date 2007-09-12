@@ -139,7 +139,6 @@ void mvWorld_V2_CalculateForceOnSingleBody(mvForceCapsulePtr fCapsulePtr,\
 
       if (hasCalcForce)
       {
-         // TODO : post calculation filter bool check
          if (!(currentWorld->applyForces && currentBody->applyForces))
          {
             currentResult.disableForce();
@@ -449,28 +448,58 @@ void mvWorld_V2_ConfineMotionVector(mvParamEnum mType, mvOptionEnum domain,
             //todo : case MV_ANY_PLANE:
             //todo : case MV_ANY_LINE:
             case MV_X_AXIS_ONLY:
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
+               std::cout << "velocity confined 1" << std::endl;
+#endif
                motionVector.setY(0);
+               motionVector.setZ(0);
+               break;
             case MV_XY_PLANE:
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
+               std::cout << "velocity confined 2 " << std::endl;
+#endif
                motionVector.setZ(0);
                break;
             case MV_Y_AXIS_ONLY:
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
+               std::cout << "velocity confined 3 " << std::endl;
+#endif
+               motionVector.setX(0);
                motionVector.setZ(0);
+               break;
             case MV_YZ_PLANE:
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
+               std::cout << "velocity confined 4 " << std::endl;
+#endif
                motionVector.setX(0);
                break;
             case MV_Z_AXIS_ONLY:
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
+               std::cout << "velocity confined 5 " << std::endl;
+#endif
                motionVector.setX(0);
+               motionVector.setY(0);
+               break;
             case MV_XZ_PLANE:
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
+               std::cout << "velocity confined 6 " << std::endl;
+#endif
                motionVector.setY(0);
                break;
             default:
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
+               std::cout << "velocity confined 7 " << std::endl;
+#endif
+               break;
             case MV_FULL_3D:
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
+               std::cout << "velocity confined 8 " << std::endl;
+#endif
                break;
          }
          break;
       // rotation/sphere
       case MV_ROTATION:
-      case MV_TORQUE:
       case MV_OMEGA:
          switch(domain)
          {
@@ -495,6 +524,11 @@ void mvWorld_V2_ConfineMotionVector(mvParamEnum mType, mvOptionEnum domain,
             case MV_FULL_3D:
                break;
          }
+         break;
+      case MV_TORQUE:
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
+         std::cout << "torque confined 8 " << std::endl;
+#endif
          break;
       default:
          break;
@@ -621,17 +655,17 @@ void mvWorld_V2_SumBehaviourResults(mvBehaviourResultPtr summedResult,
          // TODO : delocalise function
       }
 
-      totalVec *= weight;
+      actionVec *= weight;
       if (currentMotion == MV_DIRECTIONAL_MOTION)
       {
-         actionVec -= currentBody->getFinalVelocity();
+         actionVec -= currentBody->getVelocity();
       }
       // TODO : check if before or after delocal or confining
 
       if (isConfined)
       {
          mvWorld_V2_ConfineMotionVector(MV_VELOCITY, currentBody->getDomain(),
-            totalVec);
+            actionVec);
       }
 
 
@@ -681,7 +715,7 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
       }
 
       actionVec = actionResult.getForce();
-      totalVec *= weight;
+      actionVec *= weight;
       if (currentEffect == MV_LOCAL_EFFECT)
       {
          // TODO : delocalise function
@@ -691,7 +725,7 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
       if (isConfined)
       {
          mvWorld_V2_ConfineMotionVector(MV_FORCE_VECTOR, currentBody->getDomain(),
-            totalVec);
+            actionVec);
       }
 
       totalVec += actionVec;
@@ -717,7 +751,7 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
 
       actionVec = actionResult.getAcceleration();
       // TODO : check if before or after delocal or confining
-      totalVec *= weight;
+      actionVec *= weight;
       if (currentEffect == MV_LOCAL_EFFECT)
       {
          // TODO : delocalise function
@@ -726,7 +760,7 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
       if (isConfined)
       {
          mvWorld_V2_ConfineMotionVector(MV_ACCELERATION_VECTOR, currentBody->getDomain(),
-            totalVec);
+            actionVec);
       }
 
       totalVec += actionVec;
@@ -751,7 +785,7 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
       }
 
       actionVec = actionResult.getTorque();
-      totalVec *= weight;
+      actionVec *= weight;
       if (currentEffect == MV_LOCAL_EFFECT)
       {
          // TODO : delocalise function
@@ -761,7 +795,7 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
       if (isConfined)
       {
          mvWorld_V2_ConfineMotionVector(MV_TORQUE, currentBody->getDomain(),
-            totalVec);
+            actionVec);
       }
 
       totalVec += actionVec;
@@ -797,7 +831,7 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
          // TODO convert degrees in radains
       }
 
-      totalVec *= weight;
+      actionVec *= weight;
       if (currentEffect == MV_LOCAL_EFFECT)
       {
          // TODO : delocalise function
@@ -807,7 +841,7 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
       if (isConfined)
       {
          mvWorld_V2_ConfineMotionVector(MV_OMEGA, currentBody->getDomain(),
-            totalVec);
+            actionVec);
       }
 
       totalVec += actionVec;
@@ -843,7 +877,7 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
          // TODO convert degrees in radains
       }
 
-      totalVec *= weight;
+      actionVec *= weight;
       if (currentEffect == MV_LOCAL_EFFECT)
       {
          // TODO : delocalise function
@@ -854,7 +888,7 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
       if (isConfined)
       {
          mvWorld_V2_ConfineMotionVector(MV_ROTATION, currentBody->getDomain(),
-            totalVec);
+            actionVec);
       }
 
       totalVec += actionVec;
@@ -940,7 +974,7 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
 // TODO : calculate world functions
    mvBodyPtr currentBody = capsulePtr->getClassPtr();
 
-   mvFloat vel[2][3], pos[2][3], c1, c2;
+   mvVec3 euler_vel[2], euler_pos[2], euler_accel[2], c1, c2;
    mvIndex i = 0;
 
    mvVec3 accelVec, deltaVelocity, bodyVelocity;
@@ -1012,10 +1046,19 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
       {
          futureSpeed = minSpeed;
       }
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
+      std::cout << "Future Speed : " << futureSpeed
+         << " Min Speed : " << minSpeed
+         << " Max Speed :" << maxSpeed
+         << " Final Speed : " << currentBody->getFinalSpeed()
+         << std::endl;
+#endif
 
       //* 6. calc the body's 'own' propulsion velocity
       bodyVelocity = futureUnitVelocity;
       bodyVelocity *= futureSpeed;
+
+
       // saving velocity
       deltaVelocity = currentBody->getVelocity();
       // set velocity
@@ -1033,7 +1076,8 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
    else
    {
       // reset force & torque values of body
-      //currentBody->setTorque(zeroVector);
+      currentBody->setVelocity(zeroVector);
+      currentBody->setBodysTorque(zeroVector);
       currentBody->setBodysForce(zeroVector);
    }
 
@@ -1042,10 +1086,8 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
     *     - exactly the same thing in different forms
     */
 
-   mvVec3 pastVelocity = currentBody->getFinalVelocity();
-   /*
-
-   */
+   euler_vel[0] = currentBody->getFinalVelocity();
+   euler_accel[0] = currentBody->getFinalForce();
    // repeat steps force -> accel -> delta_vel => accel => force
    accelVec = capsulePtr->additionalForce;
 
@@ -1058,9 +1100,8 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
    accelVec *= hTimeStep;
    // accel -> delta_vel
    deltaVelocity = accelVec;
-   //deltaVelocity *= hTimeStep;
-   // sum velocities to final velocity
-   bodyVelocity = currentBody->getVelocity();
+   // sum steering velocities to final velocity
+   bodyVelocity.toZeroVec();
 #ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
    std::cout << "Body Vecel 0: " << bodyVelocity.getX() << " " <<
       bodyVelocity.getY() << " " << bodyVelocity.getZ() << std::endl;
@@ -1078,66 +1119,41 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
       bodyVelocity.getY() << " " << bodyVelocity.getZ() << std::endl;
 #endif
    // store final velocity
-   bodyVelocity += pastVelocity;
-   currentBody->setFinalVelocity(bodyVelocity);
+   bodyVelocity += euler_vel[0];
+   //currentBody->setFinalVelocity(bodyVelocity);
 
    // calculating final force
    accelVec = bodyVelocity;
-   accelVec -= pastVelocity;
+   accelVec -= euler_vel[0];
    accelVec *= inverse_h;
    accelVec *= bodyMass;
    currentBody->setFinalForce(accelVec);
-#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
-   std::cout << "Force Vec : " << accelVec.getX() << " " <<
-      accelVec.getY() << " " << accelVec.getZ() << std::endl;
-#endif
 
-   bodyVelocity = currentBody->getFinalVelocity();
-#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
-   std::cout << "Past Vecel : " << pastVelocity.getX() << " " <<
-      pastVelocity.getY() << " " << pastVelocity.getZ() << std::endl;
-   std::cout << "Body Vecel 3: " << bodyVelocity.getX() << " " <<
-      bodyVelocity.getY() << " " << bodyVelocity.getZ() << std::endl;
-#endif
+   //* 1. calculate the final velocity of the body
 
-   //* 1. calculate the final position of the body
-   vel[0][0] = pastVelocity.getX();
-   vel[0][1] = pastVelocity.getY();
-   vel[0][2] = pastVelocity.getZ();
-   vel[1][0] = bodyVelocity.getX();
-   vel[1][1] = bodyVelocity.getY();
-   vel[1][2] = bodyVelocity.getZ();
+   euler_pos[0] = currentBody->getPosition();
 
-   pos[0][0] = currentBody->getPosition().getX();
-   pos[0][1] = currentBody->getPosition().getY();
-   pos[0][2] = currentBody->getPosition().getZ();
-
+   mvFloat halfATimeStep = hTimeStep * 0.5;
    // TODO : rotation
 
-   for (i = 0; i < 3; i++)
-   {
-      //vel[0][i] += dir[i] * speed[0];
-      //vel[1][i] += dir[i] * speed[1];
-      //vel[0][j] *= speed[0];
-      //vel[1][j] *= speed[1];
+   // euler_vel[1] += (c1) = euler_accel[0] = pastFinalForce;
+   euler_vel[1] = euler_accel[0];
+   // euler_vel[1] += c2 = h * euler_accel[1] = currentBody->getFinalForce()
+   euler_vel[1] += currentBody->getFinalForce();
+   euler_vel[1] /= bodyMass;
+   euler_vel[1] *= halfATimeStep;
+   euler_vel[1] += euler_vel[0];
 
-      /*
-      * 5.1.2.6.2 calculate the position
-      */
-      c1 = hTimeStep * vel[0][i];
-      c2 = hTimeStep * vel[1][i];
-      pos[1][i] =  0.5 * (c1 + c2);
-      pos[1][i] += pos[0][i];
-   }
+   /*
+   * 5.1.2.6.2 calculate the position
+   */
+   euler_pos[1] = euler_vel[0];  // c1 = hTimeStep * euler_vel[0];
+   euler_pos[1] += euler_vel[1]; //c2 = hTimeStep * euler_vel[1];
+   euler_pos[1] *= halfATimeStep;
+   euler_pos[1] += euler_pos[0];
 
-   //currentBody->setVelocity(vel[1][0],vel[1][1],vel[1][2]);
-   currentBody->setPosition(pos[1][0],pos[1][1],pos[1][2]);
-#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
-   std::cout << "Current Time : " << helperModule->currentWorld->getElapsedWorldTime()
-      << " Time Step : " << hTimeStep << std::endl;
-   std::cout << "New Position: " << pos[1][0] << " " <<
-      pos[1][1] << " " << pos[1][2] << std::endl;
-#endif
+   currentBody->setFinalVelocity(euler_vel[1]);
+   currentBody->setPosition(euler_pos[1]);
 }
 
 void mvWorld_V2_FinaliseGroups(mvGroupCapsulePtr capsulePtr, void* extraPtr)
@@ -1150,6 +1166,11 @@ void mvWorldV2_CheckWaypointLocality(mvWaypointCapsulePtr wCapsulePtr,\
 {
    mvWorld_V2_LocalForceCalculationHelper* bodyHelper =
       (mvWorld_V2_LocalForceCalculationHelper*) extraPtr;
+   const mvFloat* posArray = MV_NULL;
+   mvWorld_V2_LocalForceCalculationHelper* sphereHelperPtr = MV_NULL;
+   mvWorld_V2_LocalForceCalculationHelper* aaboxHelperPtr = MV_NULL;
+   mvFloat radiusSq = 0;
+   mvFloat totalDiff = 0;
 
    // skip associated waypoints
    if (bodyHelper == MV_NULL || wCapsulePtr == MV_NULL ||
@@ -1205,6 +1226,37 @@ void mvWorldV2_CheckWaypointLocality(mvWaypointCapsulePtr wCapsulePtr,\
          wpShapeData.shapePos, bodyHelper->bodyRadiusSq,
          wpShapeData.bodyRadiusSq);
    }
+   else if ((bodyHelper->bodyShape == MV_AABOX &&
+      wpShapeData.bodyShape == MV_SPHERE) ||
+      (bodyHelper->bodyShape == MV_SPHERE &&
+         wpShapeData.bodyShape == MV_AABOX))
+   {
+      // sphere is on right
+      if (bodyHelper->bodyShape == MV_AABOX)
+      {
+         sphereHelperPtr = &wpShapeData;
+         aaboxHelperPtr = bodyHelper;
+      }
+      else
+      {
+         sphereHelperPtr = bodyHelper;
+         aaboxHelperPtr = &wpShapeData;
+      }
+
+      posArray = sphereHelperPtr->shapePos.getPointer();
+      radiusSq = sphereHelperPtr->bodyRadiusSq;
+
+      totalDiff = 0;
+
+      for(int i = 0; i < MV_VEC3_NO_OF_COMPONENTS; i++)
+      {
+         totalDiff += mvWorldV2_SpheretoAABB_GetCollisionDistFromPoint(posArray[i],
+            aaboxHelperPtr, i);
+      }
+
+      bodyInsideWaypoint = (totalDiff < radiusSq);
+   }
+
 
    if (bodyInsideWaypoint)
    {
@@ -1385,39 +1437,37 @@ bool mvAABBtoAABB_Collision(mvWorld_V2_LocalForceCalculationHelper* firstBox,
    }
 }
 
-/*
-bool SpheretoAABB_Collision(float** aabb_dims, float* sphere_pos, float sphere_radius)
+mvFloat mvWorldV2_SpheretoAABB_GetCollisionDistFromPoint(mvFloat firstBoxPosComponent,
+   mvWorld_V2_LocalForceCalculationHelper* secondBox, mvIndex componentIndex)
 {
-  int i;
-  float distSq = 0.0f;
-  const int minIndex = 0;
-  const int maxIndex = 1;
-  float delta;
+   mvFloat delta = 0;
 
-  float radiusSq = sphere_radius;
-  radiusSq *= sphere_radius;
+   mvFloat secondBoxMin = secondBox->aabbMinValues[componentIndex];
+   mvFloat secondBoxMax = secondBox->aabbMaxValues[componentIndex];
 
-  for (i = 0; i < MAX_NO_OF_VECTORS_COMPONENTS; ++i)
-  {
-    if (sphere_pos[i] > aabb_dims[MV_AABB_MIN_INDEX][i])
-    {
-      delta = sphere_pos[i];
-      delta -= aabb_dims[MV_AABB_MIN_INDEX][i];
+   /*
+   std::cout << "POS : " << firstBoxPosComponent
+      << " 2ndBMin : " << secondBoxMin
+      << " 2ndBMax  :  " << secondBoxMax << std::endl;
+   */
+
+   if (firstBoxPosComponent < secondBoxMin)
+      //aabb_dims[MV_AABB_MIN_INDEX][i])
+   {
+      delta = firstBoxPosComponent;
+      delta -= secondBoxMin;
       delta *= delta;
-      distSq += delta;
-    }
-    else if (sphere_pos[i] > aabb_dims[MV_AABB_MAX_INDEX][i])
-    {
-      delta = sphere_pos[i];
-      delta -= aabb_dims[MV_AABB_MAX_INDEX][i];
+   }
+   else if (firstBoxPosComponent > secondBoxMax)
+   // (sphere_pos[i] > aabb_dims[MV_AABB_MAX_INDEX][i])
+   {
+      delta = firstBoxPosComponent;
+      delta -= secondBoxMax;
       delta *= delta;
-      distSq += delta;
-    }
-  }
-  return (distSq < radiusSq) ? true : false;
+   }
+
+   return delta;
 }
-*/
-
 
 bool mvSpheretoSphere_Colision(const mvVec3& firstShapePos,
    const mvVec3& secondShapePos, mvFloat firstRadiusSq, mvFloat secondRadiusSq)

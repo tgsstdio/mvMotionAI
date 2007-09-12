@@ -79,8 +79,8 @@ class MV_GLOBAL_FUNC_PREFIX mvVec3
 
    public:
       mvVec3(void);
-      mvVec3(const mvFloat& X, const mvFloat& Y, const mvFloat& Z);
-      mvVec3(const mvFloat* array);
+      explicit mvVec3(const mvFloat& X, const mvFloat& Y, const mvFloat& Z);
+      explicit mvVec3(const mvFloat* array);
       mvVec3(const mvVec3& rhs);
 
       mvVec3 operator+ (const mvVec3& v) const;

@@ -131,4 +131,7 @@ bool mvAABBtoAABB_Collision(mvWorld_V2_LocalForceCalculationHelper* firstBox,
 bool mvSpheretoSphere_Colision(const mvVec3& firstShapePos,
    const mvVec3& secondShapePos, mvFloat firstRadiusSq, mvFloat secondRadiusSq);
 
+mvFloat mvWorldV2_SpheretoAABB_GetCollisionDistFromPoint(mvFloat firstBoxPosComponent,
+   mvWorld_V2_LocalForceCalculationHelper* secondBox, mvIndex componentIndex);
+
 #endif // MVWORLD2_FUNCTIONS_H_INCLUDED

@@ -89,7 +89,7 @@ bool mvSeek::bodyOp(mvBehaviourResultPtr resultModule)
    */
    velocity = direction.normalize();
    velocity *= bodyPtr->getMaxSpeed();
-   velocity *= 0.5;
+   //velocity *= 0.5;
    /*
     * velocity.minusVec3(body->finalVelocity);
     */
