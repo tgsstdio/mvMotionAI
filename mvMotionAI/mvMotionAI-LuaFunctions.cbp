@@ -30,8 +30,7 @@
 				</Compiler>
 				<Linker>
 					<Add library="mvMotionAI-mingw" />
-					<Add library="lualib5" />
-					<Add library="lua5" />
+					<Add library="lua5.1" />
 					<Add directory="lib" />
 					<Add directory="lib-other\mingw" />
 				</Linker>
@@ -61,10 +60,15 @@
 		<Linker>
 			<Add directory="lib" />
 		</Linker>
+		<Unit filename="examples-src\LuaFunc.txt" />
 		<Unit filename="examples-src\LuaFuncTest.cpp" />
-		<Unit filename="include\mvLuaScript.h" />
+		<Unit filename="examples-src\mvLua.cpp" />
+		<Unit filename="examples-src\mvLua.h" />
+		<Unit filename="examples-src\mvLua_CFunctions.cpp" />
+		<Unit filename="examples-src\mvLua_CFunctions.h" />
 		<Extensions>
 			<code_completion />
+			<envvars />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

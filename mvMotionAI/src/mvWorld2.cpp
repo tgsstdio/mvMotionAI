@@ -215,6 +215,19 @@ mvBaseForcePtr mvWorld_V2::getForcePtr(mvIndex index)
    return forces.getClassPtr(index);
 }
 
+mvIndex mvWorld_V2::createForce_str(const char* fType)
+{
+   mvOptionEnum optionType;
+
+   // TODO : BODY TEMPLATE
+   if (!mvCheckAllOptionEnumsForString(fType, &optionType))
+   {
+      return MV_NULL;
+   }
+
+   return createForce(optionType);
+}
+
 /** @brief (one liner)
   *
   * (documentation goes here)
@@ -493,6 +506,18 @@ mvGroupBehaviourPtr mvWorld_V2::getGroupBehaviourPtr(mvIndex index)
    return groupBehaviours.getClassPtr(index);
 }
 
+mvIndex mvWorld_V2::createGroupBehaviour_str(const char* type)
+{
+   mvOptionEnum optionType;
+
+   if (!mvCheckAllOptionEnumsForString(type, &optionType))
+   {
+      return MV_NULL;
+   }
+
+   return createGroupBehaviour(optionType);
+}
+
 /** @brief (one liner)
   *
   * (documentation goes here)
@@ -698,9 +723,8 @@ mvGroupPtr mvWorld_V2::getGroupPtr(mvIndex index)
 
 /** @brief (one liner)
   *
-  * Should clean up this code
   */
-mvIndex mvWorld_V2::createGroup(const char* groupID)
+mvIndex mvWorld_V2::createGroup()
 {
    mvGroupPtr temp = MV_NULL;
    mvGroupCapsulePtr tempCapsule = NULL;
@@ -894,6 +918,18 @@ mvBehaviour_V2 * mvWorld_V2::getCurrentBehaviourPtr()
 mvBehaviour_V2 * mvWorld_V2::getBehaviourPtr(mvIndex index)
 {
    return behaviours.getClassPtr(index);
+}
+
+mvIndex mvWorld_V2::createBehaviour_str(const char* bType)
+{
+   mvOptionEnum optionType;
+
+   if (!mvCheckAllOptionEnumsForString(bType, &optionType))
+   {
+      return MV_NULL;
+   }
+
+   return createBehaviour(optionType);
 }
 
 /** @brief (one liner)
@@ -1306,6 +1342,19 @@ mvWaypointPtr mvWorld_V2::getWaypointPtr(mvIndex index)
    return waypoints.getClassPtr(index);
 }
 
+mvIndex mvWorld_V2::createWaypoint_str(const char* wShape,mvFloat x = 0,\
+   mvFloat y = 0, mvFloat z = 0)
+{
+   mvOptionEnum optionShape;
+
+   if (!mvCheckAllOptionEnumsForString(wShape, &optionShape))
+   {
+      return MV_NULL;
+   }
+
+   return createWaypoint(optionShape, x, y, z);
+}
+
 /** @brief (one liner)
   *
   * (documentation goes here)
@@ -1517,6 +1566,24 @@ mvObstaclePtr mvWorld_V2::getObstaclePtr(mvIndex index)
    return obstacles.getClassPtr(index);
 }
 
+mvIndex mvWorld_V2::createObstacle_str(const char* oType, const char* oState,\
+   mvFloat x = 0, mvFloat y = 0, mvFloat z = 0)
+{
+   mvOptionEnum optionType, optionState;
+
+   if (!mvCheckAllOptionEnumsForString(oType, &optionType))
+   {
+      return MV_NULL;
+   }
+
+    if (!mvCheckAllOptionEnumsForString(oState, &optionState))
+   {
+      return MV_NULL;
+   }
+
+   return createObstacle(optionType, optionState, x, y, z);
+}
+
 /** @brief (one liner)
   *
   * (documentation goes here)
@@ -1722,6 +1789,26 @@ mvBodyPtr mvWorld_V2::getBodyPtr(mvIndex index)
    return bodies.getClassPtr(index);
 }
 
+mvIndex mvWorld_V2::createBody_str(const char* bType, const char* bShape,\
+   mvFloat x = 0, mvFloat y = 0, mvFloat z = 0)
+{
+   mvOptionEnum optionType, optionShape;
+
+   // TODO : BODY TEMPLATE
+   if (!mvCheckAllOptionEnumsForString(bType, &optionType))
+   {
+      return MV_NULL;
+   }
+
+   if (!mvCheckAllOptionEnumsForString(bShape, &optionShape))
+   {
+      return MV_NULL;
+   }
+
+   return createBody(optionType, optionShape, x, y, z);
+
+}
+
 /** @brief (one liner)
   *
   * (documentation goes here)
@@ -1859,20 +1946,18 @@ void mvWorld_V2::initialiseCommonVariables(mvBehaviourResultPtr behavResult,
    predictFinalPos *= hTimeStep;
    predictFinalPos += currentBody->getPosition();
 
-   // C: predict velocity == old_vel + max_accel * time
-   // TODO : use current force
-   mvVec3 predictVelocity = currentBody->getBodyDirection();
-   predictVelocity *= currentBody->getSpeed() +
-      (currentBody->getAcceleration() * hTimeStep);
+   // C: predict velocity == old_vel + past_force * time
+   mvVec3 predictVelocity(currentBody->getBodysForce());
+   predictVelocity /= currentBody->getMass();
+   predictVelocity *= hTimeStep;
+   predictVelocity += currentBody->getVelocity();
 
    // D predict final velocity => predict_vel + past_vel_by_mvforces
-   // past_vel_by_mvforces = (final_vel - vel)
-   // TODO : use final force
-   mvVec3 predictFinalVelocity;
-   predictFinalVelocity.toZeroVec();
-   predictFinalVelocity -= currentBody->getVelocity();
+   // past_vel_by_mvforces = final_vel + force
+   mvVec3 predictFinalVelocity(currentBody->getFinalForce());
+   predictFinalVelocity /= currentBody->getMass();
+   predictFinalVelocity *= hTimeStep;
    predictFinalVelocity += currentBody->getFinalVelocity();
-   predictFinalVelocity += predictVelocity;
 
    behavResult->setPositionPrediction(predictPos);
    behavResult->setFinalPositionPrediction(predictFinalPos);
@@ -1993,24 +2078,15 @@ void mvWorld_V2::calculateAllForcesOnBody(mvBodyCapsulePtr bodyPtr,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::nudgeCurrentBody(mvFloat timeInSecs)
-{
-   return nudgeBody(getCurrentBody(), timeInSecs);
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
 void mvWorld_V2::resetIntegrationLoop()
 {
-   // TODO : reset waypoints
+   // reset forces
    waypoints.applyToAllCapsules(mvWorld_V2_ResetWaypointCapsule, MV_NULL);
 }
 
 void mvWorld_V2::prepareIntegrationStep()
 {
-   // TODO : reset bodies
+   // reset bodies
    bodies.applyToAllCapsules(mvWorld_V2_PrepareBodyCapsule,MV_NULL);
 
    // reset forces
@@ -2040,7 +2116,7 @@ void mvWorld_V2::calculateGroupBehaviours() // 1
 void mvWorld_V2::checkIfWaypointContainsBody(mvBodyCapsulePtr bodyPtr,
    mvUniqueSet& waypointList) // part of 2
 {
-// TODO : calculate world functions
+
    mvWorld_V2_LocalForceCalculationHelper helperModule(waypointList);
    helperModule.bCapsule = bodyPtr;
 
@@ -2071,8 +2147,6 @@ void mvWorld_V2::checkIfWaypointContainsBody(mvBodyCapsulePtr bodyPtr,
 void mvWorld_V2::calculateBehavioursOnBody(mvBodyCapsulePtr bCapsulePtr,\
    mvBehaviourResultPtr finalResult)
 {
-   // TODO : code here
-
    // Step 1 - fetch body
    mvConstBodyPtr currentBody = bCapsulePtr->getConstClassPtr();
 
@@ -2123,7 +2197,6 @@ void mvWorld_V2::setFinalBodyCapsuleVariables(mvBodyCapsulePtr bodyPtr,\
 {
    mvVec3 tempVector;
    // ASSUME resultModule is "NORMALISED" - global steering motions
-   // TODO : normalize bool
 
    // set
    mvFloat bodyMass = bodyPtr->getConstClassPtr()->getMass();

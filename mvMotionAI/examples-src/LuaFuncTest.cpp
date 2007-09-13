@@ -23,11 +23,12 @@
  */
 #include <iostream>
 #include "mvMotionAI.h"
-#include "mvLuaScript.h"
+#include "mvLua.h"
 
 //const char** mvGetLuaWorldFunctions();
 //mvCount mvGetNoOfLuaWorldFunctions();
 
+/*
 void displayLuaFunctions(char* stringTitle,const char** arrayPtr, mvCount noOfElements)
 {
     int i;
@@ -44,6 +45,7 @@ void displayLuaFunctions(char* stringTitle,const char** arrayPtr, mvCount noOfEl
     }
     std::cout << std::endl;
 }
+*/
 
 int main()
 {
@@ -54,6 +56,7 @@ int main()
     */
 
 	std::cout << "mvMotionAI Lua Functions" << std::endl;
+	/*
     displayLuaFunctions("mvMotionAI",mvGetLuaMotionAIFunctions(),mvGetNoOfLuaMotionAIFunctions());
     displayLuaFunctions("mvWorld",mvGetLuaWorldFunctions(),mvGetNoOfLuaWorldFunctions());
     displayLuaFunctions("mvBody",mvGetLuaBodyFunctions(),mvGetNoOfLuaBodyFunctions());
@@ -64,6 +67,6 @@ int main()
     displayLuaFunctions("mvPathway",mvGetLuaPathwayFunctions(),mvGetNoOfLuaPathwayFunctions());
     displayLuaFunctions("mvGroup",mvGetLuaGroupFunctions(),mvGetNoOfLuaGroupFunctions());
     displayLuaFunctions("mvGroupBehaviour",mvGetLuaGroupBehaviourFunctions(),mvGetNoOfLuaGroupBehaviourFunctions());
-
+   */
 	return 0;
 }

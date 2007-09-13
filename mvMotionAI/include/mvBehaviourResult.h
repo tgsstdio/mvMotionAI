@@ -48,7 +48,6 @@ class MV_GLOBAL_FUNC_PREFIX mvBehaviourResult
 {
    public:
 
-      // TODO : remove local namespace of these enums
       mvBehaviourResult(mvConstWorldPtr worldPtr, mvConstBodyPtr bodyPtr);
 
       void     setBehaviourIndex(mvIndex bIndex);
