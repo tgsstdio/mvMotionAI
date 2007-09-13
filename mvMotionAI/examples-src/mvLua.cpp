@@ -40,7 +40,7 @@ mvErrorEnum mvLua_LoadScriptFileWithLuaState(lua_State* lState,\
    */
    mvLua_LoadLuaMotionAIFunctions(lState);
 
-   luaError = lua_dofile(lState, fileName);
+   luaError = luaL_dofile(lState, fileName);
 
    if (luaError) // 1 is error found
    {

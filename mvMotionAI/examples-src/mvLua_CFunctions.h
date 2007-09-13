@@ -13,7 +13,7 @@ int mvLua_FreeMotionAI(lua_State* luaVM);
 int mvLua_AllWorldsStepForward(lua_State* luaVM);
 int mvLua_CreateWorld(lua_State* luaVM);
 int mvLua_DeleteAllWorlds(lua_State* luaVM);
-int mvLua_SetCurrentWorld(mvIndex index);
+int mvLua_SetCurrentWorld(lua_State* luaVM);
 int mvLua_GetCurrentWorld(lua_State* luaVM);
 int mvLua_InitDefaultActions(lua_State* luaVM);
 int mvLua_InitDefaultForces(lua_State* luaVM);

@@ -88,8 +88,8 @@
 	<File name="include\mvMotionAI-Utilities.h" open="0" top="0" tabpos="2">
 		<Cursor position="1534" topLine="20" />
 	</File>
-	<File name="include\mvMotionAI.h" open="1" top="0" tabpos="8">
-		<Cursor position="32362" topLine="37" />
+	<File name="include\mvMotionAI.h" open="1" top="0" tabpos="1">
+		<Cursor position="2102" topLine="82" />
 	</File>
 	<File name="include\mvMotionAI_V2-Central.h" open="0" top="0" tabpos="37">
 		<Cursor position="2766" topLine="44" />
@@ -124,8 +124,8 @@
 	<File name="src\mvBody_V2.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="1819" topLine="31" />
 	</File>
-	<File name="src\mvEnums.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="11677" topLine="453" />
+	<File name="src\mvEnums.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="11727" topLine="223" />
 	</File>
 	<File name="src\mvForceCapsule.cpp" open="0" top="0" tabpos="12">
 		<Cursor position="0" topLine="0" />
@@ -136,8 +136,8 @@
 	<File name="src\mvMotionAI-Utilities.cpp" open="0" top="0" tabpos="38">
 		<Cursor position="1972" topLine="94" />
 	</File>
-	<File name="src\mvMotionAI.cpp" open="1" top="0" tabpos="10">
-		<Cursor position="4610" topLine="154" />
+	<File name="src\mvMotionAI.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="4610" topLine="157" />
 	</File>
 	<File name="src\mvMotionAI_V2-Central.cpp" open="0" top="0" tabpos="10">
 		<Cursor position="3207" topLine="156" />
