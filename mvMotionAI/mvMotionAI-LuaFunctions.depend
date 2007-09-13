@@ -108,14 +108,15 @@
 	<lualib.h>
 	<lauxlib.h>
 
-1157174374 d:\mvmotionai\mvmotionai\include-other\lua.h
+1189693020 d:\mvmotionai\mvmotionai\include-other\lua.h
 	<stdarg.h>
 	<stddef.h>
+	"luaconf.h"
 
-1157174374 d:\mvmotionai\mvmotionai\include-other\lualib.h
+1189693018 d:\mvmotionai\mvmotionai\include-other\lualib.h
 	"lua.h"
 
-1157174374 d:\mvmotionai\mvmotionai\include-other\lauxlib.h
+1189693020 d:\mvmotionai\mvmotionai\include-other\lauxlib.h
 	<stddef.h>
 	<stdio.h>
 	"lua.h"
@@ -327,19 +328,32 @@
 	<mvMotionAI.h>
 	<Lua.hpp>
 
-1157174374 d:\mvmotionai\mvmotionai\include-other\lua.hpp
+1189693022 d:\mvmotionai\mvmotionai\include-other\lua.hpp
 	"lua.h"
 	"lualib.h"
 	"lauxlib.h"
 
-1189669486 source:d:\mvmotionai\mvmotionai\examples-src\mvlua.cpp
+1189692716 source:d:\mvmotionai\mvmotionai\examples-src\mvlua.cpp
 	"mvLua.h"
 	"mvLua_CFunctions.h"
 
-1189669316 d:\mvmotionai\mvmotionai\examples-src\mvlua_cfunctions.h
+1189693694 d:\mvmotionai\mvmotionai\examples-src\mvlua_cfunctions.h
 	<mvMotionAI.h>
 	<Lua.hpp>
 
-1189669490 source:d:\mvmotionai\mvmotionai\examples-src\mvlua_cfunctions.cpp
+1189692554 source:d:\mvmotionai\mvmotionai\examples-src\mvlua_cfunctions.cpp
 	"mvLua_CFunctions.h"
+
+1189693022 d:\mvmotionai\mvmotionai\include-other\luaconf.h
+	<limits.h>
+	<stddef.h>
+	<unistd.h>
+	<io.h>
+	<stdio.h>
+	<stdio.h>
+	<readline/readline.h>
+	<readline/history.h>
+	<assert.h>
+	<math.h>
+	<unistd.h>
 
