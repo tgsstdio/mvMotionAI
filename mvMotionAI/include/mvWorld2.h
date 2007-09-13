@@ -133,10 +133,8 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
       void setForceLoader(mvForceLoaderListPtr fLoaderPtr);
       mvForceLoaderListPtr getForceLoaderPtr() const;
 
-      // TODO : world functions
       mvErrorEnum worldStep(mvFloat timeInSecs);
       mvErrorEnum nudgeBody(mvIndex bodyIndex, mvFloat timeInSecs);
-      mvErrorEnum nudgeCurrentBody(mvFloat timeInSecs);
 
       mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option)\
          const;
@@ -152,6 +150,8 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
 
       // body functions
       mvIndex createBody(mvOptionEnum bType, mvOptionEnum bShape,\
+         mvFloat x, mvFloat y, mvFloat z);
+      mvIndex createBody_str(const char* bType, const char* bShape,\
          mvFloat x, mvFloat y, mvFloat z);
       mvBodyPtr getBodyPtr(mvIndex index);
       mvBodyPtr getCurrentBodyPtr();
@@ -202,6 +202,8 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
       // obstacle functions
       mvIndex createObstacle(mvOptionEnum oType, mvOptionEnum oState,\
          mvFloat x, mvFloat y, mvFloat z);
+      mvIndex createObstacle_str(const char* oType, const char* oState,\
+         mvFloat x, mvFloat y, mvFloat z);
       mvObstaclePtr getObstaclePtr(mvIndex index);
       mvObstaclePtr getCurrentObstaclePtr();
       mvIndex setCurrentObstacle(mvIndex index);
@@ -250,6 +252,8 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
 
       // Waypoint functions
       mvIndex createWaypoint(mvOptionEnum wShape,mvFloat x,\
+         mvFloat y, mvFloat z);
+      mvIndex createWaypoint_str(const char* wShape,mvFloat x,\
          mvFloat y, mvFloat z);
       mvWaypointPtr getWaypointPtr(mvIndex index);
       mvWaypointPtr getCurrentWaypointPtr();
@@ -347,6 +351,7 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
 
       // Behaviour functions
       mvIndex createBehaviour(mvOptionEnum bType);
+      mvIndex createBehaviour_str(const char* bType);
       mvBehaviourPtr getBehaviourPtr(mvIndex index);
       mvBehaviourPtr getCurrentBehaviourPtr();
       mvIndex setCurrentBehaviour(mvIndex index);
@@ -394,7 +399,7 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
          mvFloat* array, mvCount* noOfParameters) const;
 
       // Group functions
-      mvIndex createGroup(const char* groupID);
+      mvIndex createGroup();
       mvGroupPtr getGroupPtr(mvIndex index);
       mvGroupPtr getCurrentGroupPtr();
       mvIndex setCurrentGroup(mvIndex index);
@@ -443,6 +448,7 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
 
       // GroupBehaviour functions
       mvIndex createGroupBehaviour(mvOptionEnum type);
+      mvIndex createGroupBehaviour_str(const char* type);
       mvGroupBehaviourPtr getGroupBehaviourPtr(mvIndex index);
       mvGroupBehaviourPtr getCurrentGroupBehaviourPtr();
       mvIndex setCurrentGroupBehaviour(mvIndex index);
@@ -493,6 +499,7 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
 
       // Force functions
       mvIndex createForce(mvOptionEnum fType);
+      mvIndex createForce_str(const char* fType);
       mvBaseForcePtr getForcePtr(mvIndex index);
       mvBaseForcePtr getCurrentForcePtr();
       mvIndex setCurrentForce(mvIndex index);
@@ -746,7 +753,6 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
          mvIndex waypointIndex);
       mvErrorEnum removeForceFromWaypoint(mvIndex forceIndex,\
          mvIndex waypointIndex);
-      // TODO : remove all
       mvErrorEnum removeAllWaypointsFromForce(mvIndex forceIndex);
       mvErrorEnum removeAllForcesFromWaypoint(mvIndex waypointIndex);
 };

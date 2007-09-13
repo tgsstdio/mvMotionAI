@@ -975,7 +975,7 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
    mvBodyPtr currentBody = capsulePtr->getClassPtr();
 
    mvVec3 euler_vel[2], euler_pos[2], euler_accel[2], c1, c2;
-   mvIndex i = 0;
+  // mvIndex i = 0;
 
    mvVec3 accelVec, deltaVelocity, bodyVelocity;
    mvFloat hTimeStep = helperModule->timeInSecs;
@@ -995,7 +995,6 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
       accelVec = capsulePtr->futureForce;
       accelVec /= bodyMass;
 
-      // TODO : have h, h^2, 1/h, 1/h^2 timesteps
       // deltaVelocity += accel
       accelVec *= hTimeStep;
       deltaVelocity = capsulePtr->futureVelocity;

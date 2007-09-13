@@ -36,8 +36,6 @@
 #include MV_WORLD_HEADER_FILE_H_
 //#include "mvList.h"
 
-/* TODO : implement v2 motion ai functions */
-
 void mvMotionAI_V2_INIT();
 void mvMotionAI_V2_FREE();
 mvIndex mvMotionAI_V2_GETCURRENTWORLD();
@@ -66,7 +64,7 @@ mvErrorEnum mvMotionAI_V2_ADDFORCEFUNC(mvOptionEnum fType,\
    mvBaseForceLoaderPtr loader);
 mvBaseForcePtr mvMotionAI_V2_CREATENEWFORCE(mvOptionEnum type);
 
-// todo : global C default behaviour/force loading functions
+// global C default behaviour/force loading functions
 mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(mvActionLoaderListPtr
    loader);
 mvErrorEnum mvMotionAI_V2_LOADDEFAULTFORCES(mvForceLoaderListPtr

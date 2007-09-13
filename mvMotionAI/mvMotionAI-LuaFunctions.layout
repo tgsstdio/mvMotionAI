@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="ubuntu" />
-	<File name="examples-src\LuaFuncTest.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1479" topLine="15" />
+	<ActiveTarget name="mingw-winXP" />
+	<File name="examples-src\LuaFunc.txt" open="0" top="0" tabpos="0">
+		<Cursor position="34428" topLine="665" />
 	</File>
-	<File name="include\mvLuaScript.h" open="0" top="0" tabpos="1">
-		<Cursor position="2243" topLine="24" />
+	<File name="examples-src\LuaFuncTest.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="1212" topLine="36" />
+	</File>
+	<File name="examples-src\mvLua.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="1047" topLine="0" />
+	</File>
+	<File name="examples-src\mvLua.h" open="1" top="0" tabpos="2">
+		<Cursor position="101" topLine="0" />
+	</File>
+	<File name="examples-src\mvLua_CFunctions.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="301" topLine="0" />
+	</File>
+	<File name="examples-src\mvLua_CFunctions.h" open="1" top="0" tabpos="7">
+		<Cursor position="121" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>
