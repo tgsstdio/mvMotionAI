@@ -1,7 +1,12 @@
 #ifndef MVWORLD2_FUNCTIONS_H_INCLUDED
 #define MVWORLD2_FUNCTIONS_H_INCLUDED
 
-#include "mvMotionAI-Types.h"
+#ifdef MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#include MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#else
+#include <mv/mvMotionAI-Types.h>
+#endif
+
 #include MV_ENUMS_HEADER_FILE_H_
 #include MV_INDEX_SET_HEADER_FILE_H_
 #include MV_WORLD_HEADER_FILE_H_

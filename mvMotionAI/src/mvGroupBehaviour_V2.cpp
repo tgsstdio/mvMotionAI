@@ -1,4 +1,4 @@
-#include "mvGroupBehaviour_V2.h"
+#include <mv/mvGroupBehaviour_V2.h>
 
 bool findGroupNodeByIndex(mvGroupBNode_V2* groupNodePtr, void* extraPtr)
 {

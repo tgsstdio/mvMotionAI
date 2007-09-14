@@ -21,7 +21,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-#include "mvWaypoint_V2.h"
+#include <mv/mvWaypoint_V2.h>
 
 mvWaypoint_V2::mvWaypoint_V2(mvOptionEnum wshape, mvFloat x, mvFloat y,\
    mvFloat z)

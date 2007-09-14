@@ -1,4 +1,4 @@
-#include "mvGroupBNode_V2.h"
+#include <mv/mvGroupBNode_V2.h>
 
 /** @brief (one liner)
   *

@@ -1,4 +1,4 @@
-#include "mvForceResult.h"
+#include <mv/mvForceResult.h>
 
 mvForceResult::mvForceResult(mvConstWorldPtr worldPtr,\
    mvConstBodyPtr bodyPtr) :

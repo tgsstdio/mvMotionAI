@@ -1,4 +1,4 @@
-#include "mvUniformForce.h"
+#include <mv/mvUniformForce.h>
 
 mvUniformForce::mvUniformForce()
    : mvBaseForce(MV_UNIFORM_FORCE),

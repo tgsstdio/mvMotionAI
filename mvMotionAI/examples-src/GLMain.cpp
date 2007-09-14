@@ -39,7 +39,7 @@
 /*
  * Step 1.0 : include header to use library
  */
-#include "mvMotionAI.h"
+#include <mv/mvMotionAI.h>
 
 static float left = -1.0;
 static float right = 1.0;
@@ -148,7 +148,7 @@ int main(int argc, char** argv)
    int bodyID = mvCreateBody(worldID,MV_PARTICLE,MV_SPHERE, 1 , 4 , 0);
    std::cout << "bodyID : " << bodyID <<  std::endl;
 
-   int groupID = mvCreateGroup(worldID,"HELLO");
+   int groupID = mvCreateGroup(worldID);
    std::cout << "Group ID : " << groupID <<  std::endl;
    std::cout << mvGetErrorEnumString(mvAddMemberIntoGroup(worldID, bodyID, groupID))
       << std::endl;

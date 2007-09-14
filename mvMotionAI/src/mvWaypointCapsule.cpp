@@ -1,4 +1,4 @@
-#include "mvWaypointCapsule.h"
+#include <mv/mvWaypointCapsule.h>
 
 mvWaypointCapsule::mvWaypointCapsule(mvWaypointPtr wPoint)
 {

@@ -1,5 +1,4 @@
-#include "mvBEntryUtility.h"
-
+#include <mv/mvBEntryUtility.h>
 
 /** @brief sets a floating point variable
   * \param[in] paramFlag Behaviour parameter to be set

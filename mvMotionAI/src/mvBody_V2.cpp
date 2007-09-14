@@ -22,7 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "mvBody_V2.h"
+#include <mv/mvBody_V2.h>
 
 /** \brief mvBodyV2 constructor
  * This is a rewrite of mvBody
