@@ -1,4 +1,4 @@
-#include <mv/mvMotionAI_V2-Central.h>
+#include "mvMotionAI_V2-Central.h"
 #include <cstring>
 #include <iostream>
 
@@ -360,10 +360,14 @@ mvErrorEnum mvMotionAI_V2::loadDefaultActions()
    return mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(&bFunctions);
 }
 
-mvBaseAction* mvMotionAI_V2::createNewBehaviour(mvOptionEnum type,\
-   mvBaseActionPtr defaultBehaviour)
+mvBaseActionPtr mvMotionAI_V2::createNewBehaviour(mvOptionEnum type)
 {
-   return bFunctions.createAClassPtr(type, defaultBehaviour);
+   mvNewBaseActionInfo actionInfo(type,
+      mvNewBaseActionInfo::MV_NEW_GLOBAL_BEHAVIOUR_OP,
+      MV_NULL,
+      MV_NULL);
+
+   return bFunctions.createAClassPtr(type, actionInfo);
 }
 
 void mvMotionAI_V2::freeDefaultActions()
@@ -718,8 +722,7 @@ mvErrorEnum mvMotionAI_V2_ADDBEHAVIOURFUNC(mvOptionEnum bType,\
    }
 }
 
-mvBaseActionPtr mvMotionAI_V2_CREATENEWBEHAVIOUR(mvOptionEnum type,\
-   mvBaseActionPtr defaultBehaviour)
+mvBaseActionPtr mvMotionAI_V2_CREATENEWBEHAVIOUR(mvOptionEnum type)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvMotionAI_V2* modulePtr = MV_NULL;
@@ -727,7 +730,7 @@ mvBaseActionPtr mvMotionAI_V2_CREATENEWBEHAVIOUR(mvOptionEnum type,\
    if (error == MV_NO_ERROR)
    {
       modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
-      return modulePtr->createNewBehaviour(type, defaultBehaviour);
+      return modulePtr->createNewBehaviour(type);
    }
    else
    {

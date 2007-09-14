@@ -46,7 +46,7 @@ TimedHopLoader::TimedHopLoader()
 
 }
 
-mvBaseActionPtr TimedHopLoader::operator()(mvBaseActionPtr higherNode)
+mvBaseActionPtr TimedHopLoader::operator()(mvNewBaseActionInfo& actionQuery)
 {
    return new TimedHop();
 }

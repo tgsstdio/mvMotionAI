@@ -61,13 +61,14 @@ struct mvWorld_V2_GroupBehaviourNodeHelper
 {
    public:
       mvWorldPtr currentWorld;
+      mvBaseActionPtr mainGroupActionPtr;
       mvOptionEnum gbType;
       mvIndex gbIndex;
       bool isEnabled;
 };
 
-void mvWorld_V2_CalculateEachGroupInGroupBehaviour(mvGroupBehaviourNodePtr currentNode,
-   void* extraPtr);
+void mvWorld_V2_CalculateEachGroupInGroupBehaviour(\
+   mvGroupBehaviourGroupNodePtr currentNode, void* extraPtr);
 
 void mvWorld_V2_CalculateForEachGroupBehaviour(\
    mvIndex groupBehaviourIndex, void* extraPtr);

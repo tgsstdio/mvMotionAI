@@ -89,12 +89,13 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvFreeAllDefaults();
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddForceFunction(mvOptionEnum bType,\
    mvBaseForceLoaderPtr loader);
-MV_GLOBAL_FUNC_PREFIX mvBaseForcePtr mvCreateNewForceFromLoader(mvOptionEnum type);
+MV_GLOBAL_FUNC_PREFIX mvBaseForcePtr mvCreateNewForceFromLoader(\
+   mvOptionEnum type);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddBehaviourFunction(mvOptionEnum bType,\
    mvBaseActionLoaderPtr loader);
-MV_GLOBAL_FUNC_PREFIX mvBaseActionPtr mvCreateNewBehaviourFromLoader(mvOptionEnum type,\
-   mvBaseActionPtr defaultBehaviour);
+MV_GLOBAL_FUNC_PREFIX mvBaseActionPtr mvCreateNewBehaviourFromLoader(\
+   mvOptionEnum type);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLoadDefaultBehaviours(\
    mvActionLoaderListPtr loader);

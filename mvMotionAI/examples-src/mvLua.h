@@ -1,7 +1,7 @@
 #ifndef MVLUA_H_INCLUDED
 #define MVLUA_H_INCLUDED
 
-#include <mvMotionAI.h>
+#include <mv/mvMotionAI.h>
 #include <Lua.hpp>
 
 void mvLua_LoadLuaMotionAIFunctions(lua_State* luaVM);

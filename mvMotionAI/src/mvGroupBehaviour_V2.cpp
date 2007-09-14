@@ -57,7 +57,7 @@ mvErrorEnum mvGroupBehaviour_V2::addGroup(mvIndex groupNo, mvBaseActionPtr
 {
    // first check if index exists
    mvIndex groupIndex = groupNo;
-   mvGroupBehaviourNodePtr groupNodePtr = MV_NULL;
+   mvGroupBehaviourGroupNodePtr groupNodePtr = MV_NULL;
 
    // first check if index exists
    if (groupNodeList.findItemPtrInList(findGroupNodeByIndex,\
@@ -66,7 +66,7 @@ mvErrorEnum mvGroupBehaviour_V2::addGroup(mvIndex groupNo, mvBaseActionPtr
       return MV_UNIQUE_ITEM_ALREADY_IN_LIST;
    }
 
-   groupNodePtr = new mvGroupBNode_V2(behavPtr,groupIndex);
+   groupNodePtr = new mvGroupBehaviourGroupNode(behavPtr,groupIndex);
 
    if (groupNodePtr == MV_NULL)
    {

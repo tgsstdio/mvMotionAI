@@ -30,7 +30,7 @@ mvCreatePursuits::mvCreatePursuits()
   *
   * (documentation goes here)
   */
-mvBaseAction* mvCreatePursuits::operator()(mvBaseAction* defaultBehav)
+mvBaseAction* mvCreatePursuits::operator()(mvNewBaseActionInfo& actionInfo)
 {
    return new mvPursuit();
 }

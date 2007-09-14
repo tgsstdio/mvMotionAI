@@ -22,7 +22,7 @@
  *
  */
 #include <iostream>
-#include "mvMotionAI.h"
+#include <mv/mvMotionAI.h>
 #include "mvLua.h"
 
 //const char** mvGetLuaWorldFunctions();

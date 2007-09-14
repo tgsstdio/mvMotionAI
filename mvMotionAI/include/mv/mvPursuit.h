@@ -48,7 +48,7 @@ class mvCreatePursuits : public mvBaseActionLoader
 {
    public:
       mvCreatePursuits();
-      mvBaseActionPtr operator()(mvBaseActionPtr defaultBehav);
+      mvBaseActionPtr operator()(mvNewBaseActionInfo& actionInfo);
       virtual ~mvCreatePursuits(){};
 };
 

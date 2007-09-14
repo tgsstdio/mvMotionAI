@@ -55,7 +55,7 @@ class mvCreateSeeks : public mvBaseActionLoader
 {
    public:
       mvCreateSeeks();
-      virtual mvBaseActionPtr operator()(mvBaseActionPtr defaultBehav);
+      virtual mvBaseActionPtr operator()(mvNewBaseActionInfo& actionInfo);
       virtual ~mvCreateSeeks(){};
 };
 

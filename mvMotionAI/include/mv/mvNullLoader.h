@@ -38,7 +38,7 @@ class mvNullLoader : public mvBaseActionLoader
 {
    public:
       mvNullLoader();
-      mvBaseActionPtr operator()(mvBaseActionPtr defaultBehaviour);
+      mvBaseActionPtr operator()(mvNewBaseActionInfo& actionInfo);
       virtual ~mvNullLoader(){};
 
 };

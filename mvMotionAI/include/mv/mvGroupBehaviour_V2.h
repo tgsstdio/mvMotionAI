@@ -47,16 +47,16 @@ class MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour_V2
    private:
       mvBaseActionPtr defaultGBehaviour;
    public:
-      mvPointerList<mvGroupBehaviourNodePtr, mvGroupBehaviourNodePtr>
-         groupNodeList;
+      mvPointerList<mvGroupBehaviourGroupNodePtr,\
+         mvConstGroupBehaviourGroupNodePtr> groupNodeList;
       bool isEnabled;
       mvGroupBehaviour_V2(mvBaseActionPtr groupBehPtr);
       ~mvGroupBehaviour_V2();
       mvErrorEnum addGroup(mvIndex groupNo, mvBaseAction* behavPtr);
       mvErrorEnum removeGroup(mvIndex groupNo);
       void removeAllGroups();
-      mvGroupBehaviourNodePtr getGroupNodeByIndex(mvIndex index) const;
-      mvGroupBehaviourNodePtr findGroupNode(mvIndex groupIndex) const;
+      mvGroupBehaviourGroupNodePtr getGroupNodeByIndex(mvIndex index) const;
+      mvGroupBehaviourGroupNodePtr findGroupNode(mvIndex groupIndex) const;
       mvCount getNoOfGroups() const;
 
       mvIndex getCurrentGroupBehaviourNode() const;

@@ -524,7 +524,13 @@ mvIndex mvWorld_V2::createGroupBehaviour_str(const char* type)
   */
 mvIndex mvWorld_V2::createGroupBehaviour(mvOptionEnum type)
 {
-   mvBaseActionPtr temp = behavLoader->createAClassPtr(type,MV_NULL);
+
+   mvBaseActionPtr temp = MV_NULL;
+   mvNewBaseActionInfo actionInfo(type,
+      mvNewBaseActionInfo::MV_NEW_GB_MAIN_NODE_OP,
+      MV_NULL, MV_NULL);
+
+   temp = behavLoader->createAClassPtr(type,actionInfo);
 
    if (temp == MV_NULL)
       return MV_NULL;
@@ -939,10 +945,15 @@ mvIndex mvWorld_V2::createBehaviour_str(const char* bType)
 mvIndex mvWorld_V2::createBehaviour(mvOptionEnum bType)
 {
    mvBaseActionPtr tempBehav = MV_NULL;
+   mvNewBaseActionInfo actionInfo(bType,\
+      mvNewBaseActionInfo::MV_NEW_GLOBAL_BEHAVIOUR_OP,
+      MV_NULL,
+      MV_NULL);
+
 
    if (behavLoader != MV_NULL)
    {
-      tempBehav = behavLoader->createAClassPtr(bType,MV_NULL);
+      tempBehav = behavLoader->createAClassPtr(bType,actionInfo);
    }
 
    if (tempBehav == MV_NULL)
@@ -2306,12 +2317,16 @@ mvIndex mvWorld_V2::addBehaviourToList(mvIndex listIndex, mvOptionEnum bType,\
    mvIndex convertedBehavIndex;
    mvIndex convertedGroupIndex;
 
+   // in case
+   mvNewBaseActionInfo privateActionInfo(bType,
+      mvNewBaseActionInfo::MV_NEW_PRIVATE_BEHAVIOUR_OP, MV_NULL, MV_NULL);
+
    switch(bType)
    {
       default:
          if (behavLoader != MV_NULL)
          {
-            actionPtr = behavLoader->createAClassPtr(bType, MV_NULL);
+            actionPtr = behavLoader->createAClassPtr(bType, privateActionInfo);
          }
          else
          {
@@ -2327,6 +2342,7 @@ mvIndex mvWorld_V2::addBehaviourToList(mvIndex listIndex, mvOptionEnum bType,\
       case MV_EXISTING_BEHAVIOUR:
          convertedBehavIndex = behaviours.convertIndex(behaviourIndex);
          return tempList->addExistingBehaviourEntry(convertedBehavIndex);
+      // TODO : how do we handle group entries objects?
       case MV_EXISTING_GROUP_BEHAVIOUR:
          convertedBehavIndex = groupBehaviours.convertIndex(behaviourIndex);
          convertedGroupIndex = groups.convertIndex(groupIndex);
@@ -2416,7 +2432,7 @@ mvErrorEnum mvWorld_V2::addGroupIntoGroupBehaviour(mvIndex groupIndex,\
       return MV_GROUP_BEHAVIOUR_INDEX_IS_INVALID;
    }
 
-   const mvBaseActionPtr defaultActionPtr = tempGrpBehav->getDefaultActionPtr();
+   mvBaseActionPtr defaultActionPtr = tempGrpBehav->getDefaultActionPtr();
    if (defaultActionPtr == MV_NULL)
    {
       return MV_ACTION_IS_NOT_INITIALISED;
@@ -2427,8 +2443,11 @@ mvErrorEnum mvWorld_V2::addGroupIntoGroupBehaviour(mvIndex groupIndex,\
       return MV_ACTION_LOADER_LIST_PTR_IS_NULL;
    }
 
+   mvNewBaseActionInfo groupActionInfo(defaultActionPtr->getType(),
+      mvNewBaseActionInfo::MV_NEW_GB_GROUP_NODE_OP, defaultActionPtr, MV_NULL);
+
    mvBaseActionPtr nodeActionPtr = behavLoader->createAClassPtr(
-      defaultActionPtr->getType(),defaultActionPtr);
+      defaultActionPtr->getType(),groupActionInfo);
 
    if (nodeActionPtr == MV_NULL)
    {

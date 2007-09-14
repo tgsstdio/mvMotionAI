@@ -239,11 +239,13 @@ enum mvParamEnum
    MV_USER_PARAM_3,
 
    // user string statements
+   /*
    MV_USER_STRING_INDEX,
    MV_USER_STRING_0,
    MV_USER_STRING_1,
    MV_USER_STRING_2,
    MV_USER_STRING_3,
+   */
 
    MV_NO_OF_PARAM_ENUMS
 };
