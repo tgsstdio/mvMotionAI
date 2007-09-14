@@ -1,5 +1,5 @@
 #include <mv/mvMotionAI.h>
-#include <mv/mvMotionAI_V2-Central.h>
+#include "mvMotionAI_V2-Central.h"
 
 
 /**
@@ -133,7 +133,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddBehaviourFunction(mvOptionEnum bType,\
 MV_GLOBAL_FUNC_PREFIX mvBaseActionPtr mvCreateNewBehaviourFromLoader(mvOptionEnum type,\
    mvBaseActionPtr defaultBehaviour)
 {
-   return mvMotionAI_V2_CREATENEWBEHAVIOUR(type, defaultBehaviour);
+   return mvMotionAI_V2_CREATENEWBEHAVIOUR(type);
 }
 
 MV_GLOBAL_FUNC_PREFIX mvBaseForcePtr mvCreateNewForceFromLoader(mvOptionEnum type)

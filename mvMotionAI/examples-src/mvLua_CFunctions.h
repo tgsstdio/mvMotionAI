@@ -1,6 +1,6 @@
 #ifndef MVLUA_CFUNCTIONS_H_INCLUDED
 #define MVLUA_CFUNCTIONS_H_INCLUDED
-#include <mvMotionAI.h>
+#include <mv/mvMotionAI.h>
 #include <Lua.hpp>
 
 lua_CFunction* mvLua_GetLuaFunctionPointers();

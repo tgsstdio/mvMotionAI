@@ -319,13 +319,13 @@
 	<stdio.h>
 	"lua.h"
 
-1189657068 source:d:\mvmotionai\mvmotionai\examples-src\luafunctest.cpp
+1189748244 source:d:\mvmotionai\mvmotionai\examples-src\luafunctest.cpp
 	<iostream>
-	"mvMotionAI.h"
+	<mv/mvMotionAI.h>
 	"mvLua.h"
 
-1189669282 d:\mvmotionai\mvmotionai\examples-src\mvlua.h
-	<mvMotionAI.h>
+1189747648 d:\mvmotionai\mvmotionai\examples-src\mvlua.h
+	<mv/mvMotionAI.h>
 	<Lua.hpp>
 
 1189693022 d:\mvmotionai\mvmotionai\include-other\lua.hpp
@@ -337,11 +337,11 @@
 	"mvLua.h"
 	"mvLua_CFunctions.h"
 
-1189693694 d:\mvmotionai\mvmotionai\examples-src\mvlua_cfunctions.h
-	<mvMotionAI.h>
+1189747642 d:\mvmotionai\mvmotionai\examples-src\mvlua_cfunctions.h
+	<mv/mvMotionAI.h>
 	<Lua.hpp>
 
-1189692554 source:d:\mvmotionai\mvmotionai\examples-src\mvlua_cfunctions.cpp
+1189748230 source:d:\mvmotionai\mvmotionai\examples-src\mvlua_cfunctions.cpp
 	"mvLua_CFunctions.h"
 
 1189693022 d:\mvmotionai\mvmotionai\include-other\luaconf.h
@@ -356,4 +356,9 @@
 	<assert.h>
 	<math.h>
 	<unistd.h>
+
+1189744546 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
+	<mv/mvMotionAI-Types.h>
+
+1189743986 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
 

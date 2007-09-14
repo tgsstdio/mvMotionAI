@@ -103,18 +103,8 @@ int mvLua_FreeMotionAI(lua_State* luaVM)
   */
 int mvLua_AllWorldsStepForward(lua_State* luaVM)
 {
-   mvFloat timeInSecs;
-
-   // TIME IN SECS
-   luaIndex = 1;
-   if (!luaL_isnumber(luaVM, luaIndex))
-   {
-      // error exit
-      lua_pushnumber(luaVM, MV_LUA_DEFAULT_ERROR_ENUM);
-      return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
-   }
-   timeInSecs = (mvFloat) lua_tonumber(luaVM,\
-      luaIndex);
+   mvFloat timeInSecs = (mvFloat) lua_tonumber(luaVM,\
+      1);
 
    mvErrorEnum error = mvAllWorldsStepForward(timeInSecs);
    lua_pushnumber(luaVM, error);
@@ -142,12 +132,6 @@ int mvLua_SetCurrentWorld(lua_State* luaVM)
 
    // WORLD INDEX
    luaIndex = MV_LUA_WORLD_INDEX_VALUE;
-   if (!luaL_isnumber(luaVM, luaIndex))
-   {
-      // error exit
-      lua_pushnumber(luaVM, MV_LUA_DEFAULT_ERROR_ENUM);
-      return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
-   }
    worldIndex = (mvIndex) lua_tonumber(luaVM,\
       luaIndex);
 
@@ -213,12 +197,6 @@ int mvLua_GetErrorEnumString(lua_State* luaVM)
 
    // ERROR CODE
    luaIndex = 1;
-   if (!luaL_isnumber(luaVM, luaIndex))
-   {
-      // error exit
-      lua_pushnumber(luaVM, MV_LUA_DEFAULT_ERROR_ENUM);
-      return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
-   }
    error = (mvErrorEnum) lua_isnumber(luaVM, luaIndex);
 
    const char* errorString = mvGetErrorEnumString(error);
@@ -233,16 +211,9 @@ int mvLua_GetErrorEnumString(lua_State* luaVM)
 int mvLua_GetParamEnumString(lua_State* luaVM)
 {
    mvParamEnum param;
-   mvErrorEnum error;
 
    // ERROR CODE
-   luaIndex = 1;
-   if (!luaL_isnumber(luaVM, luaIndex))
-   {
-      // error exit
-      lua_pushnumber(luaVM, MV_LUA_DEFAULT_ERROR_ENUM);
-      return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
-   }
+   mvIndex luaIndex = 1;
    param = (mvParamEnum) lua_isnumber(luaVM, luaIndex);
 
    const char* paramString = mvGetParamEnumString(param);
@@ -261,15 +232,9 @@ int mvLua_GetOptionEnumString(lua_State* luaVM)
    mvIndex luaIndex;
 
    luaIndex = 1;
-   if (!luaL_isnumber(luaVM, luaIndex))
-   {
-      // error exit
-      lua_pushnumber(luaVM, MV_LUA_DEFAULT_ERROR_ENUM);
-      return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
-   }
    option = (mvOptionEnum) lua_isnumber(luaVM, luaIndex);
 
-   const char* optionString = mvGetOptionEnumString(option);
+   optionString = mvGetOptionEnumString(option);
    if (optionString == MV_NULL)
    {
       optionString = MV_LUA_MV_NULL_STRING;
@@ -286,23 +251,11 @@ int mvLua_WorldStep(lua_State* luaVM)
 
    // WORLD INDEX
    luaIndex = MV_LUA_WORLD_INDEX_VALUE;
-   if (!luaL_isnumber(luaVM, luaIndex))
-   {
-      // error exit
-      lua_pushnumber(luaVM, MV_LUA_DEFAULT_ERROR_ENUM);
-      return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
-   }
    worldIndex = (mvIndex) lua_tonumber(luaVM,\
       luaIndex);
 
    // TIME IN SECS
    luaIndex = MV_LUA_WORLD_INDEX_VALUE + 1;
-   if (!luaL_isnumber(luaVM, luaIndex))
-   {
-      // error exit
-      lua_pushnumber(luaVM, MV_LUA_DEFAULT_ERROR_ENUM);
-      return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
-   }
    timeInSecs = (mvFloat) lua_tonumber(luaVM,\
       luaIndex);
 
@@ -319,34 +272,16 @@ int mvLua_NudgeBody(lua_State* luaVM)
 
    // WORLD INDEX
    luaIndex = MV_LUA_WORLD_INDEX_VALUE;
-   if (!luaL_isnumber(luaVM, luaIndex))
-   {
-      // error exit
-      lua_pushnumber(luaVM, MV_LUA_DEFAULT_ERROR_ENUM);
-      return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
-   }
    worldIndex = (mvIndex) lua_tonumber(luaVM,\
       luaIndex);
 
    // BODY INDEX
    luaIndex = MV_LUA_WORLD_INDEX_VALUE + 1;
-   if (!luaL_isnumber(luaVM, luaIndex))
-   {
-      // error exit
-      lua_pushnumber(luaVM, MV_LUA_DEFAULT_ERROR_ENUM);
-      return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
-   }
    bodyIndex = (mvIndex) lua_tonumber(luaVM,\
       luaIndex);
 
    // TIME IN SECS
    luaIndex = MV_LUA_WORLD_INDEX_VALUE + 2;
-   if (!luaL_isnumber(luaVM, luaIndex))
-   {
-      // error exit
-      lua_pushnumber(luaVM, MV_LUA_DEFAULT_ERROR_ENUM);
-      return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
-   }
    timeInSecs = (mvFloat) lua_tonumber(luaVM,\
       luaIndex);
 
@@ -355,7 +290,108 @@ int mvLua_NudgeBody(lua_State* luaVM)
    return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
 }
 
-int mvLua_GetWorldParameter(lua_State* luaVM);
+// TODO : use template
+int mvLua_GetWorldParameter(lua_State* luaVM)
+{
+   mvErrorEnum paramError;
+   mvIndex worldIndex, luaIndex;
+   const char* paramString = NULL;
+   const char* optionString = NULL;
+   mvFloat floatArray[MV_MAX_NO_OF_PARAMETERS], floatOutput;
+   mvCount noOfVariables;
+   mvIndex indexOutput;
+
+   // WORLD INDEX
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE + 1;
+   paramString = lua_tostring(luaVM, luaIndex);
+
+   // GET PARAMETER
+   paramError = mvGetWorldParameter_str(worldIndex, paramString, &optionString);
+
+   // early exit for invalid param
+   if (paramError == MV_INVALID_PARAM_ENUM_STRING)
+   {
+      noOfVariables = 0;
+
+      lua_pushnumber(luaVM, paramError);
+      lua_pushnumber(luaVM, noOfVariables);
+
+      return 2;
+   }
+
+   if (paramError == MV_NO_ERROR)
+   {
+      noOfVariables = 1;
+
+      lua_pushnumber(luaVM, paramError);
+      lua_pushnumber(luaVM, noOfVariables);
+
+      // push option enum string to window
+      lua_pushstring(luaVM, optionString);
+      return 3;
+   }
+
+   // GET PARAMETER I
+   paramError = mvGetWorldParameteri_str(worldIndex, paramString, &indexOutput);
+   if (paramError == MV_NO_ERROR)
+   {
+      noOfVariables = 1;
+
+      lua_pushnumber(luaVM, paramError);
+      lua_pushnumber(luaVM, noOfVariables);
+
+      // push option enum string to window
+      lua_pushnumber(luaVM, indexOutput);
+      return 3;
+   }
+
+   // GET PARAMETER F
+
+   paramError = mvGetWorldParameterf_str(worldIndex, paramString, &floatOutput);
+   if (paramError == MV_NO_ERROR)
+   {
+      noOfVariables = 1;
+
+      lua_pushnumber(luaVM, paramError);
+      lua_pushnumber(luaVM, noOfVariables);
+
+      // push option enum string to window
+      lua_pushnumber(luaVM, indexOutput);
+      return 3;
+   }
+
+   // GET PARAMETER V
+
+   paramError = mvGetWorldParameterv_str(worldIndex, paramString,\
+      &floatArray[0],&noOfVariables);
+
+   if (paramError == MV_NO_ERROR)
+   {
+      lua_pushnumber(luaVM, paramError);
+      lua_pushnumber(luaVM, noOfVariables);
+
+      // push option enum string to window
+      for (mvCount i = 0; i < noOfVariables; ++i)
+      {
+         lua_pushnumber(luaVM, floatArray[i]);
+      }
+
+      return 2 + noOfVariables;
+   }
+   else
+   {
+      noOfVariables = 0;
+
+      lua_pushnumber(luaVM, paramError);
+      lua_pushnumber(luaVM, noOfVariables);
+
+      return 2;
+   }
+}
+
 int mvLua_SetWorldParameter(lua_State* luaVM);
 
 // TODO : block 3

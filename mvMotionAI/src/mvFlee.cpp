@@ -182,7 +182,7 @@ mvCreateFlees::mvCreateFlees()
 
 }
 
-mvBaseActionPtr mvCreateFlees::operator()(mvBaseActionPtr defaultBehav)
+mvBaseActionPtr mvCreateFlees::operator()(mvNewBaseActionInfo& actionInfo)
 {
    return new mvFlee();
 }

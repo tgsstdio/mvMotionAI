@@ -33,7 +33,12 @@
 #ifndef MV_BASE_ACTION_H_
 #define MV_BASE_ACTION_H_
 
-#include "mvMotionAI-Types.h"
+#ifdef MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#include MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#else
+#include <mv/mvMotionAI-Types.h>
+#endif
+
 #include MV_ENUMS_HEADER_FILE_H_
 #include MV_BEHAVIOUR_RESULT_HEADER_FILE_H_
 #include MV_GROUP_BEHAVIOUR_RESULT_HEADER_FILE_H_
@@ -86,11 +91,46 @@ class MV_GLOBAL_FUNC_PREFIX mvBaseAction
       virtual ~mvBaseAction();
 };
 
+class MV_GLOBAL_FUNC_PREFIX mvNewBaseActionInfo
+{
+   public:
+      enum mvNewBaseActionOperationEnum
+      {
+         MV_NEW_PRIVATE_BEHAVIOUR_OP,
+         MV_NEW_GLOBAL_BEHAVIOUR_OP,
+         MV_NEW_GB_MAIN_NODE_OP,
+         MV_NEW_GB_GROUP_NODE_OP,
+         MV_NEW_GB_GROUP_MEMBER_OP
+      };
+
+      mvNewBaseActionInfo(mvOptionEnum loaderKey,\
+         mvNewBaseActionOperationEnum operation,
+         mvBaseActionPtr mainGroupNodePtr,
+         mvBaseActionPtr groupNodePtr
+         );
+
+      mvOptionEnum getActionLoaderKey() const;
+      mvBaseActionPtr getGroupBehaviourPtr() const;
+      mvBaseActionPtr getGetGroupNodePtr() const;
+
+      bool isNewMainGroupBehaviour() const;
+      bool isNewGroupBehaviourGroupNode() const;
+      bool isNewGroupMemberNode() const;
+      bool isNewGlobalBehaviour() const;
+      bool isNewPrivateBehaviour() const;
+
+   private:
+      mvOptionEnum actionKey;
+      mvNewBaseActionOperationEnum opType;
+      mvBaseActionPtr gbMainNodePtr;
+      mvBaseActionPtr gbGroupNodePtr;
+};
+
 class MV_GLOBAL_FUNC_PREFIX mvBaseActionLoader
 {
    public:
       virtual mvBaseActionPtr operator()(\
-         mvBaseActionPtr defaultBehaviour) = 0;
+         mvNewBaseActionInfo& actionInfo) = 0;
       mvBaseActionLoader();
       virtual ~mvBaseActionLoader(){};
 };

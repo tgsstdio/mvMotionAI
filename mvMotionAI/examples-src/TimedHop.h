@@ -9,7 +9,9 @@
  * mvBaseActionLoader.
  *
  * The programmer must implement three virtual functions if he/she wants to use
- * customable mvAction class.
+ * customable mvAction class. To retrive variables from your custom
+ * action class via the mvMotionAI library, implement the superclass
+ * set/getParameter(ifv)() functions that are needed.
  *
  * 1. virtual bool bodyOp(mvBehaviourResultPtr resultMod) of the derived
  *    mvBaseAction class:
@@ -39,18 +41,34 @@
  *   associated group node per a mvWorldStep, so once for a group per every
  *   instance of mvGroupBehaviour in an instance of mvWorld.
  *
- * 3. virtual mvBaseActionPtr operator()(mvBaseActionPtr higherNode) of the
+ * 3. virtual mvBaseActionPtr operator()(mvNewBaseActionInfo& actionQuery) of the
  *    derived mvBaseActionLoader class:
  *
  *    - This function acts a factory creating new instance of any action
  *   as long as the instance is returning as a mvBaseAction pointer.
- *   The parameter higherNode is used to specialise the new object
- *   for various purposes, by passing mvBaseActionPtr with a different type
- *   enum i.e. MV_SEEK or MV_PURSUIT or even a NULL pointer.
+ *   The parameter actionQuery is used to specialise the new object
+ *   for various purposes. Through querying the actionQery instance,
+ *   we can create different objects for every given situation;
+ *   we can use the same 'key' to create different behaviours.
  *
- *   For example, you can create different type of classes
- *   when creating a new action for an individual body, a global behaviour,
- *   a group behaviour node, or a group member of a grouped behaviour.
+ *   The situations when an action is created:
+ *   1. for an individual body or private action instance
+ *     -  bool isNewPrivateBehaviour() const
+ *   2. a global behaviour which can be used by any body in the system
+ *     -  bool isNewGlobalBehaviour() const
+ *   3. a starter/(main node) group behaviour (has many groups, has many members
+ *   (indirectly), 1 default action)
+ *     -  bool isNewGroupBehaviour() const
+ *   4. a group behaviour group node (belongs to 1 group behavour, has 1 group,
+ *   has many members, has 1 action)
+ *     -  bool isNewGroupBehaviourGroupNode() const
+ *   5. a group member of a group node. (has 1 member, belong to 1 group)
+ *     -  bool isNewGroupMemberNode() const
+ *
+ *   Note that situation 4 & 5 are different as they have access to other
+ *   mvBaseAction pointers. The programmer can use the values
+ *   of the main node's or a group node's action classes for initialisation,
+ *   updating node values, etc.
  */
 
 #include <mv/mvMotionAI.h>
@@ -79,7 +97,7 @@ class TimedHopLoader : public mvBaseActionLoader
 {
    public:
       TimedHopLoader();
-      virtual mvBaseActionPtr operator()(mvBaseActionPtr higherNode);
+      virtual mvBaseActionPtr operator()(mvNewBaseActionInfo& actionQuery);
       ~TimedHopLoader();
 };
 

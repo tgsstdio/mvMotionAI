@@ -30,7 +30,7 @@ class mvCreateFlees : public mvBaseActionLoader
 {
    public:
       mvCreateFlees();
-      virtual mvBaseActionPtr operator()(mvBaseActionPtr defaultBehav);
+      virtual mvBaseActionPtr operator()(mvNewBaseActionInfo& actionInfo);
       virtual ~mvCreateFlees(){};
 };
 

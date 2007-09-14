@@ -128,3 +128,64 @@ mvBaseActionLoader::mvBaseActionLoader()
 {
    // empty code
 }
+
+mvNewBaseActionInfo::mvNewBaseActionInfo(mvOptionEnum loaderKey,\
+   mvNewBaseActionInfo::mvNewBaseActionOperationEnum operation,
+   mvBaseActionPtr mainGroupNodePtr, mvBaseActionPtr groupNodePtr)
+   : actionKey(loaderKey)
+{
+   opType = operation;
+
+   gbMainNodePtr = MV_NULL;
+   gbGroupNodePtr = MV_NULL;
+
+   if (opType == mvNewBaseActionInfo::MV_NEW_GB_GROUP_NODE_OP)
+   {
+      gbMainNodePtr = mainGroupNodePtr;
+   }
+   else if (opType == mvNewBaseActionInfo::MV_NEW_GB_GROUP_MEMBER_OP)
+   {
+      gbMainNodePtr = mainGroupNodePtr;
+      gbGroupNodePtr = groupNodePtr;
+   }
+}
+
+mvOptionEnum mvNewBaseActionInfo::getActionLoaderKey() const
+{
+   return actionKey;
+}
+
+mvBaseActionPtr mvNewBaseActionInfo::getGroupBehaviourPtr() const
+{
+   return gbMainNodePtr;
+}
+
+mvBaseActionPtr mvNewBaseActionInfo::getGetGroupNodePtr() const
+{
+   return gbGroupNodePtr;
+}
+
+bool mvNewBaseActionInfo::isNewMainGroupBehaviour() const
+{
+   return (opType == mvNewBaseActionInfo::MV_NEW_GB_MAIN_NODE_OP);
+}
+
+bool mvNewBaseActionInfo::isNewGroupBehaviourGroupNode() const
+{
+   return (opType == mvNewBaseActionInfo::MV_NEW_GB_GROUP_NODE_OP);
+}
+
+bool mvNewBaseActionInfo::isNewGroupMemberNode() const
+{
+   return (opType == mvNewBaseActionInfo::MV_NEW_GB_GROUP_MEMBER_OP);
+}
+
+bool mvNewBaseActionInfo::isNewGlobalBehaviour() const
+{
+   return (opType == mvNewBaseActionInfo::MV_NEW_GLOBAL_BEHAVIOUR_OP);
+}
+
+bool mvNewBaseActionInfo::isNewPrivateBehaviour() const
+{
+   return (opType == mvNewBaseActionInfo::MV_NEW_PRIVATE_BEHAVIOUR_OP);
+}

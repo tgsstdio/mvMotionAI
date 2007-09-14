@@ -28,7 +28,7 @@ mvNullLoader::mvNullLoader() : mvBaseActionLoader()
 }
 
 mvBaseActionPtr mvNullLoader::operator()(\
-   mvBaseActionPtr defaultBehaviour)
+   mvNewBaseActionInfo& actionInfo)
 {
-   return NULL;
+   return MV_NULL;
 }

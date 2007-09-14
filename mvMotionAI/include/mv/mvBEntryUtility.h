@@ -22,7 +22,12 @@
 #ifndef MVBENTRYUTILITY_H_INCLUDED
 #define MVBENTRYUTILITY_H_INCLUDED
 
-#include "mvMotionAI-Types.h"
+#ifdef MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#include MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#else
+#include <mv/mvMotionAI-Types.h>
+#endif
+
 #include MV_TIMER_HEADER_FILE_H_
 
 #ifdef MV_BUILD_DLL

@@ -77,8 +77,7 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTFORCES(mvForceLoaderListPtr
 
 mvErrorEnum mvMotionAI_V2_ADDBEHAVIOURFUNC(mvOptionEnum bType,\
    mvBaseActionLoaderPtr loader);
-mvBaseActionPtr mvMotionAI_V2_CREATENEWBEHAVIOUR(mvOptionEnum type,\
-   mvBaseActionPtr  defaultBehaviour);
+mvBaseActionPtr mvMotionAI_V2_CREATENEWBEHAVIOUR(mvOptionEnum type);
 mvErrorEnum mvMotionAI_V2_CHECKIFINITIALISED();
 
 // GLOBAL FUNCTIONS
@@ -141,8 +140,7 @@ class mvMotionAI_V2
       void freeDefaultActions();
       mvErrorEnum addBehaviourFunction(mvOptionEnum type,\
          mvBaseActionLoaderPtr loader);
-      mvBaseActionPtr createNewBehaviour(mvOptionEnum type,\
-         mvBaseActionPtr defaultBehaviour);
+      mvBaseActionPtr createNewBehaviour(mvOptionEnum type);
 
       mvErrorEnum loadDefaultForces();
       void freeDefaultForces();

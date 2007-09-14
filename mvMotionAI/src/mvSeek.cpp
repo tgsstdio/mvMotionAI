@@ -197,7 +197,7 @@ mvCreateSeeks::mvCreateSeeks()
    // empty body
 }
 
-mvBaseAction* mvCreateSeeks::operator()(mvBaseAction* defaultBehav)
+mvBaseAction* mvCreateSeeks::operator()(mvNewBaseActionInfo& actionInfo)
 {
    return new mvSeek();
 }

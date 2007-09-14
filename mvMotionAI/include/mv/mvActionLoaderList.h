@@ -28,6 +28,7 @@
 #include <mv/mvMotionAI-Types.h>
 #endif
 
+#include "mv/mvBaseAction.h"
 #include "mvFactoryFunctionList.h"
 
 #ifdef MV_BUILD_DLL
@@ -36,7 +37,9 @@
 #define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
 #endif
 
+typedef class mvNewBaseActionInfo& mvConstObject;
+
 typedef class MV_GLOBAL_FUNC_PREFIX mvFactoryFunctionList<mvBaseActionLoader,\
-   mvBaseAction, mvBaseActionPtr> mvActionLoaderList;
+   mvBaseAction, mvNewBaseActionInfo& > mvActionLoaderList;
 
 #endif // MVBEHAVFUNCLIST_H_INCLUDED

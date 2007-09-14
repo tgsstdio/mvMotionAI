@@ -2,12 +2,12 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-winXP" />
 	<File name="examples-src\CustomActionGLMain.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="3488" topLine="91" />
+		<Cursor position="3598" topLine="91" />
 	</File>
 	<File name="examples-src\TimedHop.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="326" topLine="0" />
+		<Cursor position="777" topLine="6" />
 	</File>
 	<File name="examples-src\TimedHop.h" open="0" top="0" tabpos="0">
-		<Cursor position="2843" topLine="44" />
+		<Cursor position="4044" topLine="41" />
 	</File>
 </CodeBlocks_layout_file>

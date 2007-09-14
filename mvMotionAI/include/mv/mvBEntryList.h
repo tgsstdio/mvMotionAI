@@ -22,9 +22,10 @@
 #ifndef MVBENTRYLIST_H_INCLUDED
 #define MVBENTRYLIST_H_INCLUDED
 
-#ifndef MV_MOTIONAI_TYPES_HEADER_FILE_
+#ifdef MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#include MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#else
 #include <mv/mvMotionAI-Types.h>
-//#error undefined mvMotionAI type file
 #endif
 
 #include MV_ENUMS_HEADER_FILE_H_

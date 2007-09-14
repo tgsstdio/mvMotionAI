@@ -205,12 +205,13 @@ void mvWorld_V2_PrepareForceCapsule(mvForceCapsulePtr capsulePtr,\
    capsulePtr->isActive = true;
 }
 
-void mvWorld_V2_CalculateEachGroupInGroupBehaviour(mvGroupBehaviourNodePtr currentNode,
-   void* extraPtr)
+void mvWorld_V2_CalculateEachGroupInGroupBehaviour(\
+   mvGroupBehaviourGroupNodePtr currentNode, void* extraPtr)
 {
-
+   // TODO : code untested
    mvWorld_V2_GroupBehaviourNodeHelper* container =
       (mvWorld_V2_GroupBehaviourNodeHelper*) extraPtr;
+   mvBaseActionPtr mainActionPtr = container->mainGroupActionPtr;
    mvWorldPtr currentWorld = container->currentWorld;
    mvOptionEnum defaultType = container->gbType;
    mvIndex currentGBehaviour = container->gbIndex;
@@ -245,9 +246,15 @@ void mvWorld_V2_CalculateEachGroupInGroupBehaviour(mvGroupBehaviourNodePtr curre
             lhsSetIndex = currentGroup->getCurrentMember();
             if (currentWorld->getActionLoader() != MV_NULL)
             {
+               // new action info
+               mvNewBaseActionInfo memberInfo(defaultType,
+                  mvNewBaseActionInfo::MV_NEW_GB_GROUP_MEMBER_OP,
+                  mainActionPtr,
+                  groupAction);
+
                tempMemberActionPtr =
                   currentWorld->getActionLoader()->createAClassPtr(\
-                     defaultType, groupAction);
+                     defaultType, memberInfo);
                nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,tempMemberActionPtr);
                // subscription sent to body
                currentWorld->addBehaviourToList(lhsSetIndex,\
@@ -284,9 +291,14 @@ void mvWorld_V2_CalculateEachGroupInGroupBehaviour(mvGroupBehaviourNodePtr curre
                // insert ahead of position
                if (currentWorld->getActionLoader() != MV_NULL)
                {
+                  mvNewBaseActionInfo memberInfo(defaultType,
+                     mvNewBaseActionInfo::MV_NEW_GB_GROUP_MEMBER_OP,
+                     mainActionPtr,
+                     groupAction);
+
                   tempMemberActionPtr =
                      currentWorld->getActionLoader()->createAClassPtr(\
-                        defaultType, groupAction);
+                        defaultType, memberInfo);
                   nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,tempMemberActionPtr);
                   // subscription sent to body
                   currentWorld->addBehaviourToList(lhsSetIndex,\
@@ -331,10 +343,11 @@ void mvWorld_V2_CalculateForEachGroupBehaviour(\
 
       if (defaultActionPtr != MV_NULL)
       {
+         container.mainGroupActionPtr = defaultActionPtr;
          container.gbIndex = groupBehaviourIndex;
          container.currentWorld = currentWorld;
          container.isEnabled = currentGroupBehav->isEnabled;
-         const mvOptionEnum nodeType = defaultActionPtr->getType();
+         mvOptionEnum nodeType = defaultActionPtr->getType();
          container.gbType = nodeType;
          currentGroupBehav->groupNodeList.applyToAllItems(\
             mvWorld_V2_CalculateEachGroupInGroupBehaviour, &container);
@@ -355,7 +368,7 @@ mvBaseActionPtr mvWorld_V2_InitialiseResults(mvBEntryPtr nodeInfo, mvIndex bodyI
       return MV_NULL;
    }
 
-   const mvOptionEnum nodeType = nodeInfo->getEntryType();
+   mvOptionEnum nodeType = nodeInfo->getEntryType();
    mvIndex behaviourIndex = nodeInfo->getBehaviour();
    mvIndex groupIndex = nodeInfo->getGroup();
 
@@ -364,7 +377,7 @@ mvBaseActionPtr mvWorld_V2_InitialiseResults(mvBEntryPtr nodeInfo, mvIndex bodyI
    mvConstBehaviourPtr globalBehav =\
       currentWorld->getConstBehaviourPtr(behaviourIndex);
    mvGroupMemberNodePtr memberNodePtr = NULL;
-   mvGroupBehaviourNodePtr groupNodePtr = NULL;
+   mvGroupBehaviourGroupNodePtr groupNodePtr = NULL;
    mvConstGroupPtr checkGroupPtr =\
       currentWorld->getConstGroupPtr(groupIndex);
 
