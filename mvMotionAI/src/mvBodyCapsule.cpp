@@ -1,4 +1,4 @@
-#include "mvBodyCapsule.h"
+#include <mv/mvBodyCapsule.h>
 
 mvBodyCapsule::mvBodyCapsule(mvBodyPtr capsuleBody)
 {

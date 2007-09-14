@@ -1,4 +1,4 @@
-#include "mvGroupCapsule.h"
+#include <mv/mvGroupCapsule.h>
 
 #ifdef MV_FILE_HEADER_TAG_
 /**

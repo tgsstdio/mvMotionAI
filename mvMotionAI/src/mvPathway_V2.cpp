@@ -1,4 +1,4 @@
-#include "mvPathway_v2.h"
+#include <mv/mvPathway_v2.h>
 
 bool findNodeByIndexValue(mvPathwayNodePtr* nodePtr, void* extraPtr);
 

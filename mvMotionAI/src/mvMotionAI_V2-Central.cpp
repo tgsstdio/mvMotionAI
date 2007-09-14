@@ -1,22 +1,22 @@
-#include "mvMotionAI_V2-Central.h"
+#include <mv/mvMotionAI_V2-Central.h>
 #include <cstring>
 #include <iostream>
 
 /**
  * default behaviours/actions
  */
-#include "mvNullLoader.h"
-#include "mvSeek.h"
-#include "mvPursuit.h"
-#include "mvFlee.h"
+#include <mv/mvNullLoader.h>
+#include <mv/mvSeek.h>
+#include <mv/mvPursuit.h>
+#include <mv/mvFlee.h>
 
 /**
  * default forces
  */
-#include "mvGravityForce.h"
-#include "mvUniformForce.h"
-#include "mvUniformAccelForce.h"
-#include "mvUniformShiftForce.h"
+#include <mv/mvGravityForce.h>
+#include <mv/mvUniformForce.h>
+#include <mv/mvUniformAccelForce.h>
+#include <mv/mvUniformShiftForce.h>
 
 mvMotionAI_V2_SUPERCLASS __mv__Motion__AI__Module;
 

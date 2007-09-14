@@ -19,7 +19,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-#include "mvBEntryListNode.h"
+#include <mv/mvBEntryListNode.h>
 
 mvBEntryListNode::mvBEntryListNode(mvOptionEnum type, mvIndex behaviourIndex,\
    mvIndex groupIndex, mvBaseActionPtr actionPtr, mvFloat bNodeWeight,\

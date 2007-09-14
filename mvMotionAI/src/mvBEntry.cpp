@@ -1,4 +1,4 @@
-#include "mvBEntry.h"
+#include <mv/mvBEntry.h>
 
 mvBEntry::mvBEntry(mvOptionEnum type, mvIndex bIndex, mvIndex gIndex,\
    mvBaseActionPtr dBehaviour)

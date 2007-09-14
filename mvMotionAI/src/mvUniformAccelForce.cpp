@@ -1,4 +1,4 @@
-#include "mvUniformAccelForce.h"
+#include <mv/mvUniformAccelForce.h>
 
 mvUniformAccelForce::mvUniformAccelForce()
    : mvBaseForce(MV_UNIFORM_FORCE),

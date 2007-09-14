@@ -22,8 +22,9 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "mvVec3.h"
-#include "mvMotionAI-Utilities.h"
+#include <mv/mvVec3.h>
+// should be called after mvMotionAI-Types declaration
+#include MV_MOTIONAI_UTILITIES_HEADER_FILE_H_
 
 /**
  * \brief constructor

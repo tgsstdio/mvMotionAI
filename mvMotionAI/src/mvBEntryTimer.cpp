@@ -25,8 +25,9 @@
  *
  * - completed timer and doxygen documentation
  */
-#include "mvMotionAI-Utilities.h"
-#include "mvBEntryTimer.h"
+#include <mv/mvBEntryTimer.h>
+#include MV_MOTIONAI_UTILITIES_HEADER_FILE_H_
+
 
 /** @brief set vector variable of the timer
   * \param[in] paramFlag mvParamEnum query option

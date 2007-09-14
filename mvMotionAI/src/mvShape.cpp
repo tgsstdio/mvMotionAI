@@ -19,7 +19,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-#include "mvShape.h"
+#include <mv/mvShape.h>
 
 static const mvCount MV_MAX_NO_OF_DIMENSIONS = 4;
 static const mvIndex MV_CIRCULAR_RADIUS_INDEX = 0;

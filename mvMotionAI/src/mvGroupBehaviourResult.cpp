@@ -1,4 +1,4 @@
-#include "mvGroupBehaviourResult.h"
+#include <mv/mvGroupBehaviourResult.h>
 
 mvGroupBehaviourResult::mvGroupBehaviourResult(mvWorldPtr currentWorld,\
    mvGroupNodeMemberListPtr currentMList)

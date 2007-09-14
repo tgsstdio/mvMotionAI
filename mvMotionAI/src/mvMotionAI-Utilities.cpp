@@ -22,7 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "mvMotionAI-Utilities.h"
+#include <mv/mvMotionAI-Utilities.h>
 
 #include <cmath>
 
@@ -133,7 +133,7 @@ mvFloat mvFMod(mvFloat num, mvFloat denom)
 mvFloat mvModf(mvFloat x, mvFloat* intPart)
 {
 #ifdef VISUAL_C_VER_6
-   double intPartDouble;   
+   double intPartDouble;
    double result = modf(x, &intPartDouble);
 
    *intPart = (mvFloat) intPartDouble;

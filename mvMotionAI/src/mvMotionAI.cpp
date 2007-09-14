@@ -1,6 +1,5 @@
-#include "mvMotionAI.h"
-
-#include "mvMotionAI_V2-Central.h"
+#include <mv/mvMotionAI.h>
+#include <mv/mvMotionAI_V2-Central.h>
 
 
 /**

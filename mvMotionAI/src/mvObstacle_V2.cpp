@@ -21,7 +21,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-#include "mvObstacle_V2.h"
+#include <mv/mvObstacle_V2.h>
 
 mvObstacle_V2::mvObstacle_V2(mvOptionEnum oShape, mvOptionEnum oType,\
    mvFloat x, mvFloat y, mvFloat z)

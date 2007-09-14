@@ -1,4 +1,4 @@
-#include "mvUniformShiftForce.h"
+#include <mv/mvUniformShiftForce.h>
 
 mvUniformShiftForce::mvUniformShiftForce()
   : mvBaseForce(MV_UNIFORM_SHIFT),

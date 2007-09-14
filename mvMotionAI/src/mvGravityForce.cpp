@@ -1,4 +1,4 @@
-#include "mvGravityForce.h"
+#include <mv/mvGravityForce.h>
 
 mvGravityForce::mvGravityForce()
   : mvBaseForce(MV_GRAVITY),
