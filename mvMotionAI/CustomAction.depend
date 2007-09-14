@@ -20,12 +20,12 @@
 1157174374 d:\mvmotionai\mvmotionai\include-other\gl\glu.h
 	<GL/gl.h>
 
-1189494840 source:d:\mvmotionai\mvmotionai\examples-src\customactionglmain.cpp
+1189738968 source:d:\mvmotionai\mvmotionai\examples-src\customactionglmain.cpp
 	<GL/glut.h>
 	<iostream>
 	"Camera.h"
 	<cstdlib>
-	<mvMotionAI.h>
+	<mv/mvMotionAI.h>
 	"TimedHop.h"
 
 1189179176 d:\mvmotionai\mvmotionai\include\mvmotionai.h
@@ -33,9 +33,15 @@
 
 1188456594 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
 
-1189494856 d:\mvmotionai\mvmotionai\examples-src\timedhop.h
-	<mvMotionAI.h>
+1189738918 d:\mvmotionai\mvmotionai\examples-src\timedhop.h
+	<mv/mvMotionAI.h>
 
-1189490200 source:d:\mvmotionai\mvmotionai\examples-src\timedhop.cpp
+1189495514 source:d:\mvmotionai\mvmotionai\examples-src\timedhop.cpp
 	"TimedHop.h"
+	<iostream>
+
+1189737676 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
+	<mv/mvMotionAI-Types.h>
+
+1189737520 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
 

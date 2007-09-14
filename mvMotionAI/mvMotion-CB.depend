@@ -1,1 +1,278 @@
 # depslib dependency file v1.0
+1189736168 source:d:\mvmotionai\mvmotionai\src\mvbentry.cpp
+	<mv/mvBEntry.h>
+
+1189696098 d:\mvmotionai\mvmotionai\include\mv\mvbentry.h
+	"mvMotionAI-Types.h"
+
+1189737520 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
+
+1189736548 source:d:\mvmotionai\mvmotionai\src\mvbentrylist.cpp
+	<mv/mvBEntryList.h>
+
+1189736648 d:\mvmotionai\mvmotionai\include\mv\mvbentrylist.h
+	<mv/mvMotionAI-Types.h>
+	"mvPointerList.h"
+	"mvBEntryUtility.h"
+
+1189737736 d:\mvmotionai\mvmotionai\include\mv\mvpointerlist.h
+	<mv/mvMotionAI-Types.h>
+	<vector>
+	"mvPointerList.hpp"
+
+1189696130 d:\mvmotionai\mvmotionai\include\mv\mvpointerlist.hpp
+
+1189696102 d:\mvmotionai\mvmotionai\include\mv\mvbentryutility.h
+	"mvMotionAI-Types.h"
+
+1189736674 source:d:\mvmotionai\mvmotionai\src\mvbentrylistnode.cpp
+	<mv/mvBEntryListNode.h>
+
+1189696100 d:\mvmotionai\mvmotionai\include\mv\mvbentrylistnode.h
+	"mvMotionAI-Types.h"
+	"mvBEntryUtility.h"
+
+1189736860 source:d:\mvmotionai\mvmotionai\src\mvbentrytimer.cpp
+	<mv/mvBEntryTimer.h>
+
+1189737836 d:\mvmotionai\mvmotionai\include\mv\mvbentrytimer.h
+	<mv/mvMotionAI-Types.h>
+
+1189736874 source:d:\mvmotionai\mvmotionai\src\mvbentryutility.cpp
+	<mv/mvBEntryUtility.h>
+
+1189736884 source:d:\mvmotionai\mvmotionai\src\mvbaseaction.cpp
+	<mv/mvBaseAction.h>
+
+1189696094 d:\mvmotionai\mvmotionai\include\mv\mvbaseaction.h
+	"mvMotionAI-Types.h"
+
+1189736898 source:d:\mvmotionai\mvmotionai\src\mvbaseforce.cpp
+	<mv/mvBaseForce.h>
+
+1189737882 d:\mvmotionai\mvmotionai\include\mv\mvbaseforce.h
+	<mv/mvMotionAI-Types.h>
+
+1189736912 source:d:\mvmotionai\mvmotionai\src\mvbehaviourresult.cpp
+	<mv/mvBehaviourResult.h>
+
+1189738224 d:\mvmotionai\mvmotionai\include\mv\mvbehaviourresult.h
+	<mv/mvMotionAI-Types.h>
+
+1189736918 source:d:\mvmotionai\mvmotionai\src\mvbehaviour_v2.cpp
+	<mv/mvBehaviour_V2.h>
+
+1189738224 d:\mvmotionai\mvmotionai\include\mv\mvbehaviour_v2.h
+	<mv/mvMotionAI-Types.h>
+
+1189736930 source:d:\mvmotionai\mvmotionai\src\mvbodycapsule.cpp
+	<mv/mvBodyCapsule.h>
+
+1189738224 d:\mvmotionai\mvmotionai\include\mv\mvbodycapsule.h
+	<mv/mvMotionAI-Types.h>
+
+1189736942 source:d:\mvmotionai\mvmotionai\src\mvbody_v2.cpp
+	<mv/mvBody_V2.h>
+
+1189738224 d:\mvmotionai\mvmotionai\include\mv\mvbody_v2.h
+	<mv/mvMotionAI-Types.h>
+
+1189736950 source:d:\mvmotionai\mvmotionai\src\mvenums.cpp
+	<mv/mvEnums.h>
+	<cstring>
+
+1189738224 d:\mvmotionai\mvmotionai\include\mv\mvenums.h
+	<mv/mvMotionAI-Types.h>
+
+1189736964 source:d:\mvmotionai\mvmotionai\src\mvflee.cpp
+	<mv/mvFlee.h>
+
+1189738224 d:\mvmotionai\mvmotionai\include\mv\mvflee.h
+	<mv/mvMotionAI-Types.h>
+
+1189736976 source:d:\mvmotionai\mvmotionai\src\mvforcecapsule.cpp
+	<mv/mvForceCapsule.h>
+
+1189738224 d:\mvmotionai\mvmotionai\include\mv\mvforcecapsule.h
+	<mv/mvMotionAI-Types.h>
+
+1189736990 source:d:\mvmotionai\mvmotionai\src\mvforceresult.cpp
+	<mv/mvForceResult.h>
+
+1189738224 d:\mvmotionai\mvmotionai\include\mv\mvforceresult.h
+	<mv/mvMotionAI-Types.h>
+
+1189737000 source:d:\mvmotionai\mvmotionai\src\mvgravityforce.cpp
+	<mv/mvGravityForce.h>
+
+1189738224 d:\mvmotionai\mvmotionai\include\mv\mvgravityforce.h
+	<mv/mvMotionAI-Types.h>
+
+1189737012 source:d:\mvmotionai\mvmotionai\src\mvgroupbnode_v2.cpp
+	<mv/mvGroupBNode_V2.h>
+
+1189738224 d:\mvmotionai\mvmotionai\include\mv\mvgroupbnode_v2.h
+	<mv/mvMotionAI-Types.h>
+	<list>
+
+1189737022 source:d:\mvmotionai\mvmotionai\src\mvgroupbehaviourresult.cpp
+	<mv/mvGroupBehaviourResult.h>
+
+1189738224 d:\mvmotionai\mvmotionai\include\mv\mvgroupbehaviourresult.h
+	<mv/mvMotionAI-Types.h>
+
+1189737034 source:d:\mvmotionai\mvmotionai\src\mvgroupbehaviour_v2.cpp
+	<mv/mvGroupBehaviour_V2.h>
+
+1189738224 d:\mvmotionai\mvmotionai\include\mv\mvgroupbehaviour_v2.h
+	<mv/mvMotionAI-Types.h>
+	"mvPointerList.h"
+
+1189737046 source:d:\mvmotionai\mvmotionai\src\mvgroupcapsule.cpp
+	<mv/mvGroupCapsule.h>
+
+1189738224 d:\mvmotionai\mvmotionai\include\mv\mvgroupcapsule.h
+	<mv/mvMotionAI-Types.h>
+
+1189737056 source:d:\mvmotionai\mvmotionai\src\mvgroup_v2.cpp
+	<mv/mvGroup_V2.h>
+
+1189738224 d:\mvmotionai\mvmotionai\include\mv\mvgroup_v2.h
+	<mv/mvMotionAI-Types.h>
+
+1189737074 source:d:\mvmotionai\mvmotionai\src\mvindexset.cpp
+	<mv/mvIndexSet.h>
+
+1189738224 d:\mvmotionai\mvmotionai\include\mv\mvindexset.h
+	<mv/mvMotionAI-Types.h>
+	<set>
+	<vector>
+
+1189737086 source:d:\mvmotionai\mvmotionai\src\mvmotionai-utilities.cpp
+	<mv/mvMotionAI-Utilities.h>
+	<cmath>
+
+1189738224 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-utilities.h
+	<mv/mvMotionAI-Types.h>
+
+1189737178 source:d:\mvmotionai\mvmotionai\src\mvmotionai.cpp
+	<mv/mvMotionAI.h>
+	<mv/mvMotionAI_V2-Central.h>
+
+1189737676 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
+	<mv/mvMotionAI-Types.h>
+
+1189737236 source:d:\mvmotionai\mvmotionai\src\mvmotionai_v2-central.cpp
+	<mv/mvMotionAI_V2-Central.h>
+	<cstring>
+	<iostream>
+	<mv/mvNullLoader.h>
+	<mv/mvSeek.h>
+	<mv/mvPursuit.h>
+	<mv/mvFlee.h>
+	<mv/mvGravityForce.h>
+	<mv/mvUniformForce.h>
+	<mv/mvUniformAccelForce.h>
+	<mv/mvUniformShiftForce.h>
+
+1189737688 d:\mvmotionai\mvmotionai\include\mv\mvnullloader.h
+	<mv/mvMotionAI-Types.h>
+
+1189738226 d:\mvmotionai\mvmotionai\include\mv\mvseek.h
+	<mv/mvMotionAI-Types.h>
+
+1189738226 d:\mvmotionai\mvmotionai\include\mv\mvpursuit.h
+	<mv/mvMotionAI-Types.h>
+
+1189738226 d:\mvmotionai\mvmotionai\include\mv\mvuniformforce.h
+	<mv/mvMotionAI-Types.h>
+
+1189738226 d:\mvmotionai\mvmotionai\include\mv\mvuniformaccelforce.h
+	<mv/mvMotionAI-Types.h>
+
+1189738226 d:\mvmotionai\mvmotionai\include\mv\mvuniformshiftforce.h
+	<mv/mvMotionAI-Types.h>
+
+1189737248 source:d:\mvmotionai\mvmotionai\src\mvnullloader.cpp
+	<mv/mvNullLoader.h>
+
+1189737254 source:d:\mvmotionai\mvmotionai\src\mvobstacle_v2.cpp
+	<mv/mvObstacle_V2.h>
+
+1189737700 d:\mvmotionai\mvmotionai\include\mv\mvobstacle_v2.h
+	<mv/mvMotionAI-Types.h>
+
+1189737262 source:d:\mvmotionai\mvmotionai\src\mvpathway_v2.cpp
+	<mv/mvPathway_v2.h>
+
+1189738226 d:\mvmotionai\mvmotionai\include\mv\mvpathway_v2.h
+	<mv/mvMotionAI-Types.h>
+	"mvPointerList.h"
+
+1189737270 source:d:\mvmotionai\mvmotionai\src\mvpursuit.cpp
+	<mv/mvPursuit.h>
+
+1189737278 source:d:\mvmotionai\mvmotionai\src\mvseek.cpp
+	<mv/mvSeek.h>
+
+1189737286 source:d:\mvmotionai\mvmotionai\src\mvshape.cpp
+	<mv/mvShape.h>
+
+1189738226 d:\mvmotionai\mvmotionai\include\mv\mvshape.h
+	<mv/mvMotionAI-Types.h>
+
+1189737298 source:d:\mvmotionai\mvmotionai\src\mvuniformaccelforce.cpp
+	<mv/mvUniformAccelForce.h>
+
+1189737308 source:d:\mvmotionai\mvmotionai\src\mvuniformforce.cpp
+	<mv/mvUniformForce.h>
+
+1189737334 source:d:\mvmotionai\mvmotionai\src\mvuniformshiftforce.cpp
+	<mv/mvUniformShiftForce.h>
+
+1189737390 source:d:\mvmotionai\mvmotionai\src\mvvec3.cpp
+	<mv/mvVec3.h>
+
+1189737762 d:\mvmotionai\mvmotionai\include\mv\mvvec3.h
+	<mv/mvMotionAI-Types.h>
+
+1189737422 source:d:\mvmotionai\mvmotionai\src\mvwaypointcapsule.cpp
+	<mv/mvWaypointCapsule.h>
+
+1189738226 d:\mvmotionai\mvmotionai\include\mv\mvwaypointcapsule.h
+	<mv/mvMotionAI-Types.h>
+
+1189737430 source:d:\mvmotionai\mvmotionai\src\mvwaypoint_v2.cpp
+	<mv/mvWaypoint_V2.h>
+
+1189738226 d:\mvmotionai\mvmotionai\include\mv\mvwaypoint_v2.h
+	<mv/mvMotionAI-Types.h>
+
+1189737466 source:d:\mvmotionai\mvmotionai\src\mvworld2.cpp
+	<mv/mvWorld2.h>
+	<cstring>
+	"mvWorld2_Functions.h"
+	<iostream>
+
+1189737788 d:\mvmotionai\mvmotionai\include\mv\mvworld2.h
+	<mv/mvMotionAI-Types.h>
+	"mvPointerList.h"
+	"mvCapsuleList.h"
+	"mvBodyCapsule.h"
+	"mvWaypointCapsule.h"
+	"mvGroupCapsule.h"
+
+1189738224 d:\mvmotionai\mvmotionai\include\mv\mvcapsulelist.h
+	<mv/mvMotionAI-Types.h>
+	"mvPointerList.h"
+	"mvCapsuleList.hpp"
+
+1189696106 d:\mvmotionai\mvmotionai\include\mv\mvcapsulelist.hpp
+
+1189737650 d:\mvmotionai\mvmotionai\src\mvworld2_functions.h
+	<mv/mvMotionAI-Types.h>
+
+1189664440 source:d:\mvmotionai\mvmotionai\src\mvworld2_functions.cpp
+	"mvWorld2_Functions.h"
+	<iostream>
+
