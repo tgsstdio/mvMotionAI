@@ -53,7 +53,7 @@
  *   a group behaviour node, or a group member of a grouped behaviour.
  */
 
-#include <mvMotionAI.h>
+#include <mv/mvMotionAI.h>
 
 class TimedHop : public mvBaseAction
 {
