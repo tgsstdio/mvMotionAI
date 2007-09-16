@@ -165,6 +165,11 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::checkParamStringAndIndex(\
 {
    mvIndex index;
 
+   if (param == MV_NULL)
+   {
+      return MV_INVALID_PARAM_ENUM_STRING;
+   }
+
    if(!mvCheckAllParamEnumsForString(param, paramFlag))
    {
       return MV_INVALID_PARAM_ENUM_STRING;

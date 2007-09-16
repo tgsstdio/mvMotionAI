@@ -672,6 +672,7 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
          mvIndex nodeIndex, const char* param, mvFloat* array,\
          mvCount* noOfParameters) const;
 
+      // TODO: link code to group behaviours
       mvErrorEnum setEntryListNodeParameteri(mvIndex listIndex,\
          mvIndex nodeIndex, mvParamEnum paramFlag, mvIndex index);
       mvErrorEnum setEntryListNodeParameter(mvIndex listIndex,\
