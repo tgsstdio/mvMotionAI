@@ -40,8 +40,8 @@
 	<File name="include\mv\mvCapsuleList.h" open="0" top="0" tabpos="0">
 		<Cursor position="201" topLine="3" />
 	</File>
-	<File name="include\mv\mvEnums.h" open="1" top="1" tabpos="2">
-		<Cursor position="5357" topLine="225" />
+	<File name="include\mv\mvEnums.h" open="1" top="0" tabpos="1">
+		<Cursor position="5815" topLine="93" />
 	</File>
 	<File name="include\mv\mvFactoryFunctionList.h" open="0" top="0" tabpos="0">
 		<Cursor position="86" topLine="29" />
@@ -88,8 +88,8 @@
 	<File name="include\mv\mvMotionAI-Utilities.h" open="0" top="0" tabpos="0">
 		<Cursor position="1669" topLine="7" />
 	</File>
-	<File name="include\mv\mvMotionAI.h" open="0" top="0" tabpos="0">
-		<Cursor position="3586" topLine="72" />
+	<File name="include\mv\mvMotionAI.h" open="1" top="0" tabpos="3">
+		<Cursor position="9532" topLine="194" />
 	</File>
 	<File name="include\mv\mvNullLoader.h" open="0" top="0" tabpos="0">
 		<Cursor position="1551" topLine="10" />
@@ -103,8 +103,8 @@
 	<File name="include\mv\mvPointerList.h" open="0" top="0" tabpos="0">
 		<Cursor position="1215" topLine="3" />
 	</File>
-	<File name="include\mv\mvPointerList.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="21677" topLine="779" />
+	<File name="include\mv\mvPointerList.hpp" open="1" top="0" tabpos="6">
+		<Cursor position="4796" topLine="141" />
 	</File>
 	<File name="include\mv\mvPursuit.h" open="0" top="0" tabpos="0">
 		<Cursor position="1989" topLine="19" />
@@ -133,8 +133,8 @@
 	<File name="include\mv\mvWaypoint_V2.h" open="0" top="0" tabpos="0">
 		<Cursor position="201" topLine="0" />
 	</File>
-	<File name="include\mv\mvWorld2.h" open="0" top="0" tabpos="0">
-		<Cursor position="34827" topLine="675" />
+	<File name="include\mv\mvWorld2.h" open="1" top="0" tabpos="4">
+		<Cursor position="32575" topLine="657" />
 	</File>
 	<File name="src\mvBEntry.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="28" topLine="0" />
@@ -169,8 +169,8 @@
 	<File name="src\mvBody_V2.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="1082" topLine="6" />
 	</File>
-	<File name="src\mvEnums.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="1411" topLine="12" />
+	<File name="src\mvEnums.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="13758" topLine="642" />
 	</File>
 	<File name="src\mvFlee.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="4292" topLine="156" />
