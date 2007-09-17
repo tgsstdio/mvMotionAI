@@ -1415,6 +1415,23 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentObstacleAsWorldBoundary(\
    return error;
 }
 
+MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateWaypoint_str(mvIndex worldIndex,\
+   const char* wShape, mvFloat x, mvFloat y, mvFloat z)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_NULL;
+
+      return worldPtr->createWaypoint_str(wShape, x, y, z);
+   }
+   return MV_NULL;
+}
+
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateWaypoint(mvIndex worldIndex,\
 	mvOptionEnum wShape, mvFloat x, mvFloat y, mvFloat z)
 {
@@ -1600,6 +1617,22 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWaypointParameter_str(mvIndex worldIndex,
       if (worldPtr == MV_NULL)
          return MV_INVALID_WORLD_INDEX;
       return worldPtr->setWaypointParameter_str(index, param, option);
+   }
+   return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWaypointParameteri_str(mvIndex worldIndex,\
+   mvIndex index, const char* param, mvIndex paramIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+         return MV_INVALID_WORLD_INDEX;
+      return worldPtr->setWaypointParameteri_str(index, param, paramIndex);
    }
    return error;
 }
@@ -4302,7 +4335,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvAddNodeToPathway(mvIndex worldIndex,\
 }
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveNodeFromPathway(mvIndex worldIndex,\
-   mvIndex wpIndex, mvIndex pIndex)
+   mvIndex nodeIndex, mvIndex pathwayIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -4314,13 +4347,13 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveNodeFromPathway(mvIndex worldIndex,\
       {
          return MV_INVALID_WORLD_INDEX;
       }
-      return worldPtr->removeNodeFromPathway(wpIndex,pIndex);
+      return worldPtr->removeNodeFromPathway(nodeIndex,pathwayIndex);
    }
    return error;
 }
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllNodesFromPathway(\
-   mvIndex worldIndex,mvIndex pwIndex, mvIndex nodeIndex)
+   mvIndex worldIndex, mvIndex pathwayIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -4332,7 +4365,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllNodesFromPathway(\
       {
          return MV_INVALID_WORLD_INDEX;
       }
-      return worldPtr->removeNodeFromPathway(pwIndex,nodeIndex);
+      return worldPtr->removeAllNodesFromPathway(pathwayIndex);
    }
    return error;
 }

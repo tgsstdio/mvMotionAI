@@ -42,7 +42,7 @@ const char* mvOptionEnumStrings[] =
    "MV_PURSUIT",
    "MV_EVASION",
    "MV_SIMPLE_FLOCK",
-   "MV_GROUP_ENTRY",
+   "MV_GROUP_BEHAVIOUR_MEMBER_ENTRY",
    "MV_EXISTING_GROUP_BEHAVIOUR",
    "MV_EXISTING_BEHAVIOUR",
    "MV_NON_GROUP_BEHAVIOUR_TYPE",
@@ -340,7 +340,7 @@ const mvOptionEnum orderedOptionEnums[] =
    MV_FORCE_FIELD_REPELL,
    MV_FULL_3D,
    MV_GRAVITY,
-   MV_GROUP_ENTRY,
+   MV_GROUP_BEHAVIOUR_MEMBER_ENTRY,
    MV_GROUP_WAYPOINT,
    MV_LIQUID_OBSTACLE,
    MV_LIST_TREE,
@@ -579,9 +579,8 @@ template
    //int result = -1;
    mvIndex compare;
    mvIndex index;
-   mvCount ten = 0;
 
-   if (dest == MV_NULL)
+   if (dest == MV_NULL || key == MV_NULL)
    {
       return false;
    }
@@ -591,7 +590,7 @@ template
     stringArray[left] << " " << stringArray[right] <<std::endl;
 #endif
 
-   while (left <= right && ten < 10)
+   while (left <= right)
    {
       index = (right + left)/ 2;
       compareItem = enumArray[index];
@@ -599,7 +598,7 @@ template
       std::cout << index <<  " " << stringArray[compareItem] << std::endl;
 #endif
       compare = strcmp(key,stringArray[compareItem]);
-      ten++;
+      //ten++;
       if (compare == 0)
       {
 #ifdef MV_ENUMS_DEBUG_BINARY_FLAG
