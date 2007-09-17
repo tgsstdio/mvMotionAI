@@ -1,18 +1,5 @@
 #include "mvLua_CFunctions.h"
 
-/**
- * \brief internal constant - ignore
- */
-/*
-static const mvCount MV_LUA_RETURNED_ERROR_COUNT = 1;
-static const mvIndex MV_LUA_SET_CURRENT_ITEM_INDEX_NO = 2;
-static const mvIndex MV_LUA_REMOVE_ITEM_INDEX_NO = 2;
-static const mvIndex MV_LUA_SET_PARAMETER_ITEM_INDEX = 2;
-static const mvIndex MV_LUA_SET_PARAMETER_PARAM_ENUM_INDEX = 3;
-static const mvIndex MV_LUA_SET_PARAMETER_OPTION_ENUM_INDEX = 4;
-static const mvIndex MV_LUA_SET_PARAMETER_PARAM_INDEX_NO = 4;
-#define MV_LUA_SET_PARAMETER_START_OF_VECTOR_INDEX
-*/
 #define MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED (1)
 #define MV_LUA_WORLD_INDEX_VALUE (1)
 #define MV_LUA_REMOVE_ALL_ITEMS_NO_OF_ITEMS_RETURNED (1)
@@ -27,24 +14,11 @@ int mvLua_SetParameterFunction_2i(lua_State* luaVM,
    mvErrorEnum (setParameterf_str)(mvIndex, mvIndex, const char*, mvFloat),
    mvErrorEnum (setParameterv_str)(mvIndex, mvIndex, const char*, mvFloat*));
 
-int mvLua_GetParameterFunction_2i(lua_State* luaVM, mvErrorEnum finalErrorCode,
+int mvLua_GetParameterFunction_2i(lua_State* luaVM,
    mvErrorEnum (getParameter_str)(mvIndex, mvIndex, const char*, const char**),
    mvErrorEnum (getParameteri_str)(mvIndex, mvIndex, const char*, mvIndex*),
    mvErrorEnum (getParameterf_str)(mvIndex, mvIndex, const char*, mvFloat*),
    mvErrorEnum (getParameterv_str)(mvIndex, mvIndex, const char*, mvFloat*, mvCount*));
-
-// TODO : complete template functions
-int mvLua_SetParameterFunction_3i(lua_State* luaVM,
-   mvErrorEnum (setParameter_str)(mvIndex, mvIndex, const char*, const char*),
-   mvErrorEnum (setParameteri_str)(mvIndex, mvIndex, const char*, mvIndex),
-   mvErrorEnum (setParameterf_str)(mvIndex, mvIndex, const char*, mvFloat),
-   mvErrorEnum (setParameterv_str)(mvIndex, mvIndex, const char*, mvFloat*));
-
-int mvLua_GetParameterFunction_3i(lua_State* luaVM, mvErrorEnum finalErrorCode,
-   mvErrorEnum (getParameter_str)(mvIndex, mvIndex, mvIndex, const char*, const char**),
-   mvErrorEnum (getParameteri_str)(mvIndex, mvIndex, mvIndex, const char*, mvIndex),
-   mvErrorEnum (getParameterf_str)(mvIndex, mvIndex, mvIndex, const char*, mvFloat),
-   mvErrorEnum (getParameterv_str)(mvIndex, mvIndex, mvIndex, const char*, mvFloat*, mvCount));
 
 int mvLua_GetCurrentIndex(lua_State* luaVM,
    mvIndex (getCurrentIndex)(mvIndex));
@@ -52,10 +26,31 @@ int mvLua_SetCurrentIndex(lua_State* luaVM,
    mvIndex (setCurrentIndex)(mvIndex, mvIndex));
 int mvLua_DeleteAllItems(lua_State* luaVM,
    mvErrorEnum (deleteAllItems)(mvIndex));
-int mvLua_DeleteAllNodesInItem(lua_State* luaVM,
-   mvErrorEnum (deleteAllItems)(mvIndex, mvIndex));
 int mvLua_DeleteItem(lua_State* luaVM,
    mvErrorEnum (deleteItem)(mvIndex, mvIndex));
+int mvLua_DeleteAllNodesInItem(lua_State* luaVM,
+   mvErrorEnum (deleteAllItems)(mvIndex, mvIndex));
+int mvLua_DeleteNodeIndexInItem(lua_State* luaVM,
+   mvErrorEnum (deleteAllNodesInItem)(mvIndex, mvIndex,mvIndex));
+int mvLua_AddNodeIndexIntoItem(lua_State* luaVM,
+   mvIndex (addNodeIndexIntoItem)(mvIndex, mvIndex, mvIndex));
+int mvLua_GetCurrentNodeInItem(lua_State* luaVM,
+   mvIndex (getCurrentNodeInItem)(mvIndex, mvIndex));
+
+// TODO : complete template functions
+int mvLua_SetParameterFunction_3i(lua_State* luaVM,
+   mvErrorEnum (setParameter_str)(mvIndex, mvIndex, mvIndex, const char*, const char*),
+   mvErrorEnum (setParameteri_str)(mvIndex, mvIndex, mvIndex, const char*, mvIndex),
+   mvErrorEnum (setParameterf_str)(mvIndex, mvIndex, mvIndex, const char*, mvFloat),
+   mvErrorEnum (setParameterv_str)(mvIndex, mvIndex, mvIndex, const char*, mvFloat*));
+
+int mvLua_GetParameterFunction_3i(lua_State* luaVM,
+   mvErrorEnum (getParameter_str)(mvIndex, mvIndex, mvIndex, const char*, const char**),
+   mvErrorEnum (getParameteri_str)(mvIndex, mvIndex, mvIndex, const char*, mvIndex*),
+   mvErrorEnum (getParameterf_str)(mvIndex, mvIndex, mvIndex, const char*, mvFloat*),
+   mvErrorEnum (getParameterv_str)(mvIndex, mvIndex, mvIndex, const char*, mvFloat*, mvCount*));
+
+
 
 lua_CFunction mvLua_LuaFunctionPointers[] =
 {
@@ -83,7 +78,6 @@ lua_CFunction mvLua_LuaFunctionPointers[] =
    mvLua_SetWorldParameter,
    //3
    mvLua_CreateBody,
-   /*
    mvLua_GetCurrentBody,
    mvLua_SetCurrentBody,
    mvLua_DeleteBody,
@@ -93,7 +87,64 @@ lua_CFunction mvLua_LuaFunctionPointers[] =
    mvLua_AddBehaviourToList,
    mvLua_RemoveBehaviourFromList,
    mvLua_RemoveAllBehavioursFromList,
-   */
+   //4
+   mvLua_GetCurrentEntryFromList,
+   mvLua_CreateObstacle,
+   mvLua_GetCurrentObstacle,
+   mvLua_SetCurrentObstacle,
+   mvLua_DeleteObstacle,
+   mvLua_DeleteAllObstacles,
+   mvLua_SetObstacleParameter,
+   mvLua_GetObstacleParameter,
+   mvLua_CreateWaypoint,
+   mvLua_GetCurrentWaypoint,
+// 5
+   mvLua_SetCurrentWaypoint,
+   mvLua_DeleteWaypoint,
+   mvLua_DeleteAllWaypoints,
+   mvLua_SetWaypointParameter,
+   mvLua_GetWaypointParameter,
+   mvLua_AddForceIntoWaypoint,
+   mvLua_RemoveForceFromWaypoint,
+   mvLua_RemoveAllWaypointsFromForce,
+   mvLua_RemoveAllForcesFromWaypoint,
+   mvLua_CreateBehaviour,
+// 6
+   mvLua_GetCurrentBehaviour,
+   mvLua_SetCurrentBehaviour,
+   mvLua_DeleteBehaviour,
+   mvLua_DeleteAllBehaviours,
+   mvLua_SetBehaviourParameter,
+   mvLua_GetBehaviourParameter,
+   mvLua_CreateForce,
+   mvLua_GetCurrentForce,
+   mvLua_SetCurrentForce,
+   mvLua_DeleteForce,
+// 7
+   mvLua_DeleteAllForces,
+   mvLua_SetForceParameter,
+   mvLua_GetForceParameter,
+   mvLua_CreatePathway,
+   mvLua_GetCurrentPathway,
+   mvLua_SetCurrentPathway,
+   mvLua_DeletePathway,
+   mvLua_DeleteAllPathways,
+   mvLua_SetPathwayParameter,
+   mvLua_GetPathwayParameter,
+   mvLua_AddNodeToPathway,
+//8
+/*
+   mvLua_RemoveNodeFromPathway,
+   mvLua_RemoveAllNodesFromPathway,
+   mvLua_GetCurrentNodeOfPathway,
+   mvLua_RemovePathwayNodeAt,
+   mvLua_SetPathwayNodeParameter,
+   mvLua_GetPathwayNodeParameter,
+   mvLua_CreateGroup,
+   mvLua_GetCurrentGroup,
+   mvLua_SetCurrentGroup,
+   mvLua_DeleteGroup,
+*/
 };
 
 const char* mvLua_CFuncFunctionNames[] =
@@ -131,6 +182,61 @@ const char* mvLua_CFuncFunctionNames[] =
    "mvAddBehaviourToList",
    "mvRemoveBehaviourFromList",
    "mvRemoveAllBehavioursFromList",
+   // 4
+   "mvGetCurrentEntryFromList",
+   "mvCreateObstacle",
+   "mvGetCurrentObstacle",
+   "mvSetCurrentObstacle",
+   "mvDeleteObstacle",
+   "mvDeleteAllObstacles",
+   "mvSetObstacleParameter",
+   "mvGetObstacleParameter",
+   "mvCreateWaypoint",
+   "mvGetCurrentWaypoint",
+   // 5
+   "mvSetCurrentWaypoint",
+   "mvDeleteWaypoint",
+   "mvDeleteAllWaypoints",
+   "mvSetWaypointParameter",
+   "mvGetWaypointParameter",
+   "mvAddForceIntoWaypoint",
+   "mvRemoveForceFromWaypoint",
+   "mvRemoveAllWaypointsFromForce",
+   "mvRemoveAllForcesFromWaypoint",
+   "mvCreateBehaviour",
+// 6
+   "mvGetCurrentBehaviour",
+   "mvSetCurrentBehaviour",
+   "mvDeleteBehaviour",
+   "mvDeleteAllBehaviours",
+   "mvSetBehaviourParameter",
+   "mvGetBehaviourParameter",
+   "mvCreateForce",
+   "mvGetCurrentForce",
+   "mvSetCurrentForce",
+   "mvDeleteForce",
+// 7
+   "mvSetForceParameter",
+   "mvGetForceParameter",
+   "mvCreatePathway",
+   "mvGetCurrentPathway",
+   "mvSetCurrentPathway",
+   "mvDeletePathway",
+   "mvDeleteAllPathways",
+   "mvSetPathwayParameter",
+   "mvGetPathwayParameter",
+   "mvAddNodeToPathway",
+//8
+   "mvRemoveNodeFromPathway",
+   "mvRemoveAllNodesFromPathway",
+   "mvGetCurrentNodeOfPathway",
+   "mvRemovePathwayNodeAt",
+   "mvSetPathwayNodeParameter",
+   "mvGetPathwayNodeParameter",
+   "mvCreateGroup",
+   "mvGetCurrentGroup",
+   "mvSetCurrentGroup",
+   "mvDeleteGroup",
 };
 
 const char** mvLua_GetLuaFunctionNames()
@@ -231,7 +337,6 @@ int mvLua_InitAllDefaults(lua_State* luaVM)
    return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
 }
 
-// TODO : block 2
 int mvLua_FreeDefaultActions(lua_State* luaVM)
 {
    mvErrorEnum error = mvFreeDefaultActions();
@@ -353,7 +458,6 @@ int mvLua_NudgeBody(lua_State* luaVM)
    return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
 }
 
-// TODO : use template
 int mvLua_GetWorldParameter(lua_State* luaVM)
 {
    mvErrorEnum paramError;
@@ -375,7 +479,8 @@ int mvLua_GetWorldParameter(lua_State* luaVM)
    paramError = mvGetWorldParameter_str(worldIndex, paramString, &optionString);
 
    // early exit for invalid param
-   if (paramError == MV_INVALID_PARAM_ENUM_STRING)
+   if (paramError == MV_INVALID_PARAM_ENUM_STRING || paramError ==
+      MV_MOTIONAI_IS_NOT_INITIALISED)
    {
       noOfVariables = 0;
 
@@ -468,17 +573,18 @@ int mvLua_SetWorldParameter(lua_State* luaVM)
    luaIndex = MV_LUA_WORLD_INDEX_VALUE;
    worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
 
-   luaIndex = MV_LUA_WORLD_INDEX_VALUE + 1;
+   ++luaIndex;
    paramString = lua_tostring(luaVM, luaIndex);
 
    // SET PARAMETER
-   luaIndex = MV_LUA_WORLD_INDEX_VALUE + 2;
+   ++luaIndex;
    optionString = lua_tostring(luaVM, luaIndex);
 
    paramError = mvSetWorldParameter_str(worldIndex, paramString, optionString);
 
    // early exit for invalid param
-   if (paramError == MV_INVALID_PARAM_ENUM_STRING)
+   if (paramError == MV_INVALID_PARAM_ENUM_STRING || paramError ==
+      MV_MOTIONAI_IS_NOT_INITIALISED)
    {
       lua_pushnumber(luaVM, paramError);
       return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
@@ -544,14 +650,14 @@ int mvLua_SetParameterFunction_2i(lua_State* luaVM,
    worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
 
    // OBJECT INDEX
-   luaIndex = MV_LUA_WORLD_INDEX_VALUE + 1;
+   ++luaIndex;
    objectIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
 
-   luaIndex = MV_LUA_WORLD_INDEX_VALUE + 2;
+   ++luaIndex;
    paramString = lua_tostring(luaVM, luaIndex);
 
    // SET PARAMETER
-   firstParamIndex = MV_LUA_WORLD_INDEX_VALUE + 3;
+   firstParamIndex = ++luaIndex;
    luaIndex = firstParamIndex;
    optionString = lua_tostring(luaVM, luaIndex);
 
@@ -559,7 +665,8 @@ int mvLua_SetParameterFunction_2i(lua_State* luaVM,
       optionString);
 
    // early exit for invalid param
-   if (paramError == MV_INVALID_PARAM_ENUM_STRING)
+   if (paramError == MV_INVALID_PARAM_ENUM_STRING || paramError ==
+      MV_MOTIONAI_IS_NOT_INITIALISED)
    {
       lua_pushnumber(luaVM, paramError);
       return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
@@ -628,11 +735,11 @@ int mvLua_GetParameterFunction_2i(lua_State* luaVM,
    worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
 
    // OBJECT INDEX
-   luaIndex = MV_LUA_WORLD_INDEX_VALUE + 1;
+   ++luaIndex;
    objectIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
 
    // PARAM STRING
-   luaIndex = MV_LUA_WORLD_INDEX_VALUE + 2;
+   ++luaIndex;
    paramString = lua_tostring(luaVM, luaIndex);
 
    // GET PARAMETER
@@ -640,7 +747,8 @@ int mvLua_GetParameterFunction_2i(lua_State* luaVM,
       paramString, &optionString);
 
    // early exit for invalid param
-   if (paramError == MV_INVALID_PARAM_ENUM_STRING)
+   if (paramError == MV_INVALID_PARAM_ENUM_STRING || paramError ==
+      MV_MOTIONAI_IS_NOT_INITIALISED)
    {
       noOfVariables = 0;
 
@@ -722,6 +830,211 @@ int mvLua_GetParameterFunction_2i(lua_State* luaVM,
    }
 }
 
+int mvLua_SetParameterFunction_3i(lua_State* luaVM,
+   mvErrorEnum (setParameter_str)(mvIndex, mvIndex, mvIndex, const char*, const char*),
+   mvErrorEnum (setParameteri_str)(mvIndex, mvIndex, mvIndex, const char*, mvIndex),
+   mvErrorEnum (setParameterf_str)(mvIndex, mvIndex, mvIndex, const char*, mvFloat),
+   mvErrorEnum (setParameterv_str)(mvIndex, mvIndex, mvIndex, const char*, mvFloat*))
+{
+   mvErrorEnum paramError;
+   mvIndex worldIndex, luaIndex, objectIndex, nodeIndex, firstParamIndex;
+   const char* paramString = NULL;
+   const char* optionString = NULL;
+   mvFloat floatArray[MV_MAX_NO_OF_PARAMETERS], floatInput;
+   mvIndex indexInput;
+
+   // WORLD INDEX
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   // OBJECT INDEX
+   ++luaIndex;
+   objectIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   nodeIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   paramString = lua_tostring(luaVM, luaIndex);
+
+   // SET PARAMETER
+   firstParamIndex = ++luaIndex;
+   luaIndex = firstParamIndex;
+   optionString = lua_tostring(luaVM, luaIndex);
+
+   paramError = setParameter_str(worldIndex, objectIndex, nodeIndex,\
+      paramString,  optionString);
+
+   // early exit for invalid param
+   if (paramError == MV_INVALID_PARAM_ENUM_STRING || paramError ==
+      MV_MOTIONAI_IS_NOT_INITIALISED)
+   {
+      lua_pushnumber(luaVM, paramError);
+      return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+   }
+
+   if (paramError == MV_NO_ERROR)
+   {
+      lua_pushnumber(luaVM, paramError);
+      return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+   }
+
+   // SET PARAMETER I
+   luaIndex = firstParamIndex;
+   indexInput = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   paramError = setParameteri_str(worldIndex, objectIndex, nodeIndex,\
+      paramString, indexInput);
+   if (paramError == MV_NO_ERROR)
+   {
+      lua_pushnumber(luaVM, paramError);
+      return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+   }
+
+   // SET PARAMETER F
+   luaIndex = firstParamIndex;
+   floatInput = (mvFloat) lua_tonumber(luaVM,luaIndex);
+
+   paramError = setParameterf_str(worldIndex, objectIndex, nodeIndex,
+      paramString, floatInput);
+   if (paramError == MV_NO_ERROR)
+   {
+      lua_pushnumber(luaVM, paramError);
+      return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+   }
+
+   // SET PARAMETER V
+   for (mvIndex i = 0; i < MV_MAX_NO_OF_PARAMETERS; i++)
+   {
+      luaIndex = firstParamIndex + i;
+      floatArray[i] = (mvFloat) lua_tonumber(luaVM,luaIndex);
+   }
+
+   paramError = setParameterv_str(worldIndex, objectIndex, nodeIndex,\
+      paramString, &floatArray[0]);
+
+   lua_pushnumber(luaVM, paramError);
+   return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+}
+
+int mvLua_GetParameterFunction_3i(lua_State* luaVM,
+   mvErrorEnum (getParameter_str)(mvIndex, mvIndex, mvIndex, const char*, const char**),
+   mvErrorEnum (getParameteri_str)(mvIndex, mvIndex, mvIndex, const char*, mvIndex*),
+   mvErrorEnum (getParameterf_str)(mvIndex, mvIndex, mvIndex, const char*, mvFloat*),
+   mvErrorEnum (getParameterv_str)(mvIndex, mvIndex, mvIndex, const char*, mvFloat*, mvCount*))
+{
+   mvErrorEnum paramError;
+   mvIndex worldIndex, luaIndex, objectIndex, nodeIndex;
+   const char* paramString = NULL;
+   const char* optionString = NULL;
+   mvFloat floatArray[MV_MAX_NO_OF_PARAMETERS], floatOutput;
+   mvCount noOfVariables;
+   mvIndex indexOutput;
+
+   // WORLD INDEX
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   // OBJECT INDEX
+   ++luaIndex;
+   objectIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   // NODE INDEX
+   ++luaIndex;
+   nodeIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   // PARAM STRING
+   ++luaIndex;
+   paramString = lua_tostring(luaVM, luaIndex);
+
+   // GET PARAMETER
+   paramError = getParameter_str(worldIndex, objectIndex,nodeIndex,\
+      paramString, &optionString);
+
+   // early exit for invalid param
+   if (paramError == MV_INVALID_PARAM_ENUM_STRING || paramError ==
+      MV_MOTIONAI_IS_NOT_INITIALISED)
+   {
+      noOfVariables = 0;
+
+      lua_pushnumber(luaVM, paramError);
+      lua_pushnumber(luaVM, noOfVariables);
+
+      return MV_LUA_GET_PARAM_MINIMUM_VALUS_RETURNED + noOfVariables;
+   }
+
+   if (paramError == MV_NO_ERROR)
+   {
+      noOfVariables = 1;
+
+      lua_pushnumber(luaVM, paramError);
+      lua_pushnumber(luaVM, noOfVariables);
+
+      // push option enum string to window
+      lua_pushstring(luaVM, optionString);
+      return MV_LUA_GET_PARAM_MINIMUM_VALUS_RETURNED + noOfVariables;
+   }
+
+   // GET PARAMETER I
+   paramError = getParameteri_str(worldIndex, objectIndex,nodeIndex,\
+      paramString, &indexOutput);
+   if (paramError == MV_NO_ERROR)
+   {
+      noOfVariables = 1;
+
+      lua_pushnumber(luaVM, paramError);
+      lua_pushnumber(luaVM, noOfVariables);
+
+      // push option enum string to window
+      lua_pushnumber(luaVM, indexOutput);
+      return MV_LUA_GET_PARAM_MINIMUM_VALUS_RETURNED + noOfVariables;
+   }
+
+   // GET PARAMETER F
+
+   paramError = getParameterf_str(worldIndex, objectIndex,nodeIndex,\
+      paramString, &floatOutput);
+   if (paramError == MV_NO_ERROR)
+   {
+      noOfVariables = 1;
+
+      lua_pushnumber(luaVM, paramError);
+      lua_pushnumber(luaVM, noOfVariables);
+
+      // push option enum string to window
+      lua_pushnumber(luaVM, indexOutput);
+      return MV_LUA_GET_PARAM_MINIMUM_VALUS_RETURNED + noOfVariables;
+   }
+
+   // GET PARAMETER V
+
+   paramError = getParameterv_str(worldIndex, objectIndex,nodeIndex,\
+      paramString, &floatArray[0],&noOfVariables);
+
+   if (paramError == MV_NO_ERROR)
+   {
+      lua_pushnumber(luaVM, paramError);
+      lua_pushnumber(luaVM, noOfVariables);
+
+      // push option enum string to window
+      for (mvCount i = 0; i < noOfVariables; ++i)
+      {
+         lua_pushnumber(luaVM, floatArray[i]);
+      }
+
+      return MV_LUA_GET_PARAM_MINIMUM_VALUS_RETURNED + noOfVariables;
+   }
+   else
+   {
+      noOfVariables = 0;
+
+      lua_pushnumber(luaVM, paramError);
+      lua_pushnumber(luaVM, noOfVariables);
+
+      return MV_LUA_GET_PARAM_MINIMUM_VALUS_RETURNED + noOfVariables;
+   }
+}
+
 int mvLua_GetCurrentIndex(lua_State* luaVM,
    mvIndex (getCurrentIndex)(mvIndex))
 {
@@ -745,22 +1058,122 @@ int mvLua_SetCurrentIndex(lua_State* luaVM,
    luaIndex = MV_LUA_WORLD_INDEX_VALUE;
    worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
 
-   objectIndex = MV_LUA_WORLD_INDEX_VALUE;
-   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+   ++luaIndex;
+   objectIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
 
    returnedIndex = setCurrentIndex(worldIndex,objectIndex);
    lua_pushnumber(luaVM, returnedIndex);
    return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
 }
 
-int mvLua_DeleteAllItems(lua_State* luaVM,
-   mvErrorEnum (deleteAllItems)(mvIndex));
-int mvLua_DeleteAllNodesInItem(lua_State* luaVM,
-   mvErrorEnum (deleteAllItems)(mvIndex, mvIndex));
 int mvLua_DeleteItem(lua_State* luaVM,
-   mvErrorEnum (deleteItem)(mvIndex, mvIndex));
+   mvErrorEnum (deleteItem)(mvIndex, mvIndex))
+{
+   mvIndex worldIndex, luaIndex, objectIndex;
+   mvErrorEnum error;
 
-// TODO : block 3
+   // WORLD INDEX
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   objectIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   error = deleteItem(worldIndex,objectIndex);
+   lua_pushnumber(luaVM, error);
+   return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+}
+
+int mvLua_DeleteAllItems(lua_State* luaVM,
+   mvErrorEnum (deleteAllItems)(mvIndex))
+{
+   mvIndex worldIndex, luaIndex;
+   mvErrorEnum error;
+
+   // WORLD INDEX
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   error = deleteAllItems(worldIndex);
+   lua_pushnumber(luaVM, error);
+   return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+}
+
+int mvLua_DeleteAllNodesInItem(lua_State* luaVM,
+   mvErrorEnum (deleteAllNodesInItem)(mvIndex, mvIndex))
+{
+   mvIndex worldIndex, luaIndex, objectIndex;
+   mvErrorEnum error;
+
+   // WORLD INDEX
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   objectIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   error = deleteAllNodesInItem(worldIndex,objectIndex);
+   lua_pushnumber(luaVM, error);
+   return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+}
+
+int mvLua_DeleteNodeIndexInItem(lua_State* luaVM,
+   mvErrorEnum (deleteNodeFromSubject)(mvIndex, mvIndex,mvIndex))
+{
+   mvIndex worldIndex, luaIndex, subjectIndex, objectIndex;
+   mvErrorEnum error;
+
+   // WORLD INDEX
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   objectIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   subjectIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   error = deleteNodeFromSubject(worldIndex, objectIndex, subjectIndex);
+   lua_pushnumber(luaVM, error);
+   return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+}
+
+int mvLua_GetCurrentNodeInItem(lua_State* luaVM,
+   mvIndex (getCurrentNodeInItem)(mvIndex, mvIndex))
+{
+   mvIndex worldIndex, luaIndex, objectIndex, nodeIndex;
+
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   objectIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   nodeIndex = getCurrentNodeInItem(worldIndex, objectIndex);
+   lua_pushnumber(luaVM, nodeIndex);
+   return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+}
+
+int mvLua_AddNodeIndexIntoItem(lua_State* luaVM,
+   mvIndex (addNodeIndexIntoItem)(mvIndex, mvIndex, mvIndex))
+{
+   mvIndex worldIndex, luaIndex, nodeIndex, itemIndex, returnedIndex;
+
+   // WORLD INDEX
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   nodeIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   itemIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   returnedIndex = addNodeIndexIntoItem(worldIndex,nodeIndex,itemIndex);
+   lua_pushnumber(luaVM, returnedIndex);
+   return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+}
+
 int mvLua_CreateBody(lua_State* luaVM)
 {
    mvIndex worldIndex, luaIndex, objectIndex;
@@ -772,15 +1185,15 @@ int mvLua_CreateBody(lua_State* luaVM)
    luaIndex = MV_LUA_WORLD_INDEX_VALUE;
    worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
 
-   luaIndex = MV_LUA_WORLD_INDEX_VALUE + 1;
+   ++luaIndex;
    typeString = lua_tostring(luaVM, luaIndex);
 
-   luaIndex = MV_LUA_WORLD_INDEX_VALUE + 2;
+   ++luaIndex;
    shapeString = lua_tostring(luaVM, luaIndex);
 
    for (int i = 0; i < MV_VEC3_NO_OF_COMPONENTS; i++)
    {
-      luaIndex = MV_LUA_WORLD_INDEX_VALUE + 3 + i;
+      ++luaIndex;
       floatArray[i] = (mvFloat) lua_tonumber(luaVM, luaIndex);
    }
 
@@ -800,10 +1213,467 @@ int mvLua_SetCurrentBody(lua_State* luaVM)
    return mvLua_SetCurrentIndex(luaVM,mvSetCurrentBody);
 }
 
-int mvLua_DeleteBody(lua_State* luaVM);
-int mvLua_DeleteAllBodies(lua_State* luaVM);
-int mvLua_SetBodyParameter(lua_State* luaVM);
-int mvLua_GetBodyParameter(lua_State* luaVM);
-int mvLua_AddBehaviourToList(lua_State* luaVM);
-int mvLua_RemoveBehaviourFromList(lua_State* luaVM);
-int mvLua_RemoveAllBehavioursFromList(lua_State* luaVM);
+int mvLua_DeleteBody(lua_State* luaVM)
+{
+   return mvLua_DeleteItem(luaVM, mvDeleteBody);
+}
+
+int mvLua_DeleteAllBodies(lua_State* luaVM)
+{
+   return mvLua_DeleteAllItems(luaVM, mvDeleteAllBodies);
+}
+
+int mvLua_SetBodyParameter(lua_State* luaVM)
+{
+   return mvLua_SetParameterFunction_2i(luaVM,
+      mvSetBodyParameter_str, mvSetBodyParameteri_str, mvSetBodyParameterf_str,
+      mvSetBodyParameterv_str);
+}
+
+int mvLua_GetBodyParameter(lua_State* luaVM)
+{
+   return mvLua_GetParameterFunction_2i(luaVM, mvGetBodyParameter_str,
+      mvGetBodyParameteri_str, mvGetBodyParameterf_str,\
+      mvGetBodyParameterv_str);
+}
+
+int mvLua_AddBehaviourToList(lua_State* luaVM)
+{
+   mvIndex worldIndex, luaIndex, listIndex, behaviourIndex, groupIndex,\
+      entryIndex;
+   const char* bTypeString = MV_NULL;
+
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   listIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   bTypeString = lua_tostring(luaVM, luaIndex);
+
+   ++luaIndex;
+   behaviourIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   groupIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   entryIndex = mvAddBehaviourToList_str(worldIndex,listIndex,bTypeString,
+      behaviourIndex, groupIndex);
+   lua_pushnumber(luaVM, entryIndex);
+   return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+}
+
+int mvLua_RemoveBehaviourFromList(lua_State* luaVM)
+{
+   return mvLua_DeleteNodeIndexInItem(luaVM, mvRemoveBehaviourFromList);
+}
+
+int mvLua_RemoveAllBehavioursFromList(lua_State* luaVM)
+{
+   return mvLua_DeleteAllNodesInItem(luaVM, mvRemoveAllBehavioursFromList);
+}
+
+int mvLua_GetCurrentEntryFromList(lua_State* luaVM)
+{
+   mvIndex worldIndex, luaIndex, listIndex, entryIndex;
+
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   listIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   entryIndex = mvGetCurrentEntryFromList(worldIndex, listIndex);
+   lua_pushnumber(luaVM, entryIndex);
+   return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+}
+
+int mvLua_CreateObstacle(lua_State* luaVM)
+{
+   mvIndex worldIndex, luaIndex, objectIndex;
+   const char* typeString = NULL;
+   const char* stateString = NULL;
+   mvFloat floatArray[MV_MAX_NO_OF_PARAMETERS];
+
+   // WORLD INDEX
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   typeString = lua_tostring(luaVM, luaIndex);
+
+   ++luaIndex;
+   stateString = lua_tostring(luaVM, luaIndex);
+
+   for (int i = 0; i < MV_VEC3_NO_OF_COMPONENTS; i++)
+   {
+      ++luaIndex;
+      floatArray[i] = (mvFloat) lua_tonumber(luaVM, luaIndex);
+   }
+
+   objectIndex = mvCreateObstacle_str(worldIndex,typeString, stateString,\
+      floatArray[0], floatArray[1], floatArray[2]);
+   lua_pushnumber(luaVM, objectIndex);
+   return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+}
+
+int mvLua_GetCurrentObstacle(lua_State* luaVM)
+{
+   return mvLua_GetCurrentIndex(luaVM, mvGetCurrentObstacle);
+}
+
+int mvLua_SetCurrentObstacle(lua_State* luaVM)
+{
+   return mvLua_SetCurrentIndex(luaVM, mvSetCurrentObstacle);
+}
+
+int mvLua_DeleteObstacle(lua_State* luaVM)
+{
+   return mvLua_DeleteItem(luaVM, mvDeleteObstacle);
+}
+
+int mvLua_DeleteAllObstacles(lua_State* luaVM)
+{
+   return mvLua_DeleteAllItems(luaVM, mvDeleteAllObstacles);
+}
+
+int mvLua_SetObstacleParameter(lua_State* luaVM)
+{
+   return mvLua_SetParameterFunction_2i(luaVM,
+      mvSetObstacleParameter_str,  mvSetObstacleParameteri_str,\
+      mvSetObstacleParameterf_str,  mvSetObstacleParameterv_str);
+}
+
+int mvLua_GetObstacleParameter(lua_State* luaVM)
+{
+   return mvLua_GetParameterFunction_2i(luaVM,
+      mvGetObstacleParameter_str,  mvGetObstacleParameteri_str,\
+      mvGetObstacleParameterf_str,  mvGetObstacleParameterv_str);
+}
+
+int mvLua_CreateWaypoint(lua_State* luaVM)
+{
+   mvIndex worldIndex, luaIndex, objectIndex;
+   const char* shapeString = NULL;
+   mvFloat floatArray[MV_MAX_NO_OF_PARAMETERS];
+
+   // WORLD INDEX
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   shapeString = lua_tostring(luaVM, luaIndex);
+
+   for (int i = 0; i < MV_VEC3_NO_OF_COMPONENTS; i++)
+   {
+      ++luaIndex;
+      floatArray[i] = (mvFloat) lua_tonumber(luaVM, luaIndex);
+   }
+
+   objectIndex = mvCreateWaypoint_str(worldIndex,shapeString,\
+      floatArray[0], floatArray[1], floatArray[2]);
+   lua_pushnumber(luaVM, objectIndex);
+   return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+}
+
+int mvLua_GetCurrentWaypoint(lua_State* luaVM)
+{
+   return mvLua_GetCurrentIndex(luaVM, mvGetCurrentWaypoint);
+}
+
+int mvLua_SetCurrentWaypoint(lua_State* luaVM)
+{
+   return mvLua_SetCurrentIndex(luaVM, mvSetCurrentWaypoint);
+}
+
+int mvLua_DeleteWaypoint(lua_State* luaVM)
+{
+   return mvLua_DeleteItem(luaVM, mvDeleteWaypoint);
+}
+
+int mvLua_DeleteAllWaypoints(lua_State* luaVM)
+{
+   return mvLua_DeleteAllItems(luaVM, mvDeleteAllWaypoints);
+}
+
+int mvLua_SetWaypointParameter(lua_State* luaVM)
+{
+   return mvLua_SetParameterFunction_2i(luaVM,\
+      mvSetWaypointParameter_str, mvSetWaypointParameteri_str,\
+      mvSetWaypointParameterf_str,mvSetWaypointParameterv_str);
+}
+
+int mvLua_GetWaypointParameter(lua_State* luaVM)
+{
+   return mvLua_GetParameterFunction_2i(luaVM,\
+      mvGetWaypointParameter_str, mvGetWaypointParameteri_str,\
+      mvGetWaypointParameterf_str,mvGetWaypointParameterv_str);
+}
+
+int mvLua_AddForceIntoWaypoint(lua_State* luaVM)
+{
+   mvIndex worldIndex, luaIndex, forceIndex, waypointIndex;
+   mvErrorEnum error;
+
+   // WORLD INDEX
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   forceIndex = (mvIndex) lua_tonumber(luaVM, luaIndex);
+
+   ++luaIndex;
+   waypointIndex = (mvIndex) lua_tonumber(luaVM, luaIndex);
+
+   error = mvAddForceIntoWaypoint(worldIndex, forceIndex, waypointIndex);
+   lua_pushnumber(luaVM, error);
+   return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+}
+
+int mvLua_RemoveForceFromWaypoint(lua_State* luaVM)
+{
+   return mvLua_DeleteNodeIndexInItem(luaVM, mvRemoveForceFromWaypoint);
+}
+
+int mvLua_RemoveAllWaypointsFromForce(lua_State* luaVM)
+{
+   return mvLua_DeleteAllNodesInItem(luaVM, mvRemoveAllWaypointsFromForce);
+}
+
+int mvLua_RemoveAllForcesFromWaypoint(lua_State* luaVM)
+{
+   return mvLua_DeleteAllNodesInItem(luaVM, mvRemoveAllForcesFromWaypoint);
+}
+
+int mvLua_CreateBehaviour(lua_State* luaVM)
+{
+   mvIndex worldIndex, luaIndex, objectIndex;
+   const char* bTypeString = NULL;
+
+   // WORLD INDEX
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   bTypeString = lua_tostring(luaVM, luaIndex);
+
+   objectIndex = mvCreateBehaviour_str(worldIndex,bTypeString);
+   lua_pushnumber(luaVM, objectIndex);
+   return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+}
+
+int mvLua_GetCurrentBehaviour(lua_State* luaVM)
+{
+   return mvLua_GetCurrentIndex(luaVM, mvGetCurrentBehaviour);
+}
+
+int mvLua_SetCurrentBehaviour(lua_State* luaVM)
+{
+   return mvLua_SetCurrentIndex(luaVM, mvSetCurrentBehaviour);
+}
+
+int mvLua_DeleteBehaviour(lua_State* luaVM)
+{
+   return mvLua_DeleteItem(luaVM, mvDeleteBehaviour);
+}
+
+int mvLua_DeleteAllBehaviours(lua_State* luaVM)
+{
+   return mvLua_DeleteAllItems(luaVM, mvDeleteAllBehaviours);
+}
+
+int mvLua_SetBehaviourParameter(lua_State* luaVM)
+{
+   return mvLua_SetParameterFunction_2i(luaVM,\
+      mvSetBehaviourParameter_str,  mvSetBehaviourParameteri_str,\
+      mvSetBehaviourParameterf_str,  mvSetBehaviourParameterv_str);
+}
+
+int mvLua_GetBehaviourParameter(lua_State* luaVM)
+{
+   return mvLua_GetParameterFunction_2i(luaVM,\
+      mvGetBehaviourParameter_str,  mvGetBehaviourParameteri_str,\
+      mvGetBehaviourParameterf_str,  mvGetBehaviourParameterv_str);
+}
+
+int mvLua_CreateForce(lua_State* luaVM)
+{
+   mvIndex worldIndex, luaIndex, objectIndex;
+   const char* fTypeString = NULL;
+
+   // WORLD INDEX
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   fTypeString = lua_tostring(luaVM, luaIndex);
+
+   objectIndex = mvCreateForce_str(worldIndex, fTypeString);
+   lua_pushnumber(luaVM, objectIndex);
+   return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+}
+
+int mvLua_GetCurrentForce(lua_State* luaVM)
+{
+   return mvLua_GetCurrentIndex(luaVM, mvGetCurrentForce);
+}
+
+int mvLua_SetCurrentForce(lua_State* luaVM)
+{
+   return mvLua_SetCurrentIndex(luaVM, mvSetCurrentForce);
+}
+
+int mvLua_DeleteForce(lua_State* luaVM)
+{
+   return mvLua_DeleteItem(luaVM, mvDeleteForce);
+}
+
+// 7
+int mvLua_DeleteAllForces(lua_State* luaVM)
+{
+   return mvLua_DeleteAllItems(luaVM, mvDeleteAllForces);
+}
+
+int mvLua_SetForceParameter(lua_State* luaVM)
+{
+   return mvLua_SetParameterFunction_2i(luaVM,\
+      mvSetForceParameter_str,  mvSetForceParameteri_str,\
+      mvSetForceParameterf_str,  mvSetForceParameterv_str);
+}
+
+int mvLua_GetForceParameter(lua_State* luaVM)
+{
+   return mvLua_GetParameterFunction_2i(luaVM,\
+      mvGetForceParameter_str,  mvGetForceParameteri_str,\
+      mvGetForceParameterf_str,  mvGetForceParameterv_str);
+}
+
+int mvLua_CreatePathway(lua_State* luaVM)
+{
+   mvIndex worldIndex, luaIndex, objectIndex;
+
+   // WORLD INDEX
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   objectIndex =  mvCreatePathway(worldIndex);
+   lua_pushnumber(luaVM, objectIndex);
+   return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+}
+
+int mvLua_GetCurrentPathway(lua_State* luaVM)
+{
+   return mvLua_GetCurrentIndex(luaVM, mvGetCurrentPathway);
+}
+
+int mvLua_SetCurrentPathway(lua_State* luaVM)
+{
+   return mvLua_SetCurrentIndex(luaVM, mvSetCurrentPathway);
+}
+
+int mvLua_DeletePathway(lua_State* luaVM)
+{
+   return mvLua_DeleteItem(luaVM, mvDeletePathway);
+}
+
+int mvLua_DeleteAllPathways(lua_State* luaVM)
+{
+   return mvLua_DeleteAllItems(luaVM, mvDeleteAllPathways);
+}
+
+int mvLua_SetPathwayParameter(lua_State* luaVM)
+{
+   return mvLua_SetParameterFunction_2i(luaVM,\
+      mvSetPathwayParameter_str,  mvSetPathwayParameteri_str,\
+      mvSetPathwayParameterf_str,  mvSetPathwayParameterv_str);
+}
+
+int mvLua_GetPathwayParameter(lua_State* luaVM)
+{
+   return mvLua_GetParameterFunction_2i(luaVM,\
+      mvGetPathwayParameter_str, mvGetPathwayParameteri_str,\
+      mvGetPathwayParameterf_str, mvGetPathwayParameterv_str);
+}
+
+int mvLua_AddNodeToPathway(lua_State* luaVM)
+{
+   return mvLua_AddNodeIndexIntoItem(luaVM, mvAddNodeToPathway);
+}
+
+// TODO : block 8
+int mvLua_RemoveNodeFromPathway(lua_State* luaVM)
+{
+   return mvLua_DeleteNodeIndexInItem(luaVM, mvRemoveNodeFromPathway);
+}
+
+int mvLua_RemoveAllNodesFromPathway(lua_State* luaVM)
+{
+   return mvLua_DeleteAllNodesInItem(luaVM, mvRemoveAllNodesFromPathway);
+}
+
+int mvLua_GetCurrentNodeOfPathway(lua_State* luaVM)
+{
+   return mvLua_GetCurrentNodeInItem(luaVM, mvGetCurrentNodeOfPathway);
+}
+
+int mvLua_RemovePathwayNodeAt(lua_State* luaVM)
+{
+   mvIndex worldIndex, luaIndex, nodeIndex, pathwayIndex, returnedIndex;
+
+   // WORLD INDEX
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   pathwayIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   nodeIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   returnedIndex = mvRemovePathwayNodeAt(worldIndex,pathwayIndex, nodeIndex);
+   lua_pushnumber(luaVM, returnedIndex);
+   return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+}
+
+int mvLua_SetPathwayNodeParameter(lua_State* luaVM)
+{
+   return mvLua_SetParameterFunction_3i(luaVM,
+      mvSetPathwayNodeParameter_str,mvSetPathwayNodeParameteri_str,
+      mvSetPathwayNodeParameterf_str,mvSetPathwayNodeParameterv_str);
+}
+
+int mvLua_GetPathwayNodeParameter(lua_State* luaVM)
+{
+   return mvLua_GetParameterFunction_3i(luaVM,
+      mvGetPathwayNodeParameter_str,mvGetPathwayNodeParameteri_str,
+      mvGetPathwayNodeParameterf_str,mvGetPathwayNodeParameterv_str);
+}
+
+int mvLua_CreateGroup(lua_State* luaVM)
+{
+   mvIndex worldIndex, luaIndex, objectIndex;
+
+   // WORLD INDEX
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   objectIndex = mvCreateGroup(worldIndex);
+   lua_pushnumber(luaVM, objectIndex);
+   return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+}
+
+int mvLua_GetCurrentGroup(lua_State* luaVM)
+{
+   return mvLua_GetCurrentIndex(luaVM, mvGetCurrentGroup);
+}
+
+int mvLua_SetCurrentGroup(lua_State* luaVM)
+{
+   return mvLua_SetCurrentIndex(luaVM, mvSetCurrentGroup);
+}
+
+int mvLua_DeleteGroup(lua_State* luaVM)
+{
+   return mvLua_DeleteItem(luaVM, mvDeleteGroup);
+}
