@@ -159,9 +159,9 @@ int main(int argc, char** argv)
    std::cout << "bodyID : " << bodyID2 <<  std::endl;
    int entryID = mvAddBehaviourToList(worldID,bodyID2,MV_SEEK);
    mvSetEntryListNodeParameteri(worldID,bodyID2,entryID,MV_WAYPOINT,-1);
-   paramError = mvSetEntryListNodeParameter(worldID,bodyID2,entryID,MV_IS_CONFINED,MV_TRUE);
+   paramError = mvSetEntryListNodeParametero(worldID,bodyID2,entryID,MV_IS_CONFINED,MV_TRUE);
    if (paramError != MV_NO_ERROR) puts("ERROR FOUND");
-   paramError = mvSetBodyParameter(worldID, bodyID2, MV_APPLY_GRAVITY, MV_FALSE);
+   paramError = mvSetBodyParametero(worldID, bodyID2, MV_APPLY_GRAVITY, MV_FALSE);
    //paramError = mvSetBodyParameter(worldID, bodyID2, MV_DOMAIN, MV_Z_AXIS_ONLY);
    if (paramError != MV_NO_ERROR) puts("ERROR FOUND");
 
@@ -169,7 +169,7 @@ int main(int argc, char** argv)
    paramError = mvSetBodyParameterf(worldID, bodyID2, MV_ACCELERATION, 5);
    if (paramError != MV_NO_ERROR) puts("ERROR FOUND");
 
-   paramError = mvSetWorldParameter(worldID,MV_APPLY_ALL_FORCES, MV_FALSE);
+   paramError = mvSetWorldParametero(worldID,MV_APPLY_ALL_FORCES, MV_FALSE);
    if (paramError != MV_NO_ERROR) puts("ERROR FOUND");
 
 

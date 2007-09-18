@@ -101,7 +101,7 @@ class mvCapsuleList
       void applyToAllItemsByIndex(mvIndex worldIndex,\
          void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
 
-      mvErrorEnum setItemParameter(mvIndex itemIndex, mvParamEnum paramFlag,\
+      mvErrorEnum setItemParametero(mvIndex itemIndex, mvParamEnum paramFlag,\
          mvOptionEnum option);
       mvErrorEnum setItemParameteri(mvIndex itemIndex, mvParamEnum paramFlag,\
          mvIndex index);
@@ -110,7 +110,7 @@ class mvCapsuleList
       mvErrorEnum setItemParameterv(mvIndex itemIndex, mvParamEnum paramFlag,\
          mvFloat* array);
 
-      mvErrorEnum getItemParameter(mvIndex itemIndex,mvParamEnum paramFlag,\
+      mvErrorEnum getItemParametero(mvIndex itemIndex,mvParamEnum paramFlag,\
          mvOptionEnum* option) const;
       mvErrorEnum getItemParameteri(mvIndex itemIndex,mvParamEnum paramFlag,\
          mvIndex* index) const;
@@ -119,7 +119,7 @@ class mvCapsuleList
       mvErrorEnum getItemParameterv(mvIndex itemIndex,mvParamEnum paramFlag,\
          mvFloat* array, mvCount* noOfParameters) const;
 
-      mvErrorEnum setItemParameter_str(mvIndex itemIndex, const char* param,\
+      mvErrorEnum setItemParametero_str(mvIndex itemIndex, const char* param,\
          const char* option);
       mvErrorEnum setItemParameteri_str(mvIndex itemIndex, const char* param,\
          mvIndex index);
@@ -128,7 +128,7 @@ class mvCapsuleList
       mvErrorEnum setItemParameterv_str(mvIndex itemIndex, const char* param,\
          mvFloat* array);
 
-      mvErrorEnum getItemParameter_str(mvIndex itemIndex, const char* param,\
+      mvErrorEnum getItemParametero_str(mvIndex itemIndex, const char* param,\
          const char** option) const;
       mvErrorEnum getItemParameteri_str(mvIndex itemIndex, const char* param,\
          mvIndex* index) const;

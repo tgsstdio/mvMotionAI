@@ -470,7 +470,7 @@ mvPointerList<mvClass,mvConstClass>::~mvPointerList()
 }
 
 template <class mvClass, class mvConstClass>
-mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParameter(\
+mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParametero(\
    mvIndex itemIndex,  mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvIndex listIndex = itemIndex;
@@ -488,7 +488,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParameter(\
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
 
-   return classPtr->setParameter(paramFlag, option);
+   return classPtr->setParametero(paramFlag, option);
 }
 
 template <class mvClass, class mvConstClass>
@@ -561,7 +561,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParameterv(\
 
 
 template <class mvClass, class mvConstClass>
-mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameter(\
+mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParametero(\
    mvIndex itemIndex, mvParamEnum paramFlag, mvOptionEnum* option) const
 {
    mvIndex listIndex = itemIndex;
@@ -579,7 +579,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameter(\
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
 
-   return classPtr->getParameter(paramFlag, option);
+   return classPtr->getParametero(paramFlag, option);
 }
 
 template <class mvClass, class mvConstClass>
@@ -654,10 +654,10 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameterv(\
  *
  * Code taken from mvMotionAI-Utilities.h
  * template <class mvClass, class mvConstClass>
- * mvErrorEnum mvSetClassParameter_str(std::vector<mvClass*>& mvClassList,
+ * mvErrorEnum mvSetClassParametero_str(std::vector<mvClass*>& mvClassList,
  */
 template <class mvClass, class mvConstClass>
-mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParameter_str(\
+mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParametero_str(\
    mvIndex itemIndex, const char* param, const char* option)
 {
    mvIndex listIndex = itemIndex;
@@ -685,7 +685,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParameter_str(\
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
 
-   return classPtr->setParameter(paramFlag,optionFlag);
+   return classPtr->setParametero(paramFlag,optionFlag);
 }
 
 /**
@@ -777,12 +777,12 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::setItemParameterv_str(\
  *
  *Code taken from mvMotionAI-Utilities.h, 2006
  *template <class mvClass, class mvConstClass>
- *mvErrorEnum mvGetClassParameter_str(std::vector<mvClass*>& mvClassList,
+ *mvErrorEnum mvGetClassParametero_str(std::vector<mvClass*>& mvClassList,
  *   mvCount& noOfItems, mvIndex index, const char* paramFlag,
  *   const char* optionFlag)
  */
 template <class mvClass, class mvConstClass>
-mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameter_str(\
+mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParametero_str(\
    mvIndex itemIndex, const char* param, const char** option) const
 {
    mvIndex listIndex = itemIndex;
@@ -804,7 +804,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParameter_str(\
       return MV_ITEM_AT_INDEX_NO_LONGER_EXISTS;
    }
 
-   error = classPtr->getParameter(paramFlag,&optionFlag);
+   error = classPtr->getParametero(paramFlag,&optionFlag);
    if(error == MV_NO_ERROR)
    {
       *option = mvGetOptionString(optionFlag);

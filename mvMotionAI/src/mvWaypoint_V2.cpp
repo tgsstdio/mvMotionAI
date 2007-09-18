@@ -109,7 +109,7 @@ mvErrorEnum mvWaypoint_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    }
 }
 
-mvErrorEnum mvWaypoint_V2::getParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvWaypoint_V2::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    mvErrorEnum error;
@@ -119,7 +119,7 @@ mvErrorEnum mvWaypoint_V2::getParameter(mvParamEnum paramFlag,\
       return MV_OPTION_ENUM_DEST_IS_NULL;
    }
 
-   error = wpShape.getParameter(paramFlag, option);
+   error = wpShape.getParametero(paramFlag, option);
    if (error != MV_INVALID_SHAPE_PARAMETER)
    {
       return error;
@@ -213,12 +213,12 @@ mvErrorEnum mvWaypoint_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
    }
 }
 
-mvErrorEnum mvWaypoint_V2::setParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvWaypoint_V2::setParametero(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
    mvErrorEnum error;
 
-   error = wpShape.setParameter(paramFlag, option);
+   error = wpShape.setParametero(paramFlag, option);
 
    if (error != MV_INVALID_SHAPE_PARAMETER)
    {

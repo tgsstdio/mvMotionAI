@@ -4,7 +4,7 @@
   *
   * (documentation goes here)
   */
-mvErrorEnum mvBehaviour_V2::setParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvBehaviour_V2::setParametero(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
    switch(paramFlag)
@@ -22,7 +22,7 @@ mvErrorEnum mvBehaviour_V2::setParameter(mvParamEnum paramFlag,\
       default:
          if (behavPtr != MV_NULL)
          {
-            return behavPtr->setParameter(paramFlag, option);
+            return behavPtr->setParametero(paramFlag, option);
          }
          else
          {
@@ -120,7 +120,7 @@ mvErrorEnum mvBehaviour_V2::setParameterv(mvParamEnum paramFlag, mvFloat* array)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvBehaviour_V2::getParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvBehaviour_V2::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    switch(paramFlag)
@@ -138,7 +138,7 @@ mvErrorEnum mvBehaviour_V2::getParameter(mvParamEnum paramFlag,\
       default:
          if (behavPtr != MV_NULL)
          {
-            return behavPtr->getParameter(paramFlag, option);
+            return behavPtr->getParametero(paramFlag, option);
          }
          else
          {

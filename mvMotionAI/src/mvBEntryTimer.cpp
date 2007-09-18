@@ -73,7 +73,7 @@ mvErrorEnum mvTimer::setParameterf(mvParamEnum paramFlag, mvFloat num)
   * \return either MV_NO_ERROR (0) or any non zero (ie.
   * MV_INVALID_TIMER_PARAMETER)
   */
-mvErrorEnum mvTimer::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
+mvErrorEnum mvTimer::setParametero(mvParamEnum paramFlag, mvOptionEnum option)
 {
    switch (paramFlag)
    {
@@ -166,7 +166,7 @@ mvErrorEnum mvTimer::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
   * \return either MV_NO_ERROR (0) or any non zero (ie.
   * MV_INVALID_TIMER_PARAMETER)
   */
-mvErrorEnum mvTimer::getParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvTimer::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    if (option == MV_NULL)

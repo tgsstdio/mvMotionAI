@@ -58,7 +58,7 @@ class MV_GLOBAL_FUNC_PREFIX mvBaseAction
       mvBaseAction(mvOptionEnum type);
       mvOptionEnum getType() const;
 
-      virtual mvErrorEnum getParameter(mvParamEnum paramFlag,\
+      virtual mvErrorEnum getParametero(mvParamEnum paramFlag,\
          mvOptionEnum* option) const;
       virtual mvErrorEnum getParameteri(mvParamEnum paramFlag,\
          mvIndex* index) const;
@@ -67,7 +67,7 @@ class MV_GLOBAL_FUNC_PREFIX mvBaseAction
       virtual mvErrorEnum getParameterv(mvParamEnum paramFlag,\
          mvFloat* numArray, mvCount* noOfElements) const;
 
-      virtual mvErrorEnum setParameter(mvParamEnum paramFlag,\
+      virtual mvErrorEnum setParametero(mvParamEnum paramFlag,\
          mvOptionEnum option);
       virtual mvErrorEnum setParameteri(mvParamEnum paramFlag,\
          mvIndex index);

@@ -49,13 +49,13 @@ mvErrorEnum mvGroupCapsule::getParameteri(mvParamEnum paramFlag, mvIndex* index)
    return encapsuledGroup->getParameteri(paramFlag, index);
 }
 
-mvErrorEnum mvGroupCapsule::getParameter(mvParamEnum paramFlag, mvOptionEnum* option)\
+mvErrorEnum mvGroupCapsule::getParametero(mvParamEnum paramFlag, mvOptionEnum* option)\
    const
 {
    if (encapsuledGroup == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
-   return encapsuledGroup->getParameter(paramFlag, option);
+   return encapsuledGroup->getParametero(paramFlag, option);
 }
 
 mvErrorEnum mvGroupCapsule::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
@@ -83,12 +83,12 @@ mvErrorEnum mvGroupCapsule::setParameteri(mvParamEnum paramFlag, mvIndex index)
    return encapsuledGroup->setParameteri(paramFlag, index);
 }
 
-mvErrorEnum mvGroupCapsule::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
+mvErrorEnum mvGroupCapsule::setParametero(mvParamEnum paramFlag, mvOptionEnum option)
 {
    if (encapsuledGroup == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
-   return encapsuledGroup->setParameter(paramFlag, option);
+   return encapsuledGroup->setParametero(paramFlag, option);
 }
 mvErrorEnum mvGroupCapsule::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {

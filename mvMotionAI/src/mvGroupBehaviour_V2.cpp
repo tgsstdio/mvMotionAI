@@ -181,7 +181,7 @@ mvErrorEnum mvGroupBehaviour_V2::getParameteri(mvParamEnum paramFlag,\
   * automatically calls the behaviour's default template version of
   * getParameter
   */
-mvErrorEnum mvGroupBehaviour_V2::getParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvGroupBehaviour_V2::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    if (option == MV_NULL)
@@ -204,7 +204,7 @@ mvErrorEnum mvGroupBehaviour_V2::getParameter(mvParamEnum paramFlag,\
       default:
          if (defaultGBehaviour != MV_NULL)
          {
-            return defaultGBehaviour->getParameter(paramFlag, option);
+            return defaultGBehaviour->getParametero(paramFlag, option);
          }
          else
          {
@@ -292,7 +292,7 @@ mvErrorEnum mvGroupBehaviour_V2::setParameteri(mvParamEnum paramFlag,\
   *
   * Automatically call default group node template setParameter
   */
-mvErrorEnum mvGroupBehaviour_V2::setParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvGroupBehaviour_V2::setParametero(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
    switch(paramFlag)
@@ -310,7 +310,7 @@ mvErrorEnum mvGroupBehaviour_V2::setParameter(mvParamEnum paramFlag,\
       default:
          if (defaultGBehaviour != MV_NULL)
          {
-            return defaultGBehaviour->setParameter(paramFlag, option);
+            return defaultGBehaviour->setParametero(paramFlag, option);
          }
          else
          {
@@ -374,7 +374,7 @@ mvErrorEnum mvGroupBehaviour_V2::getGroupParameteri(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::getGroupParameter(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour_V2::getGroupParametero(mvIndex groupIndex,\
    mvParamEnum paramFlag, mvOptionEnum* option) const
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
@@ -384,7 +384,7 @@ mvErrorEnum mvGroupBehaviour_V2::getGroupParameter(mvIndex groupIndex,\
       return MV_ITEM_NOT_FOUND_IN_LIST;
    }
 
-   return temp->getParameter(paramFlag, option);
+   return temp->getParametero(paramFlag, option);
 }
 
 mvErrorEnum mvGroupBehaviour_V2::getGroupParameterf(mvIndex groupIndex,\
@@ -438,7 +438,7 @@ mvErrorEnum mvGroupBehaviour_V2::setGroupParameteri(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::setGroupParameter(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour_V2::setGroupParametero(mvIndex groupIndex,\
    mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
@@ -512,7 +512,7 @@ mvErrorEnum mvGroupBehaviour_V2::getGroupParameteri_str(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::getGroupParameter_str(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour_V2::getGroupParametero_str(mvIndex groupIndex,\
    const char* param, const char** option) const
 
 {
@@ -531,7 +531,7 @@ mvErrorEnum mvGroupBehaviour_V2::getGroupParameter_str(mvIndex groupIndex,\
       return MV_INVALID_PARAM_ENUM_STRING;
    }
 
-   error = temp->getParameter(paramFlag, &optionFlag);
+   error = temp->getParametero(paramFlag, &optionFlag);
 
    if (error == MV_NO_ERROR)
    {
@@ -614,7 +614,7 @@ mvErrorEnum mvGroupBehaviour_V2::setGroupParameteri_str(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::setGroupParameter_str(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour_V2::setGroupParametero_str(mvIndex groupIndex,\
    const char* param, const char* option)
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
@@ -636,7 +636,7 @@ mvErrorEnum mvGroupBehaviour_V2::setGroupParameter_str(mvIndex groupIndex,\
       return MV_INVALID_OPTION_ENUM_STRING;
    }
 
-   return temp->setParameter(paramFlag, optionFlag);
+   return temp->setParametero(paramFlag, optionFlag);
 }
 
 /** @brief (one liner)

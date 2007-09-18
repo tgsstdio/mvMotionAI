@@ -31,7 +31,7 @@ mvOptionEnum mvBaseAction::getType() const
    return bType;
 }
 
-mvErrorEnum mvBaseAction::getParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvBaseAction::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    if (option == MV_NULL)
@@ -88,7 +88,7 @@ mvErrorEnum mvBaseAction::getParameterv(mvParamEnum paramFlag,\
    return MV_INVALID_BEHAVIOUR_PARAMETER;
 }
 
-mvErrorEnum mvBaseAction::setParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvBaseAction::setParametero(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
    return MV_INVALID_BEHAVIOUR_PARAMETER;

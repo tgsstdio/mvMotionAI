@@ -33,7 +33,7 @@ mvErrorEnum mvBEntryUtility::setParameterf(mvParamEnum paramFlag, mvFloat num)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvBEntryUtility::setParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvBEntryUtility::setParametero(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
    mvErrorEnum error;
@@ -63,7 +63,7 @@ mvErrorEnum mvBEntryUtility::setParameter(mvParamEnum paramFlag,\
          }
          return MV_NO_ERROR;
       default:
-         error = bTimer.setParameter(paramFlag, option);
+         error = bTimer.setParametero(paramFlag, option);
          if (error == MV_INVALID_TIMER_PARAMETER)
          {
             //  NOT_FOUND then not 'behaviour' parameter error
@@ -175,7 +175,7 @@ mvErrorEnum mvBEntryUtility::getParameterf(mvParamEnum paramFlag, mvFloat* num)\
   *
   * NOTE : also calls its timer's getParameter
   */
-mvErrorEnum mvBEntryUtility::getParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvBEntryUtility::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    mvErrorEnum error;
@@ -208,7 +208,7 @@ mvErrorEnum mvBEntryUtility::getParameter(mvParamEnum paramFlag,\
          }
          return MV_NO_ERROR;
       default:
-         error = bTimer.getParameter(paramFlag, option);
+         error = bTimer.getParametero(paramFlag, option);
          if (error == MV_INVALID_TIMER_PARAMETER)
          {
             //  NOT_FOUND then not 'behaviour' parameter error

@@ -63,20 +63,20 @@ class MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour_V2
       mvBaseActionPtr getDefaultActionPtr() const;
 
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
-      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option)\
+      mvErrorEnum getParametero(mvParamEnum paramFlag, mvOptionEnum* option)\
          const;
       mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num) const;
       mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
          mvCount* noOfParameters) const;
 
       mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
-      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setParametero(mvParamEnum paramFlag, mvOptionEnum option);
       mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
       mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
 
       mvErrorEnum getGroupParameteri(mvIndex groupIndex, mvParamEnum paramFlag,\
          mvIndex* index) const;
-      mvErrorEnum getGroupParameter(mvIndex groupIndex, mvParamEnum paramFlag,\
+      mvErrorEnum getGroupParametero(mvIndex groupIndex, mvParamEnum paramFlag,\
          mvOptionEnum* option) const;
       mvErrorEnum getGroupParameterf(mvIndex groupIndex, mvParamEnum paramFlag,\
          mvFloat* num) const;
@@ -85,7 +85,7 @@ class MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour_V2
 
       mvErrorEnum setGroupParameteri(mvIndex groupIndex, mvParamEnum paramFlag,\
          mvIndex index);
-      mvErrorEnum setGroupParameter(mvIndex groupIndex, mvParamEnum paramFlag,\
+      mvErrorEnum setGroupParametero(mvIndex groupIndex, mvParamEnum paramFlag,\
          mvOptionEnum option);
       mvErrorEnum setGroupParameterf(mvIndex groupIndex, mvParamEnum paramFlag,\
          mvFloat num);
@@ -94,7 +94,7 @@ class MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour_V2
 
       mvErrorEnum getGroupParameteri_str(mvIndex groupIndex, const char* param,\
          mvIndex* index) const;
-      mvErrorEnum getGroupParameter_str(mvIndex groupIndex, const char* param,\
+      mvErrorEnum getGroupParametero_str(mvIndex groupIndex, const char* param,\
          const char** option) const;
       mvErrorEnum getGroupParameterf_str(mvIndex groupIndex, const char* param,\
          mvFloat* num) const;
@@ -103,7 +103,7 @@ class MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour_V2
 
       mvErrorEnum setGroupParameteri_str(mvIndex groupIndex, const char* param,\
          mvIndex index);
-      mvErrorEnum setGroupParameter_str(mvIndex groupIndex, const char* param,\
+      mvErrorEnum setGroupParametero_str(mvIndex groupIndex, const char* param,\
          const char* option);
       mvErrorEnum setGroupParameterf_str(mvIndex groupIndex, const char* param,\
          mvFloat num);

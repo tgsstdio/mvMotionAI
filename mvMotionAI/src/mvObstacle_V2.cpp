@@ -129,7 +129,7 @@ mvErrorEnum mvObstacle_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    }
 }
 
-mvErrorEnum mvObstacle_V2::getParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvObstacle_V2::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    mvErrorEnum error;
@@ -141,7 +141,7 @@ mvErrorEnum mvObstacle_V2::getParameter(mvParamEnum paramFlag,\
          return MV_NO_ERROR;
       default:
          // pass onto shape
-         error = obShape.getParameter(paramFlag, option);
+         error = obShape.getParametero(paramFlag, option);
          if (error != MV_INVALID_SHAPE_PARAMETER)
          {
             return error;
@@ -235,7 +235,7 @@ mvErrorEnum mvObstacle_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
    }
 }
 
-mvErrorEnum mvObstacle_V2::setParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvObstacle_V2::setParametero(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
    mvErrorEnum error;
@@ -245,7 +245,7 @@ mvErrorEnum mvObstacle_V2::setParameter(mvParamEnum paramFlag,\
       case MV_TYPE:
          return setType(option);
       default:
-         error = obShape.setParameter(paramFlag, option);
+         error = obShape.setParametero(paramFlag, option);
 
          if (error != MV_INVALID_SHAPE_PARAMETER)
          {

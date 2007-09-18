@@ -95,7 +95,7 @@ mvErrorEnum mvGroupBNode_V2::getParameteri(mvParamEnum paramFlag,\
   *
   * Automatically calls group behaviour node's getParameter
   */
-mvErrorEnum mvGroupBNode_V2::getParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvGroupBNode_V2::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    if (option == MV_NULL)
@@ -118,7 +118,7 @@ mvErrorEnum mvGroupBNode_V2::getParameter(mvParamEnum paramFlag,\
       default:
          if (grpBehaviour  != MV_NULL)
          {
-            return grpBehaviour ->getParameter(paramFlag, option);
+            return grpBehaviour ->getParametero(paramFlag, option);
          }
          else
          {
@@ -185,7 +185,7 @@ mvErrorEnum mvGroupBNode_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
   *
   * Automatically calls group behaviour node's setParameter
   */
-mvErrorEnum mvGroupBNode_V2::setParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvGroupBNode_V2::setParametero(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
    switch(paramFlag)
@@ -203,7 +203,7 @@ mvErrorEnum mvGroupBNode_V2::setParameter(mvParamEnum paramFlag,\
       default:
          if (grpBehaviour  != MV_NULL)
          {
-            return grpBehaviour->setParameter(paramFlag, option);
+            return grpBehaviour->setParametero(paramFlag, option);
          }
          else
          {
@@ -253,12 +253,12 @@ mvGroupMemberNode::mvGroupMemberNode(mvIndex mbIndex,  mvBaseActionPtr mbAction)
    memberAction = mbAction;
  }
 
-mvErrorEnum mvGroupMemberNode::setParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvGroupMemberNode::setParametero(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
    if (memberAction != MV_NULL)
    {
-      return memberAction->setParameter(paramFlag, option);
+      return memberAction->setParametero(paramFlag, option);
    }
    else
    {
@@ -320,12 +320,12 @@ mvErrorEnum mvGroupMemberNode::setParameterv(mvParamEnum paramFlag,\
    }
 }
 
-mvErrorEnum mvGroupMemberNode::getParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvGroupMemberNode::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    if (memberAction != MV_NULL)
    {
-      return memberAction->getParameter(paramFlag, option);
+      return memberAction->getParametero(paramFlag, option);
    }
    else
    {
