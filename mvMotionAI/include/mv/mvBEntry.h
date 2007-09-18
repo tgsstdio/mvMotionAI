@@ -58,13 +58,13 @@ class MV_GLOBAL_FUNC_PREFIX mvBEntry
       void setGroup(mvIndex index);
 
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
-      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option) const;
+      mvErrorEnum getParametero(mvParamEnum paramFlag, mvOptionEnum* option) const;
       mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num) const;
       mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
          mvCount* noOfParameters) const;
 
       mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
-      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setParametero(mvParamEnum paramFlag, mvOptionEnum option);
       mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
       mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
       ~mvBEntry();

@@ -52,14 +52,14 @@ class MV_GLOBAL_FUNC_PREFIX mvPathwayNode
       ~mvPathwayNode();
       mvIndex getNodeIndex() const;
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
-      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option)\
+      mvErrorEnum getParametero(mvParamEnum paramFlag, mvOptionEnum* option)\
          const;
       mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num) const;
       mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
          mvCount* noOfParameters) const;
 
       mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
-      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setParametero(mvParamEnum paramFlag, mvOptionEnum option);
       mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
       mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
 
@@ -85,19 +85,19 @@ class MV_GLOBAL_FUNC_PREFIX mvPathway_V2
       mvIndex getCurrentNode() const;
 
       mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
-      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setParametero(mvParamEnum paramFlag, mvOptionEnum option);
       mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
       mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
 
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
-      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option) const;
+      mvErrorEnum getParametero(mvParamEnum paramFlag, mvOptionEnum* option) const;
       mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num) const;
       mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
          mvCount* noOfParameters) const;
 
       mvErrorEnum setNodeParameteri(mvIndex wpIndex, mvParamEnum paramFlag,\
          mvIndex index);
-      mvErrorEnum setNodeParameter(mvIndex wpIndex, mvParamEnum paramFlag,\
+      mvErrorEnum setNodeParametero(mvIndex wpIndex, mvParamEnum paramFlag,\
          mvOptionEnum option);
       mvErrorEnum setNodeParameterf(mvIndex wpIndex, mvParamEnum paramFlag,\
          mvFloat num);
@@ -106,7 +106,7 @@ class MV_GLOBAL_FUNC_PREFIX mvPathway_V2
 
       mvErrorEnum getNodeParameteri(mvIndex wpIndex, mvParamEnum paramFlag,\
          mvIndex* index) const;
-      mvErrorEnum getNodeParameter(mvIndex wpIndex, mvParamEnum paramFlag,\
+      mvErrorEnum getNodeParametero(mvIndex wpIndex, mvParamEnum paramFlag,\
          mvOptionEnum* option) const;
       mvErrorEnum getNodeParameterf(mvIndex wpIndex, mvParamEnum paramFlag,\
          mvFloat* num) const;
@@ -116,7 +116,7 @@ class MV_GLOBAL_FUNC_PREFIX mvPathway_V2
 
       mvErrorEnum getNodeParameteri_str(mvIndex nodeIndex, const char* param,\
          mvIndex* index) const;
-      mvErrorEnum getNodeParameter_str(mvIndex nodeIndex, const char* param,\
+      mvErrorEnum getNodeParametero_str(mvIndex nodeIndex, const char* param,\
          const char** option) const;
       mvErrorEnum getNodeParameterf_str(mvIndex nodeIndex, const char* param,\
          mvFloat* num) const;
@@ -125,7 +125,7 @@ class MV_GLOBAL_FUNC_PREFIX mvPathway_V2
 
       mvErrorEnum setNodeParameteri_str(mvIndex nodeIndex, const char* param,\
          mvIndex index);
-      mvErrorEnum setNodeParameter_str(mvIndex nodeIndex, const char* param,\
+      mvErrorEnum setNodeParametero_str(mvIndex nodeIndex, const char* param,\
          const char* option);
       mvErrorEnum setNodeParameterf_str(mvIndex nodeIndex, const char* param,\
          mvFloat num);

@@ -73,13 +73,13 @@ mvErrorEnum mvForceCapsule::getParameteri(mvParamEnum paramFlag,\
    return encappedForce->getParameteri(paramFlag, index);
 }
 
-mvErrorEnum mvForceCapsule::getParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvForceCapsule::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    if (encappedForce == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
-   return encappedForce->getParameter(paramFlag, option);
+   return encappedForce->getParametero(paramFlag, option);
 }
 
 mvErrorEnum mvForceCapsule::getParameterf(mvParamEnum paramFlag,\
@@ -108,13 +108,13 @@ mvErrorEnum mvForceCapsule::setParameteri(mvParamEnum paramFlag, mvIndex index)
 
    return encappedForce->setParameteri(paramFlag, index);
 }
-mvErrorEnum mvForceCapsule::setParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvForceCapsule::setParametero(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
    if (encappedForce == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
-   return encappedForce->setParameter(paramFlag,option);
+   return encappedForce->setParametero(paramFlag,option);
 }
 
 mvErrorEnum mvForceCapsule::setParameterf(mvParamEnum paramFlag, mvFloat num)

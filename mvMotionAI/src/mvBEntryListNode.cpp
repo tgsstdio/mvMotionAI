@@ -82,7 +82,7 @@ mvErrorEnum mvBEntryListNode::getParameteri(mvParamEnum paramFlag,\
    return behaviourEntry->getParameteri(paramFlag, index);
 }
 
-mvErrorEnum mvBEntryListNode::getParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvBEntryListNode::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    if (option == MV_NULL)
@@ -95,7 +95,7 @@ mvErrorEnum mvBEntryListNode::getParameter(mvParamEnum paramFlag,\
       return MV_INVALID_BEHAVIOUR_ENTRY_INITIALIZATION;
    }
 
-   mvErrorEnum error = entryFlags.getParameter(paramFlag, option);
+   mvErrorEnum error = entryFlags.getParametero(paramFlag, option);
 
    // utility then entry
    if (error != MV_INVALID_BEHAVIOUR_ENTRY_PARAMETER)
@@ -103,7 +103,7 @@ mvErrorEnum mvBEntryListNode::getParameter(mvParamEnum paramFlag,\
       return error;
    }
 
-   return behaviourEntry->getParameter(paramFlag, option);
+   return behaviourEntry->getParametero(paramFlag, option);
 }
 
 mvErrorEnum mvBEntryListNode::getParameterf(mvParamEnum paramFlag,\
@@ -185,7 +185,7 @@ mvErrorEnum mvBEntryListNode::setParameteri(mvParamEnum paramFlag,\
    return behaviourEntry->setParameteri(paramFlag, index);
 }
 
-mvErrorEnum mvBEntryListNode::setParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvBEntryListNode::setParametero(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
    if (behaviourEntry == MV_NULL)
@@ -193,7 +193,7 @@ mvErrorEnum mvBEntryListNode::setParameter(mvParamEnum paramFlag,\
       return MV_INVALID_BEHAVIOUR_ENTRY_INITIALIZATION;
    }
 
-   mvErrorEnum error = entryFlags.setParameter(paramFlag, option);
+   mvErrorEnum error = entryFlags.setParametero(paramFlag, option);
 
    // utility then entry
    if (error != MV_INVALID_BEHAVIOUR_ENTRY_PARAMETER)
@@ -201,7 +201,7 @@ mvErrorEnum mvBEntryListNode::setParameter(mvParamEnum paramFlag,\
       return error;
    }
 
-   return behaviourEntry->setParameter(paramFlag, option);
+   return behaviourEntry->setParametero(paramFlag, option);
 }
 
 mvErrorEnum mvBEntryListNode::setParameterf(mvParamEnum paramFlag,\

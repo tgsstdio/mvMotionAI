@@ -462,7 +462,7 @@ mvErrorEnum mvBody_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    }
 }
 
-mvErrorEnum mvBody_V2::getParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvBody_V2::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    mvErrorEnum error;
@@ -563,7 +563,7 @@ mvErrorEnum mvBody_V2::getParameter(mvParamEnum paramFlag,\
       default:
 
          // check shape then return error
-         error = bodyShape.getParameter(paramFlag,option);
+         error = bodyShape.getParametero(paramFlag,option);
 
          if (error == MV_INVALID_SHAPE_PARAMETER)
          {
@@ -853,7 +853,7 @@ mvErrorEnum mvBody_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
    }
 }
 
-mvErrorEnum mvBody_V2::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
+mvErrorEnum mvBody_V2::setParametero(mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvErrorEnum error;
 
@@ -862,7 +862,7 @@ mvErrorEnum mvBody_V2::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
       default:
 
          // shape
-         error = bodyShape.setParameter(paramFlag, option);
+         error = bodyShape.setParametero(paramFlag, option);
          if (error != MV_INVALID_SHAPE_PARAMETER)
          {
             return error;

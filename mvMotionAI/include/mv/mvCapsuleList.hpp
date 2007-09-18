@@ -221,10 +221,10 @@ void mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::applyT
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::setItemParameter(\
+mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::setItemParametero(\
    mvIndex itemIndex, mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return itemList.setItemParameter(itemIndex,paramFlag, option);
+   return itemList.setItemParametero(itemIndex,paramFlag, option);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
@@ -249,10 +249,10 @@ mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>:
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getItemParameter(\
+mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getItemParametero(\
    mvIndex itemIndex,mvParamEnum paramFlag, mvOptionEnum* option) const
 {
-   return itemList.getItemParameter(itemIndex, paramFlag, option);
+   return itemList.getItemParametero(itemIndex, paramFlag, option);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
@@ -279,10 +279,10 @@ mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>:
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::setItemParameter_str(\
+mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::setItemParametero_str(\
    mvIndex itemIndex, const char* param, const char* option)
 {
-   return itemList.setItemParameter_str(itemIndex, param, option);
+   return itemList.setItemParametero_str(itemIndex, param, option);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
@@ -307,10 +307,10 @@ mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>:
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
-mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getItemParameter_str(\
+mvErrorEnum mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getItemParametero_str(\
    mvIndex itemIndex, const char* param, const char** option) const
 {
-   return itemList.getItemParameter_str(itemIndex, param, option);
+   return itemList.getItemParametero_str(itemIndex, param, option);
 }
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>

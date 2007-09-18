@@ -54,12 +54,12 @@ class MV_GLOBAL_FUNC_PREFIX mvBehaviour_V2
       void setEnabled(bool value);
       mvBaseActionPtr getActionPtr() const;
 
-      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setParametero(mvParamEnum paramFlag, mvOptionEnum option);
       mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
       mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
       mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* array);
 
-      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option)\
+      mvErrorEnum getParametero(mvParamEnum paramFlag, mvOptionEnum* option)\
          const;
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
       mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num) const;

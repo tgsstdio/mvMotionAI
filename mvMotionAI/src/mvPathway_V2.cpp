@@ -39,7 +39,7 @@ mvErrorEnum mvPathwayNode::getParameteri(mvParamEnum paramFlag,\
    }
 }
 
-mvErrorEnum mvPathwayNode::getParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvPathwayNode::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    if (option == MV_NULL)
@@ -89,7 +89,7 @@ mvErrorEnum mvPathwayNode::setParameteri(mvParamEnum paramFlag, mvIndex index)
    }
 }
 
-mvErrorEnum mvPathwayNode::setParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvPathwayNode::setParametero(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
    return MV_INVALID_PATHWAY_NODE_PARAMETER;
@@ -200,7 +200,7 @@ mvErrorEnum mvPathway_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
    }
 }
 
-mvErrorEnum mvPathway_V2::setParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvPathway_V2::setParametero(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
 
@@ -258,7 +258,7 @@ mvErrorEnum mvPathway_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    }
 }
 
-mvErrorEnum mvPathway_V2::getParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvPathway_V2::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    if (option == MV_NULL)
@@ -317,10 +317,10 @@ mvErrorEnum mvPathway_V2::setNodeParameteri(mvIndex wpIndex,\
    return nodes.setItemParameteri(wpIndex, paramFlag, index);
 }
 
-mvErrorEnum mvPathway_V2::setNodeParameter(mvIndex wpIndex,\
+mvErrorEnum mvPathway_V2::setNodeParametero(mvIndex wpIndex,\
    mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return nodes.setItemParameter(wpIndex, paramFlag, option);
+   return nodes.setItemParametero(wpIndex, paramFlag, option);
 }
 
 mvErrorEnum mvPathway_V2::setNodeParameterf(mvIndex wpIndex,\
@@ -341,10 +341,10 @@ mvErrorEnum mvPathway_V2::getNodeParameteri(mvIndex wpIndex,\
    return nodes.getItemParameteri(wpIndex, paramFlag, index);
 }
 
-mvErrorEnum mvPathway_V2::getNodeParameter(mvIndex wpIndex,\
+mvErrorEnum mvPathway_V2::getNodeParametero(mvIndex wpIndex,\
    mvParamEnum paramFlag, mvOptionEnum* option) const
 {
-   return nodes.getItemParameter(wpIndex, paramFlag, option);
+   return nodes.getItemParametero(wpIndex, paramFlag, option);
 }
 
 mvErrorEnum mvPathway_V2::getNodeParameterf(mvIndex wpIndex,\
@@ -375,10 +375,10 @@ mvErrorEnum mvPathway_V2::getNodeParameteri_str(mvIndex nodeIndex,\
    return nodes.getItemParameteri_str(nodeIndex, param,index);
 }
 
-mvErrorEnum mvPathway_V2::getNodeParameter_str(mvIndex nodeIndex,\
+mvErrorEnum mvPathway_V2::getNodeParametero_str(mvIndex nodeIndex,\
    const char* param, const char** option) const
 {
-   return nodes.getItemParameter_str(nodeIndex, param,option);
+   return nodes.getItemParametero_str(nodeIndex, param,option);
 }
 
 mvErrorEnum mvPathway_V2::getNodeParameterf_str(mvIndex nodeIndex,\
@@ -398,10 +398,10 @@ mvErrorEnum mvPathway_V2::setNodeParameteri_str(mvIndex nodeIndex,\
    return nodes.setItemParameteri_str(nodeIndex, param, index);
 }
 
-mvErrorEnum mvPathway_V2::setNodeParameter_str(mvIndex nodeIndex,\
+mvErrorEnum mvPathway_V2::setNodeParametero_str(mvIndex nodeIndex,\
    const char* param, const char* option)
 {
-   return nodes.setItemParameter_str(nodeIndex, param, option);
+   return nodes.setItemParametero_str(nodeIndex, param, option);
 }
 
 mvErrorEnum mvPathway_V2::setNodeParameterf_str(mvIndex nodeIndex,\

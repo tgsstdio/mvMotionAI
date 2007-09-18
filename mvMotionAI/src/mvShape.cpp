@@ -167,7 +167,7 @@ mvErrorEnum mvShape::setParameterf(mvParamEnum paramFlag, mvFloat num)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvShape::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
+mvErrorEnum mvShape::setParametero(mvParamEnum paramFlag, mvOptionEnum option)
 {
    switch(paramFlag)
    {
@@ -345,7 +345,7 @@ mvErrorEnum mvShape::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
   *
   * (documentation goes here)
   */
-mvErrorEnum mvShape::getParameter(mvParamEnum paramFlag, mvOptionEnum* option)
+mvErrorEnum mvShape::getParametero(mvParamEnum paramFlag, mvOptionEnum* option)
    const
 {
    if (option == MV_NULL)

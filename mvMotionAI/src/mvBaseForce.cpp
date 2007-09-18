@@ -38,7 +38,7 @@ mvErrorEnum mvBaseForce::getParameteri(mvParamEnum paramFlag,\
    return MV_INVALID_FORCE_PARAMETER;
 }
 
-mvErrorEnum mvBaseForce::getParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvBaseForce::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* dest) const
 {
    if (dest == NULL)
@@ -91,7 +91,7 @@ mvErrorEnum mvBaseForce::getParameterv(mvParamEnum paramFlag, mvFloat* dest,\
    return MV_INVALID_FORCE_PARAMETER;
 }
 
-mvErrorEnum mvBaseForce::setParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvBaseForce::setParametero(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
    switch(paramFlag)

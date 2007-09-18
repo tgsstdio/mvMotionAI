@@ -94,14 +94,14 @@ class MV_GLOBAL_FUNC_PREFIX mvBaseForce
       virtual bool calcFullForces(mvForceResultPtr fResult) = 0;
       virtual mvErrorEnum getParameteri(mvParamEnum paramFlag,\
          mvIndex* index) const;
-      virtual mvErrorEnum getParameter(mvParamEnum paramFlag,\
+      virtual mvErrorEnum getParametero(mvParamEnum paramFlag,\
          mvOptionEnum* dest) const;
       virtual mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* dest)\
          const;
       virtual mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* dest,\
          mvCount* size) const;
 
-      virtual mvErrorEnum setParameter(mvParamEnum paramFlag,\
+      virtual mvErrorEnum setParametero(mvParamEnum paramFlag,\
          mvOptionEnum option);
       virtual mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
       virtual mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);

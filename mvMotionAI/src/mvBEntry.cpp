@@ -71,7 +71,7 @@ mvErrorEnum mvBEntry::getParameteri(mvParamEnum paramFlag, mvIndex* index) const
    }
 }
 
-mvErrorEnum mvBEntry::getParameter(mvParamEnum paramFlag, mvOptionEnum* option) const
+mvErrorEnum mvBEntry::getParametero(mvParamEnum paramFlag, mvOptionEnum* option) const
 {
    if (option == MV_NULL)
    {
@@ -86,7 +86,7 @@ mvErrorEnum mvBEntry::getParameter(mvParamEnum paramFlag, mvOptionEnum* option) 
       default:
          if (actionDataPtr != MV_NULL)
          {
-            return actionDataPtr->getParameter(paramFlag, option);
+            return actionDataPtr->getParametero(paramFlag, option);
          }
          else
          {
@@ -158,11 +158,11 @@ mvErrorEnum mvBEntry::setParameteri(mvParamEnum paramFlag, mvIndex index)
    }
 }
 
-mvErrorEnum mvBEntry::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
+mvErrorEnum mvBEntry::setParametero(mvParamEnum paramFlag, mvOptionEnum option)
 {
    if (actionDataPtr != MV_NULL)
    {
-      return actionDataPtr->setParameter(paramFlag, option);
+      return actionDataPtr->setParametero(paramFlag, option);
    }
    else
    {

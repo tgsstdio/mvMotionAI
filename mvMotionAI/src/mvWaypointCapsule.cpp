@@ -50,13 +50,13 @@ mvErrorEnum mvWaypointCapsule::getParameteri(mvParamEnum paramFlag,\
    return encappedWaypoint->getParameteri(paramFlag, index);
 }
 
-mvErrorEnum mvWaypointCapsule::getParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvWaypointCapsule::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    if (encappedWaypoint == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
-   return encappedWaypoint->getParameter(paramFlag, option);
+   return encappedWaypoint->getParametero(paramFlag, option);
 }
 
 mvErrorEnum mvWaypointCapsule::getParameterf(mvParamEnum paramFlag,\
@@ -86,13 +86,13 @@ mvErrorEnum mvWaypointCapsule::setParameteri(mvParamEnum paramFlag,\
 
    return encappedWaypoint->setParameteri(paramFlag, index);
 }
-mvErrorEnum mvWaypointCapsule::setParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvWaypointCapsule::setParametero(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
    if (encappedWaypoint == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
-   return encappedWaypoint->setParameter(paramFlag,option);
+   return encappedWaypoint->setParametero(paramFlag,option);
 }
 
 mvErrorEnum mvWaypointCapsule::setParameterf(mvParamEnum paramFlag, mvFloat num)

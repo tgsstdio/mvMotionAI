@@ -52,7 +52,7 @@ class MV_GLOBAL_FUNC_PREFIX mvGroupMemberNode
       mvGroupMemberNode(mvIndex mbIndex,  mvBaseActionPtr mbAction);
       bool operator<(const mvGroupMemberNode& rhs) const;
       bool operator== (const mvGroupMemberNode& rhs) const;
-      mvErrorEnum setParameter(mvParamEnum paramFlag,\
+      mvErrorEnum setParametero(mvParamEnum paramFlag,\
          mvOptionEnum option);
       mvErrorEnum setParameteri(mvParamEnum paramFlag,\
          mvIndex paramIndex);
@@ -61,7 +61,7 @@ class MV_GLOBAL_FUNC_PREFIX mvGroupMemberNode
       mvErrorEnum setParameterv(mvParamEnum paramFlag,\
          mvFloat* array);
 
-      mvErrorEnum getParameter(mvParamEnum paramFlag,\
+      mvErrorEnum getParametero(mvParamEnum paramFlag,\
          mvOptionEnum* option) const;
       mvErrorEnum getParameteri(mvParamEnum paramFlag,\
          mvIndex* outIndex) const;
@@ -106,7 +106,7 @@ class MV_GLOBAL_FUNC_PREFIX mvGroupBNode_V2
          mvIndex grpIndex);
       mvBaseActionPtr getActionPtr();
       mvIndex getGroup();
-      mvErrorEnum setParameter(mvParamEnum paramFlag,\
+      mvErrorEnum setParametero(mvParamEnum paramFlag,\
          mvOptionEnum option);
       mvErrorEnum setParameteri(mvParamEnum paramFlag,\
          mvIndex paramIndex);
@@ -115,7 +115,7 @@ class MV_GLOBAL_FUNC_PREFIX mvGroupBNode_V2
       mvErrorEnum setParameterv(mvParamEnum paramFlag,\
          mvFloat* array);
 
-      mvErrorEnum getParameter(mvParamEnum paramFlag,\
+      mvErrorEnum getParametero(mvParamEnum paramFlag,\
          mvOptionEnum* option) const;
       mvErrorEnum getParameteri(mvParamEnum paramFlag,\
          mvIndex* outIndex) const;

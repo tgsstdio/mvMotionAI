@@ -54,10 +54,10 @@ mvErrorEnum mvWorld_V2::getForceParameterf_str(mvIndex index, const char* param,
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getForceParameter_str(mvIndex index, const char* param,\
+mvErrorEnum mvWorld_V2::getForceParametero_str(mvIndex index, const char* param,\
    const char** option) const
 {
-   return forces.getItemParameter_str(index, param, option);
+   return forces.getItemParametero_str(index, param, option);
 }
 
 /** @brief (one liner)
@@ -84,10 +84,10 @@ mvErrorEnum mvWorld_V2::getForceParameterf(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getForceParameter(mvIndex index, mvParamEnum paramFlag,\
+mvErrorEnum mvWorld_V2::getForceParametero(mvIndex index, mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
-   return forces.getItemParameter(index,paramFlag,option);
+   return forces.getItemParametero(index,paramFlag,option);
 }
 
 /** @brief (one liner)
@@ -114,10 +114,10 @@ mvErrorEnum mvWorld_V2::setForceParameterf_str(mvIndex index, const char* param,
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::setForceParameter_str(mvIndex index, const char* param,\
+mvErrorEnum mvWorld_V2::setForceParametero_str(mvIndex index, const char* param,\
    const char* option)
 {
-   return forces.setItemParameter_str(index,param,option);
+   return forces.setItemParametero_str(index,param,option);
 }
 
 /** @brief (one liner)
@@ -144,10 +144,10 @@ mvErrorEnum mvWorld_V2::setForceParameterf(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::setForceParameter(mvIndex index, mvParamEnum paramFlag,\
+mvErrorEnum mvWorld_V2::setForceParametero(mvIndex index, mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
-   return forces.setItemParameter(index, paramFlag, option);
+   return forces.setItemParametero(index, paramFlag, option);
 }
 
 /** @brief (one liner)
@@ -293,7 +293,7 @@ mvErrorEnum mvWorld_V2::getGroupBehaviourParameterf_str(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getGroupBehaviourParameter_str(mvIndex index,\
+mvErrorEnum mvWorld_V2::getGroupBehaviourParametero_str(mvIndex index,\
    mvIndex groupIndex, const char* param, const char** option) const
 {
    mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
@@ -301,7 +301,7 @@ mvErrorEnum mvWorld_V2::getGroupBehaviourParameter_str(mvIndex index,\
    if (temp == MV_NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
 
-   return temp->getGroupParameter_str(groupIndex, param, option);
+   return temp->getGroupParametero_str(groupIndex, param, option);
 }
 
 /** @brief (one liner)
@@ -340,7 +340,7 @@ mvErrorEnum mvWorld_V2::getGroupBehaviourParameterf(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getGroupBehaviourParameter(mvIndex index,\
+mvErrorEnum mvWorld_V2::getGroupBehaviourParametero(mvIndex index,\
    mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum* option) const
 {
    mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
@@ -348,7 +348,7 @@ mvErrorEnum mvWorld_V2::getGroupBehaviourParameter(mvIndex index,\
    if (temp == MV_NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
 
-   return temp->getGroupParameter(groupIndex, paramFlag, option);
+   return temp->getGroupParametero(groupIndex, paramFlag, option);
 }
 
 /** @brief (one liner)
@@ -385,7 +385,7 @@ mvErrorEnum mvWorld_V2::setGroupBehaviourParameterf_str(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::setGroupBehaviourParameter_str(mvIndex index,\
+mvErrorEnum mvWorld_V2::setGroupBehaviourParametero_str(mvIndex index,\
    mvIndex groupIndex, const char* param, const char* option)
 {
    mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
@@ -393,7 +393,7 @@ mvErrorEnum mvWorld_V2::setGroupBehaviourParameter_str(mvIndex index,\
    if (temp == MV_NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
 
-   return temp->setGroupParameter_str(groupIndex, param, option);
+   return temp->setGroupParametero_str(groupIndex, param, option);
 }
 
 /** @brief (one liner)
@@ -430,7 +430,7 @@ mvErrorEnum mvWorld_V2::setGroupBehaviourParameterf(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::setGroupBehaviourParameter(mvIndex index,\
+mvErrorEnum mvWorld_V2::setGroupBehaviourParametero(mvIndex index,\
    mvIndex groupIndex, mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvGroupBehaviourPtr temp = groupBehaviours.getClassPtr(index);
@@ -438,7 +438,7 @@ mvErrorEnum mvWorld_V2::setGroupBehaviourParameter(mvIndex index,\
    if (temp == MV_NULL)
       return MV_ITEM_NOT_FOUND_IN_LIST;
 
-   return temp->setGroupParameter(groupIndex, paramFlag, option);
+   return temp->setGroupParametero(groupIndex, paramFlag, option);
 }
 
 /** @brief (one liner)
@@ -566,10 +566,10 @@ mvErrorEnum mvWorld_V2::getGroupParameterf_str(mvIndex index, const char* param,
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getGroupParameter_str(mvIndex index, const char* param,\
+mvErrorEnum mvWorld_V2::getGroupParametero_str(mvIndex index, const char* param,\
    const char** option) const
 {
-   return groups.getItemParameter_str(index, param, option);
+   return groups.getItemParametero_str(index, param, option);
 }
 
 /** @brief (one liner)
@@ -596,10 +596,10 @@ mvErrorEnum mvWorld_V2::getGroupParameterf(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getGroupParameter(mvIndex index, mvParamEnum paramFlag,\
+mvErrorEnum mvWorld_V2::getGroupParametero(mvIndex index, mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
-   return groups.getItemParameter(index, paramFlag, option);
+   return groups.getItemParametero(index, paramFlag, option);
 }
 
 /** @brief (one liner)
@@ -626,10 +626,10 @@ mvErrorEnum mvWorld_V2::setGroupParameterf_str(mvIndex index, const char* param,
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::setGroupParameter_str(mvIndex index, const char* param,\
+mvErrorEnum mvWorld_V2::setGroupParametero_str(mvIndex index, const char* param,\
    const char* option)
 {
-   return groups.setItemParameter_str(index, param, option);
+   return groups.setItemParametero_str(index, param, option);
 }
 
 /** @brief (one liner)
@@ -656,10 +656,10 @@ mvErrorEnum mvWorld_V2::setGroupParameterf(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::setGroupParameter(mvIndex index,\
+mvErrorEnum mvWorld_V2::setGroupParametero(mvIndex index,\
    mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return groups.setItemParameter(index, paramFlag, option);
+   return groups.setItemParametero(index, paramFlag, option);
 }
 
 /** @brief (one liner)
@@ -775,10 +775,10 @@ mvErrorEnum mvWorld_V2::getBehaviourParameterf_str(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getBehaviourParameter_str(mvIndex index,\
+mvErrorEnum mvWorld_V2::getBehaviourParametero_str(mvIndex index,\
    const char* param, const char** option) const
 {
-   return behaviours.getItemParameter_str(index, param, option);
+   return behaviours.getItemParametero_str(index, param, option);
 }
 
 /** @brief (one liner)
@@ -795,10 +795,10 @@ mvErrorEnum mvWorld_V2::getBehaviourParameterf(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getBehaviourParameter(mvIndex index,\
+mvErrorEnum mvWorld_V2::getBehaviourParametero(mvIndex index,\
    mvParamEnum paramFlag, mvOptionEnum* option) const
 {
-   return behaviours.getItemParameter(index, paramFlag, option);
+   return behaviours.getItemParametero(index, paramFlag, option);
 }
 
 /** @brief (one liner)
@@ -825,10 +825,10 @@ mvErrorEnum mvWorld_V2::setBehaviourParameterf_str(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::setBehaviourParameter_str(mvIndex index,\
+mvErrorEnum mvWorld_V2::setBehaviourParametero_str(mvIndex index,\
    const char* param, const char* option)
 {
-   return behaviours.setItemParameter_str(index, param, option);
+   return behaviours.setItemParametero_str(index, param, option);
 }
 
 /** @brief (one liner)
@@ -855,10 +855,10 @@ mvErrorEnum mvWorld_V2::setBehaviourParameterf(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::setBehaviourParameter(mvIndex index,\
+mvErrorEnum mvWorld_V2::setBehaviourParametero(mvIndex index,\
    mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return behaviours.setItemParameter(index, paramFlag, option);
+   return behaviours.setItemParametero(index, paramFlag, option);
 }
 
 /** @brief (one liner)
@@ -995,10 +995,10 @@ mvErrorEnum mvWorld_V2::getPathwayParameterf_str(mvIndex index, const char* para
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getPathwayParameter_str(mvIndex index, const char* param,\
+mvErrorEnum mvWorld_V2::getPathwayParametero_str(mvIndex index, const char* param,\
    const char** option) const
 {
-   return pathways.getItemParameter_str(index, param, option);
+   return pathways.getItemParametero_str(index, param, option);
 }
 
 /** @brief (one liner)
@@ -1026,10 +1026,10 @@ mvErrorEnum mvWorld_V2::getPathwayParameterf(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getPathwayParameter(mvIndex index,\
+mvErrorEnum mvWorld_V2::getPathwayParametero(mvIndex index,\
    mvParamEnum paramFlag, mvOptionEnum* option) const
 {
-   return pathways.getItemParameter(index, paramFlag, option);
+   return pathways.getItemParametero(index, paramFlag, option);
 }
 
 /** @brief (one liner)
@@ -1056,10 +1056,10 @@ mvErrorEnum mvWorld_V2::setPathwayParameterf_str(mvIndex index, const char* para
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::setPathwayParameter_str(mvIndex index, const char* param,\
+mvErrorEnum mvWorld_V2::setPathwayParametero_str(mvIndex index, const char* param,\
    const char* option)
 {
-   return pathways.setItemParameter_str(index, param, option);
+   return pathways.setItemParametero_str(index, param, option);
 }
 
 /** @brief (one liner)
@@ -1086,10 +1086,10 @@ mvErrorEnum mvWorld_V2::setPathwayParameterf(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::setPathwayParameter(mvIndex index,\
+mvErrorEnum mvWorld_V2::setPathwayParametero(mvIndex index,\
    mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return pathways.setItemParameter(index, paramFlag, option);
+   return pathways.setItemParametero(index, paramFlag, option);
 }
 
 /** @brief (one liner)
@@ -1192,10 +1192,10 @@ mvErrorEnum mvWorld_V2::getWaypointParameterf_str(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getWaypointParameter_str(mvIndex index,\
+mvErrorEnum mvWorld_V2::getWaypointParametero_str(mvIndex index,\
    const char* param, const char** option) const
 {
-   return waypoints.getItemParameter_str(index, param, option);
+   return waypoints.getItemParametero_str(index, param, option);
 }
 
 /** @brief (one liner)
@@ -1222,10 +1222,10 @@ mvErrorEnum mvWorld_V2::getWaypointParameterf(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getWaypointParameter(mvIndex index,\
+mvErrorEnum mvWorld_V2::getWaypointParametero(mvIndex index,\
    mvParamEnum paramFlag, mvOptionEnum* option) const
 {
-   return waypoints.getItemParameter(index, paramFlag, option);
+   return waypoints.getItemParametero(index, paramFlag, option);
 }
 
 /** @brief (one liner)
@@ -1252,10 +1252,10 @@ mvErrorEnum mvWorld_V2::setWaypointParameterf_str(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::setWaypointParameter_str(mvIndex index,\
+mvErrorEnum mvWorld_V2::setWaypointParametero_str(mvIndex index,\
    const char* param, const char* option)
 {
-   return waypoints.setItemParameter_str(index, param, option);
+   return waypoints.setItemParametero_str(index, param, option);
 }
 
 /** @brief (one liner)
@@ -1282,10 +1282,10 @@ mvErrorEnum mvWorld_V2::setWaypointParameterf(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::setWaypointParameter(mvIndex index,\
+mvErrorEnum mvWorld_V2::setWaypointParametero(mvIndex index,\
    mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return waypoints.setItemParameter(index, paramFlag, option);
+   return waypoints.setItemParametero(index, paramFlag, option);
 }
 
 /** @brief (one liner)
@@ -1416,10 +1416,10 @@ mvErrorEnum mvWorld_V2::getObstacleParameterf_str(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getObstacleParameter_str(mvIndex index,\
+mvErrorEnum mvWorld_V2::getObstacleParametero_str(mvIndex index,\
    const char* param, const char** option) const
 {
-   return obstacles.getItemParameter_str(index, param, option);
+   return obstacles.getItemParametero_str(index, param, option);
 }
 
 /** @brief (one liner)
@@ -1436,10 +1436,10 @@ mvErrorEnum mvWorld_V2::getObstacleParameterf(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getObstacleParameter(mvIndex index,\
+mvErrorEnum mvWorld_V2::getObstacleParametero(mvIndex index,\
    mvParamEnum paramFlag, mvOptionEnum* option) const
 {
-   return obstacles.getItemParameter(index, paramFlag, option);
+   return obstacles.getItemParametero(index, paramFlag, option);
 }
 
 /** @brief (one liner)
@@ -1476,10 +1476,10 @@ mvErrorEnum mvWorld_V2::setObstacleParameteri_str(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::setObstacleParameter_str(mvIndex index, const char* param,\
+mvErrorEnum mvWorld_V2::setObstacleParametero_str(mvIndex index, const char* param,\
    const char* option)
 {
-   return obstacles.setItemParameter_str(index, param, option);
+   return obstacles.setItemParametero_str(index, param, option);
 }
 
 /** @brief (one liner)
@@ -1506,10 +1506,10 @@ mvErrorEnum mvWorld_V2::setObstacleParameterf(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::setObstacleParameter(mvIndex index,\
+mvErrorEnum mvWorld_V2::setObstacleParametero(mvIndex index,\
    mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return obstacles.setItemParameter(index, paramFlag, option);
+   return obstacles.setItemParametero(index, paramFlag, option);
 }
 
 /** @brief (one liner)
@@ -1636,10 +1636,10 @@ mvErrorEnum mvWorld_V2::getBodyParameterf_str(mvIndex index, const char* param,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getBodyParameter_str(mvIndex index, const char* param,\
+mvErrorEnum mvWorld_V2::getBodyParametero_str(mvIndex index, const char* param,\
    const char** option) const
 {
-   return bodies.getItemParameter_str(index, param, option);
+   return bodies.getItemParametero_str(index, param, option);
 }
 
 /** @brief (one liner)
@@ -1666,10 +1666,10 @@ mvErrorEnum mvWorld_V2::getBodyParameterf(mvIndex index, mvParamEnum paramFlag,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getBodyParameter(mvIndex index, mvParamEnum paramFlag,\
+mvErrorEnum mvWorld_V2::getBodyParametero(mvIndex index, mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
-   return bodies.getItemParameter(index, paramFlag, option);
+   return bodies.getItemParametero(index, paramFlag, option);
 }
 
 /** @brief (one liner)
@@ -1696,10 +1696,10 @@ mvErrorEnum mvWorld_V2::setBodyParameterf_str(mvIndex index, const char* param,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::setBodyParameter_str(mvIndex index, const char* param,\
+mvErrorEnum mvWorld_V2::setBodyParametero_str(mvIndex index, const char* param,\
    const char* option)
 {
-   return bodies.setItemParameter_str(index, param, option);
+   return bodies.setItemParametero_str(index, param, option);
 }
 
 /** @brief (one liner)
@@ -1726,10 +1726,10 @@ mvErrorEnum mvWorld_V2::setBodyParameterf(mvIndex index, mvParamEnum paramFlag,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::setBodyParameter(mvIndex index, mvParamEnum paramFlag,\
+mvErrorEnum mvWorld_V2::setBodyParametero(mvIndex index, mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
-   return bodies.setItemParameter(index, paramFlag, option);
+   return bodies.setItemParametero(index, paramFlag, option);
 }
 
 /** @brief (one liner)
@@ -2533,10 +2533,10 @@ mvErrorEnum mvWorld_V2::findMemberFromGroup(mvIndex memberIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::setMainGroupBehaviourParameter(mvIndex index,\
+mvErrorEnum mvWorld_V2::setMainGroupBehaviourParametero(mvIndex index,\
    mvParamEnum param, mvOptionEnum option)
 {
-   return groupBehaviours.setItemParameter(index, param, option);
+   return groupBehaviours.setItemParametero(index, param, option);
 }
 
 /** @brief (one liner)
@@ -2583,10 +2583,10 @@ mvErrorEnum mvWorld_V2::setMainGroupBehaviourParameteri_str(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::setMainGroupBehaviourParameter_str(mvIndex index,\
+mvErrorEnum mvWorld_V2::setMainGroupBehaviourParametero_str(mvIndex index,\
    const char* param, const char* option)
 {
-   return groupBehaviours.setItemParameter_str(index, param, option);
+   return groupBehaviours.setItemParametero_str(index, param, option);
 }
 
 /** @brief (one liner)
@@ -2613,10 +2613,10 @@ mvErrorEnum mvWorld_V2::setMainGroupBehaviourParameterv_str(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getMainGroupBehaviourParameter_str(mvIndex index,\
+mvErrorEnum mvWorld_V2::getMainGroupBehaviourParametero_str(mvIndex index,\
    const char* param, const char** option) const
 {
-   return groupBehaviours.getItemParameter_str(index,param, option);
+   return groupBehaviours.getItemParametero_str(index,param, option);
 }
 
 /** @brief (one liner)
@@ -2654,10 +2654,10 @@ mvErrorEnum mvWorld_V2::getMainGroupBehaviourParameterv_str(mvIndex index,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getMainGroupBehaviourParameter(mvIndex index,\
+mvErrorEnum mvWorld_V2::getMainGroupBehaviourParametero(mvIndex index,\
    mvParamEnum param, mvOptionEnum* option) const
 {
-   return groupBehaviours.getItemParameter(index, param, option);
+   return groupBehaviours.getItemParametero(index, param, option);
 }
 
 /** @brief (one liner)
@@ -3026,7 +3026,7 @@ mvErrorEnum mvWorld_V2::setBodyParameteri(mvIndex index, mvParamEnum paramFlag,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::getParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvWorld_V2::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    if (option == MV_NULL)
@@ -3250,7 +3250,7 @@ mvErrorEnum mvWorld_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::setParameter(mvParamEnum paramFlag, mvOptionEnum option)
+mvErrorEnum mvWorld_V2::setParametero(mvParamEnum paramFlag, mvOptionEnum option)
 {
    switch (paramFlag)
    {
@@ -3562,7 +3562,7 @@ mvErrorEnum mvWorld_V2::setPathwayNodeParameteri(mvIndex pathwayIndex,\
    return tempPathway->setNodeParameteri(nodeIndex, paramFlag, index);
 }
 
-mvErrorEnum mvWorld_V2::setPathwayNodeParameter(mvIndex pathwayIndex,\
+mvErrorEnum mvWorld_V2::setPathwayNodeParametero(mvIndex pathwayIndex,\
    mvIndex nodeIndex, mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvPathwayPtr tempPathway = getPathwayPtr(pathwayIndex);
@@ -3572,7 +3572,7 @@ mvErrorEnum mvWorld_V2::setPathwayNodeParameter(mvIndex pathwayIndex,\
       return MV_PATHWAY_INDEX_IS_INVALID;
    }
 
-   return tempPathway->setNodeParameter(nodeIndex, paramFlag, option);
+   return tempPathway->setNodeParametero(nodeIndex, paramFlag, option);
 }
 
 mvErrorEnum mvWorld_V2::setPathwayNodeParameterf(mvIndex pathwayIndex,\
@@ -3615,7 +3615,7 @@ mvErrorEnum mvWorld_V2::setPathwayNodeParameteri_str(mvIndex pathwayIndex,\
    return tempPathway->setNodeParameteri_str(nodeIndex, param, index);
 }
 
-mvErrorEnum mvWorld_V2::setPathwayNodeParameter_str(mvIndex pathwayIndex,\
+mvErrorEnum mvWorld_V2::setPathwayNodeParametero_str(mvIndex pathwayIndex,\
    mvIndex nodeIndex, const char* param, const char* option)
 {
    mvPathwayPtr tempPathway = getPathwayPtr(pathwayIndex);
@@ -3625,7 +3625,7 @@ mvErrorEnum mvWorld_V2::setPathwayNodeParameter_str(mvIndex pathwayIndex,\
       return MV_PATHWAY_INDEX_IS_INVALID;
    }
 
-   return tempPathway->setNodeParameter_str(nodeIndex, param, option);
+   return tempPathway->setNodeParametero_str(nodeIndex, param, option);
 }
 
 mvErrorEnum mvWorld_V2::setPathwayNodeParameterf_str(mvIndex pathwayIndex,\
@@ -3667,7 +3667,7 @@ mvErrorEnum mvWorld_V2::getPathwayNodeParameteri(mvIndex pathwayIndex,\
    return tempPathway->getNodeParameteri(nodeIndex, paramFlag,  outIndex);
 }
 
-mvErrorEnum mvWorld_V2::getPathwayNodeParameter(mvIndex pathwayIndex,\
+mvErrorEnum mvWorld_V2::getPathwayNodeParametero(mvIndex pathwayIndex,\
    mvIndex nodeIndex, mvParamEnum paramFlag, mvOptionEnum* option) const
 {
    mvConstPathwayPtr tempPathway = getConstPathwayPtr(pathwayIndex);
@@ -3677,7 +3677,7 @@ mvErrorEnum mvWorld_V2::getPathwayNodeParameter(mvIndex pathwayIndex,\
       return MV_PATHWAY_INDEX_IS_INVALID;
    }
 
-   return tempPathway->getNodeParameter(nodeIndex, paramFlag, option);
+   return tempPathway->getNodeParametero(nodeIndex, paramFlag, option);
 }
 
 mvErrorEnum mvWorld_V2::getPathwayNodeParameterf(mvIndex pathwayIndex,\
@@ -3721,7 +3721,7 @@ mvErrorEnum mvWorld_V2::getPathwayNodeParameteri_str(mvIndex pathwayIndex,\
    return tempPathway->getNodeParameteri_str(nodeIndex, param, outIndex);
 }
 
-mvErrorEnum mvWorld_V2::getPathwayNodeParameter_str(mvIndex pathwayIndex,\
+mvErrorEnum mvWorld_V2::getPathwayNodeParametero_str(mvIndex pathwayIndex,\
    mvIndex nodeIndex, const char* param, const char** option) const
 {
    mvConstPathwayPtr tempPathway = getConstPathwayPtr(pathwayIndex);
@@ -3731,7 +3731,7 @@ mvErrorEnum mvWorld_V2::getPathwayNodeParameter_str(mvIndex pathwayIndex,\
       return MV_PATHWAY_INDEX_IS_INVALID;
    }
 
-   return tempPathway->getNodeParameter_str(nodeIndex, param, option);
+   return tempPathway->getNodeParametero_str(nodeIndex, param, option);
 }
 
 mvErrorEnum mvWorld_V2::getPathwayNodeParameterf_str(mvIndex pathwayIndex,\
@@ -3780,10 +3780,10 @@ mvErrorEnum mvWorld_V2::setEntryListParameteri(mvIndex listIndex,\
    return entryLists.setItemParameteri(listIndex, paramFlag, index);
 }
 
-mvErrorEnum mvWorld_V2::setEntryListParameter(mvIndex listIndex,\
+mvErrorEnum mvWorld_V2::setEntryListParametero(mvIndex listIndex,\
    mvParamEnum paramFlag, mvOptionEnum option)
 {
-   return entryLists.setItemParameter(listIndex, paramFlag, option);
+   return entryLists.setItemParametero(listIndex, paramFlag, option);
 }
 
 mvErrorEnum mvWorld_V2::setEntryListParameterf(mvIndex listIndex,\
@@ -3804,10 +3804,10 @@ mvErrorEnum mvWorld_V2::setEntryListParameteri_str(mvIndex listIndex,\
    return entryLists.setItemParameteri_str(listIndex, param, index);
 }
 
-mvErrorEnum mvWorld_V2::setEntryListParameter_str(mvIndex listIndex,\
+mvErrorEnum mvWorld_V2::setEntryListParametero_str(mvIndex listIndex,\
    const char* param, const char* option)
 {
-   return entryLists.setItemParameter_str(listIndex, param, option);
+   return entryLists.setItemParametero_str(listIndex, param, option);
 }
 
 mvErrorEnum mvWorld_V2::setEntryListParameterf_str(mvIndex listIndex,\
@@ -3828,10 +3828,10 @@ mvErrorEnum mvWorld_V2::getEntryListParameteri(mvIndex listIndex,\
    return entryLists.getItemParameteri(listIndex, paramFlag, outIndex);
 }
 
-mvErrorEnum mvWorld_V2::getEntryListParameter(mvIndex listIndex,\
+mvErrorEnum mvWorld_V2::getEntryListParametero(mvIndex listIndex,\
    mvParamEnum paramFlag, mvOptionEnum* option) const
 {
-   return entryLists.getItemParameter(listIndex, paramFlag, option);
+   return entryLists.getItemParametero(listIndex, paramFlag, option);
 }
 
 mvErrorEnum mvWorld_V2::getEntryListParameterf(mvIndex listIndex,\
@@ -3854,10 +3854,10 @@ mvErrorEnum mvWorld_V2::getEntryListParameteri_str(mvIndex listIndex,\
    return entryLists.getItemParameteri_str(listIndex, param, outIndex);
 }
 
-mvErrorEnum mvWorld_V2::getEntryListParameter_str(mvIndex listIndex,\
+mvErrorEnum mvWorld_V2::getEntryListParametero_str(mvIndex listIndex,\
    const char* param, const char** option) const
 {
-   return entryLists.getItemParameter_str(listIndex, param, option);
+   return entryLists.getItemParametero_str(listIndex, param, option);
 }
 
 mvErrorEnum mvWorld_V2::getEntryListParameterf_str(mvIndex listIndex,\
@@ -3886,7 +3886,7 @@ mvErrorEnum mvWorld_V2::setEntryListNodeParameteri(mvIndex listIndex,\
    return tempList->setEntryParameteri(nodeIndex, paramFlag, index);
 }
 
-mvErrorEnum mvWorld_V2::setEntryListNodeParameter(mvIndex listIndex,\
+mvErrorEnum mvWorld_V2::setEntryListNodeParametero(mvIndex listIndex,\
    mvIndex nodeIndex, mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvEntryListPtr tempList = entryLists.getClassPtr(listIndex);
@@ -3896,7 +3896,7 @@ mvErrorEnum mvWorld_V2::setEntryListNodeParameter(mvIndex listIndex,\
       return MV_BODY_INDEX_IS_INVALID;
    }
 
-   return tempList->setEntryParameter(nodeIndex, paramFlag, option);
+   return tempList->setEntryParametero(nodeIndex, paramFlag, option);
 }
 
 mvErrorEnum mvWorld_V2::setEntryListNodeParameterf(mvIndex listIndex,\
@@ -3936,7 +3936,7 @@ mvErrorEnum mvWorld_V2::setEntryListNodeParameteri_str(mvIndex listIndex,\
 
    return tempList->setEntryParameteri_str(nodeIndex, param, index);
 }
-mvErrorEnum mvWorld_V2::setEntryListNodeParameter_str(mvIndex listIndex,\
+mvErrorEnum mvWorld_V2::setEntryListNodeParametero_str(mvIndex listIndex,\
    mvIndex nodeIndex, const char* param, const char* option)
 {
    mvEntryListPtr tempList = entryLists.getClassPtr(listIndex);
@@ -3946,7 +3946,7 @@ mvErrorEnum mvWorld_V2::setEntryListNodeParameter_str(mvIndex listIndex,\
       return MV_BODY_INDEX_IS_INVALID;
    }
 
-   return tempList->setEntryParameter_str(nodeIndex, param, option);
+   return tempList->setEntryParametero_str(nodeIndex, param, option);
 }
 mvErrorEnum mvWorld_V2::setEntryListNodeParameterf_str(mvIndex listIndex,\
    mvIndex nodeIndex, const char* param, mvFloat num)
@@ -3986,7 +3986,7 @@ mvErrorEnum mvWorld_V2::getEntryListNodeParameteri(mvIndex listIndex,\
    return tempList->getEntryParameteri(nodeIndex, paramFlag, outIndex);
 }
 
-mvErrorEnum mvWorld_V2::getEntryListNodeParameter(mvIndex listIndex,\
+mvErrorEnum mvWorld_V2::getEntryListNodeParametero(mvIndex listIndex,\
    mvIndex nodeIndex, mvParamEnum paramFlag, mvOptionEnum* option) const
 {
    mvConstEntryListPtr tempList = entryLists.getConstClassPtr(listIndex);
@@ -3996,7 +3996,7 @@ mvErrorEnum mvWorld_V2::getEntryListNodeParameter(mvIndex listIndex,\
       return MV_BODY_INDEX_IS_INVALID;
    }
 
-   return tempList->getEntryParameter(nodeIndex, paramFlag, option);
+   return tempList->getEntryParametero(nodeIndex, paramFlag, option);
 }
 
 mvErrorEnum mvWorld_V2::getEntryListNodeParameterf(mvIndex listIndex,\
@@ -4040,7 +4040,7 @@ mvErrorEnum mvWorld_V2::getEntryListNodeParameteri_str(mvIndex listIndex,\
    return tempList->getEntryParameteri_str(nodeIndex, param, outIndex);
 }
 
-mvErrorEnum mvWorld_V2::getEntryListNodeParameter_str(mvIndex listIndex,\
+mvErrorEnum mvWorld_V2::getEntryListNodeParametero_str(mvIndex listIndex,\
    mvIndex nodeIndex, const char* param, const char** option) const
 {
    mvConstEntryListPtr tempList = entryLists.getConstClassPtr(listIndex);
@@ -4050,7 +4050,7 @@ mvErrorEnum mvWorld_V2::getEntryListNodeParameter_str(mvIndex listIndex,\
       return MV_BODY_INDEX_IS_INVALID;
    }
 
-   return tempList->getEntryParameter_str(nodeIndex, param, option);
+   return tempList->getEntryParametero_str(nodeIndex, param, option);
 }
 
 mvErrorEnum mvWorld_V2::getEntryListNodeParameterf_str(mvIndex listIndex,\

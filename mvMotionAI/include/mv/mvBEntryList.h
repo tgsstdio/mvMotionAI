@@ -83,19 +83,19 @@ class MV_GLOBAL_FUNC_PREFIX mvBEntryList
       mvFloat getDefaultWeight() const;
 
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
-      mvErrorEnum getParameter(mvParamEnum paramFlag, mvOptionEnum* option) const;
+      mvErrorEnum getParametero(mvParamEnum paramFlag, mvOptionEnum* option) const;
       mvErrorEnum getParameterf(mvParamEnum paramFlag, mvFloat* num) const;
       mvErrorEnum getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
          mvCount* noOfParameters) const;
 
       mvErrorEnum setParameteri(mvParamEnum paramFlag, mvIndex index);
-      mvErrorEnum setParameter(mvParamEnum paramFlag, mvOptionEnum option);
+      mvErrorEnum setParametero(mvParamEnum paramFlag, mvOptionEnum option);
       mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
       mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
 
       mvErrorEnum getEntryParameteri(mvIndex entryIndex, mvParamEnum paramFlag,\
          mvIndex* outIndex) const;
-      mvErrorEnum getEntryParameter(mvIndex entryIndex, mvParamEnum paramFlag,\
+      mvErrorEnum getEntryParametero(mvIndex entryIndex, mvParamEnum paramFlag,\
          mvOptionEnum* option) const;
       mvErrorEnum getEntryParameterf(mvIndex entryIndex, mvParamEnum paramFlag,\
          mvFloat* num) const;
@@ -104,7 +104,7 @@ class MV_GLOBAL_FUNC_PREFIX mvBEntryList
 
       mvErrorEnum setEntryParameteri(mvIndex entryIndex,mvParamEnum paramFlag,\
          mvIndex paramIndex);
-      mvErrorEnum setEntryParameter(mvIndex entryIndex,mvParamEnum paramFlag,\
+      mvErrorEnum setEntryParametero(mvIndex entryIndex,mvParamEnum paramFlag,\
          mvOptionEnum option);
       mvErrorEnum setEntryParameterf(mvIndex entryIndex,mvParamEnum paramFlag,\
          mvFloat num);
@@ -114,7 +114,7 @@ class MV_GLOBAL_FUNC_PREFIX mvBEntryList
       // string functions
       mvErrorEnum getEntryParameteri_str(mvIndex entryIndex, const char* param,\
          mvIndex* outIndex) const;
-      mvErrorEnum getEntryParameter_str(mvIndex entryIndex, const char* param,\
+      mvErrorEnum getEntryParametero_str(mvIndex entryIndex, const char* param,\
          const char** option) const;
       mvErrorEnum getEntryParameterf_str(mvIndex entryIndex, const char* param,\
          mvFloat* num) const ;
@@ -123,7 +123,7 @@ class MV_GLOBAL_FUNC_PREFIX mvBEntryList
 
       mvErrorEnum setEntryParameteri_str(mvIndex entryIndex,const char* param,\
          mvIndex paramIndex);
-      mvErrorEnum setEntryParameter_str(mvIndex entryIndex,const char* param,\
+      mvErrorEnum setEntryParametero_str(mvIndex entryIndex,const char* param,\
          const char* option);
       mvErrorEnum setEntryParameterf_str(mvIndex entryIndex,const char* param,\
          mvFloat num);

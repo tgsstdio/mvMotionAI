@@ -26,13 +26,13 @@ mvErrorEnum mvBodyCapsule::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    return encapsulatedBody->getParameteri(paramFlag, index);
 }
 
-mvErrorEnum mvBodyCapsule::getParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvBodyCapsule::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    if (encapsulatedBody == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
-   return encapsulatedBody->getParameter(paramFlag, option);
+   return encapsulatedBody->getParametero(paramFlag, option);
 }
 
 mvErrorEnum mvBodyCapsule::getParameterf(mvParamEnum paramFlag, mvFloat* num)\
@@ -61,13 +61,13 @@ mvErrorEnum mvBodyCapsule::setParameteri(mvParamEnum paramFlag, mvIndex index)
 
    return encapsulatedBody->setParameteri(paramFlag, index);
 }
-mvErrorEnum mvBodyCapsule::setParameter(mvParamEnum paramFlag,\
+mvErrorEnum mvBodyCapsule::setParametero(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
    if (encapsulatedBody == MV_NULL)
       return MV_ITEM_POINTER_IS_NULL;
 
-   return encapsulatedBody->setParameter(paramFlag,option);
+   return encapsulatedBody->setParametero(paramFlag,option);
 }
 
 mvErrorEnum mvBodyCapsule::setParameterf(mvParamEnum paramFlag, mvFloat num)
