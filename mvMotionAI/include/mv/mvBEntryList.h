@@ -42,6 +42,8 @@
 #define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
 #endif
 
+// TODO : separated ordered auto group behaviour member list
+
 class MV_GLOBAL_FUNC_PREFIX mvBEntryList
 {
    private:

@@ -61,6 +61,8 @@
 #define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
 #endif
 
+// TODO : reorganize index order
+
 class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
 {
    private:
@@ -105,7 +107,13 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
       mvForceLoaderListPtr forceLoader;
       void* wUserData;
 
+      bool addGroupBehaviourMemberToList(mvIndex bodyIndex,
+         mvIndex behaviourIndex, mvIndex groupIndex, mvBaseActionPtr memberNodePtr);
    public:
+      // TODO : register
+      void registerAllGroupBehavioursToBodies();
+      void registerGroupBehaviourToBodies(mvIndex groupBehaviourIndex);
+
       mvFloat getElapsedWorldTime() const;
       void integrateBody(mvBodyCapsulePtr bodyPtr, mvFloat timeInSecs);
       bool hasGroupChanged(mvIndex groupNo);
@@ -550,27 +558,6 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
       mvErrorEnum getForceParameterv_str(mvIndex index, const char* param,\
          mvFloat* array, mvCount* noOfParameters) const;
 
-      mvIndex addBehaviourToList(mvIndex listIndex, mvOptionEnum bType,\
-         mvIndex behaviourIndex, mvIndex groupIndex);
-      mvIndex addBehaviourToList_str(mvIndex listIndex, const char* bType,\
-         mvIndex behaviourIndex, mvIndex groupIndex);
-      mvErrorEnum removeBehaviourFromList(mvIndex listIndex, mvIndex entryIndex);
-      mvErrorEnum removeAllBehavioursFromList(mvIndex listIndex);
-      mvIndex getCurrentEntryFromList(mvIndex listIndex) const;
-
-      mvErrorEnum addGroupIntoGroupBehaviour(mvIndex groupIndex,\
-         mvIndex groupBehaviour);
-
-      mvErrorEnum removeGroupFromGroupBehaviour(mvIndex groupIndex,\
-         mvIndex groupBehaviour);
-
-      mvErrorEnum addMemberIntoGroup(mvIndex memberIndex, mvIndex groupIndex);
-
-      mvErrorEnum removeMemberFromGroup(mvIndex memberIndex, mvIndex groupIndex);
-
-      mvErrorEnum findMemberFromGroup(mvIndex memberIndex, mvIndex groupIndex)
-         const;
-
       mvErrorEnum setMainGroupBehaviourParametero(mvIndex index,\
          mvParamEnum param, mvOptionEnum option);
       mvErrorEnum setMainGroupBehaviourParameteri(mvIndex index,\
@@ -624,15 +611,6 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
       mvConstGroupBehaviourPtr getConstGroupBehaviourPtr(mvIndex index) const;
       mvConstBehaviourPtr getConstBehaviourPtr(mvIndex index) const;
       mvConstBaseForcePtr getConstForcePtr(mvIndex index) const;
-
-      mvIndex addNodeToPathway(mvIndex nIndex, mvIndex pIndex);
-      mvErrorEnum removeNodeFromPathway(mvIndex wpIndex, mvIndex pIndex);
-
-      mvErrorEnum removeAllNodesFromPathway(mvIndex pwIndex);
-
-      mvIndex getCurrentNodeOfPathway(mvIndex pwIndex) const;
-
-      mvErrorEnum removePathwayNodeAt(mvIndex pwIndex, mvIndex nodeIndex);
 
       mvErrorEnum setPathwayNodeParameteri(mvIndex pathwayIndex,\
          mvIndex nodeIndex, mvParamEnum paramFlag, mvIndex index);
@@ -753,6 +731,34 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
       mvErrorEnum setUserData(mvParamEnum objectType, mvIndex objectIndex,\
          void* userData);
       void* getUserData(mvParamEnum objectType, mvIndex objectIndex) const;
+
+
+      // TODO : Constant add / remove index order
+
+      mvIndex addBehaviourToList(mvIndex listIndex, mvOptionEnum bType,\
+         mvIndex behaviourIndex, mvIndex groupIndex);
+      mvIndex addBehaviourToList_str(mvIndex listIndex, const char* bType,\
+         mvIndex behaviourIndex, mvIndex groupIndex);
+      mvErrorEnum removeBehaviourFromList(mvIndex listIndex, mvIndex entryIndex);
+      mvErrorEnum removeAllBehavioursFromList(mvIndex listIndex);
+      mvIndex getCurrentEntryFromList(mvIndex listIndex) const;
+
+      mvErrorEnum addGroupIntoGroupBehaviour(mvIndex groupIndex,\
+         mvIndex groupBehaviour);
+      mvErrorEnum removeGroupFromGroupBehaviour(mvIndex groupIndex,\
+         mvIndex groupBehaviour);
+      mvErrorEnum addMemberIntoGroup(mvIndex memberIndex, mvIndex groupIndex);
+      mvErrorEnum removeMemberFromGroup(mvIndex memberIndex, mvIndex groupIndex);
+
+      // TODO : check error value
+      mvErrorEnum findMemberFromGroup(mvIndex memberIndex, mvIndex groupIndex)
+         const;
+
+      mvIndex addNodeToPathway(mvIndex nIndex, mvIndex pIndex);
+      mvErrorEnum removeNodeFromPathway(mvIndex wpIndex, mvIndex pIndex);
+      mvErrorEnum removeAllNodesFromPathway(mvIndex pwIndex);
+      mvIndex getCurrentNodeOfPathway(mvIndex pwIndex) const;
+      mvErrorEnum removePathwayNodeAt(mvIndex pwIndex, mvIndex nodeIndex);
 
       mvErrorEnum addForceIntoWaypoint(mvIndex forceIndex,\
          mvIndex waypointIndex);

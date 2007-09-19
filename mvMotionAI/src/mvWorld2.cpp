@@ -4250,3 +4250,19 @@ mvErrorEnum mvWorld_V2::removeAllForcesFromWaypoint(mvIndex waypointIndex)
 
    return MV_NO_ERROR;
 }
+
+// TODO : register
+bool addGroupBehaviourMemberToList(mvIndex bodyIndex,
+   mvIndex behaviourIndex, mvIndex groupIndex, mvBaseActionPtr memberNodePtr);
+// TODO : register
+
+void mvWorld_V2::registerAllGroupBehavioursToBodies()
+{
+   groupBehaviours.applyToAllItemsByItemIndex(\
+      mvWorld_V2_RegisterEachGroupBehaviour, this);
+}
+
+void mvWorld_V2::registerGroupBehaviourToBodies(mvIndex groupBehaviourIndex)
+{
+
+}

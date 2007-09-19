@@ -140,4 +140,6 @@ bool mvSpheretoSphere_Colision(const mvVec3& firstShapePos,
 mvFloat mvWorldV2_SpheretoAABB_GetCollisionDistFromPoint(mvFloat firstBoxPosComponent,
    mvWorld_V2_LocalForceCalculationHelper* secondBox, mvIndex componentIndex);
 
+void mvWorld_V2_RegisterEachGroupBehaviour(mvIndex itemIndex, void* extraPtr);
+
 #endif // MVWORLD2_FUNCTIONS_H_INCLUDED

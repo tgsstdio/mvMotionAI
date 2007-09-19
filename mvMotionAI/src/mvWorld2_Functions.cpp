@@ -1084,6 +1084,14 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
       accelVec *= inverse_h;
       accelVec *= bodyMass;
       currentBody->setBodysForce(accelVec);
+
+
+      /*
+       *  Set Torque
+       * TODO : omega, rotation, quaternion sum
+       */
+      mvVec3 bodyTorque = capsulePtr->futureTorque;
+      currentBody->setBodysTorque(bodyTorque);
    }
    else
    {
@@ -1163,6 +1171,15 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
    euler_pos[1] += euler_vel[1]; //c2 = hTimeStep * euler_vel[1];
    euler_pos[1] *= halfATimeStep;
    euler_pos[1] += euler_pos[0];
+
+   /*
+    * ROTATION :
+    * set torque
+    * TODO : omega, rotation, quaternion sum
+    */
+   mvVec3 totalTorque = currentBody->getBodysTorque();
+   totalTorque += capsulePtr->additionalTorque;
+   currentBody->setFinalTorque(totalTorque);
 
    currentBody->setFinalVelocity(euler_vel[1]);
    currentBody->setPosition(euler_pos[1]);
@@ -1507,3 +1524,9 @@ mvWorld_V2_CalcForceHelperStruct::mvWorld_V2_CalcForceHelperStruct(\
 
 }
 
+void mvWorld_V2_RegisterEachGroupBehaviour(mvIndex itemIndex, void* extraPtr)
+{
+   mvWorldPtr currentWorld = (mvWorldPtr) extraPtr;
+
+   currentWorld->registerGroupBehaviourToBodies(itemIndex);
+}

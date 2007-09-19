@@ -199,139 +199,135 @@ SOURCE=..\src\mvWorld2_Functions.h
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=..\include\mvActionLoaderList.h
+SOURCE=..\include\mv\mvActionLoaderList.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvBehaviour_V2.h
+SOURCE=..\include\mv\mvBaseAction.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvBEntry.h
+SOURCE=..\include\mv\mvBehaviour_V2.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvBEntryList.h
+SOURCE=..\include\mv\mvBEntry.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvBEntryListNode.h
+SOURCE=..\include\mv\mvBEntryList.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvBEntryTimer.h
+SOURCE=..\include\mv\mvBEntryListNode.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvBEntryUtility.h
+SOURCE=..\include\mv\mvBEntryTimer.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvBody_V2.h
+SOURCE=..\include\mv\mvBEntryUtility.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvBodyCapsule.h
+SOURCE=..\include\mv\mvBody_V2.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvCapsuleList.h
+SOURCE=..\include\mv\mvBodyCapsule.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvCapsuleList.hpp
+SOURCE=..\include\mv\mvCapsuleList.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvEnums.h
+SOURCE=..\include\mv\mvEnums.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvFactoryFunctionList.h
+SOURCE=..\include\mv\mvFactoryFunctionList.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvFactoryFunctionList.hpp
+SOURCE=..\include\mv\mvFlee.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvForceCapsule.h
+SOURCE=..\include\mv\mvForceCapsule.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvForceLoaderList.h
+SOURCE=..\include\mv\mvForceLoaderList.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvGroup_V2.h
+SOURCE=..\include\mv\mvGroup_V2.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvGroupBehaviour_V2.h
+SOURCE=..\include\mv\mvGroupBehaviour_V2.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvGroupBNode_V2.h
+SOURCE=..\include\mv\mvGroupBNode_V2.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvGroupCapsule.h
+SOURCE=..\include\mv\mvGroupCapsule.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvIndexSet.h
+SOURCE=..\include\mv\mvIndexSet.h
 # End Source File
 # Begin Source File
 
-SOURCE="..\include\mvMotionAI-Types.h"
+SOURCE="..\include\mv\mvMotionAI-Types.h"
 # End Source File
 # Begin Source File
 
-SOURCE="..\include\mvMotionAI-Utilities.h"
+SOURCE="..\include\mv\mvMotionAI-Utilities.h"
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvMotionAI.h
+SOURCE=..\include\mv\mvMotionAI.h
 # End Source File
 # Begin Source File
 
-SOURCE="..\include\mvMotionAI_V2-Central.h"
+SOURCE=..\include\mv\mvNullLoader.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvObstacle_V2.h
+SOURCE=..\include\mv\mvObstacle_V2.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvPathway_V2.h
+SOURCE=..\include\mv\mvPathway_V2.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvPointerList.h
+SOURCE=..\include\mv\mvPointerList.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvPointerList.hpp
+SOURCE=..\include\mv\mvShape.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvShape.h
+SOURCE=..\include\mv\mvVec3.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvVec3.h
+SOURCE=..\include\mv\mvWaypoint_V2.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvWaypoint_V2.h
+SOURCE=..\include\mv\mvWaypointCapsule.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvWaypointCapsule.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\include\mvWorld2.h
+SOURCE=..\include\mv\mvWorld2.h
 # End Source File
 # End Group
 # Begin Group "mvBaseActions"
@@ -343,15 +339,11 @@ SOURCE=..\src\mvBaseAction.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvBaseAction.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\src\mvBehaviourResult.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvBehaviourResult.h
+SOURCE=..\include\mv\mvBehaviourResult.h
 # End Source File
 # Begin Source File
 
@@ -359,15 +351,11 @@ SOURCE=..\src\mvFlee.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvFlee.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\src\mvGroupBehaviourResult.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvGroupBehaviourResult.h
+SOURCE=..\include\mv\mvGroupBehaviourResult.h
 # End Source File
 # Begin Source File
 
@@ -375,15 +363,11 @@ SOURCE=..\src\mvNullLoader.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvNullLoader.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\src\mvPursuit.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvPursuit.h
+SOURCE=..\include\mv\mvPursuit.h
 # End Source File
 # Begin Source File
 
@@ -391,7 +375,7 @@ SOURCE=..\src\mvSeek.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvSeek.h
+SOURCE=..\include\mv\mvSeek.h
 # End Source File
 # End Group
 # Begin Group "mvBaseForces"
@@ -403,7 +387,7 @@ SOURCE=..\src\mvBaseForce.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvBaseForce.h
+SOURCE=..\include\mv\mvBaseForce.h
 # End Source File
 # Begin Source File
 
@@ -411,7 +395,7 @@ SOURCE=..\src\mvForceResult.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvForceResult.h
+SOURCE=..\include\mv\mvForceResult.h
 # End Source File
 # Begin Source File
 
@@ -419,7 +403,7 @@ SOURCE=..\src\mvGravityForce.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvGravityForce.h
+SOURCE=..\include\mv\mvGravityForce.h
 # End Source File
 # Begin Source File
 
@@ -427,7 +411,7 @@ SOURCE=..\src\mvUniformAccelForce.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvUniformAccelForce.h
+SOURCE=..\include\mv\mvUniformAccelForce.h
 # End Source File
 # Begin Source File
 
@@ -435,7 +419,7 @@ SOURCE=..\src\mvUniformForce.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvUniformForce.h
+SOURCE=..\include\mv\mvUniformForce.h
 # End Source File
 # Begin Source File
 
@@ -443,7 +427,7 @@ SOURCE=..\src\mvUniformShiftForce.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\include\mvUniformShiftForce.h
+SOURCE=..\include\mv\mvUniformShiftForce.h
 # End Source File
 # End Group
 # End Target
