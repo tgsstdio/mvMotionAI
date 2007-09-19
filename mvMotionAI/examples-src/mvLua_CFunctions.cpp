@@ -9,13 +9,13 @@
 #define MV_LUA_GET_PARAM_MINIMUM_VALUS_RETURNED (2)
 
 int mvLua_SetParameterFunction_2i(lua_State* luaVM,
-   mvErrorEnum (setParameter_str)(mvIndex, mvIndex, const char*, const char*),
+   mvErrorEnum (setParametero_str)(mvIndex, mvIndex, const char*, const char*),
    mvErrorEnum (setParameteri_str)(mvIndex, mvIndex, const char*, mvIndex),
    mvErrorEnum (setParameterf_str)(mvIndex, mvIndex, const char*, mvFloat),
    mvErrorEnum (setParameterv_str)(mvIndex, mvIndex, const char*, mvFloat*));
 
 int mvLua_GetParameterFunction_2i(lua_State* luaVM,
-   mvErrorEnum (getParameter_str)(mvIndex, mvIndex, const char*, const char**),
+   mvErrorEnum (getParametero_str)(mvIndex, mvIndex, const char*, const char**),
    mvErrorEnum (getParameteri_str)(mvIndex, mvIndex, const char*, mvIndex*),
    mvErrorEnum (getParameterf_str)(mvIndex, mvIndex, const char*, mvFloat*),
    mvErrorEnum (getParameterv_str)(mvIndex, mvIndex, const char*, mvFloat*, mvCount*));
@@ -39,13 +39,13 @@ int mvLua_GetCurrentNodeInItem(lua_State* luaVM,
 
 // TODO : complete template functions
 int mvLua_SetParameterFunction_3i(lua_State* luaVM,
-   mvErrorEnum (setParameter_str)(mvIndex, mvIndex, mvIndex, const char*, const char*),
+   mvErrorEnum (setParametero_str)(mvIndex, mvIndex, mvIndex, const char*, const char*),
    mvErrorEnum (setParameteri_str)(mvIndex, mvIndex, mvIndex, const char*, mvIndex),
    mvErrorEnum (setParameterf_str)(mvIndex, mvIndex, mvIndex, const char*, mvFloat),
    mvErrorEnum (setParameterv_str)(mvIndex, mvIndex, mvIndex, const char*, mvFloat*));
 
 int mvLua_GetParameterFunction_3i(lua_State* luaVM,
-   mvErrorEnum (getParameter_str)(mvIndex, mvIndex, mvIndex, const char*, const char**),
+   mvErrorEnum (getParametero_str)(mvIndex, mvIndex, mvIndex, const char*, const char**),
    mvErrorEnum (getParameteri_str)(mvIndex, mvIndex, mvIndex, const char*, mvIndex*),
    mvErrorEnum (getParameterf_str)(mvIndex, mvIndex, mvIndex, const char*, mvFloat*),
    mvErrorEnum (getParameterv_str)(mvIndex, mvIndex, mvIndex, const char*, mvFloat*, mvCount*));
@@ -476,7 +476,7 @@ int mvLua_GetWorldParameter(lua_State* luaVM)
    paramString = lua_tostring(luaVM, luaIndex);
 
    // GET PARAMETER
-   paramError = mvGetWorldParameter_str(worldIndex, paramString, &optionString);
+   paramError = mvGetWorldParametero_str(worldIndex, paramString, &optionString);
 
    // early exit for invalid param
    if (paramError == MV_INVALID_PARAM_ENUM_STRING || paramError ==
@@ -580,7 +580,7 @@ int mvLua_SetWorldParameter(lua_State* luaVM)
    ++luaIndex;
    optionString = lua_tostring(luaVM, luaIndex);
 
-   paramError = mvSetWorldParameter_str(worldIndex, paramString, optionString);
+   paramError = mvSetWorldParametero_str(worldIndex, paramString, optionString);
 
    // early exit for invalid param
    if (paramError == MV_INVALID_PARAM_ENUM_STRING || paramError ==
@@ -633,7 +633,7 @@ int mvLua_SetWorldParameter(lua_State* luaVM)
 }
 
 int mvLua_SetParameterFunction_2i(lua_State* luaVM,
-   mvErrorEnum (setParameter_str)(mvIndex, mvIndex, const char*, const char*),
+   mvErrorEnum (setParametero_str)(mvIndex, mvIndex, const char*, const char*),
    mvErrorEnum (setParameteri_str)(mvIndex, mvIndex, const char*, mvIndex),
    mvErrorEnum (setParameterf_str)(mvIndex, mvIndex, const char*, mvFloat),
    mvErrorEnum (setParameterv_str)(mvIndex, mvIndex, const char*, mvFloat*))
@@ -661,7 +661,7 @@ int mvLua_SetParameterFunction_2i(lua_State* luaVM,
    luaIndex = firstParamIndex;
    optionString = lua_tostring(luaVM, luaIndex);
 
-   paramError = setParameter_str(worldIndex, objectIndex, paramString,
+   paramError = setParametero_str(worldIndex, objectIndex, paramString,
       optionString);
 
    // early exit for invalid param
@@ -717,7 +717,7 @@ int mvLua_SetParameterFunction_2i(lua_State* luaVM,
 }
 
 int mvLua_GetParameterFunction_2i(lua_State* luaVM,
-   mvErrorEnum (getParameter_str)(mvIndex, mvIndex, const char*, const char**),
+   mvErrorEnum (getParametero_str)(mvIndex, mvIndex, const char*, const char**),
    mvErrorEnum (getParameteri_str)(mvIndex, mvIndex, const char*, mvIndex*),
    mvErrorEnum (getParameterf_str)(mvIndex, mvIndex, const char*, mvFloat*),
    mvErrorEnum (getParameterv_str)(mvIndex, mvIndex, const char*, mvFloat*, mvCount*))
@@ -743,7 +743,7 @@ int mvLua_GetParameterFunction_2i(lua_State* luaVM,
    paramString = lua_tostring(luaVM, luaIndex);
 
    // GET PARAMETER
-   paramError = getParameter_str(worldIndex, objectIndex,
+   paramError = getParametero_str(worldIndex, objectIndex,
       paramString, &optionString);
 
    // early exit for invalid param
@@ -831,7 +831,7 @@ int mvLua_GetParameterFunction_2i(lua_State* luaVM,
 }
 
 int mvLua_SetParameterFunction_3i(lua_State* luaVM,
-   mvErrorEnum (setParameter_str)(mvIndex, mvIndex, mvIndex, const char*, const char*),
+   mvErrorEnum (setParametero_str)(mvIndex, mvIndex, mvIndex, const char*, const char*),
    mvErrorEnum (setParameteri_str)(mvIndex, mvIndex, mvIndex, const char*, mvIndex),
    mvErrorEnum (setParameterf_str)(mvIndex, mvIndex, mvIndex, const char*, mvFloat),
    mvErrorEnum (setParameterv_str)(mvIndex, mvIndex, mvIndex, const char*, mvFloat*))
@@ -862,7 +862,7 @@ int mvLua_SetParameterFunction_3i(lua_State* luaVM,
    luaIndex = firstParamIndex;
    optionString = lua_tostring(luaVM, luaIndex);
 
-   paramError = setParameter_str(worldIndex, objectIndex, nodeIndex,\
+   paramError = setParametero_str(worldIndex, objectIndex, nodeIndex,\
       paramString,  optionString);
 
    // early exit for invalid param
@@ -918,7 +918,7 @@ int mvLua_SetParameterFunction_3i(lua_State* luaVM,
 }
 
 int mvLua_GetParameterFunction_3i(lua_State* luaVM,
-   mvErrorEnum (getParameter_str)(mvIndex, mvIndex, mvIndex, const char*, const char**),
+   mvErrorEnum (getParametero_str)(mvIndex, mvIndex, mvIndex, const char*, const char**),
    mvErrorEnum (getParameteri_str)(mvIndex, mvIndex, mvIndex, const char*, mvIndex*),
    mvErrorEnum (getParameterf_str)(mvIndex, mvIndex, mvIndex, const char*, mvFloat*),
    mvErrorEnum (getParameterv_str)(mvIndex, mvIndex, mvIndex, const char*, mvFloat*, mvCount*))
@@ -948,7 +948,7 @@ int mvLua_GetParameterFunction_3i(lua_State* luaVM,
    paramString = lua_tostring(luaVM, luaIndex);
 
    // GET PARAMETER
-   paramError = getParameter_str(worldIndex, objectIndex,nodeIndex,\
+   paramError = getParametero_str(worldIndex, objectIndex,nodeIndex,\
       paramString, &optionString);
 
    // early exit for invalid param
@@ -1226,13 +1226,13 @@ int mvLua_DeleteAllBodies(lua_State* luaVM)
 int mvLua_SetBodyParameter(lua_State* luaVM)
 {
    return mvLua_SetParameterFunction_2i(luaVM,
-      mvSetBodyParameter_str, mvSetBodyParameteri_str, mvSetBodyParameterf_str,
+      mvSetBodyParametero_str, mvSetBodyParameteri_str, mvSetBodyParameterf_str,
       mvSetBodyParameterv_str);
 }
 
 int mvLua_GetBodyParameter(lua_State* luaVM)
 {
-   return mvLua_GetParameterFunction_2i(luaVM, mvGetBodyParameter_str,
+   return mvLua_GetParameterFunction_2i(luaVM, mvGetBodyParametero_str,
       mvGetBodyParameteri_str, mvGetBodyParameterf_str,\
       mvGetBodyParameterv_str);
 }
@@ -1341,14 +1341,14 @@ int mvLua_DeleteAllObstacles(lua_State* luaVM)
 int mvLua_SetObstacleParameter(lua_State* luaVM)
 {
    return mvLua_SetParameterFunction_2i(luaVM,
-      mvSetObstacleParameter_str,  mvSetObstacleParameteri_str,\
+      mvSetObstacleParametero_str,  mvSetObstacleParameteri_str,\
       mvSetObstacleParameterf_str,  mvSetObstacleParameterv_str);
 }
 
 int mvLua_GetObstacleParameter(lua_State* luaVM)
 {
    return mvLua_GetParameterFunction_2i(luaVM,
-      mvGetObstacleParameter_str,  mvGetObstacleParameteri_str,\
+      mvGetObstacleParametero_str,  mvGetObstacleParameteri_str,\
       mvGetObstacleParameterf_str,  mvGetObstacleParameterv_str);
 }
 
@@ -1400,14 +1400,14 @@ int mvLua_DeleteAllWaypoints(lua_State* luaVM)
 int mvLua_SetWaypointParameter(lua_State* luaVM)
 {
    return mvLua_SetParameterFunction_2i(luaVM,\
-      mvSetWaypointParameter_str, mvSetWaypointParameteri_str,\
+      mvSetWaypointParametero_str, mvSetWaypointParameteri_str,\
       mvSetWaypointParameterf_str,mvSetWaypointParameterv_str);
 }
 
 int mvLua_GetWaypointParameter(lua_State* luaVM)
 {
    return mvLua_GetParameterFunction_2i(luaVM,\
-      mvGetWaypointParameter_str, mvGetWaypointParameteri_str,\
+      mvGetWaypointParametero_str, mvGetWaypointParameteri_str,\
       mvGetWaypointParameterf_str,mvGetWaypointParameterv_str);
 }
 
@@ -1486,14 +1486,14 @@ int mvLua_DeleteAllBehaviours(lua_State* luaVM)
 int mvLua_SetBehaviourParameter(lua_State* luaVM)
 {
    return mvLua_SetParameterFunction_2i(luaVM,\
-      mvSetBehaviourParameter_str,  mvSetBehaviourParameteri_str,\
+      mvSetBehaviourParametero_str,  mvSetBehaviourParameteri_str,\
       mvSetBehaviourParameterf_str,  mvSetBehaviourParameterv_str);
 }
 
 int mvLua_GetBehaviourParameter(lua_State* luaVM)
 {
    return mvLua_GetParameterFunction_2i(luaVM,\
-      mvGetBehaviourParameter_str,  mvGetBehaviourParameteri_str,\
+      mvGetBehaviourParametero_str,  mvGetBehaviourParameteri_str,\
       mvGetBehaviourParameterf_str,  mvGetBehaviourParameterv_str);
 }
 
@@ -1538,14 +1538,14 @@ int mvLua_DeleteAllForces(lua_State* luaVM)
 int mvLua_SetForceParameter(lua_State* luaVM)
 {
    return mvLua_SetParameterFunction_2i(luaVM,\
-      mvSetForceParameter_str,  mvSetForceParameteri_str,\
+      mvSetForceParametero_str,  mvSetForceParameteri_str,\
       mvSetForceParameterf_str,  mvSetForceParameterv_str);
 }
 
 int mvLua_GetForceParameter(lua_State* luaVM)
 {
    return mvLua_GetParameterFunction_2i(luaVM,\
-      mvGetForceParameter_str,  mvGetForceParameteri_str,\
+      mvGetForceParametero_str,  mvGetForceParameteri_str,\
       mvGetForceParameterf_str,  mvGetForceParameterv_str);
 }
 
@@ -1585,14 +1585,14 @@ int mvLua_DeleteAllPathways(lua_State* luaVM)
 int mvLua_SetPathwayParameter(lua_State* luaVM)
 {
    return mvLua_SetParameterFunction_2i(luaVM,\
-      mvSetPathwayParameter_str,  mvSetPathwayParameteri_str,\
+      mvSetPathwayParametero_str,  mvSetPathwayParameteri_str,\
       mvSetPathwayParameterf_str,  mvSetPathwayParameterv_str);
 }
 
 int mvLua_GetPathwayParameter(lua_State* luaVM)
 {
    return mvLua_GetParameterFunction_2i(luaVM,\
-      mvGetPathwayParameter_str, mvGetPathwayParameteri_str,\
+      mvGetPathwayParametero_str, mvGetPathwayParameteri_str,\
       mvGetPathwayParameterf_str, mvGetPathwayParameterv_str);
 }
 
@@ -1639,14 +1639,14 @@ int mvLua_RemovePathwayNodeAt(lua_State* luaVM)
 int mvLua_SetPathwayNodeParameter(lua_State* luaVM)
 {
    return mvLua_SetParameterFunction_3i(luaVM,
-      mvSetPathwayNodeParameter_str,mvSetPathwayNodeParameteri_str,
+      mvSetPathwayNodeParametero_str,mvSetPathwayNodeParameteri_str,
       mvSetPathwayNodeParameterf_str,mvSetPathwayNodeParameterv_str);
 }
 
 int mvLua_GetPathwayNodeParameter(lua_State* luaVM)
 {
    return mvLua_GetParameterFunction_3i(luaVM,
-      mvGetPathwayNodeParameter_str,mvGetPathwayNodeParameteri_str,
+      mvGetPathwayNodeParametero_str,mvGetPathwayNodeParameteri_str,
       mvGetPathwayNodeParameterf_str,mvGetPathwayNodeParameterv_str);
 }
 

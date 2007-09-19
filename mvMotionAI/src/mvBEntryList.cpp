@@ -299,7 +299,8 @@ mvIndex mvBEntryList::addNewEntry(mvOptionEnum bType,\
    mvEntryListNodePtr tempNode = MV_NULL;
    mvBaseActionPtr actionPtr = MV_NULL;
 
-   if (bType == MV_EXISTING_BEHAVIOUR || bType == MV_EXISTING_GROUP_BEHAVIOUR)
+   if (bType == MV_EXISTING_BEHAVIOUR || bType == MV_EXISTING_GROUP_BEHAVIOUR
+      || bType == MV_GROUP_BEHAVIOUR_MEMBER_ENTRY)
    {
       actionPtr = MV_NULL;
    }
@@ -357,7 +358,7 @@ mvIndex mvBEntryList::addExistingBehaviourEntry(mvIndex behaviourIndex)
 mvIndex mvBEntryList::addExistingGroupBehaviourEntry(\
    mvIndex behaviourIndex, mvIndex groupIndex)
 {
-   return addNewEntry(MV_EXISTING_GROUP_BEHAVIOUR,\
+   return addNewEntry(MV_GROUP_BEHAVIOUR_MEMBER_ENTRY,\
       behaviourIndex,groupIndex, MV_NULL,\
       defaultNodeTimerFlags.getWeight(),\
       defaultNodeTimerFlags.getTimerPtr()->getPeriod(),\
