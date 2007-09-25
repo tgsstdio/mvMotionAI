@@ -5,10 +5,10 @@
 		<Project filename="CustomAction.cbp">
 			<Depends filename="mvMotion-CB.cbp" />
 		</Project>
-		<Project filename="mvMotion-GLMain.cbp" active="1">
+		<Project filename="mvMotion-GLMain.cbp">
 			<Depends filename="mvMotion-CB.cbp" />
 		</Project>
-		<Project filename="mvMotionAI-LuaFunctions.cbp">
+		<Project filename="mvMotionAI-LuaFunctions.cbp" active="1">
 			<Depends filename="mvMotion-CB.cbp" />
 		</Project>
 		<Project filename="mvMotionAI-TypeSizes.cbp" />

@@ -4251,6 +4251,32 @@ mvErrorEnum mvWorld_V2::removeAllForcesFromWaypoint(mvIndex waypointIndex)
    return MV_NO_ERROR;
 }
 
+mvErrorEnum mvWorld_V2::removeAllGroupsFromGroupBehaviour(mvIndex gbIndex)
+{
+   mvGroupBehaviourPtr tempGBPtr = getGroupBehaviourPtr(gbIndex);
+
+   if (tempGBPtr == MV_NULL)
+   {
+      return MV_INDEX_VALUE_IS_INVALID;
+   }
+
+   tempGBPtr->removeAllGroups();
+   return MV_NO_ERROR;
+}
+
+mvErrorEnum mvWorld_V2::removeAllMembersFromGroup(mvIndex groupIndex)
+{
+   mvGroupPtr tempGroup = getGroupPtr(groupIndex);
+
+   if (tempGroup == MV_NULL)
+   {
+      return MV_INDEX_VALUE_IS_INVALID;
+   }
+
+   tempGroup->clearAll();
+   return MV_NO_ERROR;
+}
+
 // TODO : register
 bool addGroupBehaviourMemberToList(mvIndex bodyIndex,
    mvIndex behaviourIndex, mvIndex groupIndex, mvBaseActionPtr memberNodePtr);

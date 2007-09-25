@@ -37,7 +37,6 @@ int mvLua_AddNodeIndexIntoItem(lua_State* luaVM,
 int mvLua_GetCurrentNodeInItem(lua_State* luaVM,
    mvIndex (getCurrentNodeInItem)(mvIndex, mvIndex));
 
-// TODO : complete template functions
 int mvLua_SetParameterFunction_3i(lua_State* luaVM,
    mvErrorEnum (setParametero_str)(mvIndex, mvIndex, mvIndex, const char*, const char*),
    mvErrorEnum (setParameteri_str)(mvIndex, mvIndex, mvIndex, const char*, mvIndex),
@@ -50,7 +49,8 @@ int mvLua_GetParameterFunction_3i(lua_State* luaVM,
    mvErrorEnum (getParameterf_str)(mvIndex, mvIndex, mvIndex, const char*, mvFloat*),
    mvErrorEnum (getParameterv_str)(mvIndex, mvIndex, mvIndex, const char*, mvFloat*, mvCount*));
 
-
+int mvLua_AddAndCheckNodeIndexIntoItem(lua_State* luaVM,
+   mvErrorEnum (addNodeIndexIntoItem)(mvIndex, mvIndex, mvIndex));
 
 lua_CFunction mvLua_LuaFunctionPointers[] =
 {
@@ -133,7 +133,6 @@ lua_CFunction mvLua_LuaFunctionPointers[] =
    mvLua_GetPathwayParameter,
    mvLua_AddNodeToPathway,
 //8
-/*
    mvLua_RemoveNodeFromPathway,
    mvLua_RemoveAllNodesFromPathway,
    mvLua_GetCurrentNodeOfPathway,
@@ -144,7 +143,31 @@ lua_CFunction mvLua_LuaFunctionPointers[] =
    mvLua_GetCurrentGroup,
    mvLua_SetCurrentGroup,
    mvLua_DeleteGroup,
-*/
+// 9
+   mvLua_DeleteAllGroups,
+   mvLua_SetGroupParameter,
+   mvLua_GetGroupParameter,
+   mvLua_AddMemberIntoGroup,
+   mvLua_RemoveMemberFromGroup,
+   mvLua_RemoveAllMembersFromGroup,
+   mvLua_CreateGroupBehaviour,
+   mvLua_GetCurrentGroupBehaviour,
+   mvLua_SetCurrentGroupBehaviour,
+   mvLua_DeleteGroupBehaviour,
+//10
+   mvLua_DeleteAllGroupBehaviours,
+   mvLua_SetMainGroupBehaviourParameter,
+   mvLua_GetMainGroupBehaviourParameter,
+   mvLua_SetGroupBehaviourParameter,
+   mvLua_GetGroupBehaviourParameter,
+   mvLua_AddGroupIntoGroupBehaviour,
+   mvLua_RemoveGroupFromGroupBehaviour,
+   mvLua_SetEntryListNodeParameter,
+   mvLua_GetEntryListNodeParameter,
+   mvLua_SetEntryListParameter,
+   // 11
+   mvLua_GetEntryListParameter,
+   mvLua_RemoveAllGroupsFromGroupBehaviour,
 };
 
 const char* mvLua_CFuncFunctionNames[] =
@@ -237,6 +260,31 @@ const char* mvLua_CFuncFunctionNames[] =
    "mvGetCurrentGroup",
    "mvSetCurrentGroup",
    "mvDeleteGroup",
+// 9
+   "mvDeleteAllGroups",
+   "mvSetGroupParameter",
+   "mvGetGroupParameter",
+   "mvAddMemberIntoGroup",
+   "mvRemoveMemberFromGroup",
+   "mvRemoveAllMembersFromGroup",
+   "mvCreateGroupBehaviour",
+   "mvGetCurrentGroupBehaviour",
+   "mvSetCurrentGroupBehaviour",
+   "mvDeleteGroupBehaviour",
+//10
+   "mvDeleteAllGroupBehaviours",
+   "mvSetMainGroupBehaviourParameter",
+   "mvGetMainGroupBehaviourParameter",
+   "mvSetGroupBehaviourParameter",
+   "mvGetGroupBehaviourParameter",
+   "mvAddGroupIntoGroupBehaviour",
+   "mvRemoveGroupFromGroupBehaviour",
+   "mvSetEntryListNodeParameter",
+   "mvGetEntryListNodeParameter",
+   "mvSetEntryListParameter",
+// 11
+   "mvGetEntryListParameter",
+   "mvRemoveAllGroupsFromGroupBehaviour",
 };
 
 const char** mvLua_GetLuaFunctionNames()
@@ -1154,6 +1202,27 @@ int mvLua_GetCurrentNodeInItem(lua_State* luaVM,
    return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
 }
 
+int mvLua_AddAndCheckNodeIndexIntoItem(lua_State* luaVM,
+   mvErrorEnum (addNodeIndexIntoItem)(mvIndex, mvIndex, mvIndex))
+{
+   mvIndex worldIndex, luaIndex, nodeIndex, itemIndex;
+   mvErrorEnum error;
+
+   // WORLD INDEX
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   nodeIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   itemIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   error = addNodeIndexIntoItem(worldIndex,nodeIndex,itemIndex);
+   lua_pushnumber(luaVM, error);
+   return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+}
+
 int mvLua_AddNodeIndexIntoItem(lua_State* luaVM,
    mvIndex (addNodeIndexIntoItem)(mvIndex, mvIndex, mvIndex))
 {
@@ -1601,7 +1670,6 @@ int mvLua_AddNodeToPathway(lua_State* luaVM)
    return mvLua_AddNodeIndexIntoItem(luaVM, mvAddNodeToPathway);
 }
 
-// TODO : block 8
 int mvLua_RemoveNodeFromPathway(lua_State* luaVM)
 {
    return mvLua_DeleteNodeIndexInItem(luaVM, mvRemoveNodeFromPathway);
@@ -1676,4 +1744,163 @@ int mvLua_SetCurrentGroup(lua_State* luaVM)
 int mvLua_DeleteGroup(lua_State* luaVM)
 {
    return mvLua_DeleteItem(luaVM, mvDeleteGroup);
+}
+
+int mvLua_DeleteAllGroups(lua_State* luaVM)
+{
+   return mvLua_DeleteAllItems(luaVM, mvDeleteAllGroups);
+}
+
+int mvLua_SetGroupParameter(lua_State* luaVM)
+{
+   return mvLua_SetParameterFunction_2i(luaVM, mvSetGroupParametero_str,
+      mvSetGroupParameteri_str, mvSetGroupParameterf_str,
+      mvSetGroupParameterv_str);
+}
+
+int mvLua_GetGroupParameter(lua_State* luaVM)
+{
+   return mvLua_GetParameterFunction_2i(luaVM, mvGetGroupParametero_str,
+      mvGetGroupParameteri_str, mvGetGroupParameterf_str,
+      mvGetGroupParameterv_str);
+}
+
+int mvLua_AddMemberIntoGroup(lua_State* luaVM)
+{
+   return mvLua_AddAndCheckNodeIndexIntoItem(luaVM, mvAddMemberIntoGroup);
+}
+
+int mvLua_RemoveMemberFromGroup(lua_State* luaVM)
+{
+   return mvLua_DeleteNodeIndexInItem(luaVM, mvRemoveMemberFromGroup);
+}
+
+int mvLua_RemoveAllMembersFromGroup(lua_State* luaVM)
+{
+   return mvLua_DeleteAllNodesInItem(luaVM, mvRemoveAllMembersFromGroup);
+}
+
+int mvLua_CreateGroupBehaviour(lua_State* luaVM)
+{
+   mvIndex worldIndex, luaIndex, objectIndex;
+
+   // WORLD INDEX
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   const char* bTypeString = lua_tostring(luaVM, luaIndex);
+   objectIndex = mvCreateGroupBehaviour_str(worldIndex, bTypeString);
+
+   lua_pushnumber(luaVM, objectIndex);
+   return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+}
+
+int mvLua_GetCurrentGroupBehaviour(lua_State* luaVM)
+{
+   return mvLua_GetCurrentIndex(luaVM, mvGetCurrentGroupBehaviour);
+}
+
+int mvLua_SetCurrentGroupBehaviour(lua_State* luaVM)
+{
+   return mvLua_SetCurrentIndex(luaVM, mvSetCurrentGroupBehaviour);
+}
+
+int mvLua_DeleteGroupBehaviour(lua_State* luaVM)
+{
+   return mvLua_DeleteItem(luaVM, mvDeleteGroupBehaviour);
+}
+
+//10
+int mvLua_DeleteAllGroupBehaviours(lua_State* luaVM)
+{
+   return mvLua_DeleteAllItems(luaVM, mvDeleteAllGroupBehaviours);
+}
+
+int mvLua_SetMainGroupBehaviourParameter(lua_State* luaVM)
+{
+   return mvLua_SetParameterFunction_2i(luaVM,
+      mvSetMainGroupBehaviourParametero_str,
+      mvSetMainGroupBehaviourParameteri_str,
+      mvSetMainGroupBehaviourParameterf_str,
+      mvSetMainGroupBehaviourParameterv_str);
+}
+
+int mvLua_GetMainGroupBehaviourParameter(lua_State* luaVM)
+{
+   return mvLua_GetParameterFunction_2i(luaVM,
+      mvGetMainGroupBehaviourParametero_str,
+      mvGetMainGroupBehaviourParameteri_str,
+      mvGetMainGroupBehaviourParameterf_str,
+      mvGetMainGroupBehaviourParameterv_str);
+}
+
+int mvLua_SetGroupBehaviourParameter(lua_State* luaVM)
+{
+   return mvLua_SetParameterFunction_3i(luaVM,
+      mvSetGroupBehaviourParametero_str,
+      mvSetGroupBehaviourParameteri_str,
+      mvSetGroupBehaviourParameterf_str,
+      mvSetGroupBehaviourParameterv_str);
+}
+
+int mvLua_GetGroupBehaviourParameter(lua_State* luaVM)
+{
+   return mvLua_GetParameterFunction_3i(luaVM,
+      mvGetGroupBehaviourParametero_str,
+      mvGetGroupBehaviourParameteri_str,
+      mvGetGroupBehaviourParameterf_str,
+      mvGetGroupBehaviourParameterv_str);
+}
+
+int mvLua_AddGroupIntoGroupBehaviour(lua_State* luaVM)
+{
+   return mvLua_AddAndCheckNodeIndexIntoItem(luaVM,\
+      mvAddGroupIntoGroupBehaviour);
+}
+
+int mvLua_RemoveGroupFromGroupBehaviour(lua_State* luaVM)
+{
+   return mvLua_DeleteNodeIndexInItem(luaVM, mvRemoveGroupFromGroupBehaviour);
+}
+
+int mvLua_SetEntryListNodeParameter(lua_State* luaVM)
+{
+   return mvLua_SetParameterFunction_3i(luaVM,
+      mvSetEntryListNodeParametero_str,
+      mvSetEntryListNodeParameteri_str,
+      mvSetEntryListNodeParameterf_str,
+      mvSetEntryListNodeParameterv_str);
+}
+
+int mvLua_GetEntryListNodeParameter(lua_State* luaVM)
+{
+   return mvLua_GetParameterFunction_3i(luaVM,
+      mvGetEntryListNodeParametero_str,
+      mvGetEntryListNodeParameteri_str,
+      mvGetEntryListNodeParameterf_str,
+      mvGetEntryListNodeParameterv_str);
+}
+
+int mvLua_SetEntryListParameter(lua_State* luaVM)
+{
+   return mvLua_SetParameterFunction_2i(luaVM,
+      mvSetEntryListParametero_str,
+      mvSetEntryListParameteri_str,
+      mvSetEntryListParameterf_str,
+      mvSetEntryListParameterv_str);
+}
+
+int mvLua_GetEntryListParameter(lua_State* luaVM)
+{
+   return mvLua_GetParameterFunction_2i(luaVM,
+      mvGetEntryListParametero_str,
+      mvGetEntryListParameteri_str,
+      mvGetEntryListParameterf_str,
+      mvGetEntryListParameterv_str);
+}
+
+int mvLua_RemoveAllGroupsFromGroupBehaviour(lua_State* luaVM)
+{
+   return mvLua_DeleteAllNodesInItem(luaVM, mvRemoveAllGroupsFromGroupBehaviour);
 }

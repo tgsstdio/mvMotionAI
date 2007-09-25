@@ -766,6 +766,9 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
          mvIndex waypointIndex);
       mvErrorEnum removeAllWaypointsFromForce(mvIndex forceIndex);
       mvErrorEnum removeAllForcesFromWaypoint(mvIndex waypointIndex);
+      mvErrorEnum removeAllGroupsFromGroupBehaviour(mvIndex gbIndex);
+
+      mvErrorEnum removeAllMembersFromGroup(mvIndex groupIndex);
 };
 
 
