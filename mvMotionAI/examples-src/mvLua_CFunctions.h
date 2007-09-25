@@ -130,5 +130,6 @@ int mvLua_SetEntryListParameter(lua_State* luaVM);
 
 //11
 int mvLua_GetEntryListParameter(lua_State* luaVM);
+int mvLua_RemoveAllGroupsFromGroupBehaviour(lua_State* luaVM);
 
 #endif // MVLUA_CFUNCTIONS_H_INCLUDED

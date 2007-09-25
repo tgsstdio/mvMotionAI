@@ -127,7 +127,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameteri(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameterf(mvIndex worldIndex,\
 	mvParamEnum param, mvFloat* num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameterv(mvIndex worldIndex,\
-	mvParamEnum param, mvFloat* array, mvCount* noOfParameter_str);
+	mvParamEnum param, mvFloat* array, mvCount* noOfParameters);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametero_str(mvIndex worldIndex,\
 	const char* param, const char** option);
@@ -136,7 +136,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameteri_str(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameterf_str(mvIndex worldIndex,\
 	const char* param, mvFloat* num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameterv_str(mvIndex worldIndex,\
-	const char* param, mvFloat* array, mvCount* noOfParameter_str);
+	const char* param, mvFloat* array, mvCount* noOfParameters);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldParametero(mvIndex worldIndex,\
 	mvParamEnum param, mvOptionEnum option);
@@ -248,7 +248,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParameterf(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParameterv(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* array,\
-   mvCount* noOfParameter_str);
+   mvCount* noOfParameters);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParameteri_str(mvIndex worldIndex,\
    mvIndex index, const char* param, mvIndex* outIndex);
@@ -257,7 +257,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParametero_str(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParameterf_str(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParameterv_str(mvIndex worldIndex,\
-   mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameter_str)\
+   mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameters)\
    ;
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvAddBehaviourToList(mvIndex worldIndex,\
@@ -316,7 +316,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetObstacleParameterf(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetObstacleParameterv(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* array,\
-   mvCount* noOfParameter_str);
+   mvCount* noOfParameters);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetObstacleParameteri_str(mvIndex worldIndex,\
    mvIndex index, const char* param, mvIndex* outIndex);
@@ -372,7 +372,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWaypointParameterf(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWaypointParameterv(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* array,\
-   mvCount* noOfParameter_str);
+   mvCount* noOfParameters);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWaypointParameteri_str(\
    mvIndex worldIndex, mvIndex index, const char* param, mvIndex* outIndex);
@@ -382,7 +382,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWaypointParameterf_str(\
    mvIndex worldIndex, mvIndex index, const char* param, mvFloat* num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWaypointParameterv_str(\
    mvIndex worldIndex, mvIndex index, const char* param, mvFloat* array,\
-   mvCount* noOfParameter_str);
+   mvCount* noOfParameters);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddForceIntoWaypoint(mvIndex worldIndex,\
    mvIndex forceIndex, mvIndex waypointIndex);
@@ -439,7 +439,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBehaviourParameterf(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBehaviourParameterv(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* array,\
-   mvCount* noOfParameter_str);
+   mvCount* noOfParameters);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBehaviourParameteri_str(\
    mvIndex worldIndex, mvIndex index, const char* param, mvIndex* outIndex);
@@ -449,7 +449,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBehaviourParameterf_str(\
    mvIndex worldIndex, mvIndex index, const char* param, mvFloat* num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBehaviourParameterv_str(\
    mvIndex worldIndex, mvIndex index, const char* param, mvFloat* array,\
-   mvCount* noOfParameter_str);
+   mvCount* noOfParameters);
 
 //=============
 //No Of Functions : 37 = 5 + 16 + 16
@@ -495,7 +495,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetForceParameterf(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetForceParameterv(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* array,\
-   mvCount* noOfParameter_str);
+   mvCount* noOfParameters);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetForceParameteri_str(mvIndex worldIndex,\
    mvIndex index, const char* param, mvIndex* outIndex);
@@ -505,7 +505,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetForceParameterf_str(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetForceParameterv_str(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* array,\
-   mvCount* noOfParameter_str);
+   mvCount* noOfParameters);
 
 //=============
 //mvPathway No Of Functions : 115 = 5 + 16 + 16 (37) + 12 + 32 + 32 + 2
@@ -548,7 +548,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayParameterf(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayParameterv(mvIndex worldIndex,\
    mvIndex index, mvParamEnum paramFlag, mvFloat* array,\
-   mvCount* noOfParameter_str);
+   mvCount* noOfParameters);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayParameteri_str(mvIndex worldIndex,\
    mvIndex index, const char* param, mvIndex* outIndex);
@@ -557,7 +557,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayParametero_str(mvIndex worldIndex,
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayParameterf_str(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayParameterv_str(mvIndex worldIndex,\
-   mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameter_str);
+   mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameters);
 
 // add waypoints to paths or Pathway Node
 MV_GLOBAL_FUNC_PREFIX mvIndex mvAddNodeToPathway(mvIndex worldIndex,\
@@ -652,7 +652,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupParameteri_str(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupParametero_str(mvIndex worldIndex,\
    mvIndex index, const char* param, const char* option);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupParameterf_str(mvIndex worldIndex,\
-   mvIndex index, const char* param, mvFloat* array);
+   mvIndex index, const char* param, mvFloat num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupParameterv_str(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* array);
 
@@ -673,7 +673,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupParametero_str(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupParameterf_str(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupParameterv_str(mvIndex worldIndex,\
-   mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameter_str)\
+   mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameters)\
   ;
 
 // TODO : GROUP ADD/REMOVE MEMBERS
@@ -715,6 +715,9 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteGroupBehaviour(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteAllGroupBehaviours(\
    mvIndex worldIndex);
 
+// TODO : main group functiosn
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllGroupsFromGroupBehaviour(\
+   mvIndex worldIndex, mvIndex gbIndex);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetMainGroupBehaviourParameteri(\
    mvIndex worldIndex, mvIndex index, mvParamEnum paramFlag,\
    mvIndex paramIndex);
@@ -722,26 +725,21 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetMainGroupBehaviourParametero(\
    mvIndex worldIndex, mvIndex index, mvParamEnum paramFlag,\
    mvOptionEnum option);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetMainGroupBehaviourParameterf(\
-   mvIndex worldIndex, mvIndex index, mvParamEnum paramFlag, mvFloat num)\
-  ;
+   mvIndex worldIndex, mvIndex index, mvParamEnum paramFlag, mvFloat num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetMainGroupBehaviourParameterv(\
-   mvIndex worldIndex, mvIndex index, mvParamEnum paramFlag, mvFloat* array)\
-  ;
+   mvIndex worldIndex, mvIndex index, mvParamEnum paramFlag, mvFloat* array);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetMainGroupBehaviourParameteri_str(\
-   mvIndex worldIndex, mvIndex index, const char* param, mvIndex paramIndex)\
-  ;
+   mvIndex worldIndex, mvIndex index, const char* param, mvIndex paramIndex);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetMainGroupBehaviourParametero_str(\
-   mvIndex worldIndex, mvIndex index, const char* param, const char* option)\
-  ;
+   mvIndex worldIndex, mvIndex index, const char* param, const char* option);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetMainGroupBehaviourParameterf_str(\
+   mvIndex worldIndex, mvIndex index, const char* param, mvFloat array);
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetMainGroupBehaviourParameterv_str(\
    mvIndex worldIndex, mvIndex index, const char* param, mvFloat* array);
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetBodyParameterv_str(mvIndex worldIndex,\
-   mvIndex index, const char* param, mvFloat* array);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetMainGroupBehaviourParameteri(\
-   mvIndex worldIndex, mvIndex index, mvParamEnum paramFlag, mvIndex* outIndex)\
-  ;
+   mvIndex worldIndex, mvIndex index, mvParamEnum paramFlag, mvIndex* outIndex);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetMainGroupBehaviourParametero(\
    mvIndex worldIndex, mvIndex index, mvParamEnum paramFlag,\
    mvOptionEnum* option);
@@ -749,20 +747,17 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetMainGroupBehaviourParameterf(\
    mvIndex worldIndex, mvIndex index, mvParamEnum paramFlag, mvFloat* num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetMainGroupBehaviourParameterv(\
    mvIndex worldIndex, mvIndex index, mvParamEnum paramFlag, mvFloat* array,\
-   mvCount* noOfParameter_str);
-
+   mvCount* noOfParameters);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetMainGroupBehaviourParameteri_str(\
-	mvIndex worldIndex, mvIndex index, const char* param, mvIndex* outIndex)\
-	;
+	mvIndex worldIndex, mvIndex index, const char* param, mvIndex* outIndex);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetMainGroupBehaviourParametero_str(\
-	mvIndex worldIndex, mvIndex index, const char* param, const char** option)\
-	;
+	mvIndex worldIndex, mvIndex index, const char* param, const char** option);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetMainGroupBehaviourParameterf_str(\
-	mvIndex worldIndex, mvIndex index, const char* param, mvFloat* num) ;
+	mvIndex worldIndex, mvIndex index, const char* param, mvFloat* num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetMainGroupBehaviourParameterv_str(\
 	mvIndex worldIndex, mvIndex index, const char* param, mvFloat* array,\
-	mvCount* noOfParameter_str);
+	mvCount* noOfParameters);
 
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameteri(\
@@ -804,7 +799,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameterf(\
    mvParamEnum paramFlag, mvFloat* num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameterv(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
-	mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameter_str);
+	mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameteri_str(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
@@ -817,7 +812,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameterf_str(\
    const char* param, mvFloat* num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameterv_str(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
-   const char* param, mvFloat* array, mvCount* noOfParameter_str);
+   const char* param, mvFloat* array, mvCount* noOfParameters);
 
 // add group to group behaviours
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddGroupIntoGroupBehaviour(\
