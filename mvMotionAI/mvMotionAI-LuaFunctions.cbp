@@ -60,8 +60,6 @@
 		<Linker>
 			<Add directory="lib" />
 		</Linker>
-		<Unit filename="examples-src\LuaFunc.txt" />
-		<Unit filename="examples-src\LuaFuncTest.cpp" />
 		<Unit filename="examples-src\mvLua.cpp" />
 		<Unit filename="examples-src\mvLua.h" />
 		<Unit filename="examples-src\mvLua_CFunctions.cpp" />

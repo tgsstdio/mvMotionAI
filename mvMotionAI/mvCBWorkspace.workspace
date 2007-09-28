@@ -2,13 +2,16 @@
 <CodeBlocks_workspace_file>
 	<Workspace title="mvMotionAI Code Blocks Workspace">
 		<Project filename="mvMotion-CB.cbp" />
-		<Project filename="CustomAction.cbp">
+		<Project filename="tutorial1" active="1">
 			<Depends filename="mvMotion-CB.cbp" />
 		</Project>
 		<Project filename="mvMotion-GLMain.cbp">
 			<Depends filename="mvMotion-CB.cbp" />
 		</Project>
-		<Project filename="mvMotionAI-LuaFunctions.cbp" active="1">
+		<Project filename="CustomAction.cbp">
+			<Depends filename="mvMotion-CB.cbp" />
+		</Project>
+		<Project filename="mvMotionAI-LuaFunctions.cbp">
 			<Depends filename="mvMotion-CB.cbp" />
 		</Project>
 		<Project filename="mvMotionAI-TypeSizes.cbp" />
