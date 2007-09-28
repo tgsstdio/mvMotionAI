@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-winXP" />
-	<File name="examples-src\LuaFunc.txt" open="0" top="0" tabpos="0">
-		<Cursor position="33644" topLine="652" />
-	</File>
-	<File name="examples-src\LuaFuncTest.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="1215" topLine="0" />
-	</File>
 	<File name="examples-src\mvLua.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="1051" topLine="24" />
 	</File>
 	<File name="examples-src\mvLua.h" open="0" top="0" tabpos="2">
 		<Cursor position="67" topLine="0" />
 	</File>
-	<File name="examples-src\mvLua_CFunctions.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="54985" topLine="0" />
+	<File name="examples-src\mvLua_CFunctions.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="325" topLine="0" />
 	</File>
-	<File name="examples-src\mvLua_CFunctions.h" open="1" top="0" tabpos="1">
+	<File name="examples-src\mvLua_CFunctions.h" open="0" top="0" tabpos="1">
 		<Cursor position="5435" topLine="100" />
 	</File>
 </CodeBlocks_layout_file>
