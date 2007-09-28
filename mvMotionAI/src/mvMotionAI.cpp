@@ -4334,7 +4334,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvAddNodeToPathway(mvIndex worldIndex,\
 }
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveNodeFromPathway(mvIndex worldIndex,\
-   mvIndex nodeIndex, mvIndex pathwayIndex)
+   mvIndex pIndex, mvIndex nIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -4346,7 +4346,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveNodeFromPathway(mvIndex worldIndex,\
       {
          return MV_INVALID_WORLD_INDEX;
       }
-      return worldPtr->removeNodeFromPathway(nodeIndex,pathwayIndex);
+      return worldPtr->removeNodeFromPathway(pIndex,nIndex);
    }
    return error;
 }
@@ -4764,7 +4764,7 @@ MV_GLOBAL_FUNC_PREFIX void* mvGetWorldUserData(mvIndex worldIndex)
 
 // TODO : add waypoints to forces
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddForceIntoWaypoint(mvIndex worldIndex,\
-   mvIndex forceIndex, mvIndex waypointIndex)
+   mvIndex wIndex, mvIndex fIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -4776,13 +4776,13 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddForceIntoWaypoint(mvIndex worldIndex,\
       {
          return MV_INVALID_WORLD_INDEX;
       }
-      return worldPtr->addForceIntoWaypoint(forceIndex, waypointIndex);
+      return worldPtr->addForceIntoWaypoint(wIndex, fIndex);
    }
    return error;
 }
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveForceFromWaypoint(mvIndex worldIndex,\
-   mvIndex forceIndex, mvIndex waypointIndex)
+   mvIndex wIndex, mvIndex fIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -4794,7 +4794,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveForceFromWaypoint(mvIndex worldIndex,\
       {
          return MV_INVALID_WORLD_INDEX;
       }
-      return worldPtr->removeForceFromWaypoint(forceIndex, waypointIndex);
+      return worldPtr->removeForceFromWaypoint(wIndex, fIndex);
    }
    return error;
 }
@@ -5308,7 +5308,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllMembersFromGroup(\
    return error;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvIndex mvFindMemberFromGroup(mvIndex worldIndex,
+MV_GLOBAL_FUNC_PREFIX mvIndex mvFindMemberInGroup(mvIndex worldIndex,
    mvIndex groupIndex, mvIndex memberIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
@@ -5321,7 +5321,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvFindMemberFromGroup(mvIndex worldIndex,
       {
          return MV_NULL;
       }
-      return worldPtr->findMemberFromGroup(groupIndex, memberIndex);
+      return worldPtr->findMemberInGroup(groupIndex, memberIndex);
    }
    return MV_NULL;
 }

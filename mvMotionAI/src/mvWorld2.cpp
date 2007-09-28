@@ -2499,18 +2499,12 @@ mvErrorEnum mvWorld_V2::addMemberIntoGroup(mvIndex groupIndex, mvIndex mbrIndex)
    }
    mvGroupPtr tempGroup = tempCapsule->getClassPtr();
 
-   // set auto convert indexes to world flag then back
-   bool pastAutoConvertIndexFlag = bodies.getAutoConvertFlag();
-   bodies.setAutoConvertIndex(this->autoConvertIndex);
-   mvIndex convertedIndex = bodies.convertIndex(groupIndex);
-   bodies.setAutoConvertIndex(pastAutoConvertIndexFlag);
-
-   if (convertedIndex == MV_NULL)
+   if (mbrIndex == MV_NULL)
    {
-      return MV_BODY_INDEX_IS_INVALID;
+      return MV_INDEX_VALUE_IS_INVALID;
    }
 
-   mvErrorEnum error = tempGroup->addMember(convertedIndex);
+   mvErrorEnum error = tempGroup->addMember(mbrIndex);
    if (error == MV_NO_ERROR)
    {
       tempCapsule->hasChanged = true;
@@ -2531,18 +2525,12 @@ mvErrorEnum mvWorld_V2::removeMemberFromGroup(mvIndex groupIndex,
 
    mvGroupPtr tempGroup = tempCapsule->getClassPtr();
 
-   // TODO : set auto convert indexes to world flag then back
-   bool pastAutoConvertIndexFlag = bodies.getAutoConvertFlag();
-   bodies.setAutoConvertIndex(this->autoConvertIndex);
-   mvIndex convertedIndex = bodies.convertIndex(mbrIndex);
-   bodies.setAutoConvertIndex(pastAutoConvertIndexFlag);
-
-   if (convertedIndex == MV_NULL)
+   if (mbrIndex == MV_NULL)
    {
-      return MV_BODY_INDEX_IS_INVALID;
+      return MV_INDEX_VALUE_IS_INVALID;
    }
 
-   mvErrorEnum error = tempGroup->removeMember(convertedIndex);
+   mvErrorEnum error = tempGroup->removeMember(mbrIndex);
    if (error == MV_NO_ERROR)
    {
       tempCapsule->hasChanged = true;
@@ -2550,7 +2538,7 @@ mvErrorEnum mvWorld_V2::removeMemberFromGroup(mvIndex groupIndex,
    return error;
 }
 
-mvIndex mvWorld_V2::findMemberFromGroup(mvIndex groupIndex,mvIndex mbrIndex)
+mvIndex mvWorld_V2::findMemberInGroup(mvIndex groupIndex,mvIndex mbrIndex)
 {
    mvConstGroupPtr tempGroup = getConstGroupPtr(groupIndex);
 
@@ -3568,16 +3556,17 @@ mvIndex mvWorld_V2::addNodeToPathway(mvIndex pathwayIndex, mvIndex nodeIndex)
    return tempPathway->addNode(nodeIndex);
 }
 
-mvErrorEnum mvWorld_V2::removeNodeFromPathway(mvIndex wpIndex, mvIndex pIndex)
+mvErrorEnum mvWorld_V2::removeNodeFromPathway(mvIndex pathwayIndex,\
+   mvIndex nodeIndex)
 {
-   mvPathwayPtr tempPathway = getPathwayPtr(pIndex);
+   mvPathwayPtr tempPathway = getPathwayPtr(pathwayIndex);
 
    if (tempPathway == MV_NULL)
    {
       return MV_PATHWAY_INDEX_IS_INVALID;
    }
 
-   return tempPathway->removeFirstNodeInstance(wpIndex);
+   return tempPathway->removeFirstNodeInstance(nodeIndex);
 }
 
 mvErrorEnum mvWorld_V2::removeAllNodesFromPathway(mvIndex pwIndex)
@@ -4203,12 +4192,11 @@ mvIndex mvWorld_V2::getCurrentNodeOfPathway(mvIndex pwIndex) const
    return tempPathway->getCurrentNode();
 }
 
-mvErrorEnum mvWorld_V2::addForceIntoWaypoint(mvIndex forceIndex,\
-   mvIndex waypointIndex)
+mvErrorEnum mvWorld_V2::addForceIntoWaypoint(mvIndex wIndex, mvIndex fIndex)
 {
    mvWaypointCapsulePtr tempWaypointPtr = NULL;
    mvErrorEnum error;
-   mvForceCapsulePtr tempCapsulePtr = forces.getCapsulePtr(forceIndex);
+   mvForceCapsulePtr tempCapsulePtr = forces.getCapsulePtr(fIndex);
 
    if (tempCapsulePtr == MV_NULL)
    {
@@ -4216,14 +4204,15 @@ mvErrorEnum mvWorld_V2::addForceIntoWaypoint(mvIndex forceIndex,\
    }
 
    // convert index
-   mvIndex convertedWpIndex = waypoints.convertIndex(waypointIndex);
-   //std::cout << "Converted Index : " << convertedWpIndex << std::endl;
+   bool pastAutoConvertIndex = waypoints.getAutoConvertFlag();
+   waypoints.setAutoConvertIndex(this->autoConvertIndex);
+   mvIndex convertedWpIndex = waypoints.convertIndex(wIndex);
+   waypoints.setAutoConvertIndex(pastAutoConvertIndex);
 
    if (convertedWpIndex == MV_NULL)
    {
       return MV_WAYPOINT_INDEX_IS_INVALID;
    }
-
 
    error = tempCapsulePtr->addWaypoint(convertedWpIndex);
    if (error == MV_NO_ERROR)
@@ -4236,12 +4225,12 @@ mvErrorEnum mvWorld_V2::addForceIntoWaypoint(mvIndex forceIndex,\
    return error;
 }
 
-mvErrorEnum mvWorld_V2::removeForceFromWaypoint(mvIndex forceIndex,\
-   mvIndex waypointIndex)
+mvErrorEnum mvWorld_V2::removeForceFromWaypoint(mvIndex wIndex,\
+   mvIndex fIndex)
 {
    mvWaypointCapsulePtr tempWaypointPtr = NULL;
    mvErrorEnum error;
-   mvForceCapsulePtr tempCapsulePtr = forces.getCapsulePtr(forceIndex);
+   mvForceCapsulePtr tempCapsulePtr = forces.getCapsulePtr(fIndex);
 
    if (tempCapsulePtr == MV_NULL)
    {
@@ -4249,7 +4238,10 @@ mvErrorEnum mvWorld_V2::removeForceFromWaypoint(mvIndex forceIndex,\
    }
 
    // convert index
-   mvIndex convertedWpIndex = waypoints.convertIndex(waypointIndex);
+   bool pastAutoConvertIndex = waypoints.getAutoConvertFlag();
+   waypoints.setAutoConvertIndex(this->autoConvertIndex);
+   mvIndex convertedWpIndex = waypoints.convertIndex(wIndex);
+   waypoints.setAutoConvertIndex(pastAutoConvertIndex);
 
    if (convertedWpIndex == MV_NULL)
    {
@@ -4279,10 +4271,13 @@ mvErrorEnum mvWorld_V2::removeAllWaypointsFromForce(mvIndex forceIndex)
    return MV_NO_ERROR;
 }
 
-mvErrorEnum mvWorld_V2::removeAllForcesFromWaypoint(mvIndex waypointIndex)
+mvErrorEnum mvWorld_V2::removeAllForcesFromWaypoint(mvIndex wIndex)
 {
    // convert index
-   mvIndex convertedWpIndex = waypoints.convertIndex(waypointIndex);
+   bool pastAutoConvertIndex = waypoints.getAutoConvertFlag();
+   waypoints.setAutoConvertIndex(this->autoConvertIndex);
+   mvIndex convertedWpIndex = waypoints.convertIndex(wIndex);
+   waypoints.setAutoConvertIndex(pastAutoConvertIndex);
 
    if (convertedWpIndex == MV_NULL)
    {
@@ -4323,7 +4318,11 @@ mvErrorEnum mvWorld_V2::removeAllMembersFromGroup(mvIndex groupIndex)
 
 // TODO : register
 bool addGroupBehaviourMemberToList(mvIndex bodyIndex,
-   mvIndex behaviourIndex, mvIndex groupIndex, mvBaseActionPtr memberNodePtr);
+   mvIndex behaviourIndex, mvIndex groupIndex, mvBaseActionPtr memberNodePtr)
+{
+   return false;
+}
+
 // TODO : register
 
 void mvWorld_V2::registerAllGroupBehavioursToBodies()
