@@ -385,9 +385,9 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWaypointParameterv_str(\
    mvCount* noOfParameters);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddForceIntoWaypoint(mvIndex worldIndex,\
-   mvIndex forceIndex, mvIndex waypointIndex);
+   mvIndex waypointIndex, mvIndex forceIndex);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveForceFromWaypoint(mvIndex worldIndex,\
-   mvIndex forceIndex, mvIndex waypointIndex);
+   mvIndex waypointIndex, mvIndex forceIndex);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllWaypointsFromForce(\
    mvIndex worldIndex, mvIndex forceIndex);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllForcesFromWaypoint(\
@@ -563,7 +563,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayParameterv_str(mvIndex worldIndex,
 MV_GLOBAL_FUNC_PREFIX mvIndex mvAddNodeToPathway(mvIndex worldIndex,\
    mvIndex pathwayIndex, mvIndex nodeIndex);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveNodeFromPathway(mvIndex worldIndex,\
-   mvIndex nodeIndex, mvIndex pathwayIndex);
+   mvIndex pathwayIndex, mvIndex nodeIndex);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllNodesFromPathway(\
    mvIndex worldIndex,mvIndex pathwayIndex);
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentNodeOfPathway(mvIndex worldIndex,\
@@ -918,7 +918,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetUserData(mvIndex worldIndex,\
    mvParamEnum objectType, mvIndex objectIndex, void* userData);
 MV_GLOBAL_FUNC_PREFIX void* mvGetUserData(mvIndex worldIndex,\
    mvParamEnum objectType, mvIndex objectIndex);
-MV_GLOBAL_FUNC_PREFIX mvIndex mvFindMemberFromGroup(mvIndex worldIndex,
+MV_GLOBAL_FUNC_PREFIX mvIndex mvFindMemberInGroup(mvIndex worldIndex,
    mvIndex groupIndex, mvIndex memberIndex);
 
 #endif

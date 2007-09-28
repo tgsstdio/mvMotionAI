@@ -13,10 +13,10 @@
 	<File name="examples-src\mvLua.h" open="0" top="0" tabpos="2">
 		<Cursor position="67" topLine="0" />
 	</File>
-	<File name="examples-src\mvLua_CFunctions.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="1247" topLine="0" />
+	<File name="examples-src\mvLua_CFunctions.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="54985" topLine="0" />
 	</File>
-	<File name="examples-src\mvLua_CFunctions.h" open="0" top="0" tabpos="2">
-		<Cursor position="5319" topLine="99" />
+	<File name="examples-src\mvLua_CFunctions.h" open="1" top="0" tabpos="1">
+		<Cursor position="5435" topLine="100" />
 	</File>
 </CodeBlocks_layout_file>

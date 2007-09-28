@@ -168,6 +168,7 @@ lua_CFunction mvLua_LuaFunctionPointers[] =
    // 11
    mvLua_GetEntryListParameter,
    mvLua_RemoveAllGroupsFromGroupBehaviour,
+   mvLua_FindMemberInGroup,
 };
 
 const char* mvLua_CFuncFunctionNames[] =
@@ -285,6 +286,7 @@ const char* mvLua_CFuncFunctionNames[] =
 // 11
    "mvGetEntryListParameter",
    "mvRemoveAllGroupsFromGroupBehaviour",
+   "mvLua_FindMemberInGroup",
 };
 
 const char** mvLua_GetLuaFunctionNames()
@@ -1903,4 +1905,24 @@ int mvLua_GetEntryListParameter(lua_State* luaVM)
 int mvLua_RemoveAllGroupsFromGroupBehaviour(lua_State* luaVM)
 {
    return mvLua_DeleteAllNodesInItem(luaVM, mvRemoveAllGroupsFromGroupBehaviour);
+}
+
+int mvLua_FindMemberInGroup(lua_State* luaVM)
+{
+   mvIndex worldIndex, luaIndex, groupIndex, memberIndex, returnValue;
+
+   // WORLD INDEX
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   groupIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   ++luaIndex;
+   memberIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   returnValue = mvFindMemberInGroup(worldIndex, groupIndex, memberIndex);
+
+   lua_pushnumber(luaVM, returnValue);
+   return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
 }

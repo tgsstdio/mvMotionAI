@@ -747,25 +747,26 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
          mvIndex groupIndex);
       mvErrorEnum addMemberIntoGroup(mvIndex groupIndex, mvIndex memberIndex);
       mvErrorEnum removeMemberFromGroup(mvIndex groupIndex, mvIndex memberIndex);
-      mvIndex findMemberFromGroup(mvIndex groupIndex, mvIndex memberIndex);
+      mvIndex findMemberInGroup(mvIndex groupIndex, mvIndex memberIndex);
 
-      // TODO : Current Func Constant add / remove index order
-      mvIndex addNodeToPathway(mvIndex pathwayIndex, mvIndex nodeIndex);
-      // TODO : Constant add / remove index order
-      mvErrorEnum removeNodeFromPathway(mvIndex wpIndex, mvIndex pIndex);
       mvErrorEnum removeAllNodesFromPathway(mvIndex pwIndex);
       mvIndex getCurrentNodeOfPathway(mvIndex pwIndex) const;
       mvErrorEnum removePathwayNodeAt(mvIndex pwIndex, mvIndex nodeIndex);
 
-      mvErrorEnum addForceIntoWaypoint(mvIndex forceIndex,\
-         mvIndex waypointIndex);
-      mvErrorEnum removeForceFromWaypoint(mvIndex forceIndex,\
-         mvIndex waypointIndex);
       mvErrorEnum removeAllWaypointsFromForce(mvIndex forceIndex);
       mvErrorEnum removeAllForcesFromWaypoint(mvIndex waypointIndex);
       mvErrorEnum removeAllGroupsFromGroupBehaviour(mvIndex gbIndex);
-
       mvErrorEnum removeAllMembersFromGroup(mvIndex groupIndex);
+
+      mvIndex addNodeToPathway(mvIndex pathwayIndex, mvIndex nodeIndex);
+      mvErrorEnum removeNodeFromPathway(mvIndex pathwayIndex, mvIndex nodeIndex);
+
+      mvErrorEnum addForceIntoWaypoint(mvIndex waypointIndex,
+         mvIndex forceIndex);
+      // TODO : Current Func Constant add / remove index order
+      // TODO : Constant add / remove index order
+      mvErrorEnum removeForceFromWaypoint(mvIndex waypointIndex,\
+         mvIndex forceIndex);
 };
 
 
