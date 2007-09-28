@@ -55,6 +55,7 @@ class MV_GLOBAL_FUNC_PREFIX mvPointerList
       mvPointerList();
       ~mvPointerList();
       void setAutoConvertIndex(bool value);
+      bool getAutoConvertFlag() const;
       mvIndex addItem(mvClass itemPtr);
       mvErrorEnum deleteItem(mvIndex index);
       void deleteAllItems();

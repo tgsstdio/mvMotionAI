@@ -45,7 +45,7 @@ src/mvWorld2_Functions.cpp
 src/mvWorld2_Functions.h)
 
 SET(MV_HEADER_FILES
-include/mvmvActionLoaderList.h
+include/mv/mvActionLoaderList.h
 include/mv/mvBEntry.h
 include/mv/mvBEntryList.h
 include/mv/mvBEntryListNode.h
@@ -76,7 +76,6 @@ include/mv/mvIndexSet.h
 include/mv/mvMotionAI-Types.h
 include/mv/mvMotionAI-Utilities.h
 include/mv/mvMotionAI.h
-include/mv/mvMotionAI_V2-Central.h
 include/mv/mvNullLoader.h
 include/mv/mvObstacle_V2.h
 include/mv/mvPathway_V2.h
@@ -106,11 +105,19 @@ ENDIF(MSVC)
 
 MESSAGE("LIB DEFINES are ${LIB_FLAGS}")
 
-SET(MVMOTIONAI_LIB_NAME "libmvMotionAI")
-ADD_LIBRARY(${MVMOTIONAI_LIB_NAME} ${MV_SOURCE_FILES}
-   ${MV_HEADER_FILES})
-   
-SET(MVMOTIONAI_SHARED_LIB_NAME "libmvMotionAIShared")
-ADD_DEFINITIONS(-DMV_BUILD_DLL)
-ADD_LIBRARY(${MVMOTIONAI_SHARED_LIB_NAME} MODULE ${MV_SOURCE_FILES}
-   ${MV_HEADER_FILES})
+OPTION(LIB_FORMAT "Build LIbrary Format as DLL(ON) or Static (OFF)"
+  ON)
+IF(LIB_FORMAT)
+	SET(MVMOTIONAI_SHARED_LIB_NAME "libmvMotionAIShared")
+	ADD_DEFINITIONS(-DMV_BUILD_DLL)
+	ADD_LIBRARY(${MVMOTIONAI_SHARED_LIB_NAME} MODULE ${MV_SOURCE_FILES}
+	   ${MV_HEADER_FILES})
+ELSE(LIB_FORMAT)
+	SET(MVMOTIONAI_LIB_NAME "libmvMotionAI")
+	REMOVE_DEFINITIONS(LIB_FORMAT)
+	ADD_LIBRARY(${MVMOTIONAI_LIB_NAME} ${MV_SOURCE_FILES}
+	   ${MV_HEADER_FILES})
+ENDIF(LIB_FORMAT)	   
+INCLUDE(FindOpenGL)
+INCLUDE(FindGLUT)
+

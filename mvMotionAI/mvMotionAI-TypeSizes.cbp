@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="mvMotionAI Type Sizes " />
+		<Option title="mvMotionAI Type Sizes - WILL NOT COMPILE" />
 		<Option pch_mode="0" />
 		<Option compiler="gcc" />
 		<Build>
@@ -62,6 +62,7 @@
 		<Unit filename="examples-src\TypesSizeTest.cpp" />
 		<Extensions>
 			<code_completion />
+			<envvars />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

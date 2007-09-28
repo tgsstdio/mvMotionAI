@@ -1012,3 +1012,9 @@ mvCount mvPointerList<mvClass,mvConstClass>::getNoOfMaxSlots() const
 {
    return maxNoOfItems;
 }
+
+template <class mvClass, class mvConstClass>
+bool mvPointerList<mvClass,mvConstClass>::getAutoConvertFlag() const
+{
+   return autoConverIndexFlag;
+}

@@ -219,7 +219,6 @@ mvIndex mvWorld_V2::createForce_str(const char* fType)
 {
    mvOptionEnum optionType;
 
-   // TODO : BODY TEMPLATE
    if (!mvCheckAllOptionEnumsForString(fType, &optionType))
    {
       return MV_NULL;
@@ -1805,7 +1804,6 @@ mvIndex mvWorld_V2::createBody_str(const char* bType, const char* bShape,\
 {
    mvOptionEnum optionType, optionShape;
 
-   // TODO : BODY TEMPLATE
    if (!mvCheckAllOptionEnumsForString(bType, &optionType))
    {
       return MV_NULL;
@@ -2420,16 +2418,24 @@ mvErrorEnum mvWorld_V2::removeAllBehavioursFromList(mvIndex listIndex)
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::addGroupIntoGroupBehaviour(mvIndex groupIndex,\
-   mvIndex groupBehaviour)
+mvErrorEnum mvWorld_V2::addGroupIntoGroupBehaviour(mvIndex gbIndex,
+   mvIndex groupIndex)
 {
-   mvIndex tempGrpIndex = groups.convertIndex(groupIndex);
+   mvGroupBehaviourPtr tempGrpBehav = getGroupBehaviourPtr(gbIndex);
 
-   mvGroupBehaviourPtr tempGrpBehav = getGroupBehaviourPtr(groupBehaviour);
-
-   if (groupBehaviour == MV_NULL)
+   if (tempGrpBehav == MV_NULL)
    {
       return MV_GROUP_BEHAVIOUR_INDEX_IS_INVALID;
+   }
+
+   bool pastAutoConvertIndexFlag = groups.getAutoConvertFlag();
+   groups.setAutoConvertIndex(this->autoConvertIndex);
+   mvIndex tempGrpIndex = groups.convertIndex(groupIndex);
+   groups.setAutoConvertIndex(pastAutoConvertIndexFlag);
+
+   if (tempGrpIndex == MV_NULL)
+   {
+      return MV_GROUP_INDEX_IS_INVALID;
    }
 
    mvBaseActionPtr defaultActionPtr = tempGrpBehav->getDefaultActionPtr();
@@ -2461,23 +2467,60 @@ mvErrorEnum mvWorld_V2::addGroupIntoGroupBehaviour(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvWorld_V2::removeGroupFromGroupBehaviour(mvIndex groupIndex,\
-   mvIndex groupBehaviour)
+mvErrorEnum mvWorld_V2::removeGroupFromGroupBehaviour(mvIndex gbIndex,\
+   mvIndex groupIndex)
 {
-   mvIndex tempGrpIndex = groups.convertIndex(groupIndex);
-
-   mvGroupBehaviourPtr tempGrpBehav = getGroupBehaviourPtr(groupBehaviour);
-
-   if (groupBehaviour == MV_NULL)
+   mvGroupBehaviourPtr tempGrpBehav = getGroupBehaviourPtr(gbIndex);
+   if (tempGrpBehav == MV_NULL)
    {
       return MV_GROUP_BEHAVIOUR_INDEX_IS_INVALID;
+   }
+
+   // set auto convert indexes to world flag then back
+   bool pastAutoConvertIndexFlag = groups.getAutoConvertFlag();
+   groups.setAutoConvertIndex(this->autoConvertIndex);
+   mvIndex tempGrpIndex = groups.convertIndex(groupIndex);
+   groups.setAutoConvertIndex(pastAutoConvertIndexFlag);
+
+   if (tempGrpIndex == MV_NULL)
+   {
+      return MV_GROUP_INDEX_IS_INVALID;
    }
 
    return tempGrpBehav->removeGroup(tempGrpIndex);
 }
 
-mvErrorEnum mvWorld_V2::addMemberIntoGroup(mvIndex memberIndex,\
-   mvIndex groupIndex)
+mvErrorEnum mvWorld_V2::addMemberIntoGroup(mvIndex groupIndex, mvIndex mbrIndex)
+{
+   mvGroupCapsulePtr tempCapsule = groups.getCapsulePtr(groupIndex);
+   if (tempCapsule == MV_NULL)
+   {
+      return MV_GROUP_INDEX_IS_INVALID;
+   }
+   mvGroupPtr tempGroup = tempCapsule->getClassPtr();
+
+   // set auto convert indexes to world flag then back
+   bool pastAutoConvertIndexFlag = bodies.getAutoConvertFlag();
+   bodies.setAutoConvertIndex(this->autoConvertIndex);
+   mvIndex convertedIndex = bodies.convertIndex(groupIndex);
+   bodies.setAutoConvertIndex(pastAutoConvertIndexFlag);
+
+   if (convertedIndex == MV_NULL)
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+
+   mvErrorEnum error = tempGroup->addMember(convertedIndex);
+   if (error == MV_NO_ERROR)
+   {
+      tempCapsule->hasChanged = true;
+   }
+
+   return error;
+}
+
+mvErrorEnum mvWorld_V2::removeMemberFromGroup(mvIndex groupIndex,
+   mvIndex mbrIndex)
 {
    mvGroupCapsulePtr tempCapsule = groups.getCapsulePtr(groupIndex);
 
@@ -2488,7 +2531,18 @@ mvErrorEnum mvWorld_V2::addMemberIntoGroup(mvIndex memberIndex,\
 
    mvGroupPtr tempGroup = tempCapsule->getClassPtr();
 
-   mvErrorEnum error = tempGroup->addMember(memberIndex);
+   // TODO : set auto convert indexes to world flag then back
+   bool pastAutoConvertIndexFlag = bodies.getAutoConvertFlag();
+   bodies.setAutoConvertIndex(this->autoConvertIndex);
+   mvIndex convertedIndex = bodies.convertIndex(mbrIndex);
+   bodies.setAutoConvertIndex(pastAutoConvertIndexFlag);
+
+   if (convertedIndex == MV_NULL)
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+
+   mvErrorEnum error = tempGroup->removeMember(convertedIndex);
    if (error == MV_NO_ERROR)
    {
       tempCapsule->hasChanged = true;
@@ -2496,28 +2550,7 @@ mvErrorEnum mvWorld_V2::addMemberIntoGroup(mvIndex memberIndex,\
    return error;
 }
 
-mvErrorEnum mvWorld_V2::removeMemberFromGroup(mvIndex memberIndex,\
-   mvIndex groupIndex)
-{
-   mvGroupCapsulePtr tempCapsule = groups.getCapsulePtr(groupIndex);
-
-   if (tempCapsule == MV_NULL)
-   {
-      return MV_GROUP_INDEX_IS_INVALID;
-   }
-
-   mvGroupPtr tempGroup = tempCapsule->getClassPtr();
-
-   mvErrorEnum error = tempGroup->removeMember(memberIndex);
-   if (error == MV_NO_ERROR)
-   {
-      tempCapsule->hasChanged = true;
-   }
-   return error;
-}
-
-mvErrorEnum mvWorld_V2::findMemberFromGroup(mvIndex memberIndex,\
-   mvIndex groupIndex) const
+mvIndex mvWorld_V2::findMemberFromGroup(mvIndex groupIndex,mvIndex mbrIndex)
 {
    mvConstGroupPtr tempGroup = getConstGroupPtr(groupIndex);
 
@@ -2526,7 +2559,18 @@ mvErrorEnum mvWorld_V2::findMemberFromGroup(mvIndex memberIndex,\
       return MV_GROUP_INDEX_IS_INVALID;
    }
 
-   return tempGroup->findMember(memberIndex);
+   // TODO : set auto convert indexes to world flag then back
+   bool pastAutoConvertIndexFlag = bodies.getAutoConvertFlag();
+   bodies.setAutoConvertIndex(this->autoConvertIndex);
+   mvIndex convertedIndex = bodies.convertIndex(mbrIndex);
+   bodies.setAutoConvertIndex(pastAutoConvertIndexFlag);
+
+   if (convertedIndex == MV_NULL)
+   {
+      return MV_BODY_INDEX_IS_INVALID;
+   }
+
+   return tempGroup->findMember(convertedIndex);
 }
 
 /** @brief (one liner)
@@ -3512,16 +3556,16 @@ mvBodyCapsulePtr mvWorld_V2::getBodyCapsulePtr(int index)
    return bodies.getCapsulePtr(index);
 }
 
-mvIndex mvWorld_V2::addNodeToPathway(mvIndex nIndex, mvIndex pIndex)
+mvIndex mvWorld_V2::addNodeToPathway(mvIndex pathwayIndex, mvIndex nodeIndex)
 {
-   mvPathwayPtr tempPathway = getPathwayPtr(pIndex);
+   mvPathwayPtr tempPathway = getPathwayPtr(pathwayIndex);
 
    if (tempPathway == MV_NULL)
    {
       return MV_PATHWAY_INDEX_IS_INVALID;
    }
 
-   return tempPathway->addNode(nIndex);
+   return tempPathway->addNode(nodeIndex);
 }
 
 mvErrorEnum mvWorld_V2::removeNodeFromPathway(mvIndex wpIndex, mvIndex pIndex)

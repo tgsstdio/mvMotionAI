@@ -3666,8 +3666,8 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameterv_str(\
    return error;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddMemberIntoGroup(mvIndex worldIndex, mvIndex memberIndex,
-   mvIndex groupIndex)
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddMemberIntoGroup(mvIndex worldIndex,\
+   mvIndex groupIndex, mvIndex memberIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -3677,13 +3677,13 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddMemberIntoGroup(mvIndex worldIndex, mvInd
       worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
       if (worldPtr == MV_NULL)
          return MV_INVALID_WORLD_INDEX;
-      return worldPtr->addMemberIntoGroup(memberIndex,groupIndex);
+      return worldPtr->addMemberIntoGroup(groupIndex,memberIndex);
    }
    return error;
 }
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddGroupIntoGroupBehaviour(\
-   mvIndex worldIndex,mvIndex groupIndex, mvIndex groupBehaviour)
+   mvIndex worldIndex,mvIndex gbIndex, mvIndex groupIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -3693,13 +3693,13 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddGroupIntoGroupBehaviour(\
       worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
       if (worldPtr == MV_NULL)
          return MV_INVALID_WORLD_INDEX;
-      return worldPtr->addGroupIntoGroupBehaviour(groupIndex, groupBehaviour);
+      return worldPtr->addGroupIntoGroupBehaviour(gbIndex,groupIndex);
    }
    return error;
 }
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveGroupFromGroupBehaviour(\
-   mvIndex worldIndex, mvIndex groupIndex, mvIndex groupBehaviour)
+   mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -3709,8 +3709,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveGroupFromGroupBehaviour(\
       worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
       if (worldPtr == MV_NULL)
          return MV_INVALID_WORLD_INDEX;
-      return worldPtr->removeGroupFromGroupBehaviour(groupIndex,\
-         groupBehaviour);
+      return worldPtr->removeGroupFromGroupBehaviour(gbIndex, groupIndex);
    }
    return error;
 }
@@ -4317,7 +4316,7 @@ MV_GLOBAL_FUNC_PREFIX void* mvGetUserData(mvIndex worldIndex,\
 }
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvAddNodeToPathway(mvIndex worldIndex,\
-   mvIndex nIndex, mvIndex pIndex)
+   mvIndex pathwayIndex, mvIndex nodeIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -4329,7 +4328,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvAddNodeToPathway(mvIndex worldIndex,\
       {
          return MV_INVALID_WORLD_INDEX;
       }
-      return worldPtr->addNodeToPathway(nIndex,pIndex);
+      return worldPtr->addNodeToPathway(pathwayIndex,nodeIndex);
    }
    return MV_NULL;
 }
@@ -5274,7 +5273,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetMainGroupBehaviourParameterv_str(\
 }
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveMemberFromGroup(mvIndex worldIndex,\
-   mvIndex groupIndex, mvIndex bodyIndex)
+   mvIndex groupIndex, mvIndex memberIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -5286,7 +5285,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveMemberFromGroup(mvIndex worldIndex,\
       {
          return MV_INVALID_WORLD_INDEX;
       }
-      return worldPtr->removeMemberFromGroup(groupIndex, bodyIndex);
+      return worldPtr->removeMemberFromGroup(groupIndex, memberIndex);
    }
    return error;
 }
@@ -5307,4 +5306,22 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllMembersFromGroup(\
       return worldPtr->removeAllMembersFromGroup(groupIndex);
    }
    return error;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvIndex mvFindMemberFromGroup(mvIndex worldIndex,
+   mvIndex groupIndex, mvIndex memberIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_NULL;
+      }
+      return worldPtr->findMemberFromGroup(groupIndex, memberIndex);
+   }
+   return MV_NULL;
 }
