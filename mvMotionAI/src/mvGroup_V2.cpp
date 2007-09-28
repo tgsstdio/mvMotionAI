@@ -15,7 +15,7 @@ mvErrorEnum mvGroup_V2::addMember(mvIndex memberIndex)
    return members.addIndex(memberIndex);
 }
 
-mvErrorEnum mvGroup_V2::findMember(mvIndex memberIndex) const
+mvIndex mvGroup_V2::findMember(mvIndex memberIndex) const
 {
    return members.findIndex(memberIndex);
 }
@@ -171,4 +171,8 @@ mvErrorEnum mvGroup_V2::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
    return MV_INVALID_GROUP_PARAMETER;
 }
 
+mvGroupIterator mvGroup_V2::getGroupIterator() const
+{
+   return members.getUniqueSetIterator();
+}
 

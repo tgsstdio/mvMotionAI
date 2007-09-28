@@ -66,6 +66,19 @@ class MV_GLOBAL_FUNC_PREFIX mvIndexSet
       ~mvIndexSet();
 };
 
+class MV_GLOBAL_FUNC_PREFIX mvUniqueSetIterator
+{
+   private:
+      const std::set<mvIndex>& currentIndexSet;
+      std::set<mvIndex>::const_iterator mvCurrentIter;
+   public:
+      mvUniqueSetIterator(const std::set<mvIndex>& currentIndexSet);
+      void beginLoop();
+      bool isLoopFinished() const;
+      mvIndex getCurrentIndex() const;
+      void nextIndex();
+};
+
 class MV_GLOBAL_FUNC_PREFIX mvUniqueSet
 {
    private:
@@ -74,10 +87,12 @@ class MV_GLOBAL_FUNC_PREFIX mvUniqueSet
 
    public:
       mvUniqueSet();
-      mvErrorEnum findIndex(mvIndex index) const;
+      mvIndex findIndex(mvIndex index) const;
       mvErrorEnum addIndex(mvIndex index);
       mvErrorEnum removeIndex(mvIndex index);
       mvCount getNoOfIndexes() const;
+      // TODO : complete this function
+      mvUniqueSetIterator getUniqueSetIterator() const;
 
       // iterator functions
       void beginLoop();

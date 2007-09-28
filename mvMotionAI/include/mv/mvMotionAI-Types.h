@@ -163,6 +163,7 @@ typedef class mvForceCapsule const * const mvConstForceCapsulePtr;
 
 #define MV_GROUP_HEADER_FILE_H_ <mv/mvGroup_V2.h>
 typedef class mvGroup_V2 mvGroup;
+typedef class mvUniqueSetIterator mvGroupIterator;
 typedef class mvGroup_V2* mvGroupPtr;
 typedef class mvGroup_V2 const * const mvConstGroupPtr;
 

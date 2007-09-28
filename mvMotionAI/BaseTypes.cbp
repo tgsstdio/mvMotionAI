@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="BaseTypes" />
+		<Option title="BaseTypes - WILL NOT COMPILE" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -23,6 +23,7 @@
 		<Unit filename="experimental\include\mvBaseWorld.h" />
 		<Extensions>
 			<code_completion />
+			<envvars />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

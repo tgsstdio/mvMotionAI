@@ -122,18 +122,18 @@ mvUniqueSet::mvUniqueSet()
    beginLoop();
 }
 
-mvErrorEnum mvUniqueSet::findIndex(mvIndex index) const
+mvIndex mvUniqueSet::findIndex(mvIndex index) const
 {
    std::set<mvIndex>::const_iterator found;
 
    found = indexes.find(index);
    if (found == indexes.end())
    {
-      return MV_ITEM_NOT_FOUND_IN_LIST;
+      return MV_NULL;
    }
    else
    {
-      return MV_NO_ERROR;
+      return *found;
    }
 }
 
@@ -211,3 +211,45 @@ mvUniqueSet::~mvUniqueSet()
 {
    clearAll();
 }
+
+mvUniqueSetIterator mvUniqueSet::getUniqueSetIterator() const
+{
+   return mvUniqueSetIterator(indexes);
+}
+
+mvUniqueSetIterator::mvUniqueSetIterator(const std::set<mvIndex>& currentSet)
+   : currentIndexSet(currentSet)
+{
+   beginLoop();
+}
+
+void mvUniqueSetIterator::beginLoop()
+{
+   mvCurrentIter = currentIndexSet.begin();
+}
+
+bool mvUniqueSetIterator::isLoopFinished() const
+{
+   return (mvCurrentIter == currentIndexSet.end());
+}
+
+mvIndex mvUniqueSetIterator::getCurrentIndex() const
+{
+   if (isLoopFinished())
+   {
+      return MV_NULL;
+   }
+   else
+   {
+      return *mvCurrentIter;
+   }
+}
+
+void mvUniqueSetIterator::nextIndex()
+{
+   if (!isLoopFinished())
+   {
+      ++mvCurrentIter;
+   }
+}
+

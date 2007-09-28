@@ -379,3 +379,9 @@ mvConstCapsulePtr mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsul
 {
    return itemList.getConstClassPtr(index);
 }
+
+template <class mvClass, class mvConstClass, class mvCapsulePtr, class mvConstCapsulePtr>
+bool mvCapsuleList<mvClass,mvConstClass, mvCapsulePtr,mvConstCapsulePtr>::getAutoConvertFlag() const
+{
+   return itemList.getAutoConvertFlag();
+}

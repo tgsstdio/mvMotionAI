@@ -733,8 +733,6 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
       void* getUserData(mvParamEnum objectType, mvIndex objectIndex) const;
 
 
-      // TODO : Constant add / remove index order
-
       mvIndex addBehaviourToList(mvIndex listIndex, mvOptionEnum bType,\
          mvIndex behaviourIndex, mvIndex groupIndex);
       mvIndex addBehaviourToList_str(mvIndex listIndex, const char* bType,\
@@ -743,18 +741,17 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
       mvErrorEnum removeAllBehavioursFromList(mvIndex listIndex);
       mvIndex getCurrentEntryFromList(mvIndex listIndex) const;
 
-      mvErrorEnum addGroupIntoGroupBehaviour(mvIndex groupIndex,\
-         mvIndex groupBehaviour);
-      mvErrorEnum removeGroupFromGroupBehaviour(mvIndex groupIndex,\
-         mvIndex groupBehaviour);
-      mvErrorEnum addMemberIntoGroup(mvIndex memberIndex, mvIndex groupIndex);
-      mvErrorEnum removeMemberFromGroup(mvIndex memberIndex, mvIndex groupIndex);
+      mvErrorEnum addGroupIntoGroupBehaviour(mvIndex groupBehaviour,\
+         mvIndex groupIndex);
+      mvErrorEnum removeGroupFromGroupBehaviour(mvIndex groupBehaviour,\
+         mvIndex groupIndex);
+      mvErrorEnum addMemberIntoGroup(mvIndex groupIndex, mvIndex memberIndex);
+      mvErrorEnum removeMemberFromGroup(mvIndex groupIndex, mvIndex memberIndex);
+      mvIndex findMemberFromGroup(mvIndex groupIndex, mvIndex memberIndex);
 
-      // TODO : check error value
-      mvErrorEnum findMemberFromGroup(mvIndex memberIndex, mvIndex groupIndex)
-         const;
-
-      mvIndex addNodeToPathway(mvIndex nIndex, mvIndex pIndex);
+      // TODO : Current Func Constant add / remove index order
+      mvIndex addNodeToPathway(mvIndex pathwayIndex, mvIndex nodeIndex);
+      // TODO : Constant add / remove index order
       mvErrorEnum removeNodeFromPathway(mvIndex wpIndex, mvIndex pIndex);
       mvErrorEnum removeAllNodesFromPathway(mvIndex pwIndex);
       mvIndex getCurrentNodeOfPathway(mvIndex pwIndex) const;

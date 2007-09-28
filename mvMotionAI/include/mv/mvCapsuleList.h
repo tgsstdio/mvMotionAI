@@ -69,6 +69,7 @@ class mvCapsuleList
       mvCapsuleList();
       ~mvCapsuleList();
       void setAutoConvertIndex(bool value);
+      bool getAutoConvertFlag() const;
       mvIndex addItem(mvCapsulePtr capsulePtr);
       mvErrorEnum deleteItem(mvIndex index);
       //mvErrorEnum deleteCurrentItem();

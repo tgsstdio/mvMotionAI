@@ -561,7 +561,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayParameterv_str(mvIndex worldIndex,
 
 // add waypoints to paths or Pathway Node
 MV_GLOBAL_FUNC_PREFIX mvIndex mvAddNodeToPathway(mvIndex worldIndex,\
-   mvIndex nIndex, mvIndex pIndex);
+   mvIndex pathwayIndex, mvIndex nodeIndex);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveNodeFromPathway(mvIndex worldIndex,\
    mvIndex nodeIndex, mvIndex pathwayIndex);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllNodesFromPathway(\
@@ -673,15 +673,14 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupParametero_str(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupParameterf_str(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* num);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupParameterv_str(mvIndex worldIndex,\
-   mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameters)\
-  ;
+   mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameters);
 
 // TODO : GROUP ADD/REMOVE MEMBERS
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddMemberIntoGroup(mvIndex worldIndex,\
    mvIndex mIndex, mvIndex groupIndex);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveMemberFromGroup(mvIndex worldIndex,\
-   mvIndex mIndex, mvIndex groupIndex);
+   mvIndex groupIndex, mvIndex memberIndex);
 
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllMembersFromGroup(\
@@ -689,10 +688,13 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllMembersFromGroup(\
 
 
 // TODO : GROUP SET OPERATIONS LATER
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvCombineGroups(mvIndex worldIndex, mvIndex groupA, mvIndex groupB, mvOptionEnum operation);
+/*
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvCombineGroups(mvIndex worldIndex,
+   mvIndex groupA, mvIndex groupB, mvOptionEnum operation);
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetOperationOnGroup(mvIndex worldIndex, mvIndex groupIndex, mvOptionEnum operation);
-
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetOperationOnGroup(mvIndex worldIndex,
+   mvIndex groupIndex, mvOptionEnum operation);
+*/
 
 //=============
 // GROUP BEHAVIOURS
@@ -715,7 +717,6 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteGroupBehaviour(mvIndex worldIndex,\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteAllGroupBehaviours(\
    mvIndex worldIndex);
 
-// TODO : main group functiosn
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllGroupsFromGroupBehaviour(\
    mvIndex worldIndex, mvIndex gbIndex);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetMainGroupBehaviourParameteri(\
@@ -816,9 +817,9 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameterv_str(\
 
 // add group to group behaviours
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddGroupIntoGroupBehaviour(\
-   mvIndex worldIndex,mvIndex groupIndex, mvIndex groupBehaviour);
+   mvIndex worldIndex,mvIndex groupBehaviour, mvIndex groupIndex);
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveGroupFromGroupBehaviour(\
-   mvIndex worldIndex, mvIndex groupIndex, mvIndex groupBehaviour);
+   mvIndex worldIndex, mvIndex groupBehaviour, mvIndex groupIndex);
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetEntryListNodeParameteri(\
    mvIndex worldIndex, mvIndex listIndex, mvIndex nodeIndex,\
@@ -917,5 +918,8 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetUserData(mvIndex worldIndex,\
    mvParamEnum objectType, mvIndex objectIndex, void* userData);
 MV_GLOBAL_FUNC_PREFIX void* mvGetUserData(mvIndex worldIndex,\
    mvParamEnum objectType, mvIndex objectIndex);
+MV_GLOBAL_FUNC_PREFIX mvIndex mvFindMemberFromGroup(mvIndex worldIndex,
+   mvIndex groupIndex, mvIndex memberIndex);
+
 #endif
 

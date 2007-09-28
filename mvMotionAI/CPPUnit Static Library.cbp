@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="CPPUnit static library" />
+		<Option title="CPPUnit static library - WILL NOT COMPILE" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -82,6 +82,7 @@
 		<Unit filename="test\MoneyTest.h" />
 		<Extensions>
 			<code_completion />
+			<envvars />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

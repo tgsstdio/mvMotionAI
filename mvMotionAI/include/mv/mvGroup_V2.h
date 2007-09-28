@@ -41,6 +41,8 @@
 #define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
 #endif
 
+//TODO : group iterator class
+
 class MV_GLOBAL_FUNC_PREFIX mvGroup_V2
 {
    protected:
@@ -52,7 +54,7 @@ class MV_GLOBAL_FUNC_PREFIX mvGroup_V2
       bool isEnabled;
 
       mvErrorEnum addMember(mvIndex memberIndex);
-      mvErrorEnum findMember(mvIndex memberIndex) const;
+      mvIndex findMember(mvIndex memberIndex) const;
       mvErrorEnum removeMember(mvIndex memberIndex);
       mvCount getNoOfMembers() const;
       void clearAll();
@@ -61,6 +63,7 @@ class MV_GLOBAL_FUNC_PREFIX mvGroup_V2
       bool areMembersFinished() const;
       mvIndex getCurrentMember() const;
       void toNextMember();
+      mvGroupIterator getGroupIterator() const;
 
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
       mvErrorEnum getParametero(mvParamEnum paramFlag, mvOptionEnum* option)\
