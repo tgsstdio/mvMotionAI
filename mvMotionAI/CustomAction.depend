@@ -40,8 +40,23 @@
 	"TimedHop.h"
 	<iostream>
 
-1190079798 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
+1190961076 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
 	<mv/mvMotionAI-Types.h>
 
-1189743986 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
+1190950726 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
+
+1190961544 source:d:\mvmotionai\mvmotionai\examples-src\tutorial3\timedhop.cpp
+	"TimedHop.h"
+	<iostream>
+
+1190961542 d:\mvmotionai\mvmotionai\examples-src\tutorial3\timedhop.h
+	<mv/mvMotionAI.h>
+
+1191048214 source:d:\mvmotionai\mvmotionai\examples-src\tutorial3\customactionglmain.cpp
+	<GL/glut.h>
+	<iostream>
+	"../Camera.h"
+	<cstdlib>
+	<mv/mvMotionAI.h>
+	"TimedHop.h"
 

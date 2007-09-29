@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="tutorial1 - C++ console application" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="mingw-winXP-debug">
+				<Option platforms="Windows;" />
+				<Option output="bin\tutorial1-winXP-debug.exe" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option external_deps="lib\libmvMotionAI-mingw-debug.a;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="lib\libmvMotionAI-mingw-debug.a" />
+				</Linker>
+			</Target>
+			<Target title="mingw-winXP">
+				<Option platforms="Windows;" />
+				<Option output="bin\tutorial1-winXP.exe" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option external_deps="lib\libmvMotionAI-mingw.a;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Linker>
+					<Add library="lib\libmvMotionAI-mingw.a" />
+				</Linker>
+			</Target>
+			<Target title="mingw-winXP-dll">
+				<Option platforms="Windows;" />
+				<Option output="bin\tutorial1-winXP-dll.exe" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option external_deps="bin\libmvMotionAI-mingw-dll.def;bin\libmvMotionAI-mingw-dll.a;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Linker>
+					<Add library="bin\libmvMotionAI-mingw-dll.a" />
+					<Add directory="bin" />
+				</Linker>
+			</Target>
+			<Target title="mingw-winXP-dll-debug">
+				<Option platforms="Windows;" />
+				<Option output="bin\tutorial1-winXP-dll-debug.exe" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option external_deps="bin\libmvMotionAI-mingw-dll-debug.a;bin\libmvMotionAI-mingw-dll-debug.def;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Linker>
+					<Add library="bin\libmvMotionAI-mingw-dll-debug.a" />
+					<Add directory="bin" />
+				</Linker>
+			</Target>
+			<Target title="ubuntu">
+				<Option platforms="Unix;Mac;" />
+				<Option output="bin\Debug\tutorial1-ubuntu.exe" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option external_deps="lib\libmvMotionAI-ubuntu.a;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Linker>
+					<Add library="lib\libmvMotionAI-ubuntu.a" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Os" />
+			<Add option="-O3" />
+			<Add option="-O2" />
+			<Add option="-O1" />
+			<Add option="-O" />
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add directory="include" />
+		</Compiler>
+		<Linker>
+			<Add directory="lib" />
+		</Linker>
+		<Unit filename="examples-src\tutorial1\tutorial1.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

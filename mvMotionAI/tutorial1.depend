@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1190964860 source:d:\mvmotionai\mvmotionai\examples-src\tutorial1\tutorial1.cpp
+	<mv/mvMotionAI.h>
+	<iostream>
+
+1190961076 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
+	<mv/mvMotionAI-Types.h>
+
+1190950726 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
+

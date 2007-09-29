@@ -1,5 +1,6 @@
 /**
- * \brief How to implement custom behaviours to the mvMotionAI system
+ * \brief tutorial3 :
+ * How to implement custom behaviours to the mvMotionAI system
  *
  * Copyright (c) 2005 - 2006 David Young.
  *
@@ -24,7 +25,7 @@
 
 #include <GL/glut.h>
 #include <iostream>
-#include "Camera.h"
+#include "../Camera.h"
 #include <cstdlib>
 
 /*
@@ -88,7 +89,7 @@ int main(int argc, char** argv)
    glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
    glutInitWindowSize (windowWidth, windowHeight);
    glutInitWindowPosition (100, 100);
-   glutCreateWindow (argv[0]);
+   glutCreateWindow("tutorial3 :implementing a custom behaviour in mvMotionAI");
 
    // ignore : more application based OpenGL startup code
    init ();
@@ -185,7 +186,7 @@ void display(void)
     */
 
    animateFlag = (isAnimating) ? yes_animation : no_animation;
-   sprintf(buffer,"mvMotionAI, 2006\nFrame Rate : %3.3f fps\n%s\n%s\n",frameRateInterval,animateFlag,camera_keys);
+   sprintf(buffer,"tutorial3, 2007\nFrame Rate : %3.3f fps\n%s\n%s\n",frameRateInterval,animateFlag,camera_keys);
 
    drawText(5, windowHeight - 13, buffer ,windowWidth,windowHeight, 1.0, 1.0, 1.0);
    glFlush();
