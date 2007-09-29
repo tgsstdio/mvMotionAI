@@ -348,8 +348,15 @@
 1187586218 d:\mvmotionai\mvmotionai\experimental\include\mvuniformforce.h
 	"mvMotionAI-Types.h"
 
-1190079798 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
+1190961076 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
 	<mv/mvMotionAI-Types.h>
 
-1189743986 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
+1190950726 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
+
+1191047544 source:d:\mvmotionai\mvmotionai\examples-src\tutorial2\glmain.cpp
+	<GL/glut.h>
+	<iostream>
+	"../Camera.h"
+	<cstdlib>
+	<mv/mvMotionAI.h>
 

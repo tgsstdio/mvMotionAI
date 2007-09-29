@@ -105,7 +105,7 @@
 		</Linker>
 		<Unit filename="examples-src\Camera.cpp" />
 		<Unit filename="examples-src\Camera.h" />
-		<Unit filename="examples-src\GLMain.cpp" />
+		<Unit filename="examples-src\tutorial2\GLMain.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
