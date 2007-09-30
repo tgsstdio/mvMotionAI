@@ -1,11 +1,17 @@
+version 00-02-13+ (29 Sept 2007)
+first version of SourceForge release
+summaries of changes
+-new base action (custom behaviour format) 
+-new base forces (custom force format)
+
+TODO: past log changes
+
 version 00-01-23+
 EXPERIMENTAL (Should not compile)
 - template class mvItemList 
 - mvWorld_V2 world instance
 - new behaviour creation functions
 - new inheritable mvBaseBehaviour superclass
-
- 
 
 version 00-01-22
 - debugging flag changes
