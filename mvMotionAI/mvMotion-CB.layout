@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="mingw-winXP-dll" />
+	<ActiveTarget name="All" />
 	<File name="include\mv\mvActionLoaderList.h" open="0" top="0" tabpos="0">
 		<Cursor position="1718" topLine="9" />
 	</File>

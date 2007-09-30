@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_workspace_file>
 	<Workspace title="mvMotionAI Code Blocks Workspace">
-		<Project filename="mvMotion-CB.cbp" />
-		<Project filename="tutorial1.cbp" />
+		<Project filename="mvMotion-CB.cbp" active="1" />
+		<Project filename="tutorial1.cbp">
+			<Depends filename="mvMotion-CB.cbp" />
+		</Project>
 		<Project filename="mvMotion-GLMain.cbp">
 			<Depends filename="mvMotion-CB.cbp" />
 		</Project>
 		<Project filename="CustomAction.cbp">
 			<Depends filename="mvMotion-CB.cbp" />
 		</Project>
-		<Project filename="mvMotionAI-LuaFunctions.cbp" active="1">
+		<Project filename="mvMotionAI-LuaFunctions.cbp">
 			<Depends filename="mvMotion-CB.cbp" />
 		</Project>
 		<Project filename="mvMotionAI-TypeSizes.cbp" />

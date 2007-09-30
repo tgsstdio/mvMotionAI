@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="mingw-winXP-dll" />
+	<ActiveTarget name="default" />
 	<File name="examples-src\Camera.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="0" topLine="63" />
 	</File>
 	<File name="examples-src\Camera.h" open="0" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="examples-src\tutorial2\GLMain.cpp" open="1" top="0" tabpos="1">
+	<File name="examples-src\tutorial2\GLMain.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="8998" topLine="252" />
 	</File>
 </CodeBlocks_layout_file>

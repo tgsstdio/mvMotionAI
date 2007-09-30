@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="default">
-				<Option output="bin\mvMotionAI-LuaFunctions.exe" prefix_auto="0" extension_auto="0" />
+				<Option output="bin\sideproject1.exe" prefix_auto="0" extension_auto="0" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option projectResourceIncludeDirsRelation="1" />
@@ -17,7 +17,7 @@
 				</Linker>
 			</Target>
 			<Target title="mingw-winXP">
-				<Option output="bin\mvMotionAI-LuaFunctions.exe" prefix_auto="0" extension_auto="0" />
+				<Option output="bin\sideproject1-winXP.exe" prefix_auto="0" extension_auto="0" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option projectResourceIncludeDirsRelation="1" />
@@ -36,7 +36,7 @@
 				</Linker>
 			</Target>
 			<Target title="ubuntu">
-				<Option output="bin\mv-luafunc-ubuntu.exe" prefix_auto="1" extension_auto="1" />
+				<Option output="bin\sideproject1-ubuntu.exe" prefix_auto="1" extension_auto="1" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option projectResourceIncludeDirsRelation="1" />
