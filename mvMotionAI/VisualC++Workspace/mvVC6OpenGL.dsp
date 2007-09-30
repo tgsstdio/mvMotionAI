@@ -91,10 +91,6 @@ LINK32=link.exe
 
 SOURCE="..\examples-src\Camera.cpp"
 # End Source File
-# Begin Source File
-
-SOURCE="..\examples-src\GLMain.cpp"
-# End Source File
 # End Group
 # Begin Group "Header Files"
 
