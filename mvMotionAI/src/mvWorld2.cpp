@@ -1863,7 +1863,12 @@ mvIndex mvWorld_V2::createBody(mvOptionEnum bType, mvOptionEnum bShape,\
   */
  mvWorld_V2::~mvWorld_V2()
 {
-
+   //deleteAllBodies();
+   //deleteAllObstacles();
+   //deleteAllForces();
+   //deleteAllGroupBehaviours();
+   //deleteAllGroups();
+   //deleteAllWaypoints();
 }
 
 void mvWorld_V2::setWorldUserData(void* tempData)

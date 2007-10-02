@@ -76,9 +76,12 @@
 		<Linker>
 			<Add directory="lib" />
 		</Linker>
-		<Unit filename="examples-src/mvLua.cpp" />
-		<Unit filename="examples-src/mvLua.h" />
+		<Unit filename="examples-src/sideproject1/LuaFunc.txt" />
 		<Unit filename="examples-src/sideproject1/LuaFuncTest.cpp" />
+		<Unit filename="examples-src/sideproject1/mvLua.cpp" />
+		<Unit filename="examples-src/sideproject1/mvLua.h" />
+		<Unit filename="examples-src/sideproject1/mvLua_CFunctions.cpp" />
+		<Unit filename="examples-src/sideproject1/mvLua_CFunctions.h" />
 		<Extensions>
 			<code_completion />
 		</Extensions>

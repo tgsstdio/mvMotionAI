@@ -450,11 +450,17 @@ mvEntryListNodePtr mvBEntryList::findExistingGroupEntry(mvIndex bIndex,\
    return NULL;
 }
 
+#define MV_ENTRY_LIST_DEFAULT_WEIGHT (1)
+#define MV_ENTRY_LIST_DEFAULT_PERIOD (1)
+#define MV_ENTRY_LIST_DEFAULT_ELAPSED_TIME (0)
+
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
  mvBEntryList::mvBEntryList()
+  : defaultNodeTimerFlags(MV_ENTRY_LIST_DEFAULT_WEIGHT,\
+      MV_ENTRY_LIST_DEFAULT_PERIOD, MV_ENTRY_LIST_DEFAULT_ELAPSED_TIME)
 {
    isEnabled = true;
    defaultBody = MV_NULL;

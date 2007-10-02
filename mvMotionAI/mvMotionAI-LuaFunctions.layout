@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="unix debug" />
-	<File name="examples-src/mvLua.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="1820" topLine="28" />
-	</File>
-	<File name="examples-src/mvLua.h" open="0" top="0" tabpos="2">
-		<Cursor position="93" topLine="0" />
-	</File>
 	<File name="examples-src/sideproject1/LuaFuncTest.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="938" topLine="5" />
 	</File>

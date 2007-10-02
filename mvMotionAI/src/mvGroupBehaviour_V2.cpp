@@ -43,9 +43,10 @@ bool findGroupNodeByIndex(mvGroupBNode_V2* groupNodePtr, void* extraPtr)
  mvGroupBehaviour_V2::~mvGroupBehaviour_V2()
 {
    removeAllGroups();
-   if (defaultGBehaviour == MV_NULL)
+   if (defaultGBehaviour != MV_NULL)
    {
       delete defaultGBehaviour;
+      defaultGBehaviour = MV_NULL;
    }
 }
 

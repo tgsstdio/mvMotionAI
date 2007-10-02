@@ -89,7 +89,7 @@ mvErrorEnum mvBodyCapsule::setParameterv(mvParamEnum paramFlag,\
 
 mvBodyCapsule::~mvBodyCapsule()
 {
-   if (encapsulatedBody == MV_NULL)
+   if (encapsulatedBody != MV_NULL)
    {
       delete encapsulatedBody;
       encapsulatedBody = MV_NULL;
