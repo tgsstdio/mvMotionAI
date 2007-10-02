@@ -2,7 +2,7 @@
 #define MVLUA_H_INCLUDED
 
 #include <mv/mvMotionAI.h>
-#include <Lua.hpp>
+#include <lua.hpp>
 
 void mvLua_LoadLuaMotionAIFunctions(lua_State* luaVM);
 mvErrorEnum mvLua_LoadScriptFileWithLuaState(lua_State* cState,\

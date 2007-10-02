@@ -218,7 +218,7 @@ typedef class mvBEntry* mvBEntryPtr;
 
 #define MV_VEC_3_HEADER_FILE_H_ <mv/mvVec3.h>
 #define MV_ENUMS_HEADER_FILE_H_ <mv/mvEnums.h>
-#define MV_MOTIONAI_HEADER_FILE <mv/mvMotionAI-V2.h>
+#define MV_MOTIONAI_HEADER_FILE <mv/mvMotionAI.h>
 
 #define MV_SHAPE_HEADER_FILE_H_ <mv/mvShape.h>
 typedef class mvShape* mvShapePtr;

@@ -7,12 +7,12 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="default">
-				<Option output="bin\tutorial2.exe" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/tutorial2" prefix_auto="1" extension_auto="1" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option projectResourceIncludeDirsRelation="1" />
 				<Linker>
-					<Add library="lib\libmvMotionAI.a" />
+					<Add library="lib/libmvMotionAI.a" />
 					<Add library="GLUT" />
 					<Add library="GLU" />
 					<Add library="GL" />
@@ -20,10 +20,9 @@
 				</Linker>
 			</Target>
 			<Target title="mingw-winXP">
-				<Option platforms="Windows;" />
-				<Option output="bin\tutorial2-mingw.exe" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/tutorial2-mingw" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="bin" />
-				<Option external_deps="lib\libmvMotionAI-mingw.a;" />
+				<Option external_deps="lib/libmvMotionAI-mingw.a;" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -33,23 +32,22 @@
 					<Add option="-O2" />
 					<Add option="-O1" />
 					<Add option="-O" />
-					<Add directory="include-other\mingw" />
+					<Add directory="include-other/mingw" />
 					<Add directory="include-other" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
 					<Add library="mvMotionAI-mingw" />
-					<Add library="lib-other\freeglut.lib" />
+					<Add library="lib-other/freeglut.lib" />
 					<Add library="glu32" />
 					<Add library="opengl32" />
 					<Add directory="lib" />
-					<Add directory="lib-other\mingw" />
+					<Add directory="lib-other/mingw" />
 					<Add directory="lib-other" />
 				</Linker>
 			</Target>
-			<Target title="ubuntu">
-				<Option platforms="Unix;Mac;" />
-				<Option output="bin\tutorial2-ubuntu.exe" prefix_auto="1" extension_auto="1" />
+			<Target title="unix">
+				<Option output="bin/tutorial2-unix" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="bin" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -60,22 +58,21 @@
 					<Add option="-O2" />
 					<Add option="-O1" />
 					<Add option="-O" />
-					<Add directory="\usr\include\lua50" />
+					<Add directory="/usr/include/lua50" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add library="mvMotionAI-ubuntu" />
+					<Add library="mvMotionAI-unix" />
 					<Add library="glut" />
 					<Add library="GLU" />
 					<Add library="GL" />
-					<Add directory="\usr\lib" />
+					<Add directory="/usr/lib" />
 				</Linker>
 			</Target>
 			<Target title="mingw-winXP-debug">
-				<Option platforms="Windows;" />
-				<Option output="bin\tutorial2-mingw-debug.exe" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/tutorial2-mingw-debug" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="bin" />
-				<Option external_deps="lib\libmvMotionAI-mingw.a;" />
+				<Option external_deps="lib/libmvMotionAI-mingw.a;" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -85,24 +82,23 @@
 					<Add option="-O1" />
 					<Add option="-O" />
 					<Add option="-g" />
-					<Add directory="include-other\mingw" />
+					<Add directory="include-other/mingw" />
 					<Add directory="include-other" />
 				</Compiler>
 				<Linker>
 					<Add library="mvMotionAI-mingw-debug" />
-					<Add library="lib-other\freeglut-debug.lib" />
+					<Add library="lib-other/freeglut-debug.lib" />
 					<Add library="glu32" />
 					<Add library="opengl32" />
 					<Add directory="lib" />
-					<Add directory="lib-other\mingw" />
+					<Add directory="lib-other/mingw" />
 					<Add directory="lib-other" />
 				</Linker>
 			</Target>
 			<Target title="mingw-winXP-dll">
-				<Option platforms="Windows;" />
-				<Option output="bin\tutorial2-mingw-dll.exe" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/tutorial2-mingw-dll" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="bin" />
-				<Option external_deps="bin\mvMotionAI-mingw-dll.dll;bin\libmvMotionAI-mingw-dll.a;bin\libmvMotionAI-mingw-dll.def;" />
+				<Option external_deps="bin/mvMotionAI-mingw-dll.dll;bin/libmvMotionAI-mingw-dll.a;bin/libmvMotionAI-mingw-dll.def;" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -113,23 +109,22 @@
 					<Add option="-O1" />
 					<Add option="-O" />
 					<Add option="-DMV_BUILD_DLL" />
-					<Add directory="include-other\mingw" />
+					<Add directory="include-other/mingw" />
 					<Add directory="include-other" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add library="bin\libmvMotionAI-mingw-dll.a" />
-					<Add library="lib-other\freeglut.lib" />
+					<Add library="bin/libmvMotionAI-mingw-dll.a" />
+					<Add library="lib-other/freeglut.lib" />
 					<Add library="glu32" />
 					<Add library="opengl32" />
 					<Add directory="lib" />
-					<Add directory="lib-other\mingw" />
+					<Add directory="lib-other/mingw" />
 					<Add directory="lib-other" />
 				</Linker>
 			</Target>
-			<Target title="ubuntu-debug">
-				<Option platforms="Unix;Mac;" />
-				<Option output="bin\tutorial2-ubuntu-debug.exe" prefix_auto="1" extension_auto="1" />
+			<Target title="unix debug">
+				<Option output="bin/tutorial2-unix-debug" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="bin" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -141,15 +136,15 @@
 					<Add option="-O1" />
 					<Add option="-O" />
 					<Add option="-g" />
-					<Add directory="\usr\include\lua50" />
+					<Add directory="/usr/include/lua50" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add library="mvMotionAI-ubuntu" />
+					<Add library="mvMotionAI-unix-debug" />
 					<Add library="glut" />
 					<Add library="GLU" />
 					<Add library="GL" />
-					<Add directory="\usr\lib" />
+					<Add directory="/usr/lib" />
 				</Linker>
 			</Target>
 		</Build>
@@ -158,17 +153,16 @@
 		</VirtualTargets>
 		<Compiler>
 			<Add directory="include" />
-			<Add directory="experimental\include" />
+			<Add directory="experimental/include" />
 		</Compiler>
 		<Linker>
 			<Add directory="lib" />
 		</Linker>
-		<Unit filename="examples-src\Camera.cpp" />
-		<Unit filename="examples-src\Camera.h" />
-		<Unit filename="examples-src\tutorial2\GLMain.cpp" />
+		<Unit filename="examples-src/Camera.cpp" />
+		<Unit filename="examples-src/Camera.h" />
+		<Unit filename="examples-src/tutorial2/GLMain.cpp" />
 		<Extensions>
 			<code_completion />
-			<envvars />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

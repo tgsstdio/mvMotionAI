@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-Release" />
-	<File name="..\experimental\include\mvBEntryTimer.h" open="0" top="0" tabpos="0">
+	<File name="../experimental/include/mvBEntryTimer.h" open="0" top="0" tabpos="0">
 		<Cursor position="1460" topLine="17" />
 	</File>
-	<File name="..\experimental\src\mvBEntryTimer.cpp" open="0" top="0" tabpos="0">
+	<File name="../experimental/src/mvBEntryTimer.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="5175" topLine="183" />
 	</File>
 	<File name="mvTimerCPPUnit.cpp" open="0" top="0" tabpos="2">
