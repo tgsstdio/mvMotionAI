@@ -4,12 +4,14 @@
 	"mvMotionAI.h"
 	"mvLuaScript.h"
 
-1164422220 pt.h"
+1165495303 pt.h"
 
 1189664344 d:\mvmotionai\mvmotionai\include\mvmotionai.h
 	"mvMotionAI-Types.h"
 
-1163427371 >
+1165495317 I-Types.h"
+
+1165495317 >
 
 1163224044 d:\mvmotionai\mvmotionai\include\mvworld.h
 	"mvMotionAI-Types.h"
@@ -33,16 +35,18 @@
 	"mvVec3.h"
 	"mvBehaviour-List.h"
 
-1163427371 ur-List.h"
+1165495317 ur-List.h"
 
 1158766068 d:\mvmotionai\mvmotionai\include\mvenum.h
 	<cstdlib>
 
-1132921120 
+1190960858 
 
 1164206054 d:\mvmotionai\mvmotionai\include\mvvec3.h
 	"mvMotionAI-Types.h"
 	<iostream>
+
+1189693022 
 
 1162533962 d:\mvmotionai\mvmotionai\include\mvbehaviour-list.h
 	<vector>
@@ -57,7 +61,7 @@
 	"mvVec3.h"
 	"mvEnums.h"
 
-1163427371 "
+1189693022 "
 
 1164635366 d:\mvmotionai\mvmotionai\include\mvwaypoint.h
 	<vector>
@@ -75,8 +79,6 @@
 	"mvBehaviour-Entry.h"
 	"mvEnums.h"
 	"mvMotionAI-Types.h"
-
-1163427371 I-Types.h"
 
 1161845658 d:\mvmotionai\mvmotionai\include\mvpathway.h
 	<vector>
@@ -337,6 +339,8 @@
 	"mvLua.h"
 	"mvLua_CFunctions.h"
 
+1190961132 nctions.h"
+
 1190960858 d:\mvmotionai\mvmotionai\examples-src\mvlua_cfunctions.h
 	<mv/mvMotionAI.h>
 	<Lua.hpp>
@@ -360,5 +364,58 @@
 1190961076 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
 	<mv/mvMotionAI-Types.h>
 
+1190961076 onAI-Types.h>
+
 1190950726 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
+
+1191290939 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/mvLua.cpp
+	"mvLua.h"
+	"mvLua_CFunctions.h"
+
+1191293339 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/mvLua.h
+	<mv/mvMotionAI.h>
+	<lua.hpp>
+
+1191290953 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mv/mvMotionAI.h
+	<mv/mvMotionAI-Types.h>
+
+1191291243 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mv/mvMotionAI-Types.h
+
+1148860541 /usr/include/lua5.1/lua.hpp
+	"lua.h"
+	"lualib.h"
+	"lauxlib.h"
+
+1148860541 /usr/include/lua5.1/lua.h
+	<stdarg.h>
+	<stddef.h>
+	"luaconf.h"
+
+1148860541 /usr/include/lua5.1/luaconf.h
+	<limits.h>
+	<stddef.h>
+	<unistd.h>
+	<io.h>
+	<stdio.h>
+	<stdio.h>
+	<readline/readline.h>
+	<readline/history.h>
+	<assert.h>
+	<math.h>
+	<unistd.h>
+
+1148860541 /usr/include/lua5.1/lualib.h
+	"lua.h"
+
+1148860541 /usr/include/lua5.1/lauxlib.h
+	<stddef.h>
+	<stdio.h>
+	"lua.h"
+
+1191293349 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/mvLua_CFunctions.h
+	<mv/mvMotionAI.h>
+	<lua.hpp>
+
+1191290939 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/mvLua_CFunctions.cpp
+	"mvLua_CFunctions.h"
 

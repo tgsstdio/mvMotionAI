@@ -3,7 +3,7 @@
 	"Camera.h"
 	<GL/glut.h>
 
-1163568810 >
+1167660102 >
 
 1158767306 d:\mvmotionai\mvmotionai\examples-src\camera.h
 
@@ -14,10 +14,12 @@
 	<cstdlib>
 	"mvMotionAI.h"
 
-1164422138 I.h"
+1163427377 I.h"
 
 1189179176 d:\mvmotionai\mvmotionai\include\mvmotionai.h
 	"mvMotionAI-Types.h"
+
+1187586218 I-Types.h"
 
 1173594238 d:\mvmotionai\mvmotionai\include\mvworld.h
 	"mvMotionAI-Types.h"
@@ -76,8 +78,6 @@
 	"mvEnums.h"
 	"mvMotionAI-Types.h"
 
-1163427371 I-Types.h"
-
 1175356482 d:\mvmotionai\mvmotionai\include\mvpathway.h
 	"mvMotionAI-Types.h"
 	<vector>
@@ -120,6 +120,8 @@
 	<assert.h>
 	<math.h>
 	<unistd.h>
+
+1157174374 
 
 1179636702 d:\mvmotionai\mvmotionai\include\mvenums.h
 	"mvMotionAI-Types.h"
@@ -296,6 +298,8 @@
 	<cstdlib>
 	<mv/mvMotionAI.h>
 
+1191048274 onAI.h>
+
 1157174374 d:\mvmotionai\mvmotionai\include-other\gl\glut.h
 	"freeglut_std.h"
 
@@ -331,6 +335,8 @@
 	"mvMotionAI-Types.h"
 	"mvLuaScript.h"
 
+1180276264 pt.h"
+
 1167660102 d:\mvmotionai\mvmotionai\include\mvluascript.h
 	"mvMotionAI-Types.h"
 	"mvEnums.h"
@@ -345,11 +351,15 @@
 	"mvUniformForce.h"
 	<new>
 
+1187587032 Force.h"
+
 1187586218 d:\mvmotionai\mvmotionai\experimental\include\mvuniformforce.h
 	"mvMotionAI-Types.h"
 
 1190961076 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
 	<mv/mvMotionAI-Types.h>
+
+1190961076 onAI-Types.h>
 
 1190950726 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
 
@@ -359,4 +369,22 @@
 	"../Camera.h"
 	<cstdlib>
 	<mv/mvMotionAI.h>
+
+1191290939 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/Camera.cpp
+	"Camera.h"
+	<GL/glut.h>
+
+1191290939 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/Camera.h
+
+1191290937 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/tutorial2/GLMain.cpp
+	<GL/glut.h>
+	<iostream>
+	"../Camera.h"
+	<cstdlib>
+	<mv/mvMotionAI.h>
+
+1191290953 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mv/mvMotionAI.h
+	<mv/mvMotionAI-Types.h>
+
+1191291243 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mv/mvMotionAI-Types.h
 

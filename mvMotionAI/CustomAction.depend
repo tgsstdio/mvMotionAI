@@ -3,10 +3,14 @@
 	"Camera.h"
 	<GL/glut.h>
 
+1163568810 >
+
 1158767306 d:\mvmotionai\mvmotionai\examples-src\camera.h
 
 1157174374 d:\mvmotionai\mvmotionai\include-other\gl\glut.h
 	"freeglut_std.h"
+
+1157174374 std.h"
 
 1157174374 d:\mvmotionai\mvmotionai\include-other\gl\freeglut_std.h
 	<windows.h>
@@ -15,10 +19,14 @@
 	<GL/gl.h>
 	<GL/glu.h>
 
+1190961544 
+
 1157174374 d:\mvmotionai\mvmotionai\include-other\gl\gl.h
 
 1157174374 d:\mvmotionai\mvmotionai\include-other\gl\glu.h
 	<GL/gl.h>
+
+1157174374 
 
 1189738968 source:d:\mvmotionai\mvmotionai\examples-src\customactionglmain.cpp
 	<GL/glut.h>
@@ -28,13 +36,19 @@
 	<mv/mvMotionAI.h>
 	"TimedHop.h"
 
+1191048214 h"
+
 1189179176 d:\mvmotionai\mvmotionai\include\mvmotionai.h
 	"mvMotionAI-Types.h"
+
+1189179176 I-Types.h"
 
 1188456594 d:\mvmotionai\mvmotionai\include\mvmotionai-types.h
 
 1189746054 d:\mvmotionai\mvmotionai\examples-src\timedhop.h
 	<mv/mvMotionAI.h>
+
+1190961542 onAI.h>
 
 1189745154 source:d:\mvmotionai\mvmotionai\examples-src\timedhop.cpp
 	"TimedHop.h"
@@ -42,6 +56,8 @@
 
 1190961076 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
 	<mv/mvMotionAI-Types.h>
+
+1190961076 onAI-Types.h>
 
 1190950726 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
 
@@ -59,4 +75,146 @@
 	<cstdlib>
 	<mv/mvMotionAI.h>
 	"TimedHop.h"
+
+1191290939 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/Camera.cpp
+	"Camera.h"
+	<GL/glut.h>
+
+1191290939 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/Camera.h
+
+1132946309 /usr/include/GL/glut.h
+	"freeglut_std.h"
+
+1132946309 /usr/include/GL/freeglut_std.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1118237707 /usr/include/GL/gl.h
+	"gl_mangle.h"
+	<stdlib.h>
+	<windows.h>
+	<GL/mesa_wgl.h>
+	<GL/glext.h>
+
+1118237728 /usr/include/GL/gl_mangle.h
+
+1175517778 /usr/include/stdlib.h
+	<features.h>
+	<stddef.h>
+	<bits/waitflags.h>
+	<bits/waitstatus.h>
+	<xlocale.h>
+	<sys/types.h>
+	<alloca.h>
+
+1175517736 /usr/include/features.h
+	<sys/cdefs.h>
+	<gnu/stubs.h>
+
+1175517809 /usr/include/sys/cdefs.h
+	<features.h>
+
+1175517863 /usr/include/gnu/stubs.h
+
+1175517801 /usr/include/bits/waitflags.h
+
+1175517801 /usr/include/bits/waitstatus.h
+	<endian.h>
+
+1175517790 /usr/include/endian.h
+	<features.h>
+	<bits/endian.h>
+
+1175517790 /usr/include/bits/endian.h
+
+1175517744 /usr/include/xlocale.h
+
+1175517801 /usr/include/sys/types.h
+	<features.h>
+	<bits/types.h>
+	<time.h>
+	<stddef.h>
+	<endian.h>
+	<sys/select.h>
+	<sys/sysmacros.h>
+	<bits/pthreadtypes.h>
+
+1175517801 /usr/include/bits/types.h
+	<features.h>
+	<bits/wordsize.h>
+	<stddef.h>
+	<bits/typesizes.h>
+
+1175517778 /usr/include/bits/wordsize.h
+
+1175517801 /usr/include/bits/typesizes.h
+
+1175517797 /usr/include/time.h
+	<features.h>
+	<stddef.h>
+	<bits/time.h>
+	<bits/types.h>
+	<bits/types.h>
+	<bits/types.h>
+	<bits/types.h>
+	<xlocale.h>
+
+1175517797 /usr/include/bits/time.h
+	<bits/types.h>
+	<bits/types.h>
+
+1175517809 /usr/include/sys/select.h
+	<features.h>
+	<bits/types.h>
+	<bits/select.h>
+	<bits/sigset.h>
+	<time.h>
+	<bits/time.h>
+
+1175517809 /usr/include/bits/select.h
+
+1175517776 /usr/include/bits/sigset.h
+
+1175517801 /usr/include/sys/sysmacros.h
+	<features.h>
+
+1175517801 /usr/include/bits/pthreadtypes.h
+	<bits/sched.h>
+
+1175517801 /usr/include/bits/sched.h
+
+1175517778 /usr/include/alloca.h
+	<features.h>
+	<stddef.h>
+
+1119364246 /usr/include/GL/glext.h
+	<windows.h>
+	<stddef.h>
+
+1076030250 /usr/include/GL/glu.h
+	"glu_mangle.h"
+	<GL/gl.h>
+
+1065823745 /usr/include/GL/glu_mangle.h
+
+1191290937 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/tutorial3/CustomActionGLMain.cpp
+	<GL/glut.h>
+	<iostream>
+	"../Camera.h"
+	<cstdlib>
+	<mv/mvMotionAI.h>
+	"TimedHop.h"
+
+1191290953 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mv/mvMotionAI.h
+	<mv/mvMotionAI-Types.h>
+
+1191291243 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mv/mvMotionAI-Types.h
+
+1191290937 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/tutorial3/TimedHop.h
+	<mv/mvMotionAI.h>
+
+1191290937 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/tutorial3/TimedHop.cpp
+	"TimedHop.h"
+	<iostream>
 
