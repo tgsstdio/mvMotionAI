@@ -217,6 +217,11 @@ void mvTimer::toAlways()
    isTimed = false;
 }
 
+bool mvTimer::checkIfValidElapsedTime(mvFloat value) const
+{
+   return (value < 0.0);
+}
+
 /** @brief Set the timer's elapsed time.
   * \return either MV_NO_ERROR or MV_FLOAT_VALUE_IS_NOT_POSITIVE
   * \param[in] timeInSecs Only positive mvFloats are allowed.
@@ -226,7 +231,7 @@ void mvTimer::toAlways()
   */
 mvErrorEnum mvTimer::setElapsedTime(mvFloat timeInSecs)
 {
-   if (timeInSecs < 0.0)
+   if (checkIfValidElapsedTime(timeInSecs))
    {
       return MV_FLOAT_VALUE_IS_NOT_POSITIVE;
    }
@@ -250,6 +255,13 @@ mvErrorEnum mvTimer::setElapsedTime(mvFloat timeInSecs)
    }
 }
 
+bool mvTimer::checkIfValidPeriod(mvFloat value) const
+{
+   return (value < 0.0);
+}
+
+bool mvTimer::checkIfValidElapsedTime(mvFloat value) const;
+
 /** @brief Sets the period (or the time in seconds when the
   * next action is required).
   *
@@ -260,7 +272,7 @@ mvErrorEnum mvTimer::setElapsedTime(mvFloat timeInSecs)
   */
 mvErrorEnum mvTimer::setPeriod(mvFloat timeInSecs)
 {
-   if (timeInSecs < 0.0)
+   if (checkIfValidPeriod(timeInSecs))
    {
       return MV_FLOAT_VALUE_IS_NOT_POSITIVE;
    }
@@ -346,13 +358,14 @@ mvFloat mvTimer::update(mvFloat timeInSecs)
   * Default timer mode is set to always.
   */
 mvTimer::mvTimer(mvFloat periodInSecs, mvFloat eTime)
+ : elapsedTime(0), period(0)
 {
-   if (setPeriod(periodInSecs) != MV_NO_ERROR)
+   if (checkIfValidPeriod(periodInSecs))
    {
       period = 1.0;
    }
 
-   if (setElapsedTime(eTime) != MV_NO_ERROR)
+   if (checkIfValidElapsedTime(eTime))
    {
       elapsedTime = 0.0;
    }

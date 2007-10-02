@@ -108,8 +108,9 @@ mvErrorEnum mvGroupCapsule::setParameterv(mvParamEnum paramFlag, mvFloat* numArr
 
 mvGroupCapsule::~mvGroupCapsule()
 {
-   if (encapsuledGroup == MV_NULL)
+   if (encapsuledGroup != MV_NULL)
    {
       delete encapsuledGroup;
+      encapsuledGroup = MV_NULL;
    }
 }

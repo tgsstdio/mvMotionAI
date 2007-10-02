@@ -265,11 +265,12 @@ mvTimerPtr mvBEntryUtility::getTimerPtr()
   * - Timer = default values from class
   * - Weight = 1.0
   */
- mvBEntryUtility::mvBEntryUtility()
+ mvBEntryUtility::mvBEntryUtility(mvFloat nodeWeight, mvFloat period,\
+   mvFloat elapsedTime)
+  : bTimer(period, elapsedTime), bWeight(nodeWeight)
 {
    confined = true;
    enabled = true;
-   bWeight = 1.0;
 }
 
 /** @brief (one liner)

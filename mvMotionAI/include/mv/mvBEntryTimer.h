@@ -42,6 +42,9 @@ class MV_GLOBAL_FUNC_PREFIX mvTimer
       mvFloat elapsedTime;
       mvFloat period;
 
+      bool checkIfValidPeriod(mvFloat value) const;
+      bool checkIfValidElapsedTime(mvFloat value) const;
+
    public:
       bool isTimed;
       mvTimer(mvFloat periodInSecs = 1.0, mvFloat eTime = 0.0);

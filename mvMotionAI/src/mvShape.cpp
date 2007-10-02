@@ -396,7 +396,7 @@ mvOptionEnum mvShape::getType() const
   *
   * (documentation goes here)
   */
- mvShape::~mvShape()
+mvShape::~mvShape()
 {
    if (dimensions != MV_NULL)
    {

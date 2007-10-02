@@ -46,7 +46,7 @@ class MV_GLOBAL_FUNC_PREFIX mvBEntryUtility
       bool confined;
       bool enabled;
 
-      mvBEntryUtility();
+      mvBEntryUtility(mvFloat nodeWeight, mvFloat period, mvFloat elapsedTime);
       mvErrorEnum setWeight(mvFloat entryWeight);
       mvFloat getWeight() const;
       mvTimerPtr getTimerPtr();
