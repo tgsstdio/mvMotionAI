@@ -45,14 +45,14 @@
  * \brief a set of unique indexes referring to mvMotionAI objects
  */
 
-class MV_GLOBAL_FUNC_PREFIX mvGroup_V2
+class MV_GLOBAL_FUNC_PREFIX mvGroup
 {
    protected:
       mvUniqueSet members;
 
    public:
-      mvGroup_V2();
-      ~mvGroup_V2();
+      mvGroup();
+      ~mvGroup();
       bool isEnabled;
 
       mvErrorEnum addMember(mvIndex memberIndex);

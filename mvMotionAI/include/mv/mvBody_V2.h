@@ -53,7 +53,7 @@
 #define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
 #endif
 
-class MV_GLOBAL_FUNC_PREFIX mvBody_V2
+class MV_GLOBAL_FUNC_PREFIX mvBody
 {
    private:
       // position in 3D world
@@ -113,7 +113,7 @@ class MV_GLOBAL_FUNC_PREFIX mvBody_V2
 
       const mvVec3& getPosition() const;
       mvErrorEnum setPosition(mvFloat x, mvFloat y, mvFloat z);
-      void setPosition(const mvVec3& pos);
+      mvErrorEnum setPosition(const mvVec3& pos);
 
       const mvVec3& getFaceDirection() const;
       mvErrorEnum setFaceDirection(mvFloat x, mvFloat y,mvFloat z);
@@ -185,9 +185,9 @@ class MV_GLOBAL_FUNC_PREFIX mvBody_V2
       bool applyAllForces;
       bool applyAllDragForces;
 
-      mvBody_V2(mvOptionEnum bType, mvOptionEnum shape, mvFloat x, mvFloat y,\
+      mvBody(mvOptionEnum bType, mvOptionEnum shape, mvFloat x, mvFloat y,\
          mvFloat z);
-      ~mvBody_V2();
+      ~mvBody();
 
       const mvVec3& getFinalForce() const;
       void setFinalForce(const mvVec3& vec);

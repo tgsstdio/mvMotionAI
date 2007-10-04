@@ -1,6 +1,6 @@
 /**
  * \file mvWaypoint_V2.cpp
- * \class mvWaypoint mv/mvWaypoint_V2.h MV_WAYPOINT_HEADER_FILE_H_
+ * \class mvWaypoint
  * \brief A point/volume in mvMotionAI space
  *
  * Copyright (c) 2006 , 2007 David Young.
@@ -25,71 +25,110 @@
  */
 #include <mv/mvWaypoint_V2.h>
 
-mvWaypoint_V2::mvWaypoint_V2(mvOptionEnum wshape, mvFloat x, mvFloat y,\
+/** \brief blah blah
+ *
+ */
+mvWaypoint::mvWaypoint(mvOptionEnum wshape, mvFloat x, mvFloat y,\
    mvFloat z)
 {
    setPosition(x,y,z);
    setShape(wshape);
 }
 
-mvFloat mvWaypoint_V2::getX() const
+/** \brief blah blah
+ *
+ */
+mvFloat mvWaypoint::getX() const
 {
    return wpPosition.getX();
 }
 
-mvFloat mvWaypoint_V2::getY() const
+/** \brief blah blah
+ *
+ */
+mvFloat mvWaypoint::getY() const
 {
    return wpPosition.getY();
 }
 
-mvFloat mvWaypoint_V2::getZ() const
+/** \brief blah blah
+ *
+ */
+mvFloat mvWaypoint::getZ() const
 {
    return wpPosition.getZ();
 }
 
-void mvWaypoint_V2::setX(mvFloat x)
+/** \brief blah blah
+ *
+ */
+void mvWaypoint::setX(mvFloat x)
 {
    wpPosition.setX(x);
 }
 
-void mvWaypoint_V2::setY(mvFloat y)
+/** \brief blah blah
+ *
+ */
+void mvWaypoint::setY(mvFloat y)
 {
    wpPosition.setY(y);
 }
 
-void mvWaypoint_V2::setZ(mvFloat z)
+/** \brief blah blah
+ *
+ */
+void mvWaypoint::setZ(mvFloat z)
 {
    wpPosition.setZ(z);
 }
 
-const mvVec3& mvWaypoint_V2::getPosition() const
+/** \brief blah blah
+ *
+ */
+const mvVec3& mvWaypoint::getPosition() const
 {
    return wpPosition;
 }
 
-mvErrorEnum mvWaypoint_V2::setPosition(mvFloat x, mvFloat y, mvFloat z)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvWaypoint::setPosition(mvFloat x, mvFloat y, mvFloat z)
 {
-   mvVec3 temp(x,y,z);
-   return setPositionByVec3(temp);
+   const mvVec3 temp(x,y,z);
+   return setPosition(temp);
 }
 
-mvErrorEnum mvWaypoint_V2::setPositionByVec3(const mvVec3& value)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvWaypoint::setPosition(const mvVec3& value)
 {
    wpPosition = value;
    return MV_NO_ERROR;
 }
 
-mvErrorEnum mvWaypoint_V2::setShape(mvOptionEnum shape)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvWaypoint::setShape(mvOptionEnum shape)
 {
    return wpShape.setType(shape);
 }
 
-mvConstShapePtr mvWaypoint_V2::getShape() const
+/** \brief blah blah
+ *
+ */
+mvConstShapePtr mvWaypoint::getShape() const
 {
    return &wpShape;
 }
 
-mvErrorEnum mvWaypoint_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvWaypoint::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    const
 {
    mvErrorEnum error;
@@ -111,7 +150,10 @@ mvErrorEnum mvWaypoint_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    }
 }
 
-mvErrorEnum mvWaypoint_V2::getParametero(mvParamEnum paramFlag,\
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvWaypoint::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    mvErrorEnum error;
@@ -132,7 +174,10 @@ mvErrorEnum mvWaypoint_V2::getParametero(mvParamEnum paramFlag,\
    }
 }
 
-mvErrorEnum mvWaypoint_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num)\
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvWaypoint::getParameterf(mvParamEnum paramFlag, mvFloat* num)\
    const
 {
    mvErrorEnum error;
@@ -153,7 +198,10 @@ mvErrorEnum mvWaypoint_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num)\
    }
 }
 
-mvErrorEnum mvWaypoint_V2::getParameterv(mvParamEnum paramFlag,\
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvWaypoint::getParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray, mvCount* noOfParameters) const
 {
    mvErrorEnum error;
@@ -199,7 +247,10 @@ mvErrorEnum mvWaypoint_V2::getParameterv(mvParamEnum paramFlag,\
    }
 }
 
-mvErrorEnum mvWaypoint_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvWaypoint::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
    mvErrorEnum error;
 
@@ -215,7 +266,10 @@ mvErrorEnum mvWaypoint_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
    }
 }
 
-mvErrorEnum mvWaypoint_V2::setParametero(mvParamEnum paramFlag,\
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvWaypoint::setParametero(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
    mvErrorEnum error;
@@ -233,7 +287,10 @@ mvErrorEnum mvWaypoint_V2::setParametero(mvParamEnum paramFlag,\
 
 }
 
-mvErrorEnum mvWaypoint_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvWaypoint::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
    mvErrorEnum error;
 
@@ -249,7 +306,10 @@ mvErrorEnum mvWaypoint_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
    }
 }
 
-mvErrorEnum mvWaypoint_V2::setParameterv(mvParamEnum paramFlag,\
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvWaypoint::setParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray)
 {
    mvErrorEnum error;
@@ -275,7 +335,10 @@ mvErrorEnum mvWaypoint_V2::setParameterv(mvParamEnum paramFlag,\
    }
 }
 
-mvWaypoint_V2::~mvWaypoint_V2()
+/** \brief blah blah
+ *
+ */
+mvWaypoint::~mvWaypoint()
 {
 
 }
