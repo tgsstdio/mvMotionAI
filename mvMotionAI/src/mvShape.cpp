@@ -1,6 +1,8 @@
 /**
  * \file mvShape.cpp
- * \class mvShape mv/mvShape.h "mv/Shape.h"
+ * \class mvShape
+ *
+ * \brief Class for holding shape related variables
  *
  * Copyright (c) 2006, 2007 David Young.
  *

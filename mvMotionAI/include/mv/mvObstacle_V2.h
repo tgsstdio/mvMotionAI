@@ -43,7 +43,7 @@
 #define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
 #endif
 
-class MV_GLOBAL_FUNC_PREFIX mvObstacle_V2
+class MV_GLOBAL_FUNC_PREFIX mvObstacle
 {
    private:
       mvShape obShape;
@@ -51,7 +51,7 @@ class MV_GLOBAL_FUNC_PREFIX mvObstacle_V2
       mvVec3 obPosition;
 
    public:
-      mvObstacle_V2(mvOptionEnum oShape, mvOptionEnum oType,\
+      mvObstacle(mvOptionEnum oShape, mvOptionEnum oType,\
          mvFloat x, mvFloat y, mvFloat z);
       mvFloat getX() const;
       mvFloat getY() const;
@@ -63,7 +63,7 @@ class MV_GLOBAL_FUNC_PREFIX mvObstacle_V2
 
       const mvVec3& getPosition() const;
       mvErrorEnum setPosition(mvFloat x, mvFloat y, mvFloat z);
-      mvErrorEnum setPositionByVec3(const mvVec3& value);
+      mvErrorEnum setPosition(const mvVec3& value);
 
       mvOptionEnum getType() const;
       mvErrorEnum setType(mvOptionEnum oType);
@@ -82,7 +82,7 @@ class MV_GLOBAL_FUNC_PREFIX mvObstacle_V2
       mvErrorEnum setParametero(mvParamEnum paramFlag, mvOptionEnum option);
       mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
       mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
-      ~mvObstacle_V2();
+      ~mvObstacle();
 };
 
 #endif // MVOBSTACLE_V2_H_INCLUDED

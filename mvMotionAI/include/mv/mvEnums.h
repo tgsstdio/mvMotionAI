@@ -1,14 +1,5 @@
-#ifndef MV_ENUMERATIONS_H_
-#define MV_ENUMERATIONS_H_
-
-#ifdef MV_MOTIONAI_TYPES_HEADER_FILE_H_
-#include MV_MOTIONAI_TYPES_HEADER_FILE_H_
-#else
-#include <mv/mvMotionAI-Types.h>
-#endif
-
-#ifdef MV_FILE_HEADER_TAG_
 /**
+ * \file mvEnums.h
  * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -29,14 +20,25 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
+#ifndef MV_ENUMERATIONS_H_
+#define MV_ENUMERATIONS_H_
+
+#ifdef MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#include MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#else
+#include <mv/mvMotionAI-Types.h>
 #endif
 
-// TODO : reimplement enum strings
+/*! \enum mvOptionEnum
+ * \brief Option or state values within mvMotionAI library
+ */
 // TODO : alignment , cohension & separation behaviours
 enum mvOptionEnum
 {
-   MV_FALSE = 0,
-   MV_TRUE,
+   MV_FALSE = 0, /*!< false or zero */
+   MV_TRUE, /*!< true or non zero : NOTE in boolean situation,
+      any error code other than MV_FALSE is true */
 
    // BEHAVIOURS
    MV_SEEK,
@@ -46,9 +48,10 @@ enum mvOptionEnum
    MV_PURSUIT,
    MV_EVASION,
    MV_SIMPLE_FLOCK,
-   MV_GROUP_BEHAVIOUR_MEMBER_ENTRY, // TODO : unify all group behaviorus objects
-   MV_EXISTING_GROUP_BEHAVIOUR,
-   MV_EXISTING_BEHAVIOUR,
+   // TODO : unify all group behaviorus objects
+   MV_GROUP_BEHAVIOUR_MEMBER_ENTRY, /*!< RESERVED for internal use*/
+   MV_EXISTING_GROUP_BEHAVIOUR, /*!< RESERVED for internal use*/
+   MV_EXISTING_BEHAVIOUR, /*!< RESERVED for internal use*/
    MV_NON_GROUP_BEHAVIOUR_TYPE,
    MV_NON_BEHAVIOUR_TYPE,
 
@@ -121,6 +124,9 @@ enum mvOptionEnum
    MV_NO_OF_OPTION_ENUMS
 };
 // TODO : reimplement param strings
+/** \enum mvParamEnum
+ * \brief Enums for querying and setting variables in mvMotionAI library
+ */
 enum mvParamEnum
 {
    MV_NO_PARAMETER = 0,
@@ -241,10 +247,16 @@ enum mvParamEnum
 };
 
 // TODO : reimplement error strings
-
+/** \enum mvErrorEnum
+ * \brief Error codes in mvMotionAI library
+ *
+ * If no problems MV_NO_ERROR (0) is returned, else any nonzero value means
+ * an error has occured. If programming with the mvMotionAI, avoid using
+ * MV_ERROR_ENUM_IS_NOT_FOUND as it has no real meaning.
+ */
 enum mvErrorEnum
 {
-   MV_NO_ERROR = 0,
+   MV_NO_ERROR = 0, /*!< no error has occured, normal operation */
    MV_ITEM_POINTER_IS_NULL,
    MV_ITEM_LIST_IS_EMPTY,
    MV_UNIQUE_ITEM_ALREADY_IN_LIST,
@@ -334,18 +346,30 @@ enum mvErrorEnum
 };
 
 // internal use only
+/** \enum mvMotionTypeEnum
+ * \brief Determines the type of force recorded in mvBehaviourResult
+ * & mvForceResult
+ */
 enum mvMotionTypeEnum
 {
-   MV_DEFAULT_MOTION = 0,
-   MV_STEERING_MOTION,
-   MV_DIRECTIONAL_MOTION
+   MV_DEFAULT_MOTION = 0, /*!< default motion applied */
+   MV_STEERING_MOTION, /*!< steering motion applied i.e.
+      change in motion needed*/
+   MV_DIRECTIONAL_MOTION /*!< direction motion applied i.e.
+      the desired final motion */
 };
 
+/** \enum mvEffectTypeEnum
+ * \brief Determines the effect of the forces recorded in mvBehaviourResult
+ * & mvForceResult
+ */
 enum mvEffectTypeEnum
 {
-   MV_DEFAULT_EFFECT = 0,
-   MV_GLOBAL_EFFECT,
-   MV_LOCAL_EFFECT
+   MV_DEFAULT_EFFECT = 0, /*!< default effect applied */
+   MV_GLOBAL_EFFECT, /*!< force effect applied w.r.t.
+      world/global coordinates */
+   MV_LOCAL_EFFECT /*!< force effect applied w.r.t. the direction that
+      the body is facing */
 };
 
 const char* mvGetMotionTypeString(mvMotionTypeEnum mType);

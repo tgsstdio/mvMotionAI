@@ -1,12 +1,3 @@
-#ifndef MV_MOTIONAI_TYPES_HEADER_FILE_H_
-#define MV_MOTIONAI_TYPES_HEADER_FILE_H_ <mv/mvMotionAI-Types.h>
-
-#define MVMOTIONAI_TYPES_VERSION "00-02-01"
-
-#define MV_FILE_HEADER_TAG_ 1
-#undef MV_FILE_HEADER_TAG_
-
-#ifdef MV_FILE_HEADER_TAG_
 /**
  * \file mvMotionAI-Types.h
  *
@@ -43,8 +34,11 @@
  *
  * 00-01-20    18/11/06  \li doxygen documentation added
  */
- #endif
 
+#ifndef MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#define MV_MOTIONAI_TYPES_HEADER_FILE_H_ <mv/mvMotionAI-Types.h>
+
+#define MVMOTIONAI_TYPES_VERSION "00-02-01"
 
 /*
  * FLOATING POINT - used in Vec3 and other places
@@ -67,8 +61,14 @@
 #endif
 
 #ifdef MV_MOTIONAI_HIGHER_PRECISION_FLOATING_POINT
+/**
+ * \brief floating point numbers
+ */
 typedef double mvFloat;
 #else
+/**
+ * \brief floating point numbers
+ */
 typedef float mvFloat;
 #endif
 
@@ -76,6 +76,10 @@ typedef float mvFloat;
  * \brief mvChar - char & string variables
  */
 typedef char mvChar;
+
+/**
+ * \brief string pointer
+ */
 typedef const mvChar* mvConstStringPtr;
 
 /*
@@ -145,9 +149,9 @@ typedef class mvBehaviour_V2 const * const mvConstBehaviourPtr;
 typedef class mvBehaviourResult* mvBehaviourResultPtr;
 
 #define MV_BODY_HEADER_FILE_H_ <mv/mvBody_V2.h>
-typedef class mvBody_V2 mvBody;
-typedef class mvBody_V2* mvBodyPtr;
-typedef class mvBody_V2 const * const mvConstBodyPtr;
+//typedef class mvBody_V2 mvBody; // rename
+typedef class mvBody* mvBodyPtr;
+typedef class mvBody const * const mvConstBodyPtr;
 
 #define MV_BASE_FORCE_HEADER_FILE_H_ <mv/mvBaseForce.h>
 typedef class mvBaseForce* mvBaseForcePtr;
@@ -162,10 +166,10 @@ typedef class mvForceCapsule* mvForceCapsulePtr;
 typedef class mvForceCapsule const * const mvConstForceCapsulePtr;
 
 #define MV_GROUP_HEADER_FILE_H_ <mv/mvGroup_V2.h>
-typedef class mvGroup_V2 mvGroup;
+//typedef class mvGroup_V2 mvGroup;
 typedef class mvUniqueSetIterator mvGroupIterator;
-typedef class mvGroup_V2* mvGroupPtr;
-typedef class mvGroup_V2 const * const mvConstGroupPtr;
+typedef class mvGroup* mvGroupPtr;
+typedef class mvGroup const * const mvConstGroupPtr;
 
 #define MV_GROUP_BEHAVIOUR_HEADER_FILE_H_ <mv/mvGroupBehaviour_V2.h>
 #define MV_GROUP_BEHAVIOUR_NODE_HEADER_FILE_H_ <mv/mvGroupBNode_V2.h>
@@ -183,9 +187,9 @@ typedef class mvGroupMemberNode const * const mvConstGroupMemberNodePtr;
 typedef class mvGroupBehaviourResult* mvGroupBehaviourResultPtr;
 
 #define MV_OBSTACLE_HEADER_FILE_H_ <mv/mvObstacle_V2.h>
-typedef class mvObstacle_V2 mvObstacle;
-typedef class mvObstacle_V2* mvObstaclePtr;
-typedef class mvObstacle_V2 const * const mvConstObstaclePtr;
+//typedef class mvObstacle_V2 mvObstacle;
+typedef class mvObstacle* mvObstaclePtr;
+typedef class mvObstacle const * const mvConstObstaclePtr;
 
 #define MV_PATHWAY_HEADER_FILE_H_ <mv/mvPathway_V2.h>
 typedef class mvPathway_V2 mvPathway;
@@ -193,14 +197,14 @@ typedef class mvPathway_V2* mvPathwayPtr;
 typedef class mvPathway_V2 const * const mvConstPathwayPtr;
 
 #define MV_WAYPOINT_HEADER_FILE_H_ <mv/mvWaypoint_V2.h>
-typedef class mvWaypoint_V2 mvWaypoint;
-typedef class mvWaypoint_V2* mvWaypointPtr;
-typedef class mvWaypoint_V2 const * const mvConstWaypointPtr;
+//typedef class mvWaypoint mvWaypoint;
+typedef class mvWaypoint* mvWaypointPtr;
+typedef class mvWaypoint const * const mvConstWaypointPtr;
 
 #define MV_WORLD_HEADER_FILE_H_ <mv/mvWorld2.h>
-typedef class mvWorld_V2 mvWorld;
-typedef class mvWorld_V2* mvWorldPtr;
-typedef class mvWorld_V2 const * const mvConstWorldPtr;
+//typedef class mvWorld mvWorld;
+typedef class mvWorld* mvWorldPtr;
+typedef class mvWorld const * const mvConstWorldPtr;
 
 #define MV_TIMER_HEADER_FILE_H_ <mv/mvBEntryTimer.h>
 typedef class mvTimer* mvTimerPtr;

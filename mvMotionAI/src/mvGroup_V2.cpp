@@ -1,6 +1,6 @@
 /**
  * \file mvGroup_V2.cpp
- * \class mvGroup mv/mvGroup_V2.h MV_GROUP_HEADER_FILE_H_
+ * \class mvGroup
  *
  * Copyright (c) 2006, 2007 David Young.
  *
@@ -24,62 +24,98 @@
  */
 #include <mv/mvGroup_V2.h>
 
-mvGroup_V2::mvGroup_V2()
+/** \brief blah
+ *
+ */
+mvGroup::mvGroup()
 {
    isEnabled = true;
 }
 
-mvGroup_V2::~mvGroup_V2()
+/** \brief blah
+ *
+ */
+mvGroup::~mvGroup()
 {
    clearAll();
 }
 
-mvErrorEnum mvGroup_V2::addMember(mvIndex memberIndex)
+/** \brief blah
+ *
+ */
+mvErrorEnum mvGroup::addMember(mvIndex memberIndex)
 {
    return members.addIndex(memberIndex);
 }
 
-mvIndex mvGroup_V2::findMember(mvIndex memberIndex) const
+/** \brief blah
+ *
+ */
+mvIndex mvGroup::findMember(mvIndex memberIndex) const
 {
    return members.findIndex(memberIndex);
 }
 
-mvErrorEnum mvGroup_V2::removeMember(mvIndex memberIndex)
+/** \brief blah
+ *
+ */
+mvErrorEnum mvGroup::removeMember(mvIndex memberIndex)
 {
    return members.removeIndex(memberIndex);
 }
 
-mvCount mvGroup_V2::getNoOfMembers() const
+/** \brief blah
+ *
+ */
+mvCount mvGroup::getNoOfMembers() const
 {
    return members.getNoOfIndexes();
 }
 
-void mvGroup_V2::clearAll()
+/** \brief blah
+ *
+ */
+void mvGroup::clearAll()
 {
    members.clearAll();
 }
 
-void mvGroup_V2::setToFirstMember()
+/** \brief blah
+ *
+ */
+void mvGroup::setToFirstMember()
 {
    members.beginLoop();
 }
 
-bool mvGroup_V2::areMembersFinished() const
+/** \brief blah
+ *
+ */
+bool mvGroup::areMembersFinished() const
 {
    return members.isLoopFinished();
 }
 
-mvIndex mvGroup_V2::getCurrentMember() const
+/** \brief blah
+ *
+ */
+mvIndex mvGroup::getCurrentMember() const
 {
    return members.getCurrentIndex();
 }
 
-void mvGroup_V2::toNextMember()
+/** \brief blah
+ *
+ */
+void mvGroup::toNextMember()
 {
    members.nextIndex();
 }
 
-mvErrorEnum mvGroup_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
+/** \brief blah
+ *
+ */
+mvErrorEnum mvGroup::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    const
 {
    if (index == MV_NULL)
@@ -104,7 +140,10 @@ mvErrorEnum mvGroup_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    }
 }
 
-mvErrorEnum mvGroup_V2::getParametero(mvParamEnum paramFlag,\
+/** \brief blah
+ *
+ */
+mvErrorEnum mvGroup::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    if (option == MV_NULL)
@@ -129,7 +168,10 @@ mvErrorEnum mvGroup_V2::getParametero(mvParamEnum paramFlag,\
    }
 }
 
-mvErrorEnum mvGroup_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
+/** \brief blah
+ *
+ */
+mvErrorEnum mvGroup::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
 {
    if (num == MV_NULL)
    {
@@ -139,7 +181,10 @@ mvErrorEnum mvGroup_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
    return MV_INVALID_GROUP_PARAMETER;
 }
 
-mvErrorEnum mvGroup_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
+/** \brief blah
+ *
+ */
+mvErrorEnum mvGroup::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
    mvCount* noOfParameters) const
 {
    if (noOfParameters == MV_NULL)
@@ -156,12 +201,18 @@ mvErrorEnum mvGroup_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
    return MV_INVALID_GROUP_PARAMETER;
 }
 
-mvErrorEnum mvGroup_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
+/** \brief blah
+ *
+ */
+mvErrorEnum mvGroup::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
    return MV_INVALID_GROUP_PARAMETER;
 }
 
-mvErrorEnum mvGroup_V2::setParametero(mvParamEnum paramFlag, mvOptionEnum option)
+/** \brief blah
+ *
+ */
+mvErrorEnum mvGroup::setParametero(mvParamEnum paramFlag, mvOptionEnum option)
 {
    switch(paramFlag)
    {
@@ -180,12 +231,18 @@ mvErrorEnum mvGroup_V2::setParametero(mvParamEnum paramFlag, mvOptionEnum option
    }
 }
 
-mvErrorEnum mvGroup_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
+/** \brief blah
+ *
+ */
+mvErrorEnum mvGroup::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
    return MV_INVALID_GROUP_PARAMETER;
 }
 
-mvErrorEnum mvGroup_V2::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
+/** \brief blah
+ *
+ */
+mvErrorEnum mvGroup::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 {
    if (numArray == MV_NULL)
    {
@@ -195,7 +252,10 @@ mvErrorEnum mvGroup_V2::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
    return MV_INVALID_GROUP_PARAMETER;
 }
 
-mvGroupIterator mvGroup_V2::getGroupIterator() const
+/** \brief blah
+ *
+ */
+mvGroupIterator mvGroup::getGroupIterator() const
 {
    return members.getUniqueSetIterator();
 }

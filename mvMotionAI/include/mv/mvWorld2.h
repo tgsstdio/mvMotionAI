@@ -63,7 +63,7 @@
 
 // TODO : reorganize index order
 
-class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
+class MV_GLOBAL_FUNC_PREFIX mvWorld
 {
    private:
       mvPointerList<mvEntryListPtr, mvConstEntryListPtr> entryLists;
@@ -134,8 +134,8 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld_V2
       bool autoConvertIndex;
       bool isRightHanded;
 
-      mvWorld_V2();
-      ~mvWorld_V2();
+      mvWorld();
+      ~mvWorld();
       void setWorldUserData(void* tempData);
       void* getWorldUserData() const;
 

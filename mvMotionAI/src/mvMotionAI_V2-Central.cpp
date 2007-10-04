@@ -21,8 +21,8 @@
 mvMotionAI_V2_SUPERCLASS __mv__Motion__AI__Module;
 
 // function signatures
-bool findExistingWorld(mvWorld_V2* worldPtr, void* extraPtr);
-void updatingWorlds(mvWorld_V2* worldPtr, void* extraPtr);
+bool findExistingWorld(mvWorldPtr worldPtr, void* extraPtr);
+void updatingWorlds(mvWorldPtr worldPtr, void* extraPtr);
 
 mvMotionAI_V2_SUPERCLASS::mvMotionAI_V2_SUPERCLASS()
 {
@@ -64,7 +64,7 @@ mvMotionAI_V2::mvMotionAI_V2()
    // EMPTY
 }
 /*
-bool findExistingWorld(mvWorld_V2* worldPtr, void* extraPtr)
+bool findExistingWorld(mvWorldPtr worldPtr, void* extraPtr)
 {
    const char* worldID = MV_NULL;
    const char* existingID = MV_NULL;
@@ -140,12 +140,12 @@ mvCount mvMotionAI_V2::getNoOfWorlds() const
    return worlds.getNoOfItems();
 }
 
-mvWorld_V2* mvMotionAI_V2::getWorldPtr(mvIndex index)
+mvWorldPtr mvMotionAI_V2::getWorldPtr(mvIndex index)
 {
    return worlds.getClassPtr(index);
 }
 /*
-mvWorld_V2* mvMotionAI_V2::getWorldPtrByID(const char* worldID)
+mvWorldPtr mvMotionAI_V2::getWorldPtrByID(const char* worldID)
 {
    return worlds.findItemPtrInList(findExistingWorld, (void*) worldID);
 }
@@ -156,7 +156,7 @@ void mvMotionAI_V2::deleteAllWorlds()
    worlds.deleteAllItems();
 }
 
-void updatingWorlds(mvWorld_V2* worldPtr, void* extraPtr)
+void updatingWorlds(mvWorldPtr worldPtr, void* extraPtr)
 {
    mvFloat timeInSecs = 0;
 
@@ -174,7 +174,7 @@ void mvMotionAI_V2::allWorldsStepForward(mvFloat timeInSecs)
    worlds.applyToAllItems(updatingWorlds, (void*) &deltaTime);
 }
 
-void mvMotionAI_V2::applyToAllWorlds(void (someFunction)(mvWorld_V2*,void*),\
+void mvMotionAI_V2::applyToAllWorlds(void (someFunction)(mvWorldPtr,void*),\
    void* extraPtr)
 {
    worlds.applyToAllItems(someFunction,extraPtr);
@@ -563,7 +563,7 @@ mvErrorEnum mvMotionAI_V2_DELETEALLWORLDS()
    return error;
 }
 
-mvWorld_V2* mvMotionAI_V2_GETWORLDPTR(mvIndex index)
+mvWorldPtr mvMotionAI_V2_GETWORLDPTR(mvIndex index)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvMotionAI_V2* modulePtr = MV_NULL;
@@ -580,7 +580,7 @@ mvWorld_V2* mvMotionAI_V2_GETWORLDPTR(mvIndex index)
 }
 
 mvErrorEnum mvMotionAI_V2_APPLYTOALLWORLDS(\
-   void (someFunction)(mvWorld_V2*,void*),void* extraPtr)
+   void (someFunction)(mvWorldPtr,void*),void* extraPtr)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvMotionAI_V2* modulePtr = MV_NULL;

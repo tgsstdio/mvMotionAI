@@ -70,20 +70,20 @@
 #include <mv/mvBody_V2.h>
 
 /**
- * \class mvBody mv/mvBody_V2.h "mv/mvBody_V2.h"
+ * \class mvBody
  *
  * \brief This class represents the moving objects within the system
  */
 
-/*! \fn mvBody_V2::mvBody_V2(mvOptionEnum bType, mvOptionEnum shape, mvFloat x, mvFloat y, mvFloat z)
- *  \brief mvBodyV2 constructor
- *  \param bType a character.
- *  \param shape an integer.
- *  \param x an integer.
- *  \param y an integer.
- *  \param z an integer.
+/**
+ *  \brief mvBody constructor
+ *  \param[in] bType Body type [MV_VEHICLE, MV_PARTICLE, MV_DUAL_TYPE]
+ *  \param[in] shape Shape of body [MV_AABOX, MV_SPHERE, ...]
+ *  \param[in] x X component of the body's initial position
+ *  \param[in] y Y component of the body's initial position
+ *  \param[in] z Z component of the body's initial position
  */
-mvBody_V2::mvBody_V2(mvOptionEnum bType, mvOptionEnum shape, mvFloat x,\
+mvBody::mvBody(mvOptionEnum bType, mvOptionEnum shape, mvFloat x,\
    mvFloat y, mvFloat z) :  bodyPosition(x,y,z)
 {
    // boolean flags are true
@@ -124,18 +124,27 @@ mvBody_V2::mvBody_V2(mvOptionEnum bType, mvOptionEnum shape, mvFloat x,\
 
 }
 
-mvVec3 mvBody_V2::getBodyDirection() const
+/** \brief blah blah
+ *
+ */
+mvVec3 mvBody::getBodyDirection() const
 {
    return bodyVelocity.normalize();
 }
 
-mvErrorEnum mvBody_V2::setBodyDirection(mvFloat x, mvFloat y, mvFloat z)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setBodyDirection(mvFloat x, mvFloat y, mvFloat z)
 {
    mvVec3 temp(x,y,z);
    return setBodyDirection(temp);
 }
 
-mvErrorEnum mvBody_V2::setBodyDirection(const mvVec3& value)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setBodyDirection(const mvVec3& value)
 {
    mvVec3 newNormalized = value.normalize();
    mvFloat bodySpeed = getSpeed();
@@ -144,7 +153,10 @@ mvErrorEnum mvBody_V2::setBodyDirection(const mvVec3& value)
    return MV_NO_ERROR;
 }
 
-mvBody_V2::~mvBody_V2()
+/** \brief blah blah
+ *
+ */
+mvBody::~mvBody()
 {
    if (bodyDomainVariables != MV_NULL)
    {
@@ -153,7 +165,10 @@ mvBody_V2::~mvBody_V2()
    }
 }
 
-mvErrorEnum mvBody_V2::setDomain(mvOptionEnum bDomain)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setDomain(mvOptionEnum bDomain)
 {
    mvFloat tempDomVars[MV_MAX_NO_OF_PARAMETERS];
    mvIndex i;
@@ -206,12 +221,18 @@ mvErrorEnum mvBody_V2::setDomain(mvOptionEnum bDomain)
    return MV_NO_ERROR;
 }
 
-const mvFloat* mvBody_V2::getDomainVariables() const
+/** \brief blah blah
+ *
+ */
+const mvFloat* mvBody::getDomainVariables() const
 {
    return bodyDomainVariables;
 }
 
-mvCount mvBody_V2::getNoOfDomainVariables() const
+/** \brief blah blah
+ *
+ */
+mvCount mvBody::getNoOfDomainVariables() const
 {
    static const mvCount MV_NO_OF_FULL_3D_VARIABLES = 0;
    static const mvCount MV_NO_OF_XY_PLANE_VARIABLES = 0;
@@ -249,17 +270,26 @@ mvCount mvBody_V2::getNoOfDomainVariables() const
    }
 }
 
-mvOptionEnum mvBody_V2::getDomain() const
+/** \brief blah blah
+ *
+ */
+mvOptionEnum mvBody::getDomain() const
 {
    return bodyDomain;
 }
 
-mvOptionEnum mvBody_V2::getType() const
+/** \brief blah blah
+ *
+ */
+mvOptionEnum mvBody::getType() const
 {
    return bodyType;
 }
 
-mvErrorEnum mvBody_V2::setType(mvOptionEnum bType)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setType(mvOptionEnum bType)
 {
    switch(bType)
    {
@@ -273,47 +303,74 @@ mvErrorEnum mvBody_V2::setType(mvOptionEnum bType)
    }
 }
 
-mvConstShapePtr mvBody_V2::getShape() const
+/** \brief blah blah
+ *
+ */
+mvConstShapePtr mvBody::getShape() const
 {
    return &bodyShape;
 }
 
-mvErrorEnum mvBody_V2::setShape(mvOptionEnum bShape)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setShape(mvOptionEnum bShape)
 {
    return bodyShape.setType(bShape);
 }
 
-void* mvBody_V2::getUserData() const
+/** \brief blah blah
+ *
+ */
+void* mvBody::getUserData() const
 {
    return bodyUserDataPtr;
 }
 
-void mvBody_V2::setUserData(void* usrData)
+/** \brief blah blah
+ *
+ */
+void mvBody::setUserData(void* usrData)
 {
    bodyUserDataPtr = usrData;
 }
 
-mvFloat mvBody_V2::getX() const
+/** \brief blah blah
+ *
+ */
+mvFloat mvBody::getX() const
 {
    return bodyPosition.getX();
 }
 
-mvFloat mvBody_V2::getY() const
+/** \brief blah blah
+ *
+ */
+mvFloat mvBody::getY() const
 {
    return bodyPosition.getY();
 }
 
-mvFloat mvBody_V2::getZ() const
+/** \brief blah blah
+ *
+ */
+mvFloat mvBody::getZ() const
 {
    return bodyPosition.getZ();
 }
 
-const mvVec3& mvBody_V2::getPosition() const
+/** \brief blah blah
+ *
+ */
+const mvVec3& mvBody::getPosition() const
 {
    return bodyPosition;
 }
 
-mvErrorEnum mvBody_V2::setPosition(mvFloat x, mvFloat y, mvFloat z)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setPosition(mvFloat x, mvFloat y, mvFloat z)
 {
    setX(x);
    setY(y);
@@ -321,29 +378,44 @@ mvErrorEnum mvBody_V2::setPosition(mvFloat x, mvFloat y, mvFloat z)
    return MV_NO_ERROR;
 }
 
-const mvVec3& mvBody_V2::getFaceDirection() const
+/** \brief blah blah
+ *
+ */
+const mvVec3& mvBody::getFaceDirection() const
 {
    return faceDirection;
 }
 
-mvErrorEnum mvBody_V2::setFaceDirection(mvFloat x, mvFloat y,mvFloat z)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setFaceDirection(mvFloat x, mvFloat y,mvFloat z)
 {
    mvVec3 temp(x,y,z);
    return setFaceDirectionByVec3(temp);
 }
 
-mvErrorEnum mvBody_V2::setFaceDirectionByVec3(const mvVec3& value)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setFaceDirectionByVec3(const mvVec3& value)
 {
    faceDirection = value;
    return MV_NO_ERROR;
 }
 
-mvFloat mvBody_V2::getSpeed() const
+/** \brief blah blah
+ *
+ */
+mvFloat mvBody::getSpeed() const
 {
    return bodyVelocity.length();
 }
 
-mvErrorEnum mvBody_V2::setSpeed(mvFloat num)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setSpeed(mvFloat num)
 {
    if (num > 0)
    {
@@ -358,18 +430,27 @@ mvErrorEnum mvBody_V2::setSpeed(mvFloat num)
    }
 }
 
-mvFloat mvBody_V2::getMaxSpeed() const
+/** \brief blah blah
+ *
+ */
+mvFloat mvBody::getMaxSpeed() const
 {
    return bodyMaxSpeed;
 }
 
-mvErrorEnum mvBody_V2::setMaxSpeed(mvFloat num)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setMaxSpeed(mvFloat num)
 {
    bodyMaxSpeed = num;
    return MV_NO_ERROR;
 }
 
-mvErrorEnum mvBody_V2::setMass(mvFloat num)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setMass(mvFloat num)
 {
    if (num >= 0)
    {
@@ -382,17 +463,26 @@ mvErrorEnum mvBody_V2::setMass(mvFloat num)
    }
 }
 
-mvFloat mvBody_V2::getMass() const
+/** \brief blah blah
+ *
+ */
+mvFloat mvBody::getMass() const
 {
    return bodyMass;
 }
 
-mvFloat mvBody_V2::getDeceleration() const
+/** \brief blah blah
+ *
+ */
+mvFloat mvBody::getDeceleration() const
 {
    return bodyDeaccel;
 }
 
-mvErrorEnum mvBody_V2::setDeceleration(mvFloat dAccel)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setDeceleration(mvFloat dAccel)
 {
    if (dAccel >= 0)
    {
@@ -405,12 +495,18 @@ mvErrorEnum mvBody_V2::setDeceleration(mvFloat dAccel)
    }
 }
 
-mvFloat mvBody_V2::getAcceleration() const
+/** \brief blah blah
+ *
+ */
+mvFloat mvBody::getAcceleration() const
 {
    return bodyAccel;
 }
 
-mvErrorEnum mvBody_V2::setAcceleration(mvFloat accel)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setAcceleration(mvFloat accel)
 {
    if (accel >= 0)
    {
@@ -423,73 +519,105 @@ mvErrorEnum mvBody_V2::setAcceleration(mvFloat accel)
    }
 }
 
-
-mvVec3 mvBody_V2::getFinalDirection() const
+/** \brief blah blah
+ *
+ */
+mvVec3 mvBody::getFinalDirection() const
 {
    mvVec3 temp = finalVelocity.normalize();
    return temp;
 }
 
 /*
-mvErrorEnum mvBody_V2::setFinalDirection(mvFloat fx, mvFloat fy, mvFloat fz)
+mvErrorEnum mvBody::setFinalDirection(mvFloat fx, mvFloat fy, mvFloat fz)
 {
    mvVec3 temp(fx,fy,fz);
    return setFinalDirectionByVec3(temp);
 }
 */
 
-mvErrorEnum mvBody_V2::setFinalDirection(const mvVec3& value)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setFinalDirection(const mvVec3& value)
 {
    faceDirection = value;
    return MV_NO_ERROR;
 }
 
-const mvVec3& mvBody_V2::getFinalVelocity() const
+/** \brief blah blah
+ *
+ */
+const mvVec3& mvBody::getFinalVelocity() const
 {
    return finalVelocity;
 }
 
-mvErrorEnum mvBody_V2::setFinalVelocity(mvFloat x, mvFloat y, mvFloat z)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setFinalVelocity(mvFloat x, mvFloat y, mvFloat z)
 {
    finalVelocity.set(x,y,z);
    return MV_NO_ERROR;
 }
 
-mvErrorEnum mvBody_V2::setVelocity(mvFloat vx, mvFloat vy, mvFloat vz)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setVelocity(mvFloat vx, mvFloat vy, mvFloat vz)
 {
    bodyVelocity.set(vx,vy,vz);
    return MV_NO_ERROR;
 }
 
-mvErrorEnum mvBody_V2::setVelocity(const mvVec3& value)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setVelocity(const mvVec3& value)
 {
    bodyVelocity = value;
    return MV_NO_ERROR;
 }
 
-mvErrorEnum mvBody_V2::setFinalVelocity(const mvVec3& value)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setFinalVelocity(const mvVec3& value)
 {
    finalVelocity = value;
    return MV_NO_ERROR;
 }
 
-void mvBody_V2::setPosition(const mvVec3& value)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setPosition(const mvVec3& value)
 {
    bodyPosition = value;
+   return MV_NO_ERROR;
 }
 
-const mvVec3& mvBody_V2::getVelocity() const
+/** \brief blah blah
+ *
+ */
+const mvVec3& mvBody::getVelocity() const
 {
    return bodyVelocity;
 }
 
-mvFloat mvBody_V2::getFinalSpeed() const
+/** \brief blah blah
+ *
+ */
+mvFloat mvBody::getFinalSpeed() const
 {
    return finalVelocity.length();
 }
 
-// parameter functions
-mvErrorEnum mvBody_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    const
 {
    mvErrorEnum error;
@@ -518,7 +646,10 @@ mvErrorEnum mvBody_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    }
 }
 
-mvErrorEnum mvBody_V2::getParametero(mvParamEnum paramFlag,\
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    mvErrorEnum error;
@@ -633,7 +764,10 @@ mvErrorEnum mvBody_V2::getParametero(mvParamEnum paramFlag,\
 
 }
 
-mvErrorEnum mvBody_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
 {
    mvErrorEnum error;
 
@@ -677,7 +811,10 @@ mvErrorEnum mvBody_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num) const
    }
 }
 
-mvErrorEnum mvBody_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
    mvCount* noOfParameters) const
 {
    mvErrorEnum error;
@@ -892,7 +1029,10 @@ mvErrorEnum mvBody_V2::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
 
 }
 
-mvErrorEnum mvBody_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
    mvErrorEnum error;
 
@@ -909,7 +1049,10 @@ mvErrorEnum mvBody_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
    }
 }
 
-mvErrorEnum mvBody_V2::setParametero(mvParamEnum paramFlag, mvOptionEnum option)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setParametero(mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvErrorEnum error;
 
@@ -1014,7 +1157,10 @@ mvErrorEnum mvBody_V2::setParametero(mvParamEnum paramFlag, mvOptionEnum option)
    }
 }
 
-mvErrorEnum mvBody_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
    mvErrorEnum error;
    mvVec3 tempVector;
@@ -1050,7 +1196,10 @@ mvErrorEnum mvBody_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
    }
 }
 
-mvErrorEnum mvBody_V2::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvBody::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
 {
    mvErrorEnum error;
    mvOptionEnum option;
@@ -1131,87 +1280,138 @@ mvErrorEnum mvBody_V2::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
    }
 }
 
-void mvBody_V2::setX(mvFloat x)
+/** \brief blah blah
+ *
+ */
+void mvBody::setX(mvFloat x)
 {
    bodyPosition.setX(x);
 }
 
-void mvBody_V2::setY(mvFloat y)
+/** \brief blah blah
+ *
+ */
+void mvBody::setY(mvFloat y)
 {
    bodyPosition.setY(y);
 }
 
-void mvBody_V2::setZ(mvFloat z)
+/** \brief blah blah
+ *
+ */
+void mvBody::setZ(mvFloat z)
 {
    bodyPosition.setZ(z);
 }
 
-const mvVec3& mvBody_V2::getFinalForce() const
+/** \brief blah blah
+ *
+ */
+const mvVec3& mvBody::getFinalForce() const
 {
    return finalForceVector;
 }
 
-void mvBody_V2::setFinalForce(const mvVec3& vec)
+/** \brief blah blah
+ *
+ */
+void mvBody::setFinalForce(const mvVec3& vec)
 {
    finalForceVector = vec;
 }
 
-const mvVec3& mvBody_V2::getBodysForce() const
+/** \brief blah blah
+ *
+ */
+const mvVec3& mvBody::getBodysForce() const
 {
    return bodysForceVector;
 }
 
-void mvBody_V2::setBodysForce(const mvVec3& vec)
+/** \brief blah blah
+ *
+ */
+void mvBody::setBodysForce(const mvVec3& vec)
 {
    bodysForceVector = vec;
 }
 
-const mvVec3& mvBody_V2::getFinalTorque() const
+/** \brief blah blah
+ *
+ */
+const mvVec3& mvBody::getFinalTorque() const
 {
    return finalTorque;
 }
 
-void mvBody_V2::setFinalTorque(const mvVec3& vec)
+/** \brief blah blah
+ *
+ */
+void mvBody::setFinalTorque(const mvVec3& vec)
 {
    finalTorque = vec;
 }
 
-const mvVec3& mvBody_V2::getBodysTorque() const
+/** \brief blah blah
+ *
+ */
+const mvVec3& mvBody::getBodysTorque() const
 {
    return bodysTorque;
 }
 
-void mvBody_V2::setBodysTorque(const mvVec3& vec)
+/** \brief blah blah
+ *
+ */
+void mvBody::setBodysTorque(const mvVec3& vec)
 {
    bodysTorque = vec;
 }
 
-const mvVec3& mvBody_V2::getFinalOmega() const
+/** \brief blah blah
+ *
+ */
+const mvVec3& mvBody::getFinalOmega() const
 {
    return finalOmega;
 }
 
-void mvBody_V2::setFinalOmega(const mvVec3& vec)
+/** \brief blah blah
+ *
+ */
+void mvBody::setFinalOmega(const mvVec3& vec)
 {
    finalOmega = vec;
 }
 
-const mvVec3& mvBody_V2::getRotation() const
+/** \brief blah blah
+ *
+ */
+const mvVec3& mvBody::getRotation() const
 {
    return bodysRotation;
 }
 
-void mvBody_V2::setRotation(const mvVec3& vec)
+/** \brief blah blah
+ *
+ */
+void mvBody::setRotation(const mvVec3& vec)
 {
    bodysRotation = vec;
 }
 
-const mvVec3& mvBody_V2::getBodysOmega() const
+/** \brief blah blah
+ *
+ */
+const mvVec3& mvBody::getBodysOmega() const
 {
    return bodysOmega;
 }
 
-void mvBody_V2::setBodysOmega(const mvVec3& vec)
+/** \brief blah blah
+ *
+ */
+void mvBody::setBodysOmega(const mvVec3& vec)
 {
    bodysOmega = vec;
 }

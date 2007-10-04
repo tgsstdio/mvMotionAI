@@ -1,6 +1,9 @@
 /**
  * \file mvObstacle_V2.cpp
- * \class mvObstacle mv/mvObstacle_V2.h "MV_OBSTACLE_HEADER_FILE_H_"
+ * \class mvObstacle
+ *
+ * \brief Static objects that the bodies (mvBody) should avoid (NOT IMPLEMENTED)
+ * \author David Young
  *
  * Copyright (c) 2006 , 2007 David Young.
  *
@@ -24,7 +27,10 @@
  */
 #include <mv/mvObstacle_V2.h>
 
-mvObstacle_V2::mvObstacle_V2(mvOptionEnum oShape, mvOptionEnum oType,\
+/** \brief blah blah
+ *
+ */
+mvObstacle::mvObstacle(mvOptionEnum oShape, mvOptionEnum oType,\
    mvFloat x, mvFloat y, mvFloat z)
 {
    setShape(oShape);
@@ -32,59 +38,92 @@ mvObstacle_V2::mvObstacle_V2(mvOptionEnum oShape, mvOptionEnum oType,\
    setPosition(x,y,z);
 }
 
-mvErrorEnum mvObstacle_V2::setPosition(mvFloat x, mvFloat y, mvFloat z)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvObstacle::setPosition(mvFloat x, mvFloat y, mvFloat z)
 {
    mvVec3 temp(x,y,z);
-   return setPositionByVec3(temp);
+   return setPosition(temp);
 }
 
-mvErrorEnum mvObstacle_V2::setPositionByVec3(const mvVec3& value)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvObstacle::setPosition(const mvVec3& value)
 {
    obPosition = value;
    return MV_NO_ERROR;
 }
 
-mvFloat mvObstacle_V2::getX() const
+/** \brief blah blah
+ *
+ */
+mvFloat mvObstacle::getX() const
 {
    return obPosition.getX();
 }
 
-mvFloat mvObstacle_V2::getY() const
+/** \brief blah blah
+ *
+ */
+mvFloat mvObstacle::getY() const
 {
    return obPosition.getY();
 }
 
-mvFloat mvObstacle_V2::getZ() const
+/** \brief blah blah
+ *
+ */
+mvFloat mvObstacle::getZ() const
 {
    return obPosition.getZ();
 }
 
-void mvObstacle_V2::setX(mvFloat x)
+/** \brief blah blah
+ *
+ */
+void mvObstacle::setX(mvFloat x)
 {
    obPosition.setX(x);
 }
 
-void mvObstacle_V2::setY(mvFloat y)
+/** \brief blah blah
+ *
+ */
+void mvObstacle::setY(mvFloat y)
 {
    obPosition.setY(y);
 }
 
-void mvObstacle_V2::setZ(mvFloat z)
+/** \brief blah blah
+ *
+ */
+void mvObstacle::setZ(mvFloat z)
 {
    obPosition.setZ(z);
 }
 
-const mvVec3& mvObstacle_V2::getPosition() const
+/** \brief blah blah
+ *
+ */
+const mvVec3& mvObstacle::getPosition() const
 {
    return obPosition;
 }
 
-mvOptionEnum mvObstacle_V2::getType() const
+/** \brief blah blah
+ *
+ */
+mvOptionEnum mvObstacle::getType() const
 {
    return obType;
 }
 
-mvErrorEnum mvObstacle_V2::setType(mvOptionEnum oType)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvObstacle::setType(mvOptionEnum oType)
 {
    switch(oType)
    {
@@ -98,17 +137,26 @@ mvErrorEnum mvObstacle_V2::setType(mvOptionEnum oType)
    }
 }
 
-mvErrorEnum mvObstacle_V2::setShape(mvOptionEnum oShape)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvObstacle::setShape(mvOptionEnum oShape)
 {
    return obShape.setType(oShape);
 }
 
-mvConstShapePtr mvObstacle_V2::getShape() const
+/** \brief blah blah
+ *
+ */
+mvConstShapePtr mvObstacle::getShape() const
 {
    return &obShape;
 }
 
-mvErrorEnum mvObstacle_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvObstacle::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    const
 {
    mvErrorEnum error;
@@ -130,7 +178,10 @@ mvErrorEnum mvObstacle_V2::getParameteri(mvParamEnum paramFlag, mvIndex* index)\
    }
 }
 
-mvErrorEnum mvObstacle_V2::getParametero(mvParamEnum paramFlag,\
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvObstacle::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    mvErrorEnum error;
@@ -154,7 +205,10 @@ mvErrorEnum mvObstacle_V2::getParametero(mvParamEnum paramFlag,\
    }
 }
 
-mvErrorEnum mvObstacle_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num)\
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvObstacle::getParameterf(mvParamEnum paramFlag, mvFloat* num)\
    const
 {
    mvErrorEnum error;
@@ -176,7 +230,10 @@ mvErrorEnum mvObstacle_V2::getParameterf(mvParamEnum paramFlag, mvFloat* num)\
    }
 }
 
-mvErrorEnum mvObstacle_V2::getParameterv(mvParamEnum paramFlag,\
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvObstacle::getParameterv(mvParamEnum paramFlag,\
  mvFloat* numArray, mvCount* noOfParameters) const
 {
    mvErrorEnum error;
@@ -221,7 +278,10 @@ mvErrorEnum mvObstacle_V2::getParameterv(mvParamEnum paramFlag,\
    }
 }
 
-mvErrorEnum mvObstacle_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvObstacle::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
    mvErrorEnum error;
 
@@ -236,7 +296,10 @@ mvErrorEnum mvObstacle_V2::setParameteri(mvParamEnum paramFlag, mvIndex index)
    }
 }
 
-mvErrorEnum mvObstacle_V2::setParametero(mvParamEnum paramFlag,\
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvObstacle::setParametero(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
    mvErrorEnum error;
@@ -259,7 +322,10 @@ mvErrorEnum mvObstacle_V2::setParametero(mvParamEnum paramFlag,\
    }
 }
 
-mvErrorEnum mvObstacle_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvObstacle::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
    mvErrorEnum error;
 
@@ -275,7 +341,10 @@ mvErrorEnum mvObstacle_V2::setParameterf(mvParamEnum paramFlag, mvFloat num)
    }
 }
 
-mvErrorEnum mvObstacle_V2::setParameterv(mvParamEnum paramFlag,\
+/** \brief blah blah
+ *
+ */
+mvErrorEnum mvObstacle::setParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray)
 {
    mvErrorEnum error;
@@ -301,7 +370,10 @@ mvErrorEnum mvObstacle_V2::setParameterv(mvParamEnum paramFlag,\
    }
 }
 
-mvObstacle_V2::~mvObstacle_V2()
+/** \brief blah blah
+ *
+ */
+mvObstacle::~mvObstacle()
 {
 
 }

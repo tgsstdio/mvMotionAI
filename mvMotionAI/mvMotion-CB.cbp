@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="default">
-				<Option output="lib/libmvMotionAI.a" prefix_auto="1" extension_auto="1" />
+				<Option output="lib\libmvMotionAI.a" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option type="2" />
 				<Option compiler="gcc" />
@@ -15,11 +15,11 @@
 				<Compiler>
 					<Add option="-Wall" />
 					<Add directory="include" />
-					<Add directory="experimental/include" />
+					<Add directory="experimental\include" />
 				</Compiler>
 			</Target>
 			<Target title="unix">
-				<Option output="lib/libmvMotionAI-unix.a" prefix_auto="1" extension_auto="1" />
+				<Option output="lib\libmvMotionAI-unix.a" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option type="2" />
 				<Option compiler="gcc" />
@@ -35,7 +35,7 @@
 				</Compiler>
 			</Target>
 			<Target title="mingw-winXP">
-				<Option output="lib/libmvMotionAI-mingw.a" prefix_auto="1" extension_auto="1" />
+				<Option output="lib\libmvMotionAI-mingw.a" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option type="2" />
 				<Option compiler="gcc" />
@@ -49,14 +49,14 @@
 					<Add option="-O" />
 					<Add option="-Wall" />
 					<Add directory="include-other" />
-					<Add directory="include-other/mingw" />
+					<Add directory="include-other\mingw" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
 				</Linker>
 			</Target>
 			<Target title="mingw-winXP-debug">
-				<Option output="lib/libmvMotionAI-mingw-debug.a" prefix_auto="1" extension_auto="1" />
+				<Option output="lib\libmvMotionAI-mingw-debug.a" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option object_output=".objs-debug" />
 				<Option type="2" />
@@ -70,11 +70,11 @@
 					<Add option="-Wall" />
 					<Add option="-g" />
 					<Add directory="include-other" />
-					<Add directory="include-other/mingw" />
+					<Add directory="include-other\mingw" />
 				</Compiler>
 			</Target>
 			<Target title="mingw-winXP-dll">
-				<Option output="bin/mvMotionAI-mingw-dll.so" prefix_auto="1" extension_auto="1" />
+				<Option output="bin\mvMotionAI-mingw-dll.dll" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="lib" />
 				<Option type="3" />
 				<Option compiler="gcc" />
@@ -90,14 +90,14 @@
 					<Add option="-Wall" />
 					<Add option="-DMV_BUILD_DLL" />
 					<Add directory="include-other" />
-					<Add directory="include-other/mingw" />
+					<Add directory="include-other\mingw" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
 				</Linker>
 			</Target>
 			<Target title="unix debug">
-				<Option output="lib/libmvMotionAI-unix-debug.a" prefix_auto="1" extension_auto="1" />
+				<Option output="lib\libmvMotionAI-unix-debug.a" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option type="2" />
 				<Option compiler="gcc" />
@@ -122,95 +122,96 @@
 			<Add option="-Wall" />
 			<Add directory="include" />
 		</Compiler>
-		<Unit filename="include/mv/mvActionLoaderList.h" />
-		<Unit filename="include/mv/mvBEntry.h" />
-		<Unit filename="include/mv/mvBEntryList.h" />
-		<Unit filename="include/mv/mvBEntryListNode.h" />
-		<Unit filename="include/mv/mvBEntryTimer.h" />
-		<Unit filename="include/mv/mvBEntryUtility.h" />
-		<Unit filename="include/mv/mvBaseAction.h" />
-		<Unit filename="include/mv/mvBaseForce.h" />
-		<Unit filename="include/mv/mvBehaviourResult.h" />
-		<Unit filename="include/mv/mvBehaviour_V2.h" />
-		<Unit filename="include/mv/mvBodyCapsule.h" />
-		<Unit filename="include/mv/mvBody_V2.h" />
-		<Unit filename="include/mv/mvCapsuleList.h" />
-		<Unit filename="include/mv/mvCapsuleList.hpp" />
-		<Unit filename="include/mv/mvEnums.h" />
-		<Unit filename="include/mv/mvFactoryFunctionList.h" />
-		<Unit filename="include/mv/mvFactoryFunctionList.hpp" />
-		<Unit filename="include/mv/mvFlee.h" />
-		<Unit filename="include/mv/mvForceCapsule.h" />
-		<Unit filename="include/mv/mvForceLoaderList.h" />
-		<Unit filename="include/mv/mvForceResult.h" />
-		<Unit filename="include/mv/mvGravityForce.h" />
-		<Unit filename="include/mv/mvGroupBNode_V2.h" />
-		<Unit filename="include/mv/mvGroupBehaviourResult.h" />
-		<Unit filename="include/mv/mvGroupBehaviour_V2.h" />
-		<Unit filename="include/mv/mvGroupCapsule.h" />
-		<Unit filename="include/mv/mvGroup_V2.h" />
-		<Unit filename="include/mv/mvIndexSet.h" />
-		<Unit filename="include/mv/mvMotionAI-Types.h" />
-		<Unit filename="include/mv/mvMotionAI-Utilities.h" />
-		<Unit filename="include/mv/mvMotionAI.h" />
-		<Unit filename="include/mv/mvNullLoader.h" />
-		<Unit filename="include/mv/mvObstacle_V2.h" />
-		<Unit filename="include/mv/mvPathway_V2.h" />
-		<Unit filename="include/mv/mvPointerList.h" />
-		<Unit filename="include/mv/mvPointerList.hpp" />
-		<Unit filename="include/mv/mvPursuit.h" />
-		<Unit filename="include/mv/mvSeek.h" />
-		<Unit filename="include/mv/mvShape.h" />
-		<Unit filename="include/mv/mvUniformAccelForce.h" />
-		<Unit filename="include/mv/mvUniformForce.h" />
-		<Unit filename="include/mv/mvUniformShiftForce.h" />
-		<Unit filename="include/mv/mvVec3.h" />
-		<Unit filename="include/mv/mvWaypointCapsule.h" />
-		<Unit filename="include/mv/mvWaypoint_V2.h" />
-		<Unit filename="include/mv/mvWorld2.h" />
-		<Unit filename="src/mvBEntry.cpp" />
-		<Unit filename="src/mvBEntryList.cpp" />
-		<Unit filename="src/mvBEntryListNode.cpp" />
-		<Unit filename="src/mvBEntryTimer.cpp" />
-		<Unit filename="src/mvBEntryUtility.cpp" />
-		<Unit filename="src/mvBaseAction.cpp" />
-		<Unit filename="src/mvBaseForce.cpp" />
-		<Unit filename="src/mvBehaviourResult.cpp" />
-		<Unit filename="src/mvBehaviour_V2.cpp" />
-		<Unit filename="src/mvBodyCapsule.cpp" />
-		<Unit filename="src/mvBody_V2.cpp" />
-		<Unit filename="src/mvEnums.cpp" />
-		<Unit filename="src/mvFlee.cpp" />
-		<Unit filename="src/mvForceCapsule.cpp" />
-		<Unit filename="src/mvForceResult.cpp" />
-		<Unit filename="src/mvGravityForce.cpp" />
-		<Unit filename="src/mvGroupBNode_V2.cpp" />
-		<Unit filename="src/mvGroupBehaviourResult.cpp" />
-		<Unit filename="src/mvGroupBehaviour_V2.cpp" />
-		<Unit filename="src/mvGroupCapsule.cpp" />
-		<Unit filename="src/mvGroup_V2.cpp" />
-		<Unit filename="src/mvIndexSet.cpp" />
-		<Unit filename="src/mvMotionAI-Utilities.cpp" />
-		<Unit filename="src/mvMotionAI.cpp" />
-		<Unit filename="src/mvMotionAI_V2-Central.cpp" />
-		<Unit filename="src/mvMotionAI_V2-Central.h" />
-		<Unit filename="src/mvNullLoader.cpp" />
-		<Unit filename="src/mvObstacle_V2.cpp" />
-		<Unit filename="src/mvPathway_V2.cpp" />
-		<Unit filename="src/mvPursuit.cpp" />
-		<Unit filename="src/mvSeek.cpp" />
-		<Unit filename="src/mvShape.cpp" />
-		<Unit filename="src/mvUniformAccelForce.cpp" />
-		<Unit filename="src/mvUniformForce.cpp" />
-		<Unit filename="src/mvUniformShiftForce.cpp" />
-		<Unit filename="src/mvVec3.cpp" />
-		<Unit filename="src/mvWaypointCapsule.cpp" />
-		<Unit filename="src/mvWaypoint_V2.cpp" />
-		<Unit filename="src/mvWorld2.cpp" />
-		<Unit filename="src/mvWorld2_Functions.cpp" />
-		<Unit filename="src/mvWorld2_Functions.h" />
+		<Unit filename="include\mv\mvActionLoaderList.h" />
+		<Unit filename="include\mv\mvBEntry.h" />
+		<Unit filename="include\mv\mvBEntryList.h" />
+		<Unit filename="include\mv\mvBEntryListNode.h" />
+		<Unit filename="include\mv\mvBEntryTimer.h" />
+		<Unit filename="include\mv\mvBEntryUtility.h" />
+		<Unit filename="include\mv\mvBaseAction.h" />
+		<Unit filename="include\mv\mvBaseForce.h" />
+		<Unit filename="include\mv\mvBehaviourResult.h" />
+		<Unit filename="include\mv\mvBehaviour_V2.h" />
+		<Unit filename="include\mv\mvBodyCapsule.h" />
+		<Unit filename="include\mv\mvBody_V2.h" />
+		<Unit filename="include\mv\mvCapsuleList.h" />
+		<Unit filename="include\mv\mvCapsuleList.hpp" />
+		<Unit filename="include\mv\mvEnums.h" />
+		<Unit filename="include\mv\mvFactoryFunctionList.h" />
+		<Unit filename="include\mv\mvFactoryFunctionList.hpp" />
+		<Unit filename="include\mv\mvFlee.h" />
+		<Unit filename="include\mv\mvForceCapsule.h" />
+		<Unit filename="include\mv\mvForceLoaderList.h" />
+		<Unit filename="include\mv\mvForceResult.h" />
+		<Unit filename="include\mv\mvGravityForce.h" />
+		<Unit filename="include\mv\mvGroupBNode_V2.h" />
+		<Unit filename="include\mv\mvGroupBehaviourResult.h" />
+		<Unit filename="include\mv\mvGroupBehaviour_V2.h" />
+		<Unit filename="include\mv\mvGroupCapsule.h" />
+		<Unit filename="include\mv\mvGroup_V2.h" />
+		<Unit filename="include\mv\mvIndexSet.h" />
+		<Unit filename="include\mv\mvMotionAI-Types.h" />
+		<Unit filename="include\mv\mvMotionAI-Utilities.h" />
+		<Unit filename="include\mv\mvMotionAI.h" />
+		<Unit filename="include\mv\mvNullLoader.h" />
+		<Unit filename="include\mv\mvObstacle_V2.h" />
+		<Unit filename="include\mv\mvPathway_V2.h" />
+		<Unit filename="include\mv\mvPointerList.h" />
+		<Unit filename="include\mv\mvPointerList.hpp" />
+		<Unit filename="include\mv\mvPursuit.h" />
+		<Unit filename="include\mv\mvSeek.h" />
+		<Unit filename="include\mv\mvShape.h" />
+		<Unit filename="include\mv\mvUniformAccelForce.h" />
+		<Unit filename="include\mv\mvUniformForce.h" />
+		<Unit filename="include\mv\mvUniformShiftForce.h" />
+		<Unit filename="include\mv\mvVec3.h" />
+		<Unit filename="include\mv\mvWaypointCapsule.h" />
+		<Unit filename="include\mv\mvWaypoint_V2.h" />
+		<Unit filename="include\mv\mvWorld2.h" />
+		<Unit filename="src\mvBEntry.cpp" />
+		<Unit filename="src\mvBEntryList.cpp" />
+		<Unit filename="src\mvBEntryListNode.cpp" />
+		<Unit filename="src\mvBEntryTimer.cpp" />
+		<Unit filename="src\mvBEntryUtility.cpp" />
+		<Unit filename="src\mvBaseAction.cpp" />
+		<Unit filename="src\mvBaseForce.cpp" />
+		<Unit filename="src\mvBehaviourResult.cpp" />
+		<Unit filename="src\mvBehaviour_V2.cpp" />
+		<Unit filename="src\mvBodyCapsule.cpp" />
+		<Unit filename="src\mvBody_V2.cpp" />
+		<Unit filename="src\mvEnums.cpp" />
+		<Unit filename="src\mvFlee.cpp" />
+		<Unit filename="src\mvForceCapsule.cpp" />
+		<Unit filename="src\mvForceResult.cpp" />
+		<Unit filename="src\mvGravityForce.cpp" />
+		<Unit filename="src\mvGroupBNode_V2.cpp" />
+		<Unit filename="src\mvGroupBehaviourResult.cpp" />
+		<Unit filename="src\mvGroupBehaviour_V2.cpp" />
+		<Unit filename="src\mvGroupCapsule.cpp" />
+		<Unit filename="src\mvGroup_V2.cpp" />
+		<Unit filename="src\mvIndexSet.cpp" />
+		<Unit filename="src\mvMotionAI-Utilities.cpp" />
+		<Unit filename="src\mvMotionAI.cpp" />
+		<Unit filename="src\mvMotionAI_V2-Central.cpp" />
+		<Unit filename="src\mvMotionAI_V2-Central.h" />
+		<Unit filename="src\mvNullLoader.cpp" />
+		<Unit filename="src\mvObstacle_V2.cpp" />
+		<Unit filename="src\mvPathway_V2.cpp" />
+		<Unit filename="src\mvPursuit.cpp" />
+		<Unit filename="src\mvSeek.cpp" />
+		<Unit filename="src\mvShape.cpp" />
+		<Unit filename="src\mvUniformAccelForce.cpp" />
+		<Unit filename="src\mvUniformForce.cpp" />
+		<Unit filename="src\mvUniformShiftForce.cpp" />
+		<Unit filename="src\mvVec3.cpp" />
+		<Unit filename="src\mvWaypointCapsule.cpp" />
+		<Unit filename="src\mvWaypoint_V2.cpp" />
+		<Unit filename="src\mvWorld2.cpp" />
+		<Unit filename="src\mvWorld2_Functions.cpp" />
+		<Unit filename="src\mvWorld2_Functions.h" />
 		<Extensions>
 			<code_completion />
+			<envvars />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

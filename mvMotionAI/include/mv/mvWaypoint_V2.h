@@ -43,14 +43,14 @@
 #define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
 #endif
 
-class MV_GLOBAL_FUNC_PREFIX mvWaypoint_V2
+class MV_GLOBAL_FUNC_PREFIX mvWaypoint
 {
    private:
       mvVec3 wpPosition;
       mvShape wpShape;
 
    public:
-      mvWaypoint_V2(mvOptionEnum wshape, mvFloat x, mvFloat y, mvFloat z);
+      mvWaypoint(mvOptionEnum wshape, mvFloat x, mvFloat y, mvFloat z);
 
       mvFloat getX() const;
       mvFloat getY() const;
@@ -62,7 +62,7 @@ class MV_GLOBAL_FUNC_PREFIX mvWaypoint_V2
       const mvVec3& getPosition() const;
 
       mvErrorEnum setPosition(mvFloat x, mvFloat y, mvFloat z);
-      mvErrorEnum setPositionByVec3(const mvVec3& value);
+      mvErrorEnum setPosition(const mvVec3& value);
 
       mvErrorEnum setShape(mvOptionEnum oShape);
       mvConstShapePtr getShape() const;
@@ -78,7 +78,7 @@ class MV_GLOBAL_FUNC_PREFIX mvWaypoint_V2
       mvErrorEnum setParametero(mvParamEnum paramFlag, mvOptionEnum option);
       mvErrorEnum setParameterf(mvParamEnum paramFlag, mvFloat num);
       mvErrorEnum setParameterv(mvParamEnum paramFlag, mvFloat* numArray);
-      ~mvWaypoint_V2();
+      ~mvWaypoint();
 };
 
 #endif // MVWAYPOINT_V2_H_INCLUDED
