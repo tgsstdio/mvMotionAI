@@ -1,6 +1,17 @@
 /**
  * \file mvBody_V2.cpp
  *
+ * MV_PARTICLE : An unidirectional moving object that does not require rotation
+ *
+ * MV_VEHICLE : A single directional moving object as either an obstacle or not.
+ *
+ * MV_DUAL_TYPE:
+ *
+ * This class should be defined as a subclass of overall movement
+ * class. This class differs from Vehicle because Particles can
+ * travel along any direction instead of travelling along a single unit
+ * vector.
+ *
  * Copyright (c) 2006 , 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -20,12 +31,57 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
+ * Log
+ * Version		date		comments
+ *
+ * 00-02-15+   4/10/07
+ * - rewrote entire class and typedef as mvBody.
+ *
+ * 00-01-21    25/11/06
+ * - add parameter option MV_SHAPE_DIMENSIONS, MV_DOMAIN_VARIABLES
+ *
+ * 00-01-17   22/8/06
+ * - add get/set parameters
+ *
+ * 00-01-05   22/8/06
+ * - using types headers and mvVec3.
+ *
+ * 00-01-03   21/6/06
+ * - added behaviour list to mvBody class
+ *
+ * 00-01-02   31/5/06
+ * - added behaviour / removing groups from body & system
+ *
+ * 00-01-00   19/5/06
+ * - renamed particles and vehicles, grouped them into a group
+ * under the name of mvBody.
+ *
+ * 00-00-06		6/3/06
+ * - initialised particle
+ *
+ * 00-00-05    3/3/06
+ * - intergration for motion.
+ *
+ * 00-00-02    8/2/06
+ *  - separated from MotionAI.h, created new header and source file.
+ *
  */
-
 #include <mv/mvBody_V2.h>
 
-/** \brief mvBodyV2 constructor
- * This is a rewrite of mvBody
+/**
+ * \class mvBody mv/mvBody_V2.h "mv/mvBody_V2.h"
+ *
+ * \brief This class represents the moving objects within the system
+ */
+
+/*! \fn mvBody_V2::mvBody_V2(mvOptionEnum bType, mvOptionEnum shape, mvFloat x, mvFloat y, mvFloat z)
+ *  \brief mvBodyV2 constructor
+ *  \param bType a character.
+ *  \param shape an integer.
+ *  \param x an integer.
+ *  \param y an integer.
+ *  \param z an integer.
  */
 mvBody_V2::mvBody_V2(mvOptionEnum bType, mvOptionEnum shape, mvFloat x,\
    mvFloat y, mvFloat z) :  bodyPosition(x,y,z)

@@ -1,4 +1,5 @@
 /**
+ * \file mvBehaviourResult.h
  * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -49,6 +50,9 @@
 #define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
 #endif
 
+/** \class mvBehaviourResult
+ * \brief interface for returning result of operations in mvBaseAction
+ */
 class MV_GLOBAL_FUNC_PREFIX mvBehaviourResult
 {
    public:

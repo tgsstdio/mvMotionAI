@@ -1,13 +1,3 @@
-#ifndef MVSHAPE_H_INCLUDED
-#define MVSHAPE_H_INCLUDED
-
-#ifdef MV_MOTIONAI_TYPES_HEADER_FILE_H_
-#include MV_MOTIONAI_TYPES_HEADER_FILE_H_
-#else
-#include <mv/mvMotionAI-Types.h>
-#endif
-
-#ifdef MV_FILE_HEADER_TAG_
 /**
  * Copyright (c) 2006, 2007 David Young.
  *
@@ -29,6 +19,14 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
+#ifndef MVSHAPE_H_INCLUDED
+#define MVSHAPE_H_INCLUDED
+
+#ifdef MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#include MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#else
+#include <mv/mvMotionAI-Types.h>
 #endif
 
 #include MV_ENUMS_HEADER_FILE_H_

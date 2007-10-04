@@ -267,7 +267,7 @@ mvTimerPtr mvBEntryUtility::getTimerPtr()
   */
  mvBEntryUtility::mvBEntryUtility(mvFloat nodeWeight, mvFloat period,\
    mvFloat elapsedTime)
-  : bTimer(period, elapsedTime), bWeight(nodeWeight)
+  : bWeight(nodeWeight), bTimer(period, elapsedTime)
 {
    confined = true;
    enabled = true;

@@ -1,4 +1,6 @@
 /**
+ * \file mvForceLoaderList.h
+ *
  * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -36,6 +38,12 @@
 #else
 #define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
 #endif
+
+/**
+ * \class mvForceLoaderList
+ * \brief a list of factories which create instances of mvBaseForces depending
+ * on the mvOptionEnum key provided
+ */
 
 typedef class MV_GLOBAL_FUNC_PREFIX mvFactoryFunctionList<mvBaseForceLoader,\
    mvBaseForce, void*> mvForceLoaderList;

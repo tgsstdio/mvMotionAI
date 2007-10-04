@@ -1,4 +1,6 @@
 /**
+ * \file mvSeek.h
+ *
  * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -33,6 +35,10 @@
 #include MV_ENUMS_HEADER_FILE_H_
 #include MV_BASE_ACTION_HEADER_FILE_H_
 
+/**
+ * \class mvSeek
+ * \brief derived mvBaseAction - move towards a waypoint
+ */
 class mvSeek : public mvBaseAction
 {
    private:
@@ -51,6 +57,10 @@ class mvSeek : public mvBaseAction
       virtual ~mvSeek();
 };
 
+/**
+ * \class mvCreateSeeks
+ * \brief derived mvBaseActionLoader - creates mvSeek
+ */
 class mvCreateSeeks : public mvBaseActionLoader
 {
    public:

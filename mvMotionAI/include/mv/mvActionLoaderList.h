@@ -1,4 +1,5 @@
 /**
+ * \file mvActionLoaderList.h
  * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -28,7 +29,7 @@
 #include <mv/mvMotionAI-Types.h>
 #endif
 
-#include "mv/mvBaseAction.h"
+#include MV_BASE_ACTION_HEADER_FILE_H_
 #include "mvFactoryFunctionList.h"
 
 #ifdef MV_BUILD_DLL
@@ -37,9 +38,14 @@
 #define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
 #endif
 
-typedef class mvNewBaseActionInfo& mvConstObject;
+typedef class mvNewBaseActionInfo& mvNewBaseActionInfoRef;
+/**
+ * \class mvActionLoaderList
+ * \brief a list of factories which create instances of mvBaseActions depending
+ * on the mvOptionEnum key provided
+ */
 
 typedef class MV_GLOBAL_FUNC_PREFIX mvFactoryFunctionList<mvBaseActionLoader,\
-   mvBaseAction, mvNewBaseActionInfo& > mvActionLoaderList;
+   mvBaseAction, mvNewBaseActionInfoRef > mvActionLoaderList;
 
 #endif // MVBEHAVFUNCLIST_H_INCLUDED

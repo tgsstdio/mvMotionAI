@@ -1,4 +1,6 @@
 /**
+ * \file mvPursuit.h
+ *
  * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -31,6 +33,11 @@
 #include MV_ENUMS_HEADER_FILE_H_
 #include MV_BASE_ACTION_HEADER_FILE_H_
 
+/**
+ * \class mvPursuit
+ * \brief derived mvBaseAction - chases after another body
+ */
+
 class mvPursuit : public mvBaseAction
 {
    private:
@@ -44,6 +51,10 @@ class mvPursuit : public mvBaseAction
       virtual mvErrorEnum getParameteri(mvParamEnum param, mvIndex* index) const;
 };
 
+/**
+ * \class mvCreatePursuits
+ * \brief derived mvBaseActionLoader - creates mvPursuit
+ */
 class mvCreatePursuits : public mvBaseActionLoader
 {
    public:

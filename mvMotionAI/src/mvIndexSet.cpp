@@ -212,6 +212,10 @@ mvUniqueSet::~mvUniqueSet()
    clearAll();
 }
 
+/** \class mvGroupIterator
+ * \brief For navigating the group object
+ */
+
 mvUniqueSetIterator mvUniqueSet::getUniqueSetIterator() const
 {
    return mvUniqueSetIterator(indexes);

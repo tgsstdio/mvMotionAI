@@ -1,4 +1,5 @@
 /**
+ * \file mvBaseForce.h
  * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -37,6 +38,10 @@
 #define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
 #endif
 
+/**
+ * \class mvForceStatus
+ * \brief force status
+ */
 class MV_GLOBAL_FUNC_PREFIX mvForceStatus
 {
    public:
@@ -76,6 +81,10 @@ class MV_GLOBAL_FUNC_PREFIX mvForceStatus
       void applyingQuaternion();
 };
 
+/**
+ * \class mvBaseForce
+ * \brief interface/abstract class for creating user-defined forces
+ */
 class MV_GLOBAL_FUNC_PREFIX mvBaseForce
 {
    private:
@@ -110,6 +119,11 @@ class MV_GLOBAL_FUNC_PREFIX mvBaseForce
       virtual ~mvBaseForce();
 };
 
+/**
+ * \class mvBaseForceLoader
+ * \brief interface/abstract class for factory that create user-defined forces
+ * via mvOptionEnum key
+ */
 class MV_GLOBAL_FUNC_PREFIX mvBaseForceLoader
 {
    public:

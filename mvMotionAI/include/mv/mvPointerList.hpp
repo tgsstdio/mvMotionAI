@@ -1,5 +1,8 @@
 /**
- * \file TEMPLATE IMPLEMENTATION of mvPointerList.h
+ * \file mvPointerList.hpp
+ *
+ * \brief TEMPLATE IMPLEMENTATION of mvPointerList.h
+ *
  * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a

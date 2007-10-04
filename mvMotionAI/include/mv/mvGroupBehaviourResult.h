@@ -1,14 +1,5 @@
-#ifndef MVGROUPBEHAVIOURRESULT_H_INCLUDED
-#define MVGROUPBEHAVIOURRESULT_H_INCLUDED
-
-#ifdef MV_MOTIONAI_TYPES_HEADER_FILE_H_
-#include MV_MOTIONAI_TYPES_HEADER_FILE_H_
-#else
-#include <mv/mvMotionAI-Types.h>
-#endif
-
-#ifdef MV_FILE_HEADER_TAG_
 /**
+ * \file mvGroupBehaviourResult.h
  * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -30,6 +21,14 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
+#ifndef MVGROUPBEHAVIOURRESULT_H_INCLUDED
+#define MVGROUPBEHAVIOURRESULT_H_INCLUDED
+
+#ifdef MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#include MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#else
+#include <mv/mvMotionAI-Types.h>
 #endif
 
 #include MV_GROUP_HEADER_FILE_H_
@@ -42,6 +41,9 @@
 #define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
 #endif
 
+/** \class mvGroupBehaviourResult
+ * \brief A module for retrieving global variables
+ */
 class MV_GLOBAL_FUNC_PREFIX mvGroupBehaviourResult
 {
    public:

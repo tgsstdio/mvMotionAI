@@ -1,5 +1,7 @@
 /**
  * \file mvWaypoint_V2.cpp
+ * \class mvWaypoint mv/mvWaypoint_V2.h MV_WAYPOINT_HEADER_FILE_H_
+ * \brief A point/volume in mvMotionAI space
  *
  * Copyright (c) 2006 , 2007 David Young.
  *

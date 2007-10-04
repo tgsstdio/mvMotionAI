@@ -1,5 +1,6 @@
 /**
  * \file mvObstacle_V2.cpp
+ * \class mvObstacle mv/mvObstacle_V2.h "MV_OBSTACLE_HEADER_FILE_H_"
  *
  * Copyright (c) 2006 , 2007 David Young.
  *
