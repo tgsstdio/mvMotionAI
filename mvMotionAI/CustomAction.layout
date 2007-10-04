@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="unix" />
-	<File name="examples-src/tutorial3/CustomActionGLMain.cpp" open="0" top="0" tabpos="2">
+	<File name="examples-src\tutorial3\CustomActionGLMain.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="5877" topLine="108" />
 	</File>
 </CodeBlocks_layout_file>

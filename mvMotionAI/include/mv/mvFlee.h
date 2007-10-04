@@ -10,6 +10,11 @@
 #include MV_ENUMS_HEADER_FILE_H_
 #include MV_BASE_ACTION_HEADER_FILE_H_
 
+/**
+ * \class mvFlee
+ * \brief derived mvBaseAction - move away from a waypoint
+ */
+
 class mvFlee : public mvBaseAction
 {
    private:
@@ -26,6 +31,10 @@ class mvFlee : public mvBaseAction
       virtual mvErrorEnum getParameteri(mvParamEnum param, mvIndex* index) const;
 };
 
+/**
+ * \class mvCreateFlees
+ * \brief derived mvBaseActionLoader - creates mvFlee
+ */
 class mvCreateFlees : public mvBaseActionLoader
 {
    public:

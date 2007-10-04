@@ -1,13 +1,3 @@
-#ifndef MVPATHWAY_V2_H_INCLUDED
-#define MVPATHWAY_V2_H_INCLUDED
-
-#ifdef MV_MOTIONAI_TYPES_HEADER_FILE_H_
-#include MV_MOTIONAI_TYPES_HEADER_FILE_H_
-#else
-#include <mv/mvMotionAI-Types.h>
-#endif
-
-#ifdef MV_FILE_HEADER_TAG_
 /**
  * Copyright (c) 2006, 2007 David Young.
  *
@@ -30,6 +20,14 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
+#ifndef MVPATHWAY_V2_H_INCLUDED
+#define MVPATHWAY_V2_H_INCLUDED
+
+#ifdef MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#include MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#else
+#include <mv/mvMotionAI-Types.h>
 #endif
 
 #include MV_ENUMS_HEADER_FILE_H_

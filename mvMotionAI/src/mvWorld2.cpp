@@ -1,7 +1,12 @@
 #include <mv/mvWorld2.h>
 
-#ifdef MV_FILE_HEADER_TAG_
 /**
+ * \file mvWorld2.cpp
+ *
+ * \class mvWorld mv/mvWorld2.h "mv/mvWorld2.h"
+ * \brief The main class which controls all other objects within the mvMotionAI
+ * library
+ *
  * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -23,7 +28,6 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
-#endif
 
 #include <cstring>
 #include MV_BEHAVIOUR_RESULT_HEADER_FILE_H_

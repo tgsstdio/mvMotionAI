@@ -1,3 +1,30 @@
+/**
+ * \file mvGroupBehaviour_V2.cpp
+ *
+ * \brief Copyright (c) 2006, 2007 David Young.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ *
+ * \class mvGroupBehaviour mv/mvGroupBehaviour_V2.h MV_GROUP_BEHAVIOUR_HEADER_FILE_H_
+ *
+ * \brief A cooperative behaviour between groups of objects
+ */
 #include <mv/mvGroupBehaviour_V2.h>
 
 bool findGroupNodeByIndex(mvGroupBNode_V2* groupNodePtr, void* extraPtr)
@@ -26,21 +53,23 @@ bool findGroupNodeByIndex(mvGroupBNode_V2* groupNodePtr, void* extraPtr)
    }
 }
 
-/** @brief (one liner)
+/** @fn mvGroupBehaviour::mvGroupBehaviour(mvBaseActionPtr groupBehPtr)
+  * @brief (one liner)
   *
   * (documentation goes here)
   */
- mvGroupBehaviour_V2::mvGroupBehaviour_V2(mvBaseActionPtr groupBehPtr)
+mvGroupBehaviour_V2::mvGroupBehaviour_V2(mvBaseActionPtr groupBehPtr)
 {
    defaultGBehaviour = groupBehPtr;
    isEnabled = true;
 }
 
-/** @brief (one liner)
+/**
+  * @brief (one liner)
   *
   * (documentation goes here)
   */
- mvGroupBehaviour_V2::~mvGroupBehaviour_V2()
+mvGroupBehaviour_V2::~mvGroupBehaviour_V2()
 {
    removeAllGroups();
    if (defaultGBehaviour != MV_NULL)

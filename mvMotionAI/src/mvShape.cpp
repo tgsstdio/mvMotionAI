@@ -1,4 +1,7 @@
 /**
+ * \file mvShape.cpp
+ * \class mvShape mv/mvShape.h "mv/Shape.h"
+ *
  * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a

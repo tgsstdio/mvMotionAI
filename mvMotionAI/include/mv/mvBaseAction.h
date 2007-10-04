@@ -1,4 +1,5 @@
 /**
+ * \file mvBaseAction.h
  * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -49,6 +50,10 @@
 #define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
 #endif
 
+/** \class mvBaseAction
+ * \brief Interface/Abstract class for creating user-defined behaviours or
+ * actions
+ */
 class MV_GLOBAL_FUNC_PREFIX mvBaseAction
 {
    private:
@@ -75,15 +80,19 @@ class MV_GLOBAL_FUNC_PREFIX mvBaseAction
       virtual mvErrorEnum setParameterv(mvParamEnum paramFlag,\
          mvFloat* numArray);
 
-      /** \brief user defined behaviour operation for single body
-       * \param[inout] resultModule module for retrieve and setting motion
+      /** \brief pure virtual function for user defined behaviour operation for each single body
+       *
+       * \param[in,out] resultModule module for retrieve and setting motion
+       *
        * \return values true (perform) / false (break/ no operation)
        */
 	   virtual bool groupOp(mvGroupBehaviourResultPtr resultModule) = 0;
 
-      /** \brief user defined behaviour operation for group operation
-       * \param[inout] resultModule module for retrieving and setting
+      /** \brief pure virtual function for user defined behaviour operation for group nodes
+       *
+       * \param[in,out] resultModule module for retrieving and setting
        * cooperative variables
+       *
        * \return values true (perform) / false (break/ no operation)
        */
       virtual bool bodyOp(mvBehaviourResultPtr resultModule) = 0;
@@ -91,6 +100,10 @@ class MV_GLOBAL_FUNC_PREFIX mvBaseAction
       virtual ~mvBaseAction();
 };
 
+/** \class mvNewBaseActionInfo
+ * \brief Status class which describes the situation when an instance is created
+ * for the user
+ */
 class MV_GLOBAL_FUNC_PREFIX mvNewBaseActionInfo
 {
    public:
@@ -126,6 +139,10 @@ class MV_GLOBAL_FUNC_PREFIX mvNewBaseActionInfo
       mvBaseActionPtr gbGroupNodePtr;
 };
 
+/** \class mvBaseActionLoader
+ * \brief Interface/Abstract class for class factories that create
+ * user-defined behaviours/actions
+ */
 class MV_GLOBAL_FUNC_PREFIX mvBaseActionLoader
 {
    public:

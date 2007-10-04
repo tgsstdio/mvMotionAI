@@ -1,14 +1,6 @@
-#ifndef MVGROUP_V2_H_INCLUDED
-#define MVGROUP_V2_H_INCLUDED
-
-#ifdef MV_MOTIONAI_TYPES_HEADER_FILE_H_
-#include MV_MOTIONAI_TYPES_HEADER_FILE_H_
-#else
-#include <mv/mvMotionAI-Types.h>
-#endif
-
-#ifdef MV_FILE_HEADER_TAG_
 /**
+ * \file mvGroup_V2.h
+ *
  * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -30,6 +22,14 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
+#ifndef MVGROUP_V2_H_INCLUDED
+#define MVGROUP_V2_H_INCLUDED
+
+#ifdef MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#include MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#else
+#include <mv/mvMotionAI-Types.h>
 #endif
 
 #include MV_ENUMS_HEADER_FILE_H_
@@ -41,7 +41,9 @@
 #define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
 #endif
 
-//TODO : group iterator class
+/** \class mvGroup
+ * \brief a set of unique indexes referring to mvMotionAI objects
+ */
 
 class MV_GLOBAL_FUNC_PREFIX mvGroup_V2
 {
