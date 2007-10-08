@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Tutorial 1 : How to integrate mvMotionAI library into a C++ application </title>
+</head>
+<body>
+<h1> Tutorial 1 : How to integrate mvMotionAI library into a C++ application </h1>
+<h2> <a id="Menu"> Menu </a> </h2>
+<h3> <a href="#StepByStep"> Step by Step Guide to tutorial 1 </a> </h3>
+<h3> <a href="#FullCode"> Full Source Code </a> </h3>
+<h2> <a id="StepByStep"> Step by Step Guide to tutorial 1 </a> </h2>
+<p> This file is included with the mvMotionAI 00-02-15 full workspace and 
+this code is revelant to version 00-02-15 and greater. </p>
+<p>
+<h3> Step 1 : include the main library header file </h3> 
+<code> 
+ #include &ltmv/mvMotionAI.h&gt <br/>
+ <br/>
+</code>
+<p> <a href="#Menu"> Back To Menu </a> </p>
+<h3> Step 2: Declare &amp; implement various observer functions for loop based functions </h3>
+<ol>
+  <li> <h4> mvIndex - c interface index type </h4>
+	  <p> mvMotionAI object interface </p>
+		<p>
+      <code>
+      void (indexFunction)(mvIndex worldIndex, mvIndex objectIndex, void *extraPtr);
+      </code>
+			
+			<p><code>
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorldsByIndex(void(someFunction)(mvIndex, void* extraPtr), void* extraPtr);
+	 	</code></p>	  			
+			<p><code>
+      MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBodiesByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex,void*), void* extraPtr);<br/>
+      MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllObstaclesByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex,void*), void* extraPtr);<br/>
+	    MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWaypointsByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex,void*), void* extraPtr);<br/>
+      MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllPathwaysByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex, void*), void* extraPtr);<br/>
+      MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupsByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex, void*), void* extraPtr);<br/>
+      MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBehavioursByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex, void*), void* extraPtr);<br/>
+      MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehavioursByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex, void*), void* extraPtr);<br/>
+      MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllForcesByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex, void*), void* extraPtr);<br/>
+	 	</code></p>
+					
+	 
+	  </p>
+		<p> In this example, we have declared a mvIndex loop function in the following format: </p>
+    <p>
+  		<code>
+        void displayAllBodyByIndexes(mvIndex worldIndex, mvIndex index, void *extraPtr);<br/>
+  			<br/>
+        // this function is for iterating over all bodies using the C function interface <br/>
+        void displayAllBodyByIndexes(mvIndex worldIndex, mvIndex index, void *extraPtr) <br/>
+        { <br/>
+        &nbsp;&nbsp;mvCount noOfParameters; <br/>
+        &nbsp;&nbsp;mvFloat positionArray[MV_MAX_NO_OF_PARAMETERS]; <br/>
+         <br/>
+        &nbsp;&nbsp;if (mvGetBodyParameterv(worldIndex, index, MV_POSITION, &amp;positionArray[0], <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&amp;noOfParameters) == MV_NO_ERROR) <br/>
+        &nbsp;&nbsp;{ <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;std::cout << (const char*) extraPtr << " world index : " << worldIndex <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<< " body index : " <<  index << std::endl; <br/>
+         <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;std::cout << "Pos "; <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;for (int j = 0; j < noOfParameters; j++) <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;{ <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::cout << positionArray[j] << ", "; <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;} <br/>
+         <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;std::cout << std::endl; <br/>
+        &nbsp;&nbsp;} <br/>
+        } 
+      </code>
+		</p>
+<p> <a href="#Menu"> Back To Menu </a> </p>		
+  </li>
+	<li>
+    <h4> C++ pointer type </h4>
+ <p> <code>		
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorlds(void (someFunction)(mvWorldPtr,void*),void* extraPtr);
+	 	</code></p>
+		
+		
+ <p> <code>		
+ 
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBodies(mvIndex worldIndex,void (someFunction)(mvBodyPtr,void*),void* extraPtr); <br/>
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllObstacles(mvIndex worldIndex, void (someFunction)(mvObstaclePtr,void*),void* extraPtr);<br/>
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWaypoints(mvIndex worldIndex, void (someFunction)(mvWaypointPtr,void*),void* extraPtr);<br/>
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllPathways(mvIndex worldIndex, void (someFunction)(mvPathwayPtr,void*),void* extraPtr);<br/>
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroups(mvIndex worldIndex, void (someFunction)(mvGroupPtr,void*),void* extraPtr);<br/>
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllBehaviours(mvIndex worldIndex, void (someFunction)(mvBehaviourPtr,void*),void* extraPtr);<br/>
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehaviours(mvIndex worldIndex, void (someFunction)(mvGroupBehaviourPtr,void*), void* extraPtr);<br/>
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllForces(mvIndex worldIndex, void (someFunction)(mvBaseForcePtr,void*),void* extraPtr);<br/>
+	 </code> </p>
+		<p> In this example, we have declared a mvIndex loop function in the following format: </p>    		
+    <p>  
+		<code>
+    void displayAllObstaclesByPtr(mvObstaclePtr currentObstacle, void* extraPtr); <br/>
+		<br/>
+    // this functions is used to interact with the actual object pointer <br/>
+    void displayAllObstaclesByPtr(mvObstaclePtr currentObstacle, void* extraPtr) <br/>
+    { <br/>
+    &nbsp;&nbsp;mvVec3 position = currentObstacle->getPosition(); <br/>
+     <br/>
+    &nbsp;&nbsp;std::cout << (const char*) extraPtr <br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;<< " Pos : " << position.getX() <br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;<< ", " << position.getY() <br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;<< ", " << position.getZ() << std::endl; <br/>
+    } <br/>
+    </code>
+    </p>   
+	</li>
+</ol>
+<p> <a href="#Menu"> Back To Menu </a> </p>
+<h3> Step 3 : initialise library </h3>
+<code> 
+int main(void) <br/>
+{ <br/>
+&nbsp;&nbsp;mvInitMotionAI(); <br/>
+</code>
+<p> <a href="#Menu"> Back To Menu </a> </p>
+<h3> step 4 : create world instance </h3>
+<code>
+&nbsp;&nbsp;mvIndex ourWorld = mvCreateWorld(); <br/>
+</code>
+<p> <a href="#Menu"> Back To Menu </a> </p>
+<code>
+&nbsp;&nbsp;// step 5 : create multiple bodies <br/>
+&nbsp;&nbsp;for (int i = 0; i < 5; i++) <br/>
+&nbsp;&nbsp;{ <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mvCreateBody(ourWorld, MV_PARTICLE, MV_AABOX, i, i * 2, i * 3); <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mvCreateObstacle(ourWorld, MV_AABOX, MV_LIQUID_OBSTACLE, i * 5, i, i * -2); <br/>
+&nbsp;&nbsp;} <br/>
+</code>
+<p> <a href="#Menu"> Back To Menu </a> </p>
+<code>
+&nbsp;&nbsp;const char* obstacleHeader = "OBSTACLE : "; <br/>
+&nbsp;&nbsp;const char* bodyHeader = "BODY "; <br/>
+ <br/>
+&nbsp;&nbsp;// loop over bodies in the ourWorld instance <br/>
+&nbsp;&nbsp;mvApplyToAllBodiesByIndex(ourWorld, displayAllBodyByIndexes, <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(void*) bodyHeader); <br/>
+ <br/>
+&nbsp;&nbsp;// loop over all obstacles in the ourWorld instance <br/>
+&nbsp;&nbsp;mvApplyToAllObstacles(ourWorld, displayAllObstaclesByPtr,\ <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(void*) obstacleHeader); <br/>
+</code>
+<p> <a href="#Menu"> Back To Menu </a> </p>
+<code>
+&nbsp;&nbsp;// step 6 : free motion library - automatically at close. <br/>
+&nbsp;&nbsp;mvFreeMotionAI(); <br/>
+</code>
+<p> <a href="#Menu"> Back To Menu </a> </p>
+<h2> <a id="FullCode"> Full Source Code </a> </h2>
+<p>
+<code> 
+ // step 1 : include the main library header file <br/>
+ #include &ltmv/mvMotionAI.h&gt <br/>
+ <br/>
+// for outputting info <br/>
+ #include &ltiostream&gt <br/>
+ <br/>
+// step 2: create various function for loop based functions <br/>
+ <br/>
+// mvIndex - c interface index type <br/>
+void displayAllBodyByIndexes(mvIndex worldIndex, mvIndex index, void *extraPtr); <br/>
+ <br/>
+// c pointer type <br/>
+void displayAllObstaclesByPtr(mvObstaclePtr currentObstacle, void* extraPtr); <br/>
+ <br/>
+int main(void) <br/>
+{ <br/>
+&nbsp;&nbsp;// step 3 : initialise library <br/>
+&nbsp;&nbsp;mvInitMotionAI(); <br/>
+ <br/>
+&nbsp;&nbsp;// step 4 : create world instance <br/>
+&nbsp;&nbsp;mvIndex ourWorld = mvCreateWorld(); <br/>
+ <br/>
+&nbsp;&nbsp;// step 5 : create multiple bodies <br/>
+&nbsp;&nbsp;for (int i = 0; i < 5; i++) <br/>
+&nbsp;&nbsp;{ <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mvCreateBody(ourWorld, MV_PARTICLE, MV_AABOX, i, i * 2, i * 3); <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mvCreateObstacle(ourWorld, MV_AABOX, MV_LIQUID_OBSTACLE, i * 5, i, i * -2); <br/>
+&nbsp;&nbsp;} <br/>
+ <br/>
+&nbsp;&nbsp;const char* obstacleHeader = "OBSTACLE : "; <br/>
+&nbsp;&nbsp;const char* bodyHeader = "BODY "; <br/>
+ <br/>
+&nbsp;&nbsp;// loop over bodies in the ourWorld instance <br/>
+&nbsp;&nbsp;mvApplyToAllBodiesByIndex(ourWorld, displayAllBodyByIndexes, <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(void*) bodyHeader); <br/>
+ <br/>
+&nbsp;&nbsp;// loop over all obstacles in the ourWorld instance <br/>
+&nbsp;&nbsp;mvApplyToAllObstacles(ourWorld, displayAllObstaclesByPtr,\ <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(void*) obstacleHeader); <br/>
+<br/>
+&nbsp;&nbsp;// step 6 : free motion library - automatically at close. <br/>
+&nbsp;&nbsp;mvFreeMotionAI(); <br/>
+ <br/>
+&nbsp;&nbsp;return 0; <br/>
+} <br/>
+ <br/>
+// this function is for iterating over all bodies using the C function interface <br/>
+void displayAllBodyByIndexes(mvIndex worldIndex, mvIndex index, void *extraPtr) <br/>
+{ <br/>
+&nbsp;&nbsp;mvCount noOfParameters; <br/>
+&nbsp;&nbsp;mvFloat positionArray[MV_MAX_NO_OF_PARAMETERS]; <br/>
+ <br/>
+&nbsp;&nbsp;if (mvGetBodyParameterv(worldIndex, index, MV_POSITION, &positionArray[0], <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&noOfParameters) == MV_NO_ERROR) <br/>
+&nbsp;&nbsp;{ <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::cout << (const char*) extraPtr << " world index : " << worldIndex <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<< " body index : " <<  index << std::endl; <br/>
+ <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::cout << "Pos "; <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for (int j = 0; j < noOfParameters; j++) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::cout << positionArray[j] << ", "; <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;} <br/>
+ <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::cout << std::endl; <br/>
+&nbsp;&nbsp;} <br/>
+} <br/>
+ <br/>
+// this functions is used to interact with <br/>
+void displayAllObstaclesByPtr(mvObstaclePtr currentObstacle, void* extraPtr) <br/>
+{ <br/>
+&nbsp;&nbsp;mvVec3 position = currentObstacle->getPosition(); <br/>
+ <br/>
+&nbsp;&nbsp;std::cout << (const char*) extraPtr <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<< " Pos : " << position.getX() <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<< ", " << position.getY() <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<< ", " << position.getZ() << std::endl; <br/>
+} <br/>
+</code>
+</p>
+<p> <a href="#Menu"> Back To Menu </a> </p>
+<hr/>
+<p> This file was created with HTML Kit on 8th October 2007. This code is revelant to version 00-02-15 and greater. </p>
+<p><a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=174315&amp;type=5" width="210" height="62" border="0" alt="SourceForge.net Logo" /></a></p>
+</body>
+</html>

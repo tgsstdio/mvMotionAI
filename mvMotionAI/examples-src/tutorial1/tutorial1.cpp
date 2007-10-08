@@ -4,7 +4,7 @@
  *
  */
 
- // step 1 : include the C
+ // step 1 : include the main library header file
  #include <mv/mvMotionAI.h>
 
 // for outputting info
@@ -72,7 +72,7 @@ void displayAllBodyByIndexes(mvIndex worldIndex, mvIndex index, void *extraPtr)
    }
 }
 
-// this functions is used to interact with
+// this functions is used to interact with the actual object pointer
 void displayAllObstaclesByPtr(mvObstaclePtr currentObstacle, void* extraPtr)
 {
    mvVec3 position = currentObstacle->getPosition();
