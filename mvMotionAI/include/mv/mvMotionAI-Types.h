@@ -210,7 +210,8 @@ typedef class mvWorld const * const mvConstWorldPtr;
 typedef class mvTimer* mvTimerPtr;
 
 #define MV_BENTRY_HEADER_FILE_H_ <mv/mvBEntry.h>
-typedef class mvBEntry* mvBEntryPtr;
+typedef class mvBEntry mvEntry;
+typedef class mvBEntry* mvEntryPtr;
 
 #define MV_ACTION_LOADER_LIST_HEADER_FILE_H_ <mv/mvActionLoaderList.h>
 //typedef class mvActionLoaderList*  mvActionLoaderListPtr;

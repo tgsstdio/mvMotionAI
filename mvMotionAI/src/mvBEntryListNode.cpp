@@ -26,7 +26,7 @@ mvBEntryListNode::mvBEntryListNode(mvOptionEnum type, mvIndex behaviourIndex,\
    mvFloat period, mvFloat elapsedTime)
    : entryFlags(bNodeWeight, period, elapsedTime)
  {
-   behaviourEntry = new mvBEntry(type, behaviourIndex,\
+   behaviourEntry = new mvEntry(type, behaviourIndex,\
       groupIndex, actionPtr);
 
    //entryFlags.getTimerPtr()->setPeriod(period);
@@ -34,7 +34,7 @@ mvBEntryListNode::mvBEntryListNode(mvOptionEnum type, mvIndex behaviourIndex,\
    //entryFlags.setWeight(bNodeWeight);
 }
 
-mvBEntryPtr mvBEntryListNode::getEntryPtr()
+mvEntryPtr mvBEntryListNode::getEntryPtr()
 {
    return behaviourEntry;
 }

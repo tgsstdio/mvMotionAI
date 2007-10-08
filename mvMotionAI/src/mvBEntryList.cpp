@@ -21,6 +21,16 @@
  */
 #include <mv/mvBEntryList.h>
 
+struct mvEntryList_FindGBMNodeStruct
+{
+   mvIndex behaviourIndex;
+   mvIndex groupIndex;
+   mvOptionEnum actionKey;
+};
+
+bool mvEntryList_FindExistingGroupBehavMemberNode(mvEntryListNodePtr node,\
+   void* extraPtr);
+
 /** @brief (one liner)
   *
   * (documentation goes here)
@@ -299,15 +309,23 @@ mvIndex mvBEntryList::addNewEntry(mvOptionEnum bType,\
    mvEntryListNodePtr tempNode = MV_NULL;
    mvBaseActionPtr actionPtr = MV_NULL;
 
-   if (bType == MV_EXISTING_BEHAVIOUR || bType == MV_EXISTING_GROUP_BEHAVIOUR
-      || bType == MV_GROUP_BEHAVIOUR_MEMBER_ENTRY)
+   // special type - no action pointer needed
+   if (bType == MV_EXISTING_BEHAVIOUR || bType == MV_EXISTING_GROUP_BEHAVIOUR)
    {
       actionPtr = MV_NULL;
    }
+   // group member type - skip rest
+   else if (bType == MV_GROUP_BEHAVIOUR_MEMBER_ENTRY)
+   {
+      actionPtr = dBehaviour;
+   }
+
+   // abort if it has no action
    else if (dBehaviour == MV_NULL)
    {
       return MV_NULL;
    }
+   // if not same as pointer
    else if (bType != dBehaviour->getType())
    {
       return MV_NULL;
@@ -435,19 +453,44 @@ mvErrorEnum mvBEntryList::setMode(mvOptionEnum option)
   *
   * (documentation goes here)
   */
-mvEntryListNodePtr mvBEntryList::getEntry(mvIndex index)
+mvEntryListNodePtr mvBEntryList::getEntry(mvIndex index) const
 {
    return entryList.getClassPtr(index);
+}
+
+bool mvEntryList_FindExistingGroupBehavMemberNode(mvEntryListNodePtr node,\
+   void* extraPtr)
+{
+   mvEntryList_FindGBMNodeStruct* helper = (mvEntryList_FindGBMNodeStruct*)
+      extraPtr;
+
+   mvEntryPtr currentEntry = node->getEntryPtr();
+   if (helper == MV_NULL || currentEntry == MV_NULL)
+   {
+      return false;
+   }
+
+   return (currentEntry->getEntryType() == MV_GROUP_BEHAVIOUR_MEMBER_ENTRY
+      && currentEntry->getBehaviour() == helper->behaviourIndex
+      && currentEntry->getGroup() == helper->groupIndex
+      && currentEntry->getActionPtr() != MV_NULL
+      && currentEntry->getActionPtr()->getType() == helper->actionKey);
 }
 
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-mvEntryListNodePtr mvBEntryList::findExistingGroupEntry(mvIndex bIndex,\
-   mvIndex gIndex)
+mvIndex mvBEntryList::findExistingGroupEntry(mvIndex bIndex,\
+   mvIndex gIndex, mvOptionEnum actionKey)
 {
-   return NULL;
+   mvEntryList_FindGBMNodeStruct helper;
+   helper.actionKey = actionKey;
+   helper.behaviourIndex = bIndex;
+   helper.groupIndex = gIndex;
+
+   return entryList.findItemInList(mvEntryList_FindExistingGroupBehavMemberNode,
+      &helper);
 }
 
 #define MV_ENTRY_LIST_DEFAULT_WEIGHT (1)
@@ -542,4 +585,48 @@ void mvBEntryList::applyToAllEntries(\
    void (someFunction)(mvEntryListNodePtr, void*), void* extraPtr)
 {
    entryList.applyToAllItems(someFunction,extraPtr);
+}
+
+bool mvBEntryList::getEnabled() const
+{
+   return isEnabled;
+}
+
+void mvBEntryList::setEnabled(bool enabled)
+{
+   isEnabled = enabled;
+}
+
+mvIndex mvBEntryList::addNewGroupBehaviourMemberNode(mvIndex behaviourIndex,
+   mvIndex groupIndex, mvBaseActionPtr memberAction)
+{
+   mvIndex foundEntry, entryIndex;
+
+   if (behaviourIndex == MV_NULL || groupIndex == MV_NULL
+      || memberAction == MV_NULL)
+   {
+      return MV_NULL;
+   }
+
+   // if member action already exist, pass back index to user.
+   foundEntry = findExistingGroupEntry(behaviourIndex, groupIndex,
+      memberAction->getType());
+
+   // unique object only
+   if (foundEntry == MV_NULL)
+   {
+      // add new entry
+      entryIndex = addNewEntry(MV_GROUP_BEHAVIOUR_MEMBER_ENTRY,\
+         behaviourIndex,groupIndex, MV_NULL,\
+         defaultNodeTimerFlags.getWeight(),\
+         defaultNodeTimerFlags.getTimerPtr()->getPeriod(),\
+         defaultNodeTimerFlags.getTimerPtr()->getElapsedTime());
+   }
+   else
+   {
+      // if existing, no creation
+      entryIndex = MV_NULL;
+   }
+
+    return entryIndex;
 }

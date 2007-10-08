@@ -42,14 +42,14 @@
 class MV_GLOBAL_FUNC_PREFIX mvBEntryListNode
 {
    public:
-      mvBEntryPtr behaviourEntry;
+      mvEntryPtr behaviourEntry;
       mvBEntryUtility entryFlags;
       bool isEnabled() const;
 
       mvBEntryListNode(mvOptionEnum type, mvIndex behaviourIndex,\
          mvIndex groupIndex, mvBaseActionPtr actionPtr, mvFloat bNodeWeight,\
          mvFloat period, mvFloat elaspedTime);
-      mvBEntryPtr getEntryPtr();
+      mvEntryPtr getEntryPtr();
       mvTimerPtr getTimer();
       mvFloat getWeight() const;
 

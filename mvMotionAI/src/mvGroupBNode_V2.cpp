@@ -247,18 +247,19 @@ mvIndex  mvGroupBNode_V2::getGroup()
    return groupIndex;
 }
 
-mvGroupMemberNode::mvGroupMemberNode(mvIndex mbIndex,  mvBaseActionPtr mbAction)
+mvGroupMemberNode::mvGroupMemberNode(mvIndex mbIndex,\
+   mvEntryListNodePtr mNodePtr)
  {
    memberIndex = mbIndex;
-   memberAction = mbAction;
+   memberNodePtr = mNodePtr;
  }
 
 mvErrorEnum mvGroupMemberNode::setParametero(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
-   if (memberAction != MV_NULL)
+   if (memberNodePtr != MV_NULL)
    {
-      return memberAction->setParametero(paramFlag, option);
+      return memberNodePtr->setParametero(paramFlag, option);
    }
    else
    {
@@ -276,17 +277,24 @@ bool mvGroupMemberNode:: operator== (const mvGroupMemberNode& rhs) const
    return (this->memberIndex == rhs.memberIndex);
 }
 
+mvEntryListNodePtr mvGroupMemberNode::getEntryNodePtr() const
+{
+   return memberNodePtr;
+}
+
+/*
 mvBaseActionPtr mvGroupMemberNode::getActionPtr()
 {
    return memberAction;
 }
+*/
 
 mvErrorEnum mvGroupMemberNode::setParameteri(mvParamEnum paramFlag,\
    mvIndex paramIndex)
 {
-   if (memberAction != MV_NULL)
+   if (memberNodePtr != MV_NULL)
    {
-      return memberAction->setParameteri(paramFlag, paramIndex);
+      return memberNodePtr->setParameteri(paramFlag, paramIndex);
    }
    else
    {
@@ -297,9 +305,9 @@ mvErrorEnum mvGroupMemberNode::setParameteri(mvParamEnum paramFlag,\
 mvErrorEnum mvGroupMemberNode::setParameterf(mvParamEnum paramFlag,\
    mvFloat num)
 {
-   if (memberAction != MV_NULL)
+   if (memberNodePtr != MV_NULL)
    {
-      return memberAction->setParameterf(paramFlag, num);
+      return memberNodePtr->setParameterf(paramFlag, num);
    }
    else
    {
@@ -310,9 +318,9 @@ mvErrorEnum mvGroupMemberNode::setParameterf(mvParamEnum paramFlag,\
 mvErrorEnum mvGroupMemberNode::setParameterv(mvParamEnum paramFlag,\
    mvFloat* array)
 {
-   if (memberAction != MV_NULL)
+   if (memberNodePtr != MV_NULL)
    {
-      return memberAction->setParameterv(paramFlag, array);
+      return memberNodePtr->setParameterv(paramFlag, array);
    }
    else
    {
@@ -323,9 +331,9 @@ mvErrorEnum mvGroupMemberNode::setParameterv(mvParamEnum paramFlag,\
 mvErrorEnum mvGroupMemberNode::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
-   if (memberAction != MV_NULL)
+   if (memberNodePtr != MV_NULL)
    {
-      return memberAction->getParametero(paramFlag, option);
+      return memberNodePtr->getParametero(paramFlag, option);
    }
    else
    {
@@ -336,9 +344,9 @@ mvErrorEnum mvGroupMemberNode::getParametero(mvParamEnum paramFlag,\
 mvErrorEnum mvGroupMemberNode::getParameteri(mvParamEnum paramFlag,\
    mvIndex* outIndex) const
 {
-   if (memberAction != MV_NULL)
+   if (memberNodePtr != MV_NULL)
    {
-      return memberAction->getParameteri(paramFlag, outIndex);
+      return memberNodePtr->getParameteri(paramFlag, outIndex);
    }
    else
    {
@@ -349,9 +357,9 @@ mvErrorEnum mvGroupMemberNode::getParameteri(mvParamEnum paramFlag,\
 mvErrorEnum mvGroupMemberNode::getParameterf(mvParamEnum paramFlag,\
    mvFloat* num) const
 {
-   if (memberAction != MV_NULL)
+   if (memberNodePtr != MV_NULL)
    {
-      return memberAction->getParameterf(paramFlag, num);
+      return memberNodePtr->getParameterf(paramFlag, num);
    }
    else
    {
@@ -362,9 +370,9 @@ mvErrorEnum mvGroupMemberNode::getParameterf(mvParamEnum paramFlag,\
 mvErrorEnum mvGroupMemberNode::getParameterv(mvParamEnum paramFlag,\
    mvFloat* array, mvCount* noOfParameters) const
 {
-   if (memberAction != MV_NULL)
+   if (memberNodePtr != MV_NULL)
    {
-      return memberAction->getParameterv(paramFlag, array, noOfParameters);
+      return memberNodePtr->getParameterv(paramFlag, array, noOfParameters);
    }
    else
    {
@@ -374,10 +382,7 @@ mvErrorEnum mvGroupMemberNode::getParameterv(mvParamEnum paramFlag,\
 
 mvGroupMemberNode::~mvGroupMemberNode()
 {
-   if (memberAction != MV_NULL)
-   {
-      delete memberAction;
-   }
+   // passive class - no freed memory
 }
 
 mvGroupNodeMemberList::mvGroupNodeMemberList()
@@ -443,15 +448,15 @@ mvGroupMemberNodePtr mvGroupNodeMemberList::getCurrentMember()
 }
 
 void mvGroupNodeMemberList::insertBeforeCurrentMember(mvIndex memberIndex,\
-   mvBaseActionPtr actionPtr)
+   mvEntryListNodePtr entryNodePtr)
 {
-   if (memberIndex == MV_NULL || actionPtr == MV_NULL)
+   if (memberIndex == MV_NULL || entryNodePtr == MV_NULL)
    {
       return;
    }
 
    mvGroupMemberNodePtr tempNode =
-      new mvGroupMemberNode(memberIndex, actionPtr);
+      new mvGroupMemberNode(memberIndex, entryNodePtr);
 
    mbActionDataSet.insert(currentIter,tempNode);
 }

@@ -54,13 +54,13 @@ class MV_GLOBAL_FUNC_PREFIX mvBEntryList
       mvIndex defaultPathway;
       mvBEntryUtility defaultNodeTimerFlags;
      // mvBEntryTree entryNodeTree;
-
    public:
       mvBEntryList();
       bool isEnabled;
-      mvEntryListNodePtr findExistingGroupEntry(mvIndex bIndex,\
-         mvIndex gIndex);
-      mvEntryListNodePtr getEntry(mvIndex index);
+      bool getEnabled() const;
+      void setEnabled(bool enabled);
+      mvEntryListNodePtr getEntry(mvIndex index) const;
+      mvIndex findExistingGroupEntry(mvIndex bIndex, mvIndex gIndex, mvOptionEnum actionKey);
 
       mvErrorEnum setMode(mvOptionEnum option);
       mvOptionEnum getMode() const;
@@ -78,6 +78,8 @@ class MV_GLOBAL_FUNC_PREFIX mvBEntryList
       mvIndex addNewEntry(mvOptionEnum bType, mvIndex behaviourIndex,\
          mvIndex groupIndex, mvBaseActionPtr behaviourData, mvFloat bNodeWeight,\
          mvFloat period, mvFloat elaspedTime);
+      mvIndex addNewGroupBehaviourMemberNode(mvIndex behaviourIndex,
+         mvIndex groupIndex, mvBaseActionPtr memberAction);
 
       mvIndex getDefaultBody() const;
       mvIndex getDefaultWaypoint() const;

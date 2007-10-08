@@ -227,7 +227,11 @@ void mvWorld_V2_CalculateEachGroupInGroupBehaviour(\
    bool hasChanged =  currentWorld->hasGroupChanged(groupNo);
    mvBaseActionPtr groupAction = currentNode->getActionPtr();
    mvGroupNodeMemberList& nodeMemberList = currentNode->memberDataList;
-   mvGroupMemberNodePtr memberNode = NULL;
+   mvGroupMemberNodePtr memberNode = MV_NULL;
+   mvEntryListPtr currentMemberList = MV_NULL;
+   mvIndex entryIndex = MV_NULL;
+   mvEntryListNodePtr currentEntryNodePtr = MV_NULL;
+   mvActionLoaderListPtr worldActionCreator = MV_NULL;
 
    if (hasChanged)
    {
@@ -235,76 +239,153 @@ void mvWorld_V2_CalculateEachGroupInGroupBehaviour(\
       currentGroup->setToFirstMember();
       mvIndex lhsSetIndex, rhsMemberIndex;
 
-      mvBaseActionPtr tempMemberActionPtr = NULL;
+      mvBaseActionPtr tempMemberActionPtr = MV_NULL;
       nodeMemberList.toFirstMember();
-      while (!currentGroup->areMembersFinished() &&
-         !nodeMemberList.hasAllNodesBeenVisited() )
+
+      worldActionCreator = currentWorld->getActionLoader();
+
+      if (worldActionCreator != MV_NULL)
       {
-         if (nodeMemberList.hasAllNodesBeenVisited())
+         // iterate over all member in list
+         while (!currentGroup->areMembersFinished() &&
+            !nodeMemberList.hasAllNodesBeenVisited() )
          {
-            // keep adding new nodes to node member list
-            lhsSetIndex = currentGroup->getCurrentMember();
-            if (currentWorld->getActionLoader() != MV_NULL)
+            // if member is finished keep adding
+            if (nodeMemberList.hasAllNodesBeenVisited())
             {
-               // new action info
-               mvNewBaseActionInfo memberInfo(defaultType,
-                  mvNewBaseActionInfo::MV_NEW_GB_GROUP_MEMBER_OP,
-                  mainActionPtr,
-                  groupAction);
+               // keep adding new members of a group to node member list
+               lhsSetIndex = currentGroup->getCurrentMember();
 
-               tempMemberActionPtr =
-                  currentWorld->getActionLoader()->createAClassPtr(\
-                     defaultType, memberInfo);
-               nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,tempMemberActionPtr);
-               // subscription sent to body
-               currentWorld->addBehaviourToList(lhsSetIndex,\
-                  MV_EXISTING_GROUP_BEHAVIOUR, currentGBehaviour, groupNo);
-            }
-            currentGroup->toNextMember();
-         }
-         else if (currentGroup->areMembersFinished())
-         {
-            // remove all trailing member nodes
-            nodeMemberList.deleteCurrentMember();
-         }
-         else
-         {
-            // both sides have still contain items
-
-            memberNode = nodeMemberList.getCurrentMember();
-            rhsMemberIndex = memberNode->memberIndex;
-            lhsSetIndex = currentGroup->getCurrentMember();
-
-            if (lhsSetIndex > rhsMemberIndex)
-            {
-               // remove all rhs member nodes preceding node
-               nodeMemberList.deleteCurrentMember();
-            }
-            else if (lhsSetIndex == rhsMemberIndex)
-            {
-               // skip by incrementing both lhs & rhs
-               currentGroup->toNextMember();
-               nodeMemberList.toNextMember();
-            }
-            else // (lhsSetIndex < rhsMemberIndex)
-            {
-               // insert ahead of position
-               if (currentWorld->getActionLoader() != MV_NULL)
+               // add node
+               currentMemberList = currentWorld->getEntryListPtr(lhsSetIndex);
+               if (currentMemberList != MV_NULL)
                {
+                  // new action creation info
                   mvNewBaseActionInfo memberInfo(defaultType,
                      mvNewBaseActionInfo::MV_NEW_GB_GROUP_MEMBER_OP,
-                     mainActionPtr,
-                     groupAction);
+                     mainActionPtr, groupAction);
 
+                  // creating new mvBaseAction
                   tempMemberActionPtr =
-                     currentWorld->getActionLoader()->createAClassPtr(\
+                     worldActionCreator->createAClassPtr(\
                         defaultType, memberInfo);
-                  nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,tempMemberActionPtr);
-                  // subscription sent to body
-                  currentWorld->addBehaviourToList(lhsSetIndex,\
-                     MV_EXISTING_GROUP_BEHAVIOUR, currentGBehaviour, groupNo);
+
+                  if (tempMemberActionPtr != MV_NULL)
+                  {
+                     // looking for existing subscription
+                     entryIndex = currentMemberList->findExistingGroupEntry(
+                        currentGBehaviour, groupNo,
+                        tempMemberActionPtr->getType());
+
+                     // not created
+                     if (entryIndex == MV_NULL)
+                     {
+                        // create new entry
+                        entryIndex =
+                           currentMemberList->addNewGroupBehaviourMemberNode(\
+                           currentGBehaviour, groupNo, tempMemberActionPtr);
+
+                        currentEntryNodePtr = currentMemberList->getEntry(\
+                           entryIndex);
+                        // add to list
+                        nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,
+                           currentEntryNodePtr);
+                     }
+                     else
+                     {
+                        // free unused memory
+                        delete tempMemberActionPtr;
+                        tempMemberActionPtr = MV_NULL;
+
+                        // get existing file
+                        currentEntryNodePtr = currentMemberList->getEntry(\
+                           entryIndex);
+                        nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,
+                           currentEntryNodePtr);
+                     }
+                  }
                }
+
                currentGroup->toNextMember();
+            }
+            else if (currentGroup->areMembersFinished())
+            {
+               // remove all trailing member nodes
+               nodeMemberList.deleteCurrentMember();
+            }
+            else
+            {
+               // both sides have still contain items
+
+               memberNode = nodeMemberList.getCurrentMember();
+               rhsMemberIndex = memberNode->memberIndex;
+               lhsSetIndex = currentGroup->getCurrentMember();
+
+               if (lhsSetIndex > rhsMemberIndex)
+               {
+                  // remove all rhs member nodes preceding node
+                  nodeMemberList.deleteCurrentMember();
+               }
+               else if (lhsSetIndex == rhsMemberIndex)
+               {
+                  // skip by incrementing both lhs & rhs
+                  currentGroup->toNextMember();
+                  nodeMemberList.toNextMember();
+               }
+               else // (lhsSetIndex < rhsMemberIndex)
+               {
+                  // insert ahead of position
+                  // add node
+                  currentMemberList = currentWorld->getEntryListPtr(lhsSetIndex);
+                  if (currentMemberList != MV_NULL)
+                  {
+                     // new action creation info
+                     mvNewBaseActionInfo memberInfo(defaultType,
+                        mvNewBaseActionInfo::MV_NEW_GB_GROUP_MEMBER_OP,
+                        mainActionPtr, groupAction);
+
+                     // creating new mvBaseAction
+                     tempMemberActionPtr =
+                        worldActionCreator->createAClassPtr(\
+                           defaultType, memberInfo);
+
+                     if (tempMemberActionPtr != MV_NULL)
+                     {
+                        // looking for existing subscription
+                        entryIndex = currentMemberList->findExistingGroupEntry(
+                           currentGBehaviour, groupNo,
+                           tempMemberActionPtr->getType());
+
+                        // not created
+                        if (entryIndex == MV_NULL)
+                        {
+                           // create new entry
+                           entryIndex =
+                              currentMemberList->addNewGroupBehaviourMemberNode(\
+                              currentGBehaviour, groupNo, tempMemberActionPtr);
+
+                           currentEntryNodePtr = currentMemberList->getEntry(\
+                              entryIndex);
+                           // add to list
+                           nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,
+                              currentEntryNodePtr);
+                        }
+                        else
+                        {
+                           // free unused memory
+                           delete tempMemberActionPtr;
+                           tempMemberActionPtr = MV_NULL;
+
+                           // get existing file
+                           currentEntryNodePtr = currentMemberList->getEntry(\
+                              entryIndex);
+                           nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,
+                              currentEntryNodePtr);
+                        }
+                     }
+                  }
+                  currentGroup->toNextMember();
+               }
             }
          }
       }
@@ -355,7 +436,7 @@ void mvWorld_V2_CalculateForEachGroupBehaviour(\
    }
 }
 
-mvBaseActionPtr mvWorld_V2_InitialiseResults(mvBEntryPtr nodeInfo, mvIndex bodyIndex,
+mvBaseActionPtr mvWorld_V2_InitialiseResults(mvEntryPtr nodeInfo, mvIndex bodyIndex,
    mvConstWorldPtr currentWorld,  mvBehaviourResult& currentResult,\
    mvBehaviourResultPtr finalResult)
 {
@@ -376,8 +457,6 @@ mvBaseActionPtr mvWorld_V2_InitialiseResults(mvBEntryPtr nodeInfo, mvIndex bodyI
       currentWorld->getConstGroupBehaviourPtr(behaviourIndex);
    mvConstBehaviourPtr globalBehav =\
       currentWorld->getConstBehaviourPtr(behaviourIndex);
-   mvGroupMemberNodePtr memberNodePtr = NULL;
-   mvGroupBehaviourGroupNodePtr groupNodePtr = NULL;
    mvConstGroupPtr checkGroupPtr =\
       currentWorld->getConstGroupPtr(groupIndex);
 
@@ -394,6 +473,8 @@ mvBaseActionPtr mvWorld_V2_InitialiseResults(mvBEntryPtr nodeInfo, mvIndex bodyI
          currentAction = globalBehav->getActionPtr();
          break;
       case MV_EXISTING_GROUP_BEHAVIOUR:
+         // todo : MV EXISTING GROUP BEHAVIOUR as using default behaviour
+
          // exit if behaviour does not exist
          if (globalGrpBehav == MV_NULL || !globalGrpBehav->isEnabled)
          {
@@ -406,30 +487,23 @@ mvBaseActionPtr mvWorld_V2_InitialiseResults(mvBEntryPtr nodeInfo, mvIndex bodyI
             return MV_NULL;
          }
 
-         // check if group is linked to group behaviour
-         groupNodePtr = globalGrpBehav->findGroupNode(groupIndex);
-
-         if (groupNodePtr == MV_NULL || !groupNodePtr->isEnabled)
+         currentAction = globalGrpBehav->getDefaultActionPtr();
+         break;
+      case MV_GROUP_BEHAVIOUR_MEMBER_ENTRY:
+         // exit if behaviour does not exist
+         // todo : check if group behaviour node works
+         if (globalGrpBehav == MV_NULL || !globalGrpBehav->isEnabled)
          {
             return MV_NULL;
          }
 
-         groupActionPtr = groupNodePtr->getActionPtr();
-         if (groupActionPtr == MV_NULL)
+         // exit if group does not exist
+         if (checkGroupPtr == MV_NULL || !checkGroupPtr->isEnabled)
          {
             return MV_NULL;
          }
 
-         // find member node and action
-         memberNodePtr = groupNodePtr->findMemberInNode(\
-            bodyIndex);
-
-         if (memberNodePtr == MV_NULL)
-         {
-            return MV_NULL;
-         }
-
-         currentAction = memberNodePtr->getActionPtr();
+         currentAction = nodeInfo->getActionPtr();
          break;
       default:
          currentAction = nodeInfo->getActionPtr();
@@ -922,7 +996,7 @@ void mvWorld_V2_CalculateEntryByWeightedSum(mvEntryListNodePtr eNodePtr,\
       mvBehaviourResultPtr finalResult = helper->finalResult;
       mvConstWorldPtr currentWorld = finalResult->getWorldPtr();
 
-      mvBEntryPtr nodeInfo = eNodePtr->getEntryPtr();
+      mvEntryPtr nodeInfo = eNodePtr->getEntryPtr();
       bool isConfined = eNodePtr->entryFlags.confined;
       mvFloat nodeWeight = eNodePtr->entryFlags.getWeight();
 

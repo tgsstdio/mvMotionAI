@@ -3462,97 +3462,154 @@ mvErrorEnum mvWorld::setParameterv(mvParamEnum paramFlag, mvFloat* numArray)
    return MV_INVALID_WORLD_PARAMETER;
 }
 
+/** \brief blah blah
+ *
+ */
 mvIndex mvWorld::getCurrentBody() const
 {
    return bodies.getCurrentIndex();
 }
 
+/** \brief blah blah
+ *
+ */
 mvIndex mvWorld::getCurrentObstacle() const
 {
    return obstacles.getCurrentIndex();
 }
 
+/** \brief blah blah
+ *
+ */
 mvIndex mvWorld::getCurrentWaypoint() const
 {
    return waypoints.getCurrentIndex();
 }
 
+/** \brief blah blah
+ *
+ */
 mvIndex mvWorld::getCurrentForce() const
 {
    return forces.getCurrentIndex();
 }
 
+/** \brief blah blah
+ *
+ */
 mvIndex mvWorld::getCurrentGroup() const
 {
    return groups.getCurrentIndex();
 }
 
+/** \brief blah blah
+ *
+ */
 mvIndex mvWorld::getCurrentBehaviour() const
 {
    return behaviours.getCurrentIndex();
 }
 
+/** \brief blah blah
+ *
+ */
 mvIndex mvWorld::getCurrentGroupBehaviour() const
 {
    return groupBehaviours.getCurrentIndex();
 }
 
+/** \brief blah blah
+ *
+ */
 mvIndex mvWorld::getCurrentPathway() const
 {
    return pathways.getCurrentIndex();
 }
 
+/** \brief blah blah
+ *
+ */
 mvConstBodyPtr mvWorld::getConstBodyPtr(mvIndex index) const
 {
    return bodies.getConstClassPtr(index);
 }
 
+/** \brief blah blah
+ *
+ */
 mvConstObstaclePtr mvWorld::getConstObstaclePtr(mvIndex index) const
 {
    return obstacles.getConstClassPtr(index);
 }
 
+/** \brief blah blah
+ *
+ */
 mvConstWaypointPtr mvWorld::getConstWaypointPtr(mvIndex index) const
 {
    return waypoints.getConstClassPtr(index);
 }
 
+/** \brief blah blah
+ *
+ */
 mvConstPathwayPtr mvWorld::getConstPathwayPtr(mvIndex index) const
 {
    return pathways.getConstClassPtr(index);
 }
 
+/** \brief blah blah
+ *
+ */
 mvConstGroupPtr mvWorld::getConstGroupPtr(mvIndex index) const
 {
    return groups.getConstClassPtr(index);
 }
 
+/** \brief blah blah
+ *
+ */
 mvConstGroupBehaviourPtr mvWorld::getConstGroupBehaviourPtr(mvIndex index)\
    const
 {
    return groupBehaviours.getConstClassPtr(index);
 }
 
+/** \brief blah blah
+ *
+ */
 mvConstBehaviourPtr mvWorld::getConstBehaviourPtr(mvIndex index) const
 {
    return behaviours.getConstClassPtr(index);
 }
 
+/** \brief blah blah
+ *
+ */
 mvConstBaseForcePtr mvWorld::getConstForcePtr(mvIndex index) const
 {
    return forces.getConstClassPtr(index);
 }
 
+/** \brief blah blah
+ *
+ */
 mvConstBodyCapsulePtr mvWorld::getConstBodyCapsulePtr(int index) const
 {
    return bodies.getConstCapsulePtr(index);
 }
 
+/** \brief blah blah
+ *
+ */
 mvBodyCapsulePtr mvWorld::getBodyCapsulePtr(int index)
 {
    return bodies.getCapsulePtr(index);
 }
 
+/** \brief blah blah
+ *
+ */
 mvIndex mvWorld::addNodeToPathway(mvIndex pathwayIndex, mvIndex nodeIndex)
 {
    mvPathwayPtr tempPathway = getPathwayPtr(pathwayIndex);
@@ -3565,6 +3622,9 @@ mvIndex mvWorld::addNodeToPathway(mvIndex pathwayIndex, mvIndex nodeIndex)
    return tempPathway->addNode(nodeIndex);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::removeNodeFromPathway(mvIndex pathwayIndex,\
    mvIndex nodeIndex)
 {
@@ -3578,6 +3638,9 @@ mvErrorEnum mvWorld::removeNodeFromPathway(mvIndex pathwayIndex,\
    return tempPathway->removeFirstNodeInstance(nodeIndex);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::removeAllNodesFromPathway(mvIndex pwIndex)
 {
    mvPathwayPtr tempPathway = getPathwayPtr(pwIndex);
@@ -3591,6 +3654,9 @@ mvErrorEnum mvWorld::removeAllNodesFromPathway(mvIndex pwIndex)
    return MV_NO_ERROR;
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setPathwayNodeParameteri(mvIndex pathwayIndex,\
    mvIndex nodeIndex, mvParamEnum paramFlag, mvIndex index)
 {
@@ -3604,6 +3670,9 @@ mvErrorEnum mvWorld::setPathwayNodeParameteri(mvIndex pathwayIndex,\
    return tempPathway->setNodeParameteri(nodeIndex, paramFlag, index);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setPathwayNodeParametero(mvIndex pathwayIndex,\
    mvIndex nodeIndex, mvParamEnum paramFlag, mvOptionEnum option)
 {
@@ -3617,6 +3686,9 @@ mvErrorEnum mvWorld::setPathwayNodeParametero(mvIndex pathwayIndex,\
    return tempPathway->setNodeParametero(nodeIndex, paramFlag, option);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setPathwayNodeParameterf(mvIndex pathwayIndex,\
    mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat num)
 {
@@ -3630,6 +3702,9 @@ mvErrorEnum mvWorld::setPathwayNodeParameterf(mvIndex pathwayIndex,\
    return tempPathway->setNodeParameterf(nodeIndex, paramFlag, num);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setPathwayNodeParameterv(mvIndex pathwayIndex,\
    mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* array)
 {
@@ -3643,7 +3718,9 @@ mvErrorEnum mvWorld::setPathwayNodeParameterv(mvIndex pathwayIndex,\
    return tempPathway->setNodeParameterv(nodeIndex, paramFlag, array);
 }
 
-
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setPathwayNodeParameteri_str(mvIndex pathwayIndex,\
    mvIndex nodeIndex, const char* param, mvIndex index)
 {
@@ -3657,6 +3734,9 @@ mvErrorEnum mvWorld::setPathwayNodeParameteri_str(mvIndex pathwayIndex,\
    return tempPathway->setNodeParameteri_str(nodeIndex, param, index);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setPathwayNodeParametero_str(mvIndex pathwayIndex,\
    mvIndex nodeIndex, const char* param, const char* option)
 {
@@ -3670,6 +3750,9 @@ mvErrorEnum mvWorld::setPathwayNodeParametero_str(mvIndex pathwayIndex,\
    return tempPathway->setNodeParametero_str(nodeIndex, param, option);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setPathwayNodeParameterf_str(mvIndex pathwayIndex,\
    mvIndex nodeIndex, const char* param, mvFloat num)
 {
@@ -3683,6 +3766,9 @@ mvErrorEnum mvWorld::setPathwayNodeParameterf_str(mvIndex pathwayIndex,\
    return tempPathway->setNodeParameterf_str(nodeIndex, param, num);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setPathwayNodeParameterv_str(mvIndex pathwayIndex,\
    mvIndex nodeIndex, const char* param, mvFloat* array)
 {
@@ -3696,6 +3782,9 @@ mvErrorEnum mvWorld::setPathwayNodeParameterv_str(mvIndex pathwayIndex,\
    return tempPathway->setNodeParameterv_str(nodeIndex, param, array);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getPathwayNodeParameteri(mvIndex pathwayIndex,\
    mvIndex nodeIndex, mvParamEnum paramFlag, mvIndex* outIndex) const
 {
@@ -3709,6 +3798,9 @@ mvErrorEnum mvWorld::getPathwayNodeParameteri(mvIndex pathwayIndex,\
    return tempPathway->getNodeParameteri(nodeIndex, paramFlag,  outIndex);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getPathwayNodeParametero(mvIndex pathwayIndex,\
    mvIndex nodeIndex, mvParamEnum paramFlag, mvOptionEnum* option) const
 {
@@ -3722,6 +3814,9 @@ mvErrorEnum mvWorld::getPathwayNodeParametero(mvIndex pathwayIndex,\
    return tempPathway->getNodeParametero(nodeIndex, paramFlag, option);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getPathwayNodeParameterf(mvIndex pathwayIndex,\
    mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* num) const
 {
@@ -3735,6 +3830,9 @@ mvErrorEnum mvWorld::getPathwayNodeParameterf(mvIndex pathwayIndex,\
    return tempPathway->getNodeParameterf(nodeIndex, paramFlag, num);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getPathwayNodeParameterv(mvIndex pathwayIndex,\
    mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* array,\
    mvCount* noOfParameters) const
@@ -3750,6 +3848,9 @@ mvErrorEnum mvWorld::getPathwayNodeParameterv(mvIndex pathwayIndex,\
       noOfParameters);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getPathwayNodeParameteri_str(mvIndex pathwayIndex,\
    mvIndex nodeIndex, const char* param, mvIndex* outIndex) const
 {
@@ -3763,6 +3864,9 @@ mvErrorEnum mvWorld::getPathwayNodeParameteri_str(mvIndex pathwayIndex,\
    return tempPathway->getNodeParameteri_str(nodeIndex, param, outIndex);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getPathwayNodeParametero_str(mvIndex pathwayIndex,\
    mvIndex nodeIndex, const char* param, const char** option) const
 {
@@ -3776,6 +3880,9 @@ mvErrorEnum mvWorld::getPathwayNodeParametero_str(mvIndex pathwayIndex,\
    return tempPathway->getNodeParametero_str(nodeIndex, param, option);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getPathwayNodeParameterf_str(mvIndex pathwayIndex,\
    mvIndex nodeIndex, const char* param, mvFloat* num) const
 {
@@ -3789,6 +3896,9 @@ mvErrorEnum mvWorld::getPathwayNodeParameterf_str(mvIndex pathwayIndex,\
    return tempPathway->getNodeParameterf_str(nodeIndex, param, num);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getPathwayNodeParameterv_str(mvIndex pathwayIndex,\
    mvIndex nodeIndex, const char* param, mvFloat* array,\
    mvCount* noOfParameters) const
@@ -3804,6 +3914,9 @@ mvErrorEnum mvWorld::getPathwayNodeParameterv_str(mvIndex pathwayIndex,\
       noOfParameters);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::removePathwayNodeAt(mvIndex pwIndex, mvIndex nodeIndex)
 {
    mvPathwayPtr tempPathway = getPathwayPtr(pwIndex);
@@ -3812,76 +3925,111 @@ mvErrorEnum mvWorld::removePathwayNodeAt(mvIndex pwIndex, mvIndex nodeIndex)
    {
       return MV_PATHWAY_INDEX_IS_INVALID;
    }
-
    return tempPathway->removeNodeAt(nodeIndex);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setEntryListParameteri(mvIndex listIndex,\
    mvParamEnum paramFlag, mvIndex index)
 {
    return entryLists.setItemParameteri(listIndex, paramFlag, index);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setEntryListParametero(mvIndex listIndex,\
    mvParamEnum paramFlag, mvOptionEnum option)
 {
    return entryLists.setItemParametero(listIndex, paramFlag, option);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setEntryListParameterf(mvIndex listIndex,\
    mvParamEnum paramFlag, mvFloat num)
 {
    return entryLists.setItemParameterf(listIndex, paramFlag, num);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setEntryListParameterv(mvIndex listIndex,\
    mvParamEnum paramFlag, mvFloat* array)
 {
    return entryLists.setItemParameterv(listIndex, paramFlag, array);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setEntryListParameteri_str(mvIndex listIndex,\
    const char* param, mvIndex index)
 {
    return entryLists.setItemParameteri_str(listIndex, param, index);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setEntryListParametero_str(mvIndex listIndex,\
    const char* param, const char* option)
 {
    return entryLists.setItemParametero_str(listIndex, param, option);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setEntryListParameterf_str(mvIndex listIndex,\
    const char* param, mvFloat num)
 {
    return entryLists.setItemParameterf_str(listIndex, param, num);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setEntryListParameterv_str(mvIndex listIndex,\
    const char* param, mvFloat* array)
 {
    return entryLists.setItemParameterv_str(listIndex, param, array);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getEntryListParameteri(mvIndex listIndex,\
    mvParamEnum paramFlag, mvIndex* outIndex) const
 {
    return entryLists.getItemParameteri(listIndex, paramFlag, outIndex);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getEntryListParametero(mvIndex listIndex,\
    mvParamEnum paramFlag, mvOptionEnum* option) const
 {
    return entryLists.getItemParametero(listIndex, paramFlag, option);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getEntryListParameterf(mvIndex listIndex,\
    mvParamEnum paramFlag, mvFloat* num) const
 {
    return entryLists.getItemParameterf(listIndex, paramFlag, num);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getEntryListParameterv(mvIndex listIndex,\
    mvParamEnum paramFlag, mvFloat* array,\
    mvCount* noOfParameters) const
@@ -3890,24 +4038,36 @@ mvErrorEnum mvWorld::getEntryListParameterv(mvIndex listIndex,\
       noOfParameters);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getEntryListParameteri_str(mvIndex listIndex,\
    const char* param, mvIndex* outIndex) const
 {
    return entryLists.getItemParameteri_str(listIndex, param, outIndex);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getEntryListParametero_str(mvIndex listIndex,\
    const char* param, const char** option) const
 {
    return entryLists.getItemParametero_str(listIndex, param, option);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getEntryListParameterf_str(mvIndex listIndex,\
    const char* param, mvFloat* num) const
 {
    return entryLists.getItemParameterf_str(listIndex, param, num);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getEntryListParameterv_str(mvIndex listIndex,\
    const char* param, mvFloat* array, mvCount* noOfParameters) const
 {
@@ -3915,6 +4075,9 @@ mvErrorEnum mvWorld::getEntryListParameterv_str(mvIndex listIndex,\
       noOfParameters);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setEntryListNodeParameteri(mvIndex listIndex,\
    mvIndex nodeIndex, mvParamEnum paramFlag, mvIndex index)
 {
@@ -3928,6 +4091,9 @@ mvErrorEnum mvWorld::setEntryListNodeParameteri(mvIndex listIndex,\
    return tempList->setEntryParameteri(nodeIndex, paramFlag, index);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setEntryListNodeParametero(mvIndex listIndex,\
    mvIndex nodeIndex, mvParamEnum paramFlag, mvOptionEnum option)
 {
@@ -3941,6 +4107,9 @@ mvErrorEnum mvWorld::setEntryListNodeParametero(mvIndex listIndex,\
    return tempList->setEntryParametero(nodeIndex, paramFlag, option);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setEntryListNodeParameterf(mvIndex listIndex,\
    mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat num)
 {
@@ -3953,6 +4122,10 @@ mvErrorEnum mvWorld::setEntryListNodeParameterf(mvIndex listIndex,\
 
    return tempList->setEntryParameterf(nodeIndex, paramFlag, num);
 }
+
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setEntryListNodeParameterv(mvIndex listIndex,\
    mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* array)
 {
@@ -3966,6 +4139,9 @@ mvErrorEnum mvWorld::setEntryListNodeParameterv(mvIndex listIndex,\
     return tempList->setEntryParameterv(nodeIndex, paramFlag, array);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setEntryListNodeParameteri_str(mvIndex listIndex,\
    mvIndex nodeIndex, const char* param, mvIndex index)
 {
@@ -3978,6 +4154,10 @@ mvErrorEnum mvWorld::setEntryListNodeParameteri_str(mvIndex listIndex,\
 
    return tempList->setEntryParameteri_str(nodeIndex, param, index);
 }
+
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setEntryListNodeParametero_str(mvIndex listIndex,\
    mvIndex nodeIndex, const char* param, const char* option)
 {
@@ -3990,6 +4170,10 @@ mvErrorEnum mvWorld::setEntryListNodeParametero_str(mvIndex listIndex,\
 
    return tempList->setEntryParametero_str(nodeIndex, param, option);
 }
+
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setEntryListNodeParameterf_str(mvIndex listIndex,\
    mvIndex nodeIndex, const char* param, mvFloat num)
 {
@@ -4002,6 +4186,10 @@ mvErrorEnum mvWorld::setEntryListNodeParameterf_str(mvIndex listIndex,\
 
    return tempList->setEntryParameterf_str(nodeIndex, param, num);
 }
+
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setEntryListNodeParameterv_str(mvIndex listIndex,\
    mvIndex nodeIndex, const char* param, mvFloat* array)
 {
@@ -4015,6 +4203,9 @@ mvErrorEnum mvWorld::setEntryListNodeParameterv_str(mvIndex listIndex,\
    return tempList->setEntryParameterv_str(nodeIndex, param,  array);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getEntryListNodeParameteri(mvIndex listIndex,\
    mvIndex nodeIndex, mvParamEnum paramFlag, mvIndex* outIndex) const
 {
@@ -4028,6 +4219,9 @@ mvErrorEnum mvWorld::getEntryListNodeParameteri(mvIndex listIndex,\
    return tempList->getEntryParameteri(nodeIndex, paramFlag, outIndex);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getEntryListNodeParametero(mvIndex listIndex,\
    mvIndex nodeIndex, mvParamEnum paramFlag, mvOptionEnum* option) const
 {
@@ -4041,6 +4235,9 @@ mvErrorEnum mvWorld::getEntryListNodeParametero(mvIndex listIndex,\
    return tempList->getEntryParametero(nodeIndex, paramFlag, option);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getEntryListNodeParameterf(mvIndex listIndex,\
    mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* num) const
 {
@@ -4054,6 +4251,9 @@ mvErrorEnum mvWorld::getEntryListNodeParameterf(mvIndex listIndex,\
    return tempList->getEntryParameterf(nodeIndex, paramFlag, num);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getEntryListNodeParameterv(mvIndex listIndex,\
    mvIndex nodeIndex, mvParamEnum paramFlag, mvFloat* array,\
    mvCount* noOfParameters) const
@@ -4069,6 +4269,9 @@ mvErrorEnum mvWorld::getEntryListNodeParameterv(mvIndex listIndex,\
       noOfParameters);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getEntryListNodeParameteri_str(mvIndex listIndex,\
    mvIndex nodeIndex, const char* param, mvIndex* outIndex) const
 {
@@ -4082,6 +4285,9 @@ mvErrorEnum mvWorld::getEntryListNodeParameteri_str(mvIndex listIndex,\
    return tempList->getEntryParameteri_str(nodeIndex, param, outIndex);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getEntryListNodeParametero_str(mvIndex listIndex,\
    mvIndex nodeIndex, const char* param, const char** option) const
 {
@@ -4095,6 +4301,9 @@ mvErrorEnum mvWorld::getEntryListNodeParametero_str(mvIndex listIndex,\
    return tempList->getEntryParametero_str(nodeIndex, param, option);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getEntryListNodeParameterf_str(mvIndex listIndex,\
    mvIndex nodeIndex, const char* param, mvFloat* num) const
 {
@@ -4108,6 +4317,9 @@ mvErrorEnum mvWorld::getEntryListNodeParameterf_str(mvIndex listIndex,\
    return tempList->getEntryParameterf_str(nodeIndex, param, num);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::getEntryListNodeParameterv_str(mvIndex listIndex,\
    mvIndex nodeIndex, const char* param, mvFloat* array,\
    mvCount* noOfParameters) const
@@ -4123,12 +4335,18 @@ mvErrorEnum mvWorld::getEntryListNodeParameterv_str(mvIndex listIndex,\
       noOfParameters);
 }
 
+/** \brief blah blah
+ *
+ */
 void mvWorld::applyToAllEntryLists(void (someFunction)(mvEntryListPtr, void*),
    void* extraPtr)
 {
    entryLists.applyToAllItems(someFunction, extraPtr);
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::setUserData(mvParamEnum objectType,\
    mvIndex objectIndex, void* userData)
 {
@@ -4159,6 +4377,9 @@ mvErrorEnum mvWorld::setUserData(mvParamEnum objectType,\
 
 }
 
+/** \brief blah blah
+ *
+ */
 void* mvWorld::getUserData(mvParamEnum objectType, mvIndex objectIndex) const
 {
    mvConstBodyPtr possibleBodyPtr = getConstBodyPtr(objectIndex);
@@ -4189,6 +4410,9 @@ void* mvWorld::getUserData(mvParamEnum objectType, mvIndex objectIndex) const
    }
 }
 
+/** \brief blah blah
+ *
+ */
 mvIndex mvWorld::getCurrentNodeOfPathway(mvIndex pwIndex) const
 {
    mvConstPathwayPtr tempPathway = getConstPathwayPtr(pwIndex);
@@ -4201,6 +4425,9 @@ mvIndex mvWorld::getCurrentNodeOfPathway(mvIndex pwIndex) const
    return tempPathway->getCurrentNode();
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::addForceIntoWaypoint(mvIndex wIndex, mvIndex fIndex)
 {
    mvWaypointCapsulePtr tempWaypointPtr = NULL;
@@ -4234,6 +4461,9 @@ mvErrorEnum mvWorld::addForceIntoWaypoint(mvIndex wIndex, mvIndex fIndex)
    return error;
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::removeForceFromWaypoint(mvIndex wIndex,\
    mvIndex fIndex)
 {
@@ -4267,6 +4497,9 @@ mvErrorEnum mvWorld::removeForceFromWaypoint(mvIndex wIndex,\
    return error;
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::removeAllWaypointsFromForce(mvIndex forceIndex)
 {
    mvForceCapsulePtr tempCapsulePtr = forces.getCapsulePtr(forceIndex);
@@ -4280,6 +4513,9 @@ mvErrorEnum mvWorld::removeAllWaypointsFromForce(mvIndex forceIndex)
    return MV_NO_ERROR;
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::removeAllForcesFromWaypoint(mvIndex wIndex)
 {
    // convert index
@@ -4299,6 +4535,9 @@ mvErrorEnum mvWorld::removeAllForcesFromWaypoint(mvIndex wIndex)
    return MV_NO_ERROR;
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::removeAllGroupsFromGroupBehaviour(mvIndex gbIndex)
 {
    mvGroupBehaviourPtr tempGBPtr = getGroupBehaviourPtr(gbIndex);
@@ -4312,6 +4551,9 @@ mvErrorEnum mvWorld::removeAllGroupsFromGroupBehaviour(mvIndex gbIndex)
    return MV_NO_ERROR;
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvWorld::removeAllMembersFromGroup(mvIndex groupIndex)
 {
    mvGroupPtr tempGroup = getGroupPtr(groupIndex);
@@ -4343,4 +4585,12 @@ void mvWorld::registerAllGroupBehavioursToBodies()
 void mvWorld::registerGroupBehaviourToBodies(mvIndex groupBehaviourIndex)
 {
 
+}
+
+/** \brief blah blah
+ *
+ */
+mvEntryListPtr mvWorld::getEntryListPtr(mvIndex entryListIndex) const
+{
+   return entryLists.getClassPtr(entryListIndex);
 }

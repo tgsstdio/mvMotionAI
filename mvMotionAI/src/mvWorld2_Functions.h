@@ -80,7 +80,7 @@ struct mvWorld_V2_CalcBehavOnListHelper
       mvBodyCapsulePtr bCapsule;
 };
 
-mvBaseActionPtr mvWorld_V2_InitialiseResults(mvBEntryPtr nodeInfo, mvIndex bodyIndex,
+mvBaseActionPtr mvWorld_V2_InitialiseResults(mvEntryPtr nodeInfo, mvIndex bodyIndex,
    mvConstWorldPtr currentWorld,  mvBehaviourResult& currentResult,\
    mvBehaviourResultPtr finalResult);
 
