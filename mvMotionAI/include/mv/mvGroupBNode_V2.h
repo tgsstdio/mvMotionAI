@@ -34,6 +34,7 @@
 
 #include MV_ENUMS_HEADER_FILE_H_
 #include MV_BASE_ACTION_HEADER_FILE_H_
+#include MV_BEHAVIOUR_LIST_NODE_HEADER_FILE_H_
 #include <list>
 
 #ifdef MV_BUILD_DLL
@@ -42,14 +43,19 @@
 #define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
 #endif
 
+// todo : incorporate entry list node ptr
+
 class MV_GLOBAL_FUNC_PREFIX mvGroupMemberNode
 {
    public:
       mvIndex memberIndex;
-      mvBaseActionPtr memberAction;
+      mvEntryListNodePtr memberNodePtr;
+      //mvBaseActionPtr memberAction;
 
-      mvBaseActionPtr getActionPtr();
-      mvGroupMemberNode(mvIndex mbIndex,  mvBaseActionPtr mbAction);
+      mvEntryListNodePtr getEntryNodePtr() const;
+      // mvBaseActionPtr getActionPtr();
+      //mvGroupMemberNode(mvIndex mbIndex,  mvBaseActionPtr mbAction);
+      mvGroupMemberNode(mvIndex mbIndex,  mvEntryListNodePtr mbAction);
       bool operator<(const mvGroupMemberNode& rhs) const;
       bool operator== (const mvGroupMemberNode& rhs) const;
       mvErrorEnum setParametero(mvParamEnum paramFlag,\
@@ -86,7 +92,7 @@ class MV_GLOBAL_FUNC_PREFIX mvGroupNodeMemberList
       void toFirstMember();
       mvGroupMemberNodePtr getCurrentMember();
       void insertBeforeCurrentMember(mvIndex memberIndex,\
-         mvBaseActionPtr actionPtr);
+         mvEntryListNodePtr entryNodePtr);
       void deleteCurrentMember();
       ~mvGroupNodeMemberList();
 };

@@ -767,6 +767,7 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld
       // TODO : Constant add / remove index order
       mvErrorEnum removeForceFromWaypoint(mvIndex waypointIndex,\
          mvIndex forceIndex);
+      mvEntryListPtr getEntryListPtr(mvIndex entryListIndex) const;
 };
 
 

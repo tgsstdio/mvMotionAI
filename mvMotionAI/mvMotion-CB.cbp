@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="default">
-				<Option output="lib\libmvMotionAI.a" prefix_auto="1" extension_auto="1" />
+				<Option output="lib\libmvMotionAI" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option type="2" />
 				<Option compiler="gcc" />
@@ -19,7 +19,7 @@
 				</Compiler>
 			</Target>
 			<Target title="unix">
-				<Option output="lib\libmvMotionAI-unix.a" prefix_auto="1" extension_auto="1" />
+				<Option output="lib\libmvMotionAI-unix" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option type="2" />
 				<Option compiler="gcc" />
@@ -35,7 +35,7 @@
 				</Compiler>
 			</Target>
 			<Target title="mingw-winXP">
-				<Option output="lib\libmvMotionAI-mingw.a" prefix_auto="1" extension_auto="1" />
+				<Option output="lib\libmvMotionAI-mingw" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option type="2" />
 				<Option compiler="gcc" />
@@ -56,7 +56,7 @@
 				</Linker>
 			</Target>
 			<Target title="mingw-winXP-debug">
-				<Option output="lib\libmvMotionAI-mingw-debug.a" prefix_auto="1" extension_auto="1" />
+				<Option output="lib\libmvMotionAI-mingw-debug" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option object_output=".objs-debug" />
 				<Option type="2" />
@@ -74,7 +74,7 @@
 				</Compiler>
 			</Target>
 			<Target title="mingw-winXP-dll">
-				<Option output="bin\mvMotionAI-mingw-dll.dll" prefix_auto="1" extension_auto="1" />
+				<Option output="bin\mvMotionAI-mingw-dll" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="lib" />
 				<Option type="3" />
 				<Option compiler="gcc" />
@@ -97,7 +97,7 @@
 				</Linker>
 			</Target>
 			<Target title="unix debug">
-				<Option output="lib\libmvMotionAI-unix-debug.a" prefix_auto="1" extension_auto="1" />
+				<Option output="lib\libmvMotionAI-unix-debug" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option type="2" />
 				<Option compiler="gcc" />
@@ -112,6 +112,30 @@
 					<Add option="-Wall" />
 					<Add option="-g" />
 				</Compiler>
+			</Target>
+			<Target title="mingw-winXP-dll-debug">
+				<Option output="bin\mvMotionAI-mingw-dll-debug" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="lib" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-Os" />
+					<Add option="-O3" />
+					<Add option="-O2" />
+					<Add option="-O1" />
+					<Add option="-O" />
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add option="-DMV_BUILD_DLL" />
+					<Add directory="include-other" />
+					<Add directory="include-other\mingw" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
 			</Target>
 		</Build>
 		<VirtualTargets>
@@ -212,6 +236,7 @@
 		<Extensions>
 			<code_completion />
 			<envvars />
+			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
