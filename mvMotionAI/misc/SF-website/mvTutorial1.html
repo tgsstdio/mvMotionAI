@@ -9,50 +9,79 @@
 <h2> <a id="Menu"> Menu </a> </h2>
 <h3> <a href="#StepByStep"> Step by Step Guide to tutorial 1 </a> </h3>
 <h3> <a href="#FullCode"> Full Source Code </a> </h3>
+<h3> <a href="index.html"> Back To Index </a> </h3>
 <h2> <a id="StepByStep"> Step by Step Guide to tutorial 1 </a> </h2>
 <p> This file is included with the mvMotionAI 00-02-15 full workspace and 
 this code is revelant to version 00-02-15 and greater. </p>
 <p>
-<h3> Step 1 : include the main library header file </h3> 
-<code> 
- #include &ltmv/mvMotionAI.h&gt <br/>
- <br/>
-</code>
+<h3> Step 1 : include the main library header file </h3>
+<p> The programmer only has to reference one header file, <code>mvMotionAI.h</code> (usually located in <code>mv</code> directory), as all objects are reference by that file. For example in this tutorial (and other future applications), we add this following line  
+to the top of the source code: </p>
+</p>    
+<p> <code> #include &ltmv/mvMotionAI.h&gt </code> </p>
 <p> <a href="#Menu"> Back To Menu </a> </p>
-<h3> Step 2: Declare &amp; implement various observer functions for loop based functions </h3>
-<ol>
-  <li> <h4> mvIndex - c interface index type </h4>
-	  <p> mvMotionAI object interface </p>
-		<p>
-      <code>
-      void (indexFunction)(mvIndex worldIndex, mvIndex objectIndex, void *extraPtr);
-      </code>
-			
-			<p><code>
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorldsByIndex(void(someFunction)(mvIndex, void* extraPtr), void* extraPtr);
-	 	</code></p>	  			
-			<p><code>
-      MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBodiesByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex,void*), void* extraPtr);<br/>
-      MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllObstaclesByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex,void*), void* extraPtr);<br/>
-	    MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWaypointsByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex,void*), void* extraPtr);<br/>
-      MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllPathwaysByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex, void*), void* extraPtr);<br/>
-      MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupsByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex, void*), void* extraPtr);<br/>
-      MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBehavioursByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex, void*), void* extraPtr);<br/>
-      MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehavioursByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex, void*), void* extraPtr);<br/>
-      MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllForcesByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex, void*), void* extraPtr);<br/>
-	 	</code></p>
-					
-	 
+<h3> Step 2: Declare &amp; implement various observer functions for loop based functions using the C mvMotionAI interface</h3>
+  <p> All objects created by the mvMotionAI are accessible via the C interface. 	All C++ objects related to the mvMotionAI (as in C++ pointers)
+	and their memory allocated are automatically held and freed by the mvMotionAI library. 
+	To remove the responsibility of memory deletion of objects from the programmer but allow these same objects to be assessible,
+	the library has iteration (loop) functions that allows only the objects that are still in the application's memory to be affected.
+	Within this interface, there are two approaches to retrieve information or setting variables of multiple items in mvMotionAI. 
+	The	first approach involves using the mvIndex loop function and the second approach uses the C++ pointer loop functions. One more important thing to remember, mvMotionAI does not use callbacks or stored function pointers, so the loop functions below must be manually call for every time that the user-defined function is needed.   	
+  </p>
+<ol>	
+  <li> <h4> Approach 1 : via the mvIndex C loop functions interface</h4>
+	  <p> When an mvMotionAI object is created (as shown in <a href="#Step5">Step 5 </a>), a corresponding mvIndex (any non-zero value if correctly created else MV_NULL if error has occurred)
+		is returned to the programmer. Therefore we can retrieve and edit each item by using its mvIndex value. If the programmer wants to manipulate multiple objects within an world instance 
+		using their indexes	with the same function, we can use 
+		</p>
+		<ol>
+				<li> The mvWorld's mvIndex, </li>
+				<li> <p> A programmer-defined function, (in the form of): </p>   
+				    		<p> <code> void (indexFunction)(mvIndex worldIndex, mvIndex objectIndex, void *extraPtr);</code> </p>
+				</li>
+				<li>
+						<p> .. with one of the following mvIndex loop functions which represent each of the objects within mvMotionAI library. </p> 			
+            <p><code>
+            MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBodiesByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex,void*), void* extraPtr);<br/>
+            MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllObstaclesByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex,void*), void* extraPtr);<br/>
+            MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWaypointsByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex,void*), void* extraPtr);<br/>
+            MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllPathwaysByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex, void*), void* extraPtr);<br/>
+            MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupsByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex, void*), void* extraPtr);<br/>
+            MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBehavioursByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex, void*), void* extraPtr);<br/>
+            MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehavioursByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex, void*), void* extraPtr);<br/>
+            MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllForcesByIndex(mvIndex worldIndex, void (indexFunction)(mvIndex,mvIndex, void*), void* extraPtr);<br/>
+            </code></p>
+				</li>
+			</ol>
+		<p> Also we can link these loop functions together and using the same approach, apply them any linked (as in created via the C mvMotionAI library interface) mvWorld instance via their mvIndex. To apply the combined function (<code>void (combinedFunction)(mvIndex worldIndex, void *extraPtr)</code>) 
+		to any linked mvWorld instance in the library, the programmer would use the function below:</p> 	 
+		<p><code> MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorldsByIndex(void(someFunction)(mvIndex, void* extraPtr), void* extraPtr);	</code></p>		
 	  </p>
+		<h4> Tutorial 1 </h4>
 		<p> In this example, we have declared a mvIndex loop function in the following format: </p>
+  	<p> <code> void displayAllBodyByIndexes(mvIndex worldIndex, mvIndex index, void *extraPtr);	</code>	</p>
+						
+		<p> We can apply the <code>void displayAllBodyByIndexes(mvIndex worldIndex, mvIndex index, void *extraPtr)</code> to each body 
+		by passing the function into <code>mvApplyToAllBodiesByIndex</code>. We can pass any object into the function we like; by passing a pointer (void*) to a struct or object
+		as the second argument of the loop function.
+		<p> <code>
+      const char* bodyHeader = "BODY "; <br/>
+       <br/>
+      // loop over bodies in the ourWorld instance <br/>
+      mvApplyToAllBodiesByIndex(ourWorld, displayAllBodyByIndexes, <br/>
+      &nbsp;&nbsp;(void*) bodyHeader); <br/>
+		</code> </p>		
+		<p>
+		The programmer can then retrieve that pointer from inside the function by recasting it back. In our tutorial, we are using a C type char string pointer and within the function, printing out that string plus the global position of each body.  
+		Below is the implementation of the <code>void displayAllBodyByIndexes(mvIndex worldIndex, mvIndex index, void *extraPtr)</code>function:
+		</p>							
     <p>
-  		<code>
-        void displayAllBodyByIndexes(mvIndex worldIndex, mvIndex index, void *extraPtr);<br/>
-  			<br/>
+		   <code>
         // this function is for iterating over all bodies using the C function interface <br/>
         void displayAllBodyByIndexes(mvIndex worldIndex, mvIndex index, void *extraPtr) <br/>
         { <br/>
         &nbsp;&nbsp;mvCount noOfParameters; <br/>
+				&nbsp;&nbsp;//PLEASE USE >= MV_MAX_NO_OF_PARAMETERS as the get parameter array size <br/>
         &nbsp;&nbsp;mvFloat positionArray[MV_MAX_NO_OF_PARAMETERS]; <br/>
          <br/>
         &nbsp;&nbsp;if (mvGetBodyParameterv(worldIndex, index, MV_POSITION, &amp;positionArray[0], <br/>
@@ -71,27 +100,29 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorldsByIndex(void(someFunction)(m
         &nbsp;&nbsp;} <br/>
         } 
       </code>
-		</p>
+		</p>		
+		
 <p> <a href="#Menu"> Back To Menu </a> </p>		
   </li>
 	<li>
-    <h4> C++ pointer type </h4>
- <p> <code>		
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorlds(void (someFunction)(mvWorldPtr,void*),void* extraPtr);
-	 	</code></p>
-		
-		
- <p> <code>		
- 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBodies(mvIndex worldIndex,void (someFunction)(mvBodyPtr,void*),void* extraPtr); <br/>
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllObstacles(mvIndex worldIndex, void (someFunction)(mvObstaclePtr,void*),void* extraPtr);<br/>
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWaypoints(mvIndex worldIndex, void (someFunction)(mvWaypointPtr,void*),void* extraPtr);<br/>
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllPathways(mvIndex worldIndex, void (someFunction)(mvPathwayPtr,void*),void* extraPtr);<br/>
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroups(mvIndex worldIndex, void (someFunction)(mvGroupPtr,void*),void* extraPtr);<br/>
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllBehaviours(mvIndex worldIndex, void (someFunction)(mvBehaviourPtr,void*),void* extraPtr);<br/>
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehaviours(mvIndex worldIndex, void (someFunction)(mvGroupBehaviourPtr,void*), void* extraPtr);<br/>
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllForces(mvIndex worldIndex, void (someFunction)(mvBaseForcePtr,void*),void* extraPtr);<br/>
-	 </code> </p>
+    <h4> Approach 2 : C++ pointer type </h4>
+		<p> The second approach allows the programmer to use the various methods belonging to mvMotionAI C++ classes themselves. By using the C++ pointer loop functions, we can avoid any C++ pointers that reference <code>NULL</code> objects, such as deleted items & non-existent bodies. If we wanted to apply the same function to all objects, the function's format must be in this form: </p>
+<p><code> void (myClass_Function)(myClass_Ptr,void*);</code> </p>
+<p> ... along with any of these pointer loop functions in the mvMotionAI library. </p> 
+<p> <code>		
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBodies(mvIndex worldIndex,void (mvBodyPtr_Function)(mvBodyPtr,void*),void* extraPtr); <br/>
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllObstacles(mvIndex worldIndex, void (mvObstaclePtr_Function)(mvObstaclePtr,void*),void* extraPtr);<br/>
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWaypoints(mvIndex worldIndex, void (mvWaypointPtr_Function)(mvWaypointPtr,void*),void* extraPtr);<br/>
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllPathways(mvIndex worldIndex, void (mvPathwayPtr_Function)(mvPathwayPtr,void*),void* extraPtr);<br/>
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroups(mvIndex worldIndex, void (mvGroupPtr_Function)(mvGroupPtr,void*),void* extraPtr);<br/>
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllBehaviours(mvIndex worldIndex, void (mvBehaviourPtr_Function)(mvBehaviourPtr,void*),void* extraPtr);<br/>
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehaviours(mvIndex worldIndex, void (mvGroupBehaviourPtr_Function)(mvGroupBehaviourPtr,void*), void* extraPtr);<br/>
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllForces(mvIndex worldIndex, void (mvBaseForcePtr_Function)(mvBaseForcePtr,void*),void* extraPtr);<br/>
+</code> </p>
+As in the previous approach, we can join many of these C++ pointer loop functions together and apply them to any existing linked (as in created via the C mvMotionAI library interface) mvWorld instance. For example, a function that use mvWorld pointer(<code>void (mvWorldPtr_CombinedFunction)(mvWorldPtr, void*)</code>) we would pass that combined function as an argument to the following mvMotionAI function below:</p>
+ <p> <code>	MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorlds(void (someFunction)(mvWorldPtr,void*),void* extraPtr);	</code></p>
+	<h4> Tutorial 1 </h4>
+	 
 		<p> In this example, we have declared a mvIndex loop function in the following format: </p>    		
     <p>  
 		<code>
@@ -108,8 +139,9 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllForces(mvIndex worldIndex, void (
     &nbsp;&nbsp;&nbsp;&nbsp;<< ", " << position.getZ() << std::endl; <br/>
     } <br/>
     </code>
-    </p>   
+    </p>  
 	</li>
+	
 </ol>
 <p> <a href="#Menu"> Back To Menu </a> </p>
 <h3> Step 3 : initialise library </h3>
@@ -119,37 +151,37 @@ int main(void) <br/>
 &nbsp;&nbsp;mvInitMotionAI(); <br/>
 </code>
 <p> <a href="#Menu"> Back To Menu </a> </p>
-<h3> step 4 : create world instance </h3>
+<h3> Step 4 : create world instance </h3>
 <code>
 &nbsp;&nbsp;mvIndex ourWorld = mvCreateWorld(); <br/>
 </code>
 <p> <a href="#Menu"> Back To Menu </a> </p>
+<h3> <a id="Step5"> Step 5 : create multiple bodies </a> </h3>
+<p>
 <code>
-&nbsp;&nbsp;// step 5 : create multiple bodies <br/>
 &nbsp;&nbsp;for (int i = 0; i < 5; i++) <br/>
 &nbsp;&nbsp;{ <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mvCreateBody(ourWorld, MV_PARTICLE, MV_AABOX, i, i * 2, i * 3); <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mvCreateObstacle(ourWorld, MV_AABOX, MV_LIQUID_OBSTACLE, i * 5, i, i * -2); <br/>
 &nbsp;&nbsp;} <br/>
 </code>
+</p>
 <p> <a href="#Menu"> Back To Menu </a> </p>
 <code>
 &nbsp;&nbsp;const char* obstacleHeader = "OBSTACLE : "; <br/>
-&nbsp;&nbsp;const char* bodyHeader = "BODY "; <br/>
- <br/>
-&nbsp;&nbsp;// loop over bodies in the ourWorld instance <br/>
-&nbsp;&nbsp;mvApplyToAllBodiesByIndex(ourWorld, displayAllBodyByIndexes, <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;(void*) bodyHeader); <br/>
+
  <br/>
 &nbsp;&nbsp;// loop over all obstacles in the ourWorld instance <br/>
 &nbsp;&nbsp;mvApplyToAllObstacles(ourWorld, displayAllObstaclesByPtr,\ <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(void*) obstacleHeader); <br/>
 </code>
 <p> <a href="#Menu"> Back To Menu </a> </p>
+<h3>Step 6 : free motion library - automatically at close. </h3>
+<p>
 <code>
-&nbsp;&nbsp;// step 6 : free motion library - automatically at close. <br/>
 &nbsp;&nbsp;mvFreeMotionAI(); <br/>
 </code>
+</p>
 <p> <a href="#Menu"> Back To Menu </a> </p>
 <h2> <a id="FullCode"> Full Source Code </a> </h2>
 <p>
