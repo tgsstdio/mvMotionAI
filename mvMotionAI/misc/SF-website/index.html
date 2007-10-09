@@ -25,27 +25,34 @@
    						<li>
   								<a href="mvLicense.html"> mvMotionAI MIT License</a>
   						</li>
-  						<li>
-  								<a href=""> mvMotionAI objects types</a>
-  						</li>
-  						<li>
-  								<a href="">Application integration of mvMotionAI library </a>
-  						</li>
+						</ul>
               <li>
-  						   <a href="">Scripting language integration example </a>
-  						</li>		
-              <li>        
-                 <a href=""> Setting  &amp; getting variables </a>
-  						</li>		
-              <li>
-							   <a href="">Implemented functions list</a>
-							</li>					
-              <li>
-							   <a href="">mvMotionAI memory management </a>
-							</li>	
-              <li>
-							   <a href=""> Creation of user-defined behaviours </a>
-							</li>								
+              <a href="#mvTutorials"> Tutorials </a>				
+  							<ul>							
+    						<li>
+    								<a href="mvTutorial1.html">Application integration of mvMotionAI library </a>
+    						</li>
+  							<!--
+    						<li>
+    								<a href=""> mvMotionAI objects types</a>
+    						</li>							
+                <li>
+    						   <a href="">Scripting language integration example </a>
+    						</li>		
+                <li>        
+                   <a href=""> Setting  &amp; getting variables </a>
+    						</li>		
+                <li>
+  							   <a href="">Implemented functions list</a>
+  							</li>					
+                <li>
+  							   <a href="">mvMotionAI memory management </a>
+  							</li>	
+                <li>
+  							   <a href=""> Creation of user-defined behaviours </a>
+  							</li>
+  							-->		
+								</li>						
 						</ul>
               <li>
               <a href="#mvLinks"> Links </a>				
@@ -114,13 +121,13 @@
 									  </li>
 								</ul>
  						</li>								
-						<li><h2> Scripting Language Support </h2></li>
+						<li><h2> Scripting Language Interface Support </h2></li>
 						 <ul>
 						    <li>
 								     C / C++ 
 								</li>
 						    <li>
-								     Lua
+								     <a href="http://www.lua.org/">Lua</a>
 								</li>								
 						 </ul>
 				</td>
@@ -136,11 +143,18 @@
         -->
         <h1><a id="mvIntro">Introduction</a></h1>			
 			
-        <p>mvMotionAI is an <acronym title="Articifial Intelligence"> AI </acronym> library module (currently a static library,
-           hopefully in version 00-02-00 and above as a DLL &amp; shared library).					 
-				</p>
+        <p>mvMotionAI is an <acronym title="Artificial Intelligence"> AI </acronym> library module (currently a static library,
+           hopefully in version 00-02-00 and above as a DLL &amp; shared library). Written in the C++ language, the library  
+					 focuses on the area of AI known as steering behaviours or directed 3D vector movement based such as path-following 
+   				 and seeking &amp; evading another body. Applications that are suitable for the mvMotionAI library are games and simulations.   
+				</p>    
 				
-				<p>C/C++ steering behaviour library (AI) with Lua scripting for games and simulations.</p>				
+        <p>A new feature, for version 00-02-00 and above, is the custom behaviour framework (named mvBaseActions) that allows user-defined behaviours
+				 extensions into the system and those additional custom objects are available via the scripting language interface.</p>				   					 
+					  		
+				<h1> Environment </h1>								
+
+	        <p>The library is entirely coded in C++ with interfaces in both C/C++ and the scripting language Lua. </p>
 
 					<p>
 					Compiles under the following development environments
@@ -158,28 +172,21 @@
           </ul>
           </ul>
 																	 
-        <p>This library is a general purpose steering behaviours library for 
-					 games and simulations that is easily pluggable into different 
-					 applications.</p>
+				<h1> History </h1>
+				<p> First created in January 2006, then the source code was released 
+				    as open source in June 2006 under the <a href="mvLicense.html"> MIT 
+ 					  License</a>. The library was started as a reusable code for applications (such as
+				    games), now the library is a general purpose steering behaviours library for 
+					  games and simulations that is easily pluggable into different applications.</p>			
 				
-        <p><a href="">How to integrate mvMotionAI library into your
-           application</a></p>					 
-					 
-        <p>The library is coded in C++ with interfaces in both C++ and the 
-				   scripting language Lua. </p>					 
+				<h1> <a id="mvTutorials"> Tutorials </a> </h1>		
+        <p><a href="mvTutorial1.html">How to integrate mvMotionAI library into your
+           application</a></p>				 
+			 
 					
-				<p>First created in January 2006, then the source code was released 
-				   as open source in June 2006 under the <a href="mvLicense.html"> MIT 
-					 License</a>.				 
-				</p>
-				
-				<p>
-					  The library was started as a reusable code for applications (such as
-				    games), focusing on the area of artificial intelligence known as 
-						steering behaviours or motion/movement based such as path-following 
-						and seeking &amp; evading another body.   
-				</p>       
-				
+ 
+	
+				<!--
         <p>Motion based behaviours with scripting functionality.</p>
 				
         <p><a href=""> mvMotionAI objects types</a></p>
@@ -203,11 +210,7 @@
 				
         <p><a href="">Initialises and deallocating mvMotionAI</a></p>
 				
-        <p>The behaviour framework (for version 00-02-00 and above) allows 
-				user-defined behaviours extensions into the system and those additional
-				objects are available via the scripting language interface.</p>
-				
-        <p><a href="">How to create new mvMotionAI behaviours which are
+			  <p><a href="">How to create new mvMotionAI behaviours which are
         accessible via a scripting language</a></p>
 				
         <p>Minimal vocabulary for retrieving parameters and variables
@@ -215,6 +218,7 @@
 				
         <p>Structured for accommodate single, global ,and shared
         cooperative group behaviours</p>
+				-->
         </td>
         </tr>
 				<tr>
@@ -225,7 +229,7 @@
 				<p> The following HTML documentation of the mvMotionAI API has been generated
 				by <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> 
 				from mvMotionAI source code. Each version can be downloaded from the 
-				File Releases section of SourceForge hosted central page (?)  </p> 
+				File Releases section of SourceForge hosted webpage  </p> 
 				<ul>
         <li> Version 00-01-22 </li>
         </ul>
@@ -238,11 +242,13 @@
        <li>API Documentation </li>
 			 <li>Full workspace of mvMotionAI less API documentation</li>			 
 			 </ol>
-        <h3><a id="mvSFCodeRepos"> SourceForge Subversion code 
-				   repository </a> </h3>
-				<h4> Version 00-02-08 </h4>
-        <p>Bleeding edge code updates made via the Subversion
-        repository. </p>
+        <h3><a id="mvSFCodeRepos"> SourceForge Subversion (SVN) code 
+				   repository </a> </h3>					 
+   				 <h4> Latest Version - 00-02-20 </h4>					 
+					 <p> Bleeding edge code updates made via the <a href="http://subversion.tigris.org/">Subversion</a> repository. This command should retrieve the latest build of mvMotionAI library: </p>					 
+					 <p>
+					 <code> svn co https://mvmotionai.svn.sourceforge.net/svnroot/mvmotionai mvmotionai </code>
+					 </p>
 				<p> 
 				<h3> <a href="http://www.freewebs.com/david_young_graphics/"> David Young's Projects on Freewebs.com </a> </h3>
         <p>Author of mvMotionAI's other projects </p>				
