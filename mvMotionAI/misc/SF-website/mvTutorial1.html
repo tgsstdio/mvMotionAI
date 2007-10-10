@@ -7,29 +7,45 @@
 <body>
 <h1> Tutorial 1 : How to integrate mvMotionAI library into a C++ application </h1>
 <h2> <a id="Menu"> Menu </a> </h2>
-<h3> <a href="#StepByStep"> Step by Step Guide to tutorial 1 </a> </h3>
-<h3> <a href="#FullCode"> Full Source Code </a> </h3>
+<ul>
+<li><h3> <a href="#StepByStep"> Step by Step Guide to tutorial 1 </a> </h3>
+<ol> 
+<li><h4><a href="#Step1">Step 1 : include the main library header file</a></h4> </li>
+<li><h4><a href="#Step2">Step 2 : Declare &amp; implement various observer functions for loop based functions using the C mvMotionAI interface</a> </h4>
+<ol> 
+<li> <a href="#Step2_Approach1">Approach 1 : via the mvIndex C loop functions interface</a> </li>
+<li> <a href="#Step2_Approach2">Approach 2 : via the C++ pointer loop interface</a> </li>
+</ol>
+</li>
+<li><h4><a href="#Step3">Step 3 : initialise mvMotionAI library </a></h4></li>
+<li><h4><a href="#Step4">Step 4 : create world instance </a></h4></li>
+<li><h4><a href="#Step5">Step 5 : create multiple bodies</a></h4></li>
+<li><h4><a href="#Step6">Step 6 : free mvMotionAI library</a></h4></li>
+</ol>
+</li>
+<li><h3> <a href="#FullCode"> Full Source Code </a> </h3></li>
+</ul>
 <h3> <a href="index.html"> Back To Index </a> </h3>
 <h2> <a id="StepByStep"> Step by Step Guide to tutorial 1 </a> </h2>
 <p> This file is included with the mvMotionAI 00-02-15 full workspace and 
-this code is revelant to version 00-02-15 and greater. </p>
+this code is revelant to version 00-02-15 and greater. This tutorial does not any specific 
+information to build or compile this code.</p>
 <p>
-<h3> Step 1 : include the main library header file </h3>
-<p> The programmer only has to reference one header file, <code>mvMotionAI.h</code> (usually located in <code>mv</code> directory), as all objects are reference by that file. For example in this tutorial (and other future applications), we add this following line  
-to the top of the source code: </p>
-</p>    
-<p> <code> #include &ltmv/mvMotionAI.h&gt </code> </p>
+<h3> <a id="Step1">Step 1 : include the main library header file</a> </h3>
+<p> The programmer only has to reference one header file, <code>mvMotionAI.h</code> (usually located in <code>mv</code> directory). For example in this tutorial (and other future applications), we add this following line to the top of the source code and all objects types in mvMotionAI will be declared:</p>
+<p> <code> #include &lt;mv/mvMotionAI.h&gt; </code> </p>
 <p> <a href="#Menu"> Back To Menu </a> </p>
-<h3> Step 2: Declare &amp; implement various observer functions for loop based functions using the C mvMotionAI interface</h3>
+<h3> <a id="Step2">Step 2</a>: Declare &amp; implement various observer functions for loop based functions using the C mvMotionAI interface</h3>
   <p> All objects created by the mvMotionAI are accessible via the C interface. 	All C++ objects related to the mvMotionAI (as in C++ pointers)
 	and their memory allocated are automatically held and freed by the mvMotionAI library. 
 	To remove the responsibility of memory deletion of objects from the programmer but allow these same objects to be assessible,
 	the library has iteration (loop) functions that allows only the objects that are still in the application's memory to be affected.
 	Within this interface, there are two approaches to retrieve information or setting variables of multiple items in mvMotionAI. 
-	The	first approach involves using the mvIndex loop function and the second approach uses the C++ pointer loop functions. One more important thing to remember, mvMotionAI does not use callbacks or stored function pointers, so the loop functions below must be manually call for every time that the user-defined function is needed.   	
+	The	first approach involves using the mvIndex loop function and the second approach uses the C++ pointer loop functions. One more important thing to remember, mvMotionAI does not use callbacks or stored function pointers, so the loop functions below must be called manually for every time that the user-defined function is needed.   	
   </p>
+<p> <a href="#Menu"> Back To Menu </a> </p>	
 <ol>	
-  <li> <h4> Approach 1 : via the mvIndex C loop functions interface</h4>
+  <li> <h4><a id="Step2_Approach1">Approach 1 : via the mvIndex C loop functions interface</a></h4>
 	  <p> When an mvMotionAI object is created (as shown in <a href="#Step5">Step 5 </a>), a corresponding mvIndex (any non-zero value if correctly created else MV_NULL if error has occurred)
 		is returned to the programmer. Therefore we can retrieve and edit each item by using its mvIndex value. If the programmer wants to manipulate multiple objects within an world instance 
 		using their indexes	with the same function, we can use 
@@ -56,13 +72,13 @@ to the top of the source code: </p>
 		<p> Also we can link these loop functions together and using the same approach, apply them any linked (as in created via the C mvMotionAI library interface) mvWorld instance via their mvIndex. To apply the combined function (<code>void (combinedFunction)(mvIndex worldIndex, void *extraPtr)</code>) 
 		to any linked mvWorld instance in the library, the programmer would use the function below:</p> 	 
 		<p><code> MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorldsByIndex(void(someFunction)(mvIndex, void* extraPtr), void* extraPtr);	</code></p>		
-	  </p>
+	  <p> <a href="#Menu"> Back To Menu </a> </p>
 		<h4> Tutorial 1 </h4>
-		<p> In this example, we have declared a mvIndex loop function in the following format: </p>
+		<p> In this example, we have declared a mvIndex observer function in the following format: </p>
   	<p> <code> void displayAllBodyByIndexes(mvIndex worldIndex, mvIndex index, void *extraPtr);	</code>	</p>
 						
 		<p> We can apply the <code>void displayAllBodyByIndexes(mvIndex worldIndex, mvIndex index, void *extraPtr)</code> to each body 
-		by passing the function into <code>mvApplyToAllBodiesByIndex</code>. We can pass any object into the function we like; by passing a pointer (void*) to a struct or object
+		by passing the function into <code>mvApplyToAllBodiesByIndex</code>. Any object can be passed onto the function by setting the pointer (void*) to a struct or object
 		as the second argument of the loop function.
 		<p> <code>
       const char* bodyHeader = "BODY "; <br/>
@@ -72,8 +88,7 @@ to the top of the source code: </p>
       &nbsp;&nbsp;(void*) bodyHeader); <br/>
 		</code> </p>		
 		<p>
-		The programmer can then retrieve that pointer from inside the function by recasting it back. In our tutorial, we are using a C type char string pointer and within the function, printing out that string plus the global position of each body.  
-		Below is the implementation of the <code>void displayAllBodyByIndexes(mvIndex worldIndex, mvIndex index, void *extraPtr)</code>function:
+		The programmer can then retrieve that pointer from inside the function by recasting it back. In our tutorial, we are using a C type char string pointer and within the function, printing out that string plus the global position of each body. Below is the implementation of the <code>void displayAllBodyByIndexes(mvIndex worldIndex, mvIndex index, void *extraPtr)</code>function:
 		</p>							
     <p>
 		   <code>
@@ -91,7 +106,7 @@ to the top of the source code: </p>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<< " body index : " <<  index << std::endl; <br/>
          <br/>
         &nbsp;&nbsp;&nbsp;&nbsp;std::cout << "Pos "; <br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;for (int j = 0; j < noOfParameters; j++) <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;for (int j = 0; j &lt; noOfParameters; j++) <br/>
         &nbsp;&nbsp;&nbsp;&nbsp;{ <br/>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::cout << positionArray[j] << ", "; <br/>
         &nbsp;&nbsp;&nbsp;&nbsp;} <br/>
@@ -105,83 +120,72 @@ to the top of the source code: </p>
 <p> <a href="#Menu"> Back To Menu </a> </p>		
   </li>
 	<li>
-    <h4> Approach 2 : C++ pointer type </h4>
-		<p> The second approach allows the programmer to use the various methods belonging to mvMotionAI C++ classes themselves. By using the C++ pointer loop functions, we can avoid any C++ pointers that reference <code>NULL</code> objects, such as deleted items & non-existent bodies. If we wanted to apply the same function to all objects, the function's format must be in this form: </p>
-<p><code> void (myClass_Function)(myClass_Ptr,void*);</code> </p>
-<p> ... along with any of these pointer loop functions in the mvMotionAI library. </p> 
-<p> <code>		
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBodies(mvIndex worldIndex,void (mvBodyPtr_Function)(mvBodyPtr,void*),void* extraPtr); <br/>
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllObstacles(mvIndex worldIndex, void (mvObstaclePtr_Function)(mvObstaclePtr,void*),void* extraPtr);<br/>
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWaypoints(mvIndex worldIndex, void (mvWaypointPtr_Function)(mvWaypointPtr,void*),void* extraPtr);<br/>
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllPathways(mvIndex worldIndex, void (mvPathwayPtr_Function)(mvPathwayPtr,void*),void* extraPtr);<br/>
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroups(mvIndex worldIndex, void (mvGroupPtr_Function)(mvGroupPtr,void*),void* extraPtr);<br/>
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllBehaviours(mvIndex worldIndex, void (mvBehaviourPtr_Function)(mvBehaviourPtr,void*),void* extraPtr);<br/>
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehaviours(mvIndex worldIndex, void (mvGroupBehaviourPtr_Function)(mvGroupBehaviourPtr,void*), void* extraPtr);<br/>
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllForces(mvIndex worldIndex, void (mvBaseForcePtr_Function)(mvBaseForcePtr,void*),void* extraPtr);<br/>
-</code> </p>
-As in the previous approach, we can join many of these C++ pointer loop functions together and apply them to any existing linked (as in created via the C mvMotionAI library interface) mvWorld instance. For example, a function that use mvWorld pointer(<code>void (mvWorldPtr_CombinedFunction)(mvWorldPtr, void*)</code>) we would pass that combined function as an argument to the following mvMotionAI function below:</p>
- <p> <code>	MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorlds(void (someFunction)(mvWorldPtr,void*),void* extraPtr);	</code></p>
-	<h4> Tutorial 1 </h4>
-	 
-		<p> In this example, we have declared a mvIndex loop function in the following format: </p>    		
-    <p>  
-		<code>
-    void displayAllObstaclesByPtr(mvObstaclePtr currentObstacle, void* extraPtr); <br/>
-		<br/>
-    // this functions is used to interact with the actual object pointer <br/>
-    void displayAllObstaclesByPtr(mvObstaclePtr currentObstacle, void* extraPtr) <br/>
-    { <br/>
-    &nbsp;&nbsp;mvVec3 position = currentObstacle->getPosition(); <br/>
-     <br/>
-    &nbsp;&nbsp;std::cout << (const char*) extraPtr <br/>
-    &nbsp;&nbsp;&nbsp;&nbsp;<< " Pos : " << position.getX() <br/>
-    &nbsp;&nbsp;&nbsp;&nbsp;<< ", " << position.getY() <br/>
-    &nbsp;&nbsp;&nbsp;&nbsp;<< ", " << position.getZ() << std::endl; <br/>
-    } <br/>
-    </code>
-    </p>  
-	</li>
-	
+    <h4> <a id="Step2_Approach2">Approach 2 : via the C++ pointer loop interface</a> </h4>
+  		<p> The second approach allows the programmer to use the various methods belonging to mvMotionAI C++ classes themselves. By using the C++ pointer loop functions, we can avoid any C++ pointers that reference <code>NULL</code> objects, such as deleted items & non-existent bodies. If we wanted to apply the same function to all objects, the function's format must be in this form: </p>
+  <p><code> void (myClass_Function)(myClass_Ptr,void*);</code> </p>
+  <p> ... along with any of these pointer loop functions in the mvMotionAI library. </p> 
+  <p> <code>		
+  MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllBodies(mvIndex worldIndex,void (mvBodyPtr_Function)(mvBodyPtr,void*),void* extraPtr); <br/>
+  MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllObstacles(mvIndex worldIndex, void (mvObstaclePtr_Function)(mvObstaclePtr,void*),void* extraPtr);<br/>
+  MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWaypoints(mvIndex worldIndex, void (mvWaypointPtr_Function)(mvWaypointPtr,void*),void* extraPtr);<br/>
+  MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllPathways(mvIndex worldIndex, void (mvPathwayPtr_Function)(mvPathwayPtr,void*),void* extraPtr);<br/>
+  MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroups(mvIndex worldIndex, void (mvGroupPtr_Function)(mvGroupPtr,void*),void* extraPtr);<br/>
+  MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllBehaviours(mvIndex worldIndex, void (mvBehaviourPtr_Function)(mvBehaviourPtr,void*),void* extraPtr);<br/>
+  MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllGroupBehaviours(mvIndex worldIndex, void (mvGroupBehaviourPtr_Function)(mvGroupBehaviourPtr,void*), void* extraPtr);<br/>
+  MV_GLOBAL_FUNC_PREFIX mvErrorEnum  mvApplyToAllForces(mvIndex worldIndex, void (mvBaseForcePtr_Function)(mvBaseForcePtr,void*),void* extraPtr);<br/>
+  </code> </p>
+  As in the previous approach, we can join many of these C++ pointer loop functions together and apply them to any existing linked (as in created via the C mvMotionAI library interface) mvWorld instance. For example, a function that use mvWorld pointer (<code>void (mvWorldPtr_CombinedFunction)(mvWorldPtr, void*)</code>) we would pass that combined function as an argument to the following mvMotionAI function below:</p>
+  	 <p> <code>	MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorlds(void (someFunction)(mvWorldPtr,void*),void* extraPtr);	</code></p>
+  	<p> <a href="#Menu"> Back To Menu </a> </p>
+	<h4> Tutorial 1 </h4>	 
+		<p> In this example, we have declared a mvObstacle pointer function in the following format:</p>    		
+    <p><code>void displayAllObstaclesByPtr(mvObstaclePtr currentObstacle, void* extraPtr);</code></p>
+		<p> To execute this function over all mvObstacle objects inside a mvWorld instance, the programmer should pass   
+		<code>displayAllObstaclesByPtr</code> to the corresponding mvObstacle loop function. The example below shows how to pass our mvObstacle function to a loop function, along with C char string variable <code>obstacleHeader</code>. This function prints out the string plus the position of the obstacle object.</p>    
+		<p><code>
+		const char* obstacleHeader = "OBSTACLE : "; <br/>    
+    <br/>
+    // loop over all obstacles in the ourWorld instance <br/>
+    mvApplyToAllObstacles(ourWorld, displayAllObstaclesByPtr, (void*) obstacleHeader); <br/>
+		</code></p>
+		<p> The full implementation of <code>displayAllObstaclesByPtr</code> can be found in the <a href="#FullCode">Full Source Code</a> section of this tutorial.</p>		  
+	</li>	
 </ol>
 <p> <a href="#Menu"> Back To Menu </a> </p>
-<h3> Step 3 : initialise library </h3>
-<code> 
+<h3> <a id="Step3">Step 3</a> : initialise mvMotionAI library </h3>
+<p> Here we initialise the mvMotionAI interface because the mvMotionAI interface and its functions will not work without previously calling the function <code>mvInitMotionAI</code>.</p>
+<p> <code> 
 int main(void) <br/>
 { <br/>
 &nbsp;&nbsp;mvInitMotionAI(); <br/>
-</code>
+</code> </p>
 <p> <a href="#Menu"> Back To Menu </a> </p>
-<h3> Step 4 : create world instance </h3>
+<h3> <a id="Step4">Step 4</a> : create world instance </h3>
+<p> Here we create the engine of mvMotionAI library with the <code>mvCreateWorld</code> command. The value type returned is an mvIndex. Most of the functions in the mvMotionAI C interface need an mvIndex of the mvWorld as a parameter.
+mvIndexes are just integers (or array indexes) that refer to the C++ objects within the mvMotionAI library. Each mvIndex is only unique among the other indexes of the same type but two mvIndexes can refer to the same object through the use of positive and negetive indexes.
+Positive mvIndexes (starting from 1, 2, ...) are equal to the exact mvIndex returned at the time of creation of the object within mvMotionAI library, while negetive mvIndex (i.e. -1, -2 ..) refers from the current state of any mvMotionAI object starting from the last item created.    
+So mvIndexes are usually non-zero values unless the mvIndex is out of range of any item or MV_NULL. If an mvIndex of MV_NULL or 0 is used within the library, then nothing should happen. 
+Also an error has occured if MV_NULL is returned from an mvCreate_Object function. 
+</p>
 <code>
 &nbsp;&nbsp;mvIndex ourWorld = mvCreateWorld(); <br/>
 </code>
 <p> <a href="#Menu"> Back To Menu </a> </p>
 <h3> <a id="Step5"> Step 5 : create multiple bodies </a> </h3>
-<p>
-<code>
+<p> Here is this section, we create a number of mvObstacle and mvBody objects to test out the functions 
+<code>displayAllObstaclesByPtr</code> and <code>displayAllBodyByIndexes</code> within ourWorld variable.</p>   
+<p><code>
 &nbsp;&nbsp;for (int i = 0; i < 5; i++) <br/>
 &nbsp;&nbsp;{ <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mvCreateBody(ourWorld, MV_PARTICLE, MV_AABOX, i, i * 2, i * 3); <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mvCreateObstacle(ourWorld, MV_AABOX, MV_LIQUID_OBSTACLE, i * 5, i, i * -2); <br/>
 &nbsp;&nbsp;} <br/>
-</code>
-</p>
+</code></p>
 <p> <a href="#Menu"> Back To Menu </a> </p>
-<code>
-&nbsp;&nbsp;const char* obstacleHeader = "OBSTACLE : "; <br/>
-
- <br/>
-&nbsp;&nbsp;// loop over all obstacles in the ourWorld instance <br/>
-&nbsp;&nbsp;mvApplyToAllObstacles(ourWorld, displayAllObstaclesByPtr,\ <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;(void*) obstacleHeader); <br/>
-</code>
-<p> <a href="#Menu"> Back To Menu </a> </p>
-<h3>Step 6 : free motion library - automatically at close. </h3>
-<p>
-<code>
-&nbsp;&nbsp;mvFreeMotionAI(); <br/>
-</code>
-</p>
+<h3> <a id="Step6">Step 6</a> : free mvMotionAI library - automatically at close. </h3>
+<p> The function will clear up any of the memory associated with any object created via C mvMotionAI interface. Actually it does automatically free when the programs closes but the library has not been tested in multi-threaded applications. </p>  
+<p><code>&nbsp;&nbsp;mvFreeMotionAI();</code></p>
+<p> This is the end of the tutorial 1 of mvMotionAI library and more details, the section below contains the full source code of tutorial1.cpp. </p>   
 <p> <a href="#Menu"> Back To Menu </a> </p>
 <h2> <a id="FullCode"> Full Source Code </a> </h2>
 <p>
@@ -268,7 +272,7 @@ void displayAllObstaclesByPtr(mvObstaclePtr currentObstacle, void* extraPtr) <br
 </p>
 <p> <a href="#Menu"> Back To Menu </a> </p>
 <hr/>
-<p> This file was created with HTML Kit on 8th October 2007. This code is revelant to version 00-02-15 and greater. </p>
+<p> This file was created with HTML Kit on 8th October 2007, last edited on 10th October 2007. This code is revelant to version 00-02-15 and greater. </p>
 <p><a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=174315&amp;type=5" width="210" height="62" border="0" alt="SourceForge.net Logo" /></a></p>
 </body>
 </html>
