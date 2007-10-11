@@ -10,8 +10,8 @@
 	<File name="include\mv\mvBEntryList.h" open="0" top="0" tabpos="3">
 		<Cursor position="3169" topLine="62" />
 	</File>
-	<File name="include\mv\mvBEntryListNode.h" open="0" top="0" tabpos="6">
-		<Cursor position="2003" topLine="33" />
+	<File name="include\mv\mvBEntryListNode.h" open="1" top="0" tabpos="4">
+		<Cursor position="2026" topLine="21" />
 	</File>
 	<File name="include\mv\mvBEntryTimer.h" open="0" top="0" tabpos="5">
 		<Cursor position="2469" topLine="25" />
@@ -67,8 +67,8 @@
 	<File name="include\mv\mvGravityForce.h" open="0" top="0" tabpos="0">
 		<Cursor position="1906" topLine="22" />
 	</File>
-	<File name="include\mv\mvGroupBNode_V2.h" open="0" top="0" tabpos="7">
-		<Cursor position="3475" topLine="75" />
+	<File name="include\mv\mvGroupBNode_V2.h" open="1" top="0" tabpos="5">
+		<Cursor position="2119" topLine="27" />
 	</File>
 	<File name="include\mv\mvGroupBehaviourResult.h" open="0" top="0" tabpos="0">
 		<Cursor position="1764" topLine="0" />
@@ -187,8 +187,8 @@
 	<File name="src\mvGravityForce.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="10" topLine="0" />
 	</File>
-	<File name="src\mvGroupBNode_V2.cpp" open="0" top="0" tabpos="9">
-		<Cursor position="9450" topLine="437" />
+	<File name="src\mvGroupBNode_V2.cpp" open="1" top="1" tabpos="6">
+		<Cursor position="5025" topLine="226" />
 	</File>
 	<File name="src\mvGroupBehaviourResult.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="277" topLine="0" />

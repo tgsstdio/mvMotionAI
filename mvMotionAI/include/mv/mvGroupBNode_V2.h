@@ -49,13 +49,13 @@ class MV_GLOBAL_FUNC_PREFIX mvGroupMemberNode
 {
    public:
       mvIndex memberIndex;
-      mvEntryListNodePtr memberNodePtr;
+      mvEntryListNodePtr memberNodeIndex;
       //mvBaseActionPtr memberAction;
 
-      mvEntryListNodePtr getEntryNodePtr() const;
+      mvIndex getEntryNodeIndex() const;
       // mvBaseActionPtr getActionPtr();
       //mvGroupMemberNode(mvIndex mbIndex,  mvBaseActionPtr mbAction);
-      mvGroupMemberNode(mvIndex mbIndex,  mvEntryListNodePtr mbAction);
+      mvGroupMemberNode(mvIndex mbIndex,  mvIndex mbNodeIndex);
       bool operator<(const mvGroupMemberNode& rhs) const;
       bool operator== (const mvGroupMemberNode& rhs) const;
       mvErrorEnum setParametero(mvParamEnum paramFlag,\
