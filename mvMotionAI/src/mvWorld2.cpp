@@ -3,7 +3,7 @@
 /**
  * \file mvWorld2.cpp
  *
- * \class mvWorld mv/mvWorld2.h "mv/mvWorld2.h"
+ * \class mvWorld mv/mvWorld2.h
  * \brief The main class which controls all other objects within the mvMotionAI
  * library
  *
@@ -679,7 +679,7 @@ void mvWorld::applyToAllGroupsByIndex(mvIndex worldIndex,\
   *
   * (documentation goes here)
   */
-void mvWorld::applyToAllGroups(void (someFunction)(mvGroup*, void*),\
+void mvWorld::applyToAllGroups(void (someFunction)(mvGroupPtr, void*),\
    void* extraPtr)
 {
    groups.applyToAllItems(someFunction, extraPtr);
@@ -878,7 +878,7 @@ void mvWorld::applyToAllBehavioursByIndex(mvIndex worldIndex,\
   *
   * (documentation goes here)
   */
-void mvWorld::applyToAllBehaviours(void (someFunction)(mvBehaviour_V2*, void*),\
+void mvWorld::applyToAllBehaviours(void (someFunction)(mvBehaviourPtr, void*),\
    void* extraPtr)
 {
    behaviours.applyToAllItems(someFunction, extraPtr);
@@ -1109,7 +1109,7 @@ void mvWorld::applyToAllPathwaysByIndex(mvIndex worldIndex,\
   *
   * (documentation goes here)
   */
-void mvWorld::applyToAllPathways(void (someFunction)(mvPathway*, void*),\
+void mvWorld::applyToAllPathways(void (someFunction)(mvPathwayPtr, void*),\
    void* extraPtr)
 {
    pathways.applyToAllItems(someFunction, extraPtr);
@@ -1305,7 +1305,7 @@ void mvWorld::applyToAllWaypointsByIndex(mvIndex worldIndex,\
   *
   * (documentation goes here)
   */
-void mvWorld::applyToAllWaypoints(void (someFunction)(mvWaypoint*, void*),\
+void mvWorld::applyToAllWaypoints(void (someFunction)(mvWaypointPtr, void*),\
    void* extraPtr)
 {
    waypoints.applyToAllItems(someFunction,extraPtr);

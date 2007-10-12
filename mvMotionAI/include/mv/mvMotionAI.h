@@ -1,13 +1,3 @@
-#ifndef MV_GLOBAL_FUNCTIONS_H_
-#define MV_GLOBAL_FUNCTIONS_H_
-
-#ifdef MV_MOTIONAI_TYPES_HEADER_FILE_H_
-#include MV_MOTIONAI_TYPES_HEADER_FILE_H_
-#else
-#include <mv/mvMotionAI-Types.h>
-#endif
-
-#ifdef MV_FILE_HEADER_TAG_
 /**
  * \file mvMotionAI.h
  *
@@ -38,13 +28,19 @@
  * - now mvMotionAI C interface using mvWorld_V2
  *
  * 00-01-25    23/12/06
- *
- * -changed function signature
- *  - Permanent removing item from world  = Remove to Delete
+ * - changed function signature
+ * - Permanent removing item from world  = Remove to Delete
  * - mvRemoveAllWorlds to mvDeleteAllWorlds
- *  - Create instead of Add
+ * - Create instead of Add
  * - mvAddWorld to mvCreateAllWorlds
  */
+#ifndef MV_GLOBAL_FUNCTIONS_H_
+#define MV_GLOBAL_FUNCTIONS_H_
+
+#ifdef MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#include MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#else
+#include <mv/mvMotionAI-Types.h>
 #endif
 
 #include MV_WORLD_HEADER_FILE_H_
@@ -60,12 +56,52 @@
 #define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
 #endif
 
+/**
+ * \defgroup mvGlobal Global mvMotionAI functions
+ */
+
 // mvMotionAI functions - 13 functions
+/**
+ *  \ingroup mvGlobal
+ *  \brief Initialises mvMotionAI C Interface
+ */
 MV_GLOBAL_FUNC_PREFIX void mvInitMotionAI();
+
+/**
+ *  \ingroup mvGlobal
+ *  \brief Frees mvMotionAI C Interface
+ */
 MV_GLOBAL_FUNC_PREFIX void mvFreeMotionAI();
+
+/**
+ * \ingroup mvGlobal
+ * \brief Moves all mvWorld instances linked to mvMotionAI C Interface by timeInSecs
+ * \param[in] timeInSecs Same time unit to move all worlds
+ * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAllWorldsStepForward(mvFloat timeInSecs);
+
+/**
+ * \ingroup mvGlobal
+ * \brief Creates a linked mvWorld instance
+ * \return Any non zero value or if error has occured, MV_NULL(0) is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateWorld();
+
+/**
+ * \ingroup mvGlobal
+ * \brief Deletes all linked mvWorld instances
+ * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteAllWorlds();
+
+/**
+ * \ingroup mvGlobal
+ * \brief Get the pointer to mvWorld pointer by index
+ * \param[in] index Index to linked mvWorld instance
+ * \return A pointer to mvWorldInstance or if error has occured,
+ *  MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvWorldPtr mvGetWorldPtr(mvIndex index);
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentWorld(mvIndex index);

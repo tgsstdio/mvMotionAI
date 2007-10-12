@@ -1,4 +1,5 @@
 /**
+ * \file mvPathway_V2.h
  * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -66,13 +67,17 @@ class MV_GLOBAL_FUNC_PREFIX mvPathwayNode
 typedef mvPathwayNode* mvPathwayNodePtr;
 typedef mvPathwayNode const * const mvConstPathwayNodePtr;
 
-class MV_GLOBAL_FUNC_PREFIX mvPathway_V2
+/** \class mvPathway
+ * \brief An ordered list of indexes belonging to mvMotionAI objects
+ */
+
+class MV_GLOBAL_FUNC_PREFIX mvPathway
 {
    public:
       bool isEnabled;
       mvPointerList<mvPathwayNodePtr, mvConstPathwayNodePtr> nodes;
 
-      mvPathway_V2();
+      mvPathway();
       mvIndex addNode(mvIndex pWaypoint);
       mvErrorEnum removeNodeAt(mvIndex nodeIndex);
       mvErrorEnum removeLastNodeInstance(mvIndex index);
@@ -131,7 +136,7 @@ class MV_GLOBAL_FUNC_PREFIX mvPathway_V2
          mvFloat* numArray);
 
       void removeAllNodes();
-      ~mvPathway_V2();
+      ~mvPathway();
 };
 
 #endif // MVPATHWAY_V2_H_INCLUDED

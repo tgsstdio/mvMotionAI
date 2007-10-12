@@ -1,6 +1,6 @@
 /**
  * \file mvGroup_V2.cpp
- * \class mvGroup
+ * \class mvGroup mv/mvGroup_V2.h
  *
  * Copyright (c) 2006, 2007 David Young.
  *

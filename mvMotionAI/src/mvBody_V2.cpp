@@ -1,5 +1,6 @@
 /**
  * \file mvBody_V2.cpp
+ * \class mvBody mv/mvBody_V2.h
  *
  * MV_PARTICLE : An unidirectional moving object that does not require rotation
  *

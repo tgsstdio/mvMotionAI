@@ -1,5 +1,32 @@
+/**
+ * \brief mvBaseForce.cpp
+ * Copyright (c) 2006, 2007 David Young.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ *
+ */
+
 #include <mv/mvBaseForce.h>
 
+/** \brief blah blah
+ *
+ */
 mvBaseForce::mvBaseForce(mvOptionEnum type)
 {
    fType = type;
@@ -7,26 +34,41 @@ mvBaseForce::mvBaseForce(mvOptionEnum type)
    userData = MV_NULL;
 }
 
+/** \brief blah blah
+ *
+ */
 mvOptionEnum mvBaseForce::getType() const
 {
    return fType;
 }
 
+/** \brief blah blah
+ *
+ */
 bool mvBaseForce::isEnabled() const
 {
    return isForceEnabled;
 }
 
+/** \brief blah blah
+ *
+ */
 void mvBaseForce::setEnabled(bool value)
 {
    isForceEnabled = value;
 }
 
+/** \brief blah blah
+ *
+ */
 void mvBaseForce::filter(mvForceStatus& worldStatus)
 {
    worldStatus.applyingAll();
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvBaseForce::getParameteri(mvParamEnum paramFlag,\
    mvIndex* index) const
 {
@@ -38,6 +80,9 @@ mvErrorEnum mvBaseForce::getParameteri(mvParamEnum paramFlag,\
    return MV_INVALID_FORCE_PARAMETER;
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvBaseForce::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* dest) const
 {
@@ -63,6 +108,9 @@ mvErrorEnum mvBaseForce::getParametero(mvParamEnum paramFlag,\
    }
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvBaseForce::getParameterf(mvParamEnum paramFlag, mvFloat* dest)\
    const
 {
@@ -74,6 +122,9 @@ mvErrorEnum mvBaseForce::getParameterf(mvParamEnum paramFlag, mvFloat* dest)\
    return MV_INVALID_FORCE_PARAMETER;
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvBaseForce::getParameterv(mvParamEnum paramFlag, mvFloat* dest,\
    mvCount* size) const
 {
@@ -91,6 +142,9 @@ mvErrorEnum mvBaseForce::getParameterv(mvParamEnum paramFlag, mvFloat* dest,\
    return MV_INVALID_FORCE_PARAMETER;
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvBaseForce::setParametero(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
@@ -111,16 +165,25 @@ mvErrorEnum mvBaseForce::setParametero(mvParamEnum paramFlag,\
    }
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvBaseForce::setParameteri(mvParamEnum paramFlag, mvIndex index)
 {
    return MV_INVALID_FORCE_PARAMETER;
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvBaseForce::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
    return MV_INVALID_FORCE_PARAMETER;
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvBaseForce::setParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray)
 {
@@ -132,34 +195,51 @@ mvErrorEnum mvBaseForce::setParameterv(mvParamEnum paramFlag,\
    return MV_INVALID_FORCE_PARAMETER;
 }
 
+/** \brief blah blah
+ *
+ */
 mvBaseForce::~mvBaseForce()
 {
 
 }
 
+/** \brief blah blah
+ *
+ */
 void* mvBaseForce::getUserData() const
 {
    return userData;
 }
 
+/** \brief blah blah
+ *
+ */
 void mvBaseForce::setUserData(void* tempData)
 {
    userData = tempData;
 }
 
 // force loader
+/** \brief blah blah
+ *
+ */
 mvBaseForceLoader::mvBaseForceLoader()
 {
 
 }
 
+/** \brief blah blah
+ *
+ */
 mvBaseForceLoader::~mvBaseForceLoader()
 {
 
 }
 
 // force status
-
+/** \brief blah blah
+ *
+ */
 mvForceStatus::mvForceStatus()
 {
    onlyLocalForce = false;
@@ -167,6 +247,9 @@ mvForceStatus::mvForceStatus()
    applyingNone();
 }
 
+/** \brief blah blah
+ *
+ */
 void mvForceStatus::applyingAll()
 {
    forcesOn = true;
@@ -182,6 +265,9 @@ void mvForceStatus::applyingAll()
    quaternionOn = true;
 }
 
+/** \brief blah blah
+ *
+ */
 void mvForceStatus::applyingNone()
 {
    forcesOn = false;
@@ -197,6 +283,9 @@ void mvForceStatus::applyingNone()
    quaternionOn = false;
 }
 
+/** \brief blah blah
+ *
+ */
 void mvForceStatus::applyingLinearMotionOnly()
 {
    forcesOn = true;
@@ -205,6 +294,9 @@ void mvForceStatus::applyingLinearMotionOnly()
    shiftsOn = true;
 }
 
+/** \brief blah blah
+ *
+ */
 void mvForceStatus::applyingAngularMotionOnly()
 {
    torqueOn = true;
@@ -213,30 +305,49 @@ void mvForceStatus::applyingAngularMotionOnly()
    quaternionOn = true;
 }
 
+/** \brief blah blah
+ *
+ */
 void mvForceStatus::forLocalForceOnly()
 {
    onlyLocalForce = true;
 }
 
+/** \brief blah blah
+ *
+ */
 void mvForceStatus::forGlobalForceOnly()
 {
    onlyGlobalForce = true;
 }
 
+/** \brief blah blah
+ *
+ */
 void mvForceStatus::applyingGravity()
 {
    gravityOn = false;
 }
+
+/** \brief blah blah
+ *
+ */
 void mvForceStatus::applyingAcceleration()
 {
    accelerationOn = true;
 }
 
+/** \brief blah blah
+ *
+ */
 void mvForceStatus::applyingShifts()
 {
    shiftsOn = false;
 }
 
+/** \brief blah blah
+ *
+ */
 void mvForceStatus::applyingFullDrag()
 {
    dragForceOn = true;
@@ -244,41 +355,65 @@ void mvForceStatus::applyingFullDrag()
    dragShiftOn = true;
 }
 
+/** \brief blah blah
+ *
+ */
 void mvForceStatus::applyingDragForce()
 {
    dragForceOn = true;
 }
 
+/** \brief blah blah
+ *
+ */
 void mvForceStatus::applyingDragAcceleration()
 {
    dragAccelerationOn = true;
 }
 
+/** \brief blah blah
+ *
+ */
 void mvForceStatus::applyingDragShift()
 {
    dragShiftOn = true;
 }
 
+/** \brief blah blah
+ *
+ */
 void mvForceStatus::applyingForce()
 {
    forcesOn = true;
 }
 
+/** \brief blah blah
+ *
+ */
 void mvForceStatus::applyingTorque()
 {
    torqueOn = true;
 }
 
+/** \brief blah blah
+ *
+ */
 void mvForceStatus::applyingOmega()
 {
    omegaOn = true;
 }
 
+/** \brief blah blah
+ *
+ */
 void mvForceStatus::applyingRotation()
 {
    rotationOn = true;
 }
 
+/** \brief blah blah
+ *
+ */
 void mvForceStatus::applyingQuaternion()
 {
    quaternionOn = true;

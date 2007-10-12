@@ -1,4 +1,5 @@
 /**
+ * \file mvBEntryList.h
  * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -43,8 +44,11 @@
 #endif
 
 // TODO : separated ordered auto group behaviour member list
+/** \class mvEntryList
+ * \brief A list of behaviours & actions that belongs to a particular mvBody
+ */
 
-class MV_GLOBAL_FUNC_PREFIX mvBEntryList
+class MV_GLOBAL_FUNC_PREFIX mvEntryList
 {
    private:
       mvPointerList<mvEntryListNodePtr,mvConstEntryListNodePtr> entryList;
@@ -55,7 +59,7 @@ class MV_GLOBAL_FUNC_PREFIX mvBEntryList
       mvBEntryUtility defaultNodeTimerFlags;
      // mvBEntryTree entryNodeTree;
    public:
-      mvBEntryList();
+      mvEntryList();
       bool isEnabled;
       bool getEnabled() const;
       void setEnabled(bool enabled);
@@ -141,7 +145,7 @@ class MV_GLOBAL_FUNC_PREFIX mvBEntryList
       void clearAll();
       mvErrorEnum removeEntry(mvIndex entryIndex);
       mvIndex getCurrentEntry() const;
-      ~mvBEntryList();
+      ~mvEntryList();
 
 };
 
