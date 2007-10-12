@@ -1,14 +1,6 @@
-#ifndef MVGROUPBEHAVIOUR_V2_H_INCLUDED
-#define MVGROUPBEHAVIOUR_V2_H_INCLUDED
-
-#ifdef MV_MOTIONAI_TYPES_HEADER_FILE_H_
-#include MV_MOTIONAI_TYPES_HEADER_FILE_H_
-#else
-#include <mv/mvMotionAI-Types.h>
-#endif
-
-#ifdef MV_FILE_HEADER_TAG_
 /**
+ * \file mvGroupBehaviour_V2.h
+ *
  * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
@@ -30,6 +22,14 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
+#ifndef MVGROUPBEHAVIOUR_V2_H_INCLUDED
+#define MVGROUPBEHAVIOUR_V2_H_INCLUDED
+
+#ifdef MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#include MV_MOTIONAI_TYPES_HEADER_FILE_H_
+#else
+#include <mv/mvMotionAI-Types.h>
 #endif
 
 #include "mvPointerList.h"
@@ -42,6 +42,10 @@
 #define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
 #endif
 
+/** \class mvGroupBehaviour
+ * \brief A cooperative behaviour between groups of objects
+ */
+
 class MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour
 {
    private:
@@ -52,7 +56,7 @@ class MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour
       bool isEnabled;
       mvGroupBehaviour(mvBaseActionPtr groupBehPtr);
       ~mvGroupBehaviour();
-      mvErrorEnum addGroup(mvIndex groupNo, mvBaseAction* behavPtr);
+      mvErrorEnum addGroup(mvIndex groupNo, mvBaseActionPtr behavPtr);
       mvErrorEnum removeGroup(mvIndex groupNo);
       void removeAllGroups();
       mvGroupBehaviourGroupNodePtr getGroupNodeByIndex(mvIndex index) const;

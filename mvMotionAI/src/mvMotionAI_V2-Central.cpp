@@ -405,7 +405,7 @@ mvMotionAI_V2::~mvMotionAI_V2()
 }
 
 mvErrorEnum mvMotionAI_V2::addBehaviourFunction(mvOptionEnum type,\
-   mvBaseActionLoader* loader)
+   mvBaseActionLoaderPtr loader)
 {
    return bFunctions.addFactoryFunction(type, loader);
 }

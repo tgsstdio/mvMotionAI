@@ -21,16 +21,25 @@
  */
 #include <mv/mvBaseAction.h>
 
+/** \brief blah blah
+ *
+ */
 mvBaseAction::mvBaseAction(mvOptionEnum type)
 {
    bType = type;
 }
 
+/** \brief blah blah
+ *
+ */
 mvOptionEnum mvBaseAction::getType() const
 {
    return bType;
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvBaseAction::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
@@ -49,6 +58,9 @@ mvErrorEnum mvBaseAction::getParametero(mvParamEnum paramFlag,\
    }
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvBaseAction::getParameteri(mvParamEnum paramFlag,\
    mvIndex* index) const
 {
@@ -60,6 +72,9 @@ mvErrorEnum mvBaseAction::getParameteri(mvParamEnum paramFlag,\
    return MV_INVALID_BEHAVIOUR_PARAMETER;
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvBaseAction::getParameterf(mvParamEnum paramFlag,\
    mvFloat* num) const
 {
@@ -71,6 +86,9 @@ mvErrorEnum mvBaseAction::getParameterf(mvParamEnum paramFlag,\
    return MV_INVALID_BEHAVIOUR_PARAMETER;
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvBaseAction::getParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray, mvCount* noOfElements) const
 {
@@ -88,23 +106,35 @@ mvErrorEnum mvBaseAction::getParameterv(mvParamEnum paramFlag,\
    return MV_INVALID_BEHAVIOUR_PARAMETER;
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvBaseAction::setParametero(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
    return MV_INVALID_BEHAVIOUR_PARAMETER;
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvBaseAction::setParameteri(mvParamEnum paramFlag,\
    mvIndex index)
 {
    return MV_INVALID_BEHAVIOUR_PARAMETER;
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvBaseAction::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
    return MV_INVALID_BEHAVIOUR_PARAMETER;
 }
 
+/** \brief blah blah
+ *
+ */
 mvErrorEnum mvBaseAction::setParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray)
 {
@@ -116,6 +146,9 @@ mvErrorEnum mvBaseAction::setParameterv(mvParamEnum paramFlag,\
    return MV_INVALID_BEHAVIOUR_PARAMETER;
 }
 
+/** \brief blah blah
+ *
+ */
 mvBaseAction::~mvBaseAction()
 {
    // empty code
@@ -129,6 +162,9 @@ mvBaseActionLoader::mvBaseActionLoader()
    // empty code
 }
 
+/** \brief blah blah
+ *
+ */
 mvNewBaseActionInfo::mvNewBaseActionInfo(mvOptionEnum loaderKey,\
    mvNewBaseActionInfo::mvNewBaseActionOperationEnum operation,
    mvBaseActionPtr mainGroupNodePtr, mvBaseActionPtr groupNodePtr)
@@ -150,41 +186,65 @@ mvNewBaseActionInfo::mvNewBaseActionInfo(mvOptionEnum loaderKey,\
    }
 }
 
+/** \brief blah blah
+ *
+ */
 mvOptionEnum mvNewBaseActionInfo::getActionLoaderKey() const
 {
    return actionKey;
 }
 
+/** \brief blah blah
+ *
+ */
 mvBaseActionPtr mvNewBaseActionInfo::getGroupBehaviourPtr() const
 {
    return gbMainNodePtr;
 }
 
+/** \brief blah blah
+ *
+ */
 mvBaseActionPtr mvNewBaseActionInfo::getGetGroupNodePtr() const
 {
    return gbGroupNodePtr;
 }
 
+/** \brief blah blah
+ *
+ */
 bool mvNewBaseActionInfo::isNewMainGroupBehaviour() const
 {
    return (opType == mvNewBaseActionInfo::MV_NEW_GB_MAIN_NODE_OP);
 }
 
+/** \brief blah blah
+ *
+ */
 bool mvNewBaseActionInfo::isNewGroupBehaviourGroupNode() const
 {
    return (opType == mvNewBaseActionInfo::MV_NEW_GB_GROUP_NODE_OP);
 }
 
+/** \brief blah blah
+ *
+ */
 bool mvNewBaseActionInfo::isNewGroupMemberNode() const
 {
    return (opType == mvNewBaseActionInfo::MV_NEW_GB_GROUP_MEMBER_OP);
 }
 
+/** \brief blah blah
+ *
+ */
 bool mvNewBaseActionInfo::isNewGlobalBehaviour() const
 {
    return (opType == mvNewBaseActionInfo::MV_NEW_GLOBAL_BEHAVIOUR_OP);
 }
 
+/** \brief blah blah
+ *
+ */
 bool mvNewBaseActionInfo::isNewPrivateBehaviour() const
 {
    return (opType == mvNewBaseActionInfo::MV_NEW_PRIVATE_BEHAVIOUR_OP);

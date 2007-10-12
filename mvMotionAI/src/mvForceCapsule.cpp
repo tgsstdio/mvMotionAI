@@ -1,6 +1,3 @@
-#include <mv/mvForceCapsule.h>
-
-#ifdef MV_FILE_HEADER_TAG_
 /**
  * Copyright (c) 2006, 2007 David Young.
  *
@@ -23,7 +20,8 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
-#endif
+
+#include <mv/mvForceCapsule.h>
 
 #define MV_GLOBAL_FORCE_MAXIMUM_NO_OF_LINKS 0
 

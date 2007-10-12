@@ -1,4 +1,4 @@
-mvMotionAI TODO list on 4th October 2007
+mvMotionAI TODO list on 12th October 2007
 
 - a complete group behaviours class
   - connection to EntryListNode for set/get parameters
@@ -39,6 +39,8 @@ mvMotionAI TODO list on 4th October 2007
   - MV_TREE or combination of all of the above in tree
 
 - 64 bit compatibility
+
+- Removed STL objects for more compatibility.
 
 David Young, 2007.
 

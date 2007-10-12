@@ -45,6 +45,10 @@
 
 // todo : incorporate entry list node ptr
 
+/** \class mvGroupMemberNode
+ * \brief A class of member and its mvEntryListNode index related to
+ * the mvGroupBehaviour.
+ */
 class MV_GLOBAL_FUNC_PREFIX mvGroupMemberNode
 {
    public:
@@ -58,6 +62,10 @@ class MV_GLOBAL_FUNC_PREFIX mvGroupMemberNode
       ~mvGroupMemberNode();
 };
 
+/** \class mvGroupNodeMemberList
+ * \brief A list of current members inside a group and the mvEntryListNode related
+ * to the mvGroupBehaviour
+ */
 class MV_GLOBAL_FUNC_PREFIX mvGroupNodeMemberList
 {
    public:

@@ -213,7 +213,7 @@ mvUniqueSet::~mvUniqueSet()
 }
 
 /** \class mvGroupIterator
- * \brief For navigating the group object
+ * \brief For navigating the mvGroup object
  */
 
 mvUniqueSetIterator mvUniqueSet::getUniqueSetIterator() const

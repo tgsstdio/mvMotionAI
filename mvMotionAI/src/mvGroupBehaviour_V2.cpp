@@ -1,7 +1,8 @@
 /**
  * \file mvGroupBehaviour_V2.cpp
+ * \class mvGroupBehaviour mv/mvGroupBehaviour_V2.h
  *
- * \brief Copyright (c) 2006, 2007 David Young.
+ * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -21,9 +22,6 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  *
- * \class mvGroupBehaviour mv/mvGroupBehaviour.h MV_GROUP_BEHAVIOUR_HEADER_FILE_H_
- *
- * \brief A cooperative behaviour between groups of objects
  */
 #include <mv/mvGroupBehaviour_V2.h>
 
@@ -148,7 +146,7 @@ void mvGroupBehaviour::removeAllGroups()
   *
   * (documentation goes here)
   */
-mvGroupBNode_V2 * mvGroupBehaviour::getGroupNodeByIndex(mvIndex index) const
+mvGroupBehaviourGroupNodePtr mvGroupBehaviour::getGroupNodeByIndex(mvIndex index) const
 {
    return groupNodeList.getClassPtr(index);
 }
@@ -157,7 +155,7 @@ mvGroupBNode_V2 * mvGroupBehaviour::getGroupNodeByIndex(mvIndex index) const
   *
   * (documentation goes here)
   */
-mvGroupBNode_V2* mvGroupBehaviour::findGroupNode(mvIndex group) const
+mvGroupBehaviourGroupNodePtr mvGroupBehaviour::findGroupNode(mvIndex group) const
 {
    mvIndex groupIndex = group;
 

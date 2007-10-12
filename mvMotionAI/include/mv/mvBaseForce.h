@@ -40,7 +40,9 @@
 
 /**
  * \class mvForceStatus
- * \brief force status
+ * \brief A status class that tells the system integrator how a mvBaseForce
+ * affects a mvBody (i.e. HOW) and the situations when the mvBaseForce is valid
+ * or invalid (i.e. WHEN)
  */
 class MV_GLOBAL_FUNC_PREFIX mvForceStatus
 {
@@ -100,6 +102,13 @@ class MV_GLOBAL_FUNC_PREFIX mvBaseForce
       void setUserData(void* tempData);
 
       virtual void filter(mvForceStatus& worldStatus);
+
+      /** \brief calculates the full forces applied on a body - MUST BE OVERLOADED
+       * \param[in,out] fResult Module for storing result & retrieve information
+       * about current system
+       * \return If this mvBaseForce should be included in total forces applied on the
+       * current body
+       */
       virtual bool calcFullForces(mvForceResultPtr fResult) = 0;
       virtual mvErrorEnum getParameteri(mvParamEnum paramFlag,\
          mvIndex* index) const;
@@ -128,6 +137,11 @@ class MV_GLOBAL_FUNC_PREFIX mvBaseForceLoader
 {
    public:
       mvBaseForceLoader();
+
+      /** \brief creates new mvBaseForces - MUST BE OVERLOADED
+       * \param[in] extraPtr Placeholder argument (NOT USED in library)
+       * \return New mvBaseForcePtr object pointer
+       */
       virtual mvBaseForcePtr operator()(\
          void* extraPtr) = 0;
       virtual ~mvBaseForceLoader();

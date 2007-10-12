@@ -1,5 +1,5 @@
 template<class mvClass>
-mvConverter<mvClass>::mvConverter(void (*func)(mvClass,void*), void* itemPtr)
+mvConverter<mvClass>::mvConverter(mvClassFunction *func, void* itemPtr)
 {
    someFunction = func;
    extraPtr = itemPtr;

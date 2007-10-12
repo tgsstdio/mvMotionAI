@@ -110,13 +110,31 @@ typedef const mvChar* mvConstStringPtr;
 #endif
 
 #if MV_MOTIONAI_INDEX_TYPE == MV_MOTIONAI_INDEX_TYPE_SHORT
+/**
+ * \brief array index type
+ */
 typedef short mvIndex;
+/**
+ * \brief counter / no of items type
+ */
 typedef short mvCount;
 #elif MV_MOTIONAI_INDEX_TYPE == MV_MOTIONAI_INDEX_TYPE_LONG
+/**
+ * \brief array index type
+ */
 typedef long mvIndex;
+/**
+ * \brief counter / no of items type
+ */
 typedef long mvCount;
 #else
+/**
+ * \brief array index type
+ */
 typedef int mvIndex;
+/**
+ * \brief counter / no of items type
+ */
 typedef int mvCount;
 #endif
 
@@ -137,80 +155,191 @@ static const mvCount MV_MAX_NO_OF_PARAMETERS = 5;
  */
 
 #define MV_BASE_ACTION_HEADER_FILE_H_ <mv/mvBaseAction.h>
+/**
+ * \brief mvBaseAction pointer type
+ */
 typedef class mvBaseAction* mvBaseActionPtr;
+/**
+ * \brief mvBaseActionLoader pointer type
+ */
 typedef class mvBaseActionLoader* mvBaseActionLoaderPtr;
 
 #define MV_BEHAVIOUR_HEADER_FILE_H_ <mv/mvBehaviour_V2.h>
+/**
+ * \brief mvBehaviour object type
+ */
 typedef class mvBehaviour_V2 mvBehaviour;
+/**
+ * \brief mvBehaviour pointer type
+ */
 typedef class mvBehaviour_V2* mvBehaviourPtr;
+/**
+ * \brief mvBehaviour const pointer type
+ */
 typedef class mvBehaviour_V2 const * const mvConstBehaviourPtr;
 
 #define MV_BEHAVIOUR_RESULT_HEADER_FILE_H_ <mv/mvBehaviourResult.h>
+/**
+ * \brief mvBehaviourResult pointer type
+ */
 typedef class mvBehaviourResult* mvBehaviourResultPtr;
 
 #define MV_BODY_HEADER_FILE_H_ <mv/mvBody_V2.h>
 //typedef class mvBody_V2 mvBody; // rename
+/**
+ * \brief mvBody pointer type
+ */
 typedef class mvBody* mvBodyPtr;
+/**
+ * \brief mvBody const pointer type
+ */
 typedef class mvBody const * const mvConstBodyPtr;
 
 #define MV_BASE_FORCE_HEADER_FILE_H_ <mv/mvBaseForce.h>
+/**
+ * \brief mvBaseForce pointer type
+ */
 typedef class mvBaseForce* mvBaseForcePtr;
+/**
+ * \brief mvBaseForce const pointer type
+ */
 typedef class mvBaseForce const * const mvConstBaseForcePtr;
+/**
+ * \brief mvBaseForceLoader pointer type
+ */
 typedef class mvBaseForceLoader* mvBaseForceLoaderPtr;
 
 #define MV_FORCE_RESULT_HEADER_FILE_H_ <mv/mvForceResult.h>
+/**
+ * \brief mvForceResult pointer type
+ */
 typedef class mvForceResult* mvForceResultPtr;
 
 #define MV_FORCE_CAPSULE_HEADER_FILE <mv/mvForceCapsule.h>
+/**
+ * \brief mvForceCapsule pointer type
+ */
 typedef class mvForceCapsule* mvForceCapsulePtr;
+/**
+ * \brief mvForceCapsule const pointer type
+ */
 typedef class mvForceCapsule const * const mvConstForceCapsulePtr;
 
 #define MV_GROUP_HEADER_FILE_H_ <mv/mvGroup_V2.h>
 //typedef class mvGroup_V2 mvGroup;
+/**
+ * \brief mvGroupIterator object type
+ */
 typedef class mvUniqueSetIterator mvGroupIterator;
+/**
+ * \brief mvGroup pointer type
+ */
 typedef class mvGroup* mvGroupPtr;
+/**
+ * \brief mvGroup const pointer type
+ */
 typedef class mvGroup const * const mvConstGroupPtr;
 
 #define MV_GROUP_BEHAVIOUR_HEADER_FILE_H_ <mv/mvGroupBehaviour_V2.h>
 #define MV_GROUP_BEHAVIOUR_NODE_HEADER_FILE_H_ <mv/mvGroupBNode_V2.h>
 //typedef class mvGroupBehaviour_V2 mvGroupBehaviour;
+/**
+ * \brief mvGroupBehaviour pointer type
+ */
 typedef class mvGroupBehaviour* mvGroupBehaviourPtr;
+/**
+ * \brief mvGroupBehaviourGroupNode pointer type
+ */
 typedef class mvGroupBNode_V2* mvGroupBehaviourGroupNodePtr;
+/**
+ * \brief mvGroupBehaviourGroupNode object type
+ */
 typedef class mvGroupBNode_V2 mvGroupBehaviourGroupNode;
+/**
+ * \brief mvGroupBehaviourGroupNode const pointer type
+ */
 typedef class mvGroupBNode_V2 const * const mvConstGroupBehaviourGroupNodePtr;
+/**
+ * \brief mvGroupNodeMemberList object type
+ */
 typedef class mvGroupNodeMemberList* mvGroupNodeMemberListPtr;
+/**
+ * \brief mvGroupBehaviour const pointer type
+ */
 typedef class mvGroupBehaviour const * const mvConstGroupBehaviourPtr;
+/**
+ * \brief mvGroupMemberNode pointer type
+ */
 typedef class mvGroupMemberNode* mvGroupMemberNodePtr;
+/**
+ * \brief mvGroupMemberNode const pointer type
+ */
 typedef class mvGroupMemberNode const * const mvConstGroupMemberNodePtr;
 
 #define MV_GROUP_BEHAVIOUR_RESULT_HEADER_FILE_H_ <mv/mvGroupBehaviourResult.h>
+/**
+ * \brief mvGroupBehaviourResult pointer type
+ */
 typedef class mvGroupBehaviourResult* mvGroupBehaviourResultPtr;
 
 #define MV_OBSTACLE_HEADER_FILE_H_ <mv/mvObstacle_V2.h>
 //typedef class mvObstacle_V2 mvObstacle;
+/**
+ * \brief mvObstacle pointer type
+ */
 typedef class mvObstacle* mvObstaclePtr;
+/**
+ * \brief mvObstacle const pointer type
+ */
 typedef class mvObstacle const * const mvConstObstaclePtr;
 
 #define MV_PATHWAY_HEADER_FILE_H_ <mv/mvPathway_V2.h>
-typedef class mvPathway_V2 mvPathway;
-typedef class mvPathway_V2* mvPathwayPtr;
-typedef class mvPathway_V2 const * const mvConstPathwayPtr;
+//typedef class mvPathway_V2 mvPathway;
+/**
+ * \brief mvPathway pointer type
+ */
+typedef class mvPathway* mvPathwayPtr;
+/**
+ * \brief mvPathway const pointer type
+ */
+typedef class mvPathway const * const mvConstPathwayPtr;
 
 #define MV_WAYPOINT_HEADER_FILE_H_ <mv/mvWaypoint_V2.h>
 //typedef class mvWaypoint mvWaypoint;
+/**
+ * \brief mvWaypoint pointer type
+ */
 typedef class mvWaypoint* mvWaypointPtr;
+/**
+ * \brief mvWaypoint const pointer type
+ */
 typedef class mvWaypoint const * const mvConstWaypointPtr;
 
 #define MV_WORLD_HEADER_FILE_H_ <mv/mvWorld2.h>
 //typedef class mvWorld mvWorld;
+/**
+ * \brief mvWorld pointer type
+ */
 typedef class mvWorld* mvWorldPtr;
+/**
+ * \brief mvWorld const pointer type
+ */
 typedef class mvWorld const * const mvConstWorldPtr;
 
 #define MV_TIMER_HEADER_FILE_H_ <mv/mvBEntryTimer.h>
+/**
+ * \brief mvTiner pointer type
+ */
 typedef class mvTimer* mvTimerPtr;
 
 #define MV_BENTRY_HEADER_FILE_H_ <mv/mvBEntry.h>
+/**
+ * \brief mvEntry object type
+ */
 typedef class mvBEntry mvEntry;
+/**
+ * \brief mvEntry pointer type
+ */
 typedef class mvBEntry* mvEntryPtr;
 
 #define MV_ACTION_LOADER_LIST_HEADER_FILE_H_ <mv/mvActionLoaderList.h>
@@ -226,17 +355,39 @@ typedef class mvBEntry* mvEntryPtr;
 #define MV_MOTIONAI_HEADER_FILE <mv/mvMotionAI.h>
 
 #define MV_SHAPE_HEADER_FILE_H_ <mv/mvShape.h>
+/**
+ * \brief mvShape pointer type
+ */
 typedef class mvShape* mvShapePtr;
+/**
+ * \brief mvShape const pointer type
+ */
 typedef class mvShape const * const mvConstShapePtr;
 
 #define MV_INDEX_SET_HEADER_FILE_H_ <mv/mvIndexSet.h>
 
 #define MV_BEHAVIOUR_LIST_HEADER_FILE_H_ <mv/mvBEntryList.h>
-typedef class mvBEntryList mvEntryList;
-typedef class mvBEntryList* mvEntryListPtr;
-typedef class mvBEntryList const * const mvConstEntryListPtr;
+//typedef class mvEntryList mvEntryList;
+/**
+ * \brief mvEntryList pointer type
+ */
+typedef class mvEntryList* mvEntryListPtr;
+/**
+ * \brief mvEntryList const pointer type
+ */
+typedef class mvEntryList const * const mvConstEntryListPtr;
 #define MV_BEHAVIOUR_LIST_NODE_HEADER_FILE_H_ <mv/mvBEntryListNode.h>
+/**
+ * \brief mvEntryListNode object type
+ */
+typedef class mvBEntryListNode mvEntryListNode;
+/**
+ * \brief mvEntryListNode pointer type
+ */
 typedef class mvBEntryListNode* mvEntryListNodePtr;
+/**
+ * \brief mvEntryListNode const pointer type
+ */
 typedef class mvBEntryListNode const * const mvConstEntryListNodePtr;
 
 #define MV_POINTER_LIST_HEADER_FILE_H_ <mv/mvPointerList.h>
