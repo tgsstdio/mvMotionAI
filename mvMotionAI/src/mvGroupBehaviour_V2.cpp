@@ -21,7 +21,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  *
- * \class mvGroupBehaviour mv/mvGroupBehaviour_V2.h MV_GROUP_BEHAVIOUR_HEADER_FILE_H_
+ * \class mvGroupBehaviour mv/mvGroupBehaviour.h MV_GROUP_BEHAVIOUR_HEADER_FILE_H_
  *
  * \brief A cooperative behaviour between groups of objects
  */
@@ -58,7 +58,7 @@ bool findGroupNodeByIndex(mvGroupBNode_V2* groupNodePtr, void* extraPtr)
   *
   * (documentation goes here)
   */
-mvGroupBehaviour_V2::mvGroupBehaviour_V2(mvBaseActionPtr groupBehPtr)
+mvGroupBehaviour::mvGroupBehaviour(mvBaseActionPtr groupBehPtr)
 {
    defaultGBehaviour = groupBehPtr;
    isEnabled = true;
@@ -69,7 +69,7 @@ mvGroupBehaviour_V2::mvGroupBehaviour_V2(mvBaseActionPtr groupBehPtr)
   *
   * (documentation goes here)
   */
-mvGroupBehaviour_V2::~mvGroupBehaviour_V2()
+mvGroupBehaviour::~mvGroupBehaviour()
 {
    removeAllGroups();
    if (defaultGBehaviour != MV_NULL)
@@ -82,7 +82,7 @@ mvGroupBehaviour_V2::~mvGroupBehaviour_V2()
 /** @brief (one liner)
   *
   */
-mvErrorEnum mvGroupBehaviour_V2::addGroup(mvIndex groupNo, mvBaseActionPtr
+mvErrorEnum mvGroupBehaviour::addGroup(mvIndex groupNo, mvBaseActionPtr
    behavPtr)
 {
    // first check if index exists
@@ -117,7 +117,7 @@ mvErrorEnum mvGroupBehaviour_V2::addGroup(mvIndex groupNo, mvBaseActionPtr
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::removeGroup(mvIndex groupNo)
+mvErrorEnum mvGroupBehaviour::removeGroup(mvIndex groupNo)
 {
    mvIndex nodeIndex;
    mvIndex groupIndex = groupNo;
@@ -139,7 +139,7 @@ mvErrorEnum mvGroupBehaviour_V2::removeGroup(mvIndex groupNo)
   *
   * (documentation goes here)
   */
-void mvGroupBehaviour_V2::removeAllGroups()
+void mvGroupBehaviour::removeAllGroups()
 {
    groupNodeList.deleteAllItems();
 }
@@ -148,7 +148,7 @@ void mvGroupBehaviour_V2::removeAllGroups()
   *
   * (documentation goes here)
   */
-mvGroupBNode_V2 * mvGroupBehaviour_V2::getGroupNodeByIndex(mvIndex index) const
+mvGroupBNode_V2 * mvGroupBehaviour::getGroupNodeByIndex(mvIndex index) const
 {
    return groupNodeList.getClassPtr(index);
 }
@@ -157,7 +157,7 @@ mvGroupBNode_V2 * mvGroupBehaviour_V2::getGroupNodeByIndex(mvIndex index) const
   *
   * (documentation goes here)
   */
-mvGroupBNode_V2* mvGroupBehaviour_V2::findGroupNode(mvIndex group) const
+mvGroupBNode_V2* mvGroupBehaviour::findGroupNode(mvIndex group) const
 {
    mvIndex groupIndex = group;
 
@@ -168,7 +168,7 @@ mvGroupBNode_V2* mvGroupBehaviour_V2::findGroupNode(mvIndex group) const
 /** @brief (one liner)
   *
   */
-mvCount mvGroupBehaviour_V2::getNoOfGroups() const
+mvCount mvGroupBehaviour::getNoOfGroups() const
 {
    return groupNodeList.getNoOfItems();
 }
@@ -178,7 +178,7 @@ mvCount mvGroupBehaviour_V2::getNoOfGroups() const
   * automatically calls the behaviour's default template version of
   * getParameteri
   */
-mvErrorEnum mvGroupBehaviour_V2::getParameteri(mvParamEnum paramFlag,\
+mvErrorEnum mvGroupBehaviour::getParameteri(mvParamEnum paramFlag,\
    mvIndex* outIndex) const
 {
    if (outIndex == MV_NULL)
@@ -211,7 +211,7 @@ mvErrorEnum mvGroupBehaviour_V2::getParameteri(mvParamEnum paramFlag,\
   * automatically calls the behaviour's default template version of
   * getParameter
   */
-mvErrorEnum mvGroupBehaviour_V2::getParametero(mvParamEnum paramFlag,\
+mvErrorEnum mvGroupBehaviour::getParametero(mvParamEnum paramFlag,\
    mvOptionEnum* option) const
 {
    if (option == MV_NULL)
@@ -247,7 +247,7 @@ mvErrorEnum mvGroupBehaviour_V2::getParametero(mvParamEnum paramFlag,\
   *
   * Automatically call default group node template getParameterf
   */
-mvErrorEnum mvGroupBehaviour_V2::getParameterf(mvParamEnum paramFlag,\
+mvErrorEnum mvGroupBehaviour::getParameterf(mvParamEnum paramFlag,\
    mvFloat* num) const
 {
    if (num == MV_NULL)
@@ -269,7 +269,7 @@ mvErrorEnum mvGroupBehaviour_V2::getParameterf(mvParamEnum paramFlag,\
   *
   * Automatically call default group node template getParameterv
   */
-mvErrorEnum mvGroupBehaviour_V2::getParameterv(mvParamEnum paramFlag,\
+mvErrorEnum mvGroupBehaviour::getParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray, mvCount* noOfParameters) const
 {
    if (noOfParameters == MV_NULL)
@@ -298,7 +298,7 @@ mvErrorEnum mvGroupBehaviour_V2::getParameterv(mvParamEnum paramFlag,\
   *
   * Automatically call default group node template setParameteri
   */
-mvErrorEnum mvGroupBehaviour_V2::setParameteri(mvParamEnum paramFlag,\
+mvErrorEnum mvGroupBehaviour::setParameteri(mvParamEnum paramFlag,\
    mvIndex index)
 {
    switch(paramFlag)
@@ -322,7 +322,7 @@ mvErrorEnum mvGroupBehaviour_V2::setParameteri(mvParamEnum paramFlag,\
   *
   * Automatically call default group node template setParameter
   */
-mvErrorEnum mvGroupBehaviour_V2::setParametero(mvParamEnum paramFlag,\
+mvErrorEnum mvGroupBehaviour::setParametero(mvParamEnum paramFlag,\
    mvOptionEnum option)
 {
    switch(paramFlag)
@@ -353,7 +353,7 @@ mvErrorEnum mvGroupBehaviour_V2::setParametero(mvParamEnum paramFlag,\
   *
   * Automatically call default group node template setParameterf
   */
-mvErrorEnum mvGroupBehaviour_V2::setParameterf(mvParamEnum paramFlag,\
+mvErrorEnum mvGroupBehaviour::setParameterf(mvParamEnum paramFlag,\
    mvFloat num)
 {
    if (defaultGBehaviour != MV_NULL)
@@ -370,7 +370,7 @@ mvErrorEnum mvGroupBehaviour_V2::setParameterf(mvParamEnum paramFlag,\
   *
   * Automatically call default group node template setParameterv
   */
-mvErrorEnum mvGroupBehaviour_V2::setParameterv(mvParamEnum paramFlag,\
+mvErrorEnum mvGroupBehaviour::setParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray)
 {
    if (defaultGBehaviour != MV_NULL)
@@ -387,7 +387,7 @@ mvErrorEnum mvGroupBehaviour_V2::setParameterv(mvParamEnum paramFlag,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::getGroupParameteri(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour::getGroupParameteri(mvIndex groupIndex,\
    mvParamEnum paramFlag, mvIndex* index) const
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
@@ -404,7 +404,7 @@ mvErrorEnum mvGroupBehaviour_V2::getGroupParameteri(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::getGroupParametero(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour::getGroupParametero(mvIndex groupIndex,\
    mvParamEnum paramFlag, mvOptionEnum* option) const
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
@@ -417,7 +417,7 @@ mvErrorEnum mvGroupBehaviour_V2::getGroupParametero(mvIndex groupIndex,\
    return temp->getParametero(paramFlag, option);
 }
 
-mvErrorEnum mvGroupBehaviour_V2::getGroupParameterf(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour::getGroupParameterf(mvIndex groupIndex,\
    mvParamEnum paramFlag, mvFloat* num) const
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
@@ -434,7 +434,7 @@ mvErrorEnum mvGroupBehaviour_V2::getGroupParameterf(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::getGroupParameterv(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour::getGroupParameterv(mvIndex groupIndex,\
    mvParamEnum paramFlag, mvFloat* numArray, mvCount* noOfParameters) const
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
@@ -451,7 +451,7 @@ mvErrorEnum mvGroupBehaviour_V2::getGroupParameterv(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::setGroupParameteri(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour::setGroupParameteri(mvIndex groupIndex,\
    mvParamEnum paramFlag, mvIndex paramIndex)
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
@@ -468,7 +468,7 @@ mvErrorEnum mvGroupBehaviour_V2::setGroupParameteri(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::setGroupParametero(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour::setGroupParametero(mvIndex groupIndex,\
    mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
@@ -485,7 +485,7 @@ mvErrorEnum mvGroupBehaviour_V2::setGroupParametero(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::setGroupParameterf(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour::setGroupParameterf(mvIndex groupIndex,\
    mvParamEnum paramFlag, mvFloat num)
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
@@ -502,7 +502,7 @@ mvErrorEnum mvGroupBehaviour_V2::setGroupParameterf(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::setGroupParameterv(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour::setGroupParameterv(mvIndex groupIndex,\
    mvParamEnum paramFlag, mvFloat* numArray)
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
@@ -519,7 +519,7 @@ mvErrorEnum mvGroupBehaviour_V2::setGroupParameterv(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::getGroupParameteri_str(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour::getGroupParameteri_str(mvIndex groupIndex,\
    const char* param, mvIndex* index) const
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
@@ -542,7 +542,7 @@ mvErrorEnum mvGroupBehaviour_V2::getGroupParameteri_str(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::getGroupParametero_str(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour::getGroupParametero_str(mvIndex groupIndex,\
    const char* param, const char** option) const
 
 {
@@ -575,7 +575,7 @@ mvErrorEnum mvGroupBehaviour_V2::getGroupParametero_str(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::getGroupParameterf_str(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour::getGroupParameterf_str(mvIndex groupIndex,\
    const char* param, mvFloat* num) const
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
@@ -598,7 +598,7 @@ mvErrorEnum mvGroupBehaviour_V2::getGroupParameterf_str(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::getGroupParameterv_str(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour::getGroupParameterv_str(mvIndex groupIndex,\
    const char* param, mvFloat* numArray, mvCount* noOfParameters) const
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
@@ -621,7 +621,7 @@ mvErrorEnum mvGroupBehaviour_V2::getGroupParameterv_str(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::setGroupParameteri_str(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour::setGroupParameteri_str(mvIndex groupIndex,\
    const char* param, mvIndex paramIndex)
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
@@ -644,7 +644,7 @@ mvErrorEnum mvGroupBehaviour_V2::setGroupParameteri_str(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::setGroupParametero_str(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour::setGroupParametero_str(mvIndex groupIndex,\
    const char* param, const char* option)
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
@@ -673,7 +673,7 @@ mvErrorEnum mvGroupBehaviour_V2::setGroupParametero_str(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::setGroupParameterf_str(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour::setGroupParameterf_str(mvIndex groupIndex,\
    const char* param, mvFloat num)
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
@@ -696,7 +696,7 @@ mvErrorEnum mvGroupBehaviour_V2::setGroupParameterf_str(mvIndex groupIndex,\
   *
   * (documentation goes here)
   */
-mvErrorEnum mvGroupBehaviour_V2::setGroupParameterv_str(mvIndex groupIndex,\
+mvErrorEnum mvGroupBehaviour::setGroupParameterv_str(mvIndex groupIndex,\
    const char* param, mvFloat* numArray)
 {
    mvGroupBNode_V2* temp = findGroupNode(groupIndex);
@@ -715,12 +715,12 @@ mvErrorEnum mvGroupBehaviour_V2::setGroupParameterv_str(mvIndex groupIndex,\
    return temp->setParameterv(paramFlag, numArray);
 }
 
-mvIndex mvGroupBehaviour_V2::getCurrentGroupBehaviourNode() const
+mvIndex mvGroupBehaviour::getCurrentGroupBehaviourNode() const
 {
    return groupNodeList.getCurrentIndex();
 }
 
-mvBaseActionPtr mvGroupBehaviour_V2::getDefaultActionPtr() const
+mvBaseActionPtr mvGroupBehaviour::getDefaultActionPtr() const
 {
    return defaultGBehaviour;
 }

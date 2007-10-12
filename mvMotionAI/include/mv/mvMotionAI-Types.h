@@ -173,13 +173,13 @@ typedef class mvGroup const * const mvConstGroupPtr;
 
 #define MV_GROUP_BEHAVIOUR_HEADER_FILE_H_ <mv/mvGroupBehaviour_V2.h>
 #define MV_GROUP_BEHAVIOUR_NODE_HEADER_FILE_H_ <mv/mvGroupBNode_V2.h>
-typedef class mvGroupBehaviour_V2 mvGroupBehaviour;
-typedef class mvGroupBehaviour_V2* mvGroupBehaviourPtr;
+//typedef class mvGroupBehaviour_V2 mvGroupBehaviour;
+typedef class mvGroupBehaviour* mvGroupBehaviourPtr;
 typedef class mvGroupBNode_V2* mvGroupBehaviourGroupNodePtr;
 typedef class mvGroupBNode_V2 mvGroupBehaviourGroupNode;
 typedef class mvGroupBNode_V2 const * const mvConstGroupBehaviourGroupNodePtr;
 typedef class mvGroupNodeMemberList* mvGroupNodeMemberListPtr;
-typedef class mvGroupBehaviour_V2 const * const mvConstGroupBehaviourPtr;
+typedef class mvGroupBehaviour const * const mvConstGroupBehaviourPtr;
 typedef class mvGroupMemberNode* mvGroupMemberNodePtr;
 typedef class mvGroupMemberNode const * const mvConstGroupMemberNodePtr;
 

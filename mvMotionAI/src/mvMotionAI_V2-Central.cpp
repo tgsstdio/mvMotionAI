@@ -506,9 +506,8 @@ mvErrorEnum mvMotionAI_V2::setWorldParameterv_str(mvIndex worldIndex,\
 {
    return worlds.setItemParameterv_str(worldIndex, param, numArray);
 }
-/*
- * GLOBAL FUNCTIONS
- */
+
+// GLOBAL FUNCTIONS
 
 void mvMotionAI_V2_INIT()
 {
@@ -608,14 +607,6 @@ mvErrorEnum mvMotionAI_V2_APPLYTOALLWORLDSBYINDEX(\
 
    return error;
 }
-
-/*
-mvErrorEnum mvMotionAI_V2_INITDEFAULTBODIES()
-{
-   // todo : implement this function
-   return MV_FUNCTION_NOT_IMPLEMENTED;
-}
-*/
 
 mvErrorEnum mvMotionAI_V2_INITDEFAULTFORCES()
 {

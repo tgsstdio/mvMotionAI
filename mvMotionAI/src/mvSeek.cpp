@@ -77,22 +77,11 @@ bool mvSeek::bodyOp(mvBehaviourResultPtr resultModule)
       return false;
    }
 
-   // pos = body->position;
    pos = bodyPtr->getPosition();
-   // direction = target - pos;
    direction = point->getPosition();
    direction -= pos;
-   /*
-    * final velocity == velocity
-    * final_velocity = body->maxSpeed * direction.normalize();
-    * final_velocity -= body->finalVelocity;
-   */
    velocity = direction.normalize();
    velocity *= bodyPtr->getMaxSpeed();
-   //velocity *= 0.5;
-   /*
-    * velocity.minusVec3(body->finalVelocity);
-    */
    resultModule->setVelocity(velocity);
 
    // behaviour result is direction (not steering force)

@@ -42,7 +42,7 @@
 #define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
 #endif
 
-class MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour_V2
+class MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour
 {
    private:
       mvBaseActionPtr defaultGBehaviour;
@@ -50,8 +50,8 @@ class MV_GLOBAL_FUNC_PREFIX mvGroupBehaviour_V2
       mvPointerList<mvGroupBehaviourGroupNodePtr,\
          mvConstGroupBehaviourGroupNodePtr> groupNodeList;
       bool isEnabled;
-      mvGroupBehaviour_V2(mvBaseActionPtr groupBehPtr);
-      ~mvGroupBehaviour_V2();
+      mvGroupBehaviour(mvBaseActionPtr groupBehPtr);
+      ~mvGroupBehaviour();
       mvErrorEnum addGroup(mvIndex groupNo, mvBaseAction* behavPtr);
       mvErrorEnum removeGroup(mvIndex groupNo);
       void removeAllGroups();
