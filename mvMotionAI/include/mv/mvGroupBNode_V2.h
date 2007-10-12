@@ -49,32 +49,12 @@ class MV_GLOBAL_FUNC_PREFIX mvGroupMemberNode
 {
    public:
       mvIndex memberIndex;
-      mvEntryListNodePtr memberNodeIndex;
-      //mvBaseActionPtr memberAction;
+      mvIndex memberNodeIndex;
 
       mvIndex getEntryNodeIndex() const;
-      // mvBaseActionPtr getActionPtr();
-      //mvGroupMemberNode(mvIndex mbIndex,  mvBaseActionPtr mbAction);
       mvGroupMemberNode(mvIndex mbIndex,  mvIndex mbNodeIndex);
       bool operator<(const mvGroupMemberNode& rhs) const;
       bool operator== (const mvGroupMemberNode& rhs) const;
-      mvErrorEnum setParametero(mvParamEnum paramFlag,\
-         mvOptionEnum option);
-      mvErrorEnum setParameteri(mvParamEnum paramFlag,\
-         mvIndex paramIndex);
-      mvErrorEnum setParameterf(mvParamEnum paramFlag,\
-         mvFloat num);
-      mvErrorEnum setParameterv(mvParamEnum paramFlag,\
-         mvFloat* array);
-
-      mvErrorEnum getParametero(mvParamEnum paramFlag,\
-         mvOptionEnum* option) const;
-      mvErrorEnum getParameteri(mvParamEnum paramFlag,\
-         mvIndex* outIndex) const;
-      mvErrorEnum getParameterf(mvParamEnum paramFlag,\
-         mvFloat* num) const;
-      mvErrorEnum getParameterv(mvParamEnum paramFlag,\
-         mvFloat* array, mvCount* noOfParameters) const;
       ~mvGroupMemberNode();
 };
 
@@ -92,7 +72,7 @@ class MV_GLOBAL_FUNC_PREFIX mvGroupNodeMemberList
       void toFirstMember();
       mvGroupMemberNodePtr getCurrentMember();
       void insertBeforeCurrentMember(mvIndex memberIndex,\
-         mvEntryListNodePtr entryNodePtr);
+         mvIndex entryNodeIndex);
       void deleteCurrentMember();
       ~mvGroupNodeMemberList();
 };

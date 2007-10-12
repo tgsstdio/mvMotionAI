@@ -248,23 +248,10 @@ mvIndex  mvGroupBNode_V2::getGroup()
 }
 
 mvGroupMemberNode::mvGroupMemberNode(mvIndex mbIndex,\
-   mvEntryListNodePtr mNodePtr)
- {
-   memberIndex = mbIndex;
-   memberNodePtr = mNodePtr;
- }
-
-mvErrorEnum mvGroupMemberNode::setParametero(mvParamEnum paramFlag,\
-   mvOptionEnum option)
+   mvIndex mbNodeIndex)
 {
-   if (memberNodePtr != MV_NULL)
-   {
-      return memberNodePtr->setParametero(paramFlag, option);
-   }
-   else
-   {
-      return MV_ACTION_IS_NOT_INITIALISED;
-   }
+   memberIndex = mbIndex;
+   memberNodeIndex = mbNodeIndex;
 }
 
 bool mvGroupMemberNode::operator<(const mvGroupMemberNode& rhs) const
@@ -277,107 +264,9 @@ bool mvGroupMemberNode:: operator== (const mvGroupMemberNode& rhs) const
    return (this->memberIndex == rhs.memberIndex);
 }
 
-mvEntryListNodePtr mvGroupMemberNode::getEntryNodePtr() const
+mvIndex mvGroupMemberNode::getEntryNodeIndex() const
 {
-   return memberNodePtr;
-}
-
-/*
-mvBaseActionPtr mvGroupMemberNode::getActionPtr()
-{
-   return memberAction;
-}
-*/
-
-mvErrorEnum mvGroupMemberNode::setParameteri(mvParamEnum paramFlag,\
-   mvIndex paramIndex)
-{
-   if (memberNodePtr != MV_NULL)
-   {
-      return memberNodePtr->setParameteri(paramFlag, paramIndex);
-   }
-   else
-   {
-      return MV_ACTION_IS_NOT_INITIALISED;
-   }
-}
-
-mvErrorEnum mvGroupMemberNode::setParameterf(mvParamEnum paramFlag,\
-   mvFloat num)
-{
-   if (memberNodePtr != MV_NULL)
-   {
-      return memberNodePtr->setParameterf(paramFlag, num);
-   }
-   else
-   {
-      return MV_ACTION_IS_NOT_INITIALISED;
-   }
-}
-
-mvErrorEnum mvGroupMemberNode::setParameterv(mvParamEnum paramFlag,\
-   mvFloat* array)
-{
-   if (memberNodePtr != MV_NULL)
-   {
-      return memberNodePtr->setParameterv(paramFlag, array);
-   }
-   else
-   {
-      return MV_ACTION_IS_NOT_INITIALISED;
-   }
-}
-
-mvErrorEnum mvGroupMemberNode::getParametero(mvParamEnum paramFlag,\
-   mvOptionEnum* option) const
-{
-   if (memberNodePtr != MV_NULL)
-   {
-      return memberNodePtr->getParametero(paramFlag, option);
-   }
-   else
-   {
-      return MV_ACTION_IS_NOT_INITIALISED;
-   }
-}
-
-mvErrorEnum mvGroupMemberNode::getParameteri(mvParamEnum paramFlag,\
-   mvIndex* outIndex) const
-{
-   if (memberNodePtr != MV_NULL)
-   {
-      return memberNodePtr->getParameteri(paramFlag, outIndex);
-   }
-   else
-   {
-      return MV_ACTION_IS_NOT_INITIALISED;
-   }
-}
-
-mvErrorEnum mvGroupMemberNode::getParameterf(mvParamEnum paramFlag,\
-   mvFloat* num) const
-{
-   if (memberNodePtr != MV_NULL)
-   {
-      return memberNodePtr->getParameterf(paramFlag, num);
-   }
-   else
-   {
-      return MV_ACTION_IS_NOT_INITIALISED;
-   }
-}
-
-mvErrorEnum mvGroupMemberNode::getParameterv(mvParamEnum paramFlag,\
-   mvFloat* array, mvCount* noOfParameters) const
-{
-   if (memberNodePtr != MV_NULL)
-   {
-      return memberNodePtr->getParameterv(paramFlag, array, noOfParameters);
-   }
-   else
-   {
-      return MV_ACTION_IS_NOT_INITIALISED;
-   }
+   return memberNodeIndex;
 }
 
 mvGroupMemberNode::~mvGroupMemberNode()
@@ -448,15 +337,15 @@ mvGroupMemberNodePtr mvGroupNodeMemberList::getCurrentMember()
 }
 
 void mvGroupNodeMemberList::insertBeforeCurrentMember(mvIndex memberIndex,\
-   mvEntryListNodePtr entryNodePtr)
+   mvIndex entryNodeIndex)
 {
-   if (memberIndex == MV_NULL || entryNodePtr == MV_NULL)
+   if (memberIndex == MV_NULL || entryNodeIndex == MV_NULL)
    {
       return;
    }
 
    mvGroupMemberNodePtr tempNode =
-      new mvGroupMemberNode(memberIndex, entryNodePtr);
+      new mvGroupMemberNode(memberIndex, entryNodeIndex);
 
    mbActionDataSet.insert(currentIter,tempNode);
 }

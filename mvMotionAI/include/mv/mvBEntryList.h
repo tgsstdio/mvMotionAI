@@ -137,16 +137,7 @@ class MV_GLOBAL_FUNC_PREFIX mvBEntryList
       void applyToAllEntries(void (someFunction)(mvEntryListNodePtr, void*),\
          void* extraPtr);
 
-
       // TODO : tree functions
-      /*
-      mvErrorEnum addNewTreeNode(mvOptionEnum tMode, mvIndex entryIndex);
-      mvErrorEnum addNewTreeLevel(mvOptionEnum tMode, mvIndex entryIndex);
-      void deleteEntryTree();
-      mvBEntryTree* getEntryTree();
-      mvBEntryTreeNode* getCurrentNode();
-      */
-
       void clearAll();
       mvErrorEnum removeEntry(mvIndex entryIndex);
       mvIndex getCurrentEntry() const;

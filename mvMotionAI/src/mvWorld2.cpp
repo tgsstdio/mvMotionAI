@@ -459,7 +459,7 @@ void mvWorld::applyToAllGroupBehavioursByIndex(mvIndex worldIndex,\
   * (documentation goes here)
   */
 void mvWorld::applyToAllGroupBehaviours(\
-   void (someFunction)(mvGroupBehaviour_V2*, void*), void* extraPtr)
+   void (someFunction)(mvGroupBehaviourPtr, void*), void* extraPtr)
 {
    groupBehaviours.applyToAllItems(someFunction, extraPtr);
 }

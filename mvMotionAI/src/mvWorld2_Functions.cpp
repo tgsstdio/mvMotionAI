@@ -230,7 +230,6 @@ void mvWorld_V2_CalculateEachGroupInGroupBehaviour(\
    mvGroupMemberNodePtr memberNode = MV_NULL;
    mvEntryListPtr currentMemberList = MV_NULL;
    mvIndex entryIndex = MV_NULL;
-   mvEntryListNodePtr currentEntryNodePtr = MV_NULL;
    mvActionLoaderListPtr worldActionCreator = MV_NULL;
 
    if (hasChanged)
@@ -285,11 +284,8 @@ void mvWorld_V2_CalculateEachGroupInGroupBehaviour(\
                            currentMemberList->addNewGroupBehaviourMemberNode(\
                            currentGBehaviour, groupNo, tempMemberActionPtr);
 
-                        currentEntryNodePtr = currentMemberList->getEntry(\
-                           entryIndex);
-                        // add to list
                         nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,
-                           currentEntryNodePtr);
+                              entryIndex);
                      }
                      else
                      {
@@ -298,10 +294,8 @@ void mvWorld_V2_CalculateEachGroupInGroupBehaviour(\
                         tempMemberActionPtr = MV_NULL;
 
                         // get existing file
-                        currentEntryNodePtr = currentMemberList->getEntry(\
-                           entryIndex);
                         nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,
-                           currentEntryNodePtr);
+                              entryIndex);
                      }
                   }
                }
@@ -364,11 +358,9 @@ void mvWorld_V2_CalculateEachGroupInGroupBehaviour(\
                               currentMemberList->addNewGroupBehaviourMemberNode(\
                               currentGBehaviour, groupNo, tempMemberActionPtr);
 
-                           currentEntryNodePtr = currentMemberList->getEntry(\
-                              entryIndex);
                            // add to list
                            nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,
-                              currentEntryNodePtr);
+                              entryIndex);
                         }
                         else
                         {
@@ -377,10 +369,8 @@ void mvWorld_V2_CalculateEachGroupInGroupBehaviour(\
                            tempMemberActionPtr = MV_NULL;
 
                            // get existing file
-                           currentEntryNodePtr = currentMemberList->getEntry(\
-                              entryIndex);
                            nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,
-                              currentEntryNodePtr);
+                              entryIndex);
                         }
                      }
                   }
@@ -1363,11 +1353,6 @@ void mvWorldV2_CheckWaypointLocality(mvWaypointCapsulePtr wCapsulePtr,\
 
    if (bodyInsideWaypoint)
    {
-      /*
-      std::cout << "Inside Waypoint : " <<
-         wCapsulePtr->waypointIndex <<
-         " NO : " << wCapsulePtr->noOfLinkedForces << std::endl;
-      */
       // if inside, add to list
       bodyHelper->waypointList.addIndex(wCapsulePtr->waypointIndex);
    }
@@ -1547,12 +1532,6 @@ mvFloat mvWorldV2_SpheretoAABB_GetCollisionDistFromPoint(mvFloat firstBoxPosComp
 
    mvFloat secondBoxMin = secondBox->aabbMinValues[componentIndex];
    mvFloat secondBoxMax = secondBox->aabbMaxValues[componentIndex];
-
-   /*
-   std::cout << "POS : " << firstBoxPosComponent
-      << " 2ndBMin : " << secondBoxMin
-      << " 2ndBMax  :  " << secondBoxMax << std::endl;
-   */
 
    if (firstBoxPosComponent < secondBoxMin)
       //aabb_dims[MV_AABB_MIN_INDEX][i])
