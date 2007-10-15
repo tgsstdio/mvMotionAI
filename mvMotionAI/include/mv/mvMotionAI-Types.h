@@ -344,10 +344,16 @@ typedef class mvBEntry* mvEntryPtr;
 
 #define MV_ACTION_LOADER_LIST_HEADER_FILE_H_ <mv/mvActionLoaderList.h>
 //typedef class mvActionLoaderList*  mvActionLoaderListPtr;
+/**
+ * \brief mvActionLoaderList pointer type
+ */
 #define mvActionLoaderListPtr mvActionLoaderList*
 
 #define MV_FORCE_LOADER_LIST_HEADER_FILE_H_ <mv/mvForceLoaderList.h>
 //typedef class mvActionLoaderList*  mvActionLoaderListPtr;
+/**
+ * \brief mvForceLoaderList pointer type
+ */
 #define mvForceLoaderListPtr mvForceLoaderList*
 
 #define MV_VEC_3_HEADER_FILE_H_ <mv/mvVec3.h>

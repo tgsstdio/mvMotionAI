@@ -68,7 +68,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllWorldsByIndex(\
    return mvMotionAI_V2_APPLYTOALLWORLDSBYINDEX(someFunction, extraPtr);
 }
 
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLoadDefaultBehaviours(mvActionLoaderListPtr loader)
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLoadDefaultActions(mvActionLoaderListPtr loader)
 {
    return mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(loader);
 }
@@ -5322,6 +5322,24 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvFindMemberInGroup(mvIndex worldIndex,
          return MV_NULL;
       }
       return worldPtr->findMemberInGroup(groupIndex, memberIndex);
+   }
+   return MV_NULL;
+}
+
+MV_GLOBAL_FUNC_PREFIX mvEntryListPtr mvGetEntryListPtr(mvIndex worldIndex,\
+   mvIndex entryListIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_NULL;
+      }
+      return worldPtr->getEntryListPtr(entryListIndex);
    }
    return MV_NULL;
 }
