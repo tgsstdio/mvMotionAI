@@ -88,8 +88,8 @@
 	<File name="include\mv\mvMotionAI-Utilities.h" open="0" top="0" tabpos="0">
 		<Cursor position="1707" topLine="23" />
 	</File>
-	<File name="include\mv\mvMotionAI.h" open="0" top="0" tabpos="3">
-		<Cursor position="3411" topLine="30" />
+	<File name="include\mv\mvMotionAI.h" open="1" top="1" tabpos="1">
+		<Cursor position="8052" topLine="214" />
 	</File>
 	<File name="include\mv\mvNullLoader.h" open="0" top="0" tabpos="0">
 		<Cursor position="1551" topLine="0" />
