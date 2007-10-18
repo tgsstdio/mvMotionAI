@@ -1,10 +1,15 @@
-/*
+/**
+ * \page logpage Log
+ * \section mvMotionAI Log
+ * \subsection log_columns Version     Date     Comments
+ *
  * version 00-02-13+ (29 Sept 2007)
  *  first version of SourceForge release
  *  summaries of changes
  *  - new base action (custom behaviour format) 
- *  -new base forces (custom force format)
+ *  - new base forces (custom force format)
  *  TODO: past log changes
+ *
  *  version 00-01-23+
  *  EXPERIMENTAL (Should not compile)
  *  - template class mvItemList 
@@ -15,6 +20,7 @@
  *   version 00-01-22
  *   - debugging flag changes
  *   - added new README files
+ *
  *   version 00-01-21
  *   - add more lua script loading functions   
  *   - changed naming conventions
@@ -26,16 +32,16 @@
  *   - added more Doxygen documentation
  *   - checked updated Code::Blocks workspace
  *   
- *   version 00-01-19
- *   - added more readme .txt files in include-other, lib-other, lib, bin
+ *  version 00-01-19
+ *  - added more readme .txt files in include-other, lib-other, lib, bin
  *   
- *   version 00-01-18
- *   - added ubuntu Code::Blocks project options
- *   - added ubuntu dapper drake i386 example applications
+ *  version 00-01-18
+ *  - added ubuntu Code::Blocks project options
+ *  - added ubuntu dapper drake i386 example applications
  *   
- *   version 00-01-17
- *   - implemented more set and get functionality for
- *   	- mvWorld
+ *  version 00-01-17
+ *  - implemented more set and get functionality for
+ *  	- mvWorld
  *   	- mvBody
  *   	- mvObstacle
  *   	- mvGroup
@@ -49,47 +55,48 @@
  *   	operating correctly)
  *   	- TODO : pathway functions
  *   	
- *  version 00-01-16
- *  - enumeration mvEnum split into 3 different enumeration types
- *  - mvParamEnum - parameter query enum type for retrieving / setting values
- *  - mvErrorEnum - error return values
- *  - mvOptionEnum - state and type values
- *  - update function type
- *  - updated sample programs for new enumerations
+ * version 00-01-16
+ * - enumeration mvEnum split into 3 different enumeration types
+ * - mvParamEnum - parameter query enum type for retrieving / setting values
+ * - mvErrorEnum - error return values
+ * - mvOptionEnum - state and type values
+ * - update function type
+ * - updated sample programs for new enumerations
  *  
  * version 00-01-15
  * - added MIT licenses to headers and source files
  * - added + implemented, Lua support functions, application
  *   in headers & sources, Code::Blocks project files, 
  *   shows a list of implemented Lua functions.
- *   - added an executable for mvMotionAI types.
- *   - added documentation.
- *   - added Log.txt
+ * - added an executable for mvMotionAI types.
+ * - added documentation.
+ * - added Log.txt
  *   
  * version 00-01-14
- *  - Code::Blocks with MinGW workspace and application projects 
+ * - Code::Blocks with MinGW workspace and application projects 
  *  files now included.
- *  - New script file Flee.lua shows body moving away from target.
- *  - MinGW application, mvMotion-mingw.exe included (WIN XP, openGL,
+ * - New script file Flee.lua shows body moving away from target.
+ * - MinGW application, mvMotion-mingw.exe included (WIN XP, openGL,
  *  glut, Lua, AMD XP).
- *  -Lua headers/library files for MinGW included.
+ * - Lua headers/library files for MinGW included.
  *  
  * version 00-01-13
- * -example GLmain.h simplified to show how to integrate mvMotionAI
+ * - example GLmain.h simplified to show how to integrate mvMotionAI
  *  into an application
- *  NEW PROGRAM ARGS are [$(PROGRAM_NAME) $(LUA_SCRIPT_FILE)]
- *  -added new example lua scrip called 'Seek.lua' to the bin directory
- *  -removed mvWorld's header dependency on Utilities.h (OpenSteer)
+ *     - NEW PROGRAM ARGS are \$(PROGRAM_NAME) \$(LUA_SCRIPT_FILE)
+ * - added new example lua scrip called 'Seek.lua' to the bin directory
+ * - removed mvWorld's header dependency on Utilities.h (OpenSteer)
  *  
- *  version 00-01-12
- *  - First repository copy of mvMotionAI on SourceForge.org
- *  - other way to commit stuff to source forge
- *  - Moved files remotely to backup (Collision.cpp,GLTest.cpp) as 
- *  they contains CVS tags
- *  - Removed header file/folders in include-other - redundant headers
- *  - Removed library file/folder in
- *  - Vec3.h/.cpp & Utilities.h moved to backup - obsolete
- *  - bin (binaries) contains sample program, mvMotionAI.exe
+ * version 00-01-12
+ * - first repository copy of mvMotionAI on SourceForge.org
+ * - other way to commit stuff to source forge
+ * - Moved files remotely to backup (Collision.cpp,GLTest.cpp) as they contains CVS tags
+ * - Removed header file/folders in include-other
+ * 	- redundant headers
+ * - Removed library file/folder in
+ *  	- Vec3.h/.cpp & Utilities.h moved to backup
+ *  	- obsolete
+ *  	- bin (binaries) contains sample program, mvMotionAI.exe
  *  
  *  version 00-01-11
  *  - reorganized workspace into src, include, bin, miscinclude-other, lib-other
@@ -117,7 +124,8 @@
  *    - MV_BEHAVIOUR_BODY_TARGET,
  *    - MV_BEHAVIOUR_PATHWAY_TARGET
  *    - MV_BEHAVIOUR_WAYPOINT_TARGET options are possible
- *    - mvSetDefaultBehaviourFactorForBody, mvSetDefaultBehaviourFactorForCurrentBody declared and initialised
+ *    - mvSetDefaultBehaviourFactorForBody, 
+ *      mvSetDefaultBehaviourFactorForCurrentBody declared and initialised
  *    - associated scrip functions now declared and initialised
  *    
  *    version 00-01-06
@@ -125,11 +133,13 @@
  *    - all data types are now using settings declared in mvMotionAI-Types.h
  *    - mvVec3 has superseded OpenSteer's Vec3 as vector class in Motion AI, therefore
  *    Vec3 is now redundant.
- *    - Simple Flock Behaviour is found to be incorrect. The separation part of the flocking is the main reason.
+ *    - Simple Flock Behaviour is found to be incorrect.
+ * The separation part of the flocking is the main reason.
  *    - Next step is to variable adjust of behaviours at least for the
- *    following behaviours i.e. MV_SIMPLE_FLOCK, MV_SEEK, MV_FLEE, MV_CLONE, MV_PURSUIT.
+ *    following behaviours 
+ *       - i.e. MV_SIMPLE_FLOCK, MV_SEEK, MV_FLEE, MV_CLONE, MV_PURSUIT.
  *    
- *    version 00-01-05s 
+ * version 00-01-05s 
  *    (VERSION FROZEN until group behaviour task completed)
  *    - added new types headers mvMotionAI-Types.h
  *    - created new class called mvVec3 (mvVec3.cpp, mvVec3.h) to replace Vec3
@@ -141,7 +151,7 @@
  *    - web based SVN storage
  *    - finish behaviours flee, evade, pursuit, seek, clone, simple flock.
  *    
- *    version 00-01-05r (VERSION FROZEN)
+ * version 00-01-05r (VERSION FROZEN)
  *    - global behaviours work
  *       - bug : Need to be able to change variables
  *   - group behaviours work
@@ -269,7 +279,7 @@
  * - split enums and their string into header and source file.
  * - added processing to behaviours with central function 
  *   -# mvProcessBodyBehaviours
- * - added lua functions for get, remove waypoint functions
+ * - added lua functions for get, remove waypoint functions
  * - added lua functions for get, remove, add waypoint, add to body
  *   functions
  * - split enums and their string into header and source file.
@@ -286,20 +296,20 @@
  *  -# Should progress into creating the first actual behaviour types. 
  * Behaviours types likely to be added shortly are CLONE, SEEK, FLEE and 
  * PATH FOLLOWING & started work to accommediate SEEK, FLEE, CLONE 
- * & FOLLOW PATH support functions
+ * & FOLLOW PATH support functions
  *
  * version 00-01-00   22/5/06  
  * - rename mWorld into mvWorld, allowed forces and groups 
  * - initialised behaviours
- * - renamed Obstacles into mvObstacle
+ * - renamed Obstacles into mvObstacle
  * - renamed particles and vehicles, grouped them into a group
  *   under the name of mvBody.
  * - renamed target to mvWaypoint.
- * - renamed pathways to mvPathway
+ * - renamed pathways to mvPathway
  * - Headers file : Template functions are hard to split
  * - initialised forces
- * - initialised groups
- * - new naming conventions - mv(blah)
+ * - initialised groups
+ * - new naming conventions - mv(blah)
  *
  * version 00-00-08     9/3/06  
  * - Currently adding a new class; a immediate  class called Target
@@ -630,7 +640,7 @@ version 00-01-05a (VERSION FROZEN)
 
 00-00-08 9/3/06
 
-    * Currently adding a new class; a immediate class called Target to build relationship (i.e behaviour with various objects)
+    * Currently adding a new class : a immediate class called Target to build relationship (i.e behaviour with various objects)
 
 00-00-07 9/3/06
 

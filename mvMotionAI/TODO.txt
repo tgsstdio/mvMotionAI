@@ -1,47 +1,36 @@
-mvMotionAI TODO list on 12th October 2007
-
-- a complete group behaviours class
-  - connection to EntryListNode for set/get parameters
-  - group node - individual member node relationship code not implemented
-
-- torque -> omega -> rotation conversion for integrator (and vice versa)
-  - 3D moment of inertia calculations
-
-- vehicle type body 
-  - rotation & direction interconnected.
-
-- dual type body
-  - rotation & direction separate
-
-- local rotational / forces conversion
-
-- matrix & quaternion classes
-
-- left & right handness world conversion
-
-- update position / update rotation flags for integrator
-
-- rotation to box and cylinder for local force collision detection
-
-- groups iterator instead of group pointer for integration
-  (inside bodyOp of mvBaseActions/calcFullForces in mvBaseForces) 
-
-- waypoint / pathway helper class for following pathway for integration
-  (inside bodyOp of mvBaseActions/calcFullForces in mvBaseForces) 
-
-- degree / radians unit conversions
-
-- separate behaviour integration for each body
-  - MV_WEIGHTED_SUM (implemented) as list
-  - MV_XOR as list
-  - MV_RANDOM as list
-  - MV_PRIORITIZED_WEIGHTED as list
-  - MV_TREE or combination of all of the above in tree
-
-- 64 bit compatibility
-
-- Removed STL objects for more compatibility.
-
-David Young, 2007.
-
+/**
+ * \page todo_page mvMotionAI TODO list
+ *
+ * mvMotionAI TODO list on 12th October 2007
+ *
+ * - a complete group behaviours class
+ * - connection to EntryListNode for set/get parameters
+ * - group node - individual member node relationship code not implemented
+ * - torque -> omega -> rotation conversion for integrator (and vice versa)
+ * - 3D moment of inertia calculations
+ * - vehicle type body 
+ * - rotation & direction interconnected.
+ * - dual type body
+ * 	- rotation & direction separate
+ * - local rotational / forces conversion
+ * - matrix & quaternion classes
+ * - left & right handness world conversion
+ * - update position / update rotation flags for integrator
+ * - rotation to box and cylinder for local force collision detection
+ * - groups iterator instead of group pointer for integration
+ * (inside bodyOp of mvBaseActions/calcFullForces in mvBaseForces) 
+ * - waypoint / pathway helper class for following pathway for integration
+ * (inside bodyOp of mvBaseActions/calcFullForces in mvBaseForces) 
+ * - degree / radians unit conversions
+ * - separate behaviour integration for each body
+ *	- MV_WEIGHTED_SUM (implemented) as list
+ * 	- MV_XOR as list
+ *	- MV_RANDOM as list
+ *	- MV_PRIORITIZED_WEIGHTED as list
+ * 	- MV_TREE or combination of all of the above in tree
+ * - 64 bit compatibility
+ * - Removed STL objects for more compatibility.
+ *
+ *  David Young, 2007.
+ */
 

@@ -88,7 +88,11 @@ WARN_LOGFILE           =
 INPUT                  = D:/mvMotionAI/mvMotionAI/src \
                          D:/mvMotionAI/mvMotionAI/include/mv \
                          D:/mvMotionAI/mvMotionAI/misc/DoxygenMainPage.cpp \
-                         "D:/mvMotionAI/mvMotionAI/misc/MIT License Template.txt"
+                         D:/mvMotionAI/mvMotionAI/COPYING \
+                         D:/mvMotionAI/mvMotionAI/NEWS \
+                         D:/mvMotionAI/mvMotionAI/README \
+                         D:/mvMotionAI/mvMotionAI/TODO.txt \
+                         D:/mvMotionAI/mvMotionAI/AUTHORS
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.c \
                          *.cc \
