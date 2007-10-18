@@ -11,6 +11,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 C/C++ comments version (Doxygen)
 
 /**
+ * \page license MIT License
+ *
  * Copyright (c) 2006, 2007 David Young.
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a

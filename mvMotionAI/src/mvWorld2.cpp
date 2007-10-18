@@ -2050,13 +2050,30 @@ mvErrorEnum mvWorld::nudgeBody(mvIndex index, mvFloat timeInSecs)
       calculateGroupBehaviours();
       integrateBody(tempCapsulePtr,timeInSecs);
       finaliseIntegrationStep(timeInSecs);
-      elapsedWorldTime += timeInSecs;
+      //elapsedWorldTime += timeInSecs;
       return MV_NO_ERROR;
    }
    else
    {
       return MV_ITEM_IS_NOT_ENABLED;
    }
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvErrorEnum mvWorld::stepBody(mvIndex bodyIndex, mvFloat timeInSecs)
+{
+   mvErrorEnum error = nudgeBody(bodyIndex, timeInSecs);
+
+   if (error == MV_NO_ERROR)
+   {
+      // update time
+      elapsedWorldTime += timeInSecs;
+   }
+
+   return error;
 }
 
 mvIndex mvWorld::convertWaypointIndex(mvIndex wPointIndex) const
