@@ -1,68 +1,98 @@
-mvMotionAI - C++ library for motion based steering behaviours
-under the MIT license found in ./COPYING
-
--------------------------------
-*****Current Build Options*****
--------------------------------
-
-On 30 September 2007
-
-There are three options for compiling the mvMotionAI library.
-
-1. Using the Code Blocks workspace located in main directory.
-   This workspace contains many projects that are compiled under
-   the following environments
-      - Windows XP with MinGW GCC compiler
-      - Ubuntu with GCC compiler      
-
-2. Using the CMake build file (CMakeLists.txt) to generate the relevant
-IDE project format or makefile for your compiler. It has two of the 
-four projects/tutorials configured.
-
-3. Using Visual C++ 6.0 workspace in the VisualC++Workspace. Not sure
-if it's working correctly.
-
-DON'T USE the automake provided with the project as it's not up to date.
-
--------------------------------------------------------
-*****File Directories in mvMotionAI full workspace*****
--------------------------------------------------------
-
-backup - General storage directory for old code segements used from
-previous versions of mvMotionAI.
-
-bin - location of binaries (& mingw DLL library) after build.
-binaries of using examples mvMotionAI, three mvMotionAI lua scripts, plus
-various DLLs for running on Windows XP 32 bits
-
-docs -  do not use as the new source code is not commented for Doxygen
-	doxygen generated API documentation config file. 
-
-examples-src - source of the compiled programs in bin. Also contains
-tutorials and side projects directory.
-
-experimental - prototypes (code + interfaces) of new features for
-the mvMotionAI library
-
-include - the header files required for development of applications
-using mvMotionAI. The mvMotionAI library header files are located
-in include/mv directory. 
-
-include-other - mostly Win32 header files for Lua & other libraries
-used in compiled examples
-
-lib - static libraries of linking applications to mvMotionAI
-lib-other - static libraries objects used for mvMotionAI examples.
-
-misc - various files and code used in development
-
-src - source code files for the mvMotionAI library.
-
-VisualC++Workspace - MSVC++ 6 workspace for development
-
-David Young
-http://sourceforge.net/projects/mvmotionai
-david.young.email AT gmail DOT com
-6 November 2006, 30 September 2007.
+/**
+ * \page readme_txt mvMotionAI README FILE
+ *
+ * mvMotionAI - C++ library for motion based steering behaviours
+ * under the MIT license found in ./COPYING
+ *
+ * -------------------------------
+ *
+ * \section current_build Current Build Options
+ *
+ * -------------------------------
+ *
+ * On 30 September 2007
+ * 
+ * There are three options for compiling the mvMotionAI library.
+ * 
+ *  1. Using the Code Blocks workspace located in main directory.
+ *  This workspace contains many projects that are compiled under
+ *  the following environments
+ *     - Windows XP with MinGW GCC compiler
+ *     - Ubuntu with GCC compiler      
+ *
+ * 2. Using the CMake build file (CMakeLists.txt) to generate the relevant
+ * IDE project format or makefile for your compiler. It has two of the 
+ * four projects/tutorials configured.
+ *
+ * 3. Using Visual C++ 6.0 workspace in the VisualC++Workspace. Not sure
+ * if it's working correctly.
+ *
+ * DON'T USE the automake provided with the project as it's not up to date.
+ * 
+ * -------------------------------------------------------
+ *
+ * \section file_dirs File Directories in mvMotionAI full workspace
+ *
+ * -------------------------------------------------------
+ *
+ * \subsection backup
+ * - General storage directory for old code segements used from
+ * previous versions of mvMotionAI.
+ *
+ * \subsection bin
+ * - location of binaries (& mingw DLL library) after build. 
+ * - binaries of using examples mvMotionAI, three mvMotionAI lua scripts, 
+ * plus various DLLs for running on Windows XP 32 bits
+ *
+ * \subsection docs
+ * - do not use as the new source code is not commented for Doxygen
+ *  doxygen generated API documentation config file. 
+ *
+ * \subsection examples-src
+ * - source of the compiled programs in bin. Also contains
+ * tutorials and side projects directory.
+ * 
+ * \subsection experimental
+ * - prototypes (code + interfaces) of new features for
+ * the mvMotionAI library
+ * 
+ * \subsection include
+ * - the header files required for development of applications
+ * using mvMotionAI. The mvMotionAI library header files are located
+ * in include/mv directory. 
+ * 
+ * \subsection include-other
+ * - mostly Win32 header files for Lua & other libraries
+ * used in compiled examples
+ * 
+ * \subsection lib
+ * - static libraries of linking applications to mvMotionAI
+ *
+ * \subsection lib-other
+ * - static libraries objects used for mvMotionAI examples.
+ * 
+ * \subsection misc
+ * - various files and code used in development
+ * 
+ * \subsection src
+ * - source code files for the mvMotionAI library.
+ * 
+ * \subsection VisualC++Workspace
+ * - MSVC++ 6 workspace for development
+ *
+ * -------------------------
+ *
+ * \section contact_details Contact Details
+ *
+ * -------------------------
+ *
+ * David Young
+ *
+ * http://sourceforge.net/projects/mvmotionai
+ *
+ * david.young.email AT gmail DOT com
+ *
+ * 6 November 2006, 30 September 2007.
+ */
 
 
