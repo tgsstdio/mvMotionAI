@@ -28,26 +28,36 @@
  * In the library, each moving item such as a car, a bird or person 
  * is represented as a mvBody. Each mvBody has various properties such as
  * its position, maximum speed, direction in the world. These bodies can
- * be grouped together, Each behaviour has already been written in the
- * library, so there is no feature yet implemented which allows 
- * completely new behaviours to created at run-time.
+ * be grouped together. Some of the behaviour (or mvBaseActions) has been
+ * been written in the library and now in version 00-02-00+ there is a 
+ * feature in the library which allows completely new user-defined
+ * behaviours to added at compile time (but not yet run-time).
  * 
  * \section install_sec Installation
  *
  * \subsection step1 Current installation method:
- * Compile source code with own projects, with Lua 5.0 library modules.
+ * Compile source code with own projects, with Lua 5.1 library modules.
  *
  * \subsection step2 Future installation
- * DLLs and lib 
- *  
- * etc...
+ * To use the library with a project, there must be a STL 
+ * (such as vector, list and sets) implementation along with the C++ compiler.
+ * 
+ * To incorporate the mvMotionAI library, only one file/line is needed to be 
+ * included/declared in your code.
+ *
+ * \#include \<mv/mvMotionAI.h\>
+ * 
+ * To build a shared library, add the flag MV_BUILD_DLL to compiler process.
+ *
+ * To build a static library, leave out the MV_BUILD_DLL flag when compiling.
  *
  * \section progress Current Progress in library module
- * (ver 00-01-22 : date 21/9/06)  
- * documentation and Lua script support
+ * (ver 00-02-25 : date 18/10/07)  
+ * Adding more documentation in mvMotionAI C interface.
  * 
  * \section otherpages Other Pages
  * - \subpage logpage
+ * - \subpage license
  */
  
 /**

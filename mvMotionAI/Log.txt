@@ -1,3 +1,358 @@
+/*
+ * version 00-02-13+ (29 Sept 2007)
+ *  first version of SourceForge release
+ *  summaries of changes
+ *  - new base action (custom behaviour format) 
+ *  -new base forces (custom force format)
+ *  TODO: past log changes
+ *  version 00-01-23+
+ *  EXPERIMENTAL (Should not compile)
+ *  - template class mvItemList 
+ *  - mvWorld_V2 world instance
+ *  - new behaviour creation functions
+ *  - new inheritable mvBaseBehaviour superclass
+ *  
+ *   version 00-01-22
+ *   - debugging flag changes
+ *   - added new README files
+ *   version 00-01-21
+ *   - add more lua script loading functions   
+ *   - changed naming conventions
+ *   - added more documentation
+ *   - changed/added/merged enumerations in mvEnums.h
+ *   
+ *   version 00-01-20
+ *   - changed libmvMotionAI to libmvMotion-mingw.a 
+ *   - added more Doxygen documentation
+ *   - checked updated Code::Blocks workspace
+ *   
+ *   version 00-01-19
+ *   - added more readme .txt files in include-other, lib-other, lib, bin
+ *   
+ *   version 00-01-18
+ *   - added ubuntu Code::Blocks project options
+ *   - added ubuntu dapper drake i386 example applications
+ *   
+ *   version 00-01-17
+ *   - implemented more set and get functionality for
+ *   	- mvWorld
+ *   	- mvBody
+ *   	- mvObstacle
+ *   	- mvGroup
+ *   	- mvGroupBehaviour
+ *   	- mvBehaviour
+ *   	- changed magic lua pop index numbers for named constants
+ *   	for debugging purposes
+ *   	- implement world nudge body + lua functions
+ *   	- implemented Lua equivalent functions for set/get functions
+ *   	- updated MVC6 workspace : some errors (behaviours not 
+ *   	operating correctly)
+ *   	- TODO : pathway functions
+ *   	
+ *  version 00-01-16
+ *  - enumeration mvEnum split into 3 different enumeration types
+ *  - mvParamEnum - parameter query enum type for retrieving / setting values
+ *  - mvErrorEnum - error return values
+ *  - mvOptionEnum - state and type values
+ *  - update function type
+ *  - updated sample programs for new enumerations
+ *  
+ * version 00-01-15
+ * - added MIT licenses to headers and source files
+ * - added + implemented, Lua support functions, application
+ *   in headers & sources, Code::Blocks project files, 
+ *   shows a list of implemented Lua functions.
+ *   - added an executable for mvMotionAI types.
+ *   - added documentation.
+ *   - added Log.txt
+ *   
+ * version 00-01-14
+ *  - Code::Blocks with MinGW workspace and application projects 
+ *  files now included.
+ *  - New script file Flee.lua shows body moving away from target.
+ *  - MinGW application, mvMotion-mingw.exe included (WIN XP, openGL,
+ *  glut, Lua, AMD XP).
+ *  -Lua headers/library files for MinGW included.
+ *  
+ * version 00-01-13
+ * -example GLmain.h simplified to show how to integrate mvMotionAI
+ *  into an application
+ *  NEW PROGRAM ARGS are [$(PROGRAM_NAME) $(LUA_SCRIPT_FILE)]
+ *  -added new example lua scrip called 'Seek.lua' to the bin directory
+ *  -removed mvWorld's header dependency on Utilities.h (OpenSteer)
+ *  
+ *  version 00-01-12
+ *  - First repository copy of mvMotionAI on SourceForge.org
+ *  - other way to commit stuff to source forge
+ *  - Moved files remotely to backup (Collision.cpp,GLTest.cpp) as 
+ *  they contains CVS tags
+ *  - Removed header file/folders in include-other - redundant headers
+ *  - Removed library file/folder in
+ *  - Vec3.h/.cpp & Utilities.h moved to backup - obsolete
+ *  - bin (binaries) contains sample program, mvMotionAI.exe
+ *  
+ *  version 00-01-11
+ *  - reorganized workspace into src, include, bin, miscinclude-other, lib-other
+ *  - near ready for source forge
+ *  - created/renamed folder to examples-src
+ *  - moved headers files into include directory
+ *  - creating library directory lib-other (For Lua & GLUT) & lib (mvMotionAI)
+ *  - Created folder misc remotely for various files
+ *  - source files moved remotely into src dir
+ *
+ *  version 00-01-10
+ *  - added debug flags to remove output
+ *  - added group behaviours set parameters
+ *  - added mvMotionAI's function mvApplyToAllWorlds.
+ *
+ *  version 00-01-08 (incomplete)
+ *  - modifying group behaviour variables can be changed
+ *  - system should not compile (due group beahviour function changes)
+ *  - figuring out a possible header file & format for the superclass behaviour
+ *  - after completing setting changes for group behaviour, submit it 
+ *  to source forge
+ *  
+ *  version 00-01-07
+ *  - mvSetParamteri, mvSetCurrentParameteri declared and initialised
+ *    - MV_BEHAVIOUR_BODY_TARGET,
+ *    - MV_BEHAVIOUR_PATHWAY_TARGET
+ *    - MV_BEHAVIOUR_WAYPOINT_TARGET options are possible
+ *    - mvSetDefaultBehaviourFactorForBody, mvSetDefaultBehaviourFactorForCurrentBody declared and initialised
+ *    - associated scrip functions now declared and initialised
+ *    
+ *    version 00-01-06
+ *    - important changes to source code
+ *    - all data types are now using settings declared in mvMotionAI-Types.h
+ *    - mvVec3 has superseded OpenSteer's Vec3 as vector class in Motion AI, therefore
+ *    Vec3 is now redundant.
+ *    - Simple Flock Behaviour is found to be incorrect. The separation part of the flocking is the main reason.
+ *    - Next step is to variable adjust of behaviours at least for the
+ *    following behaviours i.e. MV_SIMPLE_FLOCK, MV_SEEK, MV_FLEE, MV_CLONE, MV_PURSUIT.
+ *    
+ *    version 00-01-05s 
+ *    (VERSION FROZEN until group behaviour task completed)
+ *    - added new types headers mvMotionAI-Types.h
+ *    - created new class called mvVec3 (mvVec3.cpp, mvVec3.h) to replace Vec3
+ *    - modified executable GLMain.cpp
+ *    - modified simple flock behaviour
+ *    - GOAL to version 00-01-05+
+ *    - allow variables changes to behaviour, group behaviour,
+ *    - allow most fine tuning to behaviour list
+ *    - web based SVN storage
+ *    - finish behaviours flee, evade, pursuit, seek, clone, simple flock.
+ *    
+ *    version 00-01-05r (VERSION FROZEN)
+ *    - global behaviours work
+ *       - bug : Need to be able to change variables
+ *   - group behaviours work
+ *      - bug : need to correct simple flock behaviour
+ *      - personal behaviours work
+ *      - system works
+ *      POSSIBLE bugs
+ *      - return pointer are not correct for most classes
+ *      - check forces
+ *      
+ * version 00-01-05q (VERSION FROZEN)
+ *   - working on group behaviours lua script functions
+ *   - need to work out the changing parameters for group, shared behaviours
+ *
+ * version 00-01-05p (VERSION FROZEN)
+ * - system executable works
+ * - progress : implementing group behaviours
+ * - simple flock
+ *   
+ * version 00-01-05o (VERSION FROZEN)
+ * - iterator & system executable now work
+ * - SEEK, FLEE, PURSUIT now work
+ * - group behaviour incomplete
+ * - changes to mvBehaviour-Type.cpp
+ *   
+ *   version 00-01-05n (VERSION FROZEN)
+ *   - executable now works
+ *   - bug in seek variable / set waypoints
+ *   - script code changes
+ *   
+ *   version 00-01-05m (VERSION FROZEN)
+ *   - behaviour list changes/ header file missing
+ *   - group behaviour
+ *   - integrator changed to allow new changes
+ *   
+ *   version 00-01-05l (VERSION FROZEN)
+ *   - implemented mvBehaviour, and started working on mvGroupBehaviour.
+ *   - simple flock algorithm sort of finished
+ *   - system/library still does not work
+ *   
+ *   version 00-01-05k (VERSION FROZEN)
+ *   - added new code behaviour list node, list, type.h
+ *   - system still does not works
+ *   
+ *   Version 00-01-05j (VERSION FROZEN)
+ *   - added simple flock files, mvBehaviour-SimpleFlock.cpp & .h
+ *   - added implementation of simple flock group and singular body
+ *   - system still does not work
+ *   - behaviour list is changed, moved around functions.
+ *   
+ *   Version 00-01-05i (VERSION FROZEN)
+ *   - Moving target, waypoint, body get and set functions to mvBehaviour-Entry
+ *   Code still doesn't work
+ *   
+ *   Version 00-01-05h (VERSION FROZEN)
+ *   - Declared header files for behaviour list node, group behaviour nodes
+ *   - Modified (mv) group behaviour, behaviour, behaviour list to use behaviour entry, System still does not work
+ *
+ *   Version 00-01-05g (VERSION FROZEN)
+ *   - Writing code from central behaviour entry for mvBehaviour,
+ *   mvBehaviour-ListNode,mvGroupBehaviour
+ *   - Non working version
+ *   
+ *   Version 00-01-05f (VERSION FROZEN)
+ *   - created/finished class code for mvGroupBehaviour.cpp
+ *     - declared headers for mvWorld group behaviour class
+ *     - added two template functions to mvMotionAI-Utilities.h
+ *     
+ *     Version 00-01-05e (VERSION FROZEN)
+ *     - Added lua script support for add body to group , remove body from group
+ *     - Initialised mvGroupBehaviour.h to add grouped body for easier group behaviour.
+ *     
+ *     version 00-01-05d (VERSION FROZEN)
+ *     - Created Behaviour Entry, Behaviour Node, and mvBehaviour-Type
+ *     - The system is not working at this moment to allow group (boids) behaviours
+ *     version 00-01-05c (VERSION FROZEN)
+ *     - Added limits to maximum velocity and the possible change in velocity per frame to world integrator
+ *     - Added initialiseFloats to keep initial mvBody variables constant over 2 constructors
+ *     - Pursuit behaviour now averages the past velocity to minimise jittering between frames
+ *     
+ * version 00-01-05b (VERSION FROZEN)
+ * - Added pursuit behaviour to system now affect the body velocity 
+ *   instead of acceleration
+ *     
+ * version 00-01-05a (VERSION FROZEN)
+ * - Commit new changes - pursuit and complete clone
+ *     
+ * version 00-01-04 27/6/06 
+ * -  added pursuit & clone behaviour
+ *     
+ * version 00-01-03 21/6/06
+ * - split enums and their string into header and source file.
+ * - added processing to behaviours with central function : 
+ *   mvProcessBodyBehaviours
+ * - added lua functions for get, remove waypoint functions
+ * - added lua functions for get, remove, add waypoint, add to body 
+ *     functions
+ * - split enums and their string into header and source file.
+ * - iterator has now working behaviours
+ * - added behaviour list to mvBody class
+ * - now using index values instead of pointers, finally implemented
+ *     two beahviours SEEK and FLEE,
+ *     
+ * version 00-01-05 (27/6/06) - 00-01-14 (21/09/06)
+ * 
+ * - added mvMotionAI to SourceForge.org
+ *   
+ * - behaviour framework is made up of individual behaviours, global behaviour
+ *   and global group behaviours
+ *   
+ * - Code::Blocks IDE workspaces included with MSVC++ 6 workspace
+ *  
+ * - Source code in src, headers in include, dependencies in
+ *   lib-other & include-other, examples included in example-src,
+ *   misc files in misc, documentation in docs,
+ *
+ * - types headers included
+ *
+ * - more log entries inside Log.txt 
+ *  
+ * version 00-01-04    27/6/06   
+ * - added pursuit & clone behaviour
+ *                        
+ * version 00-01-03    21/6/06 
+ * - split enums and their string into header and source file.
+ * - added processing to behaviours with central function 
+ *   -# mvProcessBodyBehaviours
+ * - added lua functions for get, remove waypoint functions
+ * - added lua functions for get, remove, add waypoint, add to body
+ *   functions
+ * - split enums and their string into header and source file.
+ * - iterator has now working behaviours
+ * - added behaviour list to mvBody class
+ * - now using index values instead of pointers, finally
+ *  implemented two beahviours SEEK and FLEE, 
+ *
+ * version 00-01-02  31/5/06 
+ *  - removing groups from system until better solution arrives.
+ *
+ * version 00-01-01  24/5/06  
+ * - Massive overhaul of class names and functions
+ *  -# Should progress into creating the first actual behaviour types. 
+ * Behaviours types likely to be added shortly are CLONE, SEEK, FLEE and 
+ * PATH FOLLOWING & started work to accommediate SEEK, FLEE, CLONE 
+ * & FOLLOW PATH support functions
+ *
+ * version 00-01-00   22/5/06  
+ * - rename mWorld into mvWorld, allowed forces and groups 
+ * - initialised behaviours
+ * - renamed Obstacles into mvObstacle
+ * - renamed particles and vehicles, grouped them into a group
+ *   under the name of mvBody.
+ * - renamed target to mvWaypoint.
+ * - renamed pathways to mvPathway
+ * - Headers file : Template functions are hard to split
+ * - initialised forces
+ * - initialised groups
+ * - new naming conventions - mv(blah)
+ *
+ * version 00-00-08     9/3/06  
+ * - Currently adding a new class; a immediate  class called Target
+ *   to build relationship (i.e behaviour with various objects)
+ *
+ * version 00-00-07		9/3/06
+ * - initialised Target Object
+ *
+ * version 00-00-06		6/3/06
+ * - initialised particle 
+ * - add particles and various modifiers to script 
+ * - adding (hopefully) a temporary Particle array and to mWorld
+ *   so I can prototype behaviour early.
+ *
+ * version 00-00-05    3/3/06
+ * - vehicle : intergration for motion. 
+ * - adding basic intergrater (Improved Euler) to m world.
+ * - introducing shapes in obstacle
+ * - adding motion variables modifiers
+ *
+ * version 00-00-04    22/02/06   
+ * - Separated MotionAI to allow multiple instances 
+ * - Hopefully created a overall central module and many world objects
+ * - added world ID variable 
+ * - split central motionAI to world components 
+ *
+ * version 00-00-03		14/2/06
+ * - declared Pathway class
+ * - created simple array of waypoints which can be loaded in
+ *  by scripts 
+ * - declared single function loadLuaScriptFunctions to make code
+ *   more modular and less dependant.
+ * - move script function prototypes out of header file into source code  
+ *
+ * version 00-00-02    8/2/06
+ * - separated obstacle and vehicle into their own header and source files
+ * - separated from MotionAI.h, created new header and source file.
+ * - Script : declared beginPathway and endPathWay
+ *
+ * version 00-00-01    7/2/06
+ * - created header file based on Opensteer
+ * - created a overall AI module called MotionAI
+ * - stubs of vehicles and obstacles
+ * - To use library, declare global instance of aiModule.
+ * - introduced Vec3 and Utilities from OpenSteer into project
+ * - Script.h & .cpp : created file
+ * - added scripting language to MotionAI
+ * - loads lua script files and adds vehicles and obstacles
+ * - created file for all headers need in MotionAI module
+ */
+    
+// OLD STYLE NEWS INFO - ABOVE IN DOXYGEN
+
 version 00-02-13+ (29 Sept 2007)
 first version of SourceForge release
 summaries of changes

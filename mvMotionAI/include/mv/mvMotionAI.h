@@ -314,76 +314,162 @@ MV_GLOBAL_FUNC_PREFIX const char* mvGetParamEnumString(mvParamEnum param);
  */
 MV_GLOBAL_FUNC_PREFIX const char* mvGetOptionEnumString(mvOptionEnum option);
 
-// TODO : finish doxygen comments
+
 /**
  * \ingroup mvGlobal
+ * \brief Set the user data pointer of the mvWorld instance
+ * \param[in] worldIndex The index of the linked mvWorld instance
+ * \param[in] tempData A void pointer to any object
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
+ *
+ * NOTE: the user data pointer within mvWorld instances are not freed by the
+ * mvMotionAI library
  */
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetWorldUserData(mvIndex worldIndex,
    void* tempData);
+
+/**
+ * \ingroup mvGlobal
+ * \brief Gets the user data pointer of the mvWorld instance
+ * \param[in] worldIndex The index of the linked mvWorld instance
+ * \return A pointer used as user data of the mvWorld or MV_NULL
+ * if error has occured
+ */
 MV_GLOBAL_FUNC_PREFIX void* mvGetWorldUserData(mvIndex worldIndex);
 
 // world instance functions
 
 /* WORLD FUNCTIONS  = 18 */
+
 /**
  * \ingroup mvGlobal
+ * \brief Moves a mvWorld by an anount of time
+ * \param[in] worldIndex The index of the linked mvWorld instance
+ * \param[in] timeInSecs The time in secs used for integration
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
+ *
+ * NOTE : each mvWorld has its own time-keeping variables.
+ * Each call to mvWorldStep will updates those values.
  */
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvWorldStep(mvIndex worldIndex,\
    mvFloat timeInSecs);
 /**
  * \ingroup mvGlobal
+ * \brief Moves a mvBody with a linked mvWorld by an anount of time
+ * \param[in] worldIndex The index of the linked mvWorld instance
+ * \param[in] bodyIndex The index of a mvBody inside that mvWorld
+ * \param[in] timeInSecs The time in secs used for integration
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
+ *
+ * NOTE : each mvWorld has its own time-keeping variables.
+ * Each call of mvNudgeBody will NOT updates those values.
  */
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvNudgeBody(mvIndex worldIndex,\
    mvIndex bodyIndex, mvFloat timeInSecs);
 
 /**
  * \ingroup mvGlobal
+ * \brief Moves a mvBody with a linked mvWorld by an anount of time
+ * \param[in] worldIndex The index of the linked mvWorld instance
+ * \param[in] bodyIndex The index of a mvBody inside that mvWorld
+ * \param[in] timeInSecs The time in secs used for integration
+ * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
+ *
+ * NOTE : each mvWorld has its own time-keeping variables.
+ * Each call of mvStepBody will updates those values.
+ */
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvStepBody(mvIndex worldIndex,\
+   mvIndex bodyIndex, mvFloat timeInSecs);
+
+/**
+ * \ingroup mvGlobal
+ * \brief Gets a state/options variable of a linked mvWorld instance
+ * \param[in] worldIndex The index of the linked mvWorld instance
+ * \param[in] param The parameter or variable type that the programmer wants to
+ *  retrieve
+ * \param[out] option A pointer to a mvOptionEnum
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametero(mvIndex worldIndex,\
 	mvParamEnum param, mvOptionEnum* option);
 /**
  * \ingroup mvGlobal
+ * \brief Gets a single index variable of a linked mvWorld instance
+ * \param[in] worldIndex The index of the linked mvWorld instance
+ * \param[in] param The parameter or variable type that the programmer wants to
+ *  retrieve
+ * \param[out] index A pointer to a mvIndex location
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameteri(mvIndex worldIndex,\
 	mvParamEnum param, mvIndex* index);
 /**
  * \ingroup mvGlobal
+ * \brief Gets a single mvFloat variable of a linked mvWorld instance
+ * \param[in] worldIndex The index of the linked mvWorld instance
+ * \param[in] param The parameter or variable type that the programmer wants to
+ *  retrieve
+ * \param[out] num A pointer to mvFloat variable
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameterf(mvIndex worldIndex,\
 	mvParamEnum param, mvFloat* num);
 /**
  * \ingroup mvGlobal
+ * \brief Gets an array of mvFloats or vector variable of a linked mvWorld instance
+ * \param[in] worldIndex The index of the linked mvWorld instance
+ * \param[in] param The parameter or variable type that the programmer wants to
+ *  retrieve
+ * \param[out] array A pointer to a mvFloat array of appropriate size
+ * (>= MV_MAX_NO_OF_PARAMETERS)
+ * \param[out] noOfParameters The number of variables returned by this function
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameterv(mvIndex worldIndex,\
 	mvParamEnum param, mvFloat* array, mvCount* noOfParameters);
-
+// TODO : finish doxygen comments
 /**
  * \ingroup mvGlobal
+ * \brief Retrieves mvWorld's option variable in string format
+ * \param[in] worldIndex The index of the linked mvWorld instance
+ * \param[in] param The parameter or variable type that the programmer wants to
+ *  retrieve
+ * \param[out] option A pointer to C string pointer location
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParametero_str(mvIndex worldIndex,\
 	const char* param, const char** option);
 /**
  * \ingroup mvGlobal
+ * \brief Retrieves mvWorld's index variable in string format
+ * \param[in] worldIndex The index of the linked mvWorld instance
+ * \param[in] param The parameter or variable type that the programmer wants to
+ *  retrieve
+ * \param[out] index A location to mvIndex variable.
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameteri_str(mvIndex worldIndex,\
 	const char* param, mvIndex* index);
 /**
  * \ingroup mvGlobal
+ * \brief Retrieves mvWorld's single mvFloat variable in string format
+ * \param[in] worldIndex The index of the linked mvWorld instance
+ * \param[in] param The parameter or variable type that the programmer wants to
+ *  retrieve
+ * \param[out] num A location to mvFloat variable.
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameterf_str(mvIndex worldIndex,\
 	const char* param, mvFloat* num);
 /**
  * \ingroup mvGlobal
+ * \brief Retrieves linked mvWorld's floating vector in string format
+ * \param[in] worldIndex The index of the linked mvWorld instance
+ * \param[in] param The parameter or variable type that the programmer wants to
+ *  retrieve
+ * \param[out] array A pointer to a mvFloat array of appropriate size
+ * (>= MV_MAX_NO_OF_PARAMETERS)
+ * \param[out] noOfParameters The number of variables returned by this function
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWorldParameterv_str(mvIndex worldIndex,\
@@ -554,15 +640,38 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllForcesByIndex(mvIndex worldIndex,\
    void (someFunction)(mvIndex,mvIndex, void*), void* extraPtr);
 
 /* body functions */
-
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBody(mvIndex worldIndex,\
    mvOptionEnum bType, mvOptionEnum bShape, mvFloat x, mvFloat y, mvFloat z);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBody_str(mvIndex worldIndex,\
    const char* bType, const char* bShape, mvFloat x, mvFloat y, mvFloat z);
+/**
+ * \ingroup mvGlobal
+ * \return A pointer to mvBody instance or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvBodyPtr mvGetBodyPtr(mvIndex worldIndex,\
    mvIndex bodyIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentBody(mvIndex worldIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A pointer to mvBody instance or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvBodyPtr mvGetCurrentBodyPtr(mvIndex worldIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentBody(mvIndex worldIndex,\
    mvIndex index);
 /**
@@ -697,19 +806,46 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveBehaviourFromList(mvIndex worldIndex,\
  */
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllBehavioursFromList(\
    mvIndex worldIndex, mvIndex listIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentEntryFromList(mvIndex worldIndex,\
    mvIndex listIndex);
 
 //mvObstacle 41 functions =  9 + 16 + 16
-
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateObstacle(mvIndex worldIndex,\
    mvOptionEnum oShape, mvOptionEnum oState, mvFloat x, mvFloat y, mvFloat z);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateObstacle_str(mvIndex worldIndex,\
    const char* oShape, const char* oState, mvFloat x, mvFloat y, mvFloat z);
+/**
+ * \ingroup mvGlobal
+ * \return A pointer to mvObstacle instance or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvObstaclePtr mvGetObstaclePtr(mvIndex worldIndex,\
    mvIndex bodyIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentObstacle(mvIndex worldIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A pointer to mvObstacle instance or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvObstaclePtr mvGetCurrentObstaclePtr(mvIndex worldIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentObstacle(mvIndex worldIndex,\
    mvIndex index);
 /**
@@ -824,20 +960,46 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetObstacleParameterf_str(mvIndex worldIndex
  */
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetObstacleParameterv_str(mvIndex worldIndex,\
    mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameters);
-
+/**
+ * \ingroup mvGlobal
+ * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetObstacleAsWorldBoundary(\
    mvIndex worldIndex, mvIndex obstacleIndex);
 
 /*mvWaypoint No Of Functions : 46 = 6 + 16 + 16 + 8 */
-
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateWaypoint(mvIndex worldIndex,\
    mvOptionEnum wShape, mvFloat x, mvFloat y, mvFloat z);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateWaypoint_str(mvIndex worldIndex,\
    const char* wShape, mvFloat x, mvFloat y, mvFloat z);
+/**
+ * \ingroup mvGlobal
+ * \return A pointer to mvWaypoint instance or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvWaypointPtr mvGetWaypointPtr(mvIndex worldIndex,\
 	 mvIndex index);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentWaypoint(mvIndex worldIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A pointer to mvWaypoint instance or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvWaypointPtr mvGetCurrentWaypointPtr(mvIndex worldIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentWaypoint(mvIndex worldIndex,\
    mvIndex index);
 /**
@@ -983,16 +1145,39 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllForcesFromWaypoint(\
  *mvBehaviour
  *No Of Functions : 39 = 5 + 2 + 16 + 16
  */
-
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBehaviour(mvIndex worldIndex,\
 	 mvOptionEnum bType);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBehaviour_str(mvIndex worldIndex,\
    const char* bType);
+/**
+ * \ingroup mvGlobal
+ * \return A pointer to mvBehaviour instance or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvBehaviourPtr mvGetBehaviourPtr(mvIndex worldIndex,\
 	 mvIndex index);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentBehaviour(mvIndex worldIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A pointer to mvBehaviour instance or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvBehaviourPtr mvGetCurrentBehaviourPtr(\
    mvIndex worldIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentBehaviour(mvIndex worldIndex,\
    mvIndex index);
 /**
@@ -1112,15 +1297,38 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBehaviourParameterv_str(\
 //=============
 //No Of Functions : 37 = 5 + 16 + 16
 //=============
-
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateForce(mvIndex worldIndex,\
    mvOptionEnum fType);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateForce_str(mvIndex worldIndex,\
    const char* fType);
+/**
+ * \ingroup mvGlobal
+ * \return A pointer to mvBaseForce instance or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvBaseForcePtr mvGetForcePtr(mvIndex worldIndex,\
 	 mvIndex index);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentForce(mvIndex worldIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A pointer to mvBaseForce instance or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvBaseForcePtr mvGetCurrentForcePtr(mvIndex worldIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentForce(mvIndex worldIndex,\
    mvIndex index);
 /**
@@ -1240,12 +1448,31 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetForceParameterv_str(mvIndex worldIndex,\
 //=============
 //mvPathway No Of Functions : 115 = 5 + 16 + 16 (37) + 12 + 32 + 32 + 2
 //=============
-
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreatePathway(mvIndex worldIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A pointer to mvPathway instance or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvPathwayPtr mvGetPathwayPtr(mvIndex worldIndex,\
 	 mvIndex index);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentPathway(mvIndex worldIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A pointer to mvPathway instance or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvPathwayPtr mvGetCurrentPathwayPtr(mvIndex worldIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentPathway(mvIndex worldIndex,\
    mvIndex index);
 /**
@@ -1362,6 +1589,10 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayParameterv_str(mvIndex worldIndex,
    mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameters);
 
 // add waypoints to paths or Pathway Node
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvAddNodeToPathway(mvIndex worldIndex,\
    mvIndex pathwayIndex, mvIndex nodeIndex);
 /**
@@ -1504,12 +1735,31 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayNodeParameterv_str(\
 //=============
 //mvGroup No Of Functions : 51 = 8 + 5 + 16 + 16 + 2 + 4
 //=============
-
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroup(mvIndex worldIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A pointer to mvGroup instance or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvGroupPtr mvGetGroupPtr(mvIndex worldIndex,\
 	 mvIndex index);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentGroup(mvIndex worldIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A pointer to mvGroup instance or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvGroupPtr mvGetCurrentGroupPtr(mvIndex worldIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentGroup(mvIndex worldIndex,\
    mvIndex index);
 /**
@@ -1660,16 +1910,39 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetOperationOnGroup(mvIndex worldIndex,
 // GROUP BEHAVIOURS
 //No Of Functions : 75 = 5 + 4 + 4 + 32 + 32
 //=============
-
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroupBehaviour(mvIndex worldIndex,\
    mvOptionEnum gbType);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroupBehaviour_str(mvIndex worldIndex,\
 	const char* gbType);
+/**
+ * \ingroup mvGlobal
+ * \return A pointer to mvGroupBehaviour instance or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvGroupBehaviourPtr mvGetGroupBehaviourPtr(\
    mvIndex worldIndex, mvIndex index);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentGroupBehaviour(mvIndex worldIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A pointer to mvGroupBehaviour instance or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvGroupBehaviourPtr mvGetCurrentGroupBehaviourPtr(\
 mvIndex worldIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvSetCurrentGroupBehaviour(mvIndex worldIndex,\
    mvIndex index);
 /**
@@ -2164,8 +2437,16 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetUserData(mvIndex worldIndex,\
  */
 MV_GLOBAL_FUNC_PREFIX void* mvGetUserData(mvIndex worldIndex,\
    mvParamEnum objectType, mvIndex objectIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A unique index or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvFindMemberInGroup(mvIndex worldIndex,
    mvIndex groupIndex, mvIndex memberIndex);
+/**
+ * \ingroup mvGlobal
+ * \return A pointer to mvEntryList instance or if error has occured, MV_NULL is returned.
+ */
 MV_GLOBAL_FUNC_PREFIX mvEntryListPtr mvGetEntryListPtr(mvIndex worldIndex,\
    mvIndex entryListIndex);
 

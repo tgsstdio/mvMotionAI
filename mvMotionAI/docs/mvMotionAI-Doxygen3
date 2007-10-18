@@ -11,9 +11,9 @@ CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = English
 BRIEF_MEMBER_DESC      = YES
 REPEAT_BRIEF           = YES
-ABBREVIATE_BRIEF       = "The $name class       " \
-                         "The $name widget       " \
-                         "The $name file       " \
+ABBREVIATE_BRIEF       = "The $name class        " \
+                         "The $name widget        " \
+                         "The $name file        " \
                          is \
                          provides \
                          specifies \
@@ -25,7 +25,7 @@ ABBREVIATE_BRIEF       = "The $name class       " \
 ALWAYS_DETAILED_SEC    = NO
 INLINE_INHERITED_MEMB  = NO
 FULL_PATH_NAMES        = YES
-STRIP_FROM_PATH        = "C:/Documents and Settings/White 2/       "
+STRIP_FROM_PATH        = "C:/Documents and Settings/White 2/        "
 STRIP_FROM_INC_PATH    = 
 SHORT_NAMES            = NO
 JAVADOC_AUTOBRIEF      = NO
@@ -80,14 +80,15 @@ WARNINGS               = YES
 WARN_IF_UNDOCUMENTED   = YES
 WARN_IF_DOC_ERROR      = YES
 WARN_NO_PARAMDOC       = NO
-WARN_FORMAT            = "$file:$line: $text       "
+WARN_FORMAT            = "$file:$line: $text        "
 WARN_LOGFILE           = 
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
 INPUT                  = D:/mvMotionAI/mvMotionAI/src \
                          D:/mvMotionAI/mvMotionAI/include/mv \
-                         D:/mvMotionAI/mvMotionAI/misc/DoxygenMainPage.cpp
+                         D:/mvMotionAI/mvMotionAI/misc/DoxygenMainPage.cpp \
+                         "D:/mvMotionAI/mvMotionAI/misc/MIT License Template.txt"
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.c \
                          *.cc \
@@ -163,7 +164,7 @@ HTML_ALIGN_MEMBERS     = YES
 GENERATE_HTMLHELP      = YES
 HTML_DYNAMIC_SECTIONS  = NO
 CHM_FILE               = ../mvMotionAI.chm
-HHC_LOCATION           = "C:/Program Files/HTML Help Workshop/hhc.exe"
+HHC_LOCATION           = "C:/Program Files/HTML Help Workshop/hhc.exe "
 GENERATE_CHI           = NO
 BINARY_TOC             = NO
 TOC_EXPAND             = NO

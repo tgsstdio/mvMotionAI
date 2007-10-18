@@ -768,6 +768,7 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld
       mvErrorEnum removeForceFromWaypoint(mvIndex waypointIndex,\
          mvIndex forceIndex);
       mvEntryListPtr getEntryListPtr(mvIndex entryListIndex) const;
+      mvErrorEnum stepBody(mvIndex bodyIndex, mvFloat timeInSecs);
 };
 
 
