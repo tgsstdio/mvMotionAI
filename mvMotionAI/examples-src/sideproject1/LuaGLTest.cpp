@@ -41,6 +41,7 @@
  * Step 1.0 : include header to use library
  */
 #include <mv/mvMotionAI.h>
+#include <mvLua/mvLua.h>
 
 static float left = -1.0;
 static float right = 1.0;
