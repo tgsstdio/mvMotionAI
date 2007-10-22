@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="sideproject1 : mvMotionAI Lua Function Interface" />
+		<Option title="sideproject1(old) : WILL NOT COMPILE" />
 		<Option pch_mode="0" />
 		<Option compiler="gcc" />
 		<Build>
@@ -22,13 +22,13 @@
 				<Option compiler="gcc" />
 				<Option projectResourceIncludeDirsRelation="1" />
 				<Compiler>
-					<Add option="-pedantic" />
 					<Add option="-Wall" />
 					<Add option="-ansi" />
 					<Add directory="include-other" />
-					<Add directory="include-other\mingw" />
 				</Compiler>
 				<Linker>
+					<Add library="lib-other\freeglut.lib" />
+					<Add library="opengl32" />
 					<Add library="mvMotionAI-mingw" />
 					<Add library="lua5.1" />
 					<Add directory="lib" />
@@ -36,7 +36,7 @@
 				</Linker>
 			</Target>
 			<Target title="unix">
-				<Option output="bin\sideproject1-ubuntu.exe" prefix_auto="1" extension_auto="1" />
+				<Option output="bin\sideproject1-ubuntu" prefix_auto="1" extension_auto="1" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option projectResourceIncludeDirsRelation="1" />
@@ -51,7 +51,7 @@
 				</Linker>
 			</Target>
 			<Target title="unix debug">
-				<Option output="bin\sideproject1-unix-debug.exe" prefix_auto="1" extension_auto="1" />
+				<Option output="bin\sideproject1-unix-debug" prefix_auto="1" extension_auto="1" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option projectResourceIncludeDirsRelation="1" />
@@ -75,16 +75,15 @@
 		</Compiler>
 		<Linker>
 			<Add directory="lib" />
+			<Add directory="lib-other" />
 		</Linker>
-		<Unit filename="examples-src\sideproject1\LuaFunc.txt" />
-		<Unit filename="examples-src\sideproject1\LuaFuncTest.cpp" />
-		<Unit filename="examples-src\sideproject1\mvLua.cpp" />
-		<Unit filename="examples-src\sideproject1\mvLua.h" />
-		<Unit filename="examples-src\sideproject1\mvLua_CFunctions.cpp" />
-		<Unit filename="examples-src\sideproject1\mvLua_CFunctions.h" />
+		<Unit filename="examples-src\Camera.cpp" />
+		<Unit filename="examples-src\Camera.h" />
+		<Unit filename="examples-src\tutorial2\GLMain.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
+			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

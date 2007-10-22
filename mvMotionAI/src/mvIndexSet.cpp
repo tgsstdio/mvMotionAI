@@ -144,14 +144,14 @@ mvErrorEnum mvUniqueSet::addIndex(mvIndex index)
       return MV_INDEX_VALUE_IS_INVALID;
    }
 
-   if (findIndex(index) == MV_NO_ERROR)
-   {
-      return MV_UNIQUE_ITEM_ALREADY_IN_LIST;
-   }
-   else
+   if (findIndex(index) == MV_NULL)
    {
       indexes.insert(index);
       return MV_NO_ERROR;
+   }
+   else
+   {
+      return MV_UNIQUE_ITEM_ALREADY_IN_LIST;
    }
 }
 

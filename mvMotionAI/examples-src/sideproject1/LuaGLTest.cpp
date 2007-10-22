@@ -151,8 +151,12 @@ int main(int argc, char** argv)
 
    int groupID = mvCreateGroup(worldID);
    std::cout << "Group ID : " << groupID <<  std::endl;
-   std::cout << mvGetErrorEnumString(mvAddMemberIntoGroup(worldID, bodyID, groupID))
-      << std::endl;
+   paramError = mvAddMemberIntoGroup(worldID, groupID, bodyID);
+   if (paramError != MV_NO_ERROR)
+   {
+      puts("ERROR 0");
+      puts(mvGetErrorEnumString(paramError));
+   }
 
    //int gbIndex = mvCreateGroupBehaviour(worldID, MV_SEEK);
 
@@ -161,17 +165,33 @@ int main(int argc, char** argv)
    int entryID = mvAddBehaviourToList(worldID,bodyID2,MV_SEEK);
    mvSetEntryListNodeParameteri(worldID,bodyID2,entryID,MV_WAYPOINT,-1);
    paramError = mvSetEntryListNodeParametero(worldID,bodyID2,entryID,MV_IS_CONFINED,MV_TRUE);
-   if (paramError != MV_NO_ERROR) puts("ERROR FOUND");
+   if (paramError != MV_NO_ERROR)
+   {
+      puts("ERROR 1");
+      puts(mvGetErrorEnumString(paramError));
+   }
    paramError = mvSetBodyParametero(worldID, bodyID2, MV_APPLY_GRAVITY, MV_FALSE);
    //paramError = mvSetBodyParameter(worldID, bodyID2, MV_DOMAIN, MV_Z_AXIS_ONLY);
-   if (paramError != MV_NO_ERROR) puts("ERROR FOUND");
+   if (paramError != MV_NO_ERROR)
+   {
+      puts("ERROR 2");
+      puts(mvGetErrorEnumString(paramError));
+   }
 
    paramError = mvSetBodyParameterf(worldID, bodyID2, MV_MAX_SPEED, 15);
    paramError = mvSetBodyParameterf(worldID, bodyID2, MV_ACCELERATION, 5);
-   if (paramError != MV_NO_ERROR) puts("ERROR FOUND");
+   if (paramError != MV_NO_ERROR)
+   {
+      puts("ERROR 3");
+      puts(mvGetErrorEnumString(paramError));
+   }
 
    paramError = mvSetWorldParametero(worldID,MV_APPLY_ALL_FORCES, MV_FALSE);
-   if (paramError != MV_NO_ERROR) puts("ERROR FOUND");
+   if (paramError != MV_NO_ERROR)
+   {
+      puts("ERROR 4");
+      puts(mvGetErrorEnumString(paramError));
+   }
 
 
    int forceID = mvCreateForce(worldID, MV_GRAVITY);
@@ -179,11 +199,22 @@ int main(int argc, char** argv)
 
 
    paramError = mvAddForceIntoWaypoint(worldID, -1, -1);
-   if (paramError != MV_NO_ERROR) puts("ERROR FOUND 2");
+   if (paramError != MV_NO_ERROR)
+   {
+      puts("ERROR 5");
+      puts(mvGetErrorEnumString(paramError));
+   }
 
-   paramError = mvAddForceIntoWaypoint(worldID, -1, -2);
-   if (paramError != MV_NO_ERROR) puts("ERROR FOUND 2");
+   paramError = mvAddForceIntoWaypoint(worldID, -2, -1);
+   if (paramError != MV_NO_ERROR)
+   {
+      puts("ERROR 6");
+      puts(mvGetErrorEnumString(paramError));
+   }
 
+   puts("ERROR 7 + ");
+   puts(mvGetErrorEnumString(MV_NO_ERROR));
+   puts(mvGetErrorEnumString(MV_BODY_INDEX_IS_INVALID));
 
    /*
    entryID = mvAddBehaviourToList(worldID, bodyID, MV_PURSUIT);
@@ -202,10 +233,6 @@ int main(int argc, char** argv)
 
 
    //entryID = mvAddBehaviourToList(worldID, bodyID, MV_PURSUIT);
-   if (entryID == MV_NULL)
-   {
-      puts("ENTRY ID");
-   }
    //mvSetEntryListNodeParameteri(worldID,bodyID2,entryID,MV_BODY,bodyID);
   // forceID = mvCreateForce(worldID,MV_UNIFORM_SHIFT);
    //std::cout << "forceID : " << forceID <<  std::endl;
@@ -227,8 +254,6 @@ const char camera_keys[] = "q|Q/w|W/e|E : move camera\nz|Z/x|X/c|c rotates camer
 
 void display(void)
 {
-   int i = 0;
-
    glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    glPushMatrix();
      worldCam.apply();
@@ -306,8 +331,6 @@ void worldFunction(mvWorldPtr tempWorld, void* entry)
  */
 void displayBody(mvBodyPtr p,void* extraPtr)
 {
-   mvOptionEnum tempShape;
-
    if (p != NULL)
    {
       glPushAttrib(GL_LIGHTING_BIT);
@@ -344,9 +367,6 @@ void displayBody(mvBodyPtr p,void* extraPtr)
  */
 void displayObstacle(mvObstaclePtr o,void* extraPtr)
 {
-   //const float offsetY = 0.5;
-   mvOptionEnum tempShape;
-
    if (o != NULL)
    {
       drawGLShape(GL_FILL, o->getShape(),
@@ -358,7 +378,7 @@ void drawGLShape(int drawMode, mvConstShapePtr shapePtr,
    const mvVec3& pos, float r, float g, float b)
 {
    mvOptionEnum tempShape;
-   mvFloat radius, length;
+   mvFloat radius;
    mvFloat aaboxDimensions[MV_VEC3_NO_OF_COMPONENTS];
    mvCount noOfDimensions;
    mvErrorEnum error;
@@ -653,154 +673,3 @@ void reshape (int w, int h)
    glLoadIdentity();
    glTranslatef (0.0, 0.0, -3.0);
 }
-
-/*
-void displayParticle(Particle* p)
-{
-   if (p != NULL)
-   {
-     glPushMatrix();
-       glPushAttrib(GL_LIGHTING_BIT);
-       glDisable(GL_LIGHTING);
-       glTranslatef(p->position.x,p->position.y,p->position.z);
-       glutWireSphere(p->radius,15,15);
-       glPopAttrib();
-     glPopMatrix();
-   }
-};
-**
-
-void displayVehicle(Vehicle* v)
-{
-  **
-  static bool firstRun = true;
-
-  if (firstRun)
-  {
-     std::cout << "Hello" << std::endl;
-     firstRun = false;
-  }
-  **
-
-  glPushMatrix();
-    if (v != NULL)
-       glTranslatef(v->position.x,v->position.y,v->position.z);
-    glPushMatrix();
-      glColor3f(1,1,1);
-      glTranslatef(0,1.5,0);
-      glRotatef(-90,0,1,0);
-      glutSolidTetrahedron();
-    glPopMatrix();
-
-    **
-     * Direction and velocity
-     *
-    glPushMatrix();
-      glTranslatef(0,1.5,0);
-      glBegin(GL_LINES);
-        glColor3f(1,0,1);
-        glVertex3f(0.1f,0,0);
-        glVertex3f(v->direction.x + 0.1f,v->direction.y,v->direction.z * 3.0f);
-
-        glColor3f(0,1,1);
-        glVertex3f(-0.1f,0,0);
-        glVertex3f(v->direction.x -0.1f,v->direction.y,3.0 * v->direction.z * v->currentSpeed/v->maxSpeed);
-      glEnd();
-    glPopMatrix();
-
-    glColor3f(1,1,0);
-    glRotatef(-90,1,0,0);
-    glutSolidCone(1.0,1.5,30,30);
-  glPopMatrix();
-}
-**
-void displayObstacle(Obstacle* o)
-{
-   const float offsetY = 0.5;
-   glPushMatrix();
-     if (o != NULL)
-        glTranslatef(o->position.x,o->position.y +  offsetY,o->position.z);
-     glColor3f(1,0,0);
-     glutSolidCube(1.0);
-   glPopMatrix();
-}
-
-void displayEndPoint(Vec3* location)
-{
-   if (location != NULL)
-   {
-     glPushMatrix();
-       glTranslatef(location->x,location->y,location->z);
-       glColor3f(1,0,1);
-       //glutSolidDodecahedron();
-       glutSolidIcosahedron();
-     glPopMatrix();
-   }
-}
-
-void displayWaypoint(Vec3* location)
-{
-   if (location != NULL)
-   {
-     glPushMatrix();
-       glTranslatef(location->x,location->y,location->z);
-       glColor3f(0,1,1);
-       //glutSolidOctahedron();
-       glutSolidOctahedron();
-     glPopMatrix();
-   }
-};
-**
-void displayPathway(Pathway *p)
-{
-   int i = 0;
-   int noOfWayPoints;
-
-   if (p != NULL)
-   {
-      noOfWayPoints = p->noOfWaypoints;
-      glPushMatrix();
-        **
-         * Draws first point
-         *
-        if (noOfWayPoints > 1)
-        {
-          displayEndPoint(p->wayPoints[i]);
-        }
-        *
-        Draws lines between points
-        *
-        glPushAttrib(GL_LIGHTING_BIT);
-          glDisable(GL_LIGHTING);
-          glBegin(GL_LINES);
-          glColor3f(1,1,1);
-          for (i = 1; i < noOfWayPoints; i++)
-          {
-            glVertex3f(p->wayPoints[i]->x,p->wayPoints[i]->y,p->wayPoints[i]->z);
-            glVertex3f(p->wayPoints[i-1]->x,p->wayPoints[i-1]->y,p->wayPoints[i-1]->z);
-          }
-          glEnd();
-        glPopAttrib();
-        **
-
-        **
-         * Draws last end  and waypoints between them
-         *
-        if (noOfWayPoints >= 2)
-        {
-          displayEndPoint(p->wayPoints[noOfWayPoints-1]);
-        }
-
-
-        if (noOfWayPoints >= 3)
-        {
-           for (i = 1; i < noOfWayPoints - 1; i++)
-           {
-             displayWaypoint(p->wayPoints[i]);
-           }
-        }
-
-      glPopMatrix();
-   }
-};
-*/

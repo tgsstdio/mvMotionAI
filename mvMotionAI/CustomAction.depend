@@ -19,14 +19,12 @@
 	<GL/gl.h>
 	<GL/glu.h>
 
-1190961544 
+1157174374 
 
 1157174374 d:\mvmotionai\mvmotionai\include-other\gl\gl.h
 
 1157174374 d:\mvmotionai\mvmotionai\include-other\gl\glu.h
 	<GL/gl.h>
-
-1157174374 
 
 1189738968 source:d:\mvmotionai\mvmotionai\examples-src\customactionglmain.cpp
 	<GL/glut.h>
@@ -54,12 +52,12 @@
 	"TimedHop.h"
 	<iostream>
 
-1190961076 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
+1192687006 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
 	<mv/mvMotionAI-Types.h>
 
 1190961076 onAI-Types.h>
 
-1190950726 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
+1192419680 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
 
 1190961544 source:d:\mvmotionai\mvmotionai\examples-src\tutorial3\timedhop.cpp
 	"TimedHop.h"
