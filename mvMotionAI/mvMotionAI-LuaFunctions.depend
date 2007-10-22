@@ -359,12 +359,12 @@
 	<math.h>
 	<unistd.h>
 
-1190961076 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
+1192687006 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
 	<mv/mvMotionAI-Types.h>
 
 1190961076 onAI-Types.h>
 
-1190950726 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
+1192419680 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
 
 1191290939 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/mvLua.cpp
 	"mvLua.h"
@@ -436,4 +436,78 @@
 
 1191293634 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/sideproject1/mvLua_CFunctions.cpp
 	"mvLua_CFunctions.h"
+
+1163568810 source:d:\mvmotionai\mvmotionai\examples-src\camera.cpp
+	"Camera.h"
+	<GL/glut.h>
+
+1158767306 d:\mvmotionai\mvmotionai\examples-src\camera.h
+
+1157174374 d:\mvmotionai\mvmotionai\include-other\gl\glut.h
+	"freeglut_std.h"
+
+1157174374 d:\mvmotionai\mvmotionai\include-other\gl\freeglut_std.h
+	<windows.h>
+	<windowsx.h>
+	<mmsystem.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1157174374 d:\mvmotionai\mvmotionai\include-other\gl\gl.h
+
+1157174374 d:\mvmotionai\mvmotionai\include-other\gl\glu.h
+	<GL/gl.h>
+
+1191306724 source:d:\mvmotionai\mvmotionai\examples-src\sideproject1\mvlua.cpp
+	"mvLua.h"
+	"mvLua_CFunctions.h"
+
+1191306724 d:\mvmotionai\mvmotionai\examples-src\sideproject1\mvlua.h
+	<mv/mvMotionAI.h>
+	<lua.hpp>
+
+1189692914 d:\mvmotionai\mvmotionai\include-other\mingw\lua.hpp
+	"lua.h"
+	"lualib.h"
+	"lauxlib.h"
+
+1189692914 d:\mvmotionai\mvmotionai\include-other\mingw\lua.h
+	<stdarg.h>
+	<stddef.h>
+	"luaconf.h"
+
+1189692914 d:\mvmotionai\mvmotionai\include-other\mingw\luaconf.h
+	<limits.h>
+	<stddef.h>
+	<unistd.h>
+	<io.h>
+	<stdio.h>
+	<stdio.h>
+	<readline/readline.h>
+	<readline/history.h>
+	<assert.h>
+	<math.h>
+	<unistd.h>
+
+1189692914 d:\mvmotionai\mvmotionai\include-other\mingw\lualib.h
+	"lua.h"
+
+1189692914 d:\mvmotionai\mvmotionai\include-other\mingw\lauxlib.h
+	<stddef.h>
+	<stdio.h>
+	"lua.h"
+
+1191306724 d:\mvmotionai\mvmotionai\examples-src\sideproject1\mvlua_cfunctions.h
+	<mv/mvMotionAI.h>
+	<lua.hpp>
+
+1191306724 source:d:\mvmotionai\mvmotionai\examples-src\sideproject1\mvlua_cfunctions.cpp
+	"mvLua_CFunctions.h"
+
+1191048274 source:d:\mvmotionai\mvmotionai\examples-src\tutorial2\glmain.cpp
+	<GL/glut.h>
+	<iostream>
+	"../Camera.h"
+	<cstdlib>
+	<mv/mvMotionAI.h>
 
