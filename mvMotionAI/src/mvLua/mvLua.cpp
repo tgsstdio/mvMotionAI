@@ -19,8 +19,8 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-#include "mvLua.h"
-#include "mvLua_CFunctions.h"
+#include <mvLua/mvLua.h>
+#include <mvLua/mvLua_CFunctions.h>
 
 // moved from mvMotionAI / decleared in mvMotionAI.h
 void mvLua_LoadLuaMotionAIFunctions(lua_State* luaVM)
