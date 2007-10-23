@@ -190,124 +190,127 @@ lua_CFunction mvLua_LuaFunctionPointers[] =
    mvLua_GetEntryListParameter,
    mvLua_RemoveAllGroupsFromGroupBehaviour,
    mvLua_FindMemberInGroup,
+   mvLua_StepBody,
 };
 
 const char* mvLua_CFuncFunctionNames[] =
 {
-   //1
-   "mvInitMotionAI",
-   "mvFreeMotionAI",
-   "mvAllWorldsStepForward",
-   "mvCreateWorld",
-   "mvDeleteAllWorlds",
-   "mvSetCurrentWorld",
-   "mvGetCurrentWorld",
-   "mvInitDefaultActions",
-   "mvInitDefaultForces",
-   "mvInitAllDefaults",
-   //2
-   "mvFreeDefaultActions",
-   "mvFreeDefaultForces",
-   "mvFreeAllDefaults",
-   "mvGetErrorEnumString",
-   "mvGetParamEnumString",
-   "mvGetOptionEnumString",
-   "mvWorldStep",
-   "mvNudgeBody",
-   "mvGetWorldParameter",
-   "mvSetWorldParameter",
-   // 3
-   "mvCreateBody",
-   "mvGetCurrentBody",
-   "mvSetCurrentBody",
-   "mvDeleteBody",
-   "mvDeleteAllBodies",
-   "mvSetBodyParameter",
-   "mvGetBodyParameter",
-   "mvAddBehaviourToList",
-   "mvRemoveBehaviourFromList",
-   "mvRemoveAllBehavioursFromList",
-   // 4
-   "mvGetCurrentEntryFromList",
-   "mvCreateObstacle",
-   "mvGetCurrentObstacle",
-   "mvSetCurrentObstacle",
-   "mvDeleteObstacle",
-   "mvDeleteAllObstacles",
-   "mvSetObstacleParameter",
-   "mvGetObstacleParameter",
-   "mvCreateWaypoint",
-   "mvGetCurrentWaypoint",
-   // 5
-   "mvSetCurrentWaypoint",
-   "mvDeleteWaypoint",
-   "mvDeleteAllWaypoints",
-   "mvSetWaypointParameter",
-   "mvGetWaypointParameter",
-   "mvAddForceIntoWaypoint",
-   "mvRemoveForceFromWaypoint",
-   "mvRemoveAllWaypointsFromForce",
-   "mvRemoveAllForcesFromWaypoint",
-   "mvCreateBehaviour",
+   // 1
+  "mvInitMotionAI",
+  "mvFreeMotionAI",
+  "mvAllWorldsStepForward",
+  "mvCreateWorld",
+  "mvDeleteAllWorlds",
+  "mvSetCurrentWorld",
+  "mvGetCurrentWorld",
+  "mvInitDefaultActions",
+  "mvInitDefaultForces",
+  "mvInitAllDefaults",
+   // 2
+  "mvFreeDefaultActions",
+  "mvFreeDefaultForces",
+  "mvFreeAllDefaults",
+  "mvGetErrorEnumString",
+  "mvGetParamEnumString",
+  "mvGetOptionEnumString",
+  "mvWorldStep",
+  "mvNudgeBody",
+  "mvGetWorldParameter",
+  "mvSetWorldParameter",
+   //3
+  "mvCreateBody",
+  "mvGetCurrentBody",
+  "mvSetCurrentBody",
+  "mvDeleteBody",
+  "mvDeleteAllBodies",
+  "mvSetBodyParameter",
+  "mvGetBodyParameter",
+  "mvAddBehaviourToList",
+  "mvRemoveBehaviourFromList",
+  "mvRemoveAllBehavioursFromList",
+   //4
+  "mvGetCurrentEntryFromList",
+  "mvCreateObstacle",
+  "mvGetCurrentObstacle",
+  "mvSetCurrentObstacle",
+  "mvDeleteObstacle",
+  "mvDeleteAllObstacles",
+  "mvSetObstacleParameter",
+  "mvGetObstacleParameter",
+  "mvCreateWaypoint",
+  "mvGetCurrentWaypoint",
+// 5
+  "mvSetCurrentWaypoint",
+  "mvDeleteWaypoint",
+  "mvDeleteAllWaypoints",
+  "mvSetWaypointParameter",
+  "mvGetWaypointParameter",
+  "mvAddForceIntoWaypoint",
+  "mvRemoveForceFromWaypoint",
+  "mvRemoveAllWaypointsFromForce",
+  "mvRemoveAllForcesFromWaypoint",
+  "mvCreateBehaviour",
 // 6
-   "mvGetCurrentBehaviour",
-   "mvSetCurrentBehaviour",
-   "mvDeleteBehaviour",
-   "mvDeleteAllBehaviours",
-   "mvSetBehaviourParameter",
-   "mvGetBehaviourParameter",
-   "mvCreateForce",
-   "mvGetCurrentForce",
-   "mvSetCurrentForce",
-   "mvDeleteForce",
+  "mvGetCurrentBehaviour",
+  "mvSetCurrentBehaviour",
+  "mvDeleteBehaviour",
+  "mvDeleteAllBehaviours",
+  "mvSetBehaviourParameter",
+  "mvGetBehaviourParameter",
+  "mvCreateForce",
+  "mvGetCurrentForce",
+  "mvSetCurrentForce",
+  "mvDeleteForce",
 // 7
-   "mvSetForceParameter",
-   "mvGetForceParameter",
-   "mvCreatePathway",
-   "mvGetCurrentPathway",
-   "mvSetCurrentPathway",
-   "mvDeletePathway",
-   "mvDeleteAllPathways",
-   "mvSetPathwayParameter",
-   "mvGetPathwayParameter",
-   "mvAddNodeToPathway",
+  "mvDeleteAllForces",
+  "mvSetForceParameter",
+  "mvGetForceParameter",
+  "mvCreatePathway",
+  "mvGetCurrentPathway",
+  "mvSetCurrentPathway",
+  "mvDeletePathway",
+  "mvDeleteAllPathways",
+  "mvSetPathwayParameter",
+  "mvGetPathwayParameter",
+  "mvAddNodeToPathway",
 //8
-   "mvRemoveNodeFromPathway",
-   "mvRemoveAllNodesFromPathway",
-   "mvGetCurrentNodeOfPathway",
-   "mvRemovePathwayNodeAt",
-   "mvSetPathwayNodeParameter",
-   "mvGetPathwayNodeParameter",
-   "mvCreateGroup",
-   "mvGetCurrentGroup",
-   "mvSetCurrentGroup",
-   "mvDeleteGroup",
+  "mvRemoveNodeFromPathway",
+  "mvRemoveAllNodesFromPathway",
+  "mvGetCurrentNodeOfPathway",
+  "mvRemovePathwayNodeAt",
+  "mvSetPathwayNodeParameter",
+  "mvGetPathwayNodeParameter",
+  "mvCreateGroup",
+  "mvGetCurrentGroup",
+  "mvSetCurrentGroup",
+  "mvDeleteGroup",
 // 9
-   "mvDeleteAllGroups",
-   "mvSetGroupParameter",
-   "mvGetGroupParameter",
-   "mvAddMemberIntoGroup",
-   "mvRemoveMemberFromGroup",
-   "mvRemoveAllMembersFromGroup",
-   "mvCreateGroupBehaviour",
-   "mvGetCurrentGroupBehaviour",
-   "mvSetCurrentGroupBehaviour",
-   "mvDeleteGroupBehaviour",
+  "mvDeleteAllGroups",
+  "mvSetGroupParameter",
+  "mvGetGroupParameter",
+  "mvAddMemberIntoGroup",
+  "mvRemoveMemberFromGroup",
+  "mvRemoveAllMembersFromGroup",
+  "mvCreateGroupBehaviour",
+  "mvGetCurrentGroupBehaviour",
+  "mvSetCurrentGroupBehaviour",
+  "mvDeleteGroupBehaviour",
 //10
-   "mvDeleteAllGroupBehaviours",
-   "mvSetMainGroupBehaviourParameter",
-   "mvGetMainGroupBehaviourParameter",
-   "mvSetGroupBehaviourParameter",
-   "mvGetGroupBehaviourParameter",
-   "mvAddGroupIntoGroupBehaviour",
-   "mvRemoveGroupFromGroupBehaviour",
-   "mvSetEntryListNodeParameter",
-   "mvGetEntryListNodeParameter",
-   "mvSetEntryListParameter",
-// 11
-   "mvGetEntryListParameter",
-   "mvRemoveAllGroupsFromGroupBehaviour",
-   "mvLua_FindMemberInGroup",
+  "mvDeleteAllGroupBehaviours",
+  "mvSetMainGroupBehaviourParameter",
+  "mvGetMainGroupBehaviourParameter",
+  "mvSetGroupBehaviourParameter",
+  "mvGetGroupBehaviourParameter",
+  "mvAddGroupIntoGroupBehaviour",
+  "mvRemoveGroupFromGroupBehaviour",
+  "mvSetEntryListNodeParameter",
+  "mvGetEntryListNodeParameter",
+  "mvSetEntryListParameter",
+   // 11
+  "mvGetEntryListParameter",
+  "mvRemoveAllGroupsFromGroupBehaviour",
+  "mvFindMemberInGroup",
+  "mvStepBody",
 };
 
 const char** mvLua_GetLuaFunctionNames()
@@ -1945,5 +1948,28 @@ int mvLua_FindMemberInGroup(lua_State* luaVM)
    returnValue = mvFindMemberInGroup(worldIndex, groupIndex, memberIndex);
 
    lua_pushnumber(luaVM, returnValue);
+   return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
+}
+
+int mvLua_StepBody(lua_State* luaVM)
+{
+   mvFloat timeInSecs;
+   mvIndex luaIndex;
+   mvIndex worldIndex, bodyIndex;
+
+   // WORLD INDEX
+   luaIndex = MV_LUA_WORLD_INDEX_VALUE;
+   worldIndex = (mvIndex) lua_tonumber(luaVM, luaIndex);
+
+   // BODY INDEX
+   luaIndex++;
+   bodyIndex = (mvIndex) lua_tonumber(luaVM,luaIndex);
+
+   // TIME IN SECS
+   luaIndex++;
+   timeInSecs = (mvFloat) lua_tonumber(luaVM,luaIndex);
+
+   mvErrorEnum error = mvStepBody(worldIndex, bodyIndex, timeInSecs);
+   lua_pushnumber(luaVM, error);
    return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
 }
