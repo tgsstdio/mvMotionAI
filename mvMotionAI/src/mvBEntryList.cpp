@@ -342,6 +342,10 @@ mvIndex mvEntryList::addNewEntry(mvOptionEnum bType,\
    if (tempNode == MV_NULL)
       return MV_NULL;
 
+   tempNode->setParameteri(MV_BODY, defaultBody);
+   tempNode->setParameteri(MV_PATHWAY, defaultPathway);
+   tempNode->setParameteri(MV_WAYPOINT, defaultWaypoint);
+
    return entryList.addItem(tempNode);
 }
 

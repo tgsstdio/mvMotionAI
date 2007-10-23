@@ -332,7 +332,7 @@ typedef class mvWorld const * const mvConstWorldPtr;
  */
 typedef class mvTimer* mvTimerPtr;
 
-#define MV_BENTRY_HEADER_FILE_H_ <mv/mvBEntry.h>
+#define MV_ENTRY_HEADER_FILE_H_ <mv/mvBEntry.h>
 /**
  * \brief mvEntry object type
  */

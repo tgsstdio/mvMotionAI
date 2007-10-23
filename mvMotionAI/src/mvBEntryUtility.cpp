@@ -280,8 +280,23 @@ mvTimerPtr mvBEntryUtility::getTimerPtr()
 mvErrorEnum mvBEntryUtility::setParameterv(mvParamEnum paramFlag,\
    mvFloat* numArray)
 {
-   // TODO: implement later
-   return MV_FUNCTION_NOT_IMPLEMENTED;
+   mvErrorEnum error;
+
+   if (numArray == MV_NULL)
+   {
+      return MV_PARAMETER_ARRAY_IS_NULL;
+   }
+
+   error = bTimer.setParameterv(paramFlag, numArray);
+   if (error == MV_INVALID_TIMER_PARAMETER)
+   {
+      //  NOT_FOUND then not 'behaviour' parameter error
+      return MV_INVALID_BEHAVIOUR_ENTRY_PARAMETER;
+   }
+   else
+   {
+      return error;
+   }
 }
 
 /** @brief set weight of behaviour

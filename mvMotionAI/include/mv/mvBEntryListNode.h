@@ -29,7 +29,7 @@
 #endif
 
 #include MV_ENUMS_HEADER_FILE_H_
-#include MV_BENTRY_HEADER_FILE_H_
+#include MV_ENTRY_HEADER_FILE_H_
 #include "mvBEntryUtility.h"
 #include MV_TIMER_HEADER_FILE_H_
 
