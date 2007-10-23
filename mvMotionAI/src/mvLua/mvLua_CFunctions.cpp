@@ -432,6 +432,7 @@ int mvLua_FreeAllDefaults(lua_State* luaVM)
    return MV_LUA_DEFAULT_NO_OF_ITEMS_RETURNED;
 }
 
+#include <iostream>
 int mvLua_GetErrorEnumString(lua_State* luaVM)
 {
    mvIndex luaIndex;
@@ -439,7 +440,7 @@ int mvLua_GetErrorEnumString(lua_State* luaVM)
 
    // ERROR CODE
    luaIndex = 1;
-   error = (mvErrorEnum) lua_isnumber(luaVM, luaIndex);
+   error = (mvErrorEnum) lua_tonumber(luaVM, luaIndex);
 
    const char* errorString = mvGetErrorEnumString(error);
    if (errorString == MV_NULL)
@@ -452,11 +453,12 @@ int mvLua_GetErrorEnumString(lua_State* luaVM)
 
 int mvLua_GetParamEnumString(lua_State* luaVM)
 {
+   mvIndex luaIndex;
    mvParamEnum param;
 
    // ERROR CODE
-   mvIndex luaIndex = 1;
-   param = (mvParamEnum) lua_isnumber(luaVM, luaIndex);
+   luaIndex = 1;
+   param = (mvParamEnum) lua_tonumber(luaVM, luaIndex);
 
    const char* paramString = mvGetParamEnumString(param);
    if (paramString == MV_NULL)
@@ -474,7 +476,7 @@ int mvLua_GetOptionEnumString(lua_State* luaVM)
    mvIndex luaIndex;
 
    luaIndex = 1;
-   option = (mvOptionEnum) lua_isnumber(luaVM, luaIndex);
+   option = (mvOptionEnum) lua_tonumber(luaVM, luaIndex);
 
    optionString = mvGetOptionEnumString(option);
    if (optionString == MV_NULL)

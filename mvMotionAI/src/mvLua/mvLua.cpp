@@ -48,7 +48,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLua_LoadScriptFileWithLuaState(lua_State* lS
    }
 
    // load all functions
-   //luaL_openlibs( lState );
+   luaL_openlibs( lState );
    mvLua_LoadLuaMotionAIFunctions(lState);
    luaError = luaL_dofile(lState, fileName);
 
