@@ -8,6 +8,7 @@
 		<Build>
 			<Target title="mingw-winXP-debug">
 				<Option output="bin\sideproject2-mingw-winXP-debug" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin" />
 				<Option object_output="obj\Debug\" />
 				<Option external_deps="lib-other\mingw\liblua5.1.a;" />
 				<Option type="1" />
@@ -32,7 +33,8 @@
 				</Linker>
 			</Target>
 			<Target title="mingw-winXP">
-				<Option output="bin\sideproject2-mingw-winXP-debug" prefix_auto="1" extension_auto="1" />
+				<Option output="bin\sideproject2-mingw-winXP" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin" />
 				<Option object_output="obj\Debug\" />
 				<Option external_deps="lib-other\mingw\liblua5.1.a;" />
 				<Option type="1" />
@@ -52,7 +54,7 @@
 					<Add library="glu32" />
 					<Add library="opengl32" />
 					<Add library="mvMotionAI-mingw" />
-					<Add library="lua5.1" />
+					<Add library="lib-other\mingw\liblua5.1.a" />
 					<Add directory="lib" />
 					<Add directory="lib-other" />
 					<Add directory="lib-other\mingw" />

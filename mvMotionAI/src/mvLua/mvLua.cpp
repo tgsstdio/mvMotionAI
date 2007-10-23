@@ -48,12 +48,14 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLua_LoadScriptFileWithLuaState(lua_State* lS
    }
 
    // load all functions
-   luaL_openlibs( lState );
+   //luaL_openlibs( lState );
    mvLua_LoadLuaMotionAIFunctions(lState);
    luaError = luaL_dofile(lState, fileName);
 
    if (luaError) // 1 is error found
    {
+      // print top error from stack
+      puts(lua_tostring(lState,-1));
       return MV_SCRIPT_MODULE_PARSING_ERROR;
    }
    else
@@ -79,9 +81,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLua_LoadScriptFile(const char* fileName)
    L = lua_open();
    if (L != NULL)
    {
-      puts("HELLO");
-      printf("%i\n",luaL_dostring(L,"print(1234)"));
-      error = mvLua_LoadScriptFileWithLuaState(L, "hello.lua");//fileName);
+      error = mvLua_LoadScriptFileWithLuaState(L,fileName);
       lua_close(L);
    }
    else
