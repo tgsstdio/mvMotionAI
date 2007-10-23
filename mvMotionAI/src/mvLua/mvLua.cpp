@@ -20,10 +20,10 @@
  * DEALINGS IN THE SOFTWARE.
  */
 #include <mvLua/mvLua.h>
-#include <mvLua/mvLua_CFunctions.h>
+#include "mvLua_CFunctions.h"
 
 // moved from mvMotionAI / decleared in mvMotionAI.h
-void mvLua_LoadLuaMotionAIFunctions(lua_State* luaVM)
+MV_GLOBAL_FUNC_PREFIX void mvLua_LoadLuaMotionAIFunctions(lua_State* luaVM)
 {
    const char** nameArray = mvLua_GetLuaFunctionNames();
    lua_CFunction* funcArray = mvLua_GetLuaFunctionPointers();
@@ -31,15 +31,16 @@ void mvLua_LoadLuaMotionAIFunctions(lua_State* luaVM)
 
    for (mvIndex i = 0; i < noOfFunctions; i++)
    {
+      //printf("i : %i = %s\n", i,nameArray[i]);
       lua_register(luaVM,nameArray[i],funcArray[i]);
    }
 }
 
 
-mvErrorEnum mvLua_LoadScriptFileWithLuaState(lua_State* lState,\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLua_LoadScriptFileWithLuaState(lua_State* lState,\
    const char* fileName)
 {
-   int luaError;
+   int luaError = 0;
 
    if (fileName == NULL)
    {
@@ -47,20 +48,8 @@ mvErrorEnum mvLua_LoadScriptFileWithLuaState(lua_State* lState,\
    }
 
    // load all functions
-   luaopen_base(lState);
-   luaopen_table(lState);
-   luaopen_string(lState);
-   luaopen_math(lState);
-   luaopen_io(lState);
-   /*
-   mvCount noOfFunctions =
-   for (int i = 0; i < mvCount mvLua_CFUNCNOOFFUNCTIONNAMES; ++i)
-   {
-      lua_register(L,ptr[counter++],mvLua_WorldStep);
-   }
-   */
+   luaL_openlibs( lState );
    mvLua_LoadLuaMotionAIFunctions(lState);
-
    luaError = luaL_dofile(lState, fileName);
 
    if (luaError) // 1 is error found
@@ -83,11 +72,21 @@ mvErrorEnum mvLua_LoadScriptFileWithLuaState(lua_State* lState,\
  * then parses & runs the file 'fileName'
  *
  */
-mvErrorEnum mvLua_LoadScriptFile(char* fileName)
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLua_LoadScriptFile(const char* fileName)
 {
+   mvErrorEnum error;
    lua_State *L = NULL;
    L = lua_open();
-   mvErrorEnum error = mvLua_LoadScriptFileWithLuaState(L, fileName);
-   lua_close(L);
+   if (L != NULL)
+   {
+      puts("HELLO");
+      printf("%i\n",luaL_dostring(L,"print(1234)"));
+      error = mvLua_LoadScriptFileWithLuaState(L, "hello.lua");//fileName);
+      lua_close(L);
+   }
+   else
+   {
+      error = MV_SCRIPT_MODULE_PTR_IS_NULL;
+   }
    return error;
 }

@@ -93,7 +93,7 @@ int main(int argc, char** argv)
    glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
    glutInitWindowSize (windowWidth, windowHeight);
    glutInitWindowPosition (100, 100);
-   glutCreateWindow ("Tutorial 2 : Integrating mvMotionAI into an OpenGL application");
+   glutCreateWindow ("sideproject 1 : Integrating mvMotionAI & OpenGL with Lua script");
 
    /*
     * Step 2 : initialise mvMotionAI library
@@ -123,122 +123,9 @@ int main(int argc, char** argv)
    {
       scriptFileName = defaultLuaFileName;
    }
-  // mvLua_LoadScriptFile(scriptFileName);
+   initError = mvLua_LoadScriptFile(scriptFileName);
+   puts(mvGetErrorEnumString(initError));
    init ();
-
-   // call mvMotionAI
-   mvErrorEnum paramError;
-   int worldID = mvCreateWorld();
-   std::cout << "worldID : " << worldID <<  std::endl;
-
-   int waypointID = mvCreateWaypoint(worldID, MV_AABOX, 7, 4 ,0);
-   float boxDims[] = {3,1,5};
-   mvSetWaypointParameterv(worldID,waypointID,MV_SHAPE_DIMENSIONS, &boxDims[0]);
-   std::cout << "waypointID  : " << waypointID <<  std::endl;
-
-   waypointID = mvCreateWaypoint(worldID, MV_SPHERE, -2, 4 ,0);
-   std::cout << "waypointID  : " << waypointID <<  std::endl;
-   waypointID = mvCreateWaypoint(worldID, MV_AABOX, -2, 4 ,0);
-   mvSetWaypointParameterv(worldID,waypointID,MV_SHAPE_DIMENSIONS, &boxDims[0]);
-
-   int obstacleID = mvCreateObstacle(worldID, MV_AABOX, MV_SOLID_OBSTACLE,5, 5, 0);
-   std::cout << "obstacleID : " << waypointID<<  std::endl;
-   obstacleID = mvCreateObstacle(worldID, MV_AABOX, MV_SOLID_OBSTACLE,3, 8, -4);
-   std::cout << "obstacleID : " << waypointID <<  std::endl;
-
-
-   int bodyID = mvCreateBody(worldID,MV_PARTICLE,MV_SPHERE, 1 , 4 , 0);
-   std::cout << "bodyID : " << bodyID <<  std::endl;
-
-   int groupID = mvCreateGroup(worldID);
-   std::cout << "Group ID : " << groupID <<  std::endl;
-   paramError = mvAddMemberIntoGroup(worldID, groupID, bodyID);
-   if (paramError != MV_NO_ERROR)
-   {
-      puts("ERROR 0");
-      puts(mvGetErrorEnumString(paramError));
-   }
-
-   //int gbIndex = mvCreateGroupBehaviour(worldID, MV_SEEK);
-
-   int bodyID2 = mvCreateBody(worldID,MV_PARTICLE,MV_AABOX, 0 , 4 , 20);
-   std::cout << "bodyID : " << bodyID2 <<  std::endl;
-   int entryID = mvAddBehaviourToList(worldID,bodyID2,MV_SEEK);
-   mvSetEntryListNodeParameteri(worldID,bodyID2,entryID,MV_WAYPOINT,-1);
-   paramError = mvSetEntryListNodeParametero(worldID,bodyID2,entryID,MV_IS_CONFINED,MV_TRUE);
-   if (paramError != MV_NO_ERROR)
-   {
-      puts("ERROR 1");
-      puts(mvGetErrorEnumString(paramError));
-   }
-   paramError = mvSetBodyParametero(worldID, bodyID2, MV_APPLY_GRAVITY, MV_FALSE);
-   //paramError = mvSetBodyParameter(worldID, bodyID2, MV_DOMAIN, MV_Z_AXIS_ONLY);
-   if (paramError != MV_NO_ERROR)
-   {
-      puts("ERROR 2");
-      puts(mvGetErrorEnumString(paramError));
-   }
-
-   paramError = mvSetBodyParameterf(worldID, bodyID2, MV_MAX_SPEED, 15);
-   paramError = mvSetBodyParameterf(worldID, bodyID2, MV_ACCELERATION, 5);
-   if (paramError != MV_NO_ERROR)
-   {
-      puts("ERROR 3");
-      puts(mvGetErrorEnumString(paramError));
-   }
-
-   paramError = mvSetWorldParametero(worldID,MV_APPLY_ALL_FORCES, MV_FALSE);
-   if (paramError != MV_NO_ERROR)
-   {
-      puts("ERROR 4");
-      puts(mvGetErrorEnumString(paramError));
-   }
-
-
-   int forceID = mvCreateForce(worldID, MV_GRAVITY);
-   std::cout << "forceID : " << forceID <<  std::endl;
-
-
-   paramError = mvAddForceIntoWaypoint(worldID, -1, -1);
-   if (paramError != MV_NO_ERROR)
-   {
-      puts("ERROR 5");
-      puts(mvGetErrorEnumString(paramError));
-   }
-
-   paramError = mvAddForceIntoWaypoint(worldID, -2, -1);
-   if (paramError != MV_NO_ERROR)
-   {
-      puts("ERROR 6");
-      puts(mvGetErrorEnumString(paramError));
-   }
-
-   puts("ERROR 7 + ");
-   puts(mvGetErrorEnumString(MV_NO_ERROR));
-   puts(mvGetErrorEnumString(MV_BODY_INDEX_IS_INVALID));
-
-   /*
-   entryID = mvAddBehaviourToList(worldID, bodyID, MV_PURSUIT);
-   mvSetEntryListNodeParameteri(worldID, bodyID, entryID, MV_BODY, bodyID2);
-   entryID = mvAddBehaviourToList(worldID, bodyID, MV_FLEE);
-   mvSetEntryListNodeParameteri(worldID, bodyID, entryID, MV_WAYPOINT, waypointID);
-   mvErrorEnum paramError = mvSetEntryListNodeParameter(worldID, bodyID,
-      entryID, MV_IS_ENABLED, MV_TRUE);
-   */
-   /*
-   if (paramError != MV_NO_ERROR)
-   {
-      puts("WEIGHT PARAMETER ERROR");
-   }
-   */
-
-
-   //entryID = mvAddBehaviourToList(worldID, bodyID, MV_PURSUIT);
-   //mvSetEntryListNodeParameteri(worldID,bodyID2,entryID,MV_BODY,bodyID);
-  // forceID = mvCreateForce(worldID,MV_UNIFORM_SHIFT);
-   //std::cout << "forceID : " << forceID <<  std::endl;
-  // forceID = mvCreateForce(worldID,MV_UNIFORM_ACCELERATION);
-   //std::cout << "forceID : " << forceID <<  std::endl;
 
    glutDisplayFunc(display);
    glutReshapeFunc(reshape);

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="mingw-winXP" />
+	<File name="examples-src\sideproject1\LuaGLTest.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="4075" topLine="135" />
+	</File>
+	<File name="include\mvLua\mvLua.h" open="0" top="0" tabpos="2">
+		<Cursor position="513" topLine="0" />
+	</File>
+	<File name="src\mvLua\mvLua.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="2067" topLine="41" />
+	</File>
+	<File name="src\mvLua\mvLua_CFunctions.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="56982" topLine="1906" />
+	</File>
+	<File name="src\mvLua\mvLua_CFunctions.h" open="0" top="0" tabpos="0">
+		<Cursor position="5483" topLine="85" />
+	</File>
+</CodeBlocks_layout_file>
