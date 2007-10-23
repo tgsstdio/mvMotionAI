@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1193033948 source:d:\mvmotionai\mvmotionai\examples-src\sideproject1\luagltest.cpp
+1193114214 source:d:\mvmotionai\mvmotionai\examples-src\sideproject1\luagltest.cpp
 	<GL/glut.h>
 	<iostream>
 	"../Camera.h"
@@ -83,7 +83,7 @@
 	<mv/mvMotionAI.h>
 	<lua.hpp>
 
-1193104780 source:d:\mvmotionai\mvmotionai\src\mvlua\mvlua.cpp
+1193113428 source:d:\mvmotionai\mvmotionai\src\mvlua\mvlua.cpp
 	<mvLua/mvLua.h>
 	"mvLua_CFunctions.h"
 

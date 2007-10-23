@@ -142,6 +142,8 @@ const char camera_keys[] = "q|Q/w|W/e|E : move camera\nz|Z/x|X/c|c rotates camer
 
 void display(void)
 {
+   int i = 0;
+
    glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    glPushMatrix();
      worldCam.apply();
@@ -219,6 +221,8 @@ void worldFunction(mvWorldPtr tempWorld, void* entry)
  */
 void displayBody(mvBodyPtr p,void* extraPtr)
 {
+   mvOptionEnum tempShape;
+
    if (p != NULL)
    {
       glPushAttrib(GL_LIGHTING_BIT);
@@ -255,6 +259,9 @@ void displayBody(mvBodyPtr p,void* extraPtr)
  */
 void displayObstacle(mvObstaclePtr o,void* extraPtr)
 {
+   //const float offsetY = 0.5;
+   mvOptionEnum tempShape;
+
    if (o != NULL)
    {
       drawGLShape(GL_FILL, o->getShape(),
@@ -266,7 +273,7 @@ void drawGLShape(int drawMode, mvConstShapePtr shapePtr,
    const mvVec3& pos, float r, float g, float b)
 {
    mvOptionEnum tempShape;
-   mvFloat radius;
+   mvFloat radius, length;
    mvFloat aaboxDimensions[MV_VEC3_NO_OF_COMPONENTS];
    mvCount noOfDimensions;
    mvErrorEnum error;
