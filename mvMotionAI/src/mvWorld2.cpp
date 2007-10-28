@@ -219,7 +219,7 @@ mvBaseForcePtr mvWorld::getForcePtr(mvIndex index)
    return forces.getClassPtr(index);
 }
 
-mvIndex mvWorld::createForce_str(const char* fType)
+mvIndex mvWorld::createForce_str(const char* fType, mvIndex saveFileIndex)
 {
    mvOptionEnum optionType;
 
@@ -235,7 +235,7 @@ mvIndex mvWorld::createForce_str(const char* fType)
   *
   * (documentation goes here)
   */
-mvIndex mvWorld::createForce(mvOptionEnum fType)
+mvIndex mvWorld::createForce(mvOptionEnum fType, mvIndex saveFileIndex)
 {
    mvBaseForcePtr temp = MV_NULL;
    mvForceCapsulePtr tempCapsule = MV_NULL;
@@ -509,7 +509,8 @@ mvGroupBehaviourPtr mvWorld::getGroupBehaviourPtr(mvIndex index)
    return groupBehaviours.getClassPtr(index);
 }
 
-mvIndex mvWorld::createGroupBehaviour_str(const char* type)
+mvIndex mvWorld::createGroupBehaviour_str(const char* type,\
+   mvIndex saveFileIndex)
 {
    mvOptionEnum optionType;
 
@@ -525,7 +526,7 @@ mvIndex mvWorld::createGroupBehaviour_str(const char* type)
   *
   * (documentation goes here)
   */
-mvIndex mvWorld::createGroupBehaviour(mvOptionEnum type)
+mvIndex mvWorld::createGroupBehaviour(mvOptionEnum type, mvIndex saveFileIndex)
 {
 
    mvBaseActionPtr temp = MV_NULL;
@@ -733,7 +734,7 @@ mvGroupPtr mvWorld::getGroupPtr(mvIndex index)
 /** @brief (one liner)
   *
   */
-mvIndex mvWorld::createGroup()
+mvIndex mvWorld::createGroup(mvIndex saveFileIndex)
 {
    mvGroupPtr temp = MV_NULL;
    mvGroupCapsulePtr tempCapsule = NULL;
@@ -929,7 +930,7 @@ mvBehaviour_V2 * mvWorld::getBehaviourPtr(mvIndex index)
    return behaviours.getClassPtr(index);
 }
 
-mvIndex mvWorld::createBehaviour_str(const char* bType)
+mvIndex mvWorld::createBehaviour_str(const char* bType, mvIndex saveFileIndex)
 {
    mvOptionEnum optionType;
 
@@ -945,7 +946,7 @@ mvIndex mvWorld::createBehaviour_str(const char* bType)
   *
   * (documentation goes here)
   */
-mvIndex mvWorld::createBehaviour(mvOptionEnum bType)
+mvIndex mvWorld::createBehaviour(mvOptionEnum bType, mvIndex saveFileIndex)
 {
    mvBaseActionPtr tempBehav = MV_NULL;
    mvNewBaseActionInfo actionInfo(bType,\
@@ -1164,7 +1165,7 @@ mvPathway * mvWorld::getPathwayPtr(mvIndex index)
   *
   * (documentation goes here)
   */
-mvIndex mvWorld::createPathway()
+mvIndex mvWorld::createPathway(mvIndex saveFileIndex)
 {
    mvPathwayPtr temp = new mvPathway();
 
@@ -1356,8 +1357,8 @@ mvWaypointPtr mvWorld::getWaypointPtr(mvIndex index)
    return waypoints.getClassPtr(index);
 }
 
-mvIndex mvWorld::createWaypoint_str(const char* wShape,mvFloat x = 0,\
-   mvFloat y = 0, mvFloat z = 0)
+mvIndex mvWorld::createWaypoint_str(const char* wShape,mvFloat x,\
+   mvFloat y, mvFloat z, mvIndex saveFileIndex)
 {
    mvOptionEnum optionShape;
 
@@ -1373,8 +1374,8 @@ mvIndex mvWorld::createWaypoint_str(const char* wShape,mvFloat x = 0,\
   *
   * (documentation goes here)
   */
-mvIndex mvWorld::createWaypoint(mvOptionEnum wShape, mvFloat x = 0,\
-   mvFloat y = 0, mvFloat z = 0)
+mvIndex mvWorld::createWaypoint(mvOptionEnum wShape, mvFloat x,\
+   mvFloat y, mvFloat z, mvIndex saveFileIndex)
 {
    mvWaypointPtr tempWaypointPtr = new mvWaypoint(wShape, x, y, z);
 
@@ -1581,7 +1582,7 @@ mvObstaclePtr mvWorld::getObstaclePtr(mvIndex index)
 }
 
 mvIndex mvWorld::createObstacle_str(const char* oType, const char* oState,\
-   mvFloat x = 0, mvFloat y = 0, mvFloat z = 0)
+   mvFloat x, mvFloat y, mvFloat z, mvIndex saveFileIndex)
 {
    mvOptionEnum optionType, optionState;
 
@@ -1603,7 +1604,7 @@ mvIndex mvWorld::createObstacle_str(const char* oType, const char* oState,\
   * (documentation goes here)
   */
 mvIndex mvWorld::createObstacle(mvOptionEnum oType, mvOptionEnum oState,\
-   mvFloat x = 0, mvFloat y = 0, mvFloat z = 0)
+   mvFloat x, mvFloat y, mvFloat z, mvIndex saveFileIndex)
 {
    mvObstaclePtr temp = new mvObstacle(oType, oState, x, y, z);
 
@@ -1804,7 +1805,7 @@ mvBodyPtr mvWorld::getBodyPtr(mvIndex index)
 }
 
 mvIndex mvWorld::createBody_str(const char* bType, const char* bShape,\
-   mvFloat x = 0, mvFloat y = 0, mvFloat z = 0)
+   mvFloat x, mvFloat y, mvFloat z, mvIndex saveFileIndex)
 {
    mvOptionEnum optionType, optionShape;
 
@@ -1827,7 +1828,7 @@ mvIndex mvWorld::createBody_str(const char* bType, const char* bShape,\
   * (documentation goes here)
   */
 mvIndex mvWorld::createBody(mvOptionEnum bType, mvOptionEnum bShape,\
-   mvFloat x = 0, mvFloat y  = 0, mvFloat z = 0)
+   mvFloat x, mvFloat y, mvFloat z, mvIndex saveFileIndex)
 {
    mvBodyPtr tempBody = new mvBody(bType, bShape,x,y,z);
    // TODO : new bodies created by body loader
@@ -2328,7 +2329,7 @@ void mvWorld::finaliseIntegrationStep(mvFloat timeInSecs)
   * (documentation goes here)
   */
 mvIndex mvWorld::addBehaviourToList(mvIndex listIndex, mvOptionEnum bType,\
-   mvIndex behaviourIndex, mvIndex groupIndex)
+   mvIndex behaviourIndex, mvIndex groupIndex, mvIndex saveFileIndex)
 {
    mvEntryListPtr tempList = entryLists.getClassPtr(listIndex);
 
@@ -2380,7 +2381,7 @@ mvIndex mvWorld::addBehaviourToList(mvIndex listIndex, mvOptionEnum bType,\
   * (documentation goes here)
   */
 mvIndex mvWorld::addBehaviourToList_str(mvIndex listIndex, const char* bType,\
-   mvIndex behaviourIndex, mvIndex groupIndex)
+   mvIndex behaviourIndex, mvIndex groupIndex, mvIndex saveFileIndex)
 {
    mvOptionEnum option;
 

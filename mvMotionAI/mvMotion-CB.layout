@@ -89,7 +89,7 @@
 		<Cursor position="1707" topLine="23" />
 	</File>
 	<File name="include\mv\mvMotionAI.h" open="0" top="0" tabpos="2">
-		<Cursor position="13477" topLine="348" />
+		<Cursor position="30643" topLine="771" />
 	</File>
 	<File name="include\mv\mvNullLoader.h" open="0" top="0" tabpos="0">
 		<Cursor position="1551" topLine="0" />
@@ -134,7 +134,7 @@
 		<Cursor position="2197" topLine="36" />
 	</File>
 	<File name="include\mv\mvWorld2.h" open="0" top="0" tabpos="3">
-		<Cursor position="38095" topLine="724" />
+		<Cursor position="36815" topLine="723" />
 	</File>
 	<File name="src\mvBEntry.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="682" topLine="54" />
@@ -206,13 +206,13 @@
 		<Cursor position="1190" topLine="6" />
 	</File>
 	<File name="src\mvMotionAI.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="40839" topLine="1392" />
+		<Cursor position="30185" topLine="1018" />
 	</File>
 	<File name="src\mvMotionAI_V2-Central.cpp" open="0" top="0" tabpos="10">
-		<Cursor position="15519" topLine="634" />
+		<Cursor position="13211" topLine="522" />
 	</File>
 	<File name="src\mvMotionAI_V2-Central.h" open="0" top="0" tabpos="0">
-		<Cursor position="6853" topLine="141" />
+		<Cursor position="5434" topLine="98" />
 	</File>
 	<File name="src\mvNullLoader.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1289" topLine="0" />
@@ -251,7 +251,7 @@
 		<Cursor position="53" topLine="0" />
 	</File>
 	<File name="src\mvWorld2.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="96541" topLine="4000" />
+		<Cursor position="56529" topLine="2357" />
 	</File>
 	<File name="src\mvWorld2_Functions.cpp" open="0" top="0" tabpos="10">
 		<Cursor position="34746" topLine="1065" />

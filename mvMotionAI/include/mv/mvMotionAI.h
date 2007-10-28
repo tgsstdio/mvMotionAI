@@ -86,7 +86,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAllWorldsStepForward(mvFloat timeInSecs);
  * \brief Creates a linked mvWorld instance
  * \return Any non zero value or if error has occured, MV_NULL(0) is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateWorld();
+MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateWorld(mvIndex saveFileIndex = MV_NULL);
 
 /**
  * \ingroup mvGlobal
@@ -645,13 +645,15 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllForcesByIndex(mvIndex worldIndex,\
  * \return A unique index or if error has occured, MV_NULL is returned.
  */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBody(mvIndex worldIndex,\
-   mvOptionEnum bType, mvOptionEnum bShape, mvFloat x, mvFloat y, mvFloat z);
+   mvOptionEnum bType, mvOptionEnum bShape, mvFloat x, mvFloat y, mvFloat z,\
+   mvIndex saveFileIndex = MV_NULL);
 /**
  * \ingroup mvGlobal
  * \return A unique index or if error has occured, MV_NULL is returned.
  */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBody_str(mvIndex worldIndex,\
-   const char* bType, const char* bShape, mvFloat x, mvFloat y, mvFloat z);
+   const char* bType, const char* bShape, mvFloat x, mvFloat y, mvFloat z,\
+   mvIndex saveFileIndex = MV_NULL);
 /**
  * \ingroup mvGlobal
  * \return A pointer to mvBody instance or if error has occured, MV_NULL is returned.
@@ -785,15 +787,14 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParameterf_str(mvIndex worldIndex,\
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParameterv_str(mvIndex worldIndex,\
-   mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameters)\
-   ;
+   mvIndex index, const char* param, mvFloat* array, mvCount* noOfParameters);
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvAddBehaviourToList(mvIndex worldIndex,\
-   mvIndex bodyIndex, mvOptionEnum bType, mvIndex behaviourIndex = MV_NULL,\
-   mvIndex groupIndex = MV_NULL);
+   mvIndex bodyIndex, mvOptionEnum bType, mvIndex behaviourIndex,\
+   mvIndex groupIndex, mvIndex saveFileIndex = MV_NULL);
 MV_GLOBAL_FUNC_PREFIX mvIndex mvAddBehaviourToList_str(mvIndex worldIndex,\
    mvIndex listIndex, const char* bType, mvIndex behaviourIndex,\
-   mvIndex groupIndex);
+   mvIndex groupIndex, mvIndex saveFileIndex = MV_NULL);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
@@ -819,13 +820,15 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentEntryFromList(mvIndex worldIndex,\
  * \return A unique index or if error has occured, MV_NULL is returned.
  */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateObstacle(mvIndex worldIndex,\
-   mvOptionEnum oShape, mvOptionEnum oState, mvFloat x, mvFloat y, mvFloat z);
+   mvOptionEnum oShape, mvOptionEnum oState, mvFloat x, mvFloat y, mvFloat z,\
+   mvIndex saveFileIndex = MV_NULL);
 /**
  * \ingroup mvGlobal
  * \return A unique index or if error has occured, MV_NULL is returned.
  */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateObstacle_str(mvIndex worldIndex,\
-   const char* oShape, const char* oState, mvFloat x, mvFloat y, mvFloat z);
+   const char* oShape, const char* oState, mvFloat x, mvFloat y, mvFloat z,\
+   mvIndex saveFileIndex = MV_NULL);
 /**
  * \ingroup mvGlobal
  * \return A pointer to mvObstacle instance or if error has occured, MV_NULL is returned.
@@ -973,13 +976,15 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetObstacleAsWorldBoundary(\
  * \return A unique index or if error has occured, MV_NULL is returned.
  */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateWaypoint(mvIndex worldIndex,\
-   mvOptionEnum wShape, mvFloat x, mvFloat y, mvFloat z);
+   mvOptionEnum wShape, mvFloat x, mvFloat y, mvFloat z,\
+   mvIndex saveFileIndex = MV_NULL);
 /**
  * \ingroup mvGlobal
  * \return A unique index or if error has occured, MV_NULL is returned.
  */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateWaypoint_str(mvIndex worldIndex,\
-   const char* wShape, mvFloat x, mvFloat y, mvFloat z);
+   const char* wShape, mvFloat x, mvFloat y, mvFloat z,\
+   mvIndex saveFileIndex = MV_NULL);
 /**
  * \ingroup mvGlobal
  * \return A pointer to mvWaypoint instance or if error has occured, MV_NULL is returned.
@@ -1150,13 +1155,13 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllForcesFromWaypoint(\
  * \return A unique index or if error has occured, MV_NULL is returned.
  */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBehaviour(mvIndex worldIndex,\
-	 mvOptionEnum bType);
+   mvOptionEnum bType, mvIndex saveFileIndex = MV_NULL);
 /**
  * \ingroup mvGlobal
  * \return A unique index or if error has occured, MV_NULL is returned.
  */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBehaviour_str(mvIndex worldIndex,\
-   const char* bType);
+   const char* bType, mvIndex saveFileIndex = MV_NULL);
 /**
  * \ingroup mvGlobal
  * \return A pointer to mvBehaviour instance or if error has occured, MV_NULL is returned.
@@ -1302,13 +1307,13 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBehaviourParameterv_str(\
  * \return A unique index or if error has occured, MV_NULL is returned.
  */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateForce(mvIndex worldIndex,\
-   mvOptionEnum fType);
+   mvOptionEnum fType, mvIndex saveFileIndex = MV_NULL);
 /**
  * \ingroup mvGlobal
  * \return A unique index or if error has occured, MV_NULL is returned.
  */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateForce_str(mvIndex worldIndex,\
-   const char* fType);
+   const char* fType, mvIndex saveFileIndex = MV_NULL);
 /**
  * \ingroup mvGlobal
  * \return A pointer to mvBaseForce instance or if error has occured, MV_NULL is returned.
@@ -1452,7 +1457,8 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetForceParameterv_str(mvIndex worldIndex,\
  * \ingroup mvGlobal
  * \return A unique index or if error has occured, MV_NULL is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvIndex mvCreatePathway(mvIndex worldIndex);
+MV_GLOBAL_FUNC_PREFIX mvIndex mvCreatePathway(mvIndex worldIndex,\
+   mvIndex saveFileIndex = MV_NULL);
 /**
  * \ingroup mvGlobal
  * \return A pointer to mvPathway instance or if error has occured, MV_NULL is returned.
@@ -1739,7 +1745,8 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayNodeParameterv_str(\
  * \ingroup mvGlobal
  * \return A unique index or if error has occured, MV_NULL is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroup(mvIndex worldIndex);
+MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroup(mvIndex worldIndex,\
+   mvIndex saveFileIndex = MV_NULL);
 /**
  * \ingroup mvGlobal
  * \return A pointer to mvGroup instance or if error has occured, MV_NULL is returned.
@@ -1915,13 +1922,13 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetOperationOnGroup(mvIndex worldIndex,
  * \return A unique index or if error has occured, MV_NULL is returned.
  */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroupBehaviour(mvIndex worldIndex,\
-   mvOptionEnum gbType);
+   mvOptionEnum gbType, mvIndex saveFileIndex = MV_NULL);
 /**
  * \ingroup mvGlobal
  * \return A unique index or if error has occured, MV_NULL is returned.
  */
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroupBehaviour_str(mvIndex worldIndex,\
-	const char* gbType);
+	const char* gbType, mvIndex saveFileIndex = MV_NULL);
 /**
  * \ingroup mvGlobal
  * \return A pointer to mvGroupBehaviour instance or if error has occured, MV_NULL is returned.

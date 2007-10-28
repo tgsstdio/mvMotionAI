@@ -98,7 +98,7 @@ bool findExistingWorld(mvWorldPtr worldPtr, void* extraPtr)
 }
 */
 
-mvIndex mvMotionAI_V2::createWorld()
+mvIndex mvMotionAI_V2::createWorld(mvIndex saveFileIndex)
 {
    mvWorldPtr temp = MV_NULL;
 
@@ -532,7 +532,7 @@ mvErrorEnum mvMotionAI_V2_ALLWORLDSSTEPFORWARD(mvFloat timeInSecs)
    return error;
 }
 
-mvIndex mvMotionAI_V2_CREATEWORLD()
+mvIndex mvMotionAI_V2_CREATEWORLD(mvIndex saveFileIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvMotionAI_V2* modulePtr = MV_NULL;
@@ -540,7 +540,7 @@ mvIndex mvMotionAI_V2_CREATEWORLD()
    if (error == MV_NO_ERROR)
    {
       modulePtr = __mv__Motion__AI__Module.getMotionAI_V2_Ptr();
-      return modulePtr->createWorld();
+      return modulePtr->createWorld(saveFileIndex);
    }
    else
    {

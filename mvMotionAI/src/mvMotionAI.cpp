@@ -41,9 +41,9 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAllWorldsStepForward(mvFloat timeInSecs)
    return mvMotionAI_V2_ALLWORLDSSTEPFORWARD(timeInSecs);
 }
 
-MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateWorld()
+MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateWorld(mvIndex saveFileIndex)
 {
-   return mvMotionAI_V2_CREATEWORLD();
+   return mvMotionAI_V2_CREATEWORLD(saveFileIndex);
 }
 
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvDeleteAllWorlds()
@@ -577,7 +577,8 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvApplyToAllForcesByIndex(mvIndex worldIndex,\
 }
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBody(mvIndex worldIndex,\
-   mvOptionEnum bType, mvOptionEnum bShape, mvFloat x, mvFloat y, mvFloat z)
+   mvOptionEnum bType, mvOptionEnum bShape, mvFloat x, mvFloat y, mvFloat z,
+   mvIndex saveFileIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -587,7 +588,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBody(mvIndex worldIndex,\
       worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
       if (worldPtr == MV_NULL)
          return MV_NULL;
-      return worldPtr->createBody(bType, bShape, x, y, z);
+      return worldPtr->createBody(bType, bShape, x, y, z, saveFileIndex);
    }
    return MV_NULL;
 }
@@ -946,7 +947,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBodyParameterv_str(mvIndex worldIndex,\
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvAddBehaviourToList(mvIndex worldIndex,\
    mvIndex bodyIndex, mvOptionEnum bType, mvIndex behaviourIndex,\
-   mvIndex groupIndex)
+   mvIndex groupIndex, mvIndex saveFileIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -957,7 +958,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvAddBehaviourToList(mvIndex worldIndex,\
       if (worldPtr == MV_NULL)
          return MV_INVALID_WORLD_INDEX;
       return worldPtr->addBehaviourToList(bodyIndex, bType, behaviourIndex,\
-         groupIndex);
+         groupIndex, saveFileIndex);
    }
    else
    {
@@ -967,7 +968,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvAddBehaviourToList(mvIndex worldIndex,\
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvAddBehaviourToList_str(mvIndex worldIndex,\
    mvIndex listIndex, const char* bType, mvIndex behaviourIndex,\
-   mvIndex groupIndex)
+   mvIndex groupIndex, mvIndex saveFileIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -978,7 +979,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvAddBehaviourToList_str(mvIndex worldIndex,\
       if (worldPtr == MV_NULL)
          return MV_NULL;
       return worldPtr->addBehaviourToList_str(listIndex, bType,
-         behaviourIndex, groupIndex);
+         behaviourIndex, groupIndex, saveFileIndex);
    }
    else
    {
@@ -1035,7 +1036,8 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvGetCurrentEntryFromList(mvIndex worldIndex,\
 }
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateObstacle(mvIndex worldIndex,\
-   mvOptionEnum oShape, mvOptionEnum oState, mvFloat x, mvFloat y, mvFloat z)
+   mvOptionEnum oShape, mvOptionEnum oState, mvFloat x, mvFloat y, mvFloat z,
+   mvIndex saveFileIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -1048,7 +1050,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateObstacle(mvIndex worldIndex,\
       {
          return MV_NULL;
       }
-      return worldPtr->createObstacle(oShape, oState, x, y, z);
+      return worldPtr->createObstacle(oShape, oState, x, y, z, saveFileIndex);
    }
    return MV_NULL;
 }
@@ -1416,7 +1418,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentObstacleAsWorldBoundary(\
 }
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateWaypoint_str(mvIndex worldIndex,\
-   const char* wShape, mvFloat x, mvFloat y, mvFloat z)
+   const char* wShape, mvFloat x, mvFloat y, mvFloat z, mvIndex saveFileIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -1427,13 +1429,13 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateWaypoint_str(mvIndex worldIndex,\
       if (worldPtr == MV_NULL)
          return MV_NULL;
 
-      return worldPtr->createWaypoint_str(wShape, x, y, z);
+      return worldPtr->createWaypoint_str(wShape, x, y, z, saveFileIndex);
    }
    return MV_NULL;
 }
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateWaypoint(mvIndex worldIndex,\
-	mvOptionEnum wShape, mvFloat x, mvFloat y, mvFloat z)
+	mvOptionEnum wShape, mvFloat x, mvFloat y, mvFloat z, mvIndex saveFileIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -1443,7 +1445,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateWaypoint(mvIndex worldIndex,\
       worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
       if (worldPtr == MV_NULL)
          return MV_NULL;
-      return worldPtr->createWaypoint(wShape, x, y, z);
+      return worldPtr->createWaypoint(wShape, x, y, z, saveFileIndex);
    }
    return MV_NULL;
 }
@@ -1802,7 +1804,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetWaypointParameterv_str(mvIndex worldIndex
 }
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBehaviour(mvIndex worldIndex,\
-	 mvOptionEnum bType)
+	 mvOptionEnum bType, mvIndex saveFileIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -1812,7 +1814,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBehaviour(mvIndex worldIndex,\
       worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
       if (worldPtr == MV_NULL)
          return MV_NULL;
-      return worldPtr->createBehaviour(bType);
+      return worldPtr->createBehaviour(bType,saveFileIndex);
    }
    return MV_NULL;
 }
@@ -2152,7 +2154,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetBehaviourParameterv_str(mvIndex worldInde
 }
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateForce(mvIndex worldIndex,\
-   mvOptionEnum fType)
+   mvOptionEnum fType, mvIndex saveFileIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -2162,7 +2164,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateForce(mvIndex worldIndex,\
       worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
       if (worldPtr == MV_NULL)
          return MV_NULL;
-      return worldPtr->createForce(fType);
+      return worldPtr->createForce(fType, saveFileIndex);
    }
    return MV_NULL;
 }
@@ -2519,7 +2521,8 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetForceParameterv_str(mvIndex worldIndex,\
    return error;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvIndex mvCreatePathway(mvIndex worldIndex)
+MV_GLOBAL_FUNC_PREFIX mvIndex mvCreatePathway(mvIndex worldIndex,\
+   mvIndex saveFileIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -2529,7 +2532,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreatePathway(mvIndex worldIndex)
       worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
       if (worldPtr == MV_NULL)
          return MV_NULL;
-      return worldPtr->createPathway();
+      return worldPtr->createPathway(saveFileIndex);
    }
    return MV_NULL;
 }
@@ -2886,7 +2889,8 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetPathwayParameterv_str(mvIndex worldIndex,
    return error;
 }
 
-MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroup(mvIndex worldIndex)
+MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroup(mvIndex worldIndex,\
+   mvIndex saveFileIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -2897,7 +2901,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroup(mvIndex worldIndex)
       if (worldPtr == MV_NULL)
          return MV_NULL;
 
-      return worldPtr->createGroup();
+      return worldPtr->createGroup(saveFileIndex);
    }
    return MV_NULL;
 }
@@ -3255,7 +3259,7 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupParameterv_str(mvIndex worldIndex,\
 }
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroupBehaviour(mvIndex worldIndex,\
-   mvOptionEnum gbType)
+   mvOptionEnum gbType, mvIndex saveFileIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -3265,7 +3269,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroupBehaviour(mvIndex worldIndex,\
       worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
       if (worldPtr == MV_NULL)
          return MV_NULL;
-      return worldPtr->createGroupBehaviour(gbType);
+      return worldPtr->createGroupBehaviour(gbType, saveFileIndex);
    }
    return MV_NULL;
 }
@@ -4836,7 +4840,8 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllForcesFromWaypoint(\
 }
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBody_str(mvIndex worldIndex,\
-   const char* bType, const char* bShape, mvFloat x, mvFloat y, mvFloat z)
+   const char* bType, const char* bShape, mvFloat x, mvFloat y, mvFloat z,
+   mvIndex saveFileIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -4849,7 +4854,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBody_str(mvIndex worldIndex,\
          return MV_NULL;
       }
 
-      return worldPtr->createBody_str(bType, bShape, x,y,z);
+      return worldPtr->createBody_str(bType, bShape, x,y,z,saveFileIndex);
    }
    else
    {
@@ -4858,7 +4863,8 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBody_str(mvIndex worldIndex,\
 }
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateObstacle_str(mvIndex worldIndex,\
-   const char* oShape, const char* oState, mvFloat x, mvFloat y, mvFloat z)
+   const char* oShape, const char* oState, mvFloat x, mvFloat y, mvFloat z,
+   mvIndex saveFileIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -4871,7 +4877,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateObstacle_str(mvIndex worldIndex,\
          return MV_NULL;
       }
 
-      return worldPtr->createObstacle_str(oShape, oShape, x,y,z);
+      return worldPtr->createObstacle_str(oShape, oShape, x,y,z,saveFileIndex);
    }
    else
    {
@@ -4880,7 +4886,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateObstacle_str(mvIndex worldIndex,\
 }
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBehaviour_str(mvIndex worldIndex,\
-   const char* bType)
+   const char* bType, mvIndex saveFileIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -4893,7 +4899,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBehaviour_str(mvIndex worldIndex,\
          return MV_NULL;
       }
 
-      return worldPtr->createBehaviour_str(bType);
+      return worldPtr->createBehaviour_str(bType,saveFileIndex);
    }
    else
    {
@@ -4902,7 +4908,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateBehaviour_str(mvIndex worldIndex,\
 }
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateForce_str(mvIndex worldIndex,\
-   const char* fType)
+   const char* fType, mvIndex saveFileIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -4915,7 +4921,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateForce_str(mvIndex worldIndex,\
          return MV_NULL;
       }
 
-      return worldPtr->createForce_str(fType);
+      return worldPtr->createForce_str(fType, saveFileIndex);
    }
    else
    {
@@ -4924,7 +4930,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateForce_str(mvIndex worldIndex,\
 }
 
 MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroupBehaviour_str(mvIndex worldIndex,\
-	const char* gbType)
+	const char* gbType,mvIndex saveFileIndex)
 {
    mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
    mvWorldPtr worldPtr = MV_NULL;
@@ -4937,7 +4943,7 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvCreateGroupBehaviour_str(mvIndex worldIndex,\
          return MV_NULL;
       }
 
-      return worldPtr->createGroupBehaviour_str(gbType);
+      return worldPtr->createGroupBehaviour_str(gbType,saveFileIndex);
    }
    else
    {

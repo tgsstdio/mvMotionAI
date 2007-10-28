@@ -121,18 +121,18 @@
 	<math.h>
 	<unistd.h>
 
-1157174374 
-
 1179636702 d:\mvmotionai\mvmotionai\include\mvenums.h
 	"mvMotionAI-Types.h"
 
-1163429576 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/Camera.cpp
+1191290939 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/Camera.cpp
+	"Camera.h"
+	<GL/glut.h>
 	"Camera.h"
 	<GL/glut.h>
 	"Camera.h"
 	<GL/glut.h>
 
-1163427377 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/Camera.h
+1191290939 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/Camera.h
 
 1163427377 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/GLMain.cpp
 	<GL/glut.h>
@@ -356,25 +356,19 @@
 1187586218 d:\mvmotionai\mvmotionai\experimental\include\mvuniformforce.h
 	"mvMotionAI-Types.h"
 
-1190961076 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
+1193548156 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
 	<mv/mvMotionAI-Types.h>
 
 1190961076 onAI-Types.h>
 
-1190950726 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
+1193123386 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
 
-1191048274 source:d:\mvmotionai\mvmotionai\examples-src\tutorial2\glmain.cpp
+1193552100 source:d:\mvmotionai\mvmotionai\examples-src\tutorial2\glmain.cpp
 	<GL/glut.h>
 	<iostream>
 	"../Camera.h"
 	<cstdlib>
 	<mv/mvMotionAI.h>
-
-1191290939 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/Camera.cpp
-	"Camera.h"
-	<GL/glut.h>
-
-1191290939 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/Camera.h
 
 1191290937 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/tutorial2/GLMain.cpp
 	<GL/glut.h>
