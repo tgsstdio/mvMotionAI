@@ -47,7 +47,7 @@ mvIndex mvMotionAI_V2_GETCURRENTWORLD();
 mvWorldPtr mvMotionAI_V2_GETCURRENTWORLDPTR();
 mvIndex mvMotionAI_V2_SETCURRENTWORLD(mvIndex index);
 mvErrorEnum mvMotionAI_V2_ALLWORLDSSTEPFORWARD(mvFloat timeInSecs);
-mvIndex mvMotionAI_V2_CREATEWORLD();
+mvIndex mvMotionAI_V2_CREATEWORLD(mvIndex saveFileIndex = MV_NULL);
 mvErrorEnum mvMotionAI_V2_DELETEALLWORLDS();
 mvWorldPtr mvMotionAI_V2_GETWORLDPTR(mvIndex index);
 mvErrorEnum mvMotionAI_V2_APPLYTOALLWORLDS(\
@@ -125,7 +125,7 @@ class mvMotionAI_V2
       mvPointerList<mvWorldPtr, mvConstWorldPtr> worlds;
 
       mvMotionAI_V2();
-      mvIndex createWorld();
+      mvIndex createWorld(mvIndex saveFileIndex = MV_NULL);
       mvCount getNoOfWorlds() const;
       mvIndex getCurrentWorld() const;
       mvWorldPtr getCurrentWorldPtr();

@@ -158,7 +158,7 @@ int main(int argc, char** argv)
 
    int bodyID2 = mvCreateBody(worldID,MV_PARTICLE,MV_AABOX, 0 , 4 , 20);
    std::cout << "bodyID : " << bodyID2 <<  std::endl;
-   int entryID = mvAddBehaviourToList(worldID,bodyID2,MV_SEEK);
+   int entryID = mvAddBehaviourToList(worldID,bodyID2,MV_SEEK, MV_NULL, MV_NULL);
    mvSetEntryListNodeParameteri(worldID,bodyID2,entryID,MV_WAYPOINT,-1);
    paramError = mvSetEntryListNodeParametero(worldID,bodyID2,entryID,MV_IS_CONFINED,MV_TRUE);
    if (paramError != MV_NO_ERROR) puts("ERROR FOUND");

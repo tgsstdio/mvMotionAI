@@ -162,9 +162,9 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld
 
       // body functions
       mvIndex createBody(mvOptionEnum bType, mvOptionEnum bShape,\
-         mvFloat x, mvFloat y, mvFloat z);
+         mvFloat x, mvFloat y, mvFloat z, mvIndex saveFileIndex = MV_NULL);
       mvIndex createBody_str(const char* bType, const char* bShape,\
-         mvFloat x, mvFloat y, mvFloat z);
+         mvFloat x, mvFloat y, mvFloat z, mvIndex saveFileIndex = MV_NULL);
       mvBodyPtr getBodyPtr(mvIndex index);
       mvBodyPtr getCurrentBodyPtr();
       mvIndex setCurrentBody(mvIndex index);
@@ -213,9 +213,9 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld
 
       // obstacle functions
       mvIndex createObstacle(mvOptionEnum oType, mvOptionEnum oState,\
-         mvFloat x, mvFloat y, mvFloat z);
+         mvFloat x, mvFloat y, mvFloat z, mvIndex saveFileIndex = MV_NULL);
       mvIndex createObstacle_str(const char* oType, const char* oState,\
-         mvFloat x, mvFloat y, mvFloat z);
+         mvFloat x, mvFloat y, mvFloat z, mvIndex saveFileIndex = MV_NULL);
       mvObstaclePtr getObstaclePtr(mvIndex index);
       mvObstaclePtr getCurrentObstaclePtr();
       mvIndex setCurrentObstacle(mvIndex index);
@@ -264,9 +264,9 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld
 
       // Waypoint functions
       mvIndex createWaypoint(mvOptionEnum wShape,mvFloat x,\
-         mvFloat y, mvFloat z);
+         mvFloat y, mvFloat z, mvIndex saveFileIndex = MV_NULL);
       mvIndex createWaypoint_str(const char* wShape,mvFloat x,\
-         mvFloat y, mvFloat z);
+         mvFloat y, mvFloat z, mvIndex saveFileIndex = MV_NULL);
       mvWaypointPtr getWaypointPtr(mvIndex index);
       mvWaypointPtr getCurrentWaypointPtr();
       mvIndex setCurrentWaypoint(mvIndex index);
@@ -314,7 +314,7 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld
          mvFloat* array, mvCount* noOfParameters) const;
 
       // Pathway functions
-      mvIndex createPathway();
+      mvIndex createPathway(mvIndex saveFileIndex = MV_NULL);
       mvPathwayPtr getPathwayPtr(mvIndex index);
       mvPathwayPtr getCurrentPathwayPtr();
       mvIndex setCurrentPathway(mvIndex index);
@@ -362,8 +362,10 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld
          mvFloat* array, mvCount* noOfParameters) const;
 
       // Behaviour functions
-      mvIndex createBehaviour(mvOptionEnum bType);
-      mvIndex createBehaviour_str(const char* bType);
+      mvIndex createBehaviour(mvOptionEnum bType,\
+         mvIndex saveFileIndex = MV_NULL);
+      mvIndex createBehaviour_str(const char* bType,\
+         mvIndex saveFileIndex = MV_NULL);
       mvBehaviourPtr getBehaviourPtr(mvIndex index);
       mvBehaviourPtr getCurrentBehaviourPtr();
       mvIndex setCurrentBehaviour(mvIndex index);
@@ -411,7 +413,7 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld
          mvFloat* array, mvCount* noOfParameters) const;
 
       // Group functions
-      mvIndex createGroup();
+      mvIndex createGroup(mvIndex saveFileIndex = MV_NULL);
       mvGroupPtr getGroupPtr(mvIndex index);
       mvGroupPtr getCurrentGroupPtr();
       mvIndex setCurrentGroup(mvIndex index);
@@ -459,8 +461,10 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld
          mvFloat* array, mvCount* noOfParameters) const;
 
       // GroupBehaviour functions
-      mvIndex createGroupBehaviour(mvOptionEnum type);
-      mvIndex createGroupBehaviour_str(const char* type);
+      mvIndex createGroupBehaviour(mvOptionEnum type,\
+         mvIndex saveFileIndex = MV_NULL);
+      mvIndex createGroupBehaviour_str(const char* type,\
+         mvIndex saveFileIndex = MV_NULL);
       mvGroupBehaviourPtr getGroupBehaviourPtr(mvIndex index);
       mvGroupBehaviourPtr getCurrentGroupBehaviourPtr();
       mvIndex setCurrentGroupBehaviour(mvIndex index);
@@ -510,8 +514,10 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld
          mvCount* noOfParameters) const;
 
       // Force functions
-      mvIndex createForce(mvOptionEnum fType);
-      mvIndex createForce_str(const char* fType);
+      mvIndex createForce(mvOptionEnum fType,\
+         mvIndex saveFileIndex = MV_NULL);
+      mvIndex createForce_str(const char* fType,\
+         mvIndex saveFileIndex = MV_NULL);
       mvBaseForcePtr getForcePtr(mvIndex index);
       mvBaseForcePtr getCurrentForcePtr();
       mvIndex setCurrentForce(mvIndex index);
@@ -734,9 +740,11 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld
 
 
       mvIndex addBehaviourToList(mvIndex listIndex, mvOptionEnum bType,\
-         mvIndex behaviourIndex, mvIndex groupIndex);
+         mvIndex behaviourIndex, mvIndex groupIndex,\
+         mvIndex saveFileIndex = MV_NULL);
       mvIndex addBehaviourToList_str(mvIndex listIndex, const char* bType,\
-         mvIndex behaviourIndex, mvIndex groupIndex);
+         mvIndex behaviourIndex, mvIndex groupIndex,\
+         mvIndex saveFileIndex = MV_NULL);
       mvErrorEnum removeBehaviourFromList(mvIndex listIndex, mvIndex entryIndex);
       mvErrorEnum removeAllBehavioursFromList(mvIndex listIndex);
       mvIndex getCurrentEntryFromList(mvIndex listIndex) const;

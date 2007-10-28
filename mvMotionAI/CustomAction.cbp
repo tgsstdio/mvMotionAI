@@ -6,22 +6,20 @@
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="mingw-winXP-debug">
-				<Option output="bin\tutorial3-winXP-debug" prefix_auto="1" extension_auto="1" />
+			<Target title="default">
+				<Option output="bin\tutorial3" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj\Debug\" />
-				<Option external_deps="lib\libmvMotionAI-mingw-debug.a;" />
+				<Option external_deps="lib\libmvMotionAI.a;" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="include" />
-					<Add directory="include-other" />
 				</Compiler>
 				<Linker>
 					<Add library="freeglut-debug" />
 					<Add library="opengl32" />
 					<Add library="glu32" />
-					<Add library="mvMotionAI-mingw-debug" />
+					<Add library="mvMotionAI" />
 				</Linker>
 			</Target>
 			<Target title="mingw-winXP">
@@ -46,6 +44,24 @@
 					<Add library="opengl32" />
 					<Add library="glu32" />
 					<Add library="lib\libmvMotionAI-mingw.a" />
+				</Linker>
+			</Target>
+			<Target title="mingw-winXP-debug">
+				<Option output="bin\tutorial3-winXP-debug" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option external_deps="lib\libmvMotionAI-mingw-debug.a;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+					<Add directory="include-other" />
+				</Compiler>
+				<Linker>
+					<Add library="freeglut-debug" />
+					<Add library="opengl32" />
+					<Add library="glu32" />
+					<Add library="mvMotionAI-mingw-debug" />
 				</Linker>
 			</Target>
 			<Target title="mingw-winXP-dll">
@@ -97,30 +113,6 @@
 					<Add library="bin\libmvMotionAI-mingw-dll-debug.a" />
 				</Linker>
 			</Target>
-			<Target title="unix debug">
-				<Option output="bin\tutorial3-unix-debug" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Release\" />
-				<Option external_deps="bin\libmvMotionAI-mingw-dl-debugl.a;bin\libmvMotionAI-mingw-dll-debug.def;" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-fexpensive-optimizations" />
-					<Add option="-Os" />
-					<Add option="-O3" />
-					<Add option="-O2" />
-					<Add option="-O1" />
-					<Add option="-O" />
-					<Add option="-g" />
-					<Add directory="\usr\include" />
-				</Compiler>
-				<Linker>
-					<Add option="-s" />
-					<Add library="glut" />
-					<Add library="GLU" />
-					<Add library="GL" />
-					<Add library="mvMotionAI-unix-debug" />
-				</Linker>
-			</Target>
 			<Target title="unix">
 				<Option output="bin\tutorial3-unix" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj\Release\" />
@@ -144,20 +136,28 @@
 					<Add library="mvMotionAI-unix" />
 				</Linker>
 			</Target>
-			<Target title="default">
-				<Option output="bin\tutorial3" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Debug\" />
-				<Option external_deps="lib\libmvMotionAI.a;" />
+			<Target title="unix debug">
+				<Option output="bin\tutorial3-unix-debug" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option external_deps="bin\libmvMotionAI-mingw-dl-debugl.a;bin\libmvMotionAI-mingw-dll-debug.def;" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-Os" />
+					<Add option="-O3" />
+					<Add option="-O2" />
+					<Add option="-O1" />
+					<Add option="-O" />
 					<Add option="-g" />
+					<Add directory="\usr\include" />
 				</Compiler>
 				<Linker>
-					<Add library="freeglut-debug" />
-					<Add library="opengl32" />
-					<Add library="glu32" />
-					<Add library="mvMotionAI" />
+					<Add option="-s" />
+					<Add library="glut" />
+					<Add library="GLU" />
+					<Add library="GL" />
+					<Add library="mvMotionAI-unix-debug" />
 				</Linker>
 			</Target>
 		</Build>

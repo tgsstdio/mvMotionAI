@@ -18,22 +18,6 @@
 					<Add directory="experimental\include" />
 				</Compiler>
 			</Target>
-			<Target title="unix">
-				<Option output="lib\libmvMotionAI-unix" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="" />
-				<Option type="2" />
-				<Option compiler="gcc" />
-				<Option createDefFile="1" />
-				<Compiler>
-					<Add option="-Os" />
-					<Add option="-O3" />
-					<Add option="-O2" />
-					<Add option="-O1" />
-					<Add option="-O" />
-					<Add option="-W" />
-					<Add option="-Wall" />
-				</Compiler>
-			</Target>
 			<Target title="mingw-winXP">
 				<Option output="lib\libmvMotionAI-mingw" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
@@ -96,23 +80,6 @@
 					<Add option="-s" />
 				</Linker>
 			</Target>
-			<Target title="unix debug">
-				<Option output="lib\libmvMotionAI-unix-debug" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="" />
-				<Option type="2" />
-				<Option compiler="gcc" />
-				<Option createDefFile="1" />
-				<Compiler>
-					<Add option="-Os" />
-					<Add option="-O3" />
-					<Add option="-O2" />
-					<Add option="-O1" />
-					<Add option="-O" />
-					<Add option="-W" />
-					<Add option="-Wall" />
-					<Add option="-g" />
-				</Compiler>
-			</Target>
 			<Target title="mingw-winXP-dll-debug">
 				<Option output="bin\mvMotionAI-mingw-dll-debug" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="lib" />
@@ -136,6 +103,39 @@
 				<Linker>
 					<Add option="-s" />
 				</Linker>
+			</Target>
+			<Target title="unix">
+				<Option output="lib\libmvMotionAI-unix" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-Os" />
+					<Add option="-O3" />
+					<Add option="-O2" />
+					<Add option="-O1" />
+					<Add option="-O" />
+					<Add option="-W" />
+					<Add option="-Wall" />
+				</Compiler>
+			</Target>
+			<Target title="unix debug">
+				<Option output="lib\libmvMotionAI-unix-debug" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-Os" />
+					<Add option="-O3" />
+					<Add option="-O2" />
+					<Add option="-O1" />
+					<Add option="-O" />
+					<Add option="-W" />
+					<Add option="-Wall" />
+					<Add option="-g" />
+				</Compiler>
 			</Target>
 		</Build>
 		<VirtualTargets>

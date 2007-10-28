@@ -1,7 +1,10 @@
 /**
  * \file GLMain.cpp
- * \brief tutorial2 : using a OpenGL (GLUT) application with mvMotionAI library
- * GLUT Template with mvMotionAI library
+ * \brief sideproject1 : using OpenGL, mvMotionAI via Lua scripting interface
+ *
+ * To use the Lua interface, compile the application with the mvLua.cpp &
+ * mvLua_CFunctions.cpp. The lua interface functions are located in the
+ * <mvLua/mvLua.h> header file in the include directory.
  *
  * Copyright (c) 2005 - 2006 David Young.
  *
@@ -23,13 +26,6 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  *
- * Log
- *
- * 00-01-21    25/11/06
- * - updated file duer to function name change
- *
- * 00-01-16    17/10/06
- * - mvEnums enumerations changed to mvOptionEnum
  */
 
 #include <GL/glut.h>
@@ -41,6 +37,10 @@
  * Step 1.0 : include header to use library
  */
 #include <mv/mvMotionAI.h>
+
+/*
+ * Step 1.5 : include header to the Lua scripting interface
+ */
 #include <mvLua/mvLua.h>
 
 static float left = -1.0;
@@ -221,8 +221,6 @@ void worldFunction(mvWorldPtr tempWorld, void* entry)
  */
 void displayBody(mvBodyPtr p,void* extraPtr)
 {
-   mvOptionEnum tempShape;
-
    if (p != NULL)
    {
       glPushAttrib(GL_LIGHTING_BIT);
@@ -249,7 +247,6 @@ void displayBody(mvBodyPtr p,void* extraPtr)
       glPopAttrib();
 
       drawGLShape(GL_FILL, p->getShape(),p->getPosition(), 1, 1, 1);
-
    }
 }
 
@@ -399,13 +396,6 @@ void displayFrameRate(long int frameNo)
     tpfCurrent = 1000.0/frameRateInterval;
     std::cout << "TPF : " << tpfCurrent << " +/- " << tpfCurrent - tpfPrevious <<std::endl;
     tpfPrevious = tpfCurrent;
-    noOfSeconds++;
-    /*
-    if (noOfSeconds > 10)
-    {
-      exit(0);
-    }
-    */
   }
 }
 

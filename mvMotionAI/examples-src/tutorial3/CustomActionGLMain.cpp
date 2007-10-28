@@ -128,7 +128,7 @@ int main(int argc, char** argv)
    std::cout << "worldID : " << worldID <<  std::endl;
 
    int bodyID2 = mvCreateBody(worldID,MV_PARTICLE,MV_SPHERE, 0 , 4 , 4);
-   int entryID = mvAddBehaviourToList(worldID,bodyID2,MV_NON_BODY_TYPE);
+   int entryID = mvAddBehaviourToList(worldID,bodyID2,MV_NON_BODY_TYPE, MV_NULL, MV_NULL);
    if (entryID == MV_NULL)
    {
       puts("MV INIT ENTRY ERROR");
