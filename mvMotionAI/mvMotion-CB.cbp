@@ -164,6 +164,7 @@
 		<Unit filename="include\mv\mvFactoryFunctionList.h" />
 		<Unit filename="include\mv\mvFactoryFunctionList.hpp" />
 		<Unit filename="include\mv\mvFlee.h" />
+		<Unit filename="include\mv\mvFollowPath.h" />
 		<Unit filename="include\mv\mvForceCapsule.h" />
 		<Unit filename="include\mv\mvForceLoaderList.h" />
 		<Unit filename="include\mv\mvForceResult.h" />
@@ -205,6 +206,7 @@
 		<Unit filename="src\mvBody_V2.cpp" />
 		<Unit filename="src\mvEnums.cpp" />
 		<Unit filename="src\mvFlee.cpp" />
+		<Unit filename="src\mvFollowPath.cpp" />
 		<Unit filename="src\mvForceCapsule.cpp" />
 		<Unit filename="src\mvForceResult.cpp" />
 		<Unit filename="src\mvGravityForce.cpp" />

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-winXP-dll" />
+	<File name="bin\FollowPath.lua" open="0" top="0" tabpos="0">
+		<Cursor position="568" topLine="0" />
+	</File>
 	<File name="examples-src\sideproject1\LuaGLTest.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="8278" topLine="250" />
+		<Cursor position="5485" topLine="85" />
 	</File>
 	<File name="include\mvLua\mvLua.h" open="0" top="0" tabpos="2">
 		<Cursor position="513" topLine="0" />
