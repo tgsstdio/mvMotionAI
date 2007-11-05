@@ -181,7 +181,7 @@ void display(void)
     */
 
    animateFlag = (isAnimating) ? yes_animation : no_animation;
-   sprintf(buffer,"tutorial2, 2007\nFrame Rate : %3.3f fps\n%s\n%s\n",frameRateInterval,animateFlag,camera_keys);
+   sprintf(buffer,"sideproject1, 2007\nFrame Rate : %3.3f fps\n%s\n%s\n",frameRateInterval,animateFlag,camera_keys);
 
    drawText(5, windowHeight - 13, buffer ,windowWidth,windowHeight, 1.0, 1.0, 1.0);
    glFlush();

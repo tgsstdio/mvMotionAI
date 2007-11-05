@@ -950,7 +950,7 @@ mvIndex mvPointerList<mvClass,mvConstClass>::findItemInList(\
       {
          return count;
       }
-      ++count;
+      count++;
    }
    // if failed
    return MV_NULL;
@@ -980,7 +980,7 @@ mvIndex mvPointerList<mvClass,mvConstClass>::findItemInReverseInList(\
       {
          return count;
       }
-      ++count;
+      count--;
    }
    // if failed
    return MV_NULL;

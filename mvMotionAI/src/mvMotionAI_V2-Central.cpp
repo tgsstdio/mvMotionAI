@@ -9,6 +9,7 @@
 #include <mv/mvSeek.h>
 #include <mv/mvPursuit.h>
 #include <mv/mvFlee.h>
+#include <mv/mvFollowPath.h>
 
 /**
  * default forces
@@ -279,7 +280,7 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(mvActionLoaderListPtr
       return error;
    }
 
-   // enum 6 seek
+   // enum 6 flee
    tempLoader = MV_NULL;
    tempLoader = new mvCreateFlees();
    // check for memory errors
@@ -288,6 +289,22 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(mvActionLoaderListPtr
       return MV_INVALID_MEMORY_ALLOCATION;
    }
    error = loader->addFactoryFunction(MV_FLEE,\
+      tempLoader);
+   if (error != MV_NO_ERROR)
+   {
+      delete tempLoader;
+      return error;
+   }
+
+   // enum 6 path follow
+   tempLoader = MV_NULL;
+   tempLoader = new mvCreatePathFollower();
+   // check for memory errors
+   if (tempLoader == MV_NULL)
+   {
+      return MV_INVALID_MEMORY_ALLOCATION;
+   }
+   error = loader->addFactoryFunction(MV_FOLLOW_PATH,\
       tempLoader);
    if (error != MV_NO_ERROR)
    {

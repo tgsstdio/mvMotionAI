@@ -45,11 +45,15 @@ class MV_GLOBAL_FUNC_PREFIX mvPathwayNode
 {
    private:
       mvIndex nodeIndex;
+      mvIndex pathwayIndex;
       mvVec3* additionalPoints;
    public:
       mvPathwayNode(mvIndex pwNodeIndex);
       ~mvPathwayNode();
       mvIndex getNodeIndex() const;
+      mvIndex getPathwayIndex() const;
+      void setPathwayIndex(mvIndex pNode);
+
       mvErrorEnum getParameteri(mvParamEnum paramFlag, mvIndex* index) const;
       mvErrorEnum getParametero(mvParamEnum paramFlag, mvOptionEnum* option)\
          const;
@@ -84,6 +88,10 @@ class MV_GLOBAL_FUNC_PREFIX mvPathway
       mvErrorEnum removeFirstNodeInstance(mvIndex index);
       mvCount getNoOfNodes() const;
       mvIndex setCurrentNode(mvIndex nIndex);
+
+      mvIndex getNextNode(mvIndex currentIndex) const;
+      mvIndex getPrevNode(mvIndex currentIndex) const;
+      mvConstPathwayNodePtr getNodePtr(mvIndex nodeIndex) const;
 
       mvIndex getCurrentNode() const;
 

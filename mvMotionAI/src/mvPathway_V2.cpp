@@ -29,6 +29,7 @@ bool findNodeByIndexValue(mvPathwayNodePtr* nodePtr, void* extraPtr);
 mvPathwayNode::mvPathwayNode(mvIndex pwNodeIndex)
 {
    nodeIndex = pwNodeIndex;
+   pathwayIndex = MV_NULL;
    additionalPoints = MV_NULL;
 }
 
@@ -43,6 +44,16 @@ mvPathwayNode::~mvPathwayNode()
 mvIndex mvPathwayNode::getNodeIndex() const
 {
    return nodeIndex;
+}
+
+mvIndex mvPathwayNode::getPathwayIndex() const
+{
+   return pathwayIndex;
+}
+
+void mvPathwayNode::setPathwayIndex(mvIndex pNode)
+{
+   pathwayIndex = pNode;
 }
 
 mvErrorEnum mvPathwayNode::getParameteri(mvParamEnum paramFlag,\
@@ -149,6 +160,8 @@ mvPathway::mvPathway()
  */
 mvIndex mvPathway::addNode(mvIndex pWaypoint)
 {
+   mvIndex pathwayIndex;
+
    // null index not allowed
    if (pWaypoint == MV_NULL)
       return MV_NULL;
@@ -158,7 +171,9 @@ mvIndex mvPathway::addNode(mvIndex pWaypoint)
    if (tempNode == MV_NULL)
       return MV_NULL;
 
-   return nodes.addItem(tempNode);
+   pathwayIndex = nodes.addItem(tempNode);
+   tempNode->setPathwayIndex(pathwayIndex);
+   return pathwayIndex;
 }
 
 /** \brief blah
@@ -549,4 +564,49 @@ mvErrorEnum mvPathway::setNodeParameterv_str(mvIndex nodeIndex,\
 mvErrorEnum mvPathway::removeNodeAt(mvIndex nodeIndex)
 {
    return nodes.deleteItem(nodeIndex);
+}
+
+#include <iostream>
+
+bool mvPathway_GetNextNode(mvPathwayNodePtr node, void* extraPtr)
+{
+   mvIndex currentNode = *((mvIndex*) extraPtr);
+
+   if (currentNode == MV_NULL)
+   {
+      return true;
+   }
+
+   return (node->getPathwayIndex() > currentNode);
+}
+
+bool mvPathway_GetPrevNode(mvPathwayNodePtr node, void* extraPtr)
+{
+   mvIndex currentNode = *((mvIndex*) extraPtr);
+
+   if (currentNode == MV_NULL)
+   {
+      return true;
+   }
+
+   return (node->getPathwayIndex() < currentNode);
+}
+
+mvIndex mvPathway::getNextNode(mvIndex currentIndex) const
+{
+   mvIndex pastNode = nodes.convertIndex(currentIndex);
+
+   return nodes.findItemInList(mvPathway_GetNextNode,&pastNode);
+}
+
+mvIndex mvPathway::getPrevNode(mvIndex currentIndex) const
+{
+   mvIndex pastNode = nodes.convertIndex(currentIndex);
+
+   return nodes.findItemInReverseInList(mvPathway_GetPrevNode, &pastNode);
+}
+
+mvConstPathwayNodePtr mvPathway::getNodePtr(mvIndex nodeIndex) const
+{
+   return nodes.getConstClassPtr(nodeIndex);
 }
