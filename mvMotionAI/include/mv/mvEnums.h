@@ -37,10 +37,7 @@
 enum mvOptionEnum
 {
    MV_FALSE = 0, /*!< false or zero */
-   MV_TRUE, /*!< true or non zero : NOTE in boolean situation,
-      any error code other than MV_FALSE is true */
-
-   // BEHAVIOURS
+   MV_TRUE, /*!< true or non zero : NOTE in boolean situation,  any error code other than MV_FALSE is true */
    MV_SEEK,
    MV_CLONE,
    MV_FLEE,
@@ -48,42 +45,29 @@ enum mvOptionEnum
    MV_PURSUIT,
    MV_EVASION,
    MV_SIMPLE_FLOCK,
-   // TODO : unify all group behaviorus objects
    MV_GROUP_BEHAVIOUR_MEMBER_ENTRY, /*!< RESERVED for internal use*/
    MV_EXISTING_GROUP_BEHAVIOUR, /*!< RESERVED for internal use*/
    MV_EXISTING_BEHAVIOUR, /*!< RESERVED for internal use*/
    MV_NON_GROUP_BEHAVIOUR_TYPE,
    MV_NON_BEHAVIOUR_TYPE,
-
-   // BODY types
    MV_PARTICLE,
    MV_VEHICLE,
    MV_DUAL_BODY,
    MV_NON_BODY_TYPE,
-
-   // obstacle type
    MV_SOLID_OBSTACLE,
    MV_LIQUID_OBSTACLE,
    MV_AIR_OBSTACLE,
    MV_NON_OBSTACLE_TYPE,
-
-   // shapes
    MV_AABOX,
    MV_SPHERE,
    MV_X_AXIS_AA_CYLINDER,
    MV_Y_AXIS_AA_CYLINDER,
    MV_Z_AXIS_AA_CYLINDER,
-   // new enumerations
    MV_NON_SHAPE,
-
-   // waypoints types
    MV_NURB_WAYPOINT,
    MV_SINGLE_WAYPOINT,
    MV_GROUP_WAYPOINT,
    MV_NON_WAYPOINT_TYPE,
-
-   //STATE
-   // force types
    MV_DIRECTION_FORCE_TO_POINT,
    MV_DIRECTION_SHIFT_TO_POINT,
    MV_DRAG_ACCELERATION,
@@ -97,8 +81,6 @@ enum mvOptionEnum
    MV_UNIFORM_FORCE,
    MV_UNIFORM_SHIFT,
    MV_NON_FORCE_TYPE,
-
-   // DOMAINS
    MV_FULL_3D, //< default
    MV_XY_PLANE, // used in shapes
    MV_XZ_PLANE, // used in shapes
@@ -109,8 +91,6 @@ enum mvOptionEnum
    MV_ANY_PLANE, // used in shapes
    MV_ANY_LINE,
    MV_NO_DOMAIN_APPLIED,
-
-   // integration mode
    MV_WEIGHTED,
    MV_XOR,
    MV_PRORITIZED_DITHERING,
@@ -118,9 +98,7 @@ enum mvOptionEnum
    MV_RANDOMIZED_WEIGHTED,
    MV_LIST_TREE,
    MV_NON_BEHAVIOUR_ENTRY_MODE,
-
    MV_NON_OPTION_ENUM, // default failed enum value : do not use
-
    MV_NO_OF_OPTION_ENUMS
 };
 // TODO : reimplement param strings
@@ -135,12 +113,10 @@ enum mvParamEnum
    MV_ACCELERATION,
    MV_DECELERATION,
    MV_MASS,
-   //MV_STATE,
    MV_SHAPE,
    MV_TYPE,
    MV_DOMAIN,
    MV_FORCE_VECTOR,
-
    MV_VELOCITY,
    MV_ACCELERATION_VECTOR,
    MV_FORCE_QUANTITY,
@@ -160,7 +136,6 @@ enum mvParamEnum
    MV_COHESION_FACTOR,
    MV_SEPARATION_FACTOR,
    MV_ALIGNMENT_FACTOR,
-   // new enums
    MV_SHAPE_DIMENSIONS,
    MV_NO_OF_SHAPE_DIMENSIONS,
    MV_IS_ENABLED,
@@ -176,7 +151,6 @@ enum mvParamEnum
    MV_NO_OF_PATHWAYS,
    MV_WIDTH,
    MV_DEPTH,
-   // new enums behaviour list
    MV_MODE,
    MV_CURRENT_INDEX,
    MV_WEIGHT,
@@ -185,15 +159,11 @@ enum mvParamEnum
    MV_FINAL_DIRECTION,
    MV_PLANE_NORMAL,
    MV_LINE_VECTOR,
-
-   // for body's domain
    MV_DOMAIN_NORMAL,
    MV_ELAPSED_TIME,
    MV_PERIOD,
    MV_IS_TIMED,
    MV_INDEX,
-
-   // tree movement functions
    MV_NEW_NODE,
    MV_NEW_LEVEL,
    MV_NEXT_NODE,
@@ -204,8 +174,6 @@ enum mvParamEnum
    MV_GROUP,
    MV_AUTO_CONVERT_INDEX,
    MV_RIGHT_HANDED,
-
-   // body boolean flags
    MV_APPLY_FORCES,
    MV_APPLY_SHIFTS,
    MV_APPLY_ACCELERATIONS,
@@ -214,7 +182,6 @@ enum mvParamEnum
    MV_APPLY_ALL_FORCES,
    MV_APPLY_ALL_DRAG_FORCES,
    MV_FACE_DIRECTION,
-
    MV_OBSTACLE,
    MV_GROUP_BEHAVIOUR,
    MV_BEHAVIOUR,
@@ -226,23 +193,11 @@ enum mvParamEnum
    MV_FINAL_FORCE,
    MV_FINAL_TORQUE,
    MV_FINAL_OMEGA,
-
-   // user defined parameters
    MV_USER_PARAM_INDEX,
    MV_USER_PARAM_0,
    MV_USER_PARAM_1,
    MV_USER_PARAM_2,
    MV_USER_PARAM_3,
-
-   // user string statements
-   /*
-   MV_USER_STRING_INDEX,
-   MV_USER_STRING_0,
-   MV_USER_STRING_1,
-   MV_USER_STRING_2,
-   MV_USER_STRING_3,
-   */
-
    MV_NO_OF_PARAM_ENUMS
 };
 

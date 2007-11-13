@@ -25,7 +25,7 @@
 #include <mv/mvMotionAI-Utilities.h>
 
 #include <cmath>
-
+#include <cstdlib>
 
  /*
  * Code taken from OpenSteer Utilities.h (2002-2004)
@@ -45,25 +45,35 @@
 // TODO : include automake's config.h
 // #ifdef WIN32 is MVC++ 6 tag - to VISUAL_C_VER_6
 
-mvFloat mvFloor (mvFloat x)
+//#define MV_LARGE_PRIME_NUMBER_FOR_RAND_DIV (32749)
+
+MV_GLOBAL_FUNC_PREFIX mvFloat mvFloor (mvFloat x)
 {
 #ifdef VISUAL_C_VER_6
-   return (mvFloat) floor (x);
+   #ifdef MV_MOTIONAI_HIGHER_PRECISION_FLOATING_POINT
+      return floor (x);
+   #else
+      return floorf(x)
+   #endif
 #else
    return std::floor(x);
 #endif
 }
 
-mvFloat mvSqrt (mvFloat x)
+MV_GLOBAL_FUNC_PREFIX mvFloat mvSqrt (mvFloat x)
 {
 #ifdef VISUAL_C_VER_6
-   return (mvFloat) sqrt (x);
+   #ifdef MV_MOTIONAI_HIGHER_PRECISION_FLOATING_POINT
+      return sqrt (x);
+   #else
+      return sqrtf (x);
+   #endif
 #else
    return std::sqrt(x);
 #endif
 }
 
-mvFloat mvSin (mvFloat x)
+MV_GLOBAL_FUNC_PREFIX mvFloat mvSin (mvFloat x)
 {
 #ifdef VISUAL_C_VER_6
    return (mvFloat) sin (x);
@@ -72,7 +82,7 @@ mvFloat mvSin (mvFloat x)
 #endif
 }
 
-mvFloat mvCos (mvFloat x)
+MV_GLOBAL_FUNC_PREFIX mvFloat mvCos (mvFloat x)
 {
 #ifdef VISUAL_C_VER_6
    return (mvFloat) cos (x);
@@ -84,17 +94,17 @@ mvFloat mvCos (mvFloat x)
 //inline float mvAbs (mvFloat x)           {return abs (x);}
 //inline int mvAbs (int x)            {return abs (x);}
 
-mvFloat mvMax (mvFloat x, mvFloat y)
+MV_GLOBAL_FUNC_PREFIX mvFloat mvMax (mvFloat x, mvFloat y)
 {
    return (x > y) ? x : y;
 }
 
-mvFloat mvMin (mvFloat x, mvFloat y)
+MV_GLOBAL_FUNC_PREFIX mvFloat mvMin (mvFloat x, mvFloat y)
 {
    return (x < y) ? x : y;
 }
 
-mvFloat mvArcCos(mvFloat theta)
+MV_GLOBAL_FUNC_PREFIX mvFloat mvArcCos(mvFloat theta)
 {
 #ifdef VISUAL_C_VER_6
    return (mvFloat) acos(theta);
@@ -103,7 +113,7 @@ mvFloat mvArcCos(mvFloat theta)
 #endif
 }
 
-mvFloat mvArcSin(mvFloat theta)
+MV_GLOBAL_FUNC_PREFIX mvFloat mvArcSin(mvFloat theta)
 {
 #ifdef VISUAL_C_VER_6
    return (mvFloat) asin(theta);
@@ -112,7 +122,7 @@ mvFloat mvArcSin(mvFloat theta)
 #endif
 }
 
-mvFloat mvArcTan(mvFloat theta)
+MV_GLOBAL_FUNC_PREFIX mvFloat mvArcTan(mvFloat theta)
 {
 #ifdef VISUAL_C_VER_6
    return (mvFloat) atan(theta);
@@ -121,7 +131,7 @@ mvFloat mvArcTan(mvFloat theta)
 #endif
 }
 
-mvFloat mvFMod(mvFloat num, mvFloat denom)
+MV_GLOBAL_FUNC_PREFIX mvFloat mvFMod(mvFloat num, mvFloat denom)
 {
 #ifdef VISUAL_C_VER_6
    return (mvFloat) fmod(num, denom);
@@ -130,17 +140,25 @@ mvFloat mvFMod(mvFloat num, mvFloat denom)
 #endif
 }
 
-mvFloat mvModf(mvFloat x, mvFloat* intPart)
+MV_GLOBAL_FUNC_PREFIX mvFloat mvModf(mvFloat x, mvFloat* intPart)
 {
 #ifdef VISUAL_C_VER_6
-   double intPartDouble;
-   double result = modf(x, &intPartDouble);
-
-   *intPart = (mvFloat) intPartDouble;
-   return (mvFloat) result;
+   #ifdef MV_MOTIONAI_HIGHER_PRECISION_FLOATING_POINT
+      return modf(x, intPart);
+   #else
+      return modff(x, intPart);
+   #endif
 #else
    return std::modf(x, intPart);
 #endif
+}
+
+MV_GLOBAL_FUNC_PREFIX mvFloat mvRandNormalised()
+{
+   mvIndex value = rand();
+   mvFloat temp = (mvFloat) value;
+   temp /= RAND_MAX;
+   return temp;
 }
 
 

@@ -113,6 +113,22 @@ mvClass* mvFactoryFunctionList<mvClassFactory,mvClass,mvParamClass>\
 }
 
 template <class mvClassFactory, class mvClass, class mvParamClass>
+bool mvFactoryFunctionList<mvClassFactory,mvClass,mvParamClass>\
+   ::isFactoryKeyVacant(mvOptionEnum key) const
+{
+   // check if behaviour key exists
+#if defined(VISUAL_C_VER_6) || defined(VISUAL_C_VER_8)
+   typename std::map<mvOptionEnum,mvClassFactory*>::iterator checkKey;
+#else
+   class std::map<mvOptionEnum,mvClassFactory*>::iterator checkKey;
+#endif
+
+   checkKey = fFunctions.find(key);
+
+   return (checkKey == fFunctions.end());
+}
+
+template <class mvClassFactory, class mvClass, class mvParamClass>
 mvFactoryFunctionList<mvClassFactory,mvClass,mvParamClass>\
    ::~mvFactoryFunctionList()
 {

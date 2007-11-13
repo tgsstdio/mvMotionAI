@@ -2,8 +2,8 @@
 #include MV_MOTIONAI_UTILITIES_HEADER_FILE_H_
 
 mvFollowPath::mvFollowPath()
- : mvBaseAction(MV_FOLLOW_PATH), m_pathwayIndex(MV_NULL),\
-   m_insideNode(MV_NULL), m_lengthSquared(0.1)
+ : mvBaseAction(MV_FOLLOW_PATH), m_insideNode(MV_NULL),\
+   m_pathwayIndex(MV_NULL), m_lengthSquared(0.1)
 {
 
 }

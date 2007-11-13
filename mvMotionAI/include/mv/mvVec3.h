@@ -157,6 +157,7 @@ class MV_GLOBAL_FUNC_PREFIX mvVec3
 
       const mvFloat* getPointer() const;
       void  toZeroVec();
+      void  randomiseNormal();
 
       /*
       * --------------------------------------------------------------------------

@@ -163,7 +163,7 @@ int main(int argc, char** argv)
    paramError = mvSetEntryListNodeParametero(worldID,bodyID2,entryID,MV_IS_CONFINED,MV_TRUE);
    if (paramError != MV_NO_ERROR) puts("ERROR FOUND");
    paramError = mvSetBodyParametero(worldID, bodyID2, MV_APPLY_GRAVITY, MV_FALSE);
-   //paramError = mvSetBodyParameter(worldID, bodyID2, MV_DOMAIN, MV_Z_AXIS_ONLY);
+   paramError = mvSetBodyParametero(worldID, bodyID2, MV_DOMAIN, MV_Z_AXIS_ONLY);
    if (paramError != MV_NO_ERROR) puts("ERROR FOUND");
 
    paramError = mvSetBodyParameterf(worldID, bodyID2, MV_MAX_SPEED, 15);

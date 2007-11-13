@@ -14,7 +14,7 @@
 				<Option external_deps="lib-other\mingw\liblua5.1.a;lib\libmvMotionAI-mingw.a;" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="FollowPath.lua" />
+				<Option parameters="Evasion.lua" />
 				<Compiler>
 					<Add option="-fexpensive-optimizations" />
 					<Add option="-Os" />
@@ -74,7 +74,7 @@
 				<Option external_deps="lib-other\mingw\liblua5.1.a;bin\libmvMotionAI-mingw-dll.def;bin\libmvMotionAI-mingw-dll.a;bin\mvMotionAI-mingw-dll.dll;bin\libmvLua-dll.a;bin\libmvLua-dll.def;bin\libmvLua-dll.dll;" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="FollowPath.lua" />
+				<Option parameters="Evasion.lua" />
 				<Compiler>
 					<Add option="-fexpensive-optimizations" />
 					<Add option="-Os" />
@@ -101,10 +101,10 @@
 				<Option output="bin\sideproject1-mingw-winXP-dll-debug" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="bin" />
 				<Option object_output="obj\dll-Debug\" />
-				<Option external_deps="lib-other\mingw\liblua5.1.a;bin\libmvMotionAI-mingw-dll-debug.def;bin\libmvMotionAI-mingw-dll-debug.a;bin\mvMotionAI-mingw-dll-debug.dll;bin\libmvLua-debug.a;bin\libmvLua-debug.def;bin\mvLua-debug.dll;" />
+				<Option external_deps="lib-other\mingw\liblua5.1.a;bin\libmvMotionAI-mingw-dll-debug.def;bin\libmvMotionAI-mingw-dll-debug.a;bin\mvMotionAI-mingw-dll-debug.dll;bin\libmvLua-dll-debug.a;bin\libmvMotionAI-mingw-dll-debug.def;bin\mvLua-dll-debug.dll;" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="Pursuit.lua" />
+				<Option parameters="Evasion.lua" />
 				<Compiler>
 					<Add option="-fexpensive-optimizations" />
 					<Add option="-Os" />
@@ -133,6 +133,9 @@
 			<Add option="-fexceptions" />
 			<Add directory="include" />
 		</Compiler>
+		<Unit filename="bin\Evasion.lua">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="bin\FollowPath.lua">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>

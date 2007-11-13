@@ -40,23 +40,30 @@
 
 #include MV_ENUMS_HEADER_FILE_H_
 
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
 /*
  * Math functions
  */
-mvFloat mvFloor (mvFloat x);
-mvFloat mvSqrt (mvFloat x);
-mvFloat mvSin (mvFloat x);
-mvFloat mvCos (mvFloat x);
-mvFloat mvAbs (mvFloat x);
+MV_GLOBAL_FUNC_PREFIX mvFloat mvFloor (mvFloat x);
+MV_GLOBAL_FUNC_PREFIX mvFloat mvSqrt (mvFloat x);
+MV_GLOBAL_FUNC_PREFIX mvFloat mvSin (mvFloat x);
+MV_GLOBAL_FUNC_PREFIX mvFloat mvCos (mvFloat x);
+MV_GLOBAL_FUNC_PREFIX mvFloat mvAbs (mvFloat x);
 //inline int   mvAbs (int x);
-mvFloat mvMax (mvFloat x, mvFloat y);
-mvFloat mvMin (mvFloat x, mvFloat y);
+MV_GLOBAL_FUNC_PREFIX mvFloat mvMax (mvFloat x, mvFloat y);
+MV_GLOBAL_FUNC_PREFIX mvFloat mvMin (mvFloat x, mvFloat y);
+MV_GLOBAL_FUNC_PREFIX mvFloat mvRandNormalised();
 
-mvFloat mvArcCos(mvFloat theta);
-mvFloat mvArcSin(mvFloat theta);
-mvFloat mvArcTan(mvFloat theta);
-mvFloat mvFMod(mvFloat num, mvFloat denom);
-mvFloat mvModf(mvFloat x, mvFloat* intPart);
+MV_GLOBAL_FUNC_PREFIX mvFloat mvArcCos(mvFloat theta);
+MV_GLOBAL_FUNC_PREFIX mvFloat mvArcSin(mvFloat theta);
+MV_GLOBAL_FUNC_PREFIX mvFloat mvArcTan(mvFloat theta);
+MV_GLOBAL_FUNC_PREFIX mvFloat mvFMod(mvFloat num, mvFloat denom);
+MV_GLOBAL_FUNC_PREFIX mvFloat mvModf(mvFloat x, mvFloat* intPart);
 
 #ifndef MV_WIDE_STRING_CHAR
 #define mvInitConstString(s)
@@ -64,6 +71,6 @@ mvFloat mvModf(mvFloat x, mvFloat* intPart);
 #define mvInitConstString(s) Ls
 #endif
 
-mvIndex mvStringCompare(mvConstStringPtr str1, mvConstStringPtr str2);
+MV_GLOBAL_FUNC_PREFIX mvIndex mvStringCompare(mvConstStringPtr str1, mvConstStringPtr str2);
 
 #endif

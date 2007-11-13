@@ -55,6 +55,7 @@ class MV_GLOBAL_FUNC_PREFIX mvFactoryFunctionList
          mvClassFactory* cFactoryPtr);
       void freeAllFactoryFunctions();
       mvClass* createAClassPtr(mvOptionEnum key, mvParamClass defaultClass);
+      bool isFactoryKeyVacant(mvOptionEnum key) const;
       ~mvFactoryFunctionList();
       mvCount getNoOfFactoryFunctions() const;
 };

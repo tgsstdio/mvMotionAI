@@ -10,6 +10,7 @@
 #include <mv/mvPursuit.h>
 #include <mv/mvFlee.h>
 #include <mv/mvFollowPath.h>
+#include <mv/mvEvasion.h>
 
 /**
  * default forces
@@ -305,6 +306,22 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(mvActionLoaderListPtr
       return MV_INVALID_MEMORY_ALLOCATION;
    }
    error = loader->addFactoryFunction(MV_FOLLOW_PATH,\
+      tempLoader);
+   if (error != MV_NO_ERROR)
+   {
+      delete tempLoader;
+      return error;
+   }
+
+   // enum 7 evade body
+   tempLoader = MV_NULL;
+   tempLoader = new mvCreateEvasions();
+   // check for memory errors
+   if (tempLoader == MV_NULL)
+   {
+      return MV_INVALID_MEMORY_ALLOCATION;
+   }
+   error = loader->addFactoryFunction(MV_EVASION,\
       tempLoader);
    if (error != MV_NO_ERROR)
    {
