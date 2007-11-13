@@ -34,7 +34,7 @@ class mvCreatePathFollower : public mvBaseActionLoader
    public:
       mvCreatePathFollower();
       virtual mvBaseActionPtr operator()(mvNewBaseActionInfo& actionInfo);
-      virtual ~mvCreatePathFollower();
+      ~mvCreatePathFollower();
 };
 
 #endif // MVFOLLOWPATH_H_INCLUDED

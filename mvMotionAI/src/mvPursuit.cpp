@@ -143,7 +143,7 @@ mvVec3 mvBehaviour_Calculate_Pursuit(mvBody* currentBody, mvBody* targetBody)
    velocity = desiredVelocity.normalize();
    velocity *= body->getMaxSpeed();
    //velocity += resultModule->getVelocity();
-   velocity *= 0.5;
+   //velocity *= 0.5;
 
    resultModule->setVelocity(velocity);
    resultModule->setToDirectional();

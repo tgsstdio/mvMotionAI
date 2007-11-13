@@ -161,6 +161,7 @@
 		<Unit filename="include\mv\mvCapsuleList.h" />
 		<Unit filename="include\mv\mvCapsuleList.hpp" />
 		<Unit filename="include\mv\mvEnums.h" />
+		<Unit filename="include\mv\mvEvasion.h" />
 		<Unit filename="include\mv\mvFactoryFunctionList.h" />
 		<Unit filename="include\mv\mvFactoryFunctionList.hpp" />
 		<Unit filename="include\mv\mvFlee.h" />
@@ -193,6 +194,14 @@
 		<Unit filename="include\mv\mvWaypointCapsule.h" />
 		<Unit filename="include\mv\mvWaypoint_V2.h" />
 		<Unit filename="include\mv\mvWorld2.h" />
+		<Unit filename="mvMotionAI-lib-debug.rc">
+			<Option compilerVar="WINDRES" />
+			<Option target="mingw-winXP-dll-debug" />
+		</Unit>
+		<Unit filename="mvMotionAI-lib.rc">
+			<Option compilerVar="WINDRES" />
+			<Option target="mingw-winXP-dll" />
+		</Unit>
 		<Unit filename="src\mvBEntry.cpp" />
 		<Unit filename="src\mvBEntryList.cpp" />
 		<Unit filename="src\mvBEntryListNode.cpp" />
@@ -205,6 +214,7 @@
 		<Unit filename="src\mvBodyCapsule.cpp" />
 		<Unit filename="src\mvBody_V2.cpp" />
 		<Unit filename="src\mvEnums.cpp" />
+		<Unit filename="src\mvEvasion.cpp" />
 		<Unit filename="src\mvFlee.cpp" />
 		<Unit filename="src\mvFollowPath.cpp" />
 		<Unit filename="src\mvForceCapsule.cpp" />

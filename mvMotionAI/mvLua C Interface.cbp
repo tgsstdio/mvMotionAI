@@ -69,7 +69,7 @@
 			</Target>
 			<Target title="mingw-winXP-dll-debug">
 				<Option platforms="Windows;" />
-				<Option output="bin\mvLua-dll" prefix_auto="1" extension_auto="1" />
+				<Option output="bin\mvLua-dll-debug" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj\dll-Release\" />
 				<Option external_deps="bin\libmvMotionAI-mingw-dll-debug.a;lib-other\mingw\liblua5.1.a;" />
 				<Option type="3" />

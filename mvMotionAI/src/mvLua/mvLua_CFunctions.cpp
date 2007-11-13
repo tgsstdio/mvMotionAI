@@ -603,7 +603,7 @@ int mvLua_GetWorldParameter(lua_State* luaVM)
       lua_pushnumber(luaVM, noOfVariables);
 
       // push option enum string to window
-      lua_pushnumber(luaVM, indexOutput);
+      lua_pushnumber(luaVM, floatOutput);
       return 3;
    }
 
@@ -873,7 +873,7 @@ int mvLua_GetParameterFunction_2i(lua_State* luaVM,
       lua_pushnumber(luaVM, noOfVariables);
 
       // push option enum string to window
-      lua_pushnumber(luaVM, indexOutput);
+      lua_pushnumber(luaVM, floatOutput);
       return MV_LUA_GET_PARAM_MINIMUM_VALUS_RETURNED + noOfVariables;
    }
 

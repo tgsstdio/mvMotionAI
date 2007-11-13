@@ -359,12 +359,12 @@
 	<math.h>
 	<unistd.h>
 
-1192687006 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
+1193548156 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
 	<mv/mvMotionAI-Types.h>
 
 1190961076 onAI-Types.h>
 
-1192419680 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
+1193123386 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
 
 1191290939 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/mvLua.cpp
 	"mvLua.h"
@@ -504,7 +504,7 @@
 1191306724 source:d:\mvmotionai\mvmotionai\examples-src\sideproject1\mvlua_cfunctions.cpp
 	"mvLua_CFunctions.h"
 
-1191048274 source:d:\mvmotionai\mvmotionai\examples-src\tutorial2\glmain.cpp
+1194850422 source:d:\mvmotionai\mvmotionai\examples-src\tutorial2\glmain.cpp
 	<GL/glut.h>
 	<iostream>
 	"../Camera.h"

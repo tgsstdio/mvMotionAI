@@ -542,3 +542,16 @@ mvVec3 operator* (mvFloat s, const mvVec3& v)
 {
    return v*s;
 }
+
+void  mvVec3::randomiseNormal()
+{
+   mvFloat temp;
+
+   for (mvIndex i = 0; i < MV_VEC3_NO_OF_COMPONENTS; i++)
+   {
+      temp = mvRandNormalised();
+      temp *= 2;
+      temp -= 1;
+      components[i] = temp;
+   }
+}

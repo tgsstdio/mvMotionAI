@@ -166,6 +166,7 @@ mvBody::~mvBody()
    }
 }
 
+#include <cstdio>
 /** \brief blah blah
  *
  */
@@ -1056,11 +1057,11 @@ mvErrorEnum mvBody::setParameteri(mvParamEnum paramFlag, mvIndex index)
 mvErrorEnum mvBody::setParametero(mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvErrorEnum error;
+   puts("HEELO 3");
 
    switch(paramFlag)
    {
       default:
-
          // shape
          error = bodyShape.setParametero(paramFlag, option);
          if (error != MV_INVALID_SHAPE_PARAMETER)
