@@ -2,6 +2,12 @@
  * \page logpage Log
  * \section mvMotionAI Log
  * \subsection log_columns Version     Date     Comments
+ * 
+ * 	version 00-02-38+ (14th Nov 2007)
+ * 	- Added mvFollowPath behaviour
+ * 		- move in loop according to mvPathway object
+ * 	- Added mvEvasion
+ * 		- flee from a mvBody with random wandering sphere
  *
  * version 00-02-13+ (29 Sept 2007)
  *  first version of SourceForge release
