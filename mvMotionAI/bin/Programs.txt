@@ -1,12 +1,14 @@
+mvMotionAI 
+
+The sample applications tutorial2, tutorial3 & sideproject1 require an
+installation of OpenGL on the system. 
+
+sideproject1 use the Lua library for scripting.
+
+The various DLLs of other libraries (freeglut) can be found in bin directory.
+
+All applications (32 bit) have been compiled on a MinGW compiler. 
 All binaries were compiled to work on Windows XP.
-
-mvMotionAI & mvMotionAI-mingw require a installation of OpenGL
-on the system.
-
-Various DLLs found in bin directory are required for mvMotionAI.exe.
-
-Other than mvMotionAI.exe, the other programs were compiled 
-on a mingW32 compiler.
 
 David Young 2006.
 
