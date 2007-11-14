@@ -1,0 +1,10 @@
+sed 's/,//g' Input.txt > Sorted_A.txt
+awk '{print $1}' Sorted_A.txt > Sorted_B.txt
+dos2unix Sorted_B.txt
+sort Sorted_B.txt > Sorted_C.txt
+awk '{print "\t"$1","}' Sorted_C.txt > SortedOutput.txt
+awk '{print "\t\""$1"\","}' Sorted_B.txt > StringedSortedOutput.txt
+echo "SortedOutput/StringedSortedOutput.txt contains sorted keys"
+rm Sorted_A.txt
+rm Sorted_B.txt
+rm Sorted_C.txt

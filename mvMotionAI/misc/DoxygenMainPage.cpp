@@ -56,11 +56,11 @@
  * Adding more documentation in mvMotionAI C interface.
  * 
  * \section other_pages Other pages
- * - \subpage readme_txt
- * - \subpage logpage
- * - \subpage license
- * - \subpage authors
- * - \subpage todo_page 
+ * - \ref readme_txt README.txt
+ * - \ref logpage mvMotionAI Log
+ * - \ref license mvMotionAI MIT License
+ * - \ref authors mvMotionAI Authors
+ * - \ref todo_page mvMotionAI TODO list
  */
 
 #endif
