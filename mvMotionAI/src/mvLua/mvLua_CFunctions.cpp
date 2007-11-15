@@ -440,7 +440,7 @@ int mvLua_GetErrorEnumString(lua_State* luaVM)
 
    // ERROR CODE
    luaIndex = 1;
-   error = (mvErrorEnum) lua_tonumber(luaVM, luaIndex);
+   error = (mvErrorEnum) ((mvIndex) lua_tonumber(luaVM, luaIndex));
 
    const char* errorString = mvGetErrorEnumString(error);
    if (errorString == MV_NULL)
@@ -458,7 +458,7 @@ int mvLua_GetParamEnumString(lua_State* luaVM)
 
    // ERROR CODE
    luaIndex = 1;
-   param = (mvParamEnum) lua_tonumber(luaVM, luaIndex);
+   param = (mvParamEnum) ((mvIndex)lua_tonumber(luaVM, luaIndex));
 
    const char* paramString = mvGetParamEnumString(param);
    if (paramString == MV_NULL)
@@ -476,7 +476,7 @@ int mvLua_GetOptionEnumString(lua_State* luaVM)
    mvIndex luaIndex;
 
    luaIndex = 1;
-   option = (mvOptionEnum) lua_tonumber(luaVM, luaIndex);
+   option = (mvOptionEnum) ((mvIndex) lua_tonumber(luaVM, luaIndex));
 
    optionString = mvGetOptionEnumString(option);
    if (optionString == MV_NULL)
