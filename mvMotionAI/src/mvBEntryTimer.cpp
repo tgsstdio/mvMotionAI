@@ -260,7 +260,6 @@ bool mvTimer::checkIfValidPeriod(mvFloat value) const
    return (value < 0.0);
 }
 
-bool mvTimer::checkIfValidElapsedTime(mvFloat value) const;
 
 /** @brief Sets the period (or the time in seconds when the
   * next action is required).
