@@ -1,27 +1,64 @@
 mvMotionAI Static library Info text file
 Compiled under Code::Blocks with mingGW.
 
+Latest (16th November 2007)
+Release: 
+
+mvMotionAI - mvMotionAI steering library
+mvLua - mvMotionAI Lua Interface
+
+ - Static library: 
+1. libMotionAI-mingw
+ .a : 929426 bytes - libmvMotionAI-mingw.a
+2. libmvLua 
+ .a : 46892 bytes - libmvLua.a
+
+ - Dynamic library:
+ 1. libMotionAI-mingw-dll
+.a : 1123120 bytes - libmvMotionAI-mingw-dll.a
+.def : 77180 bytes - libmvMotionAI-mingw-dll.def
+.DLL : 541184 bytes - mvMotionAI-mingw-dll.dll
+2. libmvLua-dll
+.a : 3076 bytes - libmvLua-dll.a
+.def : 158 bytes - libmvLua-dll.def
+.DLL : 419328 bytes - mvLua-dll.dll
+
+Debug: 
+
+ - Static library: 
+1. libMotionAI-mingw-debug
+ .a :  15520524 bytes - libmvMotionAI-mingw-debug.a
+2. libmvLua-debug
+ .a : 46892 bytes - libmvLua-debug.a
+
+ - Dynamic library:
+ 1. libMotionAI-mingw-dll-debug
+.a : 1132058 bytes - libmvMotionAI-mingw-dll-debug.a
+.def : 77180 bytes - libmvMotionAI-mingw-dll-debug.def
+.DLL : 541184 bytes - mvMotionAI-mingw-dll-debug.dll
+2. libmvLua-dll-debug
+.a : 3128 bytes - libmvLua-dll-debug.a
+.def : 158 bytes - libmvLua-dll-debug.def
+.DLL : 707242 bytes - mvLua-dll-debug.dll
+
+Past:
+
 Compiler Flags Optimizations: 
-Release
 None : 725KB
 Release (-Os) : 351KB (NON-WORKING)
 FULL (-fexpensive-optimizations -Os -O3 -O2 -O1 -O) : 425KB
 
-Latest:
-Release: (NON-WORKING)
-file: libmvMotionAI-mingw.a
-Size: 457 KB (468,866 bytes)
-Created : Tuesday, 2 January 2007, 12:50:40 AM
-
-Debug: (NON-WORKING)
+Debug Versions (NON-WORKING)
 file: libmvMotionAI-mingw-debug.a
 Size: 2.83 MB (2,976,286 bytes)
 Created : Today, 24 March 2007, 4:21:39 PM
 
-Past:
-Debug Versions
-
 Release versions
+
+file: libmvMotionAI-mingw.a (NON-WORKING)
+Size: 457 KB (468,866 bytes)
+Created : Tuesday, 2 January 2007, 12:50:40 AM
+
 file: libmvMotionAI-mingw.a
 Size: 457 KB (468,866 bytes)
 Created : Tuesday, 2 January 2007, 12:50:40 AM
@@ -38,5 +75,6 @@ file : libmvMotionAI.a
 Size : 625 KB (640,072 bytes)
 Created, 9 September 2006, 12:17:09 AM
 
-David Young, 2006.
+David Young
+2006, 16th Nov 2007.
 

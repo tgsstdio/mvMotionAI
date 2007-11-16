@@ -106,7 +106,7 @@ bool mvEvasion::bodyOp(mvBehaviourResultPtr resultModule)
     * SIGGRAPH 2000 article - Steering Behaviours by Robin Green (2000)
     */
    mvVec3 targetDir, randomVelocity, nextPos, velocity, wanderCentre;
-   mvFloat period = 0;
+//   mvFloat period = 0;
 
    if (resultModule == NULL)
    {

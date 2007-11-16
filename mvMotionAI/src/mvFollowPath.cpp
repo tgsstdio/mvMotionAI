@@ -24,7 +24,7 @@ mvErrorEnum mvFollowPath::setParameterf(mvParamEnum param, mvFloat num)
 
 mvErrorEnum mvFollowPath::getParameterf(mvParamEnum param, mvFloat* num) const
 {
-   mvFloat temp;
+//   mvFloat temp;
    mvErrorEnum error = mvBaseAction::getParameterf(param, num);
 
    // proceed
