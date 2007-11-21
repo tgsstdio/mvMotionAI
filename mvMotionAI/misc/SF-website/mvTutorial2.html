@@ -1,0 +1,672 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>tutorial2 : Source code only </title>
+</head>
+<body>
+<h1> tutorial2 : source code only </h1>
+<p> <a href="index.html"> Back to index </a> </p>
+<p>
+<code>
+/**<br />
+ * \file GLMain.cpp<br />
+ * \brief tutorial2 : using a OpenGL (GLUT) application with mvMotionAI library<br />
+ * GLUT Template with mvMotionAI library<br />
+ *<br />
+ * Copyright (c) 2005 - 2006 David Young.<br />
+ *<br />
+ * Permission is hereby granted, free of charge, to any person obtaining a<br />
+ * copy of this software and associated documentation files (the "Software"),<br />
+ * to deal in the Software without restriction, including without limitation<br />
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,<br />
+ * and/or sell copies of the Software, and to permit persons to whom the<br />
+ * Software is furnished to do so, subject to the following conditions:<br />
+ *<br />
+ * The above copyright notice and this permission notice shall be included in<br />
+ * all copies or substantial portions of the Software.<br />
+ *<br />
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br />
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br />
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL<br />
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br />
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING<br />
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER<br />
+ * DEALINGS IN THE SOFTWARE.<br />
+ *<br />
+ * Log<br />
+ *<br />
+ * 00-01-21&nbsp;&nbsp;&nbsp;&nbsp;25/11/06<br />
+ * - updated file duer to function name change<br />
+ *<br />
+ * 00-01-16&nbsp;&nbsp;&nbsp;&nbsp;17/10/06<br />
+ * - mvEnums enumerations changed to mvOptionEnum<br />
+ */<br />
+<br />
+#include &lt;GL/glut.h&gt;<br />
+#include &lt;iostream&gt;<br />
+#include "../Camera.h"<br />
+#include &lt;cstdlib&gt;<br />
+<br />
+/*<br />
+ * Step 1.0 : include header to use library<br />
+ */<br />
+#include &lt;mv/mvMotionAI.h&gt;<br />
+<br />
+static float left = -1.0;<br />
+static float right = 1.0;<br />
+static float bottom = -1.0;<br />
+static float top = 1.0;<br />
+static float nearValue = 1.0;<br />
+static float farValue = 100.0;<br />
+static float lightPos1[] = {5.0,0.0,5.0,0.0};<br />
+<br />
+static Camera worldCam;<br />
+static int windowHeight = 500;<br />
+static int windowWidth = 480;<br />
+<br />
+static const float MIN_FRAME_PERIOD = 1.0f/60.0f * 1000.0f;<br />
+static float previousTime;<br />
+static float elapsedTime = 0.0;<br />
+static long int noOfFrames = 0;<br />
+static float angle = 0.0;<br />
+static double frameRateInterval = 0.0;<br />
+<br />
+#define BUFFER_SIZE 1024<br />
+static char buffer[BUFFER_SIZE];<br />
+void displayFrameRate(long int frameNo);<br />
+void drawText(GLint x, GLint y, char* s, int windowWidth,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int windowHeight, GLfloat r, GLfloat g, GLfloat b);<br />
+void drawGLShape(int drawMode, mvConstShapePtr shapePtr,<br />
+&nbsp;&nbsp; const mvVec3&amp; pos, float r, float g, float b);<br />
+void init();<br />
+void reshape(int w, int h);<br />
+void keyboard(unsigned char key,int x, int y);<br />
+void display();<br />
+void animate();<br />
+<br />
+#define USE_ARGUMENTV_FILE_ARG_COUNT 2<br />
+#define FILE_NAME_ARGV_INDEX 1<br />
+char defaultLuaFileName[] = "Test.lua";<br />
+char* scriptFileName = NULL;<br />
+bool isAnimating = false;<br />
+<br />
+void displayMotionAI();<br />
+void displayWaypoint(mvWaypointPtr wp, void* ptr);<br />
+void displayObstacle(mvObstaclePtr o, void* ptr);<br />
+void displayBody(mvBodyPtr p, void* extraPtr);<br />
+void worldFunction(mvWorldPtr tempWorld, void* ptr);<br />
+<br />
+int main(int argc, char** argv)<br />
+{<br />
+&nbsp;&nbsp; glutInit(&amp;argc, argv);<br />
+&nbsp;&nbsp; glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);<br />
+&nbsp;&nbsp; glutInitWindowSize (windowWidth, windowHeight);<br />
+&nbsp;&nbsp; glutInitWindowPosition (100, 100);<br />
+&nbsp;&nbsp; glutCreateWindow ("Tutorial 2 : Integrating mvMotionAI into an OpenGL application");<br />
+<br />
+&nbsp;&nbsp; /*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* Step 2 : initialise mvMotionAI library<br />
+&nbsp;&nbsp;&nbsp;&nbsp;*/<br />
+&nbsp;&nbsp; mvInitMotionAI();<br />
+&nbsp;&nbsp; mvErrorEnum initError = mvInitDefaultActions();<br />
+&nbsp;&nbsp; if (initError != MV_NO_ERROR)<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;puts("MV INIT ACTIONS ERROR");<br />
+&nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp; initError = mvInitDefaultForces();<br />
+&nbsp;&nbsp; if (initError != MV_NO_ERROR)<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;puts("MV INIT FORCES ERROR");<br />
+&nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp; /*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* Step 3: load lua file<br />
+&nbsp;&nbsp;&nbsp;&nbsp;*/<br />
+&nbsp;&nbsp; std::cout &lt;&lt; "Arg Count : " &lt;&lt; argc &lt;&lt; std::endl;<br />
+&nbsp;&nbsp; if (argc &gt;= USE_ARGUMENTV_FILE_ARG_COUNT)<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scriptFileName = argv[FILE_NAME_ARGV_INDEX];<br />
+&nbsp;&nbsp; }<br />
+&nbsp;&nbsp; else<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scriptFileName = defaultLuaFileName;<br />
+&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;// mvLua_LoadScriptFile(scriptFileName);<br />
+&nbsp;&nbsp; init ();<br />
+<br />
+&nbsp;&nbsp; // call mvMotionAI<br />
+&nbsp;&nbsp; mvErrorEnum paramError;<br />
+&nbsp;&nbsp; int worldID = mvCreateWorld();<br />
+&nbsp;&nbsp; std::cout &lt;&lt; "worldID : " &lt;&lt; worldID &lt;&lt;&nbsp;&nbsp;std::endl;<br />
+<br />
+&nbsp;&nbsp; int waypointID = mvCreateWaypoint(worldID, MV_AABOX, 7, 4 ,0);<br />
+&nbsp;&nbsp; float boxDims[] = {3,1,5};<br />
+&nbsp;&nbsp; mvSetWaypointParameterv(worldID,waypointID,MV_SHAPE_DIMENSIONS, &amp;boxDims[0]);<br />
+&nbsp;&nbsp; std::cout &lt;&lt; "waypointID&nbsp;&nbsp;: " &lt;&lt; waypointID &lt;&lt;&nbsp;&nbsp;std::endl;<br />
+<br />
+&nbsp;&nbsp; waypointID = mvCreateWaypoint(worldID, MV_SPHERE, -2, 4 ,0);<br />
+&nbsp;&nbsp; std::cout &lt;&lt; "waypointID&nbsp;&nbsp;: " &lt;&lt; waypointID &lt;&lt;&nbsp;&nbsp;std::endl;<br />
+&nbsp;&nbsp; waypointID = mvCreateWaypoint(worldID, MV_AABOX, -2, 4 ,0);<br />
+&nbsp;&nbsp; mvSetWaypointParameterv(worldID,waypointID,MV_SHAPE_DIMENSIONS, &amp;boxDims[0]);<br />
+<br />
+&nbsp;&nbsp; int obstacleID = mvCreateObstacle(worldID, MV_AABOX, MV_SOLID_OBSTACLE,5, 5, 0);<br />
+&nbsp;&nbsp; std::cout &lt;&lt; "obstacleID : " &lt;&lt; waypointID&lt;&lt;&nbsp;&nbsp;std::endl;<br />
+&nbsp;&nbsp; obstacleID = mvCreateObstacle(worldID, MV_AABOX, MV_SOLID_OBSTACLE,3, 8, -4);<br />
+&nbsp;&nbsp; std::cout &lt;&lt; "obstacleID : " &lt;&lt; waypointID &lt;&lt;&nbsp;&nbsp;std::endl;<br />
+<br />
+<br />
+&nbsp;&nbsp; int bodyID = mvCreateBody(worldID,MV_PARTICLE,MV_SPHERE, 1 , 4 , 0);<br />
+&nbsp;&nbsp; std::cout &lt;&lt; "bodyID : " &lt;&lt; bodyID &lt;&lt;&nbsp;&nbsp;std::endl;<br />
+<br />
+&nbsp;&nbsp; int groupID = mvCreateGroup(worldID);<br />
+&nbsp;&nbsp; std::cout &lt;&lt; "Group ID : " &lt;&lt; groupID &lt;&lt;&nbsp;&nbsp;std::endl;<br />
+&nbsp;&nbsp; std::cout &lt;&lt; mvGetErrorEnumString(mvAddMemberIntoGroup(worldID, bodyID, groupID))<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; std::endl;<br />
+<br />
+&nbsp;&nbsp; //int gbIndex = mvCreateGroupBehaviour(worldID, MV_SEEK);<br />
+<br />
+&nbsp;&nbsp; int bodyID2 = mvCreateBody(worldID,MV_PARTICLE,MV_AABOX, 0 , 4 , 20);<br />
+&nbsp;&nbsp; std::cout &lt;&lt; "bodyID : " &lt;&lt; bodyID2 &lt;&lt;&nbsp;&nbsp;std::endl;<br />
+&nbsp;&nbsp; int entryID = mvAddBehaviourToList(worldID,bodyID2,MV_SEEK, MV_NULL, MV_NULL);<br />
+&nbsp;&nbsp; mvSetEntryListNodeParameteri(worldID,bodyID2,entryID,MV_WAYPOINT,-1);<br />
+&nbsp;&nbsp; paramError = mvSetEntryListNodeParametero(worldID,bodyID2,entryID,MV_IS_CONFINED,MV_TRUE);<br />
+&nbsp;&nbsp; if (paramError != MV_NO_ERROR) puts("ERROR FOUND");<br />
+&nbsp;&nbsp; paramError = mvSetBodyParametero(worldID, bodyID2, MV_APPLY_GRAVITY, MV_FALSE);<br />
+&nbsp;&nbsp; paramError = mvSetBodyParametero(worldID, bodyID2, MV_DOMAIN, MV_Z_AXIS_ONLY);<br />
+&nbsp;&nbsp; if (paramError != MV_NO_ERROR) puts("ERROR FOUND");<br />
+<br />
+&nbsp;&nbsp; paramError = mvSetBodyParameterf(worldID, bodyID2, MV_MAX_SPEED, 15);<br />
+&nbsp;&nbsp; paramError = mvSetBodyParameterf(worldID, bodyID2, MV_ACCELERATION, 5);<br />
+&nbsp;&nbsp; if (paramError != MV_NO_ERROR) puts("ERROR FOUND");<br />
+<br />
+&nbsp;&nbsp; paramError = mvSetWorldParametero(worldID,MV_APPLY_ALL_FORCES, MV_FALSE);<br />
+&nbsp;&nbsp; if (paramError != MV_NO_ERROR) puts("ERROR FOUND");<br />
+<br />
+<br />
+&nbsp;&nbsp; int forceID = mvCreateForce(worldID, MV_GRAVITY);<br />
+&nbsp;&nbsp; std::cout &lt;&lt; "forceID : " &lt;&lt; forceID &lt;&lt;&nbsp;&nbsp;std::endl;<br />
+<br />
+<br />
+&nbsp;&nbsp; paramError = mvAddForceIntoWaypoint(worldID, -1, -1);<br />
+&nbsp;&nbsp; if (paramError != MV_NO_ERROR) puts("ERROR FOUND 2");<br />
+<br />
+&nbsp;&nbsp; paramError = mvAddForceIntoWaypoint(worldID, -1, -2);<br />
+&nbsp;&nbsp; if (paramError != MV_NO_ERROR) puts("ERROR FOUND 2");<br />
+<br />
+<br />
+&nbsp;&nbsp; /*<br />
+&nbsp;&nbsp; entryID = mvAddBehaviourToList(worldID, bodyID, MV_PURSUIT);<br />
+&nbsp;&nbsp; mvSetEntryListNodeParameteri(worldID, bodyID, entryID, MV_BODY, bodyID2);<br />
+&nbsp;&nbsp; entryID = mvAddBehaviourToList(worldID, bodyID, MV_FLEE);<br />
+&nbsp;&nbsp; mvSetEntryListNodeParameteri(worldID, bodyID, entryID, MV_WAYPOINT, waypointID);<br />
+&nbsp;&nbsp; mvErrorEnum paramError = mvSetEntryListNodeParameter(worldID, bodyID,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entryID, MV_IS_ENABLED, MV_TRUE);<br />
+&nbsp;&nbsp; */<br />
+&nbsp;&nbsp; /*<br />
+&nbsp;&nbsp; if (paramError != MV_NO_ERROR)<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;puts("WEIGHT PARAMETER ERROR");<br />
+&nbsp;&nbsp; }<br />
+&nbsp;&nbsp; */<br />
+<br />
+<br />
+&nbsp;&nbsp; //entryID = mvAddBehaviourToList(worldID, bodyID, MV_PURSUIT);<br />
+&nbsp;&nbsp; if (entryID == MV_NULL)<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;puts("ENTRY ID");<br />
+&nbsp;&nbsp; }<br />
+&nbsp;&nbsp; //mvSetEntryListNodeParameteri(worldID,bodyID2,entryID,MV_BODY,bodyID);<br />
+&nbsp;&nbsp;// forceID = mvCreateForce(worldID,MV_UNIFORM_SHIFT);<br />
+&nbsp;&nbsp; //std::cout &lt;&lt; "forceID : " &lt;&lt; forceID &lt;&lt;&nbsp;&nbsp;std::endl;<br />
+&nbsp;&nbsp;// forceID = mvCreateForce(worldID,MV_UNIFORM_ACCELERATION);<br />
+&nbsp;&nbsp; //std::cout &lt;&lt; "forceID : " &lt;&lt; forceID &lt;&lt;&nbsp;&nbsp;std::endl;<br />
+<br />
+&nbsp;&nbsp; glutDisplayFunc(display);<br />
+&nbsp;&nbsp; glutReshapeFunc(reshape);<br />
+&nbsp;&nbsp; glutKeyboardFunc(keyboard);<br />
+<br />
+&nbsp;&nbsp; glutMainLoop();<br />
+&nbsp;&nbsp; return EXIT_SUCCESS;<br />
+}<br />
+<br />
+const char* animateFlag = NULL;<br />
+const char no_animation[] = "a : Start animation";<br />
+const char yes_animation[] = "A : stop Animation";<br />
+const char camera_keys[] = "q|Q/w|W/e|E : move camera\nz|Z/x|X/c|c rotates camera\n";<br />
+<br />
+void display(void)<br />
+{<br />
+&nbsp;&nbsp; int i = 0;<br />
+<br />
+&nbsp;&nbsp; glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);<br />
+&nbsp;&nbsp; glPushMatrix();<br />
+&nbsp;&nbsp;&nbsp;&nbsp; worldCam.apply();<br />
+&nbsp;&nbsp;&nbsp;&nbsp; glLightfv(GL_LIGHT0,GL_POSITION,lightPos1);<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp; glColor3f(0,1,0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp; glBegin(GL_QUADS);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glNormal3f(0,1,0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glVertex3f(20,0,-20);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glVertex3f(-20,0,-20);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glVertex3f(-20,0,20);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glVertex3f(20,0,20);<br />
+&nbsp;&nbsp;&nbsp;&nbsp; glEnd();<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp; /*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* MISC: Use teapot to see if animation is on.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp; glPushMatrix();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glRotatef(angle,0,1,0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glColor3f(1,1,1);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutSolidTeapot(1.0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp; glPopMatrix();<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp; /*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Step 4: Add the user defined function<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* application to interact with mvMotionAI library<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* displayMotionAI;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br />
+&nbsp;&nbsp;&nbsp;&nbsp; displayMotionAI();<br />
+<br />
+&nbsp;&nbsp; glPopMatrix();<br />
+&nbsp;&nbsp; /*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* MISC : draw frame rate<br />
+&nbsp;&nbsp;&nbsp;&nbsp;*/<br />
+<br />
+&nbsp;&nbsp; animateFlag = (isAnimating) ? yes_animation : no_animation;<br />
+&nbsp;&nbsp; sprintf(buffer,"tutorial2, 2007\nFrame Rate : %3.3f fps\n%s\n%s\n",frameRateInterval,animateFlag,camera_keys);<br />
+<br />
+&nbsp;&nbsp; drawText(5, windowHeight - 13, buffer ,windowWidth,windowHeight, 1.0, 1.0, 1.0);<br />
+&nbsp;&nbsp; glFlush();<br />
+&nbsp;&nbsp; glutSwapBuffers();<br />
+}<br />
+<br />
+void displayMotionAI()<br />
+{<br />
+&nbsp;&nbsp; /*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* Step 5: For all worlds, we apply the function 'worldFunction'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* as a function pointer. By passing the function name to mvApplyToAllWorlds<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* and some other parameter. Here we used NULL but you could pass<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* structures, classes and anything that will fit as a void* pointer.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;*/<br />
+&nbsp;&nbsp; mvApplyToAllWorlds(worldFunction,NULL);<br />
+}<br />
+<br />
+void worldFunction(mvWorldPtr tempWorld, void* entry)<br />
+{<br />
+&nbsp;&nbsp; /*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* Step 6: Here we call other functions to draw the classes<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* inside the mvWorld instance such as mvBody, mvObstacles<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* &amp; mvWaypoints. Each of these functions below take a void function<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* i.e void func(mvClass* object, void* ptr);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;*/<br />
+&nbsp;&nbsp; if (tempWorld != NULL)<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tempWorld-&gt;applyToAllBodies(displayBody,NULL);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tempWorld-&gt;applyToAllObstacles(displayObstacle,NULL);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tempWorld-&gt;applyToAllWaypoints(displayWaypoint,NULL);<br />
+&nbsp;&nbsp; }<br />
+}<br />
+<br />
+/*<br />
+ * Step 6a : this function draws the mvBody type in the<br />
+ * application<br />
+ */<br />
+void displayBody(mvBodyPtr p,void* extraPtr)<br />
+{<br />
+&nbsp;&nbsp; mvOptionEnum tempShape;<br />
+<br />
+&nbsp;&nbsp; if (p != NULL)<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glPushAttrib(GL_LIGHTING_BIT);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glDisable(GL_LIGHTING);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Direction<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glPushMatrix();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glTranslatef(p-&gt;getX(),p-&gt;getY(),p-&gt;getZ());<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glBegin(GL_LINES);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // RED TO GREEN - own velocity<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glColor3f(1,0,0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glVertex3f(0,0,0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glColor3f(0,1,0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glVertex3f(p-&gt;getVelocity().getX(), p-&gt;getVelocity().getY(), p-&gt;getVelocity().getZ());<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // GREEN TO BLUE - final velocity<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glEnd();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glTranslatef(0,1,0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glBegin(GL_LINES);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glColor3f(0,1,0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glVertex3f(0,0,0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glColor3f(0,0,1);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glVertex3f(p-&gt;getFinalVelocity().getX(), p-&gt;getFinalVelocity().getY(), p-&gt;getFinalVelocity().getZ());<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glEnd();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glPopMatrix();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glPopAttrib();<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drawGLShape(GL_FILL, p-&gt;getShape(),p-&gt;getPosition(), 1, 1, 1);<br />
+<br />
+&nbsp;&nbsp; }<br />
+}<br />
+<br />
+/*<br />
+ * Step 6b : this function draws the mvObstacle type in the<br />
+ * application<br />
+ */<br />
+void displayObstacle(mvObstaclePtr o,void* extraPtr)<br />
+{<br />
+&nbsp;&nbsp; //const float offsetY = 0.5;<br />
+&nbsp;&nbsp; mvOptionEnum tempShape;<br />
+<br />
+&nbsp;&nbsp; if (o != NULL)<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drawGLShape(GL_FILL, o-&gt;getShape(),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; o-&gt;getPosition(), 1, 0, 1);<br />
+&nbsp;&nbsp; }<br />
+}<br />
+<br />
+void drawGLShape(int drawMode, mvConstShapePtr shapePtr,<br />
+&nbsp;&nbsp; const mvVec3&amp; pos, float r, float g, float b)<br />
+{<br />
+&nbsp;&nbsp; mvOptionEnum tempShape;<br />
+&nbsp;&nbsp; mvFloat radius, length;<br />
+&nbsp;&nbsp; mvFloat aaboxDimensions[MV_VEC3_NO_OF_COMPONENTS];<br />
+&nbsp;&nbsp; mvCount noOfDimensions;<br />
+&nbsp;&nbsp; mvErrorEnum error;<br />
+<br />
+&nbsp;&nbsp; glPushMatrix();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glTranslatef(pos.getX(),pos.getY(),pos.getZ());<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tempShape = shapePtr-&gt;getType();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (tempShape == MV_AABOX)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; error = shapePtr-&gt;getParameterv(MV_SHAPE_DIMENSIONS,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;aaboxDimensions[0],&nbsp;&nbsp;&amp;noOfDimensions);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (error == MV_NO_ERROR)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glScalef(aaboxDimensions[0], aaboxDimensions[1],\<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aaboxDimensions[2]);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glColor3f(r,g,b);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glColor3f(1,0,0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (drawMode == GL_LINE)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glutWireCube(1.0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glutSolidCube(1.0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else if (tempShape == MV_SPHERE)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; error = shapePtr-&gt;getParameterf(MV_RADIUS, &amp;radius);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (error == MV_NO_ERROR)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glColor3f(r,g,b);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glColor3f(1,0,0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radius = 1;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (drawMode == GL_LINE)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glutWireSphere(radius,20,20);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glutSolidSphere(radius,20,20);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (drawMode == GL_LINE)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glutWireOctahedron();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glutSolidOctahedron();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp; glPopMatrix();<br />
+}<br />
+<br />
+/*<br />
+ * Step 6c : this function draws the mvWaypoint type in the<br />
+ * application<br />
+ */<br />
+void displayWaypoint(mvWaypointPtr wp,void* extraPtr)<br />
+{<br />
+&nbsp;&nbsp; if (wp != NULL)<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drawGLShape(GL_LINE, wp-&gt;getShape(),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; wp-&gt;getPosition(), 1, 1, 0);<br />
+&nbsp;&nbsp; }<br />
+}<br />
+<br />
+void animate(void)<br />
+{<br />
+&nbsp;&nbsp; float temp = (float) glutGet(GLUT_ELAPSED_TIME);<br />
+&nbsp;&nbsp; float diffTime = temp - previousTime;<br />
+&nbsp;&nbsp; float timeInSecs;<br />
+<br />
+&nbsp;&nbsp; elapsedTime = glutGet(GLUT_ELAPSED_TIME)/(float)1000.0;<br />
+&nbsp;&nbsp; if (diffTime &gt;&nbsp;&nbsp;MIN_FRAME_PERIOD)<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp; timeInSecs = diffTime/1000.0;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;angle += (float) 25.0 * (timeInSecs);<br />
+&nbsp;&nbsp;&nbsp;&nbsp; previousTime = temp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp; /*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Step 7 : To animate mvMotionAI, add elapsed time in seconds to step<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* the worlds forward.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//std::cout &lt;&lt; "BEFORE" &lt;&lt;std::endl;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mvAllWorldsStepForward(timeInSecs);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//std::cout &lt;&lt; "AFTER" &lt;&lt;std::endl;<br />
+&nbsp;&nbsp; }<br />
+&nbsp;&nbsp; displayFrameRate(noOfFrames);<br />
+&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp; noOfFrames++;<br />
+}<br />
+<br />
+void displayFrameRate(long int frameNo)<br />
+{<br />
+<br />
+&nbsp;&nbsp;static const double interval = 1.0;<br />
+&nbsp;&nbsp;static long int frameNoStartInterval = 0;<br />
+&nbsp;&nbsp;static double elapsedTimeStartInterval = 0.0;<br />
+&nbsp;&nbsp;static double tpfPrevious = 0.0;<br />
+&nbsp;&nbsp;static double tpfCurrent = 0.0;<br />
+&nbsp;&nbsp;static int noOfSeconds = 0;<br />
+<br />
+&nbsp;&nbsp;if (elapsedTime &gt; elapsedTimeStartInterval + interval)<br />
+<br />
+&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;frameRateInterval = (frameNo - frameNoStartInterval) /<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(elapsedTime - elapsedTimeStartInterval);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;elapsedTimeStartInterval = elapsedTime;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;frameNoStartInterval = frameNo;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;tpfCurrent = 1000.0/frameRateInterval;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;std::cout &lt;&lt; "TPF : " &lt;&lt; tpfCurrent &lt;&lt; " +/- " &lt;&lt; tpfCurrent - tpfPrevious &lt;&lt;std::endl;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;tpfPrevious = tpfCurrent;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;noOfSeconds++;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;/*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;if (noOfSeconds &gt; 10)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exit(0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;*/<br />
+&nbsp;&nbsp;}<br />
+}<br />
+<br />
+/*<br />
+ * Ignore these function below<br />
+ */<br />
+<br />
+void cleanup()<br />
+{<br />
+&nbsp;&nbsp; mvFreeMotionAI();<br />
+}<br />
+<br />
+/* ARGSUSED1 */<br />
+void keyboard (unsigned char key, int x, int y)<br />
+{<br />
+&nbsp;&nbsp; switch (key) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'a':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; previousTime = (float) glutGet(GLUT_ELAPSED_TIME);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutIdleFunc(animate);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; isAnimating = true;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'A':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutIdleFunc(NULL);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; isAnimating = false;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'z':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addXRotation(15.0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'Z':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addXRotation(-15.0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'x':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addYRotation(15.0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'X':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addYRotation(-15.0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'c':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addZRotation(15.0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'C':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addZRotation(-15.0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'q':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addXPosition(0.25);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'Q':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addXPosition(-0.25);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'w':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addYPosition(0.25);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'W':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addYPosition(-0.25);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'e':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addZPosition(0.25);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'E':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addZPosition(-0.25);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 27:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cleanup();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit(0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp; }<br />
+}<br />
+<br />
+void init(void)<br />
+{<br />
+&nbsp;&nbsp;glClearColor (0.0, 0.0, 0.0, 0.0);<br />
+&nbsp;&nbsp;glShadeModel (GL_SMOOTH);<br />
+&nbsp;&nbsp;glEnable(GL_LIGHT0);<br />
+&nbsp;&nbsp;glEnable(GL_LIGHTING);<br />
+&nbsp;&nbsp;glEnable(GL_COLOR_MATERIAL);<br />
+&nbsp;&nbsp;glEnable(GL_DEPTH_TEST);<br />
+&nbsp;&nbsp;glEnable(GL_NORMALIZE);<br />
+&nbsp;&nbsp;worldCam.resetCamera();<br />
+&nbsp;&nbsp;worldCam.addYPosition(3);<br />
+&nbsp;&nbsp;// refresh screen<br />
+&nbsp;&nbsp;displayFrameRate(noOfFrames);<br />
+&nbsp;&nbsp;glutPostRedisplay();<br />
+}<br />
+<br />
+void drawText(GLint x, GLint y, char* s, int windowWidth,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int windowHeight, GLfloat r, GLfloat g, GLfloat b)<br />
+{<br />
+<br />
+&nbsp;&nbsp;/* Fron Luke Bigum's TiledProj,2005*/<br />
+<br />
+&nbsp;&nbsp;int lines;<br />
+&nbsp;&nbsp;char* p;<br />
+<br />
+&nbsp;&nbsp;glMatrixMode(GL_PROJECTION);<br />
+&nbsp;&nbsp;glPushMatrix();<br />
+<br />
+&nbsp;&nbsp;glLoadIdentity();<br />
+&nbsp;&nbsp;glOrtho(0.0, windowWidth,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0, windowHeight, -1.0, 1.0);<br />
+<br />
+&nbsp;&nbsp;glMatrixMode(GL_MODELVIEW);<br />
+&nbsp;&nbsp;glPushMatrix();<br />
+&nbsp;&nbsp;glLoadIdentity();<br />
+<br />
+<br />
+&nbsp;&nbsp;glPushAttrib(GL_ENABLE_BIT);<br />
+&nbsp;&nbsp;glDisable(GL_LIGHTING);<br />
+&nbsp;&nbsp;glDisable(GL_DEPTH_TEST);<br />
+&nbsp;&nbsp;glDisable(GL_TEXTURE_2D);<br />
+<br />
+<br />
+&nbsp;&nbsp;glColor3f(r, g, b);<br />
+&nbsp;&nbsp;glRasterPos2i(x, y);<br />
+&nbsp;&nbsp;for(p = s, lines = 0; *p; p++)<br />
+&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;if (*p == '\n')<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lines++;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glRasterPos2i(x, y-(lines*15));<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;glutBitmapCharacter(GLUT_BITMAP_9_BY_15, *p);<br />
+&nbsp;&nbsp;}<br />
+<br />
+&nbsp;&nbsp;glPopAttrib();<br />
+&nbsp;&nbsp;glEnable(GL_DEPTH_TEST);<br />
+&nbsp;&nbsp;glPopMatrix();<br />
+&nbsp;&nbsp;glMatrixMode(GL_PROJECTION);<br />
+&nbsp;&nbsp;glPopMatrix();<br />
+&nbsp;&nbsp;glMatrixMode(GL_MODELVIEW);<br />
+}<br />
+<br />
+void reshape (int w, int h)<br />
+{<br />
+&nbsp;&nbsp; windowWidth = w;<br />
+&nbsp;&nbsp; windowHeight = h;<br />
+<br />
+&nbsp;&nbsp; glViewport (0, 0, (GLsizei) w, (GLsizei) h);<br />
+&nbsp;&nbsp; glMatrixMode (GL_PROJECTION);<br />
+&nbsp;&nbsp; glLoadIdentity ();<br />
+&nbsp;&nbsp; glFrustum(left,right,bottom,top,nearValue,farValue);<br />
+&nbsp;&nbsp; gluLookAt( 0 , 0, 2.0, 0, 0 , 0, 0, 1.00, 0);<br />
+&nbsp;&nbsp; glMatrixMode(GL_MODELVIEW);<br />
+&nbsp;&nbsp; glLoadIdentity();<br />
+&nbsp;&nbsp; glTranslatef (0.0, 0.0, -3.0);<br />
+}<br />
+<br />
+</code>
+</p>
+<p> <a href="index.html"> Back to index </a> </p>
+<p><a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=174315&amp;type=5" width="210" height="62" border="0" alt="SourceForge.net Logo" /></a></p>
+</body>
+</html>
