@@ -1,0 +1,771 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<title>tutorial3 - source code only</title>
+</head>
+<body>
+<h1> tutorial3 - source code only </h1>
+<h2> <a id="Menu"> Menu </a> </h2>
+<ol>
+<li> <h3> <a href="#TH_H"> TimedHop.h </a> </h3> </li>
+<li> <h3> <a href="#TH_CPP"> TimedHop.cpp </a> </h3> </li>
+<li> <h3> <a href="#CAGL_CPP"> CustomActionGLMain.cpp </a> </h3> </li>
+</ol>
+<h3> <a href="index.html"> Back To Index </a> </h3>
+<h2> <a id="TH_H"> TimedHop.h </a> </h2>
+<p>
+<code>
+#ifndef TIMEDHOP_H_INCLUDED<br />
+#define TIMEDHOP_H_INCLUDED<br />
+<br />
+/**<br />
+ * \brief How to add a custom action into mvWorld system<br />
+ *<br />
+ * To add new classes describing how bodies should behave or act, we build a sub<br />
+ * class of mvBaseAction and its corresponding loader (factory),<br />
+ * mvBaseActionLoader.<br />
+ *<br />
+ * The programmer must implement three virtual functions if he/she wants to use<br />
+ * customable mvAction class. To retrive variables from your custom<br />
+ * action class via the mvMotionAI library, implement the superclass<br />
+ * set/getParameter(ifv)() functions that are needed.<br />
+ *<br />
+ * 1. virtual bool bodyOp(mvBehaviourResultPtr resultMod) of the derived<br />
+ *&nbsp;&nbsp;&nbsp;&nbsp;mvBaseAction class:<br />
+ *<br />
+ * - Via the parameter resultMod, we can set the possible future velocity or a<br />
+ *&nbsp;&nbsp; steering force to the body. More importantly EVERY pointers and references<br />
+ *&nbsp;&nbsp; is READ-ONLY (const), expect for mvBaseActionPtr &amp; mvBehaviourResultPtr.<br />
+ *&nbsp;&nbsp; This is to keep the changes within the system isolated. This function is<br />
+ *&nbsp;&nbsp; called for every action instance within the system per mvWorldStep,<br />
+ *&nbsp;&nbsp; i.e. if 5 mvBodies have the 7 copies of same mvBaseAction, then this<br />
+ *&nbsp;&nbsp; function might be called up to 35 times.<br />
+ *<br />
+ * 2. virtual bool groupOp(mvGroupBehaviourResultPtr groupBehMod) of the derived<br />
+ *&nbsp;&nbsp;&nbsp;&nbsp;mvBaseAction class:<br />
+ *<br />
+ * - This is the user defined method for group interactions (mvGroupBehaviours)<br />
+ *&nbsp;&nbsp; with other mvBody within mvWorld system. The big difference between the<br />
+ *&nbsp;&nbsp; bodyOp &amp; groupOp is the latter has READ and WRITE access to mvWorld objects<br />
+ *&nbsp;&nbsp; in the system. Therefore this function can create new objects &amp; change<br />
+ *&nbsp;&nbsp; variables of other classes.<br />
+ *&nbsp;&nbsp; This function is used together with the mvGroupBehaviour object.<br />
+ *&nbsp;&nbsp; mvGroupBehaviours provide a shared variable area to all multiple bodies<br />
+ *&nbsp;&nbsp; using a top-down approach. Types of behaviours suitable for group<br />
+ *&nbsp;&nbsp; behaviours are boids, squadarons and a game of tag between many bodies.<br />
+ *<br />
+ *&nbsp;&nbsp; However, this function is called far less, i.e. for a mvGroupBehaviour's<br />
+ *&nbsp;&nbsp; associated group node per a mvWorldStep, so once for a group per every<br />
+ *&nbsp;&nbsp; instance of mvGroupBehaviour in an instance of mvWorld.<br />
+ *<br />
+ * 3. virtual mvBaseActionPtr operator()(mvNewBaseActionInfo&amp; actionQuery) of the<br />
+ *&nbsp;&nbsp;&nbsp;&nbsp;derived mvBaseActionLoader class:<br />
+ *<br />
+ *&nbsp;&nbsp;&nbsp;&nbsp;- This function acts a factory creating new instance of any action<br />
+ *&nbsp;&nbsp; as long as the instance is returning as a mvBaseAction pointer.<br />
+ *&nbsp;&nbsp; The parameter actionQuery is used to specialise the new object<br />
+ *&nbsp;&nbsp; for various purposes. Through querying the actionQery instance,<br />
+ *&nbsp;&nbsp; we can create different objects for every given situation;<br />
+ *&nbsp;&nbsp; we can use the same 'key' to create different behaviours.<br />
+ *<br />
+ *&nbsp;&nbsp; The situations when an action is created:<br />
+ *&nbsp;&nbsp; 1. for an individual body or private action instance<br />
+ *&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;bool isNewPrivateBehaviour() const<br />
+ *&nbsp;&nbsp; 2. a global behaviour which can be used by any body in the system<br />
+ *&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;bool isNewGlobalBehaviour() const<br />
+ *&nbsp;&nbsp; 3. a starter/(main node) group behaviour (has many groups, has many members<br />
+ *&nbsp;&nbsp; (indirectly), 1 default action)<br />
+ *&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;bool isNewGroupBehaviour() const<br />
+ *&nbsp;&nbsp; 4. a group behaviour group node (belongs to 1 group behavour, has 1 group,<br />
+ *&nbsp;&nbsp; has many members, has 1 action)<br />
+ *&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;bool isNewGroupBehaviourGroupNode() const<br />
+ *&nbsp;&nbsp; 5. a group member of a group node. (has 1 member, belong to 1 group)<br />
+ *&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;bool isNewGroupMemberNode() const<br />
+ *<br />
+ *&nbsp;&nbsp; Note that situation 4 &amp; 5 are different as they have access to other<br />
+ *&nbsp;&nbsp; mvBaseAction pointers. The programmer can use the values<br />
+ *&nbsp;&nbsp; of the main node's or a group node's action classes for initialisation,<br />
+ *&nbsp;&nbsp; updating node values, etc.<br />
+ */<br />
+<br />
+#include &lt;mv/mvMotionAI.h&gt;<br />
+<br />
+class TimedHop : public mvBaseAction<br />
+{<br />
+&nbsp;&nbsp; public:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TimedHop();<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/**<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * \brief this is user defined method for a single body<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * interacting with the mvWorld system objects such as mvBody, mvObstacle,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * and mvWaypoints.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;virtual bool bodyOp(mvBehaviourResultPtr resultMod);<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/**<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * \brief this is user defined method for group interaction with other<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * mvBody mvWorld system.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;virtual bool groupOp(mvGroupBehaviourResultPtr groupBehMod);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~TimedHop();<br />
+};<br />
+<br />
+class TimedHopLoader : public mvBaseActionLoader<br />
+{<br />
+&nbsp;&nbsp; public:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TimedHopLoader();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;virtual mvBaseActionPtr operator()(mvNewBaseActionInfo&amp; actionQuery);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~TimedHopLoader();<br />
+};<br />
+<br />
+#endif // TIMEDHOP_H_INCLUDED<br />
+</code>
+</p>
+<p> <a href="#Menu"> Back To Menu </a> </p>
+<h3> <a href="index.html"> Back To Index </a> </h3>
+<h2> <a id="#TH_CPP"> TimedHop.cpp </a> </h2>
+<p>
+<code>
+#include "TimedHop.h"<br />
+#include &lt;iostream&gt; // not actually used by this class <br />
+<br />
+TimedHop::TimedHop()<br />
+&nbsp;&nbsp; /* NOTE : you should use a different mvOptionEnum enum than<br />
+&nbsp;&nbsp; *&nbsp;&nbsp;existing mvBaseAction classes<br />
+&nbsp;&nbsp; */<br />
+&nbsp;&nbsp; : mvBaseAction(MV_NON_BODY_TYPE)<br />
+{<br />
+<br />
+}<br />
+<br />
+bool TimedHop::bodyOp(mvBehaviourResultPtr resultMod)<br />
+{<br />
+&nbsp;&nbsp; if (!resultMod)<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return false;<br />
+&nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp; mvIndex currentTime = (mvIndex) (<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resultMod-&gt;getElapsedSystemTime() +resultMod-&gt;getTimeStep());<br />
+<br />
+&nbsp;&nbsp; if (currentTime % 2 == 0)<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resultMod-&gt;setVelocity(mvVec3(0,4,0),MV_DIRECTIONAL_MOTION);<br />
+&nbsp;&nbsp; }<br />
+&nbsp;&nbsp; else<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resultMod-&gt;setVelocity(mvVec3(0,-4,0),MV_DIRECTIONAL_MOTION);<br />
+&nbsp;&nbsp; }<br />
+&nbsp;&nbsp; return true;<br />
+}<br />
+<br />
+bool TimedHop::groupOp(mvGroupBehaviourResultPtr groupBehMod)<br />
+{<br />
+&nbsp;&nbsp; return false;<br />
+}<br />
+<br />
+TimedHop::~TimedHop()<br />
+{<br />
+<br />
+}<br />
+<br />
+TimedHopLoader::TimedHopLoader()<br />
+{<br />
+<br />
+}<br />
+<br />
+mvBaseActionPtr TimedHopLoader::operator()(mvNewBaseActionInfo&amp; actionQuery)<br />
+{<br />
+&nbsp;&nbsp; return new TimedHop();<br />
+}<br />
+<br />
+TimedHopLoader::~TimedHopLoader()<br />
+{<br />
+<br />
+}<br />
+</code>
+</p>
+<p> <a href="#Menu"> Back To Menu </a> </p>
+<h3> <a href="index.html"> Back To Index </a> </h3>
+<h2> <a id="#CAGL_CPP"> CustomActionGLMain.cpp </a> </h2>
+<p>
+<code>
+/**<br />
+ * \brief tutorial3 :<br />
+ * How to implement custom behaviours to the mvMotionAI system<br />
+ *<br />
+ * Copyright (c) 2005 - 2006 David Young.<br />
+ *<br />
+ * Permission is hereby granted, free of charge, to any person obtaining a<br />
+ * copy of this software and associated documentation files (the "Software"),<br />
+ * to deal in the Software without restriction, including without limitation<br />
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,<br />
+ * and/or sell copies of the Software, and to permit persons to whom the<br />
+ * Software is furnished to do so, subject to the following conditions:<br />
+ *<br />
+ * The above copyright notice and this permission notice shall be included in<br />
+ * all copies or substantial portions of the Software.<br />
+ *<br />
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br />
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br />
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL<br />
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br />
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING<br />
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER<br />
+ * DEALINGS IN THE SOFTWARE.<br />
+ */<br />
+<br />
+#include &lt;GL/glut.h&gt;<br />
+#include &lt;iostream&gt;<br />
+#include "../Camera.h"<br />
+#include &lt;cstdlib&gt;<br />
+<br />
+/*<br />
+ * Step 1.0 : include header to use library<br />
+ */<br />
+#include &lt;mv/mvMotionAI.h&gt;<br />
+<br />
+/*<br />
+ * Step 1.1&nbsp;&nbsp;include custom action class i.e TimedHop<br />
+ */<br />
+#include "TimedHop.h"<br />
+<br />
+static float left = -1.0;<br />
+static float right = 1.0;<br />
+static float bottom = -1.0;<br />
+static float top = 1.0;<br />
+static float nearValue = 1.0;<br />
+static float farValue = 100.0;<br />
+static float lightPos1[] = {5.0,0.0,5.0,0.0};<br />
+<br />
+static Camera worldCam;<br />
+static int windowHeight = 500;<br />
+static int windowWidth = 480;<br />
+<br />
+static const float MIN_FRAME_PERIOD = 1.0f/60.0f * 1000.0f;<br />
+static float previousTime;<br />
+static float elapsedTime = 0.0;<br />
+static long int noOfFrames = 0;<br />
+static float angle = 0.0;<br />
+static double frameRateInterval = 0.0;<br />
+<br />
+#define BUFFER_SIZE 1024<br />
+static char buffer[BUFFER_SIZE];<br />
+void displayFrameRate(long int frameNo);<br />
+void drawText(GLint x, GLint y, char* s, int windowWidth,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int windowHeight, GLfloat r, GLfloat g, GLfloat b);<br />
+void drawGLShape(int drawMode, mvConstShapePtr shapePtr,<br />
+&nbsp;&nbsp; const mvVec3&amp; pos, float r, float g, float b);<br />
+void init();<br />
+void reshape(int w, int h);<br />
+void keyboard(unsigned char key,int x, int y);<br />
+void display();<br />
+void animate();<br />
+<br />
+#define USE_ARGUMENTV_FILE_ARG_COUNT 2<br />
+#define FILE_NAME_ARGV_INDEX 1<br />
+char defaultLuaFileName[] = "Test.lua";<br />
+char* scriptFileName = NULL;<br />
+bool isAnimating = false;<br />
+<br />
+void displayMotionAI();<br />
+void displayWaypoint(mvWaypointPtr wp, void* ptr);<br />
+void displayObstacle(mvObstaclePtr o, void* ptr);<br />
+void displayBody(mvBodyPtr p, void* extraPtr);<br />
+void worldFunction(mvWorldPtr tempWorld, void* ptr);<br />
+<br />
+int main(int argc, char** argv)<br />
+{<br />
+&nbsp;&nbsp; // ignore : OpenGL startup code<br />
+&nbsp;&nbsp; glutInit(&amp;argc, argv);<br />
+&nbsp;&nbsp; glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);<br />
+&nbsp;&nbsp; glutInitWindowSize (windowWidth, windowHeight);<br />
+&nbsp;&nbsp; glutInitWindowPosition (100, 100);<br />
+&nbsp;&nbsp; glutCreateWindow("tutorial3 :implementing a custom behaviour in mvMotionAI");<br />
+<br />
+&nbsp;&nbsp; // ignore : more application based OpenGL startup code<br />
+&nbsp;&nbsp; init ();<br />
+<br />
+&nbsp;&nbsp; /*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* Step 2 : initialise mvMotionAI library<br />
+&nbsp;&nbsp;&nbsp;&nbsp;*/<br />
+&nbsp;&nbsp; mvInitMotionAI();<br />
+&nbsp;&nbsp; mvErrorEnum initError = mvInitDefaultActions();<br />
+&nbsp;&nbsp; if (initError != MV_NO_ERROR)<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;puts("MV INIT ACTIONS ERROR");<br />
+&nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp; /*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* Step 2.1 adding a new instance of TimedHopLoader<br />
+&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;- NOTE that the mvWorld class handles the deletion of mvBaseActionLoaders.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;*/<br />
+&nbsp;&nbsp; initError = mvAddBehaviourFunction(MV_NON_BODY_TYPE, new&nbsp;&nbsp;TimedHopLoader());<br />
+&nbsp;&nbsp; if (initError != MV_NO_ERROR)<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;puts("MV INIT CUSTOM ACTIONS ERROR");<br />
+&nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp; initError = mvInitDefaultForces();<br />
+&nbsp;&nbsp; if (initError != MV_NO_ERROR)<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;puts("MV INIT FORCES ERROR");<br />
+&nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp; /*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* Step 3 : create mvWorld object via C interface<br />
+&nbsp;&nbsp;&nbsp;&nbsp;*/<br />
+<br />
+&nbsp;&nbsp; int worldID = mvCreateWorld();<br />
+&nbsp;&nbsp; std::cout &lt;&lt; "worldID : " &lt;&lt; worldID &lt;&lt;&nbsp;&nbsp;std::endl;<br />
+<br />
+&nbsp;&nbsp; int bodyID2 = mvCreateBody(worldID,MV_PARTICLE,MV_SPHERE, 0 , 4 , 4);<br />
+&nbsp;&nbsp; int entryID = mvAddBehaviourToList(worldID,bodyID2,MV_NON_BODY_TYPE, MV_NULL, MV_NULL);<br />
+&nbsp;&nbsp; if (entryID == MV_NULL)<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;puts("MV INIT ENTRY ERROR");<br />
+&nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp; glutDisplayFunc(display);<br />
+&nbsp;&nbsp; glutReshapeFunc(reshape);<br />
+&nbsp;&nbsp; glutKeyboardFunc(keyboard);<br />
+<br />
+&nbsp;&nbsp; glutMainLoop();<br />
+&nbsp;&nbsp; return EXIT_SUCCESS;<br />
+}<br />
+<br />
+const char* animateFlag = NULL;<br />
+const char no_animation[] = "a : Start animation";<br />
+const char yes_animation[] = "A : stop Animation";<br />
+const char camera_keys[] = "q|Q/w|W/e|E : move camera\nz|Z/x|X/c|c rotates camera\n";<br />
+<br />
+void display(void)<br />
+{<br />
+&nbsp;&nbsp; glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);<br />
+&nbsp;&nbsp; glPushMatrix();<br />
+&nbsp;&nbsp;&nbsp;&nbsp; worldCam.apply();<br />
+&nbsp;&nbsp;&nbsp;&nbsp; glLightfv(GL_LIGHT0,GL_POSITION,lightPos1);<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp; glColor3f(0,1,0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp; glBegin(GL_QUADS);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glNormal3f(0,1,0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glVertex3f(20,0,-20);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glVertex3f(-20,0,-20);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glVertex3f(-20,0,20);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glVertex3f(20,0,20);<br />
+&nbsp;&nbsp;&nbsp;&nbsp; glEnd();<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp; /*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* MISC: Use rotating teapot to see if animation is on.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp; glPushMatrix();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glRotatef(angle,0,1,0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glColor3f(1,1,1);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutSolidTeapot(1.0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp; glPopMatrix();<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp; /*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Step 4: Add the user defined function<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* application to interact with mvMotionAI library<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* displayMotionAI;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br />
+&nbsp;&nbsp;&nbsp;&nbsp; displayMotionAI();<br />
+<br />
+&nbsp;&nbsp; glPopMatrix();<br />
+&nbsp;&nbsp; /*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* MISC : draw frame rate<br />
+&nbsp;&nbsp;&nbsp;&nbsp;*/<br />
+<br />
+&nbsp;&nbsp; animateFlag = (isAnimating) ? yes_animation : no_animation;<br />
+&nbsp;&nbsp; sprintf(buffer,"tutorial3, 2007\nFrame Rate : %3.3f fps\n%s\n%s\n",frameRateInterval,animateFlag,camera_keys);<br />
+<br />
+&nbsp;&nbsp; drawText(5, windowHeight - 13, buffer ,windowWidth,windowHeight, 1.0, 1.0, 1.0);<br />
+&nbsp;&nbsp; glFlush();<br />
+&nbsp;&nbsp; glutSwapBuffers();<br />
+}<br />
+<br />
+void displayMotionAI()<br />
+{<br />
+&nbsp;&nbsp; /*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* Step 5: For all worlds, we apply the function 'worldFunction'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* as a function pointer. By passing the function name to mvApplyToAllWorlds<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* and some other parameter. Here we used NULL but you could pass<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* structures, classes and anything that will fit as a void* pointer.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;*/<br />
+&nbsp;&nbsp; mvApplyToAllWorlds(worldFunction,NULL);<br />
+}<br />
+<br />
+void worldFunction(mvWorldPtr tempWorld, void* entry)<br />
+{<br />
+&nbsp;&nbsp; /*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* Step 6: Here we call other functions to draw the classes<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* inside the mvWorld instance such as mvBody, mvObstacles<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* &amp; mvWaypoints. Each of these functions below take a void function<br />
+&nbsp;&nbsp;&nbsp;&nbsp;* i.e void func(mvClass* object, void* ptr);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;*/<br />
+&nbsp;&nbsp; if (tempWorld != NULL)<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tempWorld-&gt;applyToAllBodies(displayBody,NULL);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tempWorld-&gt;applyToAllObstacles(displayObstacle,NULL);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tempWorld-&gt;applyToAllWaypoints(displayWaypoint,NULL);<br />
+&nbsp;&nbsp; }<br />
+}<br />
+<br />
+<br />
+<br />
+/*<br />
+ * Step 6a : this function draws the mvBody type in the<br />
+ * application<br />
+ */<br />
+void displayBody(mvBodyPtr p,void* extraPtr)<br />
+{<br />
+&nbsp;&nbsp; if (p != NULL)<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glPushAttrib(GL_LIGHTING_BIT);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glDisable(GL_LIGHTING);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Direction<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glPushMatrix();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glTranslatef(p-&gt;getX(),p-&gt;getY(),p-&gt;getZ());<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glBegin(GL_LINES);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // RED TO GREEN - own velocity<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glColor3f(1,0,0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glVertex3f(0,0,0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glColor3f(0,1,0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glVertex3f(p-&gt;getVelocity().getX(), p-&gt;getVelocity().getY(), p-&gt;getVelocity().getZ());<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // GREEN TO BLUE - final velocity<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glColor3f(0,1,0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glVertex3f(0,1,0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glColor3f(0,0,1);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glVertex3f(p-&gt;getFinalVelocity().getX(), 1.0f + p-&gt;getFinalVelocity().getY(), p-&gt;getFinalVelocity().getZ());<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glEnd();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glPopMatrix();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glPopAttrib();<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drawGLShape(GL_FILL, p-&gt;getShape(),p-&gt;getPosition(), 1, 1, 1);<br />
+<br />
+&nbsp;&nbsp; }<br />
+}<br />
+<br />
+/*<br />
+ * Step 6b : this function draws the mvObstacle type in the<br />
+ * application<br />
+ */<br />
+void displayObstacle(mvObstaclePtr o,void* extraPtr)<br />
+{<br />
+&nbsp;&nbsp; if (o != NULL)<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drawGLShape(GL_FILL, o-&gt;getShape(),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; o-&gt;getPosition(), 1, 0, 1);<br />
+&nbsp;&nbsp; }<br />
+}<br />
+<br />
+void drawGLShape(int drawMode, mvConstShapePtr shapePtr,<br />
+&nbsp;&nbsp; const mvVec3&amp; pos, float r, float g, float b)<br />
+{<br />
+&nbsp;&nbsp; mvOptionEnum tempShape;<br />
+&nbsp;&nbsp; mvFloat radius;<br />
+&nbsp;&nbsp; mvFloat aaboxDimensions[MV_VEC3_NO_OF_COMPONENTS];<br />
+&nbsp;&nbsp; mvCount noOfDimensions;<br />
+&nbsp;&nbsp; mvErrorEnum error;<br />
+<br />
+&nbsp;&nbsp; glPushMatrix();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glTranslatef(pos.getX(),pos.getY(),pos.getZ());<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tempShape = shapePtr-&gt;getType();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (tempShape == MV_AABOX)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; error = shapePtr-&gt;getParameterv(MV_SHAPE_DIMENSIONS,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;aaboxDimensions[0],&nbsp;&nbsp;&amp;noOfDimensions);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (error == MV_NO_ERROR)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glScalef(aaboxDimensions[0], aaboxDimensions[1],\<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aaboxDimensions[2]);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glColor3f(r,g,b);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glColor3f(1,0,0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (drawMode == GL_LINE)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glutWireCube(1.0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glutSolidCube(1.0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else if (tempShape == MV_SPHERE)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; error = shapePtr-&gt;getParameterf(MV_RADIUS, &amp;radius);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (error == MV_NO_ERROR)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glColor3f(r,g,b);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glColor3f(1,0,0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radius = 1;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (drawMode == GL_LINE)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glutWireSphere(radius,20,20);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glutSolidSphere(radius,20,20);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (drawMode == GL_LINE)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glutWireOctahedron();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glutSolidOctahedron();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp; glPopMatrix();<br />
+}<br />
+<br />
+/*<br />
+ * Step 6c : this function draws the mvWaypoint type in the<br />
+ * application<br />
+ */<br />
+void displayWaypoint(mvWaypointPtr wp,void* extraPtr)<br />
+{<br />
+&nbsp;&nbsp; if (wp != NULL)<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drawGLShape(GL_LINE, wp-&gt;getShape(),<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; wp-&gt;getPosition(), 1, 1, 0);<br />
+&nbsp;&nbsp; }<br />
+}<br />
+<br />
+void animate(void)<br />
+{<br />
+&nbsp;&nbsp; float temp = (float) glutGet(GLUT_ELAPSED_TIME);<br />
+&nbsp;&nbsp; float diffTime = temp - previousTime;<br />
+&nbsp;&nbsp; float timeInSecs;<br />
+<br />
+&nbsp;&nbsp; elapsedTime = glutGet(GLUT_ELAPSED_TIME)/(float)1000.0;<br />
+&nbsp;&nbsp; if (diffTime &gt;&nbsp;&nbsp;MIN_FRAME_PERIOD)<br />
+&nbsp;&nbsp; {<br />
+&nbsp;&nbsp;&nbsp;&nbsp; timeInSecs = diffTime/1000.0;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;angle += (float) 25.0 * (timeInSecs);<br />
+&nbsp;&nbsp;&nbsp;&nbsp; previousTime = temp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp; /*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Step 7 : To animate mvMotionAI, add elapsed time in seconds to step<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* the worlds forward.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//std::cout &lt;&lt; "BEFORE" &lt;&lt;std::endl;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mvAllWorldsStepForward(timeInSecs);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//std::cout &lt;&lt; "AFTER" &lt;&lt;std::endl;<br />
+&nbsp;&nbsp; }<br />
+&nbsp;&nbsp; displayFrameRate(noOfFrames);<br />
+&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp; noOfFrames++;<br />
+}<br />
+<br />
+void displayFrameRate(long int frameNo)<br />
+{<br />
+<br />
+&nbsp;&nbsp;static const double interval = 1.0;<br />
+&nbsp;&nbsp;static long int frameNoStartInterval = 0;<br />
+&nbsp;&nbsp;static double elapsedTimeStartInterval = 0.0;<br />
+&nbsp;&nbsp;static double tpfPrevious = 0.0;<br />
+&nbsp;&nbsp;static double tpfCurrent = 0.0;<br />
+&nbsp;&nbsp;static int noOfSeconds = 0;<br />
+<br />
+&nbsp;&nbsp;if (elapsedTime &gt; elapsedTimeStartInterval + interval)<br />
+<br />
+&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;frameRateInterval = (frameNo - frameNoStartInterval) /<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(elapsedTime - elapsedTimeStartInterval);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;elapsedTimeStartInterval = elapsedTime;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;frameNoStartInterval = frameNo;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;tpfCurrent = 1000.0/frameRateInterval;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;std::cout &lt;&lt; "TPF : " &lt;&lt; tpfCurrent &lt;&lt; " +/- " &lt;&lt; tpfCurrent - tpfPrevious &lt;&lt;std::endl;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;tpfPrevious = tpfCurrent;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;noOfSeconds++;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;/*<br />
+&nbsp;&nbsp;&nbsp;&nbsp;if (noOfSeconds &gt; 10)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exit(0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;*/<br />
+&nbsp;&nbsp;}<br />
+}<br />
+<br />
+/*<br />
+ * Ignore these function below<br />
+ */<br />
+<br />
+void cleanup()<br />
+{<br />
+&nbsp;&nbsp; mvFreeMotionAI();<br />
+}<br />
+<br />
+/* ARGSUSED1 */<br />
+void keyboard (unsigned char key, int x, int y)<br />
+{<br />
+&nbsp;&nbsp; switch (key) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'a':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; previousTime = (float) glutGet(GLUT_ELAPSED_TIME);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutIdleFunc(animate);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; isAnimating = true;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'A':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutIdleFunc(NULL);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; isAnimating = false;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'z':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addXRotation(15.0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'Z':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addXRotation(-15.0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'x':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addYRotation(15.0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'X':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addYRotation(-15.0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'c':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addZRotation(15.0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'C':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addZRotation(-15.0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'q':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addXPosition(0.25);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'Q':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addXPosition(-0.25);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'w':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addYPosition(0.25);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'W':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addYPosition(-0.25);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'e':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addZPosition(0.25);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'E':<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; worldCam.addZPosition(-0.25);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; glutPostRedisplay();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 27:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cleanup();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exit(0);<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br />
+&nbsp;&nbsp; }<br />
+}<br />
+<br />
+void init(void)<br />
+{<br />
+&nbsp;&nbsp;glClearColor (0.0, 0.0, 0.0, 0.0);<br />
+&nbsp;&nbsp;glShadeModel (GL_SMOOTH);<br />
+&nbsp;&nbsp;glEnable(GL_LIGHT0);<br />
+&nbsp;&nbsp;glEnable(GL_LIGHTING);<br />
+&nbsp;&nbsp;glEnable(GL_COLOR_MATERIAL);<br />
+&nbsp;&nbsp;glEnable(GL_DEPTH_TEST);<br />
+&nbsp;&nbsp;glEnable(GL_NORMALIZE);<br />
+&nbsp;&nbsp;worldCam.resetCamera();<br />
+&nbsp;&nbsp;worldCam.addYPosition(3);<br />
+&nbsp;&nbsp;// refresh screen<br />
+&nbsp;&nbsp;displayFrameRate(noOfFrames);<br />
+&nbsp;&nbsp;glutPostRedisplay();<br />
+}<br />
+<br />
+void drawText(GLint x, GLint y, char* s, int windowWidth,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int windowHeight, GLfloat r, GLfloat g, GLfloat b)<br />
+{<br />
+<br />
+&nbsp;&nbsp;/* Fron Luke Bigum's TiledProj,2005*/<br />
+<br />
+&nbsp;&nbsp;int lines;<br />
+&nbsp;&nbsp;char* p;<br />
+<br />
+&nbsp;&nbsp;glMatrixMode(GL_PROJECTION);<br />
+&nbsp;&nbsp;glPushMatrix();<br />
+<br />
+&nbsp;&nbsp;glLoadIdentity();<br />
+&nbsp;&nbsp;glOrtho(0.0, windowWidth,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0, windowHeight, -1.0, 1.0);<br />
+<br />
+&nbsp;&nbsp;glMatrixMode(GL_MODELVIEW);<br />
+&nbsp;&nbsp;glPushMatrix();<br />
+&nbsp;&nbsp;glLoadIdentity();<br />
+<br />
+<br />
+&nbsp;&nbsp;glPushAttrib(GL_ENABLE_BIT);<br />
+&nbsp;&nbsp;glDisable(GL_LIGHTING);<br />
+&nbsp;&nbsp;glDisable(GL_DEPTH_TEST);<br />
+&nbsp;&nbsp;glDisable(GL_TEXTURE_2D);<br />
+<br />
+<br />
+&nbsp;&nbsp;glColor3f(r, g, b);<br />
+&nbsp;&nbsp;glRasterPos2i(x, y);<br />
+&nbsp;&nbsp;for(p = s, lines = 0; *p; p++)<br />
+&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;if (*p == '\n')<br />
+&nbsp;&nbsp;&nbsp;&nbsp;{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lines++;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;glRasterPos2i(x, y-(lines*15));<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;glutBitmapCharacter(GLUT_BITMAP_9_BY_15, *p);<br />
+&nbsp;&nbsp;}<br />
+<br />
+&nbsp;&nbsp;glPopAttrib();<br />
+&nbsp;&nbsp;glEnable(GL_DEPTH_TEST);<br />
+&nbsp;&nbsp;glPopMatrix();<br />
+&nbsp;&nbsp;glMatrixMode(GL_PROJECTION);<br />
+&nbsp;&nbsp;glPopMatrix();<br />
+&nbsp;&nbsp;glMatrixMode(GL_MODELVIEW);<br />
+}<br />
+<br />
+void reshape (int w, int h)<br />
+{<br />
+&nbsp;&nbsp; windowWidth = w;<br />
+&nbsp;&nbsp; windowHeight = h;<br />
+<br />
+&nbsp;&nbsp; glViewport (0, 0, (GLsizei) w, (GLsizei) h);<br />
+&nbsp;&nbsp; glMatrixMode (GL_PROJECTION);<br />
+&nbsp;&nbsp; glLoadIdentity ();<br />
+&nbsp;&nbsp; glFrustum(left,right,bottom,top,nearValue,farValue);<br />
+&nbsp;&nbsp; gluLookAt( 0 , 0, 2.0, 0, 0 , 0, 0, 1.00, 0);<br />
+&nbsp;&nbsp; glMatrixMode(GL_MODELVIEW);<br />
+&nbsp;&nbsp; glLoadIdentity();<br />
+&nbsp;&nbsp; glTranslatef (0.0, 0.0, -3.0);<br />
+}<br />
+</code>
+</p>
+<p> <a href="#Menu"> Back To Menu </a> </p>
+<h3> <a href="index.html"> Back To Index </a> </h3>
+<hr/>
+<p> This file was created with HTML Kit on 21th November 2007. This code is revelant to version 00-02-38 and greater. </p>
+<p><a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=174315&amp;type=5" width="210" height="62" border="0" alt="SourceForge.net Logo" /></a></p>
+</body>
+</html>
