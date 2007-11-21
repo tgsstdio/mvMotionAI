@@ -1,8 +1,8 @@
 import re
 import os
 
-tutorialDir = 'D:/mvMotionAI/mvMotionAI/examples-src/tutorial3'
-fileName = 'CustomActionGLMain.cpp'
+tutorialDir = 'D:/mvMotionAI/mvMotionAI/examples-src/sideproject1'
+fileName = 'LuaGLTest.cpp'
 outputFileName = 'c.txt'
 
 os.chdir(tutorialDir)
