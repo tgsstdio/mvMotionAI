@@ -658,7 +658,6 @@ bool mvCheckAllErrorEnumsForString(const char* errorString, mvErrorEnum* dest)
       orderedErrorEnums,MV_NO_OF_ERROR_ENUMS,MV_ERROR_ENUM_IS_NOT_FOUND, false);
 }
 
-#include <cstdio>
 bool mvCheckAllOptionEnumsForString(const char* optionString, mvOptionEnum* dest)
 {
    return binarySearchOfEnumStrings<mvOptionEnum>(optionString,dest,&mvOptionEnumStrings[0],

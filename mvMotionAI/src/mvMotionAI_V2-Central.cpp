@@ -1,6 +1,5 @@
 #include "mvMotionAI_V2-Central.h"
 #include <cstring>
-#include <iostream>
 
 /**
  * default behaviours/actions
@@ -19,6 +18,14 @@
 #include <mv/mvUniformForce.h>
 #include <mv/mvUniformAccelForce.h>
 #include <mv/mvUniformShiftForce.h>
+
+#define MV_MOTIONAI_V2_SINGLETON_DEBUG_OUTPUT 1
+#undef MV_MOTIONAI_V2_SINGLETON_DEBUG_OUTPUT
+
+#ifdef MV_MOTIONAI_V2_SINGLETON_DEBUG_OUTPUT
+#include <iostream>
+#endif
+
 
 mvMotionAI_V2_SUPERCLASS __mv__Motion__AI__Module;
 
@@ -384,8 +391,10 @@ mvErrorEnum mvMotionAI_V2_LOADDEFAULTFORCES(mvForceLoaderListPtr
       delete tempLoader;
       return error;
    }
+#ifdef MV_MOTIONAI_V2_SINGLETON_DEBUG_OUTPUT
    // todo : add more forces
    std::cout<< "No Of FF " << loader->getNoOfFactoryFunctions() << std::endl;
+#endif
 
    return MV_NO_ERROR;
 }

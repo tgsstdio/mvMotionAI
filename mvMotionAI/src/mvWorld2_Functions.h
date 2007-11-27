@@ -78,6 +78,7 @@ struct mvWorld_V2_CalcBehavOnListHelper
    public:
       mvBehaviourResultPtr finalResult;
       mvBodyCapsulePtr bCapsule;
+      mvEntryListPtr currentEntryList;
 };
 
 mvBaseActionPtr mvWorld_V2_InitialiseResults(mvEntryPtr nodeInfo, mvIndex bodyIndex,
@@ -93,7 +94,16 @@ void mvWorld_V2_SumBehaviourResults(mvBehaviourResultPtr summedResult,
 void mvWorld_V2_SumForceResults(mvForceResultPtr summedResult,
    const mvForceResult& actionResult);
 
+// TODO : complete this function
+void mvWorld_V2_CalculateEntryByRandomSum(mvEntryListNodePtr eNodePtr,\
+   void* extraPtr);
+
 void mvWorld_V2_CalculateEntryByWeightedSum(mvEntryListNodePtr eNodePtr,\
+   void* extraPtr);
+
+void mvWorld_V2_CalculateEntryByXORSum(mvWorld_V2_CalcBehavOnListHelper*
+   helper);
+bool mvWorld_V2_FindFirstEntryForXOR(mvEntryListNodePtr eNodePtr,\
    void* extraPtr);
 
 void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,

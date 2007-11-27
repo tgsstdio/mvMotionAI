@@ -140,6 +140,8 @@ class MV_GLOBAL_FUNC_PREFIX mvEntryList
 
       void applyToAllEntries(void (someFunction)(mvEntryListNodePtr, void*),\
          void* extraPtr);
+      mvEntryListNodePtr findFirstEntryPtr(\
+         bool (someFunction)(mvEntryListNodePtr, void*), void* extraPtr);
 
       // TODO : tree functions
       void clearAll();

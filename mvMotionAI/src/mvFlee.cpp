@@ -159,7 +159,7 @@ bool mvFlee::bodyOp(mvBehaviourResultPtr resultModule)
    direction -= targetPos;
    velocity = direction.normalize();
    velocity *= currentBody->getMaxSpeed();
-   velocity *= 0.5;
+   //velocity *= 0.5;
 
    resultModule->setVelocity(velocity);
    resultModule->setToDirectional();
