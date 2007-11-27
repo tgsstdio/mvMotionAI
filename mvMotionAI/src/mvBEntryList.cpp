@@ -639,3 +639,9 @@ mvIndex mvEntryList::addNewGroupBehaviourMemberNode(mvIndex behaviourIndex,
 
     return entryIndex;
 }
+
+mvEntryListNodePtr mvEntryList::findFirstEntryPtr(\
+   bool (someFunction)(mvEntryListNodePtr, void*), void* extraPtr)
+{
+   return entryList.findItemPtrInList(someFunction, extraPtr);
+}

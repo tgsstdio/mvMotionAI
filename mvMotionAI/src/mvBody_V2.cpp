@@ -1057,7 +1057,7 @@ mvErrorEnum mvBody::setParameteri(mvParamEnum paramFlag, mvIndex index)
 mvErrorEnum mvBody::setParametero(mvParamEnum paramFlag, mvOptionEnum option)
 {
    mvErrorEnum error;
-   puts("HEELO 3");
+  // puts("HEELO 3");
 
    switch(paramFlag)
    {

@@ -52,10 +52,14 @@
 					<Add option="-O1" />
 					<Add option="-O" />
 					<Add option="-Wall" />
+					<Add option="-pg" />
 					<Add option="-g" />
 					<Add directory="include-other" />
 					<Add directory="include-other\mingw" />
 				</Compiler>
+				<Linker>
+					<Add option="-pg -lgmon" />
+				</Linker>
 			</Target>
 			<Target title="mingw-winXP-dll">
 				<Option output="bin\mvMotionAI-mingw-dll" prefix_auto="1" extension_auto="1" />

@@ -2212,19 +2212,28 @@ void mvWorld::calculateBehavioursOnBody(mvBodyCapsulePtr bCapsulePtr,\
 
    helperModule.finalResult = finalResult;
    helperModule.bCapsule = bCapsulePtr;
+   helperModule.currentEntryList = currentEntryList;
 
    // integration mode
    mvOptionEnum integrationMode = currentEntryList->getMode();
    switch(integrationMode)
    {
-      case MV_WEIGHTED:
-      // TODO : case MV_XOR:
       // TODO : case MV_TREE:
-      // TODO : case MV_RANDOM:
+      case MV_XOR:
+         mvWorld_V2_CalculateEntryByXORSum(&helperModule);
+         break;
+      // TODO : case MV_TREE:
+      case MV_RANDOM:
+         currentEntryList->applyToAllEntries(mvWorld_V2_CalculateEntryByRandomSum,
+            &helperModule);
+         break;
+      // TODO : case MV_PRORTIZED_WEIGHTED:
       // TODO : case MV_RANDOMISED_WEIGHTED:
+      case MV_WEIGHTED:
       default:
          currentEntryList->applyToAllEntries(mvWorld_V2_CalculateEntryByWeightedSum,
             &helperModule);
+         break;
    }
 }
 
