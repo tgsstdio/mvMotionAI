@@ -16,7 +16,7 @@ print(mvGetEntryListParameter(world1,body1,param))
 -- setting integration mode to XOR or the first entry that is enabled
 param = 'MV_MODE'
 errorCode = mvSetEntryListParameter(world1,body1,param,
-	'MV_RANDOM');
+	'MV_RANDOMIZED_WEIGHTED');
 -- checking if variables are passed	
 print(mvGetErrorEnumString(errorCode))
 print(mvGetEntryListParameter(world1,body1,param))
@@ -26,7 +26,7 @@ entry1 = mvAddBehaviourToList(world1,body1,'MV_FLEE');
 
 -- weight
 entryID = entry1
-weight = 0.5
+weight = 3
 param = 'MV_WEIGHT'
 errorCode = mvSetEntryListNodeParameter(world1,body1,entryID,param,
 	weight);
@@ -48,7 +48,7 @@ entry2 = mvAddBehaviourToList(world1,body1,'MV_SEEK');
 
 -- weight
 entryID = entry2
-weight = 0.5
+weight = 4
 param = 'MV_WEIGHT'
 errorCode = mvSetEntryListNodeParameter(world1,body1,entryID,param,
 	weight);

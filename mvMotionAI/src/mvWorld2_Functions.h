@@ -94,11 +94,15 @@ void mvWorld_V2_SumBehaviourResults(mvBehaviourResultPtr summedResult,
 void mvWorld_V2_SumForceResults(mvForceResultPtr summedResult,
    const mvForceResult& actionResult);
 
-// TODO : complete this function
+
 void mvWorld_V2_CalculateEntryByRandomSum(mvEntryListNodePtr eNodePtr,\
    void* extraPtr);
 
 void mvWorld_V2_CalculateEntryByWeightedSum(mvEntryListNodePtr eNodePtr,\
+   void* extraPtr);
+
+// TODO : complete this function
+void mvWorld_V2_CalculateEntryByRandomWeightSum (mvEntryListNodePtr eNodePtr,\
    void* extraPtr);
 
 void mvWorld_V2_CalculateEntryByXORSum(mvWorld_V2_CalcBehavOnListHelper*

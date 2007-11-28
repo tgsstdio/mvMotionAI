@@ -2,8 +2,8 @@
 
 
 1 VERSIONINFO
-FILEVERSION 00, 02, 38, 0
-PRODUCTVERSION 00, 02, 38, 0
+FILEVERSION 00, 02, 49, 0
+PRODUCTVERSION 00, 02, 49, 0
 FILEOS VOS__WINDOWS32
 FILETYPE VFT_DLL
 BEGIN
@@ -14,12 +14,12 @@ BEGIN
          VALUE "Comments", "Please see AUTHORS for a list of contributors\000"
          VALUE "CompanyName", "David Young\000\000"
          VALUE "FileDescription", "mvMotionAI steering behaviour library\000"
-         VALUE "FileVersion", "Release version of mvMotionAI library (version 00-02-35) compiled on the MinGW gcc compiler\000"
+         VALUE "FileVersion", "Release version of mvMotionAI library (version 00-02-49) compiled on the MinGW gcc compiler\000"
          VALUE "InternalName", "mvMotionAI version 00-02-35\000"
          VALUE "LegalCopyright", "Copyright © 2006-2007 David Young\000\000"
          VALUE "OriginalFilename", "mvMotionAI-mingw-dll.dll\000"
          VALUE "ProductName", "mvMotionAI\000"
-         VALUE "ProductVersion", "00-02-35\000"
+         VALUE "ProductVersion", "00-02-49\000"
       END
    END
 
