@@ -11,10 +11,13 @@
 		<Project filename="CustomAction.cbp">
 			<Depends filename="mvMotion-CB.cbp" />
 		</Project>
+		<Project filename="tutorial4.cbp" active="1">
+			<Depends filename="mvMotion-CB.cbp" />
+		</Project>
 		<Project filename="mvLua C Interface.cbp">
 			<Depends filename="mvMotion-CB.cbp" />
 		</Project>
-		<Project filename="LuaGLTest.cbp" active="1">
+		<Project filename="LuaGLTest.cbp">
 			<Depends filename="mvMotion-CB.cbp" />
 			<Depends filename="mvLua C Interface.cbp" />
 		</Project>
