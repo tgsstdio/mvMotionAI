@@ -14,7 +14,7 @@
 				<Option external_deps="lib-other\mingw\liblua5.1.a;lib\libmvMotionAI-mingw.a;" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="Evasion.lua" />
+				<Option parameters="RandomMode.lua" />
 				<Compiler>
 					<Add option="-fexpensive-optimizations" />
 					<Add option="-Os" />
@@ -104,7 +104,7 @@
 				<Option external_deps="lib-other\mingw\liblua5.1.a;bin\libmvMotionAI-mingw-dll-debug.def;bin\libmvMotionAI-mingw-dll-debug.a;bin\mvMotionAI-mingw-dll-debug.dll;bin\libmvLua-dll-debug.a;bin\libmvMotionAI-mingw-dll-debug.def;bin\mvLua-dll-debug.dll;" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="Evasion.lua" />
+				<Option parameters="RandomMode.lua" />
 				<Compiler>
 					<Add option="-fexpensive-optimizations" />
 					<Add option="-Os" />

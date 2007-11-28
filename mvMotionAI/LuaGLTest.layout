@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="mingw-winXP" />
+	<ActiveTarget name="mingw-winXP-dll-debug" />
 	<File name="bin\Evasion.lua" open="0" top="0" tabpos="1">
 		<Cursor position="1112" topLine="0" />
 	</File>

@@ -2,6 +2,18 @@
  * \page logpage Log
  * \section mvMotionAI Log
  * \subsection log_columns Version     Date     Comments
+ * 	version 00-02-49+ (29th Nov 2007)
+ *      - Added new behaviour integration/combination/calculation modes
+ * 		- MV_RANDOM : randomly added a mvBaseAction to the sum
+ *              depending on its weight between clamped percentages [0, 1] 
+ *              - MV_XOR (exclusive or) : 
+ *                 applies the first enabled mvBaseAction only.
+ *              - MV_RANDOMIZED_WEIGHTED : randomly affects the overall weighted
+ *                value of every mvBaseAction by multiply rand() x orignal_weight
+ *	- Added new script files for new modes
+ *		- RandomMode.lua, XOR.lua, RandomWeightedNode.lua
+ *      - Updated the Flee.lua & Seek.lua to correct function calls
+ 
  * 
  * 	version 00-02-38+ (14th Nov 2007)
  * 	- Added mvFollowPath behaviour

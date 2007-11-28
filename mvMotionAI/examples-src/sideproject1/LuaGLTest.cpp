@@ -123,6 +123,17 @@ int main(int argc, char** argv)
    {
       scriptFileName = defaultLuaFileName;
    }
+
+   // if file exists
+   FILE* checkFile = NULL;
+   checkFile = fopen(scriptFileName,"r");
+   if (checkFile == NULL)
+   {
+      printf("Script File Not Found : %s\n", scriptFileName);
+      return EXIT_FAILURE;
+   }
+   fclose(checkFile);
+
    initError = mvLua_LoadScriptFile(scriptFileName);
    puts(mvGetErrorEnumString(initError));
    init ();
@@ -142,8 +153,6 @@ const char camera_keys[] = "q|Q/w|W/e|E : move camera\nz|Z/x|X/c|c rotates camer
 
 void display(void)
 {
-   int i = 0;
-
    glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    glPushMatrix();
      worldCam.apply();
@@ -181,7 +190,9 @@ void display(void)
     */
 
    animateFlag = (isAnimating) ? yes_animation : no_animation;
-   sprintf(buffer,"sideproject1, 2007\nFrame Rate : %3.3f fps\n%s\n%s\n",frameRateInterval,animateFlag,camera_keys);
+   sprintf(buffer,\
+      "sideproject1, 2007\nScript File : %s\nFrame Rate : %3.3f fps\n%s\n%s\n",\
+      scriptFileName,frameRateInterval,animateFlag,camera_keys);
 
    drawText(5, windowHeight - 13, buffer ,windowWidth,windowHeight, 1.0, 1.0, 1.0);
    glFlush();
@@ -257,7 +268,6 @@ void displayBody(mvBodyPtr p,void* extraPtr)
 void displayObstacle(mvObstaclePtr o,void* extraPtr)
 {
    //const float offsetY = 0.5;
-   mvOptionEnum tempShape;
 
    if (o != NULL)
    {
@@ -270,7 +280,7 @@ void drawGLShape(int drawMode, mvConstShapePtr shapePtr,
    const mvVec3& pos, float r, float g, float b)
 {
    mvOptionEnum tempShape;
-   mvFloat radius, length;
+   mvFloat radius;
    mvFloat aaboxDimensions[MV_VEC3_NO_OF_COMPONENTS];
    mvCount noOfDimensions;
    mvErrorEnum error;
@@ -384,7 +394,7 @@ void displayFrameRate(long int frameNo)
   static double elapsedTimeStartInterval = 0.0;
   static double tpfPrevious = 0.0;
   static double tpfCurrent = 0.0;
-  static int noOfSeconds = 0;
+//  static int noOfSeconds = 0;
 
   if (elapsedTime > elapsedTimeStartInterval + interval)
 

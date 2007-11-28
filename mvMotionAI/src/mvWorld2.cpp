@@ -2228,7 +2228,10 @@ void mvWorld::calculateBehavioursOnBody(mvBodyCapsulePtr bCapsulePtr,\
             &helperModule);
          break;
       // TODO : case MV_PRORTIZED_WEIGHTED:
-      // TODO : case MV_RANDOMISED_WEIGHTED:
+      case MV_RANDOMIZED_WEIGHTED:
+         currentEntryList->applyToAllEntries(mvWorld_V2_CalculateEntryByRandomWeightSum,
+            &helperModule);
+         break;
       case MV_WEIGHTED:
       default:
          currentEntryList->applyToAllEntries(mvWorld_V2_CalculateEntryByWeightedSum,

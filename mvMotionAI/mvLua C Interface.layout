@@ -2,6 +2,6 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-winXP-debug" />
 	<File name="src\mvLua\mvLua_CFunctions.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="25185" topLine="838" />
+		<Cursor position="21368" topLine="1934" />
 	</File>
 </CodeBlocks_layout_file>

@@ -1001,11 +1001,8 @@ void mvWorld_V2_CalculateEntryByRandomSum(mvEntryListNodePtr eNodePtr,\
       // apply mvBaseAction operator
       if (currentAction != MV_NULL)
       {
-         // calc action
-         bool addActionToResult = currentAction->bodyOp(&currentResult);
 
          // TODO : negetive weights
-
          if (minPercentage > 0)
          {
             minPercentage = mvMin(minPercentage, 1);
@@ -1018,10 +1015,15 @@ void mvWorld_V2_CalculateEntryByRandomSum(mvEntryListNodePtr eNodePtr,\
          //minPercentage = 1;
          mvFloat randomNumber = mvRandNormalised();
 
-         if (addActionToResult && randomNumber <= minPercentage)
+         if (randomNumber <= minPercentage)
          {
-            mvWorld_V2_SumBehaviourResults(finalResult, currentResult,1.0,isConfined);
-            bCapsule->performIntegration = true;
+            // calc action
+            bool addActionToResult = currentAction->bodyOp(&currentResult);
+            if (addActionToResult)
+            {
+               mvWorld_V2_SumBehaviourResults(finalResult, currentResult,1.0,isConfined);
+               bCapsule->performIntegration = true;
+            }
          }
       }
    }
@@ -1063,6 +1065,47 @@ void mvWorld_V2_CalculateEntryByWeightedSum(mvEntryListNodePtr eNodePtr,\
       }
    }
 }
+
+void mvWorld_V2_CalculateEntryByRandomWeightSum(mvEntryListNodePtr eNodePtr,\
+   void* extraPtr)
+{
+   if (eNodePtr->isEnabled())
+   {
+      // setting variables
+      mvWorld_V2_CalcBehavOnListHelper* helper = (mvWorld_V2_CalcBehavOnListHelper*)\
+         extraPtr;
+      mvBodyCapsulePtr bCapsule = helper->bCapsule;
+      mvBehaviourResultPtr finalResult = helper->finalResult;
+      mvConstWorldPtr currentWorld = finalResult->getWorldPtr();
+
+      mvEntryPtr nodeInfo = eNodePtr->getEntryPtr();
+      bool isConfined = eNodePtr->entryFlags.confined;
+      mvFloat nodeWeight = eNodePtr->entryFlags.getWeight();
+
+      // create temporary result object
+      mvBehaviourResult currentResult(finalResult->getWorldPtr(),
+         finalResult->getCurrentBodyPtr());
+      mvBaseActionPtr currentAction = mvWorld_V2_InitialiseResults(nodeInfo,\
+         bCapsule->bodyIndex, currentWorld, currentResult, finalResult);
+
+      // apply mvBaseAction operator
+      if (currentAction != MV_NULL)
+      {
+         // calc action
+         bool addActionToResult = currentAction->bodyOp(&currentResult);
+
+         if (addActionToResult)
+         {
+            mvFloat randomNumber = mvRandNormalised();
+
+            mvWorld_V2_SumBehaviourResults(finalResult, currentResult,\
+               randomNumber * nodeWeight, isConfined);
+            bCapsule->performIntegration = true;
+         }
+      }
+   }
+}
+
 
 bool mvWorld_V2_FindFirstEntryForXOR(mvEntryListNodePtr eNodePtr,\
    void* extraPtr)
