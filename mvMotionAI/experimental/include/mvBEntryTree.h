@@ -27,6 +27,26 @@
 #include "mvBEntryTreeNode.h"
 #include "mvBEntryTimer.h"
 
+typedef class entryTreeBucketNode* mvEntryTreeBucketNodePtr;
+
+typedef class entryTreeNode 
+{	
+	mvEntryTreeBucketNodePtr lowerDirectory;
+}mvEntryTreeNode;
+
+
+#define MV_MAX_NO_OF_ENTRY_TREE_NODE_IN_ARRAY (7)
+
+typedef class entryTreeBucketNode
+{
+	public:
+		mvEntryTreeBucketNodePtr prevBucket;
+		mvEntryTreeBucketNodePtr nextBucket;
+		mvEntryTreeBucketNodePtr higherDirectory;
+		mvEntryTreeNode	treeNodes[MV_MAX_NO_OF_ENTRY_TREE_NODE_IN_ARRAY]
+} mvEntryTreeBucketNode;
+
+
 class mvBEntryTree
 {
    private:
