@@ -1,7 +1,7 @@
 #ifndef MV_BLIST_CPP_UNIT_HEADER
 #define MV_BLIST_CPP_UNIT_HEADER
-#include "mvMotionAI-Types.h"
 #include <cppunit/extensions/HelperMacros.h>
+#include <mv/mvMotionAI.h>
 
 class mvBListCPPUnitTest : public CppUnit::TestFixture
 {

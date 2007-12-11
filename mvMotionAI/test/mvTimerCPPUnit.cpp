@@ -1,6 +1,5 @@
 #include "mvTimerCPPUnit.h"
-#include "mvBEntryTimer.h"
-#include "mvVec3.h"
+#include <mv/mvMotionAI.h>
 #include <cmath>
 #include <iostream>
 
@@ -14,7 +13,7 @@ mvParamEnum paramArray[] =
    MV_ACCELERATION,
    MV_DECELERATION,
    MV_MASS,
-   MV_STATE,
+//   MV_STATE,
    MV_SHAPE,
    MV_TYPE,
    MV_DOMAIN,
@@ -29,14 +28,14 @@ mvParamEnum paramArray[] =
    MV_LENGTH,
    MV_RADIUS,
    MV_X_WIDTH,
-   MV_Y_LENGTH,
+//   MV_Y_LENGTH,
    MV_Z_DEPTH,
    MV_DIRECTION,
    MV_WAYPOINT,
    MV_BODY,
    MV_PATHWAY,
-   MV_PERCEIVED_COHESION_FLAG, // remove flag
-   MV_PERCEIVED_ALIGNMENT_FLAG, // remove flag
+//   MV_PERCEIVED_COHESION_FLAG, // remove flag
+//   MV_PERCEIVED_ALIGNMENT_FLAG, // remove flag
    MV_COHESION_FACTOR,
    MV_SEPARATION_FACTOR,
    MV_ALIGNMENT_FACTOR,
@@ -84,7 +83,7 @@ mvParamEnum paramArray[] =
    MV_USER_PARAM_1,
    MV_USER_PARAM_2,
    MV_USER_PARAM_3,
-   MV_USER_PARAM_5,
+//   MV_USER_PARAM_5,
 
    MV_NO_OF_PARAM_ENUMS,
 };
@@ -136,127 +135,127 @@ void mvTimerCPPUnit::testSetAndGetValues()
 
    // CASE A : default constructor, no parameters
    mvTimer a;
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Default (1.0) not returned", defaultPeriod,\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A (a) Default (1.0) not returned", defaultPeriod,\
       a.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Default (0.0) not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A (b) Default (0.0) not returned",\
       defaultElapsedTime, a.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)", false, a.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A (c) Not TIMED MODE (FALSE)", false, a.isTimed);
 
    // TEST A1 : set new period small = OK
    error = a.setPeriod(small);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("MV_NO_ERROR not returned", MV_NO_ERROR,\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A1 (a) MV_NO_ERROR not returned", MV_NO_ERROR,\
       error);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Small not returned", small,\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A1 (b) Small not returned", small,\
       a.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Default (0.0) not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A1 (c) Default (0.0) not returned",\
       defaultElapsedTime, a.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)", false, a.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A1 (d) Not TIMED MODE (FALSE)", false, a.isTimed);
 
    // TEST A2 : set new period = NOT OK (negetive) should be small
    error = a.setPeriod(negetive);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("MV_FLOAT_VALUE_IS_NOT_POSITIVE not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A2 (a) MV_FLOAT_VALUE_IS_NOT_POSITIVE not returned",\
       MV_FLOAT_VALUE_IS_NOT_POSITIVE, error);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Small not returned", small,\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A2 (b) Small not returned", small,\
       a.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Default (0.0) not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A2 (c) Default (0.0) not returned",\
       defaultElapsedTime, a.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)", false, a.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A2 (d) Not TIMED MODE (FALSE)", false, a.isTimed);
 
    // CASE B : using period of zero
    mvTimer b(zero);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Zero not returned", zero,\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B (a) Zero not returned", zero,\
       b.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Default Elapsed Time (0.0) not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B (b) Default Elapsed Time (0.0) not returned",\
       defaultElapsedTime, b.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)", false, b.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B (c) Not TIMED MODE (FALSE)", false, b.isTimed);
 
    // TEST B1  change the elapsed time to big first, error elapsed time = 0.0
    error = b.setElapsedTime(big);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("MV_NO_ERROR not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1 (a) MV_NO_ERROR not returned",\
       MV_NO_ERROR, error);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Zero Period not returned", zero,\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1 (b) Zero Period not returned", zero,\
       b.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Zero Elapsed Time not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1 (c) Zero Elapsed Time not returned",\
       zero, b.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)", false, b.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1 (d) Not TIMED MODE (FALSE)", false, b.isTimed);
 
    // TEST B2  change the period to big first, no error
    error = b.setPeriod(big);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("MV_NO_ERROR not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B2 (a) MV_NO_ERROR not returned",\
       MV_NO_ERROR, error);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Big Period not returned", big,\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B2 (b) Big Period not returned", big,\
       b.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Zero Elapsed Time not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B2 (c) Zero Elapsed Time not returned",\
       zero, b.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)", false, b.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B2 (d) Not TIMED MODE (FALSE)", false, b.isTimed);
 
    // TEST B3  change the elapsed time to big, no error
    error = b.setElapsedTime(big);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("MV_NO_ERROR not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B3 (a) MV_NO_ERROR not returned",\
       MV_NO_ERROR, error);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Big Period not returned", big,\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B3 (b) Big Period not returned", big,\
       b.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Big Elapsed Time not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B3 (c) Big Elapsed Time not returned",\
       big, b.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)", false, b.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B3 (d) Not TIMED MODE (FALSE)", false, b.isTimed);
 
    // TEST B4  change the elapsed time to negetive, NO_ERROR but no change
    error = b.setElapsedTime(negetive);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("MV_FLOAT_VALUE_IS_NOT_POSITIVE not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B4 (a) MV_FLOAT_VALUE_IS_NOT_POSITIVE not returned",\
       MV_FLOAT_VALUE_IS_NOT_POSITIVE, error);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Big Period not returned", big,\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B4 (b) Big Period not returned", big,\
       b.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Big Elapsed Time not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B4 (c) Big Elapsed Time not returned",\
       big, b.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)", false, b.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B4 (d) Not TIMED MODE (FALSE)", false, b.isTimed);
 
    // TEST B5 : change period to massive, no changes to elapsed time
    error = b.setPeriod(massive);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("MV_NO_ERROR not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B5 (a) MV_NO_ERROR not returned",\
       MV_NO_ERROR, error);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Massive Period not returned", massive,\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B5 (b) Massive Period not returned", massive,\
       b.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Big Elapsed Time not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B5 (c) Big Elapsed Time not returned",\
       big, b.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)", false, b.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B5 (d) Not TIMED MODE (FALSE)", false, b.isTimed);
 
    // TEST B6 : change ELAPSED TIME to massive, no errors
    error = b.setElapsedTime(massive);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("MV_NO_ERROR not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B6 (a) MV_NO_ERROR not returned",\
       MV_NO_ERROR, error);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Massive Period not returned", massive,\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B6 (b) Massive Period not returned", massive,\
       b.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Massive Elapsed Time not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B6 (c) Massive Elapsed Time not returned",\
       massive, b.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)", false, b.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B6 (d) Not TIMED MODE (FALSE)", false, b.isTimed);
 
    // TEST B7 : change ELAPSED TIME to big, no errors
    error = b.setElapsedTime(big);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("MV_NO_ERROR not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B7 (a) MV_NO_ERROR not returned",\
       MV_NO_ERROR, error);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Massive Period not returned", massive,\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B7 (b) Massive Period not returned", massive,\
       b.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Big Elapsed Time not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B7 (c) Big Elapsed Time not returned",\
       big, b.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)", false, b.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B7 (d) Not TIMED MODE (FALSE)", false, b.isTimed);
 
    // CASE C :
    mvTimer c;
 
    // check default
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)", false, c.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("C (a) Not TIMED MODE (FALSE)", false, c.isTimed);
 
    // TEST C1 : set to always
    c.toAlways();
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)", false, c.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("C1 (a) Not TIMED MODE (FALSE)", false, c.isTimed);
 
    // TEST C2 : set to timed
    c.toTimed();
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("TIMED MODE (TRUE)", true, c.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("C2 (a) TIMED MODE (TRUE)", true, c.isTimed);
 
    // TEST C3 : set to always
    c.toAlways();
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)", false, c.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("C3 (a) Not TIMED MODE (FALSE)", false, c.isTimed);
 }
 
 void mvTimerCPPUnit::testUpdate()
@@ -322,45 +321,45 @@ void mvTimerCPPUnit::testUpdate()
    tempArray[0][1] = 0;
    tempArray[0][2] = 0;
    tempArray[0][3] = 0;
-   tempArray[0][4] = 0;
-   tempArray[0][5] = 1;
+   tempArray[0][4] = 1;
+   tempArray[0][5] = 0;
    tempArray[0][6] = 0;
    tempArray[0][7] = 0;
    tempArray[0][8] = 0;
-   tempArray[0][9] = 0;
-   tempArray[0][10] = 1;
+   tempArray[0][9] = 1;
+   tempArray[0][10] = 0;
    tempArray[0][11] = 0;
    tempArray[0][12] = 0;
    tempArray[0][13] = 0;
-   tempArray[0][14] = 0;
-   tempArray[0][15] = 1;
+   tempArray[0][14] = 1;
+   tempArray[0][15] = 0;
    tempArray[0][16] = 0;
    tempArray[0][17] = 0;
    tempArray[0][18] = 0;
-   tempArray[0][19] = 0;
+   tempArray[0][19] = 1;
 
    // tempArray[1] is elaspedTime on timer
    tempArray[1][0] = 0.2;
    tempArray[1][1] = 0.4;
    tempArray[1][2] = 0.6;
    tempArray[1][3] = 0.8;
-   tempArray[1][4] = 1.0;
+   tempArray[1][4] = 0.0;
    tempArray[1][5] = 0.2;
    tempArray[1][6] = 0.4;
    tempArray[1][7] = 0.6;
    tempArray[1][8] = 0.8;
-   tempArray[1][9] = 1.0;
+   tempArray[1][9] = 0.0;
    tempArray[1][10] = 0.2;
    tempArray[1][11] = 0.4;
    tempArray[1][12] = 0.6;
    tempArray[1][13] = 0.8;
-   tempArray[1][14] = 1.0;
+   tempArray[1][14] = 0.0;
    tempArray[1][15] = 0.2;
    tempArray[1][16] = 0.4;
    tempArray[1][17] = 0.6;
    tempArray[1][18] = 0.8;
-   tempArray[1][19] = 1.0;
-
+   tempArray[1][19] = 0.0;
+	// post update
    for (i = 0; i < MAX_NO_OF_TIMES; i++)
    {
       noOfTimes = a.update(tiny);
@@ -482,116 +481,116 @@ void mvTimerCPPUnit::testConstructor()
 
    // TEST A1: check two parameters non-negetive numbers are returned
    mvTimer a1(zero,zero);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Zero not returned",zero, a1.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Zero not returned",zero, a1.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)",false, a1.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A1 (a) Zero not returned",zero, a1.getPeriod());
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A1 (b) Zero not returned",zero, a1.getElapsedTime());
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A1 (c) Not TIMED MODE (FALSE)",false, a1.isTimed);
 
    // TEST A2 : check two parameters if just negetive period is not stored
    mvTimer a2(negetive,zero);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Default (1.0) not returned", defaultPeriod,\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A2 (a) Default (1.0) not returned", defaultPeriod,\
       a2.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Zero not returned",zero, a2.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)", false, a2.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A2 (b) Zero not returned",zero, a2.getElapsedTime());
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A2 (c) Not TIMED MODE (FALSE)", false, a2.isTimed);
 
    // TEST A3 : check two parameters if negetive period & negetive elapsed
    // time is not stored
    mvTimer a3(negetive,negetive);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Default (1.0) not returned", a3.getPeriod(),\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A3 (a) Default (1.0) not returned", a3.getPeriod(),\
       defaultPeriod);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Default (0.0) not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A3 (b) Default (0.0) not returned",\
       a3.getElapsedTime(),defaultElapsedTime);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)", a3.isTimed,false);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A3 (c) Not TIMED MODE (FALSE)", a3.isTimed,false);
 
    // TEST A4 : check two parameters if just negetive elapsed
    // time is not stored
    mvTimer a4(small,negetive);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Small not returned", small, a4.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Default (0.0) not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A4 (a) Small not returned", small, a4.getPeriod());
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A4 (b) Default (0.0) not returned",\
       defaultElapsedTime, a4.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)",false,a4.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A4 (c) Not TIMED MODE (FALSE)",false,a4.isTimed);
 
    // TEST A5 : period > elapsed Test 1
    mvTimer a5(big,small);
 
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Big not returned", big, a5.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Small not returned",small,\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A5 (a) Big not returned", big, a5.getPeriod());
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A5 (b) Small not returned",small,\
       a5.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)",false, a5.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A5 (c) Not TIMED MODE (FALSE)",false, a5.isTimed);
 
    // TEST A6 : period > elapsed Test 2
    mvTimer a6(massive,small);
 
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Massive not returned", massive,\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A6 (a) Massive not returned", massive,\
       a6.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Small not returned", small,\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A6 (b) Small not returned", small,\
       a6.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)",false, a6.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A6 (c) Not TIMED MODE (FALSE)",false, a6.isTimed);
 
    // TEST A7 : check two parameters if elapsed time given is greater thmn
    // period, result should be elapsedTime = big % small
    mvTimer a7(small,big);
 
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Small not returned", small, a7.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("big % small not returned",\
-      std::fmod(big,small), a7.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)",false, a7.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A7 (a) Small not returned", small, a7.getPeriod());
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A7 (b) big % small not returned",\
+      fmodf(big,small), a7.getElapsedTime());
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A7 (c) Not TIMED MODE (FALSE)",false, a7.isTimed);
 
    // TEST A8 : check two parameters if elapsed time given is greater thmn
    // period, result should be elapsedTime = massive % small
    mvTimer a8(small,massive);
 
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Small not returned", small, a8.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("massive % small not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A8 (a) Small not returned", small, a8.getPeriod());
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A8 (b) massive % small not returned",\
       std::fmod(massive,small), a8.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)", false, a8.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A8 (c) Not TIMED MODE (FALSE)", false, a8.isTimed);
 
    // TEST A9 : check two parameters if elapsed time given is greater thmn
    // period, result should be elapsedTime = massive % big
    mvTimer a9(big,massive);
 
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Small not returned", big, a9.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("massive % small not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A9 (a) Small not returned", big, a9.getPeriod());
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A9 (b) massive % small not returned",\
       std::fmod(massive,big), a9.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)", false, a9.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A9 (c) Not TIMED MODE (FALSE)", false, a9.isTimed);
 
    // TEST A10 : period > elapsed Test 3
    mvTimer a10(massive,big);
 
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Massive not returned", massive,\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A10 (a) Massive not returned", massive,\
       a10.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Big not returned", big,\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A10 (b) Big not returned", big,\
       a10.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)",false, a10.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A10 (c) Not TIMED MODE (FALSE)",false, a10.isTimed);
 
    // TEST A11 : period > elapsed Test 4
    mvTimer a11(massive,zero);
 
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Massive not returned", massive,\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A11 (a) Massive not returned", massive,\
       a11.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Zero not returned", zero,\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A11 (b) Zero not returned", zero,\
       a11.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)",false, a11.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("A11 (c) Not TIMED MODE (FALSE)",false, a11.isTimed);
 
    // TEST B1 : check one parameter non-negetive numbers are returned
    mvTimer b1(small);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Small not returned", small, b1.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Default (0.0) not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1 (a) Small not returned", small, b1.getPeriod());
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1 (b) Default (0.0) not returned",\
       defaultElapsedTime, b1.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)", false, b1.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B1 (c) Not TIMED MODE (FALSE)", false, b1.isTimed);
 
    // TEST B2 : error check negetive parameter is not returned
    mvTimer b2(negetive);
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Default (1.0) not returned", defaultPeriod,\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B2 (a) Default (1.0) not returned", defaultPeriod,\
       b2.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Default (0.0) not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B2 (b) Default (0.0) not returned",\
       defaultElapsedTime, b2.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)", false, b2.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("B2 (c) Not TIMED MODE (FALSE)", false, b2.isTimed);
 
    // TEST C : check no parameter defaults are returned.
    mvTimer c;
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Default (1.0) not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("C (a) Default (1.0) not returned",\
      defaultPeriod, c.getPeriod());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Default (0.0) not returned",\
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("C (b) Default (0.0) not returned",\
      defaultElapsedTime,c.getElapsedTime());
-   CPPUNIT_ASSERT_EQUAL_MESSAGE("Not TIMED MODE (FALSE)", false, c.isTimed);
+   CPPUNIT_ASSERT_EQUAL_MESSAGE("C (c) Not TIMED MODE (FALSE)", false, c.isTimed);
 }

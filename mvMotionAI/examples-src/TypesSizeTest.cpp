@@ -1,6 +1,6 @@
 /**
  *\file TypesSizesTest.cpp
- * Copyright (c) 2006 David Young.
+ * Copyright (c) 2006, 2007 David Young.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -23,32 +23,38 @@
  * Log
  * version
  *
+ * 00-03    added version 2 of mvMotionAI classes
+ *
  * 00-02    edited to deal with new enums
  */
 //#include <cstdio>
 #include <cstdlib>
 #include <iostream>
-#include "mvMotionAI.h"
+#include <mv/mvMotionAI.h>
 
 int main(void)
 {
-   std::cout << "mvMotionAI Type Sizes in bytes" << std::endl
-             << "Size of mvMotionAI : " << sizeof(mvMotionAI)  << std::endl
-             << "Size of mvParamEnum : " << sizeof(mvParamEnum)  << std::endl
-             << "Size of mvErrorEnum : " << sizeof(mvErrorEnum)  << std::endl
-             << "Size of mvOptionEnum : " << sizeof(mvOptionEnum)  << std::endl
-             << "Size of mvFloat : " << sizeof(mvFloat)  << std::endl
-             << "Size of mvIndex : " << sizeof(mvIndex)  << std::endl
-             << "Size of mvCount : " << sizeof(mvCount)  << std::endl
-             << "Size of mvWorld : " << sizeof(mvWorld)  << std::endl
-             << "Size of mvBehaviour: " << sizeof(mvBehaviour)  << std::endl
-             << "Size of mvGroupBehaviour: " << sizeof(mvGroupBehaviour)  << std::endl
-             << "Size of mvWaypoint: " << sizeof(mvWaypoint)  << std::endl
-             << "Size of mvPathway: " << sizeof(mvPathway)  << std::endl
-             << "Size of mvGroup: " << sizeof(mvGroup)  << std::endl
-             << "Size of mvObstacle: " << sizeof(mvObstacle)  << std::endl
-             << "Size of mvForce: " << sizeof(mvForce)  << std::endl
-             << "Size of mvBody: " << sizeof(mvBody)  << std::endl;
+   std::cout << "mvMotionAI type sizes in bytes" << std::endl
+             << "mvParamEnum : " << sizeof(mvParamEnum)  << std::endl
+             << "mvErrorEnum : " << sizeof(mvErrorEnum)  << std::endl
+             << "mvOptionEnum : " << sizeof(mvOptionEnum)  << std::endl
+             << "mvFloat : " << sizeof(mvFloat)  << std::endl
+             << "mvIndex : " << sizeof(mvIndex)  << std::endl
+             << "mvCount : " << sizeof(mvCount)  << std::endl
+             << "mvWorld : " << sizeof(mvWorld)  << std::endl
+             << "mvBehaviour: " << sizeof(mvBehaviour)  << std::endl
+             << "mvGroupBehaviour: " << sizeof(mvGroupBehaviour)  << std::endl
+             << "mvWaypoint: " << sizeof(mvWaypoint)  << std::endl
+             << "mvPathway: " << sizeof(mvPathway)  << std::endl
+             << "mvGroup: " << sizeof(mvGroup)  << std::endl
+             << "mvGroupIterator: " << sizeof(mvGroupIterator)  << std::endl
+             << "mvObstacle: " << sizeof(mvObstacle)  << std::endl
+             << "mvTimer : " << sizeof(mvTimer) << std::endl
+             << "mvEntryList : " << sizeof(mvEntryList) << std::endl
+             << "mvBehaviourResult: " << sizeof(mvBehaviourResult)  << std::endl
+             << "mvForceResult: " << sizeof(mvForceResult)  << std::endl
+             << "mvForceStatus: " << sizeof(mvForceStatus)  << std::endl
+             << "mvBody: " << sizeof(mvBody)  << std::endl;
 
    return EXIT_SUCCESS;
 }

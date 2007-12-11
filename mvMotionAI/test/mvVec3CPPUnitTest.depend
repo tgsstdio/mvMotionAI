@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
-1170917554 source:d:\mvmotionai\mvmotionai\test\mvvec3test.cpp
+1197343590 source:d:\mvmotionai\mvmotionai\test\mvvec3test.cpp
 	"mvVec3Test.h"
-	"mvVec3.h"
+	<mv/mvMotionAI.h>
 	<cppunit/extensions/HelperMacros.h>
 
 1170830052 d:\mvmotionai\mvmotionai\test\mvvec3test.h
@@ -190,4 +190,9 @@
 
 1170375418 d:\mvmotionai\mvmotionai\include\mvenums.h
 	<cstdlib>
+
+1193548156 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
+	<mv/mvMotionAI-Types.h>
+
+1193123386 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
 

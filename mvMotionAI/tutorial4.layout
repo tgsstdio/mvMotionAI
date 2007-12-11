@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-winXP-debug" />
-	<File name="examples-src\tutorial4\AntiGravity.cpp" open="1" top="0" tabpos="2">
+	<File name="examples-src\tutorial4\AntiGravity.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="240" topLine="0" />
 	</File>
-	<File name="examples-src\tutorial4\AntiGravity.h" open="1" top="0" tabpos="3">
+	<File name="examples-src\tutorial4\AntiGravity.h" open="0" top="0" tabpos="3">
 		<Cursor position="248" topLine="0" />
 	</File>
-	<File name="examples-src\tutorial4\tutorial4.cpp" open="1" top="1" tabpos="1">
+	<File name="examples-src\tutorial4\tutorial4.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="5189" topLine="143" />
 	</File>
 </CodeBlocks_layout_file>

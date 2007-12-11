@@ -2,14 +2,15 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="mvBListCPPUnitTest - WILL NOT COMPILE" />
+		<Option title="test3 - mvEntryList CPP UnitTest" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="mingw-Release">
-				<Option output="..\bin\test\mvBListCPPUnitTest.exe" prefix_auto="1" extension_auto="1" />
+			<Target title="mingw-winXP">
+				<Option output="..\bin\test\mvBListCPPUnitTest" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="..\bin\test" />
 				<Option object_output="obj\Release" />
+				<Option external_deps="..\lib\libmvMotionAI-mingw.a;" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -18,9 +19,9 @@
 				</Compiler>
 				<Linker>
 					<Add library="..\lib\libmvMotionAI-mingw.a" />
-					<Add library="..\..\..\CPPunit\cppunit-1.12.0\src\cppunit\.libs\libcppunit.a" />
+					<Add library="cppunit" />
 					<Add library="lib\libTestHarness.a" />
-					<Add library="..\..\..\CPPunit\cppunit-1.12.0\src\cppunit\.libs\libcppunit.dll.a" />
+					<Add library="cppunit.dll" />
 					<Add directory="..\..\..\CPPunit\cppunit-1.12.0\src\cppunit\.libs" />
 				</Linker>
 			</Target>
@@ -28,31 +29,16 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add directory="..\include" />
-			<Add directory="..\experimental\include" />
 		</Compiler>
 		<Linker>
 			<Add directory="..\lib" />
 		</Linker>
-		<Unit filename="..\experimental\include\mvBEntry.h" />
-		<Unit filename="..\experimental\include\mvBEntryList.h" />
-		<Unit filename="..\experimental\include\mvBEntryListNode.h" />
-		<Unit filename="..\experimental\include\mvBEntryTimer.h" />
-		<Unit filename="..\experimental\include\mvBEntryUtility.h" />
-		<Unit filename="..\experimental\include\mvBehaviourResult.h" />
-		<Unit filename="..\experimental\include\mvGroupBehaviourResult.h" />
-		<Unit filename="..\experimental\include\mvSeek.h" />
-		<Unit filename="..\experimental\src\mvBEntry.cpp" />
-		<Unit filename="..\experimental\src\mvBEntryList.cpp" />
-		<Unit filename="..\experimental\src\mvBEntryListNode.cpp" />
-		<Unit filename="..\experimental\src\mvBEntryTimer.cpp" />
-		<Unit filename="..\experimental\src\mvBEntryUtility.cpp" />
-		<Unit filename="..\experimental\src\mvBehaviourResult.cpp" />
-		<Unit filename="..\experimental\src\mvSeek.cpp" />
 		<Unit filename="mvBListCPPUnitTest.cpp" />
 		<Unit filename="mvBListCPPUnitTest.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
+			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
