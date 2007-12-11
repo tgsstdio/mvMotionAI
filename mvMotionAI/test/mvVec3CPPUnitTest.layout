@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="mingw-Release" />
-	<File name="..\include\mvVec3.h" open="0" top="0" tabpos="0">
-		<Cursor position="4626" topLine="58" />
-	</File>
-	<File name="..\src\mvVec3.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="16478" topLine="591" />
-	</File>
+	<ActiveTarget name="mingw-winXP" />
 	<File name="mvVec3Test.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="0" topLine="0" />
+		<Cursor position="11487" topLine="331" />
 	</File>
 	<File name="mvVec3Test.h" open="0" top="0" tabpos="1">
 		<Cursor position="92" topLine="0" />

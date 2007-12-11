@@ -2,14 +2,15 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="mvVec3CPPUnitTest - WILL NOT COMPILE" />
+		<Option title="test2 - mvVec3 CPP Unit Test" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="mingw-Release">
-				<Option output="..\bin\test\mvVec3CPPUnitTest.exe" prefix_auto="1" extension_auto="1" />
+			<Target title="mingw-winXP">
+				<Option output="..\bin\test\mvVec3CPPUnitTest" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="..\bin\test" />
 				<Option object_output="obj\Release\" />
+				<Option external_deps="..\lib\libmvMotionAI-mingw.a;lib\libTestHarness.a;..\bin\test\libcppunit-1-12-0.dll;" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -31,7 +32,7 @@
 				</Environment>
 			</Target>
 			<Target title="ubuntu - Release">
-				<Option output="..\bin\test\mvVec3CPPUnitTest.exe" prefix_auto="1" extension_auto="1" />
+				<Option output="..\bin\test\mvVec3CPPUnitTest" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="..\bin\test" />
 				<Option object_output="obj\Release\" />
 				<Option type="1" />
@@ -61,13 +62,12 @@
 		<Linker>
 			<Add directory="lib" />
 		</Linker>
-		<Unit filename="..\include\mvVec3.h" />
-		<Unit filename="..\src\mvVec3.cpp" />
 		<Unit filename="mvVec3Test.cpp" />
 		<Unit filename="mvVec3Test.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
+			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

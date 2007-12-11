@@ -1,7 +1,7 @@
 /**
  * \page todo_page mvMotionAI TODO list
  *
- * mvMotionAI TODO list on 12th October 2007
+ * mvMotionAI TODO list on 11th December 2007
  *
  * - a complete group behaviours class
  * - connection to EntryListNode for set/get parameters
@@ -23,13 +23,14 @@
  * (inside bodyOp of mvBaseActions/calcFullForces in mvBaseForces) 
  * - degree / radians unit conversions
  * - separate behaviour integration for each body
- *	- MV_WEIGHTED_SUM (implemented) as list
- * 	- MV_XOR as list
- *	- MV_RANDOM as list
  *	- MV_PRIORITIZED_WEIGHTED as list
  * 	- MV_TREE or combination of all of the above in tree
  * - 64 bit compatibility
  * - Removed STL objects for more compatibility.
+ * - Use of bitfield structs for saving space (bool = 8 bits => 1 bit (or 8 bools) & some enum flags)
+ * 	- classes such as mvForceResult, mvBehaviourResult, mvGroupBehaviourResult, mvForceStatus, mvBody.
+ * - up vectors
+ * - integrate timers in the library.
  *
  *  David Young, 2007.
  */

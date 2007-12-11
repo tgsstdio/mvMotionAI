@@ -357,7 +357,7 @@ mvFloat mvTimer::update(mvFloat timeInSecs)
   * Default timer mode is set to always.
   */
 mvTimer::mvTimer(mvFloat periodInSecs, mvFloat eTime)
- : elapsedTime(0), period(0)
+ : elapsedTime(eTime), period(periodInSecs)
 {
    if (checkIfValidPeriod(periodInSecs))
    {
@@ -367,6 +367,10 @@ mvTimer::mvTimer(mvFloat periodInSecs, mvFloat eTime)
    if (checkIfValidElapsedTime(eTime))
    {
       elapsedTime = 0.0;
+   }
+   else
+   {
+   	setElapsedTime(eTime);
    }
 
    isTimed = false;

@@ -1,14 +1,12 @@
 # depslib dependency file v1.0
-1183174910 source:d:\mvmotionai\mvmotionai\test\mvblistcppunittest.cpp
+1197346902 source:d:\mvmotionai\mvmotionai\test\mvblistcppunittest.cpp
 	"mvBListCPPUnitTest.h"
 	<cppunit/extensions/HelperMacros.h>
-	"mvBEntryUtility.h"
-	"mvBEntry.h"
-	"mvSeek.h"
+	<mv/mvSeek.h>
 
-1183130564 d:\mvmotionai\mvmotionai\test\mvblistcppunittest.h
-	"mvMotionAI-Types.h"
+1197344166 d:\mvmotionai\mvmotionai\test\mvblistcppunittest.h
 	<cppunit/extensions/HelperMacros.h>
+	<mv/mvMotionAI.h>
 
 1079182376 d:\cppunit\cppunit-1.12.0\include\cppunit\extensions\helpermacros.h
 	<cppunit/TestCaller.h>
@@ -316,4 +314,12 @@
 	<mvMotionAI-Types.h>
 	"mvPointerList.h"
 	"mvBEntryUtility.h"
+
+1193548156 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
+	<mv/mvMotionAI-Types.h>
+
+1193123386 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
+
+1191480836 d:\mvmotionai\mvmotionai\include\mv\mvseek.h
+	<mv/mvMotionAI-Types.h>
 
