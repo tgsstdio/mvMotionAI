@@ -87,7 +87,7 @@ class MV_GLOBAL_FUNC_PREFIX mvUniqueSet
 
    public:
       mvUniqueSet();
-      mvIndex findIndex(mvIndex index) const;
+      bool containsIndex(mvIndex index) const;
       mvErrorEnum addIndex(mvIndex index);
       mvErrorEnum removeIndex(mvIndex index);
       mvCount getNoOfIndexes() const;

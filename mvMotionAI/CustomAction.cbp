@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="tutorial3 : Custom mvBaseActions with C interface" />
+		<Option title="tutorial3 : adding a custom mvBaseAction via the C API interface" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>

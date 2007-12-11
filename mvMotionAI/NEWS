@@ -2,7 +2,15 @@
  * \page logpage Log
  * \section mvMotionAI Log
  * \subsection log_columns Version     Date     Comments
- * 	version 00-02-49+ (29th Nov 2007)
+ *	version 00-02-49 (12 December 2007)
+ *	- added new tutorial4
+ * 		- adding a custom mvBaseForce to mvMotionAI via the C interface
+ *	- fixed local force integration
+ *		- now when a mvBody passes thru a mvWaypoint volume,
+ * it is affected by the forces assigned to that mvWaypoint.
+ *	- CPPUnit unit test now work in Code::Blocks (on MinGW)
+ *
+ * 	version 00-02-38 -48+ (29th Nov 2007)
  *      - Added new behaviour integration/combination/calculation modes
  * 		- MV_RANDOM : randomly added a mvBaseAction to the sum
  *              depending on its weight between clamped percentages [0, 1] 

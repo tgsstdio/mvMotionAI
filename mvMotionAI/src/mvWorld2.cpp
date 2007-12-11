@@ -2586,7 +2586,6 @@ mvIndex mvWorld::findMemberInGroup(mvIndex groupIndex,mvIndex mbrIndex)
       return MV_GROUP_INDEX_IS_INVALID;
    }
 
-   // TODO : set auto convert indexes to world flag then back
    bool pastAutoConvertIndexFlag = bodies.getAutoConvertFlag();
    bodies.setAutoConvertIndex(this->autoConvertIndex);
    mvIndex convertedIndex = bodies.convertIndex(mbrIndex);
@@ -2594,10 +2593,17 @@ mvIndex mvWorld::findMemberInGroup(mvIndex groupIndex,mvIndex mbrIndex)
 
    if (convertedIndex == MV_NULL)
    {
-      return MV_BODY_INDEX_IS_INVALID;
+      return MV_NULL;
    }
 
-   return tempGroup->findMember(convertedIndex);
+   if (tempGroup->findMember(convertedIndex))
+   {
+		return convertedIndex;
+   }
+   else
+   {
+		return MV_NULL;
+   }
 }
 
 /** @brief (one liner)
