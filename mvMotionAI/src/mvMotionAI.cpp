@@ -136,6 +136,12 @@ MV_GLOBAL_FUNC_PREFIX mvBaseActionPtr mvCreateNewBehaviourFromLoader(mvOptionEnu
    return mvMotionAI_V2_CREATENEWBEHAVIOUR(type);
 }
 
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddForceFunction(mvOptionEnum bType,\
+   mvBaseForceLoaderPtr loader)
+{
+   return mvMotionAI_V2_ADDFORCEFUNC(bType, loader);
+}
+
 MV_GLOBAL_FUNC_PREFIX mvBaseForcePtr mvCreateNewForceFromLoader(mvOptionEnum type)
 {
    return mvMotionAI_V2_CREATENEWFORCE(type);

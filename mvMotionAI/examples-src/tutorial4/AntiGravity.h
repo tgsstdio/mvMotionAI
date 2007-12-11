@@ -3,7 +3,7 @@
 
 #include <mv/mvMotionAI.h>
 
-class AntiGravcty : public mvBaseForce
+class AntiGravity : public mvBaseForce
 {
    public:
       AntiGravity(mvOptionEnum forceKey);
@@ -17,9 +17,9 @@ class AntiGravityLoader : public mvBaseForceLoader
    public:
       mvOptionEnum typeKey;
 
-      mvAntiGravityLoader(mvOptionEnum forceKey);
+      AntiGravityLoader(mvOptionEnum forceKey);
       mvBaseForcePtr operator()(void* extraPtr);
-      ~mvAntiGravityLoader();
+      ~AntiGravityLoader();
 };
 
 #endif // ANTIGRAVITY_H_INCLUDED

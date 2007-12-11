@@ -983,3 +983,17 @@ void  mvForceResult::setToGlobalEffect()
 {
    isDefaultEffectGlobal = true;
 }
+
+/** @brief (one liner)
+*
+* (documentation goes here)
+*/
+void mvForceResult::setToSteering()
+{
+   isDefaultMotionSteering = true;
+}
+
+void mvForceResult::setToDirectional()
+{
+   isDefaultMotionSteering = false;
+}

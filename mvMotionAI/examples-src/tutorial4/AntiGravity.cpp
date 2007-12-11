@@ -1,18 +1,32 @@
 #include "AntiGravity.h"
 
 AntiGravity::AntiGravity(mvOptionEnum forceKey)
+ : mvBaseForce(forceKey)
 {
 
 }
 
-virtual void AntiGravity::filter(mvForceStatus& worldStatus)
+void AntiGravity::filter(mvForceStatus& worldStatus)
 {
-
+   worldStatus.applyingNone();
+   worldStatus.applyingAcceleration();
+   worldStatus.forLocalForceOnly();
 }
 
-virtual bool AntiGravity::calcFullForces(mvForceResultPtr fResult)
+bool AntiGravity::calcFullForces(mvForceResultPtr fResult)
 {
+   mvVec3 updraft(0,10,0);
 
+   if(fResult)
+   {
+      fResult->setAcceleration(updraft);
+      fResult->setToSteering();
+      return true;
+   }
+   else
+   {
+      return false;
+   }
 }
 
 AntiGravity::~AntiGravity()
@@ -28,7 +42,7 @@ AntiGravityLoader::AntiGravityLoader(mvOptionEnum forceKey)
 
 mvBaseForcePtr AntiGravityLoader::operator()(void* extraPtr)
 {
-   return new AntiGravcty(typeKey);
+   return new AntiGravity(typeKey);
 }
 
 AntiGravityLoader::~AntiGravityLoader()

@@ -117,7 +117,7 @@ void mvWorld_V2_CalculateForceOnSingleBody(mvForceCapsulePtr fCapsulePtr,\
    {
       // store
       mvForceResult currentResult(currentWorld, currentBody);
-      bool hasCalcForce = true;
+      bool hasCalcForce = false;
 
       // check this world force filter
       forceStatus.applyingNone();
@@ -132,7 +132,7 @@ void mvWorld_V2_CalculateForceOnSingleBody(mvForceCapsulePtr fCapsulePtr,\
             &currentResult);
       }
       // continue with local action if not restricted to being global force
-      else if (!forceStatus.onlyGlobalForce)
+      else if (!fCapsulePtr->isGlobalForce())
       {
          mvWorld_V2_InitialCurrentForceResult(finalResult, &currentResult);
          hasCalcForce = mvWorld_V2_CalculateLocalForceOnBody(fCapsulePtr,
@@ -172,6 +172,7 @@ void mvWorld_V2_CalculateForceOnSingleBody(mvForceCapsulePtr fCapsulePtr,\
             currentResult.disableDragShift();
          }
 
+         puts(mvGetOptionString(currentForce->getType()));
          // sum forces
          mvWorld_V2_SumForceResults(finalResult,currentResult);
       }
