@@ -81,23 +81,18 @@ bool mvWorld_V2_CalculateLocalForceOnBody(mvForceCapsulePtr fCapsulePtr,
 
    // start loop
    linkedWaypoints.beginLoop();
-   while(!linkedWaypoints.isLoopFinished()
-   && waypointList.findIndex(\
-      currentWorld->convertWaypointIndex(linkedWaypoints.getCurrentIndex())
-      )
-      == MV_ITEM_NOT_FOUND_IN_LIST)
+   while(!linkedWaypoints.isLoopFinished())
    {
+		if (waypointList.containsIndex(\
+			currentWorld->convertWaypointIndex(linkedWaypoints.getCurrentIndex())))
+		{
+			return currentForce->calcFullForces(currentResult);
+		}
       linkedWaypoints.nextIndex();
    }
 
-   // hopefully ends correctly
-   if (linkedWaypoints.isLoopFinished())
-   {
-      return false;
-   }
+	return false;
 
-   // if true for any waypoints
-   return currentForce->calcFullForces(currentResult);
 }
 
 void mvWorld_V2_CalculateForceOnSingleBody(mvForceCapsulePtr fCapsulePtr,\

@@ -122,19 +122,11 @@ mvUniqueSet::mvUniqueSet()
    beginLoop();
 }
 
-mvIndex mvUniqueSet::findIndex(mvIndex index) const
+bool mvUniqueSet::containsIndex(mvIndex index) const
 {
-   std::set<mvIndex>::const_iterator found;
+   std::set<mvIndex>::const_iterator found = indexes.find(index);
 
-   found = indexes.find(index);
-   if (found == indexes.end())
-   {
-      return MV_NULL;
-   }
-   else
-   {
-      return *found;
-   }
+	return (found != indexes.end());
 }
 
 mvErrorEnum mvUniqueSet::addIndex(mvIndex index)
@@ -144,7 +136,7 @@ mvErrorEnum mvUniqueSet::addIndex(mvIndex index)
       return MV_INDEX_VALUE_IS_INVALID;
    }
 
-   if (findIndex(index) == MV_NULL)
+   if (!containsIndex(index))
    {
       indexes.insert(index);
       return MV_NO_ERROR;
@@ -157,7 +149,7 @@ mvErrorEnum mvUniqueSet::addIndex(mvIndex index)
 
 mvErrorEnum mvUniqueSet::removeIndex(mvIndex index)
 {
-   if (findIndex(index) == MV_NO_ERROR)
+   if (containsIndex(index))
    {
       indexes.erase(index);
       return MV_NO_ERROR;

@@ -131,7 +131,7 @@ int main(int argc, char** argv)
    int worldID = mvCreateWorld();
    std::cout << "worldID : " << worldID <<  std::endl;
 
-   int bodyID2 = mvCreateBody(worldID,MV_PARTICLE,MV_SPHERE, 0 , 5 , 0);
+   int bodyID2 = mvCreateBody(worldID,MV_PARTICLE,MV_SPHERE, 0 , 0 , 0);
    int entryID = mvAddBehaviourToList(worldID,bodyID2,MV_SEEK, MV_NULL, MV_NULL);
    if (entryID == MV_NULL)
    {
@@ -140,7 +140,7 @@ int main(int argc, char** argv)
 
    int waypointID = mvCreateWaypoint(worldID, MV_AABOX, 0, 0, 0);
    mvSetWaypointParameterf(worldID, waypointID, MV_X_WIDTH,8);
-   mvSetWaypointParameterf(worldID, waypointID, MV_Y_HEIGHT,1);
+   mvSetWaypointParameterf(worldID, waypointID, MV_Y_HEIGHT,4);
    mvSetWaypointParameterf(worldID, waypointID, MV_Z_DEPTH,4);
 
    int basicGravityID = mvCreateForce(worldID, MV_GRAVITY);
@@ -156,9 +156,12 @@ int main(int argc, char** argv)
       puts("MV INIT ENTRY ERROR");
    }
 
-   // uncomment this line and anti gravity is on
+   // uncomment this line and anti gravity is active when the body intercept
+   // into the waypoint's area
+   /*
    initError = mvAddForceIntoWaypoint(worldID, waypointID, -1);
    puts(mvGetErrorEnumString(initError));
+   */
 
    // more application code - OK to IGNORE
    glutDisplayFunc(display);

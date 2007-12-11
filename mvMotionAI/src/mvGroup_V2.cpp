@@ -51,9 +51,9 @@ mvErrorEnum mvGroup::addMember(mvIndex memberIndex)
 /** \brief blah
  *
  */
-mvIndex mvGroup::findMember(mvIndex memberIndex) const
+bool mvGroup::findMember(mvIndex memberIndex) const
 {
-   return members.findIndex(memberIndex);
+   return members.containsIndex(memberIndex);
 }
 
 /** \brief blah

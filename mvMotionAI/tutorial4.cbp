@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="tutorial4" />
+		<Option title="tutorial4 : adding a custom mvBaseForce via mvMotionAI C interface" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -13,12 +13,10 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-pg" />
 					<Add option="-g" />
 					<Add directory="include-other" />
 				</Compiler>
 				<Linker>
-					<Add option="-pg -lgmon" />
 					<Add library="lib-other\freeglut-debug.lib" />
 					<Add library="opengl32" />
 					<Add library="glu32" />

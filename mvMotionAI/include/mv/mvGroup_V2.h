@@ -56,7 +56,7 @@ class MV_GLOBAL_FUNC_PREFIX mvGroup
       bool isEnabled;
 
       mvErrorEnum addMember(mvIndex memberIndex);
-      mvIndex findMember(mvIndex memberIndex) const;
+      bool findMember(mvIndex memberIndex) const;
       mvErrorEnum removeMember(mvIndex memberIndex);
       mvCount getNoOfMembers() const;
       void clearAll();
