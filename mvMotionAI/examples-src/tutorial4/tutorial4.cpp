@@ -107,7 +107,7 @@ int main(int argc, char** argv)
    /*
     * Step 2.1 : initialise mvMotionAI library
     */
-   mvErrorEnum initError = mvInitDefaultForces();
+   initError = mvInitDefaultForces();
    if (initError != MV_NO_ERROR)
    {
       puts("MV INIT FORCES ERROR");
@@ -115,18 +115,13 @@ int main(int argc, char** argv)
 
    /*
     * Step 2.2 adding a new instance of AntiGravityLoader
-    *  - NOTE that the mvWorld class handles the deletion of mvBaseActionLoaders.
+    *  - NOTE that the mvMotionAI C interface handles the deletion of mvBaseForceLoaders.
     */
-   initError = mvAddBehaviourFunction(MV_NON_BODY_TYPE, new  TimedHopLoader());
+   initError = mvAddForceFunction(MV_FORCE_FIELD_REPELL,\
+      new  AntiGravityLoader(MV_FORCE_FIELD_REPELL));
    if (initError != MV_NO_ERROR)
    {
-      puts("MV INIT CUSTOM ACTIONS ERROR");
-   }
-
-   initError = mvInitDefaultForces();
-   if (initError != MV_NO_ERROR)
-   {
-      puts("MV INIT FORCES ERROR");
+      puts("MV INIT CUSTOM FORCE ERROR");
    }
 
    /*
@@ -136,12 +131,34 @@ int main(int argc, char** argv)
    int worldID = mvCreateWorld();
    std::cout << "worldID : " << worldID <<  std::endl;
 
-   int bodyID2 = mvCreateBody(worldID,MV_PARTICLE,MV_SPHERE, 0 , 4 , 4);
-   int entryID = mvAddBehaviourToList(worldID,bodyID2,MV_NON_BODY_TYPE, MV_NULL, MV_NULL);
+   int bodyID2 = mvCreateBody(worldID,MV_PARTICLE,MV_SPHERE, 0 , 5 , 0);
+   int entryID = mvAddBehaviourToList(worldID,bodyID2,MV_SEEK, MV_NULL, MV_NULL);
    if (entryID == MV_NULL)
    {
       puts("MV INIT ENTRY ERROR");
    }
+
+   int waypointID = mvCreateWaypoint(worldID, MV_AABOX, 0, 0, 0);
+   mvSetWaypointParameterf(worldID, waypointID, MV_X_WIDTH,8);
+   mvSetWaypointParameterf(worldID, waypointID, MV_Y_HEIGHT,1);
+   mvSetWaypointParameterf(worldID, waypointID, MV_Z_DEPTH,4);
+
+   int basicGravityID = mvCreateForce(worldID, MV_GRAVITY);
+   if (basicGravityID == MV_NULL)
+   {
+      puts("MV INIT ENTRY ERROR");
+   }
+
+   // create custom force actions
+   int customForceID = mvCreateForce(worldID, MV_FORCE_FIELD_REPELL);
+   if (customForceID == MV_NULL)
+   {
+      puts("MV INIT ENTRY ERROR");
+   }
+
+   // uncomment this line and anti gravity is on
+   initError = mvAddForceIntoWaypoint(worldID, waypointID, -1);
+   puts(mvGetErrorEnumString(initError));
 
    // more application code - OK to IGNORE
    glutDisplayFunc(display);

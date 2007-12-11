@@ -184,10 +184,12 @@ int main(int argc, char** argv)
   // paramError = mvAddForceIntoWaypoint(worldID, -1, -2);
    if (paramError != MV_NO_ERROR) puts("ERROR FOUND 2");
 
+   /* for testing purposes	
    for (int k =0; k < 5000; k++)
    {
       mvCreateBody(worldID,MV_PARTICLE,MV_AABOX, k, 0, -3 * k/ 20);
    }
+   */
 
 
    /*
