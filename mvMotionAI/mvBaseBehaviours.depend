@@ -607,7 +607,7 @@
 1026453596 d:\cppunit\cppunit-1.12.0\include\cppunit\outputter.h
 	<cppunit/Portability.h>
 
-1130444554 d:\cppunit\cppunit-1.12.0\include\cppunit\portability\stream.h
+1130440954 d:\cppunit\cppunit-1.12.0\include\cppunit\portability\stream.h
 	<cppunit/Portability.h>
 	<string>
 	<stdio.h>
@@ -784,4 +784,31 @@
 	<cppunit/Portability.h>
 	<cppunit/portability/CppUnitMap.h>
 	<string>
+
+1197439046 source:d:\mvmotionai\mvmotionai\experimental\examples-src\mvmatrixcodetest.cpp
+	"mvMatrixCodeTest.h"
+	<cstdio>
+	<mvMatrix.h>
+
+1197426908 d:\mvmotionai\mvmotionai\experimental\examples-src\mvmatrixcodetest.h
+	<cppunit/extensions/HelperMacros.h>
+
+1197438846 d:\mvmotionai\mvmotionai\experimental\include\mvmatrix.h
+	<mv/mvMotionAI-Types.h>
+
+1193119786 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
+
+1197438892 source:d:\mvmotionai\mvmotionai\experimental\src\mvmatrix.cpp
+	<mvMatrix.h>
+
+1198583552 source:d:\mvmotionai\mvmotionai\test\mvbitfieldsunittest.cpp
+	"mvBitFieldsUnitTest.h"
+	<cstdio>
+	<mv/mvMotionAI.h>
+
+1198565934 d:\mvmotionai\mvmotionai\test\mvbitfieldsunittest.h
+	<cppunit/extensions/HelperMacros.h>
+
+1193548156 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
+	<mv/mvMotionAI-Types.h>
 
