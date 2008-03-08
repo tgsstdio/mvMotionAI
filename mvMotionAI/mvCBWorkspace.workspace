@@ -29,14 +29,14 @@
 		</Project>
 		<Project filename="test\mvVec3CPPUnitTest.cbp" />
 		<Project filename="test\mvBListCPPUnitTest.cbp" />
-		<Project filename="mvMotionAI-LuaFunctions.cbp">
-			<Depends filename="mvMotion-CB.cbp" />
-		</Project>
 		<Project filename="CPPUnit Static Library.cbp" />
 		<Project filename="mvBaseBehaviours.cbp">
 			<Depends filename="CPPUnit Static Library.cbp" />
 		</Project>
 		<Project filename="BaseTypes.cbp" />
-		<Project filename="mvLightfeather Conversion\mvLightfeather Conversion.cbp" active="1" />
+		<Project filename="mvLightfeather Conversion\mvLightfeather Conversion.cbp" />
+		<Project filename="mvMotionAI-LuaFunctions.cbp" active="1">
+			<Depends filename="mvLightfeather Conversion\mvLightfeather Conversion.cbp" />
+		</Project>
 	</Workspace>
 </CodeBlocks_workspace_file>

@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="sideproject1(old) : WILL NOT COMPILE" />
+		<Option title="sideproject3  : mv To LF conversion" />
 		<Option pch_mode="0" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="default">
-				<Option output="bin\sideproject1.exe" prefix_auto="0" extension_auto="0" />
+				<Option output="bin\sideproject3.exe" prefix_auto="0" extension_auto="0" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option projectResourceIncludeDirsRelation="1" />
@@ -17,26 +17,27 @@
 				</Linker>
 			</Target>
 			<Target title="mingw-winXP">
-				<Option output="bin\sideproject1-winXP.exe" prefix_auto="0" extension_auto="0" />
+				<Option output="bin\sideproject3-winXP.exe" prefix_auto="0" extension_auto="0" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option projectResourceIncludeDirsRelation="1" />
 				<Compiler>
 					<Add option="-Wall" />
 					<Add option="-ansi" />
+					<Add option='-DMV_MOTIONAI_TYPES_HEADER_FILE_H_=&quot;&lt;mvLFMotionAI-Types.h&gt;&quot;' />
 					<Add directory="include-other" />
 				</Compiler>
 				<Linker>
-					<Add library="lib-other\freeglut.lib" />
-					<Add library="opengl32" />
-					<Add library="mvMotionAI-mingw" />
-					<Add library="lua5.1" />
+					<Add library="lib\libmvLFMotionAI.a" />
 					<Add directory="lib" />
 					<Add directory="lib-other\mingw" />
 				</Linker>
+				<Environment>
+					<Variable name="lf" value="K:\lf-bedge" />
+				</Environment>
 			</Target>
 			<Target title="unix">
-				<Option output="bin\sideproject1-ubuntu" prefix_auto="1" extension_auto="1" />
+				<Option output="bin\sideproject3-ubuntu" prefix_auto="1" extension_auto="1" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option projectResourceIncludeDirsRelation="1" />
@@ -51,7 +52,7 @@
 				</Linker>
 			</Target>
 			<Target title="unix debug">
-				<Option output="bin\sideproject1-unix-debug" prefix_auto="1" extension_auto="1" />
+				<Option output="bin\sideproject3-unix-debug" prefix_auto="1" extension_auto="1" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option projectResourceIncludeDirsRelation="1" />
@@ -66,20 +67,24 @@
 					<Add directory="lib" />
 				</Linker>
 			</Target>
+			<Environment>
+				<Variable name="lf" value="K:\lf-bedge" />
+			</Environment>
 		</Build>
 		<VirtualTargets>
 			<Add alias="All" targets="default;" />
 		</VirtualTargets>
 		<Compiler>
+			<Add option='-DMV_MOTIONAI_TYPES_HEADER_FILE_H_=&quot;&lt;mvLFMotionAI-Types.h&gt;&quot;' />
 			<Add directory="include" />
+			<Add directory="$(lf)\include" />
+			<Add directory="mvLightfeather Conversion" />
 		</Compiler>
 		<Linker>
 			<Add directory="lib" />
 			<Add directory="lib-other" />
 		</Linker>
-		<Unit filename="examples-src\Camera.cpp" />
-		<Unit filename="examples-src\Camera.h" />
-		<Unit filename="examples-src\tutorial2\GLMain.cpp" />
+		<Unit filename="examples-src\sideproject3\sideproject3.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -364,7 +364,7 @@
 
 1190961076 onAI-Types.h>
 
-1193123386 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
+1193119786 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
 
 1191290939 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/mvLua.cpp
 	"mvLua.h"
@@ -510,4 +510,3205 @@
 	"../Camera.h"
 	<cstdlib>
 	<mv/mvMotionAI.h>
+
+1204992430 source:d:\mvmotionai\mvmotionai\examples-src\sideproject3\sideproject3.cpp
+	<mv/mvMotionAI.h>
+	<lf/Lightfeather.h>
+	<iostream>
+
+1202301580 k:\lf-bedge\include\lf\lightfeather.h
+	"LfConfig.h"
+	"LfCore.h"
+	"LfInput.h"
+	"LfLog.h"
+	"LfNet.h"
+	"LfOs.h"
+	"LfRender.h"
+	"LfScene.h"
+	"LfResources.h"
+
+1204344194 k:\lf-bedge\include\lf\lfconfig.h
+	<wchar.h>
+	"localconfig.h"
+
+1202301580 k:\lf-bedge\include\lf\lfcore.h
+	<lf/core/aabbox3d.h>
+	<lf/core/array.h>
+	<lf/core/CColorConverter.h>
+	<lf/core/CColorF.h>
+	<lf/core/CColorI.h>
+	<lf/core/CEvent.h>
+	<lf/core/CProperties.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/CRTTI.h>
+	<lf/core/CSingleton.h>
+	<lf/core/CStringTokenizer.h>
+	<lf/core/CTreeElement.h>
+	<lf/core/vector2d.h>
+	<lf/core/EDirection.h>
+	<lf/core/hashtable.h>
+	<lf/core/heapsort.h>
+	<lf/core/IColor.h>
+	<lf/core/list.h>
+	<lf/core/lfmath.h>
+	<lf/core/lftypes.h>
+	<lf/core/line2d.h>
+	<lf/core/line3d.h>
+	<lf/core/matrix4.h>
+	<lf/core/plane3d.h>
+	<lf/core/reloff2d.h>
+	<lf/core/vector2d.h>
+	<lf/core/quaternion.h>
+	<lf/core/rect.h>
+	<lf/core/SCone.h>
+	<lf/core/sphere3d.h>
+	<lf/core/triangle3d.h>
+	<lf/core/vector2d.h>
+	<lf/core/vector3d.h>
+	<lf/core/vector4d.h>
+	<lf/core/array2.h>
+	<lf/core/IUpdateable.h>
+	<lf/core/CSpacial.h>
+	<lf/core/CNode.h>
+	<lf/core/CSpacialNode.h>
+	<lf/core/CSpacialNodeEvent.h>
+	<lf/core/ISpacialNodeListener.h>
+	<lf/core/CCommandLineParser.h>
+
+1202301580 k:\lf-bedge\include\lf\core\aabbox3d.h
+	<lf/LfConfig.h>
+	<lf/core/lfmath.h>
+	<lf/core/plane3d.h>
+	<lf/core/line3d.h>
+	<iostream>
+
+1202301582 k:\lf-bedge\include\lf\core\lfmath.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+	<cmath>
+
+1202301582 k:\lf-bedge\include\lf\core\lftypes.h
+	<lf/LfConfig.h>
+
+1202301582 k:\lf-bedge\include\lf\core\plane3d.h
+	<lf/core/lftypes.h>
+	<lf/core/lfmath.h>
+	<lf/core/vector3d.h>
+	<iostream>
+	<lf/core/array.h>
+
+1202301582 k:\lf-bedge\include\lf\core\vector3d.h
+	<math.h>
+	<lf/core/lfmath.h>
+	<lf/core/lftypes.h>
+	<iostream>
+
+1203731758 k:\lf-bedge\include\lf\core\array.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+	<assert.h>
+	<iostream>
+	<lf/core/quicksort.h>
+	<lf/core/heapsort.h>
+
+1202301582 k:\lf-bedge\include\lf\core\quicksort.h
+	<lf/core/lfmath.h>
+
+1202301582 k:\lf-bedge\include\lf\core\heapsort.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+
+1202301582 k:\lf-bedge\include\lf\core\line3d.h
+	<lf/core/lftypes.h>
+	<lf/core/vector3d.h>
+	<iostream>
+
+1202301580 k:\lf-bedge\include\lf\core\ccolorconverter.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+
+1202301580 k:\lf-bedge\include\lf\core\ccolorf.h
+	<lf/LfConfig.h>
+	<lf/core/IColor.h>
+	<iostream>
+
+1202301580 k:\lf-bedge\include\lf\core\icolor.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+
+1202301580 k:\lf-bedge\include\lf\core\ccolori.h
+	<lf/LfConfig.h>
+	<lf/core/IColor.h>
+	<iostream>
+
+1204344194 k:\lf-bedge\include\lf\core\cevent.h
+	<lf/LfConfig.h>
+
+1202301580 k:\lf-bedge\include\lf\core\cproperties.h
+	<lf/LfConfig.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/CTreeElement.h>
+	<lf/core/list.h>
+	<lf/core/stringc.h>
+	<lf/core/array.h>
+	<lf/core/hashtable.h>
+
+1202301580 k:\lf-bedge\include\lf\core\crefcounted.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+	<iostream>
+
+1202301580 k:\lf-bedge\include\lf\core\ctreeelement.h
+	<lf/LfConfig.h>
+	<lf/core/stringc.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/list.h>
+
+1202301582 k:\lf-bedge\include\lf\core\stringc.h
+	<lf/core/lftypes.h>
+	<lf/core/array.h>
+	<stdio.h>
+	<stdarg.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<malloc/malloc.h>
+	<malloc.h>
+	<lf/core/vector2d.h>
+	<lf/core/vector3d.h>
+	<lf/core/vector4d.h>
+	<lf/core/matrix4.h>
+	<lf/core/rect.h>
+	<lf/core/CColorI.h>
+	<lf/core/CColorF.h>
+	<lf/core/quaternion.h>
+	<lf/core/reloff2d.h>
+	<iostream>
+
+1202301582 k:\lf-bedge\include\lf\core\vector2d.h
+	<cmath>
+	<lf/core/lfmath.h>
+	<lf/core/lftypes.h>
+	<iostream>
+
+1202301582 k:\lf-bedge\include\lf\core\vector4d.h
+	<math.h>
+	<lf/core/lfmath.h>
+	<lf/core/lftypes.h>
+	<iostream>
+
+1202301582 k:\lf-bedge\include\lf\core\matrix4.h
+	<lf/core/lftypes.h>
+	<lf/core/vector3d.h>
+	<lf/core/vector4d.h>
+	<lf/core/plane3d.h>
+	<lf/core/aabbox3d.h>
+	<iostream>
+
+1202301582 k:\lf-bedge\include\lf\core\rect.h
+	<lf/core/lftypes.h>
+	<lf/core/vector2d.h>
+	<lf/core/reloff2d.h>
+	<iostream>
+
+1202301582 k:\lf-bedge\include\lf\core\reloff2d.h
+	<lf/core/lftypes.h>
+	<iostream>
+
+1202301582 k:\lf-bedge\include\lf\core\quaternion.h
+	<lf/core/lftypes.h>
+	<lf/core/matrix4.h>
+	<lf/core/lfmath.h>
+	<assert.h>
+	<iostream>
+
+1202301582 k:\lf-bedge\include\lf\core\list.h
+	<lf/core/lftypes.h>
+	<iostream>
+	<cassert>
+
+1202301582 k:\lf-bedge\include\lf\core\hashtable.h
+	<string>
+	"array.h"
+	"stringw.h"
+	"stringc.h"
+
+1202301582 k:\lf-bedge\include\lf\core\stringw.h
+	<lf/core/lftypes.h>
+	<stdio.h>
+	<stdarg.h>
+	<stdlib.h>
+	<wchar.h>
+	<assert.h>
+	<malloc/malloc.h>
+	<malloc.h>
+	<lf/core/vector2d.h>
+	<lf/core/vector3d.h>
+	<lf/core/vector4d.h>
+	<lf/core/matrix4.h>
+	<lf/core/vector2d.h>
+	<lf/core/vector2d.h>
+	<lf/core/CColorI.h>
+	<lf/core/CColorF.h>
+	<lf/core/rect.h>
+
+1202301580 k:\lf-bedge\include\lf\core\crtti.h
+	<lf/core/stringc.h>
+	<lf/core/array.h>
+
+1202301580 k:\lf-bedge\include\lf\core\csingleton.h
+	<lf/LfConfig.h>
+	<assert.h>
+
+1202301580 k:\lf-bedge\include\lf\core\cstringtokenizer.h
+	<lf/core/stringc.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/array.h>
+
+1202301580 k:\lf-bedge\include\lf\core\edirection.h
+
+1202301582 k:\lf-bedge\include\lf\core\line2d.h
+	<lf/core/lftypes.h>
+	<lf/core/vector2d.h>
+	<iostream>
+
+1202301580 k:\lf-bedge\include\lf\core\scone.h
+	<lf/core/lftypes.h>
+	<lf/core/vector3d.h>
+
+1202301582 k:\lf-bedge\include\lf\core\sphere3d.h
+	<lf/core/lftypes.h>
+	<lf/core/vector3d.h>
+	<lf/core/SCone.h>
+	<lf/core/line3d.h>
+	<lf/core/plane3d.h>
+
+1202301582 k:\lf-bedge\include\lf\core\triangle3d.h
+	<lf/core/vector3d.h>
+	<lf/core/line3d.h>
+	<lf/core/plane3d.h>
+	<lf/core/aabbox3d.h>
+	<lf/core/sphere3d.h>
+
+1202301580 k:\lf-bedge\include\lf\core\array2.h
+	<lf/core/array.h>
+	<lf/core/list.h>
+
+1202301580 k:\lf-bedge\include\lf\core\iupdateable.h
+	<lf/core/lftypes.h>
+	<lf/core/CRefCounted.h>
+
+1202301580 k:\lf-bedge\include\lf\core\cspacial.h
+	<lf/LfConfig.h>
+	<lf/core/quaternion.h>
+	<lf/core/vector3d.h>
+	<lf/core/matrix4.h>
+	<lf/core/CRTTI.h>
+
+1202301580 k:\lf-bedge\include\lf\core\cnode.h
+	<lf/LfConfig.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/array.h>
+
+1202301580 k:\lf-bedge\include\lf\core\cspacialnode.h
+	<lf/LfConfig.h>
+	<lf/core/sphere3d.h>
+	<lf/core/aabbox3d.h>
+	<lf/core/CSpacial.h>
+	<lf/core/CNode.h>
+	<lf/core/ISpacialNodeListener.h>
+	<lf/core/list.h>
+
+1202301580 k:\lf-bedge\include\lf\core\ispacialnodelistener.h
+	<lf/core/CSpacialNodeEvent.h>
+
+1202301580 k:\lf-bedge\include\lf\core\cspacialnodeevent.h
+	<lf/LfConfig.h>
+	<lf/core/CEvent.h>
+
+1202301580 k:\lf-bedge\include\lf\core\ccommandlineparser.h
+	<lf/LfConfig.h>
+	<lf/core/stringc.h>
+	<lf/core/array.h>
+
+1202301580 k:\lf-bedge\include\lf\lfinput.h
+	<lf/input/CCursorControlLinux.h>
+	<lf/input/CCursorControlMac.h>
+	<lf/input/CCursorControlWin32.h>
+	<lf/input/CInputEvent.h>
+	<lf/input/CInputModifiers.h>
+	<lf/input/CKeyEvent.h>
+	<lf/input/CMouseEvent.h>
+	<lf/input/ICursorControl.h>
+	<lf/input/IInputEventDispatcher.h>
+	<lf/input/IKeyListener.h>
+	<lf/input/IMouseListener.h>
+	<lf/input/IMouseMovementListener.h>
+	<lf/input/IMouseWheelListener.h>
+	<lf/input/Keycodes.h>
+
+1202301582 k:\lf-bedge\include\lf\input\ccursorcontrollinux.h
+	<lf/LfConfig.h>
+	<lf/input/ICursorControl.h>
+	<X11/Xlib.h>
+
+1202301582 k:\lf-bedge\include\lf\input\icursorcontrol.h
+	<lf/core/vector2d.h>
+	<lf/core/vector2d.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/lftypes.h>
+
+1202301582 k:\lf-bedge\include\lf\input\ccursorcontrolmac.h
+	<lf/LfConfig.h>
+	<lf/input/ICursorControl.h>
+	<lf/render/CRenderWindowMac.h>
+
+1202301584 k:\lf-bedge\include\lf\render\crenderwindowmac.h
+	<lf/LfConfig.h>
+	<lf/render/CRenderWindowStub.h>
+	<lf/render/IRenderWindow.h>
+	<lf/render/CRenderContextOpenGLMac.h>
+	<AGL/AGL.h>
+	<OpenGL/OpenGL.h>
+
+1203731758 k:\lf-bedge\include\lf\render\crenderwindowstub.h
+	<lf/LfConfig.h>
+	<lf/render/IRenderWindow.h>
+	<lf/render/IRenderWindowListener.h>
+	<lf/render/CVideoModeList.h>
+	<lf/core/list.h>
+	<lf/render/gui/CGUIManager.h>
+
+1203731758 k:\lf-bedge\include\lf\render\irenderwindow.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/vector2d.h>
+	<lf/render/EDriverTypes.h>
+	<lf/input/ICursorControl.h>
+	<lf/render/IVideoModeList.h>
+	<lf/input/IInputEventDispatcher.h>
+	<lf/render/IFrameListener.h>
+	<lf/render/IRenderWindowListener.h>
+	<lf/resources/CImage.h>
+
+1202301584 k:\lf-bedge\include\lf\render\edrivertypes.h
+	<lf/LfConfig.h>
+
+1202301584 k:\lf-bedge\include\lf\render\ivideomodelist.h
+	<lf/core/CRefCounted.h>
+	<lf/core/vector2d.h>
+
+1202301582 k:\lf-bedge\include\lf\input\iinputeventdispatcher.h
+	<lf/input/IKeyListener.h>
+	<lf/input/IMouseListener.h>
+	<lf/input/IMouseMovementListener.h>
+	<lf/input/IMouseWheelListener.h>
+
+1202301582 k:\lf-bedge\include\lf\input\ikeylistener.h
+	<lf/input/CKeyEvent.h>
+
+1202301582 k:\lf-bedge\include\lf\input\ckeyevent.h
+	<lf/LfConfig.h>
+	<lf/input/CInputEvent.h>
+	<lf/input/Keycodes.h>
+
+1202301582 k:\lf-bedge\include\lf\input\cinputevent.h
+	<lf/LfConfig.h>
+	<lf/core/CEvent.h>
+	<lf/input/CInputModifiers.h>
+
+1202301582 k:\lf-bedge\include\lf\input\cinputmodifiers.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+
+1202301582 k:\lf-bedge\include\lf\input\keycodes.h
+
+1202301582 k:\lf-bedge\include\lf\input\imouselistener.h
+	<lf/input/CMouseEvent.h>
+
+1202301582 k:\lf-bedge\include\lf\input\cmouseevent.h
+	<lf/LfConfig.h>
+	<lf/input/CInputEvent.h>
+
+1202301582 k:\lf-bedge\include\lf\input\imousemovementlistener.h
+	<lf/input/CMouseEvent.h>
+
+1202301582 k:\lf-bedge\include\lf\input\imousewheellistener.h
+	<lf/input/CMouseEvent.h>
+
+1202301584 k:\lf-bedge\include\lf\render\iframelistener.h
+	<lf/render/CFrameEvent.h>
+
+1202301584 k:\lf-bedge\include\lf\render\cframeevent.h
+	<lf/LfConfig.h>
+	<lf/core/CEvent.h>
+
+1202301584 k:\lf-bedge\include\lf\render\irenderwindowlistener.h
+	<lf/render/CRenderWindowEvent.h>
+
+1202301584 k:\lf-bedge\include\lf\render\crenderwindowevent.h
+	<lf/LfConfig.h>
+	<lf/core/CEvent.h>
+
+1202301586 k:\lf-bedge\include\lf\resources\cimage.h
+	<lf/LfConfig.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/CRTTI.h>
+
+1202301584 k:\lf-bedge\include\lf\render\cvideomodelist.h
+	<lf/LfConfig.h>
+	<lf/render/IVideoModeList.h>
+	<lf/core/vector2d.h>
+	<lf/core/array.h>
+
+1204344194 k:\lf-bedge\include\lf\render\gui\cguimanager.h
+	<lf/core/rect.h>
+	<lf/core/array.h>
+	<lf/core/CColorI.h>
+	<lf/render/gui/CGUIWidget.h>
+	<lf/render/IRenderLayer.h>
+	<lf/render/IRenderWindowListener.h>
+	<lf/render/gui/CGUIMousePointer.h>
+	<lf/render/gui/CGUIMenuBar.h>
+
+1204984518 k:\lf-bedge\include\lf\render\gui\cguiwidget.h
+	<lf/core/rect.h>
+	<lf/core/reloff2d.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/list.h>
+	<lf/input/IKeyListener.h>
+	<lf/input/IMouseListener.h>
+	<lf/input/IMouseMovementListener.h>
+	<lf/input/IMouseWheelListener.h>
+	<lf/core/array.h>
+	<lf/render/gui/CGUIRenderList.h>
+	<lf/core/EDirection.h>
+	<lf/render/gui/IGUIMouseListener.h>
+	<lf/render/gui/IGUIMouseMovementListener.h>
+	<lf/render/gui/IGUIMouseWheelListener.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguirenderlist.h
+	<lf/core/array.h>
+	<lf/core/rect.h>
+	<lf/core/CColorI.h>
+	<lf/resources/CTexture.h>
+	<lf/render/gui/CGUITheme.h>
+
+1203731760 k:\lf-bedge\include\lf\resources\ctexture.h
+	<lf/LfConfig.h>
+	<lf/render/glmac.h>
+	<OpenGL/glu.h>
+	<windows.h>
+	<gl\gl.h>
+	<gl\glu.h>
+	<GL/glx.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<d3d9.h>
+	<lf/resources/CImage.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/array.h>
+	<lf/resources/CResource.h>
+	<lf/core/stringc.h>
+
+1202301584 k:\lf-bedge\include\lf\render\glmac.h
+	<OpenGL/gl.h>
+	<lf/render/glext.h>
+
+1194055706 k:\lf-bedge\include\lf\render\glext.h
+	<windows.h>
+	<stddef.h>
+	<inttypes.h>
+	<inttypes.h>
+	<inttypes.h>
+	<stdint.h>
+	<stdint.h>
+	<inttypes.h>
+
+1202301586 k:\lf-bedge\include\lf\resources\cresource.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+	<lf/core/CRTTI.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/stringc.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguitheme.h
+	<lf/core/CRefCounted.h>
+	<lf/resources/CTexture.h>
+	<lf/core/CTreeElement.h>
+	<lf/core/stringc.h>
+	<lf/resources/CFont.h>
+	<lf/resources/CResource.h>
+	<lf/core/hashtable.h>
+
+1202301586 k:\lf-bedge\include\lf\resources\cfont.h
+	<lf/resources/CTexture.h>
+	<lf/resources/IFontAlphabet.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\ifontalphabet.h
+	<lf/core/lftypes.h>
+	<lf/core/CRefCounted.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\iguimouselistener.h
+	<lf/input/CMouseEvent.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\iguimousemovementlistener.h
+	<lf/input/CMouseEvent.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\iguimousewheellistener.h
+	<lf/input/CMouseEvent.h>
+
+1202301584 k:\lf-bedge\include\lf\render\irenderlayer.h
+	<lf/core/CRefCounted.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguimousepointer.h
+	<lf/core/CRefCounted.h>
+	<lf/core/lftypes.h>
+	<lf/core/rect.h>
+	<lf/render/gui/CGUITheme.h>
+	<lf/render/gui/CGUIRenderList.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguimenubar.h
+	<lf/render/gui/CGUIContextMenu.h>
+	<lf/render/gui/IGUIActionListener.h>
+	<lf/render/gui/IGUIWidgetListener.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguicontextmenu.h
+	<lf/render/gui/CGUILabel.h>
+	<lf/render/gui/IGUIActionListener.h>
+	<lf/render/gui/CGUIMenuItem.h>
+	<lf/render/gui/IGUIWidgetListener.h>
+	<lf/input/IMouseListener.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguilabel.h
+	<lf/render/gui/CGUIWidget.h>
+	<lf/resources/CFont.h>
+	<lf/core/stringw.h>
+	<lf/render/gui/text/CLayout.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\text\clayout.h
+	<lf/core/stringw.h>
+	<lf/core/CColorI.h>
+	<lf/core/rect.h>
+	<lf/render/gui/CGUIRenderList.h>
+	<lf/resources/CFont.h>
+	<lf/core/rect.h>
+	<lf/core/vector2d.h>
+	<lf/render/gui/text/CCharacterSelection.h>
+	<lf/render/gui/text/CTextSelection.h>
+	<lf/render/gui/text/CCaret.h>
+	<lf/render/gui/text/CAbstractLayout.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\text\ccharacterselection.h
+	<lf/core/rect.h>
+	<lf/core/vector2d.h>
+
+1202301586 k:\lf-bedge\include\lf\render\gui\text\ctextselection.h
+	<lf/core/list.h>
+	<lf/core/CRefCounted.h>
+	<lf/render/gui/text/ITextSelectionListener.h>
+
+1202301586 k:\lf-bedge\include\lf\render\gui\text\itextselectionlistener.h
+
+1202301584 k:\lf-bedge\include\lf\render\gui\text\ccaret.h
+	<lf/core/lftypes.h>
+	<lf/core/list.h>
+	<lf/core/CRefCounted.h>
+	<lf/render/gui/text/CCaretEvent.h>
+	<lf/render/gui/text/ICaretListener.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\text\ccaretevent.h
+	<lf/core/lftypes.h>
+
+1202301586 k:\lf-bedge\include\lf\render\gui\text\icaretlistener.h
+	<lf/render/gui/text/CCaretEvent.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\text\cabstractlayout.h
+	<lf/core/array.h>
+	<lf/core/stringw.h>
+	<lf/core/list.h>
+	<lf/core/CRefCounted.h>
+	<lf/render/gui/text/CTextIterator.h>
+	<lf/render/gui/text/ILayoutListener.h>
+
+1202301586 k:\lf-bedge\include\lf\render\gui\text\ctextiterator.h
+	<lf/core/stringw.h>
+
+1202301586 k:\lf-bedge\include\lf\render\gui\text\ilayoutlistener.h
+	<lf/render/gui/text/CLayoutEvent.h>
+
+1202301586 k:\lf-bedge\include\lf\render\gui\text\clayoutevent.h
+	<lf/core/lftypes.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\iguiactionlistener.h
+	<lf/render/gui/CGUIActionEvent.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguiactionevent.h
+	<lf/render/gui/CGUIEvent.h>
+	<lf/render/gui/CGUIWidget.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguievent.h
+	<lf/core/CEvent.h>
+	<lf/render/gui/CGUIWidget.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguimenuitem.h
+	<lf/render/gui/CGUIButton.h>
+	<lf/render/gui/IGUIActionListener.h>
+	<lf/render/gui/IGUIWidgetListener.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguibutton.h
+	<lf/render/gui/CGUIWidget.h>
+	<lf/render/gui/IGUIActionListener.h>
+	<lf/core/list.h>
+	<lf/core/stringw.h>
+	<lf/render/gui/CGUILabel.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\iguiwidgetlistener.h
+	<lf/render/gui/CGUIEvent.h>
+
+1202301584 k:\lf-bedge\include\lf\render\crendercontextopenglmac.h
+	<lf/LfConfig.h>
+	<lf/render/CRenderContextOpenGLStub.h>
+	<lf/render/CRenderWindowMac.h>
+	<AGL/AGL.h>
+
+1203831042 k:\lf-bedge\include\lf\render\crendercontextopenglstub.h
+	<lf/LfConfig.h>
+	<lf/render/CRenderContextStub.h>
+	<lf/render/CTexCoordMapping.h>
+	<lf/render/glmac.h>
+	<GL/gl.h>
+	<lf/render/glext.h>
+	<windows.h>
+	<GL/gl.h>
+	<lf/render/glext.h>
+
+1203731758 k:\lf-bedge\include\lf\render\crendercontextstub.h
+	<lf/LfConfig.h>
+	<lf/render/IRenderContext.h>
+	<lf/core/array.h>
+	<lf/core/stringc.h>
+	<lf/resources/CIndexBuffer.h>
+	<lf/resources/CVertexBuffer.h>
+	<lf/render/CTexCoordMapping.h>
+	<lf/resources/CTexture2D.h>
+	<lf/resources/CTexture3D.h>
+	<lf/resources/CTextureCube.h>
+	<lf/resources/CTextureRect.h>
+
+1203731758 k:\lf-bedge\include\lf\render\irendercontext.h
+	<lf/LfConfig.h>
+	<lf/core/rect.h>
+	<lf/core/CColorI.h>
+	<lf/core/CColorF.h>
+	<lf/resources/CTexture.h>
+	<lf/core/matrix4.h>
+	<lf/core/vector2d.h>
+	<lf/core/vector2d.h>
+	<lf/render/SExposedVideoData.h>
+	<lf/render/EDriverTypes.h>
+	<lf/render/IRenderPass.h>
+	<lf/render/LfRenderStates.h>
+	<lf/render/CTextureSetup.h>
+	<lf/resources/CColorMaterial.h>
+	<lf/scene/CSceneRenderList.h>
+	<lf/render/glmac.h>
+	<GL/gl.h>
+	<lf/render/glext.h>
+	<windows.h>
+	<GL/gl.h>
+	<lf/render/glext.h>
+	<Cg/cg.h>
+	<Cg/cgGL.h>
+
+1202301584 k:\lf-bedge\include\lf\render\sexposedvideodata.h
+
+1204984518 k:\lf-bedge\include\lf\render\irenderpass.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+	<lf/render/CRenderContextCapabilities.h>
+	<lf/render/CRenderPassParameterContainer.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/CRTTI.h>
+
+1202301584 k:\lf-bedge\include\lf\render\crendercontextcapabilities.h
+	<lf/LfConfig.h>
+	<lf/core/CRefCounted.h>
+
+1202301584 k:\lf-bedge\include\lf\render\crenderpassparametercontainer.h
+	<lf/core/hashtable.h>
+	<lf/core/stringc.h>
+	<lf/core/vector4d.h>
+	<lf/core/matrix4.h>
+	<lf/core/CColorI.h>
+	<lf/core/CColorF.h>
+
+1202301584 k:\lf-bedge\include\lf\render\lfrenderstates.h
+	"renderstates/CRenderStateAlphaBlend.h"
+	"renderstates/CRenderStateAlphaTest.h"
+	"renderstates/CRenderStateAmbientLight.h"
+	"renderstates/CRenderStateAntiAliasing.h"
+	"renderstates/CRenderStateColorMask.h"
+	"renderstates/CRenderStateColorMaterial.h"
+	"renderstates/CRenderStateCulling.h"
+	"renderstates/CRenderStateDepthBuffer.h"
+	"renderstates/CRenderStateStencilBuffer.h"
+	"renderstates/CRenderStateDither.h"
+	"renderstates/CRenderStateFog.h"
+	"renderstates/CRenderStateLighting.h"
+	"renderstates/CRenderStateNormalizeNormals.h"
+	"renderstates/CRenderStateShading.h"
+	"renderstates/CRenderStateFillMode.h"
+	"renderstates/CRenderStatePrimaryColor.h"
+	"renderstates/CRenderStateSpecularLighting.h"
+	"renderstates/CRenderStateVertexColor.h"
+	"renderstates/CRenderStatePolygonOffset.h"
+
+1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstatealphablend.h
+	<lf/render/CRenderState.h>
+
+1202301584 k:\lf-bedge\include\lf\render\crenderstate.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+	<lf/core/CRefCounted.h>
+
+1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstatealphatest.h
+	<lf/render/CRenderState.h>
+
+1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstateambientlight.h
+	<lf/render/CRenderState.h>
+	<lf/core//CColorI.h>
+
+1202301580 k:\lf-bedge\include\lf\core\\ccolori.h
+	<lf/LfConfig.h>
+	<lf/core/IColor.h>
+	<iostream>
+
+1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstateantialiasing.h
+	<lf/render/CRenderState.h>
+
+1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstatecolormask.h
+	<lf/render/CRenderState.h>
+
+1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstatecolormaterial.h
+	<lf/render/CRenderState.h>
+	<lf/resources/CColorMaterial.h>
+
+1204984520 k:\lf-bedge\include\lf\resources\ccolormaterial.h
+	<lf/core/CRefCounted.h>
+	<lf/core/CColorI.h>
+	<lf/core/CRTTI.h>
+
+1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstateculling.h
+	<lf/render/CRenderState.h>
+
+1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstatedepthbuffer.h
+	<lf/render/CRenderState.h>
+
+1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstatestencilbuffer.h
+	<lf/render/CRenderState.h>
+
+1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstatedither.h
+	<lf/render/CRenderState.h>
+
+1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstatefog.h
+	<lf/render/CRenderState.h>
+	<lf/core/CColorI.h>
+
+1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstatelighting.h
+	<lf/render/CRenderState.h>
+
+1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstatenormalizenormals.h
+	<lf/render/CRenderState.h>
+
+1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstateshading.h
+	<lf/render/CRenderState.h>
+
+1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstatefillmode.h
+	<lf/render/CRenderState.h>
+
+1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstateprimarycolor.h
+	<lf/render/CRenderState.h>
+	<lf/core//CColorI.h>
+
+1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstatespecularlighting.h
+	<lf/render/CRenderState.h>
+
+1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstatevertexcolor.h
+	<lf/render/CRenderState.h>
+
+1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstatepolygonoffset.h
+	<lf/render/CRenderState.h>
+
+1202301584 k:\lf-bedge\include\lf\render\ctexturesetup.h
+	<lf/LfConfig.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/CColorI.h>
+	<lf/core/matrix4.h>
+
+1204344194 k:\lf-bedge\include\lf\scene\cscenerenderlist.h
+	<lf/LfConfig.h>
+	<lf/core/CRefCounted.h>
+	<lf/render/IRenderPass.h>
+	<lf/core/array.h>
+	<lf/core/matrix4.h>
+
+1202301586 k:\lf-bedge\include\lf\resources\cindexbuffer.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+	<lf/core/CRefCounted.h>
+	<lf/render/IRenderContext.h>
+	<lf/resources/CResource.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\cvertexbuffer.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+	<lf/core/CColorF.h>
+	<lf/core/CColorI.h>
+	<lf/core/vector2d.h>
+	<lf/core/vector3d.h>
+	<lf/core/vector4d.h>
+	<lf/core/vector2d.h>
+	<lf/core/CRefCounted.h>
+	<lf/resources/CVertexFormatDefinition.h>
+	<lf/resources/CResource.h>
+	<lf/render/glmac.h>
+	<windows.h>
+	<gl\gl.h>
+	<gl\glu.h>
+	<GL/glx.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<d3d9.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\cvertexformatdefinition.h
+	<lf/LfConfig.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/array.h>
+	<lf/core/CRTTI.h>
+
+1202301584 k:\lf-bedge\include\lf\render\ctexcoordmapping.h
+	<lf/core/CRefCounted.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\ctexture2d.h
+	<lf/resources/CTexture.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\ctexture3d.h
+	<lf/resources/CTexture.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\ctexturecube.h
+	<lf/resources/CTexture.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\ctexturerect.h
+	<lf/resources/CTexture.h>
+
+1202301582 k:\lf-bedge\include\lf\input\ccursorcontrolwin32.h
+	<lf/LfConfig.h>
+	<lf/input/ICursorControl.h>
+	<windows.h>
+	<lf/render/CRenderWindowWin32.h>
+
+1202301584 k:\lf-bedge\include\lf\render\crenderwindowwin32.h
+	<lf/LfConfig.h>
+	<lf/render/CRenderWindowStub.h>
+	<lf/render/IRenderWindow.h>
+	<lf/input/CCursorControlWin32.h>
+	<windows.h>
+
+1202301580 k:\lf-bedge\include\lf\lflog.h
+	<lf/log/CLFLog.h>
+	<lf/log/CConsoleLogChannel.h>
+	<lf/log/CHtmlLogChannel.h>
+	<lf/log/CFileLogChannel.h>
+	<lf/log/CLogChannel.h>
+	<lf/log/CLogEvent.h>
+	<lf/log/CLoggerEvent.h>
+	<lf/log/CLogger.h>
+	<lf/log/ILogChannel.h>
+	<lf/log/ILogger.h>
+	<lf/log/ILoggerListener.h>
+	<lf/log/ILogListener.h>
+
+1202301582 k:\lf-bedge\include\lf\log\clflog.h
+	<lf/LfConfig.h>
+	<lf/core/CSingleton.h>
+	<lf/log/ILogChannel.h>
+
+1202301582 k:\lf-bedge\include\lf\log\ilogchannel.h
+	<lf/core/CRefCounted.h>
+
+1202301582 k:\lf-bedge\include\lf\log\cconsolelogchannel.h
+	<lf/LfConfig.h>
+	<lf/log/CLogChannel.h>
+
+1202301582 k:\lf-bedge\include\lf\log\clogchannel.h
+	<lf/LfConfig.h>
+	<lf/log/ILogChannel.h>
+	<lf/core/list.h>
+
+1202301582 k:\lf-bedge\include\lf\log\chtmllogchannel.h
+	<lf/LfConfig.h>
+	<lf/core/CColorI.h>
+	<lf/core/stringc.h>
+	<lf/log/CLogChannel.h>
+
+1202301582 k:\lf-bedge\include\lf\log\cfilelogchannel.h
+	<lf/LfConfig.h>
+	<lf/log/CLogChannel.h>
+
+1202301582 k:\lf-bedge\include\lf\log\clogevent.h
+	<lf/LfConfig.h>
+	<lf/core/CEvent.h>
+	<lf/core/lftypes.h>
+	<lf/log/ILogChannel.h>
+
+1202301582 k:\lf-bedge\include\lf\log\cloggerevent.h
+	<lf/LfConfig.h>
+	<lf/core/CEvent.h>
+
+1202301582 k:\lf-bedge\include\lf\log\clogger.h
+	<lf/LfConfig.h>
+	<lf/log/ILogger.h>
+	<lf/core/list.h>
+	<lf/core/array.h>
+	<lf/log/ILogChannel.h>
+
+1202301582 k:\lf-bedge\include\lf\log\ilogger.h
+	<lf/core/CRefCounted.h>
+	<lf/log/ILogChannel.h>
+	<lf/log/ILoggerListener.h>
+	<lf/core/stringc.h>
+	<lf/core/stringw.h>
+
+1202301582 k:\lf-bedge\include\lf\log\iloggerlistener.h
+	<lf/log/CLoggerEvent.h>
+
+1202301582 k:\lf-bedge\include\lf\log\iloglistener.h
+	<lf/log/CLogEvent.h>
+
+1202301580 k:\lf-bedge\include\lf\lfnet.h
+	<lf/net/LfNetConfig.h>
+	<lf/net/CLFNet.h>
+	<lf/net/CDataStream.h>
+	<lf/net/CNetAddress.h>
+	<lf/net/CSocket.h>
+	<lf/net/CNetTimer.h>
+	<lf/net/CPacket.h>
+	<lf/net/CPeer.h>
+	<lf/net/CHost.h>
+	<lf/net/ENetBuffer.h>
+	<lf/net/ENetChannel.h>
+	<lf/net/ENetEvent.h>
+	<lf/net/ENetProtocol.h>
+	<lf/net/list.h>
+
+1202301582 k:\lf-bedge\include\lf\net\lfnetconfig.h
+	<lf/LfConfig.h>
+
+1202301582 k:\lf-bedge\include\lf\net\clfnet.h
+	<lf/LfConfig.h>
+	<lf/core/CSingleton.h>
+	<lf/core/lftypes.h>
+
+1204984518 k:\lf-bedge\include\lf\net\cdatastream.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/stringc.h>
+	<cassert>
+	<iostream>
+	<string>
+
+1202301582 k:\lf-bedge\include\lf\net\cnetaddress.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+	<string>
+	<winsock2.h>
+	<arpa/inet.h>
+	<netdb.h>
+
+1202301582 k:\lf-bedge\include\lf\net\csocket.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+	<lf/net/CNetAddress.h>
+	<lf/net/ENetBuffer.h>
+	<lf/net/LfNetConfig.h>
+	<string>
+	<fcntl.h>
+	<sys/poll.h>
+
+1202301582 k:\lf-bedge\include\lf\net\enetbuffer.h
+	<lf/LfConfig.h>
+	<sys/types.h>
+
+1202301582 k:\lf-bedge\include\lf\net\cnettimer.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+
+1204984518 k:\lf-bedge\include\lf\net\cpacket.h
+	<lf/LfConfig.h>
+	<lf/net/CDataStream.h>
+	<lf/core/lftypes.h>
+
+1202301582 k:\lf-bedge\include\lf\net\cpeer.h
+	<lf/LfConfig.h>
+	<lf/net/CPacket.h>
+	<lf/net/list.h>
+	<lf/net/LfNetConfig.h>
+	<lf/net/ENetProtocol.h>
+	<lf/net/ENetChannel.h>
+	<lf/net/CNetAddress.h>
+
+1202301582 k:\lf-bedge\include\lf\net\list.h
+	<lf/LfConfig.h>
+	<stdlib.h>
+
+1202301582 k:\lf-bedge\include\lf\net\enetprotocol.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+	<lf/net/list.h>
+	<lf/net/CPacket.h>
+
+1202301582 k:\lf-bedge\include\lf\net\enetchannel.h
+	<lf/LfConfig.h>
+
+1202301582 k:\lf-bedge\include\lf\net\chost.h
+	<lf/LfConfig.h>
+	<lf/net/ENetBuffer.h>
+	<lf/core/lftypes.h>
+	<lf/net/CNetAddress.h>
+	<lf/net/CPacket.h>
+	<lf/net/CPeer.h>
+	<lf/net/CSocket.h>
+	<lf/net/ENetEvent.h>
+
+1202301582 k:\lf-bedge\include\lf\net\enetevent.h
+	<lf/LfConfig.h>
+
+1202301580 k:\lf-bedge\include\lf\lfos.h
+	<lf/os/CLFOS.h>
+	<lf/os/aglGetProcAddress.h>
+	<lf/os/CHWOperatorLinux.h>
+	<lf/os/CHWOperatorMac.h>
+	<lf/os/CHWOperatorWin32.h>
+	<lf/os/COSInterfaceLinux.h>
+	<lf/os/COSInterfaceMac.h>
+	<lf/os/COSInterfaceStub.h>
+	<lf/os/COSInterfaceWin32.h>
+	<lf/os/CSimulationTimer.h>
+	<lf/os/CTimerLinux.h>
+	<lf/os/CTimerMac.h>
+	<lf/os/CTimerWin32.h>
+	<lf/os/IHWOperator.h>
+	<lf/os/IOSInterface.h>
+	<lf/os/ISimulationTimer.h>
+	<lf/os/ITimer.h>
+	<lf/os/CEndianRuntimeSwap.h>
+	<lf/os/CRandomizer.h>
+	<lf/os/CDynamicLibrary.h>
+	<lf/os/CFileName.h>
+	<lf/os/CFile.h>
+	<lf/os/CFileInfo.h>
+	<lf/os/CFileInfoLinux.h>
+	<lf/os/CFileInfoMac.h>
+	<lf/os/CFileInfoWin32.h>
+	<lf/os/CFileList.h>
+	<lf/os/CFileModificationEvent.h>
+	<lf/os/CFileMonitor.h>
+	<lf/os/CFileSystemLinux.h>
+	<lf/os/CFileSystemMac.h>
+	<lf/os/CFileSystem.h>
+	<lf/os/CFileSystemWin32.h>
+	<lf/os/CLimitReadFile.h>
+	<lf/os/CMemoryReadFile.h>
+	<lf/os/CTextReader.h>
+	<lf/os/CXMLReader.h>
+	<lf/os/CXMLWriter.h>
+	<lf/os/CZipReader.h>
+	<lf/os/CFileListLinux.h>
+	<lf/os/CFileListMac.h>
+	<lf/os/CFileListWin32.h>
+	<lf/os/IFileModificationListener.h>
+	<lf/os/IXMLReader.h>
+	<lf/os/IXMLWriter.h>
+	<lf/os/CVideoStreamReader.h>
+	<lf/os/CAVIStreamReaderWin32.h>
+	<lf/os/CAVStreamReaderFFmpeg.h>
+
+1202301582 k:\lf-bedge\include\lf\os\clfos.h
+	<lf/LfConfig.h>
+	<lf/core/CSingleton.h>
+	<lf/os/IOSInterface.h>
+	<lf/os/IHWOperator.h>
+	<lf/core/array.h>
+	<lf/core/stringc.h>
+
+1202301584 k:\lf-bedge\include\lf\os\iosinterface.h
+	<lf/LfConfig.h>
+	<lf/os/CFileSystem.h>
+	<lf/core/CRefCounted.h>
+	<lf/os/ITimer.h>
+	<lf/os/IHWOperator.h>
+	<lf/render/IRenderWindow.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cfilesystem.h
+	<lf/LfConfig.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/array.h>
+	<lf/core/stringc.h>
+	<lf/core/CTreeElement.h>
+	<lf/os/CMemoryReadFile.h>
+	<lf/os/CFileInfo.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cmemoryreadfile.h
+	<lf/LfConfig.h>
+	<lf/os/CFile.h>
+	<lf/core/stringc.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cfile.h
+	<lf/LfConfig.h>
+	<stdio.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/stringc.h>
+	<lf/core/stringw.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cfileinfo.h
+	<lf/core/CRefCounted.h>
+
+1202301584 k:\lf-bedge\include\lf\os\itimer.h
+	<lf/core/CRefCounted.h>
+
+1202301584 k:\lf-bedge\include\lf\os\ihwoperator.h
+	<lf/core/CRefCounted.h>
+
+1195879128 k:\lf-bedge\include\lf\os\aglgetprocaddress.h
+	<lf/LfConfig.h>
+	<Carbon/Carbon.h>
+
+1202301582 k:\lf-bedge\include\lf\os\chwoperatorlinux.h
+	<lf/LfConfig.h>
+	<lf/os/IHWOperator.h>
+
+1202301582 k:\lf-bedge\include\lf\os\chwoperatormac.h
+	<lf/LfConfig.h>
+	<lf/os/IHWOperator.h>
+	<sys/sysctl.h>
+	<sys/vmmeter.h>
+	<mach/machine.h>
+	<mach-o/arch.h>
+
+1202301582 k:\lf-bedge\include\lf\os\chwoperatorwin32.h
+	<lf/LfConfig.h>
+	<lf/os/IHWOperator.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cosinterfacelinux.h
+	<lf/LfConfig.h>
+	<lf/os/COSInterfaceStub.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cosinterfacestub.h
+	<lf/LfConfig.h>
+	<lf/os/IOSInterface.h>
+	<lf/os/CFileSystem.h>
+	<lf/os/ITimer.h>
+	<lf/core/stringc.h>
+	<lf/os/IHWOperator.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cosinterfacemac.h
+	<lf/LfConfig.h>
+	<lf/os/COSInterfaceStub.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cosinterfacewin32.h
+	<lf/LfConfig.h>
+	<lf/os/COSInterfaceStub.h>
+
+1202301582 k:\lf-bedge\include\lf\os\csimulationtimer.h
+	<lf/os/ISimulationTimer.h>
+
+1202301584 k:\lf-bedge\include\lf\os\isimulationtimer.h
+	<lf/core/CRefCounted.h>
+
+1202301582 k:\lf-bedge\include\lf\os\ctimerlinux.h
+	<lf/LfConfig.h>
+	<lf/os/ITimer.h>
+	<time.h>
+	<sys/time.h>
+
+1202301582 k:\lf-bedge\include\lf\os\ctimermac.h
+	<lf/LfConfig.h>
+	<lf/os/ITimer.h>
+	<time.h>
+	<sys/time.h>
+
+1202301582 k:\lf-bedge\include\lf\os\ctimerwin32.h
+	<lf/LfConfig.h>
+	<lf/os/ITimer.h>
+	<windows.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cendianruntimeswap.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+
+1202301582 k:\lf-bedge\include\lf\os\crandomizer.h
+	<lf/LfConfig.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/lftypes.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cdynamiclibrary.h
+	<lf/LfCore.h>
+	<windows.h>
+	<dlfcn.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cfilename.h
+	<lf/LfConfig.h>
+	<lf/core/stringc.h>
+	<lf/core/array.h>
+	<iostream>
+
+1202301582 k:\lf-bedge\include\lf\os\cfileinfolinux.h
+	<lf/LfConfig.h>
+	<lf/os/CFileInfo.h>
+	<sys/types.h>
+	<sys/stat.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cfileinfomac.h
+	<lf/LfConfig.h>
+	<lf/os/CFileInfo.h>
+	<sys/types.h>
+	<sys/stat.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cfileinfowin32.h
+	<lf/LfConfig.h>
+	<lf/os/CFileInfo.h>
+	<sys/types.h>
+	<sys/stat.h>
+
+1204344194 k:\lf-bedge\include\lf\os\cfilelist.h
+	<lf/LfConfig.h>
+	<lf/core/stringc.h>
+	<lf/core/array.h>
+	<lf/core/CRefCounted.h>
+	<lf/os/CFileSystem.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cfilemodificationevent.h
+	<lf/core/CEvent.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cfilemonitor.h
+	<lf/core/lftypes.h>
+	<lf/core/CRefCounted.h>
+	<lf/os/IFileModificationListener.h>
+	<lf/core/stringc.h>
+	<lf/core/list.h>
+	<lf/core/IUpdateable.h>
+
+1202301584 k:\lf-bedge\include\lf\os\ifilemodificationlistener.h
+	<lf/os/CFileModificationEvent.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cfilesystemlinux.h
+	<lf/LfConfig.h>
+	<lf/os/CFileSystem.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cfilesystemmac.h
+	<lf/LfConfig.h>
+	<lf/os/CFileSystem.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cfilesystemwin32.h
+	<lf/LfConfig.h>
+	<lf/os/CFileSystem.h>
+
+1202301582 k:\lf-bedge\include\lf\os\climitreadfile.h
+	<lf/LfConfig.h>
+	<lf/os/CFile.h>
+	<lf/core/stringc.h>
+
+1202301582 k:\lf-bedge\include\lf\os\ctextreader.h
+	<lf/LfConfig.h>
+	<lf/core/CRefCounted.h>
+	<lf/os/CFile.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cxmlreader.h
+	<lf/LfConfig.h>
+	<lf/os/CFile.h>
+	<lf/os/CTextReader.h>
+	<lf/os/IXMLReader.h>
+	<lf/core/stringc.h>
+	<lf/core/array.h>
+
+1202301584 k:\lf-bedge\include\lf\os\ixmlreader.h
+	<lf/core/CRefCounted.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cxmlwriter.h
+	<lf/LfConfig.h>
+	<lf/os/IXMLWriter.h>
+	<lf/os/CFile.h>
+
+1202301584 k:\lf-bedge\include\lf\os\ixmlwriter.h
+	<lf/core/CRefCounted.h>
+
+1202301582 k:\lf-bedge\include\lf\os\czipreader.h
+	<lf/LfConfig.h>
+	<lf/core/CRefCounted.h>
+	<lf/os/CFile.h>
+	<lf/core/array.h>
+	<lf/core/stringc.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cfilelistlinux.h
+	<lf/LfConfig.h>
+	<lf/os/CFileList.h>
+	<lf/core/stringc.h>
+	<lf/core/array.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cfilelistmac.h
+	<lf/LfConfig.h>
+	<lf/os/CFileList.h>
+	<lf/core/stringc.h>
+	<lf/core/array.h>
+	<CoreServices/CoreServices.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cfilelistwin32.h
+	<lf/LfConfig.h>
+	<lf/os/CFileList.h>
+	<lf/core/stringc.h>
+	<lf/core/array.h>
+
+1202301582 k:\lf-bedge\include\lf\os\cvideostreamreader.h
+	"lf/resources/CTexture.h"
+
+1202301582 k:\lf-bedge\include\lf\os\cavistreamreaderwin32.h
+	"lf/os/CVideoStreamReader.h"
+	"vfw.h"
+	"lf/core/array.h"
+
+1202301582 k:\lf-bedge\include\lf\os\cavstreamreaderffmpeg.h
+	"lf/os/CVideoStreamReader.h"
+	"lf/core/hashtable.h"
+	<ffmpeg/avcodec.h>
+	<ffmpeg/avformat.h>
+	<ffmpeg/swscale.h>
+
+1204984518 k:\lf-bedge\include\lf\lfrender.h
+	<lf/render/CLFRender.h>
+	<lf/render/CFrameEvent.h>
+	<lf/render/CPostProcessor.h>
+	<lf/render/CPostProcessorStep.h>
+	<lf/render/CRenderPassOpenGL.h>
+	<lf/render/CRenderPassOpenGLCg.h>
+	<lf/render/CRenderPassOpenGLSL.h>
+	<lf/render/CRenderState.h>
+	<lf/render/CRenderStateContainer.h>
+	<lf/render/CRenderFeatureImplementation.h>
+	<lf/render/CRenderWindowEvent.h>
+	<lf/render/CRenderWindowLinux.h>
+	<lf/render/CRenderWindowMac.h>
+	<lf/render/CRenderLayer2D.h>
+	<lf/render/CRenderLayer3D.h>
+	<lf/render/CRenderLayerPP.h>
+	<lf/render/CRenderLayer3DSP.h>
+	<lf/render/CRenderLayer3DOPPL.h>
+	<lf/render/CRenderWindowStub.h>
+	<lf/render/CRenderWindowWin32.h>
+	<lf/render/CTextureSetup.h>
+	<lf/render/CRenderContextCapabilities.h>
+	<lf/render/CVideoModeList.h>
+	<lf/render/CRenderContextStub.h>
+	<lf/render/CRenderContextOpenGLLinux.h>
+	<lf/render/CRenderContextOpenGLMac.h>
+	<lf/render/CRenderContextOpenGLStub.h>
+	<lf/render/CRenderContextOpenGLWin32.h>
+	<lf/render/EDriverTypes.h>
+	<lf/render/IFrameListener.h>
+	<lf/render/IRenderPass.h>
+	<lf/render/IRenderWindow.h>
+	<lf/render/IRenderWindowListener.h>
+	<lf/render/IRenderLayer.h>
+	<lf/render/IRenderContext.h>
+	<lf/render/IVideoModeList.h>
+	<lf/render/SExposedVideoData.h>
+	<lf/render/CTexCoordMapping.h>
+	<lf/render/CVideoController.h>
+	<lf/render/LfRenderPasses.h>
+	<lf/render/LfRenderStates.h>
+	<lf/render/LfGUI.h>
+
+1202301584 k:\lf-bedge\include\lf\render\clfrender.h
+	<lf/LfConfig.h>
+	<lf/core/CSingleton.h>
+	<lf/core/array.h>
+	<lf/core/stringc.h>
+	<lf/resources/CVertexBuffer.h>
+	<lf/render/IRenderWindow.h>
+
+1202301584 k:\lf-bedge\include\lf\render\cpostprocessor.h
+	<lf/LfConfig.h>
+	<lf/core/vector2d.h>
+	<lf/core/stringc.h>
+	<lf/core/hashtable.h>
+	<lf/core/CRefCounted.h>
+	<lf/render/IRenderWindow.h>
+	<lf/render/IRenderPass.h>
+	<lf/render/CRenderLayerPP.h>
+	<lf/render/CRenderLayer2D.h>
+	<lf/resources/CTexture2D.h>
+	<lf/resources/CTextureRect.h>
+	<lf/scene/CCamera.h>
+	<lf/render/CPostProcessorStep.h>
+
+1202301584 k:\lf-bedge\include\lf\render\crenderlayerpp.h
+	<lf/render/IRenderLayer.h>
+	<lf/resources/CMaterial.h>
+	<lf/resources/CMesh.h>
+
+1202301586 k:\lf-bedge\include\lf\resources\cmaterial.h
+	<lf/core/CRefCounted.h>
+	<lf/resources/CResource.h>
+	<lf/resources/CTexture.h>
+	<lf/resources/CColorMaterial.h>
+	<lf/render/CTextureSetup.h>
+	<lf/core/CTreeElement.h>
+	<lf/render/IRenderPass.h>
+	<lf/render/CTexCoordMapping.h>
+	<lf/render/CRenderStateContainer.h>
+	<lf/core/CColorI.h>
+	<lf/render/LfRenderStates.h>
+
+1202301584 k:\lf-bedge\include\lf\render\crenderstatecontainer.h
+	<lf/LfConfig.h>
+	<lf/render/CRenderState.h>
+	<lf/core/array.h>
+
+1202301586 k:\lf-bedge\include\lf\resources\cmesh.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+	<lf/resources/CVertexBuffer.h>
+	<lf/resources/CIndexBuffer.h>
+	<lf/core/aabbox3d.h>
+	<lf/core/CRefCounted.h>
+	<lf/render/CRenderPassParameterContainer.h>
+	<lf/resources/CResource.h>
+
+1202301584 k:\lf-bedge\include\lf\render\crenderlayer2d.h
+	<lf/render/CSprite.h>
+	<lf/render/CLine2D.h>
+	<lf/render/IRenderLayer.h>
+
+1202301584 k:\lf-bedge\include\lf\render\csprite.h
+	<lf/core/vector2d.h>
+	<lf/core/vector2d.h>
+	<lf/resources/CTexture.h>
+	<lf/render/CTextureSetup.h>
+	<lf/core/CRefCounted.h>
+
+1202301584 k:\lf-bedge\include\lf\render\cline2d.h
+	<lf/core/vector2d.h>
+	<lf/render/CSprite.h>
+	<lf/core/CRefCounted.h>
+
+1202818460 k:\lf-bedge\include\lf\scene\ccamera.h
+	<lf/LfConfig.h>
+	<lf/scene/CViewFrustum.h>
+	<lf/core/matrix4.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/rect.h>
+	<lf/scene/CSceneNode.h>
+	<lf/core/vector3d.h>
+	<lf/core/vector4d.h>
+	<lf/render/IRenderWindow.h>
+	<lf/render/IRenderWindowListener.h>
+	<lf/render/CRenderStateContainer.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\cviewfrustum.h
+	<lf/LfConfig.h>
+	<lf/core/matrix4.h>
+	<lf/core/sphere3d.h>
+	<lf/core/plane3d.h>
+	<lf/core/SCone.h>
+	<lf/core/aabbox3d.h>
+
+1203731760 k:\lf-bedge\include\lf\scene\cscenenode.h
+	<lf/LfConfig.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/CProperties.h>
+	<lf/core/matrix4.h>
+	<lf/core/vector3d.h>
+	<lf/core/line3d.h>
+	<lf/core/list.h>
+	<lf/core/CSpacial.h>
+	<lf/core/sphere3d.h>
+	<lf/core/aabbox3d.h>
+	<lf/scene/CSceneRenderList.h>
+	<lf/scene/CViewFrustum.h>
+	<lf/scene/CSceneStateContainer.h>
+	<lf/render/CRenderPassParameterContainer.h>
+	<lf/resources/CTexture.h>
+	<lf/render/CTextureSetup.h>
+	<lf/scene/ISceneNodeListener.h>
+
+1203731760 k:\lf-bedge\include\lf\scene\cscenestatecontainer.h
+	<lf/LfConfig.h>
+	<lf/scene/CSceneState.h>
+	<lf/core/array.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\cscenestate.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/CRTTI.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\iscenenodelistener.h
+	<lf/scene/CSceneNodeEvent.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\cscenenodeevent.h
+	<lf/LfConfig.h>
+	<lf/core/CEvent.h>
+
+1202301584 k:\lf-bedge\include\lf\render\cpostprocessorstep.h
+	<lf/LfConfig.h>
+	<lf/core/vector2d.h>
+	<lf/core/stringc.h>
+	<lf/core/array.h>
+	<lf/core/CRefCounted.h>
+	<lf/render/IRenderWindow.h>
+	<lf/render/IRenderPass.h>
+	<lf/resources/CTexture2D.h>
+	<lf/resources/CTextureRect.h>
+	<lf/resources/CMaterial.h>
+
+1204984518 k:\lf-bedge\include\lf\render\crenderpassopengl.h
+	<lf/render/IRenderPass.h>
+	<windows.h>
+	<gl\gl.h>
+	<gl\glu.h>
+	<GL/glx.h>
+	<GL/gl.h>
+	"glext.h"
+	<lf/render/glmac.h>
+	<Cg/cg.h>
+	<Cg/cgGL.h>
+	<lf/render/CRenderContextOpenGLStub.h>
+	<lf/scene/CSceneNode.h>
+	<lf/resources/CTexture.h>
+	<lf/scene/CSceneManager.h>
+	<lf/resources/CMaterial.h>
+	<lf/resources/CMesh.h>
+	<iostream>
+
+1204344194 k:\lf-bedge\include\lf\scene\cscenemanager.h
+	<lf/LfConfig.h>
+	<lf/scene/CGroupSceneNode.h>
+	<lf/core/CRefCounted.h>
+	<lf/render/IRenderContext.h>
+	<lf/scene/CCamera.h>
+	<lf/core/array.h>
+	<lf/scene/CLight.h>
+	<lf/scene/CSceneNodeController.h>
+	<lf/render/CRenderPassParameterContainer.h>
+	<lf/core/CTreeElement.h>
+
+1202301750 k:\lf-bedge\include\lf\scene\cgroupscenenode.h
+	<lf/LfConfig.h>
+	<lf/scene/CSceneNode.h>
+
+1204344194 k:\lf-bedge\include\lf\scene\clight.h
+	<lf/LfConfig.h>
+	<lf/core/matrix4.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/rect.h>
+	<lf/scene/CSceneNode.h>
+	<lf/core/vector3d.h>
+	<lf/core/CColorF.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\cscenenodecontroller.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/CRTTI.h>
+	<lf/scene/CSceneNode.h>
+
+1202301584 k:\lf-bedge\include\lf\render\crenderpassopenglcg.h
+	<lf/render/CRenderPassOpenGL.h>
+	<iostream>
+
+1202301584 k:\lf-bedge\include\lf\render\crenderpassopenglsl.h
+	<lf/render/CRenderPassOpenGL.h>
+	<iostream>
+
+1203731758 k:\lf-bedge\include\lf\render\crenderfeatureimplementation.h
+	<lf/LfConfig.h>
+	<lf/render/IRenderPass.h>
+	<lf/core/CRefCounted.h>
+
+1202301584 k:\lf-bedge\include\lf\render\crenderwindowlinux.h
+	<lf/LfConfig.h>
+	<lf/render/CRenderWindowStub.h>
+	<lf/render/IRenderWindow.h>
+	<lf/render/CRenderContextOpenGLLinux.h>
+	<GL/glx.h>
+	<GL/gl.h>
+	<X11/Xlib.h>
+	<X11/extensions/xf86vmode.h>
+	<X11/keysym.h>
+
+1202301584 k:\lf-bedge\include\lf\render\crendercontextopengllinux.h
+	<lf/LfConfig.h>
+	<lf/render/CRenderContextOpenGLStub.h>
+	<X11/Xlib.h>
+
+1203731758 k:\lf-bedge\include\lf\render\crenderlayer3d.h
+	<lf/LfConfig.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/array.h>
+	<lf/render/IRenderLayer.h>
+	<lf/scene/CCamera.h>
+	<lf/scene/CSceneManager.h>
+
+1203731758 k:\lf-bedge\include\lf\render\crenderlayer3dsp.h
+	<lf/render/CRenderLayer3D.h>
+	<lf/scene/CSceneRenderList.h>
+
+1204984518 k:\lf-bedge\include\lf\render\crenderlayer3doppl.h
+	<lf/render/CRenderLayer3D.h>
+	<lf/scene/CSceneRenderList.h>
+
+1202301584 k:\lf-bedge\include\lf\render\crendercontextopenglwin32.h
+	<lf/LfConfig.h>
+	<windows.h>
+	<lf/render/CRenderContextOpenGLStub.h>
+	<lf/render/IRenderWindow.h>
+
+1202301584 k:\lf-bedge\include\lf\render\cvideocontroller.h
+	<lf/os/CVideoStreamReader.h>
+	<lf/os/CSimulationTimer.h>
+	<lf/core/IUpdateable.h>
+
+1204344194 k:\lf-bedge\include\lf\render\lfrenderpasses.h
+	"renderpasses/LfSinglePassRPs.h"
+	"renderpasses/LfOpplRPs.h"
+
+1202301586 k:\lf-bedge\include\lf\render\renderpasses\lfsinglepassrps.h
+	"singlepass/CRPOGLCustomPVSCalc.h"
+	"singlepass/CRPOGLColorOnly.h"
+	"singlepass/CRPOGLDetailMap.h"
+	"singlepass/CRPOGLDiffuseMap.h"
+	"singlepass/CRPOGLSLPerPixelSpotLight.h"
+	"singlepass/CRPOGLSLVertexColorSplatting.h"
+	"singlepass/CRPOGLSLShadowMap.h"
+	"singlepass/CRPOGLSLCustom.h"
+	"singlepass/CRPOGLSLShadowMap.h"
+	"singlepass/CRPOGLDiffuseMapCubeMap.h"
+	"singlepass/CRPOGL2LayerCustomFixed.h"
+	"singlepass/CRPOGLSkyBox.h"
+	"singlepass/CRPOGLSkyDome.h"
+	"singlepass/CRPOGLCubeMapReflection.h"
+	"singlepass/CRPOGLLightmap.h"
+	"singlepass/CRPOGLLightmapAdd.h"
+	"singlepass/CRPOGLProjectedTexture.h"
+	"singlepass/CRPOGLShadowMap.h"
+	"singlepass/CRPOGLTranslucent.h"
+	"singlepass/CRPOGLTranslucentAdd.h"
+	"singlepass/CRPOGLTransparent.h"
+	"singlepass/CRPOGLVertexBlend.h"
+	"singlepass/CRPOGLVertexColorSplatting.h"
+	"singlepass/CRPOGLVertexColorSplattingDetail.h"
+	"singlepass/CRPOGL2LayerMulTextureAlpha.h"
+	"singlepass/CRPOGLTranslucentCubeMap.h"
+	"singlepass/CRPOGLSLNormalMapping.h"
+	"singlepass/CRPOGLSLParallaxMapping.h"
+	"singlepass/CRPOGLSLLitParallaxMapping.h"
+	"singlepass/CRPOGLShadowVolumeZPass.h"
+	"singlepass/CRPOGLShadowVolumeZFail.h"
+	"singlepass/CRPOGLShadowVolumeQuad.h"
+	"singlepass/CRPOGLCustomCg.h"
+	"singlepass/CRPOGLCgTangentSpaceNormalMap.h"
+	"singlepass/CRPOGLCgReliefTextureMap.h"
+	"singlepass/CRPOGLCgPerPixelLighting.h"
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglcustompvscalc.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglcoloronly.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogldetailmap.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogldiffusemap.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglslperpixelspotlight.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglslvertexcolorsplatting.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglslshadowmap.h
+	<lf/render/renderpasses/singlepass/CRPOGLSLCustom.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglslcustom.h
+	<lf/render/CRenderPassOpenGLSL.h>
+	<lf/resources/CMesh.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogldiffusemapcubemap.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogl2layercustomfixed.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglskybox.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglskydome.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglcubemapreflection.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogllightmap.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogllightmapadd.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglprojectedtexture.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglshadowmap.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogltranslucent.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogltranslucentadd.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984520 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogltransparent.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984520 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglvertexblend.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984520 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglvertexcolorsplatting.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984520 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglvertexcolorsplattingdetail.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogl2layermultexturealpha.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogltranslucentcubemap.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglslnormalmapping.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglslparallaxmapping.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglsllitparallaxmapping.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglshadowvolumezpass.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglshadowvolumezfail.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglshadowvolumequad.h
+	<lf/render/CRenderPassOpenGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglcustomcg.h
+	<lf/render/CRenderPassOpenGLCg.h>
+	<Cg/cg.h>
+	<Cg/cgGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglcgtangentspacenormalmap.h
+	<lf/render/CRenderPassOpenGLCg.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglcgrelieftexturemap.h
+	<lf/render/CRenderPassOpenGLCg.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglcgperpixellighting.h
+	<lf/render/CRenderPassOpenGLCg.h>
+	<Cg/cg.h>
+	<Cg/cgGL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\lfopplrps.h
+	"oppl/CRPOPPLOGLSLColorOnlyAmbient.h"
+	"oppl/CRPOPPLOGLSLColorOnlyDirectionalPerPixel.h"
+	"oppl/CRPOPPLOGLSLColorOnlyDirectionalPerPixelShadowed.h"
+	"oppl/CRPOPPLOGLSLColorOnlyPointPerPixel.h"
+	"oppl/CRPOPPLOGLSLColorOnlySpotPerPixel.h"
+	"oppl/CRPOPPLOGLSLColorOnlySpotPerPixelShadowed.h"
+	"oppl/CRPOPPLOGLSLDiffusemapAmbient.h"
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglslcoloronlyambient.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglslcoloronlydirectionalperpixel.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglslcoloronlydirectionalperpixelshadowed.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglslcoloronlypointperpixel.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglslcoloronlyspotperpixel.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglslcoloronlyspotperpixelshadowed.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1204984518 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsldiffusemapambient.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1202818460 k:\lf-bedge\include\lf\render\lfgui.h
+	"gui/IGUIActionListener.h"
+	"gui/IGUIContainerListener.h"
+	"gui/IGUIMouseListener.h"
+	"gui/IGUIMouseMovementListener.h"
+	"gui/IGUIMouseWheelListener.h"
+	"gui/IGUIScrollingListener.h"
+	"gui/IGUISelectionListener.h"
+	"gui/IGUIWidgetListener.h"
+	"gui/CGUIActionEvent.h"
+	"gui/CGUIButton.h"
+	"gui/CGUICheckBox.h"
+	"gui/CGUIComboBox.h"
+	"gui/CGUIContainerEvent.h"
+	"gui/CGUIEvent.h"
+	"gui/CGUIImage.h"
+	"gui/CGUILabel.h"
+	"gui/CGUIListBox.h"
+	"gui/CGUIManager.h"
+	"gui/CGUIMousePointer.h"
+	"gui/CGUIPanel.h"
+	"gui/CGUIProgressBar.h"
+	"gui/CGUIRadioButton.h"
+	"gui/CGUIRadioButtonGroup.h"
+	"gui/CGUIRenderList.h"
+	"gui/CGUISelectionEvent.h"
+	"gui/CGUIScrollingEvent.h"
+	"gui/CGUIScrollControl.h"
+	"gui/CGUISliderHorizontal.h"
+	"gui/CGUISliderVertical.h"
+	"gui/CGUITab.h"
+	"gui/CGUITabControl.h"
+	"gui/CGUITextArea.h"
+	"gui/CGUITheme.h"
+	"gui/CGUIWidget.h"
+	"gui/CGUIWindow.h"
+	"gui/CGUIWindowTitleBar.h"
+	"gui/CGUIContextMenu.h"
+	"gui/CGUIMenuBar.h"
+	"gui/CGUIEditBox.h"
+	"gui/CGUIMathEditBox.h"
+	"gui/CGUITextEvent.h"
+	"gui/IGUITextListener.h"
+	"gui/CGUIFader.h"
+	"gui/CGUIAnimator.h"
+	"gui/text/CCaret.h"
+	"gui/text/CCharacterSelection.h"
+	"gui/text/CAbstractLayout.h"
+	"gui/text/CTextSelection.h"
+	"gui/text/CLayout.h"
+	"gui/text/CTextIterator.h"
+	"gui/text/CTextRenderingIterator.h"
+	"gui/text/ICaretListener.h"
+	"gui/text/ILayoutListener.h"
+	"gui/text/ITextSelectionListener.h"
+	"gui/text/CCaretEvent.h"
+	"gui/text/CLayoutEvent.h"
+	"gui/text/CTextSelectionEvent.h"
+
+1202301584 k:\lf-bedge\include\lf\render\gui\iguicontainerlistener.h
+	<lf/render/gui/CGUIContainerEvent.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguicontainerevent.h
+	<lf/render/gui/CGUIEvent.h>
+	<lf/render/gui/CGUIWidget.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\iguiscrollinglistener.h
+	"CGUIScrollingEvent.h"
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguiscrollingevent.h
+	<lf/render/gui/CGUIEvent.h>
+	<lf/render/gui/CGUIWidget.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\iguiselectionlistener.h
+	"CGUISelectionEvent.h"
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguiselectionevent.h
+	"CGUIEvent.h"
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguicheckbox.h
+	<lf/render/gui/CGUIWidget.h>
+	<lf/render/gui/IGUISelectionListener.h>
+	<lf/core/list.h>
+	<lf/core/stringw.h>
+	<lf/render/gui/CGUILabel.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguicombobox.h
+	<lf/render/gui/CGUIWidget.h>
+	<lf/render/gui/CGUIButton.h>
+	<lf/render/gui/CGUIListBox.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguilistbox.h
+	<lf/render/gui/CGUIWidget.h>
+	<lf/render/gui/CGUILabel.h>
+	<lf/render/gui/IGUISelectionListener.h>
+	<lf/render/gui/CGUISliderVertical.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguislidervertical.h
+	<lf/render/gui/CGUIWidget.h>
+	<lf/render/gui/CGUIButton.h>
+	<lf/render/gui/IGUIScrollingListener.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguiimage.h
+	<lf/render/gui/CGUIWidget.h>
+	<lf/core/list.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguipanel.h
+	<lf/render/gui/CGUIManager.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguiprogressbar.h
+	<lf/render/gui/CGUIWidget.h>
+	<lf/render/gui/IGUIActionListener.h>
+	<lf/core/list.h>
+	<lf/core/stringw.h>
+	<lf/render/gui/CGUILabel.h>
+
+1204984518 k:\lf-bedge\include\lf\render\gui\cguiradiobutton.h
+	<lf/render/gui/CGUIWidget.h>
+	<lf/render/gui/IGUISelectionListener.h>
+	<lf/core/list.h>
+	<lf/core/stringw.h>
+	<lf/render/gui/CGUILabel.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguiradiobuttongroup.h
+	<lf/render/gui/CGUIRadioButton.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguiscrollcontrol.h
+	<lf/render/gui/CGUIWidget.h>
+	<lf/render/gui/CGUISliderVertical.h>
+	<lf/render/gui/CGUISliderHorizontal.h>
+	<lf/render/gui/IGUIScrollingListener.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguisliderhorizontal.h
+	<lf/render/gui/CGUIWidget.h>
+	<lf/render/gui/CGUIButton.h>
+	<lf/render/gui/IGUIScrollingListener.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguitab.h
+	<lf/render/gui/CGUIWidget.h>
+	<lf/core/stringw.h>
+
+1204984518 k:\lf-bedge\include\lf\render\gui\cguitabcontrol.h
+	<lf/render/gui/CGUIWidget.h>
+	<lf/render/gui/CGUILabel.h>
+	<lf/render/gui/IGUISelectionListener.h>
+	<lf/render/gui/CGUITab.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguitextarea.h
+	<lf/render/gui/text/CLayout.h>
+	<lf/render/gui/CGUIWidget.h>
+	<lf/render/gui/CGUISliderVertical.h>
+	<lf/render/gui/CGUISliderHorizontal.h>
+	<lf/render/gui/IGUIScrollingListener.h>
+	<lf/render/gui/text/ILayoutListener.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguiwindow.h
+	<lf/render/gui/CGUIWidget.h>
+	<lf/core/stringw.h>
+	<lf/render/gui/CGUIWindowTitleBar.h>
+	<lf/render/gui/CGUIMenuBar.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguiwindowtitlebar.h
+	<lf/render/gui/CGUIWidget.h>
+	<lf/core/stringw.h>
+	<lf/render/gui/CGUIWindowTitle.h>
+	<lf/render/gui/CGUIButton.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguiwindowtitle.h
+	<lf/render/gui/CGUIWidget.h>
+	<lf/core/stringw.h>
+	<lf/render/gui/CGUILabel.h>
+	<lf/render/gui/CGUIButton.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguieditbox.h
+	<lf/render/gui/CGUIWidget.h>
+	<lf/render/gui/IGUITextListener.h>
+	<lf/core/list.h>
+	<lf/core/stringw.h>
+	<lf/render/gui/CGUILabel.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\iguitextlistener.h
+	<lf/render/gui/CGUITextEvent.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguitextevent.h
+	<lf/render/gui/CGUIEvent.h>
+	<lf/render/gui/CGUIWidget.h>
+	<lf/core/stringw.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguimatheditbox.h
+	<lf/LfConfig.h>
+	<lf/render/gui/CGUIEditBox.h>
+	<lf/render/gui/IGUITextListener.h>
+	<lf/core/array.h>
+	<lf/core/stringw.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguifader.h
+	<lf/render/gui/CGUIWidget.h>
+
+1202818460 k:\lf-bedge\include\lf\render\gui\cguianimator.h
+	<lf/render/gui/CGUIWidget.h>
+	<lf/core/IUpdateable.h>
+	<lf/core/list.h>
+
+1202301586 k:\lf-bedge\include\lf\render\gui\text\ctextrenderingiterator.h
+	<lf/core/rect.h>
+	<lf/resources/CFont.h>
+	<lf/core/vector2d.h>
+	<lf/render/gui/text/CTextIterator.h>
+
+1202301586 k:\lf-bedge\include\lf\render\gui\text\ctextselectionevent.h
+	<lf/LfConfig.h>
+
+1202301580 k:\lf-bedge\include\lf\lfscene.h
+	"scene/CCamera.h"
+	"scene/C2DCamera.h"
+	"scene/C3DCamera.h"
+	"scene/COrthoCamera.h"
+	"scene/CDLODSceneNode.h"
+	"scene/CJointSceneNode.h"
+	"scene/CGroupSceneNode.h"
+	"scene/CLargeTerrainSceneNode.h"
+	"scene/CLight.h"
+	"scene/CModelSceneNode.h"
+	"scene/COctTreeModelSceneNode.h"
+	"scene/CPortal.h"
+	"scene/CPortalSystem.h"
+	"scene/CPVSCalculator.h"
+	"scene/CSceneManager.h"
+	"scene/CSceneNode.h"
+	"scene/CSceneNodeController.h"
+	"scene/CSceneRenderList.h"
+	"scene/CSceneState.h"
+	"scene/CSceneStateContainer.h"
+	"scene/CSceneStateLight.h"
+	"scene/CSceneStateProjector.h"
+	"scene/CSceneStateShadowCaster.h"
+	"scene/CSceneStateShadowReceiver.h"
+	"scene/CSector.h"
+	"scene/CPagingManager.h"
+	"scene/ISectorListener.h"
+	"scene/CViewFrustum.h"
+	"scene/LfControllers.h"
+	"scene/ISceneNodeSelector.h"
+	"scene/CSceneNodeSelectorAll.h"
+	"scene/IShadowMapSetup.h"
+	"scene/CBasicShadowMapSetup.h"
+	"scene/CFocusedShadowMapSetup.h"
+	"scene/ISceneNodeSerializer.h"
+	"scene/LfSerializers.h"
+
+1202301750 k:\lf-bedge\include\lf\scene\c2dcamera.h
+	<lf/scene/CCamera.h>
+
+1202301750 k:\lf-bedge\include\lf\scene\c3dcamera.h
+	<lf/scene/CCamera.h>
+	<lf/core/line3d.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\corthocamera.h
+	<lf/scene/CCamera.h>
+
+1203731760 k:\lf-bedge\include\lf\scene\cdlodscenenode.h
+	<lf/LfConfig.h>
+	<lf/scene/CSceneNode.h>
+	<lf/resources/CModel.h>
+	<lf/core/array.h>
+
+1202301586 k:\lf-bedge\include\lf\resources\cmodel.h
+	<lf/LfConfig.h>
+	<lf/resources/CMesh.h>
+	<lf/core/aabbox3d.h>
+	<lf/core/sphere3d.h>
+	<lf/core/array.h>
+	<lf/core/CRefCounted.h>
+	<lf/resources/CResource.h>
+	<lf/core/stringc.h>
+	<lf/resources/CSkeleton.h>
+	<lf/core/triangle3d.h>
+	<lf/resources/CMaterial.h>
+	<lf/resources/IModelMeshListener.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\cskeleton.h
+	<lf/core/CRefCounted.h>
+	<lf/core/matrix4.h>
+	<lf/core/array.h>
+	<lf/core/stringc.h>
+	<lf/resources/CResource.h>
+	<lf/resources/CSkeletonJoint.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\cskeletonjoint.h
+	<lf/LfConfig.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/matrix4.h>
+	<lf/resources/CJoint.h>
+
+1202301586 k:\lf-bedge\include\lf\resources\cjoint.h
+	<lf/LfConfig.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/CSpacial.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\imodelmeshlistener.h
+	<lf/resources/CModelMeshEvent.h>
+
+1202301586 k:\lf-bedge\include\lf\resources\cmodelmeshevent.h
+	<lf/core/CEvent.h>
+	<lf/core/lftypes.h>
+
+1202301750 k:\lf-bedge\include\lf\scene\cjointscenenode.h
+	<lf/LfConfig.h>
+	<lf/scene/CSceneNode.h>
+	<lf/resources/CSkeletonJoint.h>
+
+1203731760 k:\lf-bedge\include\lf\scene\clargeterrainscenenode.h
+	<lf/LfConfig.h>
+	<lf/scene/CSceneNode.h>
+	<lf/resources/nature/CLargeTerrainModel.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\nature\clargeterrainmodel.h
+	<lf/LfConfig.h>
+	<lf/resources/CModel.h>
+	<lf/resources/nature/CGeoMipMapTerrainModel.h>
+	<lf/resources/nature/CLargeTerrainTreeNode.h>
+	<lf/core/EDirection.h>
+	<lf/resources/nature/ITerrainTileLoadListener.h>
+	<lf/resources/nature/ITerrainTileDisplayListener.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\nature\cgeomipmapterrainmodel.h
+	<lf/LfConfig.h>
+	<lf/resources/CModel.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\nature\clargeterraintreenode.h
+	<lf/core/CRefCounted.h>
+	<lf/core/vector2d.h>
+	<lf/core/aabbox3d.h>
+	<lf/core/sphere3d.h>
+	<lf/scene/CViewFrustum.h>
+	<lf/resources/CIndexBuffer.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\nature\iterraintileloadlistener.h
+	<lf/resources/nature/CTerrainTileEvent.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\nature\cterraintileevent.h
+	<lf/LfConfig.h>
+	<lf/core/CEvent.h>
+	<lf/core/vector2d.h>
+	<lf/resources/CMesh.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\nature\iterraintiledisplaylistener.h
+	<lf/resources/nature/CTerrainTileEvent.h>
+
+1203731760 k:\lf-bedge\include\lf\scene\cmodelscenenode.h
+	<lf/LfConfig.h>
+	<lf/scene/CSceneNode.h>
+	<lf/resources/CModel.h>
+	<lf/scene/CLight.h>
+	<lf/resources/IModelMeshListener.h>
+
+1203731760 k:\lf-bedge\include\lf\scene\cocttreemodelscenenode.h
+	<lf/scene/CIndexOctTree.h>
+	<lf/scene/CModelSceneNode.h>
+
+1202301750 k:\lf-bedge\include\lf\scene\cindexocttree.h
+	<lf/scene/CIndexOctTreeNode.h>
+
+1202301750 k:\lf-bedge\include\lf\scene\cindexocttreenode.h
+	<lf/core/aabbox3d.h>
+	<lf/core/array.h>
+	<lf/resources/basicmodels/CLineModel.h>
+	<lf/log/CLFLog.h>
+	<lf/core/triangle3d.h>
+	<lf/core/CRTTI.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\basicmodels\clinemodel.h
+	<lf/resources/CModel.h>
+
+1204344194 k:\lf-bedge\include\lf\scene\cportal.h
+	<lf/LfConfig.h>
+	<lf/core/array.h>
+	<lf/scene/CSceneNode.h>
+
+1204344194 k:\lf-bedge\include\lf\scene\cportalsystem.h
+	<lf/LfConfig.h>
+	<lf/core/array.h>
+	<lf/scene/CGroupSceneNode.h>
+	<lf/scene/CPortal.h>
+	<lf/core/hashtable.h>
+	<lf/resources/CModelPVS.h>
+
+1202301586 k:\lf-bedge\include\lf\resources\cmodelpvs.h
+	<lf/resources/CResource.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\cpvscalculator.h
+	<lf/core/array.h>
+	<lf/render/IRenderWindow.h>
+	<lf/resources/CModelPVS.h>
+	<lf/scene/CCamera.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\cscenestatelight.h
+	<lf/scene/CSceneState.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\cscenestateprojector.h
+	<lf/scene/CSceneState.h>
+	<lf/scene/CSceneNode.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\cscenestateshadowcaster.h
+	<lf/scene/CSceneState.h>
+	<lf/scene/CSceneNode.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\cscenestateshadowreceiver.h
+	<lf/scene/CSceneState.h>
+	<lf/scene/CSceneNode.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\csector.h
+	<lf/LfConfig.h>
+	<lf/core/array.h>
+	<lf/core/list.h>
+	<lf/scene/CPortal.h>
+	<lf/scene/ISectorListener.h>
+	<lf/scene/CGroupSceneNode.h>
+	<iostream>
+
+1202301752 k:\lf-bedge\include\lf\scene\isectorlistener.h
+
+1202301752 k:\lf-bedge\include\lf\scene\cpagingmanager.h
+	<lf/LfConfig.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/vector2d.h>
+	<lf/core/stringc.h>
+	<lf/scene/CSceneNodeController.h>
+	<lf/scene/CGroupSceneNode.h>
+	<lf/resources/CResourceManager.h>
+
+1202301656 k:\lf-bedge\include\lf\resources\cresourcemanager.h
+	<lf/LfConfig.h>
+	<lf/core/array.h>
+	<lf/core/list.h>
+	<lf/core/stringc.h>
+	<lf/core/CSingleton.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/hashtable.h>
+	<lf/resources/CImage.h>
+	<lf/resources/CTexture.h>
+	<lf/resources/CTexture2D.h>
+	<lf/resources/CTexture3D.h>
+	<lf/resources/CTextureRect.h>
+	<lf/resources/CTextureCube.h>
+	<lf/os/CFileSystem.h>
+	<lf/resources/CModel.h>
+	<lf/render/CRenderContextCapabilities.h>
+	<lf/resources/IResourceLoaderFactory.h>
+	<lf/resources/IResourceWriterFactory.h>
+	<lf/resources/IFontAlphabet.h>
+	<lf/render/gui/CGUITheme.h>
+	<lf/resources/CAnimation.h>
+	<lf/resources/IResourceRegisterListener.h>
+	<lf/core/array2.h>
+	<lf/resources/CModelPVS.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\iresourceloaderfactory.h
+	<lf/LfConfig.h>
+	<lf/resources/CResourceLoader.h>
+
+1202301648 k:\lf-bedge\include\lf\resources\cresourceloader.h
+	<lf/LfConfig.h>
+	<lf/resources/CModel.h>
+	<lf/resources/CTexture.h>
+	<lf/resources/CImage.h>
+	<lf/scene/CCamera.h>
+	<lf/scene/CLight.h>
+	<lf/os/CFile.h>
+	<lf/resources/CFont.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\iresourcewriterfactory.h
+	<lf/LfConfig.h>
+	<lf/resources/CResourceWriter.h>
+
+1203510198 k:\lf-bedge\include\lf\resources\cresourcewriter.h
+	<lf/LfConfig.h>
+	<lf/resources/CModel.h>
+	<lf/resources/CTexture.h>
+	<lf/resources/CImage.h>
+	<lf/os/CFile.h>
+	<lf/resources/CFont.h>
+	<lf/resources/CResourceLoader.h>
+	<lf/resources/CModel.h>
+	<lf/resources/particles/CParticleSystem.h>
+	<lf/resources/particles/CMultiParticleSystem.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cparticlesystem.h
+	<lf/resources/particles/SParticle.h>
+	<lf/resources/particles/CParticleEmissionShaper.h>
+	<lf/resources/CModel.h>
+	<lf/os/CRandomizer.h>
+	<lf/core/list.h>
+	<lf/resources/particles/CParticleSystemAffector.h>
+	<lf/resources/particles/IParticleSystemListener.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\sparticle.h
+	<lf/core/lftypes.h>
+	<lf/core/CColorI.h>
+	<lf/core/vector3d.h>
+	<lf/core/vector2d.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cparticleemissionshaper.h
+	<lf/core/lftypes.h>
+	<lf/core/vector3d.h>
+	<lf/resources/particles/CParticleSystemShaper.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cparticlesystemshaper.h
+	<lf/LfConfig.h>
+	<lf/resources/particles/SParticle.h>
+	<lf/core/CRefCounted.h>
+
+1203731760 k:\lf-bedge\include\lf\resources\particles\cparticlesystemaffector.h
+	<lf/LfConfig.h>
+	<lf/resources/particles/SParticle.h>
+	<lf/core/array.h>
+	<lf/core/CRefCounted.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\iparticlesystemlistener.h
+	<lf/resources/particles/CParticleSystemEvent.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cparticlesystemevent.h
+	<lf/core/lftypes.h>
+	<lf/core/CEvent.h>
+
+1203083074 k:\lf-bedge\include\lf\resources\particles\cmultiparticlesystem.h
+	<lf/resources/particles/CParticleEmitter.h>
+
+1203083676 k:\lf-bedge\include\lf\resources\particles\cparticleemitter.h
+	<lf/resources/particles/SParticle.h>
+	<lf/resources/particles/CParticleEmissionShaper.h>
+	<lf/resources/CModel.h>
+	<lf/os/CRandomizer.h>
+	<lf/core/list.h>
+	<lf/core/CSpacial.h>
+	<lf/resources/particles/CParticleSystemAffector.h>
+	<lf/resources/particles/IParticleEmitterListener.h>
+
+1200547656 k:\lf-bedge\include\lf\resources\particles\iparticleemitterlistener.h
+	<lf/resources/particles/CParticleEmitterEvent.h>
+
+1200547246 k:\lf-bedge\include\lf\resources\particles\cparticleemitterevent.h
+	<lf/core/lftypes.h>
+	<lf/core/CEvent.h>
+
+1202301586 k:\lf-bedge\include\lf\resources\canimation.h
+	<lf/LfConfig.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/stringc.h>
+	<lf/core/list.h>
+	<lf/core/array.h>
+	<lf/resources/CResource.h>
+	<lf/resources/IAnimationListener.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\ianimationlistener.h
+	<lf/resources/CAnimationEvent.h>
+
+1202301586 k:\lf-bedge\include\lf\resources\canimationevent.h
+	<lf/core/lftypes.h>
+	<lf/core/CEvent.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\iresourceregisterlistener.h
+	<lf/resources/CResourceRegisterEvent.h>
+
+1202301658 k:\lf-bedge\include\lf\resources\cresourceregisterevent.h
+	<lf/core/lftypes.h>
+	<lf/core/CEvent.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\lfcontrollers.h
+	"controllers/CFlyLineController.h"
+	"controllers/CRotationController.h"
+	"controllers/CFPSController.h"
+	"controllers/CFlySplineController.h"
+	"controllers/CFlyCircleController.h"
+	"controllers/CFlyForwardController.h"
+	"controllers/CThirdPersonController.h"
+	"controllers/CMaintainRotationController.h"
+	"controllers/CFaceViewPlaneController.h"
+	"controllers/CEditorController.h"
+	"controllers/CMovementController.h"
+
+1202301752 k:\lf-bedge\include\lf\scene\controllers\cflylinecontroller.h
+	<lf/scene/CSceneNodeController.h>
+	<lf/scene/CSceneNode.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\controllers\crotationcontroller.h
+	<lf/scene/CSceneNodeController.h>
+	<lf/scene/CSceneNode.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\controllers\cfpscontroller.h
+	<lf/scene/controllers/CMovementController.h>
+	<lf/input/ICursorControl.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\controllers\cmovementcontroller.h
+	<lf/scene/CSceneNodeController.h>
+	<lf/input/IKeyListener.h>
+	<lf/core/CProperties.h>
+	<lf/input/Keycodes.h>
+	<lf/os/ISimulationTimer.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\controllers\cflysplinecontroller.h
+	<lf/scene/CSceneNodeController.h>
+	<lf/scene/CSceneNode.h>
+	"lf/core/array.h"
+
+1202301752 k:\lf-bedge\include\lf\scene\controllers\cflycirclecontroller.h
+	<lf/scene/CSceneNodeController.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\controllers\cflyforwardcontroller.h
+	<lf/scene/CSceneNodeController.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\controllers\cthirdpersoncontroller.h
+	<lf/scene/controllers/CMovementController.h>
+	<lf/input/IMouseListener.h>
+	<lf/input/IMouseMovementListener.h>
+	<lf/input/IMouseWheelListener.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\controllers\cmaintainrotationcontroller.h
+	<lf/scene/CSceneNodeController.h>
+	<lf/scene/CSceneNode.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\controllers\cfaceviewplanecontroller.h
+	<lf/scene/CSceneNodeController.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\controllers\ceditorcontroller.h
+	<lf/scene/CSceneNodeController.h>
+	<lf/render/IRenderWindow.h>
+	<lf/input/ICursorControl.h>
+	<lf/core/CProperties.h>
+	<lf/input/Keycodes.h>
+	<lf/os/ISimulationTimer.h>
+	<lf/input/IKeyListener.h>
+	<lf/input/IMouseListener.h>
+	<lf/input/IMouseMovementListener.h>
+	<lf/input/IMouseWheelListener.h>
+	<lf/scene/CCamera.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\iscenenodeselector.h
+	<lf/core/CRefCounted.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\cscenenodeselectorall.h
+	<lf/scene/ISceneNodeSelector.h>
+
+1204984520 k:\lf-bedge\include\lf\scene\ishadowmapsetup.h
+	<lf/LfConfig.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/CRTTI.h>
+	<lf/core/CColorF.h>
+	<lf/render/IRenderPass.h>
+	<lf/scene/CLight.h>
+
+1202818460 k:\lf-bedge\include\lf\scene\cbasicshadowmapsetup.h
+	<lf/core/array.h>
+	<lf/scene/IShadowMapSetup.h>
+	<lf/scene/CLight.h>
+
+1204984520 k:\lf-bedge\include\lf\scene\cfocusedshadowmapsetup.h
+	<lf/scene/CBasicShadowMapSetup.h>
+	<lf/core/IUpdateable.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\iscenenodeserializer.h
+	<lf/core/CRefCounted.h>
+	<lf/core/stringc.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\lfserializers.h
+	"ISceneNodeSerializer.h"
+	"serializers/CSceneNodeSerializer.h"
+	"serializers/CCameraSceneNodeSerializer.h"
+	"serializers/CLightSceneNodeSerializer.h"
+	"serializers/CGroupSceneNodeSerializer.h"
+	"serializers/CLargeTerrainSceneNodeSerializer.h"
+	"serializers/CDLODSceneNodeSerializer.h"
+	"serializers/CModelSceneNodeSerializer.h"
+	"serializers/COctTreeModelSceneNodeSerializer.h"
+	"ISceneNodeControllerSerializer.h"
+	"controllers/serializers/CSceneNodeControllerSerializer.h"
+	"controllers/serializers/CFlyCircleControllerSerializer.h"
+	"controllers/serializers/CFlyForwardControllerSerializer.h"
+	"controllers/serializers/CFlyLineControllerSerializer.h"
+	"controllers/serializers/CMaintainRotationControllerSerializer.h"
+	"controllers/serializers/CRotationControllerSerializer.h"
+
+1202301752 k:\lf-bedge\include\lf\scene\serializers\cscenenodeserializer.h
+	<lf/scene/ISceneNodeSerializer.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\serializers\ccamerascenenodeserializer.h
+	<lf/scene/serializers/CSceneNodeSerializer.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\serializers\clightscenenodeserializer.h
+	<lf/scene/serializers/CSceneNodeSerializer.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\serializers\cgroupscenenodeserializer.h
+	<lf/scene/serializers/CSceneNodeSerializer.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\serializers\clargeterrainscenenodeserializer.h
+	<lf/scene/serializers/CSceneNodeSerializer.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\serializers\cdlodscenenodeserializer.h
+	<lf/scene/serializers/CSceneNodeSerializer.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\serializers\cmodelscenenodeserializer.h
+	<lf/scene/serializers/CSceneNodeSerializer.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\serializers\cocttreemodelscenenodeserializer.h
+	<lf/scene/serializers/CSceneNodeSerializer.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\iscenenodecontrollerserializer.h
+	<lf/core/CRefCounted.h>
+	<lf/core/stringc.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\controllers\serializers\cscenenodecontrollerserializer.h
+	<lf/scene/ISceneNodeControllerSerializer.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\controllers\serializers\cflycirclecontrollerserializer.h
+	<lf/scene/controllers/serializers/CSceneNodeControllerSerializer.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\controllers\serializers\cflyforwardcontrollerserializer.h
+	<lf/scene/controllers/serializers/CSceneNodeControllerSerializer.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\controllers\serializers\cflylinecontrollerserializer.h
+	<lf/scene/controllers/serializers/CSceneNodeControllerSerializer.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\controllers\serializers\cmaintainrotationcontrollerserializer.h
+	<lf/scene/controllers/serializers/CSceneNodeControllerSerializer.h>
+
+1202301752 k:\lf-bedge\include\lf\scene\controllers\serializers\crotationcontrollerserializer.h
+	<lf/scene/controllers/serializers/CSceneNodeControllerSerializer.h>
+
+1202301580 k:\lf-bedge\include\lf\lfresources.h
+	"resources/CAnimation.h"
+	"resources/CAnimationEvent.h"
+	"resources/CAnimatedTexture.h"
+	"resources/CColorMaterial.h"
+	"resources/CImage.h"
+	"resources/CIndexBuffer.h"
+	"resources/CMaterial.h"
+	"resources/CMesh.h"
+	"resources/CModel.h"
+	"resources/CModelAnimator.h"
+	"resources/CModelAnimatorEvent.h"
+	"resources/CJoint.h"
+	"resources/CSkeletonJoint.h"
+	"resources/CMorphPose.h"
+	"resources/CMorphAnimation.h"
+	"resources/CResourceLoader.h"
+	"resources/CResourceWriter.h"
+	"resources/CResourceManager.h"
+	"resources/CResourceRegisterEvent.h"
+	"resources/CTexture.h"
+	"resources/CTexture2D.h"
+	"resources/CTexture3D.h"
+	"resources/CTextureCube.h"
+	"resources/CTextureRect.h"
+	"resources/CVertexBuffer.h"
+	"resources/CVertexBufferI.h"
+	"resources/CVertexBufferNI.h"
+	"resources/IAnimationListener.h"
+	"resources/IModelAnimatorListener.h"
+	"resources/IModelMeshListener.h"
+	"resources/IResourceLoaderFactory.h"
+	"resources/IResourceRegisterListener.h"
+	"resources/IResourceWriterFactory.h"
+	"resources/CTexture.h"
+	"resources/IFontAlphabet.h"
+	"resources/CFontAlphabetAscii.h"
+	"resources/CFontAlphabetCyrillic.h"
+	"resources/CFontAlphabetDynamic.h"
+	"resources/CFont.h"
+	"resources/CSkeleton.h"
+	"resources/CSkeletalAnimation.h"
+	"resources/CSkeletalPose.h"
+	"resources/CModelPVS.h"
+	"resources/ITileHandler.h"
+	"resources/LfBasicModels.h"
+	"resources/LfLoaders.h"
+	"resources/LfParticles.h"
+	"resources/LfNature.h"
+	"resources/LfProcedural.h"
+
+1202301586 k:\lf-bedge\include\lf\resources\canimatedtexture.h
+	<lf/resources/CTexture.h>
+
+1202301586 k:\lf-bedge\include\lf\resources\cmodelanimator.h
+	<lf/core/CRefCounted.h>
+	<lf/core/CRTTI.h>
+	<lf/resources/CAnimation.h>
+	<lf/resources/IModelAnimatorListener.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\imodelanimatorlistener.h
+	<lf/resources/CModelAnimatorEvent.h>
+
+1202301586 k:\lf-bedge\include\lf\resources\cmodelanimatorevent.h
+	<lf/core/CEvent.h>
+
+1202301586 k:\lf-bedge\include\lf\resources\cmorphpose.h
+	<lf/core/CRefCounted.h>
+	<lf/core/CRTTI.h>
+	<lf/core/array.h>
+	<lf/core/stringc.h>
+	<lf/resources/CVertexBuffer.h>
+	<lf/resources/CIndexBuffer.h>
+
+1202301586 k:\lf-bedge\include\lf\resources\cmorphanimation.h
+	<lf/LfConfig.h>
+	<lf/resources/CAnimation.h>
+	<lf/core/array.h>
+	<lf/resources/CMorphPose.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\cvertexbufferi.h
+	<lf/LfConfig.h>
+	<lf/resources/CVertexBuffer.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\cvertexbufferni.h
+	<lf/LfConfig.h>
+	<lf/resources/CVertexBuffer.h>
+
+1202301586 k:\lf-bedge\include\lf\resources\cfontalphabetascii.h
+	<lf/resources/IFontAlphabet.h>
+
+1202301586 k:\lf-bedge\include\lf\resources\cfontalphabetcyrillic.h
+	<lf/resources/IFontAlphabet.h>
+
+1202301586 k:\lf-bedge\include\lf\resources\cfontalphabetdynamic.h
+	<lf/resources/IFontAlphabet.h>
+	<lf/core/array.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\cskeletalanimation.h
+	<lf/LfConfig.h>
+	<lf/resources/CAnimation.h>
+	<lf/core/array.h>
+	<lf/resources/CSkeleton.h>
+	<lf/resources/CSkeletalPose.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\cskeletalpose.h
+	<lf/core/CRefCounted.h>
+	<lf/core/CRTTI.h>
+	<lf/core/array.h>
+	<lf/core/stringc.h>
+	<lf/resources/CJoint.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\itilehandler.h
+	<lf/core/CRefCounted.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\lfbasicmodels.h
+	"basicmodels/CBillboardModel.h"
+	"basicmodels/CCappedCylinderModel.h"
+	"basicmodels/CCubeModel.h"
+	"basicmodels/CCylinderModel.h"
+	"basicmodels/CConeModel.h"
+	"basicmodels/CDecalModel.h"
+	"basicmodels/CLineCubeModel.h"
+	"basicmodels/CLineModel.h"
+	"basicmodels/CPlaneModel.h"
+	"basicmodels/CPointCubeModel.h"
+	"basicmodels/CPointModel.h"
+	"basicmodels/CSphereModel.h"
+	"basicmodels/CTextModel.h"
+	"basicmodels/CTorusModel.h"
+
+1202301700 k:\lf-bedge\include\lf\resources\basicmodels\cbillboardmodel.h
+	<lf/LfConfig.h>
+	<lf/resources/CModel.h>
+	<lf/core/vector2d.h>
+	<lf/render/IRenderPass.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\basicmodels\ccappedcylindermodel.h
+	<lf/LfConfig.h>
+	<lf/resources/CModel.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\basicmodels\ccubemodel.h
+	<lf/LfConfig.h>
+	<lf/resources/CModel.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\basicmodels\ccylindermodel.h
+	<lf/LfConfig.h>
+	<lf/resources/CModel.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\basicmodels\cconemodel.h
+	<lf/LfConfig.h>
+	<lf/resources/CModel.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\basicmodels\cdecalmodel.h
+	<lf/resources/CModel.h>
+	<lf/core/array2.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\basicmodels\clinecubemodel.h
+	<lf/LfConfig.h>
+	<lf/resources/CModel.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\basicmodels\cplanemodel.h
+	<lf/LfConfig.h>
+	<lf/resources/CModel.h>
+	<lf/core/vector2d.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\basicmodels\cpointcubemodel.h
+	<lf/LfConfig.h>
+	<lf/resources/CModel.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\basicmodels\cpointmodel.h
+	<lf/resources/CModel.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\basicmodels\cspheremodel.h
+	<lf/LfConfig.h>
+	<lf/resources/CModel.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\basicmodels\ctextmodel.h
+	<lf/resources/basicmodels/CBillboardModel.h>
+	<lf/resources/CFont.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\basicmodels\ctorusmodel.h
+	<lf/LfConfig.h>
+	<lf/resources/CModel.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\lfloaders.h
+	"loaders/CFontLoaderTTFFactory.h"
+	"loaders/CFontLoaderTTF.h"
+	"loaders/CResourceLoaderLFMFactory.h"
+	"loaders/CResourceLoaderLFM.h"
+	"loaders/CGeometryLoaderLFMGFactory.h"
+	"loaders/CGeometryLoaderLFMG.h"
+	"loaders/CLFMParserGUITheme.h"
+	"loaders/CLFMParserNGPlant.h"
+	"loaders/CLFMSectionParser.h"
+	"loaders/CModelWriterLFM.h"
+	"loaders/CParticleSystemWriter.h"
+	"loaders/CModelWriterLFMFactory.h"
+	"loaders/CParticleSystemWriterFactory.h"
+	"loaders/CModelPVSWriter.h"
+	"loaders/CModelPVSWriterFactory.h"
+
+1202301700 k:\lf-bedge\include\lf\resources\loaders\cfontloaderttffactory.h
+	<lf/LfConfig.h>
+	<lf/resources/IResourceLoaderFactory.h>
+	<lf/resources/loaders/CFontLoaderTTF.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\loaders\cfontloaderttf.h
+	<lf/resources/CResourceLoader.h>
+	<lf/resources/CFont.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\loaders\cresourceloaderlfmfactory.h
+	<lf/LfConfig.h>
+	<lf/resources/IResourceLoaderFactory.h>
+	<lf/resources/loaders/CResourceLoaderLFM.h>
+
+1203082166 k:\lf-bedge\include\lf\resources\loaders\cresourceloaderlfm.h
+	<lf/LfConfig.h>
+	<lf/resources/CResourceLoader.h>
+	<lf/resources/CMaterial.h>
+	<lf/resources/particles/CParticleEmitter.h>
+	<lf/resources/particles/CParticleSystemAffector.h>
+	<lf/resources/particles/CParticleSystemShaper.h>
+	<lf/resources/particles/CParticleEmissionShaper.h>
+	<lf/render/gui/CGUITheme.h>
+	<lf/render/CRenderPassOpenGL.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\loaders\cgeometryloaderlfmgfactory.h
+	<lf/LfConfig.h>
+	<lf/resources/IResourceLoaderFactory.h>
+	<lf/resources/loaders/CGeometryLoaderLFMG.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\loaders\cgeometryloaderlfmg.h
+	<lf/LfConfig.h>
+	<lf/resources/CResourceLoader.h>
+	<lf/resources/CMaterial.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\loaders\clfmparserguitheme.h
+	<lf/render/gui/CGUITheme.h>
+	<lf/resources/loaders/CLFMSectionParser.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\loaders\clfmsectionparser.h
+	<lf/core/CTreeElement.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\loaders\clfmparserngplant.h
+	<lf/LfConfig.h>
+	<lf/resources/loaders/CLFMSectionParser.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\loaders\cmodelwriterlfm.h
+	<lf/resources/CResourceWriter.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\loaders\cparticlesystemwriter.h
+	<lf/LfConfig.h>
+	<lf/resources/CResourceWriter.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\loaders\cmodelwriterlfmfactory.h
+	<lf/LfConfig.h>
+	<lf/resources/IResourceWriterFactory.h>
+	<lf/resources/loaders/CModelWriterLFM.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\loaders\cparticlesystemwriterfactory.h
+	<lf/LfConfig.h>
+	<lf/resources/IResourceWriterFactory.h>
+	<lf/resources/loaders/CParticleSystemWriter.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\loaders\cmodelpvswriter.h
+	<lf/resources/CResourceWriter.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\loaders\cmodelpvswriterfactory.h
+	<lf/LfConfig.h>
+	<lf/resources/IResourceWriterFactory.h>
+	<lf/resources/loaders/CModelPVSWriter.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\lfparticles.h
+	"particles/CAxialBillboardParticleSystem.h"
+	"particles/CEyePointBillboardParticleSystem.h"
+	"particles/CParticleAffectorConstantAcceleration.h"
+	"particles/CParticleAffectorFadeOut.h"
+	"particles/CParticleAffectorRotation.h"
+	"particles/CParticleAffectorScale.h"
+	"particles/CParticleAffectorWave.h"
+	"particles/CParticleAffectorZSort.h"
+	"particles/CParticleEmissionShaper.h"
+	"particles/CParticleEmissionShaperBox.h"
+	"particles/CParticleEmissionShaperImage.h"
+	"particles/CParticleEmissionShaperLine.h"
+	"particles/CParticleEmissionShaperMesh.h"
+	"particles/CParticleEmissionShaperModel.h"
+	"particles/CParticleEmissionShaperModelNode.h"
+	"particles/CParticleEmissionShaperPoint.h"
+	"particles/CParticleEmissionShaperSphere.h"
+	"particles/CParticleShaperColorRange.h"
+	"particles/CParticleShaperMassRange.h"
+	"particles/CParticleShaperRotationRange.h"
+	"particles/CParticleShaperSizeRange.h"
+	"particles/CParticleShaperSpecColorRange.h"
+	"particles/CParticleShaperTTLRange.h"
+	"particles/CParticleShaperVelocityInit.h"
+	"particles/CParticleShaperVelocityRange.h"
+	"particles/CParticleSystem.h"
+	"particles/CParticleSystemAffector.h"
+	"particles/CParticleSystemEvent.h"
+	"particles/CParticleSystemShaper.h"
+	"particles/CPointParticleSystem.h"
+	"particles/CPointSpriteParticleSystem.h"
+	"particles/CViewPlaneBillboardParticleSystem.h"
+	"particles/SParticle.h"
+	"particles/IParticleSystemListener.h"
+	"particles/IParticleEmitterListener.h"
+	"particles/CParticleEmitterEvent.h"
+	"particles/CParticleEmitter.h"
+	"particles/CMultiParticleSystem.h"
+	"particles/CAxialBillboardParticleEmitter.h"
+	"particles/CEyePointBillboardParticleEmitter.h"
+	"particles/CPointParticleEmitter.h"
+	"particles/CPointSpriteParticleEmitter.h"
+	"particles/CViewPlaneBillboardParticleEmitter.h"
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\caxialbillboardparticlesystem.h
+	<lf/resources/particles/CParticleSystem.h>
+	<lf/resources/basicmodels/CBillboardModel.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\ceyepointbillboardparticlesystem.h
+	<lf/resources/particles/CParticleSystem.h>
+
+1203731760 k:\lf-bedge\include\lf\resources\particles\cparticleaffectorconstantacceleration.h
+	<lf/LfConfig.h>
+	<lf/resources/particles/CParticleSystemAffector.h>
+
+1203731760 k:\lf-bedge\include\lf\resources\particles\cparticleaffectorfadeout.h
+	<lf/LfConfig.h>
+	<lf/resources/particles/CParticleSystemAffector.h>
+
+1203731760 k:\lf-bedge\include\lf\resources\particles\cparticleaffectorrotation.h
+	<lf/LfConfig.h>
+	<lf/resources/particles/CParticleSystemAffector.h>
+
+1203731760 k:\lf-bedge\include\lf\resources\particles\cparticleaffectorscale.h
+	<lf/LfConfig.h>
+	<lf/resources/particles/CParticleSystemAffector.h>
+
+1203731760 k:\lf-bedge\include\lf\resources\particles\cparticleaffectorwave.h
+	<lf/LfConfig.h>
+	<lf/resources/particles/CParticleSystemAffector.h>
+
+1203731760 k:\lf-bedge\include\lf\resources\particles\cparticleaffectorzsort.h
+	<lf/LfConfig.h>
+	<lf/resources/particles/CParticleSystemAffector.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cparticleemissionshaperbox.h
+	<lf/resources/particles/CParticleEmissionShaper.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cparticleemissionshaperimage.h
+	<lf/resources/particles/CParticleEmissionShaper.h>
+	<lf/resources/CImage.h>
+	<lf/core/array.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cparticleemissionshaperline.h
+	<lf/resources/particles/CParticleEmissionShaper.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cparticleemissionshapermesh.h
+	<lf/resources/particles/CParticleEmissionShaper.h>
+	<lf/resources/CMesh.h>
+	<lf/core/array.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cparticleemissionshapermodel.h
+	<lf/resources/particles/CParticleEmissionShaper.h>
+	<lf/resources/CModel.h>
+	<lf/core/array.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cparticleemissionshapermodelnode.h
+	<lf/resources/particles/CParticleEmissionShaper.h>
+	<lf/scene/CModelSceneNode.h>
+	<lf/core/array.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cparticleemissionshaperpoint.h
+	<lf/resources/particles/CParticleEmissionShaper.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cparticleemissionshapersphere.h
+	<lf/resources/particles/CParticleEmissionShaper.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cparticleshapercolorrange.h
+	<lf/resources/particles/CParticleSystemShaper.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cparticleshapermassrange.h
+	<lf/resources/particles/CParticleSystemShaper.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cparticleshaperrotationrange.h
+	<lf/resources/particles/CParticleSystemShaper.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cparticleshapersizerange.h
+	<lf/resources/particles/CParticleSystemShaper.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cparticleshaperspeccolorrange.h
+	<lf/resources/particles/CParticleSystemShaper.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cparticleshaperttlrange.h
+	<lf/resources/particles/CParticleSystemShaper.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cparticleshapervelocityinit.h
+	<lf/resources/particles/CParticleSystemShaper.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cparticleshapervelocityrange.h
+	<lf/resources/particles/CParticleSystemShaper.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cpointparticlesystem.h
+	<lf/resources/particles/CParticleSystem.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cpointspriteparticlesystem.h
+	<lf/resources/particles/CParticleSystem.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cviewplanebillboardparticlesystem.h
+	<lf/resources/particles/CParticleSystem.h>
+
+1200493796 k:\lf-bedge\include\lf\resources\particles\caxialbillboardparticleemitter.h
+	<lf/resources/particles/CParticleEmitter.h>
+	<lf/resources/basicmodels/CBillboardModel.h>
+
+1200546544 k:\lf-bedge\include\lf\resources\particles\ceyepointbillboardparticleemitter.h
+	<lf/resources/particles/CParticleEmitter.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cpointparticleemitter.h
+	<lf/resources/particles/CParticleEmitter.h>
+
+1200317278 k:\lf-bedge\include\lf\resources\particles\cpointspriteparticleemitter.h
+	<lf/resources/particles/CParticleEmitter.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\particles\cviewplanebillboardparticleemitter.h
+	<lf/resources/particles/CParticleEmitter.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\lfnature.h
+	"nature/CLeafModel.h"
+	"nature/CTreeModel.h"
+	"nature/ITreeProfile.h"
+	"nature/CPineTreeProfile.h"
+	"nature/CStandardTreeProfile.h"
+	"nature/CWindGenerator.h"
+	"nature/CTreeGenerator.h"
+	"nature/CGeoMipMapTerrainModel.h"
+	"nature/CLargeTerrainModel.h"
+	"nature/CLargeTerrainTreeNode.h"
+	"nature/CSkyBoxModel.h"
+	"nature/CSkyDomeModel.h"
+	"nature/CStaticTerrainModel.h"
+	"nature/CWaterSimulator.h"
+	"nature/CTerrainTileEvent.h"
+	"nature/CTerrainTileHandler.h"
+	"nature/ITerrainTileDisplayListener.h"
+	"nature/ITerrainTileLoadListener.h"
+	"nature/CNGPlantFactory.h"
+	"nature/CNGPlantModel.h"
+
+1202301750 k:\lf-bedge\include\lf\resources\nature\cleafmodel.h
+	<lf/resources/nature/CWindGenerator.h>
+	<lf/resources/CModel.h>
+	<lf/core/array.h>
+	<lf/core/vector3d.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\nature\cwindgenerator.h
+	<lf/core/CRefCounted.h>
+	<lf/core/vector3d.h>
+	<lf/os/CRandomizer.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\nature\ctreemodel.h
+	<lf/resources/CModel.h>
+	<lf/core/array.h>
+	<lf/resources/CMesh.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\nature\itreeprofile.h
+	<lf/core/CRefCounted.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\nature\cpinetreeprofile.h
+	<lf/resources/nature/ITreeProfile.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\nature\cstandardtreeprofile.h
+	<lf/resources/nature/ITreeProfile.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\nature\ctreegenerator.h
+	<lf/resources/nature/CTreeModel.h>
+	<lf/resources/nature/CLeafModel.h>
+	<lf/core/array.h>
+	<lf/core/list.h>
+	<lf/core/vector3d.h>
+	<lf/core/vector2d.h>
+	<lf/core/matrix4.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\nature\cskyboxmodel.h
+	<lf/LfConfig.h>
+	<lf/resources/CModel.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\nature\cskydomemodel.h
+	<lf/LfConfig.h>
+	<lf/resources/CModel.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\nature\cstaticterrainmodel.h
+	<lf/LfConfig.h>
+	<lf/resources/CModel.h>
+	<lf/core/vector2d.h>
+	<lf/resources/CImage.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\nature\cwatersimulator.h
+	<lf/LfConfig.h>
+	<math.h>
+	<lf/core/vector2d.h>
+	<lf/resources/CVertexBuffer.h>
+	<lf/resources/CIndexBuffer.h>
+	<lf/resources/CMesh.h>
+	<lf/resources/CModel.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\nature\cterraintilehandler.h
+	<lf/resources/ITileHandler.h>
+	<lf/core/stringc.h>
+	<lf/resources/nature/CLargeTerrainModel.h>
+	<lf/resources/nature/CTerrainTileModel.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\nature\cterraintilemodel.h
+	<lf/LfConfig.h>
+	<lf/resources/CModel.h>
+	<lf/resources/nature/CLargeTerrainModel.h>
+	<lf/os/CFile.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\nature\cngplantfactory.h
+	<lf/LfConfig.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/stringc.h>
+	<lf/core/hashtable.h>
+	<lf/core/CColorI.h>
+	<lf/resources/CMaterial.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\nature\cngplantmodel.h
+	<lf/LfConfig.h>
+	<lf/resources/CModel.h>
+
+1202301700 k:\lf-bedge\include\lf\resources\lfprocedural.h
+	"procedural/CProceduralTexture.h"
+	"procedural/CNoise.h"
+	"procedural/CProcTexAlpha.h"
+	"procedural/CProcTexColorRange.h"
+	"procedural/CProcTexContrast.h"
+	"procedural/CProcTexConvolution.h"
+	"procedural/CProcTexNoise.h"
+	"procedural/CProcTexScale.h"
+	"procedural/CProcTexSolidColor.h"
+	"procedural/CProcTexTint.h"
+	"procedural/CProcTexTurbulence.h"
+	"procedural/CProcTexUnion.h"
+	"procedural/CImageUtils.h"
+	"procedural/CField.h"
+	"procedural/CFieldNoise.h"
+	"procedural/CFieldSphere.h"
+	"procedural/CMtVoxelMesh.h"
+
+1202301750 k:\lf-bedge\include\lf\resources\procedural\cproceduraltexture.h
+	<lf/core/CColorF.h>
+	<lf/core/vector3d.h>
+	<lf/core/CRefCounted.h>
+
+1195879136 k:\lf-bedge\include\lf\resources\procedural\cnoise.h
+	<math.h>
+	<lf/os/CRandomizer.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\procedural\cproctexalpha.h
+	<lf/resources/procedural/CProceduralTexture.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\procedural\cproctexcolorrange.h
+	<lf/resources/procedural/CProceduralTexture.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\procedural\cproctexcontrast.h
+	<lf/resources/procedural/CProceduralTexture.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\procedural\cproctexconvolution.h
+	<lf/resources/procedural/CProceduralTexture.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\procedural\cproctexnoise.h
+	<lf/resources/procedural/CNoise.h>
+	<lf/resources/procedural/CProceduralTexture.h>
+	<lf/core/lftypes.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\procedural\cproctexscale.h
+	<lf/resources/procedural/CProceduralTexture.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\procedural\cproctexsolidcolor.h
+	<lf/resources/procedural/CProceduralTexture.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\procedural\cproctextint.h
+	<lf/resources/procedural/CProceduralTexture.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\procedural\cproctexturbulence.h
+	<lf/resources/procedural/CProceduralTexture.h>
+	<lf/resources/procedural/CNoise.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\procedural\cproctexunion.h
+	<lf/resources/procedural/CProceduralTexture.h>
+	<lf/core/array.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\procedural\cimageutils.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\procedural\cfield.h
+	<lf/core/vector3d.h>
+	<lf/core/CRefCounted.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\procedural\cfieldnoise.h
+	<lf/resources/procedural/CNoise.h>
+	<lf/resources/procedural/CField.h>
+	<lf/core/vector3d.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\procedural\cfieldsphere.h
+	<lf/resources/procedural/CField.h>
+	<lf/core/vector3d.h>
+
+1202301750 k:\lf-bedge\include\lf\resources\procedural\cmtvoxelmesh.h
+	<lf/resources/CMesh.h>
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+	<lf/core/vector3d.h>
+	<lf/core/IColor.h>
+	<lf/core/stringc.h>
+	<lf/resources/CVertexBufferNI.h>
+	<lf/resources/CIndexBuffer.h>
 
