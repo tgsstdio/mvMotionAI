@@ -28,14 +28,14 @@
 	<File name="experimental\include\mvMatrix.h" open="0" top="0" tabpos="4">
 		<Cursor position="428" topLine="5" />
 	</File>
-	<File name="experimental\include\mvMotionAIMask.h" open="1" top="0" tabpos="2">
+	<File name="experimental\include\mvMotionAIMask.h" open="0" top="0" tabpos="2">
 		<Cursor position="478" topLine="42" />
 	</File>
 	<File name="experimental\src\mvMatrix.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="186" topLine="0" />
 	</File>
-	<File name="test\mvBitFieldsUnitTest.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="8093" topLine="120" />
+	<File name="test\mvBitFieldsUnitTest.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="629" topLine="0" />
 	</File>
 	<File name="test\mvBitFieldsUnitTest.h" open="1" top="0" tabpos="1">
 		<Cursor position="361" topLine="0" />

@@ -26,6 +26,9 @@
  * Log
  *
  * version     date
+ * 00-02-51    12/03/07
+ * - convert all mvMotionAI types into lightfeather library values
+ *
  * 00-01-51    12/03/07
  * - declared header file here so change of header linking is easier.
  *
@@ -35,8 +38,14 @@
  * 00-01-20    18/11/06  \li doxygen documentation added
  */
 
+#ifndef MV_LF_MOTIONAI_TYPES_HEADER_FILE_H_
+#define MV_LF_MOTIONAI_TYPES_HEADER_FILE_H_
+
+//#define MV_MOTIONAI_TYPES_HEADER_FILE_H_ <mvLFMotionAI-Types.h>
+
 #ifndef MV_MOTIONAI_TYPES_HEADER_FILE_H_
 #define MV_MOTIONAI_TYPES_HEADER_FILE_H_ <mv/mvMotionAI-Types.h>
+#endif
 
 #include <lf/lightfeather.h>
 #define MVMOTIONAI_TYPES_VERSION "00-02-01-LF"
@@ -70,13 +79,13 @@ typedef f64 mvFloat;
 /**
  * \brief floating point numbers
  */
-typedef f32 mvFloat;
+typedef lf::f32 mvFloat;
 #endif
 
 /**
  * \brief mvChar - char & string variables
  */
-typedef s8 mvChar;
+typedef lf::s8 mvChar;
 
 /**
  * \brief string pointer
@@ -114,29 +123,29 @@ typedef const mvChar* mvConstStringPtr;
 /**
  * \brief array index type
  */
-typedef s16 mvIndex;
+typedef lf::s16 mvIndex;
 /**
  * \brief counter / no of items type
  */
-typedef s16 mvCount;
+typedef lf::s16 mvCount;
 #elif MV_MOTIONAI_INDEX_TYPE == MV_MOTIONAI_INDEX_TYPE_LONG
 /**
  * \brief array index type
  */
-typedef s64 mvIndex;
+typedef lf::s64 mvIndex;
 /**
  * \brief counter / no of items type
  */
-typedef s64 mvCount;
+typedef lf::s64 mvCount;
 #else
 /**
  * \brief array index type
  */
-typedef s32 mvIndex;
+typedef lf::s32 mvIndex;
 /**
  * \brief counter / no of items type
  */
-typedef s32 mvCount;
+typedef lf::s32 mvCount;
 #endif
 
 /**
@@ -357,8 +366,7 @@ typedef class mvBEntry* mvEntryPtr;
  */
 #define mvForceLoaderListPtr mvForceLoaderList*
 
-#define MV_VEC_3_HEADER_FILE_H_ <mv/mvVec3.h>
-typedef lf::core::vector3df mvVec3;
+#define MV_VEC_3_HEADER_FILE_H_ <mvLFVec3.h>
 #define MV_ENUMS_HEADER_FILE_H_ <mv/mvEnums.h>
 #define MV_MOTIONAI_HEADER_FILE <mv/mvMotionAI.h>
 
