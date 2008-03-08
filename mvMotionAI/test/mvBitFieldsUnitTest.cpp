@@ -2,6 +2,7 @@
 #include <cstdio>
 
 #include <mv/mvMotionAI.h>
+#include <mvMotionAIMask.h>
 #define TESTFIXTURE_CLASS_NAME mvBitFieldUnitTest
 
 // Registers the fixture into the 'registry'
@@ -88,7 +89,7 @@ class mvBody_V4
 class mvBody_V5
 {
 	mvBody_V4 sum;
-	mvBodyStatus status;
+	mvMotionAIMask object;
 };
 
 
@@ -98,7 +99,7 @@ void TESTFIXTURE_CLASS_NAME::testBody()
 	size_t newBodySize = sizeof(mvBody_V3);
 	mvBodyStatus status;
 
-	std::cout << "Old size : " << oldBodySize
+	std::cout << "\nOld size : " << oldBodySize
 		<< " New body size : " << newBodySize
 		<< " Status : " << sizeof(mvBodyStatus)
 		<< " Bool : " << sizeof(bool)
@@ -112,6 +113,30 @@ void TESTFIXTURE_CLASS_NAME::testBody()
 	CPPUNIT_ASSERT_MESSAGE("4 Is not less than old body",!status.enabled);
 	CPPUNIT_ASSERT_MESSAGE("5 Is not less than old body",status.applyForces);
 }
+
+class mvActionLimits
+{
+	public:
+      unsigned accelMotionType : 2;
+		unsigned velocityMotionType : 2;
+		unsigned directionMotionType : 2;
+		unsigned forceMotionType : 2;
+
+		unsigned torqueMotionType : 2;
+		unsigned omegaMotionType : 2;
+		unsigned rotationMotionType : 2;
+		unsigned quaternionMotionType : 2;
+
+		unsigned accelEffectType : 2;
+		unsigned velocityEffectType : 2;
+		unsigned directionEffectType : 2;
+		unsigned forceEffectType : 2;
+
+		unsigned torqueEffectType : 2;
+		unsigned rotationEffectType : 2;
+		unsigned omegaEffectType : 2;
+		unsigned quaternionEffectType : 2;
+};
 
 class mvBehaviourResult_V2
 {
@@ -174,23 +199,52 @@ class mvBehaviourResult_V2
       mvIndex groupIndex;
 };
 
+class mvActionResult_V2
+{
+	public:
+		mvMotionAIMask mask;
+		mvActionLimits limits;
+
+      mvVec3 force;
+      mvVec3 acceleration;
+      mvVec3 velocity;
+      mvVec3 direction;
+      mvVec3 torque;
+      mvVec3 omega;
+      mvVec3 rotation;
+      mvFloat quaternion[MV_QUATERNION_LENGTH];
+
+      // predicted items.
+      mvVec3 brFuturePosition;
+      mvVec3 brFutureFinalPosition;
+      mvVec3 brFutureVelocity;
+      mvVec3 brFutureFinalVelocity;
+
+      mvFloat currentTimeStep;
+      mvFloat elapsedSystemTime;
+      mvConstWorldPtr currentWorld;
+      mvConstBodyPtr currentBody;
+      mvBaseActionPtr currentGroupBehNode;
+      mvIndex behaviourIndex;
+      mvIndex groupIndex;
+};
+
 void TESTFIXTURE_CLASS_NAME::testBehaviourResult()
 {
 	size_t oldBodySize = sizeof(mvBehaviourResult);
 	size_t newBodySize = sizeof(mvBehaviourResult_V2);
 
-	std::cout << "Old size : " << oldBodySize
+	std::cout << "\nOld size : " << oldBodySize
 		<< " New body size : " << newBodySize
 		//<< " Status : " << sizeof(mvBodyStatus)
 		<< " Bool : " << sizeof(bool)
-		//<< " Body V5 : " << sizeof(mvBody_V5)
+		<< " action result V2 : " << sizeof(mvActionResult_V2)
 		 << std::endl;
 	CPPUNIT_ASSERT_MESSAGE("1 Is not less than old body",newBodySize < oldBodySize);
 }
 
-class mvForceResult_V2
+class mvForceResultStatus
 {
-   public:
 		bool omegaInDegrees : 1;
       bool rotationInDegrees : 1;
       bool isDefaultMotionSteering : 1;
@@ -199,6 +253,7 @@ class mvForceResult_V2
       bool applyAccel : 1;
       bool applyShift : 1;
       bool applyGravity : 1;
+
       bool applyTorque : 1;
       bool applyOmega : 1;
       bool applyDirection : 1;
@@ -212,21 +267,64 @@ class mvForceResult_V2
 		unsigned accelMotion : 2;
 		unsigned shiftMotion : 2;
 		unsigned gravityMotion : 2;
+
 		unsigned torqueMotion : 2;
 		unsigned omegaMotion : 2;
 		unsigned directionMotion : 2;
 		unsigned quaternionMotion : 2;
-		unsigned rotationMotion : 2;
 
+		unsigned rotationMotion : 2;
 		unsigned forceEffect : 2;
 		unsigned accelEffect : 2;
 		unsigned shiftEffect : 2;
+
 		unsigned gravityEffect : 2;
 		unsigned torqueEffect : 2;
 		unsigned omegaEffect : 2;
 		unsigned directionEffect : 2;
+
 		unsigned quaternionEffect : 2;
 		unsigned rotationEffect : 2;
+};
+
+class mvForceResult_V2
+{
+   public:
+		mvMotionAIMask mask;
+		mvActionLimits limits;
+
+      mvConstWorldPtr currentWorld;
+      mvConstBodyPtr currentBody;
+      mvVec3 force;
+      mvVec3 gravity;
+      mvVec3 acceleration;
+      mvVec3 shiftVec;
+      mvFloat dragForce;
+      mvFloat dragAcceleration;
+      mvFloat dragShift;
+      mvVec3 torque;
+      mvVec3 omega;
+      mvVec3 rotation;
+      mvVec3 direction;
+      mvFloat quaternion[MV_FORCE_QUATERNION_LENGTH];
+
+      // predicted items.
+      mvVec3 brFuturePosition;
+      mvVec3 brFutureFinalPosition;
+      mvVec3 brFutureVelocity;
+      mvVec3 brFutureFinalVelocity;
+
+      mvFloat currentTimeStep;
+      mvFloat elapsedSystemTime;
+};
+
+class mvForceResult_V3
+{
+   public:
+		mvMotionAIMask mask;
+		mvActionLimits status;
+		unsigned short gravityMotion;
+		unsigned short gravityEffect;
 
       mvConstWorldPtr currentWorld;
       mvConstBodyPtr currentBody;
@@ -256,13 +354,128 @@ class mvForceResult_V2
 void TESTFIXTURE_CLASS_NAME::testForceResult()
 {
 	size_t oldBodySize = sizeof(mvForceResult);
-	size_t newBodySize = sizeof(mvForceResult_V2);
+	size_t newBodySize = sizeof(mvForceResult_V3);
 
-	std::cout << "Old size : " << oldBodySize
+	std::cout << "\nOld size : " << oldBodySize
+		<< " New body size : " << newBodySize
+		//<< " Status : " << sizeof(mvBodyStatus)
+		<< " V2 : " << sizeof(mvForceResult_V2)
+		<< " V3 : " << sizeof(mvForceResult_V3)
+		 << std::endl;
+	CPPUNIT_ASSERT_MESSAGE("1 Is not less than old body",newBodySize < oldBodySize);
+}
+
+class mvForceStatus_V2
+{
+   public:
+      bool onlyLocalForce : 1;
+      bool onlyGlobalForce : 1;
+      bool forcesOn : 1;
+      bool gravityOn : 1;
+      bool accelerationOn : 1;
+      bool shiftsOn : 1;
+      bool dragForceOn : 1;
+      bool dragAccelerationOn : 1;
+      bool dragShiftOn : 1;
+      bool torqueOn : 1;
+      bool omegaOn : 1;
+      bool rotationOn : 1;
+      bool quaternionOn : 1;
+};
+
+void TESTFIXTURE_CLASS_NAME::testForceStatus()
+{
+	size_t oldBodySize = sizeof(mvForceStatus);
+	size_t newBodySize = sizeof(mvForceStatus_V2);
+
+	std::cout << "\nOld size : " << oldBodySize
 		<< " New body size : " << newBodySize
 		//<< " Status : " << sizeof(mvBodyStatus)
 		<< " Bool : " << sizeof(bool)
 		//<< " Body V5 : " << sizeof(mvBody_V5)
 		 << std::endl;
 	CPPUNIT_ASSERT_MESSAGE("1 Is not less than old body",newBodySize < oldBodySize);
+}
+
+class mvWorldStatus
+{
+	public:
+		bool isEnabled : 1;
+		bool applyForces : 1;
+		bool applyGravity : 1;
+		bool applyShifts : 1;
+		bool applyAccelerations : 1;
+		bool applyCollisions : 1;
+		bool applyAllForces : 1;
+		bool applyAllDragForces : 1;
+
+		bool autoConvertIndex : 1;
+		bool isRightHanded : 1;
+
+		bool integratePosition : 1;
+		bool integrateRotation : 1;
+		bool integrateVelocity : 1;
+		bool integrateFinalVelocity : 1;
+		bool integrateTorque : 1;
+		bool integrateFinalTorque : 1;
+		bool integrateForce : 1;
+		bool integrateFinalForce : 1;
+};
+
+class mvWorld_V3
+{
+	public:
+		mvMotionAIMask status;
+      void* wUserData;
+      mvActionLoaderListPtr behavLoader;
+      mvFloat elapsedWorldTime;
+      mvForceLoaderListPtr forceLoader;
+		bool autoIndex;
+	//bool getEnabled() const;
+
+   private:
+      mvPointerList<mvEntryListPtr, mvConstEntryListPtr> entryLists;
+      mvCapsuleList<mvBaseForcePtr, mvConstBaseForcePtr,\
+         mvForceCapsulePtr, mvConstForceCapsulePtr> forces;
+      mvPointerList<mvObstaclePtr, mvConstObstaclePtr> obstacles;
+      mvCapsuleList<mvBodyPtr, mvConstBodyPtr, mvBodyCapsulePtr,\
+         mvConstBodyCapsulePtr> bodies;
+      mvCapsuleList<mvWaypointPtr, mvConstWaypointPtr, mvWaypointCapsulePtr,\
+         mvConstWaypointCapsulePtr> waypoints;
+      mvPointerList<mvPathwayPtr,mvConstPathwayPtr> pathways;
+      mvPointerList<mvGroupBehaviourPtr, mvConstGroupBehaviourPtr>\
+         groupBehaviours;
+      mvPointerList<mvBehaviourPtr, mvConstBehaviourPtr> behaviours;
+      mvCapsuleList<mvGroupPtr, mvConstGroupPtr, mvGroupCapsulePtr,\
+         mvConstGroupCapsulePtr> groups;
+
+;
+};
+
+void TESTFIXTURE_CLASS_NAME::testWorld()
+{
+	size_t oldBodySize = sizeof(mvWorld);
+	size_t newBodySize = sizeof(mvWorld_V3);
+	mvWorld_V3 status;
+	mvMotionAIMask testObject;
+	mvMotionAIMask_SetAllFlagsOff(testObject);
+	testObject.statusFlag.isEnabled = true;
+
+	std::cout
+		<< "\nStatus (mvMotionAI): " << sizeof(mvMotionAIStatus)
+		<< " unsigned int sizeof " << sizeof(unsigned int)
+		<< " testObject: " << sizeof(testObject)
+		<< " compare flag : " << sizeof(mvMotionAIMask)
+		<< " value : " << (unsigned int) testObject.numericFlag
+		<< std::endl;
+
+	std::cout << "\nOld size : " << oldBodySize
+		<< " New body size : " << newBodySize
+		<< " Status : " << sizeof(mvWorldStatus)
+		<< " Bool : " << sizeof(bool)
+		//<< " Body V5 : " << sizeof(mvBody_V5)
+		 << std::endl;
+	CPPUNIT_ASSERT_MESSAGE("1 Is not less than old body",newBodySize < oldBodySize);
+	status.status.statusFlag.isEnabled = true;
+	CPPUNIT_ASSERT_MESSAGE("2 Is not less than old body",status.status.statusFlag.isEnabled);
 }
