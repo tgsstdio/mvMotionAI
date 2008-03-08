@@ -801,14 +801,18 @@
 1197438892 source:d:\mvmotionai\mvmotionai\experimental\src\mvmatrix.cpp
 	<mvMatrix.h>
 
-1198583552 source:d:\mvmotionai\mvmotionai\test\mvbitfieldsunittest.cpp
+1204950180 source:d:\mvmotionai\mvmotionai\test\mvbitfieldsunittest.cpp
 	"mvBitFieldsUnitTest.h"
 	<cstdio>
 	<mv/mvMotionAI.h>
+	<mvMotionAIMask.h>
 
-1198565934 d:\mvmotionai\mvmotionai\test\mvbitfieldsunittest.h
+1198588840 d:\mvmotionai\mvmotionai\test\mvbitfieldsunittest.h
 	<cppunit/extensions/HelperMacros.h>
 
 1193548156 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
+	<mv/mvMotionAI-Types.h>
+
+1204949450 d:\mvmotionai\mvmotionai\experimental\include\mvmotionaimask.h
 	<mv/mvMotionAI-Types.h>
 

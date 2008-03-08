@@ -11,6 +11,8 @@ class TESTFIXTURE_CLASS_NAME : public CppUnit::TestFixture
    CPPUNIT_TEST(testBody);
    CPPUNIT_TEST(testBehaviourResult);
    CPPUNIT_TEST(testForceResult);
+   CPPUNIT_TEST(testForceStatus);
+   CPPUNIT_TEST(testWorld);
    CPPUNIT_TEST_SUITE_END();
 
    public:
@@ -20,6 +22,8 @@ class TESTFIXTURE_CLASS_NAME : public CppUnit::TestFixture
       void testBody();
       void testBehaviourResult();
       void testForceResult();
+      void testForceStatus();
+      void testWorld();
       void testGetParameter();
 };
 

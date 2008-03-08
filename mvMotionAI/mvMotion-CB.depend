@@ -282,3 +282,21 @@
 1196255128 d:\mvmotionai\mvmotionai\src\mvworld2_functions.h
 	<mv/mvMotionAI-Types.h>
 
+1197379100 source:d:\mvmotionai\mvmotionai\src\mvgroup_v2.cpp
+	<mv/mvGroup_V2.h>
+
+1197378610 d:\mvmotionai\mvmotionai\include\mv\mvgroup_v2.h
+	<mv/mvMotionAI-Types.h>
+
+1197379070 source:d:\mvmotionai\mvmotionai\src\mvindexset.cpp
+	<mv/mvIndexSet.h>
+
+1197379038 d:\mvmotionai\mvmotionai\include\mv\mvindexset.h
+	<mv/mvMotionAI-Types.h>
+	<set>
+	<vector>
+
+1197379086 source:d:\mvmotionai\mvmotionai\src\mvworld2_functions.cpp
+	"mvWorld2_Functions.h"
+	<iostream>
+

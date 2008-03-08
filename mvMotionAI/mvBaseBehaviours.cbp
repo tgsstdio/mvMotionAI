@@ -178,6 +178,9 @@
 		<Unit filename="experimental\include\mvMatrix.h">
 			<Option target="mvMatrix" />
 		</Unit>
+		<Unit filename="experimental\include\mvMotionAIMask.h">
+			<Option target="mvBitfields" />
+		</Unit>
 		<Unit filename="experimental\src\mvMatrix.cpp">
 			<Option target="mvMatrix" />
 		</Unit>
