@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="sideproject4 - group behaviour functionality" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="mingw-winXP-debug">
+				<Option output="bin\sideproject4-debug" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="..\bin" />
+				<Option object_output="obj\Debug\" />
+				<Option external_deps="..\lib\libmvMotionAI-mingw-debug.a;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option projectCompilerOptionsRelation="2" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="..\lib\libmvMotionAI-mingw-debug.a" />
+					<Add library="..\lib-other\freeglut-debug.lib" />
+				</Linker>
+			</Target>
+			<Target title="mingw-winXP">
+				<Option output="bin\sideproject4" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="..\bin" />
+				<Option object_output="obj\Release\" />
+				<Option external_deps="..\lib\libmvMotionAI-mingw.a;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option projectCompilerOptionsRelation="2" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="..\lib\libmvMotionAI-mingw.a" />
+					<Add library="..\lib-other\freeglut.lib" />
+				</Linker>
+			</Target>
+			<Target title="mingw-winXP-dll-debug">
+				<Option output="bin\sideproject4-dll-debug" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="..\bin" />
+				<Option object_output="obj\Debug-dll\" />
+				<Option external_deps="..\bin\mvMotionAI-mingw-dll-debug.dll;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option projectCompilerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="..\bin\libmvMotionAI-mingw-dll-debug.a" />
+					<Add library="..\lib-other\freeglut-debug.lib" />
+				</Linker>
+			</Target>
+			<Target title="mingw-winXP-dll">
+				<Option output="bin\sideproject4-dll" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="..\bin" />
+				<Option object_output="obj\Release-dll\" />
+				<Option external_deps="..\bin\mvMotionAI-mingw-dll.dll;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option projectCompilerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="..\bin\libmvMotionAI-mingw-dll.a" />
+					<Add library="..\lib-other\freeglut.lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add directory="..\include" />
+			<Add directory="..\include-other" />
+			<Add directory="..\experimental\include" />
+		</Compiler>
+		<Linker>
+			<Add library="glu32" />
+			<Add library="opengl32" />
+			<Add directory="..\lib" />
+			<Add directory="..\lib-other" />
+		</Linker>
+		<Unit filename="..\examples-src\Camera.cpp" />
+		<Unit filename="..\examples-src\Camera.h" />
+		<Unit filename="..\examples-src\sideproject4\mvFlyingV.cpp" />
+		<Unit filename="..\examples-src\sideproject4\mvFlyingV.h" />
+		<Unit filename="..\examples-src\sideproject4\mvMovingAcross.cpp" />
+		<Unit filename="..\examples-src\sideproject4\mvMovingAcross.h" />
+		<Unit filename="..\examples-src\sideproject4\sideproject4.cpp" />
+		<Unit filename="..\experimental\include\mvReadyMadeLoader.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

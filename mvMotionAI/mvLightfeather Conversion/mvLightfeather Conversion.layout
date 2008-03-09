@@ -4,10 +4,13 @@
 	<File name="mvLFMotionAI-Types.h" open="1" top="0" tabpos="1">
 		<Cursor position="1792" topLine="23" />
 	</File>
-	<File name="mvLFVec3.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="7330" topLine="125" />
+	<File name="mvLFVec3.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="13260" topLine="479" />
 	</File>
-	<File name="mvLFVec3.h" open="1" top="1" tabpos="4">
-		<Cursor position="2653" topLine="24" />
+	<File name="mvLFVec3.h" open="1" top="0" tabpos="2">
+		<Cursor position="4290" topLine="96" />
+	</File>
+	<File name="..\src\mvWorld2_Functions.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="46541" topLine="1443" />
 	</File>
 </CodeBlocks_layout_file>

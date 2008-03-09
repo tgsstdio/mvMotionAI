@@ -156,6 +156,7 @@ class MV_GLOBAL_FUNC_PREFIX mvVec3
       mvFloat getZ() const;
 
       const mvFloat* getPointer() const;
+		mvCount extractVecToArray(mvFloat* array) const;
       void  toZeroVec();
       void  randomiseNormal();
 

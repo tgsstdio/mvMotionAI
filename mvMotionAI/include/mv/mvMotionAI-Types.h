@@ -35,8 +35,14 @@
  * 00-01-20    18/11/06  \li doxygen documentation added
  */
 
+#ifndef MV_MOTIONAI_TYPES_HEADER_FILE_BLOCK_H_
+#define MV_MOTIONAI_TYPES_HEADER_FILE_BLOCK_H_
+
+#define MV_MOTIONAI_TYPES_HEADER_FILE_H_ <mv/mvMotionAI-Types.h>
+
 #ifndef MV_MOTIONAI_TYPES_HEADER_FILE_H_
 #define MV_MOTIONAI_TYPES_HEADER_FILE_H_ <mv/mvMotionAI-Types.h>
+#endif
 
 #define MVMOTIONAI_TYPES_VERSION "00-02-01"
 

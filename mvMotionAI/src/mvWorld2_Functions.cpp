@@ -1378,6 +1378,7 @@ void mvWorldV2_CheckWaypointLocality(mvWaypointCapsulePtr wCapsulePtr,\
    mvWorld_V2_LocalForceCalculationHelper* bodyHelper =
       (mvWorld_V2_LocalForceCalculationHelper*) extraPtr;
    const mvFloat* posArray = MV_NULL;
+   mvFloat tempArray[MV_VEC3_NO_OF_COMPONENTS];
    mvWorld_V2_LocalForceCalculationHelper* sphereHelperPtr = MV_NULL;
    mvWorld_V2_LocalForceCalculationHelper* aaboxHelperPtr = MV_NULL;
    mvFloat radiusSq = 0;
@@ -1455,6 +1456,11 @@ void mvWorldV2_CheckWaypointLocality(mvWaypointCapsulePtr wCapsulePtr,\
       }
 
       posArray = sphereHelperPtr->shapePos.getPointer();
+      if (posArray == MV_NULL)
+		{
+			sphereHelperPtr->shapePos.extractVecToArray(tempArray);
+			posArray = &tempArray[0];
+		}
       radiusSq = sphereHelperPtr->bodyRadiusSq;
 
       totalDiff = 0;
@@ -1483,6 +1489,7 @@ bool mvWorldV2_InitialiseInsideWaypointHelperStruct(\
    mvFloat tempVariable;
    mvVec3 minValues, maxValues;
    mvFloat bodyRadius, bodyLength;
+   mvFloat tempArray[MV_VEC3_NO_OF_COMPONENTS];
    mvFloat dimensions[MV_VEC3_NO_OF_COMPONENTS];
    mvCount noOfDimensions;
    mvErrorEnum error;
@@ -1512,6 +1519,11 @@ bool mvWorldV2_InitialiseInsideWaypointHelperStruct(\
       {
          // copy and fill aabox info
          arrayPtr  = currentPosition.getPointer();
+         if (arrayPtr)
+         {
+				currentPosition.extractVecToArray(tempArray);
+				arrayPtr = &tempArray[0];
+			}
          for (int i = 0; i < MV_VEC3_NO_OF_COMPONENTS; ++i)
          {
             helper.aabbMaxValues[i] = arrayPtr[i];
@@ -1581,6 +1593,11 @@ bool mvWorldV2_InitialiseInsideWaypointHelperStruct(\
       }
 
       arrayPtr = currentPosition.getPointer();
+		if (arrayPtr)
+		{
+			currentPosition.extractVecToArray(tempArray);
+			arrayPtr = &tempArray[0];
+		}
       helper.aabbMaxValues[helper.bodyOddAxisIndex]
          = arrayPtr[helper.bodyOddAxisIndex];
       helper.aabbMinValues[helper.bodyOddAxisIndex]
