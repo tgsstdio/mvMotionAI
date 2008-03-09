@@ -486,13 +486,42 @@ mvFloat mvVec3::getZ() const
   return components.Z;
 }
 
+mvCount mvVec3::extractVecToArray(mvFloat* array) const
+{
+	mvCount arraySize;
+	mvCount noOfCopiedValues = 0;
+
+	if (array != MV_NULL)
+	{
+		arraySize = (mvCount) sizeof(*array);
+
+		noOfCopiedValues = (arraySize < MV_VEC3_NO_OF_COMPONENTS) ? arraySize : MV_VEC3_NO_OF_COMPONENTS;
+
+		switch (noOfCopiedValues)
+		{
+			case 3:
+				array[2] = components.Z;
+			case 2:
+				array[1] = components.Y;
+			case 1:
+				array[0] = components.X;
+			default:
+				break;
+		}
+
+	}
+
+	return noOfCopiedValues;
+}
+
 /**
 * \brief returns XYZ array pointer
 * \return const mvFloat array pointer of length 3
 */
 const mvFloat* mvVec3::getPointer() const
 {
-   return &components[0];
+	//return &components[0];
+	return MV_NULL;
 }
 
 mvVec3 operator* (mvFloat s, const mvVec3& v)
@@ -502,13 +531,16 @@ mvVec3 operator* (mvFloat s, const mvVec3& v)
 
 void  mvVec3::randomiseNormal()
 {
-   mvFloat temp;
+   mvFloat temp[MV_VEC3_NO_OF_COMPONENTS];
 
    for (mvIndex i = 0; i < MV_VEC3_NO_OF_COMPONENTS; i++)
    {
-      temp = mvRandNormalised();
-      temp *= 2;
-      temp -= 1;
-      components[i] = temp;
+      temp[i] = mvRandNormalised();
+      temp[i] *= 2;
+      temp[i] -= 1;
    }
+
+   components.X = temp[0];
+   components.Y = temp[1];
+   components.Z = temp[2];
 }

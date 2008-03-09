@@ -529,6 +529,26 @@ mvFloat mvVec3::getZ() const
   return components[MV_VEC3_Z_COMPONENT];
 }
 
+mvCount mvVec3::extractVecToArray(mvFloat* array) const
+{
+	mvCount arraySize;
+	mvCount noOfCopiedValues = 0;
+
+	if (array !=MV_NULL)
+	{
+		arraySize = (mvCount) sizeof(*array);
+
+		noOfCopiedValues = (arraySize < MV_VEC3_NO_OF_COMPONENTS) ? arraySize : MV_VEC3_NO_OF_COMPONENTS;
+
+		for (mvCount i = 0; i < noOfCopiedValues; i++)
+		{
+			array[i] = components[i];
+		}
+	}
+
+	return noOfCopiedValues;
+}
+
 /**
 * \brief returns XYZ array pointer
 * \return const mvFloat array pointer of length 3
