@@ -4618,9 +4618,37 @@ void mvWorld::registerAllGroupBehavioursToBodies()
       mvWorld_V2_RegisterEachGroupBehaviour, this);
 }
 
-void mvWorld::registerGroupBehaviourToBodies(mvIndex groupBehaviourIndex)
+mvErrorEnum mvWorld::registerGroupBehaviourToBodies(mvIndex groupBehaviourIndex)
 {
+   // foreach group in group behaviour
+   mvWorld_V2_GroupBehaviourNodeHelper container;
 
+   mvGroupBehaviourPtr currentGroupBehav = getGroupBehaviourPtr(\
+      groupBehaviourIndex);
+
+   if (currentGroupBehav == MV_NULL)
+   {
+		return MV_INDEX_VALUE_IS_INVALID;
+   }
+
+	mvBaseActionPtr defaultActionPtr =\
+		currentGroupBehav->getDefaultActionPtr();
+
+	if (defaultActionPtr == MV_NULL)
+	{
+		return MV_ACTION_IS_NOT_INITIALISED;
+	}
+
+	container.mainGroupActionPtr = defaultActionPtr;
+	container.gbIndex = groupBehaviourIndex;
+	container.currentWorld = this;
+	container.isEnabled = currentGroupBehav->isEnabled;
+	mvOptionEnum nodeType = defaultActionPtr->getType();
+	container.gbType = nodeType;
+	currentGroupBehav->groupNodeList.applyToAllItems(\
+		mvWorld_V2_RegisterEachGroupInGroupBehaviour, &container);
+
+   return MV_NO_ERROR;
 }
 
 /** \brief blah blah

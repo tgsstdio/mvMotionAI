@@ -60,6 +60,7 @@ class MV_GLOBAL_FUNC_PREFIX mvBaseAction
       mvOptionEnum bType;
 
    public:
+		static mvErrorEnum getNotFoundEnum();
       mvBaseAction(mvOptionEnum type);
       mvOptionEnum getType() const;
 

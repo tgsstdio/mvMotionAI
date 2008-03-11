@@ -32,6 +32,12 @@ mvGroupBehaviourResult::mvGroupBehaviourResult(mvWorldPtr currentWorld,\
 {
    world = currentWorld;
    groupMemberList = currentMList;
+	toFirstMember();
+}
+
+bool mvGroupBehaviourResult::areWorldAndMemberListValid() const
+{
+	return (world != MV_NULL && groupMemberList != NULL);
 }
 
 /** @brief (one liner)
@@ -43,11 +49,108 @@ mvWorldPtr mvGroupBehaviourResult::getWorldPtr()
    return world;
 }
 
+bool mvGroupBehaviourResult::isAtEndOfMemberList() const
+{
+	if (groupMemberList == MV_NULL)
+	{
+		return true;
+	}
+
+	return groupMemberList->hasAllNodesBeenVisited();
+}
+
+void mvGroupBehaviourResult::toFirstMember()
+{
+	if (groupMemberList)
+	{
+		groupMemberList->toFirstMember();
+	}
+}
+
+void mvGroupBehaviourResult::toNextMember()
+{
+	if (groupMemberList != MV_NULL)
+	{
+		groupMemberList->toNextMember();
+	}
+}
+
+mvBodyPtr mvGroupBehaviourResult::getCurrentMemberAsBodyPtr() const
+{
+	mvGroupMemberNodePtr current = MV_NULL;
+
+	if (world == MV_NULL)
+	{
+		return MV_NULL;
+	}
+
+	current = groupMemberList->getCurrentMember();
+	if (current == MV_NULL)
+	{
+		return MV_NULL;
+	}
+
+	mvIndex requiredBody = current->getMemberIndex();
+	return world->getBodyPtr(requiredBody);
+}
+
+mvEntryListNodePtr mvGroupBehaviourResult::getCurrentMemberNodePtr() const
+{
+	mvGroupMemberNodePtr current = MV_NULL;
+	mvEntryListPtr actionList = NULL;
+	mvIndex requiredList = MV_NULL;
+	mvIndex requiredNode = MV_NULL;
+
+	if (world == MV_NULL)
+	{
+		return MV_NULL;
+	}
+
+	current = groupMemberList->getCurrentMember();
+
+	if (current == MV_NULL)
+	{
+		return MV_NULL;
+	}
+
+	requiredList = current->getMemberIndex();
+	requiredNode = current->getEntryNodeIndex();
+
+	actionList = world->getEntryListPtr(requiredList);
+
+	if (actionList == MV_NULL)
+	{
+		return MV_NULL;
+	}
+
+	return actionList->getEntry(requiredNode);
+}
+
+mvBaseActionPtr mvGroupBehaviourResult::getCurrentMemberActionDataPtr() const
+{
+	mvEntryListNodePtr currentNode = getCurrentMemberNodePtr();
+	mvEntryPtr memberEntryPtr = MV_NULL;
+
+	if (currentNode == MV_NULL)
+	{
+		return MV_NULL;
+	}
+
+	memberEntryPtr =  currentNode->getEntryPtr();
+
+	if (memberEntryPtr == MV_NULL)
+	{
+		return MV_NULL;
+	}
+
+	return memberEntryPtr->getActionPtr();
+}
+
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-mvGroupNodeMemberListPtr mvGroupBehaviourResult::getMemberList()
+mvGroupNodeMemberListPtr mvGroupBehaviourResult::getMemberList() const
 {
    return groupMemberList;
 }

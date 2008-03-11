@@ -264,6 +264,11 @@ bool mvGroupMemberNode:: operator== (const mvGroupMemberNode& rhs) const
    return (this->memberIndex == rhs.memberIndex);
 }
 
+mvIndex mvGroupMemberNode::getMemberIndex() const
+{
+	return memberIndex;
+}
+
 mvIndex mvGroupMemberNode::getEntryNodeIndex() const
 {
    return memberNodeIndex;
@@ -306,7 +311,7 @@ mvGroupMemberNodePtr mvGroupNodeMemberList::findMember(mvIndex memberIndex)
    for (i = mbActionDataSet.begin(); i != listEnd; ++i)
    {
       tempNode = *i;
-      if (tempNode != NULL && tempNode->memberIndex == memberIndex)
+      if (tempNode != NULL && tempNode->getMemberIndex() == memberIndex)
       {
          return tempNode;
       }
@@ -333,7 +338,14 @@ void mvGroupNodeMemberList::toFirstMember()
 
 mvGroupMemberNodePtr mvGroupNodeMemberList::getCurrentMember()
 {
-   return MV_NULL;
+	if (hasAllNodesBeenVisited())
+	{
+		return MV_NULL;
+	}
+	else
+	{
+		return *currentIter;
+	}
 }
 
 void mvGroupNodeMemberList::insertBeforeCurrentMember(mvIndex memberIndex,\

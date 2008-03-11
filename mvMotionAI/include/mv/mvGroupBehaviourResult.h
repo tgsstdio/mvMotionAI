@@ -50,10 +50,18 @@ class MV_GLOBAL_FUNC_PREFIX mvGroupBehaviourResult
       mvWorldPtr world;
       mvGroupNodeMemberListPtr groupMemberList;
 
+	void toFirstMember();
+	void toNextMember();
+	bool isAtEndOfMemberList() const;
+	bool areWorldAndMemberListValid() const;
    mvGroupBehaviourResult(mvWorldPtr currentWorld,\
       mvGroupNodeMemberListPtr currentMList);
    mvWorldPtr getWorldPtr();
-   mvGroupNodeMemberListPtr getMemberList();
+   mvGroupNodeMemberListPtr getMemberList() const;
+   mvEntryListNodePtr getCurrentMemberNodePtr() const;
+   mvBaseActionPtr getCurrentMemberActionDataPtr() const;
+   mvBodyPtr getCurrentMemberAsBodyPtr() const;
+
    ~mvGroupBehaviourResult();
 };
 

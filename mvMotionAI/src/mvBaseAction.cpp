@@ -37,6 +37,11 @@ mvOptionEnum mvBaseAction::getType() const
    return bType;
 }
 
+mvErrorEnum mvBaseAction::getNotFoundEnum()
+{
+	return MV_INVALID_BEHAVIOUR_PARAMETER;
+}
+
 /** \brief blah blah
  *
  */
@@ -54,7 +59,7 @@ mvErrorEnum mvBaseAction::getParametero(mvParamEnum paramFlag,\
          *option = getType();
          return MV_NO_ERROR;
       default:
-         return MV_INVALID_BEHAVIOUR_PARAMETER;
+         return getNotFoundEnum();
    }
 }
 
@@ -69,7 +74,7 @@ mvErrorEnum mvBaseAction::getParameteri(mvParamEnum paramFlag,\
       return MV_INDEX_DEST_IS_NULL;
    }
 
-   return MV_INVALID_BEHAVIOUR_PARAMETER;
+   return getNotFoundEnum();
 }
 
 /** \brief blah blah
@@ -83,7 +88,7 @@ mvErrorEnum mvBaseAction::getParameterf(mvParamEnum paramFlag,\
       return MV_FLOAT_DEST_IS_NULL;
    }
 
-   return MV_INVALID_BEHAVIOUR_PARAMETER;
+   return getNotFoundEnum();
 }
 
 /** \brief blah blah
@@ -103,7 +108,7 @@ mvErrorEnum mvBaseAction::getParameterv(mvParamEnum paramFlag,\
       return MV_PARAMETER_ARRAY_IS_NULL;
    }
 
-   return MV_INVALID_BEHAVIOUR_PARAMETER;
+   return getNotFoundEnum();
 }
 
 /** \brief blah blah
@@ -121,7 +126,7 @@ mvErrorEnum mvBaseAction::setParametero(mvParamEnum paramFlag,\
 mvErrorEnum mvBaseAction::setParameteri(mvParamEnum paramFlag,\
    mvIndex index)
 {
-   return MV_INVALID_BEHAVIOUR_PARAMETER;
+   return getNotFoundEnum();
 }
 
 /** \brief blah blah
@@ -129,7 +134,7 @@ mvErrorEnum mvBaseAction::setParameteri(mvParamEnum paramFlag,\
  */
 mvErrorEnum mvBaseAction::setParameterf(mvParamEnum paramFlag, mvFloat num)
 {
-   return MV_INVALID_BEHAVIOUR_PARAMETER;
+   return getNotFoundEnum();
 }
 
 /** \brief blah blah
@@ -143,7 +148,7 @@ mvErrorEnum mvBaseAction::setParameterv(mvParamEnum paramFlag,\
       return MV_PARAMETER_ARRAY_IS_NULL;
    }
 
-   return MV_INVALID_BEHAVIOUR_PARAMETER;
+   return getNotFoundEnum();
 }
 
 /** \brief blah blah

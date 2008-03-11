@@ -2457,5 +2457,19 @@ MV_GLOBAL_FUNC_PREFIX mvIndex mvFindMemberInGroup(mvIndex worldIndex,
 MV_GLOBAL_FUNC_PREFIX mvEntryListPtr mvGetEntryListPtr(mvIndex worldIndex,\
    mvIndex entryListIndex);
 
+/**
+ * \ingroup mvGlobal
+ * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
+ */
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRegisterAllGroupBehavioursToBodies(mvIndex\
+	worldIndex);
+
+/**
+ * \ingroup mvGlobal
+ * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
+ */
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRegisterGroupBehaviourToBodies(mvIndex\
+	worldIndex, mvIndex groupBehaviour);
+
 #endif
 
