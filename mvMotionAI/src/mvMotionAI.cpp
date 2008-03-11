@@ -5373,3 +5373,41 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvStepBody(mvIndex worldIndex,\
    }
    return error;
 }
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRegisterAllGroupBehavioursToBodies(mvIndex\
+	worldIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      worldPtr->registerAllGroupBehavioursToBodies();
+      return MV_NO_ERROR;
+   }
+   return error;
+}
+
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRegisterGroupBehaviourToBodies(mvIndex\
+	worldIndex, mvIndex groupBehaviour)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->registerGroupBehaviourToBodies(groupBehaviour);
+   }
+   return error;
+}

@@ -112,7 +112,7 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld
    public:
       // TODO : register
       void registerAllGroupBehavioursToBodies();
-      void registerGroupBehaviourToBodies(mvIndex groupBehaviourIndex);
+      mvErrorEnum registerGroupBehaviourToBodies(mvIndex groupBehaviourIndex);
 
       mvFloat getElapsedWorldTime() const;
       void integrateBody(mvBodyCapsulePtr bodyPtr, mvFloat timeInSecs);

@@ -115,6 +115,7 @@ int main(int argc, char** argv)
 	mvBaseActionLoader* actionLoader = new mvReadyMadeActionLoader<mvMovingAcross>();
 
 	mvAddBehaviourFunction(MV_PARTICLE, actionLoader);
+	mvAddBehaviourFunction(MV_VEHICLE, new mvReadyMadeActionLoader<mvFlyingV>());
 
    init ();
 
@@ -125,6 +126,30 @@ int main(int argc, char** argv)
    int bodyID = mvCreateBody(worldID,MV_PARTICLE,MV_SPHERE, 1 , 4 , 0);
 
    mvAddBehaviourToList(worldID, bodyID, MV_PARTICLE,0,0);
+
+	int behaviourID = mvCreateGroupBehaviour(worldID, MV_VEHICLE);
+	int groupID = mvCreateGroup(worldID);
+
+	mvAddMemberIntoGroup(worldID, groupID, bodyID);
+	mvAddGroupIntoGroupBehaviour(worldID, behaviourID, groupID);
+
+	float position[4] = {1,1,0,1};
+	float initialPos[4] = {0,0,0,1};
+
+	for (int j = 0; j < 10; j++)
+	{
+		bodyID = mvCreateBody(worldID,MV_PARTICLE,MV_SPHERE, 1 , 4 , 0);
+		initialPos[0] = j;
+		mvSetBodyParameterv(worldID, bodyID, MV_POSITION, &initialPos[0]);
+		mvAddMemberIntoGroup(worldID, groupID, bodyID);
+		paramError = mvRegisterGroupBehaviourToBodies(worldID, behaviourID);
+		if (paramError)
+		{
+			std::cout <<"Param Error " << mvGetErrorEnumString(paramError) << std::endl;
+		}
+		mvSetEntryListNodeParameterv(worldID, bodyID, -1, MV_POSITION, &position[0]);
+		mvSetEntryListNodeParameteri(worldID, bodyID, -1, MV_INDEX, bodyID - 1);
+	}
 
    glutDisplayFunc(display);
    glutReshapeFunc(reshape);
@@ -141,7 +166,7 @@ const char camera_keys[] = "q|Q/w|W/e|E : move camera\nz|Z/x|X/c|c rotates camer
 
 void display(void)
 {
-   int i = 0;
+   //int i = 0;
 
    glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    glPushMatrix();
@@ -220,7 +245,7 @@ void worldFunction(mvWorldPtr tempWorld, void* entry)
  */
 void displayBody(mvBodyPtr p,void* extraPtr)
 {
-   mvOptionEnum tempShape;
+//   mvOptionEnum tempShape;
 
    if (p != NULL)
    {
@@ -259,7 +284,7 @@ void displayBody(mvBodyPtr p,void* extraPtr)
 void displayObstacle(mvObstaclePtr o,void* extraPtr)
 {
    //const float offsetY = 0.5;
-   mvOptionEnum tempShape;
+//   mvOptionEnum tempShape;
 
    if (o != NULL)
    {
@@ -272,7 +297,8 @@ void drawGLShape(int drawMode, mvConstShapePtr shapePtr,
    const mvVec3& pos, float r, float g, float b)
 {
    mvOptionEnum tempShape;
-   mvFloat radius, length;
+   mvFloat radius;
+   //.. length;
    mvFloat aaboxDimensions[MV_VEC3_NO_OF_COMPONENTS];
    mvCount noOfDimensions;
    mvErrorEnum error;

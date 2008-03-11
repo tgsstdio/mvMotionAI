@@ -51,10 +51,12 @@
  */
 class MV_GLOBAL_FUNC_PREFIX mvGroupMemberNode
 {
-   public:
+	private:
       mvIndex memberIndex;
       mvIndex memberNodeIndex;
 
+   public:
+		mvIndex getMemberIndex() const;
       mvIndex getEntryNodeIndex() const;
       mvGroupMemberNode(mvIndex mbIndex,  mvIndex mbNodeIndex);
       bool operator<(const mvGroupMemberNode& rhs) const;

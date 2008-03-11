@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="mingw-winXP-dll-debug" />
-	<File name="..\examples-src\sideproject4\mvFlyingV.cpp" open="1" top="1" tabpos="6">
-		<Cursor position="437" topLine="9" />
+	<ActiveTarget name="mingw-winXP-debug" />
+	<File name="..\examples-src\sideproject4\mvFlyingV.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="552" topLine="105" />
 	</File>
-	<File name="..\examples-src\sideproject4\mvFlyingV.h" open="1" top="0" tabpos="2">
-		<Cursor position="216" topLine="0" />
+	<File name="..\examples-src\sideproject4\mvFlyingV.h" open="1" top="0" tabpos="6">
+		<Cursor position="123" topLine="0" />
 	</File>
-	<File name="..\examples-src\sideproject4\mvMovingAcross.cpp" open="1" top="0" tabpos="5">
+	<File name="..\examples-src\sideproject4\mvMovingAcross.cpp" open="1" top="0" tabpos="4">
 		<Cursor position="582" topLine="6" />
 	</File>
-	<File name="..\examples-src\sideproject4\mvMovingAcross.h" open="1" top="0" tabpos="4">
+	<File name="..\examples-src\sideproject4\mvMovingAcross.h" open="1" top="0" tabpos="3">
 		<Cursor position="286" topLine="0" />
 	</File>
-	<File name="..\examples-src\sideproject4\sideproject4.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="3706" topLine="97" />
+	<File name="..\examples-src\sideproject4\sideproject4.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="4387" topLine="119" />
 	</File>
-	<File name="..\experimental\include\mvReadyMadeLoader.h" open="1" top="0" tabpos="3">
+	<File name="..\experimental\include\mvReadyMadeLoader.h" open="1" top="0" tabpos="2">
 		<Cursor position="476" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>
