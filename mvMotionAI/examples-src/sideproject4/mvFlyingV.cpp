@@ -46,22 +46,26 @@ bool mvFlyingV::groupOp(mvGroupBehaviourResult* result)
 			actionDataPtr = result->getCurrentMemberActionDataPtr();
 
 			// checking it has the same type
-			if (actionDataPtr != MV_NULL && actionDataPtr->getType() == getType())
+			if (actionDataPtr != MV_NULL)
 			{
-				flyData = (mvFlyingV*) actionDataPtr;
-
-				leaderNode = flyData->parentNode;
-
-				// only bodies that following a parent are calculated
-				if (leaderNode != MV_NULL)
+				if (actionDataPtr->getType() == getType())
 				{
-					targetBody = currentWorld->getBodyPtr(leaderNode);
 
-					totalVelocity = targetBody->getPosition();
-					totalVelocity += flyData->offsetPosition;
+					flyData = (mvFlyingV*) actionDataPtr;
 
-					flyData->finalVelocity = currentBody->getPosition();
-					flyData->finalVelocity -= totalVelocity;
+					leaderNode = flyData->parentNode;
+
+					// only bodies that following a parent are calculated
+					if (leaderNode != MV_NULL)
+					{
+						targetBody = currentWorld->getBodyPtr(leaderNode);
+
+						totalVelocity = targetBody->getPosition();
+						totalVelocity += flyData->offsetPosition;
+
+						flyData->finalVelocity = currentBody->getPosition();
+						flyData->finalVelocity -= totalVelocity;
+					}
 				}
 			}
 		}

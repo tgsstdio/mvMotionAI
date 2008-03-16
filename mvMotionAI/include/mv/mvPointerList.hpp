@@ -71,7 +71,7 @@ void mvPointerList<mvClass,mvConstClass>::setAutoConvertIndex(bool value)
 template <class mvClass, class mvConstClass>
 bool mvPointerList<mvClass,mvConstClass>::isIndexValid(mvIndex index) const
 {
-   return (index < 0 || index > maxNoOfItems);
+   return (index >= 0 && index < maxNoOfItems);
 }
 
 /**
@@ -91,26 +91,29 @@ mvIndex mvPointerList<mvClass,mvConstClass>::convertIndex(mvIndex index) const
          finalIndex = changeFromMvIndexToC(index);
          if (isIndexValid(finalIndex))
          {
-            return MV_NULL;
+				// TODO : check for error
+				finalIndex -= MV_OFFSET_TO_INDEX;
+				return finalIndex;
+			}
+         else
+         {
+				return MV_NULL;
          }
-
-         // TODO : check for error
-         finalIndex -= MV_OFFSET_TO_INDEX;
-         return finalIndex;
       }
       else
       {
          // positive index
          finalIndex = changeFromMvIndexToC(index);
-         if (isIndexValid(finalIndex))
-         {
-            return MV_NULL;
-         }
-         else
-         {
-            return index;
-         }
       }
+
+		if (isIndexValid(finalIndex))
+		{
+			return index;
+		}
+		else
+		{
+			return MV_NULL;
+		}
    }
    else
    {
@@ -152,11 +155,15 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::checkIndex(mvIndex& i) const
 
    if (isIndexValid(index))
    {
+		i = index;
+		return MV_NO_ERROR;
+   }
+	else
+	{
       return MV_INDEX_VALUE_IS_INVALID;
    }
 
-   i = index;
-   return MV_NO_ERROR;
+
 }
 
 /**
@@ -182,11 +189,14 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::checkParamStringAndIndex(\
 
    if (isIndexValid(index))
    {
+		i = index;
+		return MV_NO_ERROR;
+	}
+   else
+   {
       return MV_INDEX_VALUE_IS_INVALID;
    }
 
-   i = index;
-   return MV_NO_ERROR;
 }
 
 /**
