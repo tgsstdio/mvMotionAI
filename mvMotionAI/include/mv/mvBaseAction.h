@@ -114,6 +114,7 @@ class MV_GLOBAL_FUNC_PREFIX mvNewBaseActionInfo
          MV_NEW_GLOBAL_BEHAVIOUR_OP,
          MV_NEW_GB_MAIN_NODE_OP,
          MV_NEW_GB_GROUP_NODE_OP,
+         MV_GROUP_MEMBER_LOOKUP_OP,
          MV_NEW_GB_GROUP_MEMBER_OP
       };
 
@@ -127,6 +128,7 @@ class MV_GLOBAL_FUNC_PREFIX mvNewBaseActionInfo
       mvBaseActionPtr getGroupBehaviourPtr() const;
       mvBaseActionPtr getGetGroupNodePtr() const;
 
+		bool isGroupMemberNodeLookup() const;
       bool isNewMainGroupBehaviour() const;
       bool isNewGroupBehaviourGroupNode() const;
       bool isNewGroupMemberNode() const;

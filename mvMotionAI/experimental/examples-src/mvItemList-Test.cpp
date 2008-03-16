@@ -1,37 +1,96 @@
-#include "mvList.h"
-#include "mvForce.h"
-#include <cstdlib>
+#include <mv/mvMotionAI.h>
+#include MV_POINTER_LIST_HEADER_FILE_H_
 #include <iostream>
 
 int main()
 {
-   mvItemList<mvForce> forces;
-   mvFloat array[10];
-   mvErrorEnum error;
-   const char* option = NULL;
+	char* pointer = "STRING";
+	char* pt2 = "BRA";
 
-   std::cout << forces.getNoOfItems() << std::endl;
+	mvPointerList<char*,const char*> items;
 
-   if (forces.getCurrentClassPtr() == NULL)
-   {
-      std::cout << "NO vaslues" << std::endl;
-   }
+	items.addItem(pointer);
 
-   if (forces.addItem(new mvForce(MV_DRAG_FORCE)) != MV_NO_ERROR)
-   {
-      std::cout << "Add failed" << std::endl;
-   }
+	std::cout << "No of Items : " << items.getNoOfItems() << std::endl;
 
-   error = forces.getCurrentItemParameter_str("MV_TYPE", &option);
+	char testLetter = 'A';
 
-   if (error)
-   {
-      puts(mvGetErrorString(error));
-   }
-   else
-   {
-      std::cout << "HELLO " << option << std::endl;
-   }
+	items.setAutoConvertIndex(false);
+	for (int i = -5; i < 10; i++)
+	{
+		std::cout << testLetter  << ": Auto Index [" << items.getAutoConvertFlag() << "] conversion (" << i
+			<< ") = " <<  items.convertIndex(i) << std::endl;
+	}
+
+	testLetter = 'B';
+	items.setAutoConvertIndex(true);
+	for (int i = -5; i < 10; i++)
+	{
+		std::cout << testLetter  << ": Auto Index [" << items.getAutoConvertFlag() << "] conversion (" << i
+			<< ") = " <<  items.convertIndex(i) << std::endl;
+	}
+	std::cout << "B : No of Items : " << items.getNoOfItems() << std::endl;
+	items.addItem(pt2);
+	std::cout << "C : No of Items : " << items.getNoOfItems() << std::endl;
+
+	testLetter = 'C';
+	items.setAutoConvertIndex(false);
+	for (int i = -5; i < 10; i++)
+	{
+		std::cout << testLetter  << ": Auto Index [" << items.getAutoConvertFlag() << "] conversion (" << i
+			<< ") = " <<  items.convertIndex(i) << std::endl;
+	}
+
+	testLetter = 'D';
+	items.setAutoConvertIndex(true);
+	for (int i = -5; i < 10; i++)
+	{
+		std::cout << testLetter  << ": Auto Index [" << items.getAutoConvertFlag() << "] conversion (" << i
+			<< ") = " <<  items.convertIndex(i) << std::endl;
+	}
+
+	testLetter = 'E';
+	items.setAutoConvertIndex(false);
+	for (int i = -5; i < 10; i++)
+	{
+		std::cout << testLetter  << ": Auto Index [" << items.getAutoConvertFlag() << "] conversion (" << i
+			<< ") = ";
+		std::cout << (items.getClassPtr(i) ? "VALID"  : "NULL") << std::endl;
+
+	}
+
+	testLetter = 'F';
+	items.setAutoConvertIndex(true);
+	for (int i = -5; i < 10; i++)
+	{
+		std::cout << testLetter  << ": Auto Index [" << items.getAutoConvertFlag() << "] conversion (" << i
+			<< ") = ";
+		std::cout << (items.getClassPtr(i) ? "VALID"  : "NULL") << std::endl;
+	}
+
+	std::cout << "F : No of Items : " << items.getNoOfItems() << std::endl;
+	items.deleteItem(-1);
+	std::cout << "G : No of Items : " << items.getNoOfItems() << std::endl;
+
+	testLetter = 'G';
+	items.setAutoConvertIndex(false);
+	for (int i = -5; i < 10; i++)
+	{
+		std::cout << testLetter  << ": Auto Index [" << items.getAutoConvertFlag() << "] conversion (" << i
+			<< ") = ";
+		std::cout << (items.getClassPtr(i) ? "VALID"  : "NULL") << std::endl;
+
+	}
+
+	testLetter = 'H';
+	items.setAutoConvertIndex(true);
+	for (int i = -5; i < 10; i++)
+	{
+		std::cout << testLetter  << ": Auto Index [" << items.getAutoConvertFlag() << "] conversion (" << i
+			<< ") = ";
+		std::cout << (items.getClassPtr(i) ? "VALID"  : "NULL") << std::endl;
+	}
+
 
    return EXIT_SUCCESS;
 }

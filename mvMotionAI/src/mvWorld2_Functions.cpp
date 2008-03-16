@@ -462,6 +462,7 @@ void mvWorldV2_registerGroup(mvWorldPtr currentWorld, mvOptionEnum defaultType,
    while (!nodeMemberList.hasAllNodesBeenVisited())
    {
    	//memberNode = nodeMemberList.getCurrentMember();
+		std::cout << "member : " << nodeMemberList.getCurrentMember()->getMemberIndex() << std::endl;
       nodeMemberList.toNextMember();
       count++;
    }

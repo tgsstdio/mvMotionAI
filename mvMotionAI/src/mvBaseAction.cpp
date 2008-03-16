@@ -184,7 +184,8 @@ mvNewBaseActionInfo::mvNewBaseActionInfo(mvOptionEnum loaderKey,\
    {
       gbMainNodePtr = mainGroupNodePtr;
    }
-   else if (opType == mvNewBaseActionInfo::MV_NEW_GB_GROUP_MEMBER_OP)
+   else if (opType == mvNewBaseActionInfo::MV_NEW_GB_GROUP_MEMBER_OP
+		|| opType == mvNewBaseActionInfo::MV_GROUP_MEMBER_LOOKUP_OP)
    {
       gbMainNodePtr = mainGroupNodePtr;
       gbGroupNodePtr = groupNodePtr;
@@ -213,6 +214,11 @@ mvBaseActionPtr mvNewBaseActionInfo::getGroupBehaviourPtr() const
 mvBaseActionPtr mvNewBaseActionInfo::getGetGroupNodePtr() const
 {
    return gbGroupNodePtr;
+}
+
+bool mvNewBaseActionInfo::isGroupMemberNodeLookup() const
+{
+	return (opType == mvNewBaseActionInfo::MV_GROUP_MEMBER_LOOKUP_OP);
 }
 
 /** \brief blah blah

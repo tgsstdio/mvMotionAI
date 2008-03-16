@@ -30,9 +30,7 @@
 		<Project filename="test\mvVec3CPPUnitTest.cbp" />
 		<Project filename="test\mvBListCPPUnitTest.cbp" />
 		<Project filename="CPPUnit Static Library.cbp" />
-		<Project filename="mvBaseBehaviours.cbp">
-			<Depends filename="CPPUnit Static Library.cbp" />
-		</Project>
+		<Project filename="mvBaseBehaviours.cbp" />
 		<Project filename="BaseTypes.cbp" />
 		<Project filename="mvLightfeather Conversion\mvLightfeather Conversion.cbp" />
 		<Project filename="mvMotionAI-LuaFunctions.cbp">
