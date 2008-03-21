@@ -248,7 +248,7 @@ void mvWorldV2_registerGroup(mvWorldPtr currentWorld, mvOptionEnum defaultType,
 	mvBaseActionPtr groupAction, mvIndex currentGBehaviour)
 {
    mvIndex groupNo = currentNode->getGroup();
-   mvGroupPtr currentGroup = currentWorld->getGroupPtr(groupNo);
+   mvGroupPtr currentGroup = currentWorld->groups.getClassPtr(groupNo);
    if (currentGroup == MV_NULL)
    {
       return;
@@ -477,7 +477,7 @@ void mvWorld_V2_CalculateForEachGroupBehaviour(\
    mvWorldPtr currentWorld =  (mvWorldPtr) extraPtr;
    mvWorld_V2_GroupBehaviourNodeHelper container;
 
-   mvGroupBehaviourPtr currentGroupBehav = currentWorld->getGroupBehaviourPtr(\
+   mvGroupBehaviourPtr currentGroupBehav = currentWorld->groupBehaviours.getClassPtr(\
       groupBehaviourIndex);
 
    if (currentGroupBehav != MV_NULL)

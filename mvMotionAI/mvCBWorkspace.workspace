@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_workspace_file>
 	<Workspace title="mvMotionAI Code Blocks Workspace">
-		<Project filename="mvMotion-CB.cbp" />
+		<Project filename="mvMotion-CB.cbp" active="1" />
 		<Project filename="tutorial1.cbp">
 			<Depends filename="mvMotion-CB.cbp" />
 		</Project>
@@ -36,7 +36,7 @@
 		<Project filename="mvMotionAI-LuaFunctions.cbp">
 			<Depends filename="mvLightfeather Conversion\mvLightfeather Conversion.cbp" />
 		</Project>
-		<Project filename="sideproject4 - group behaviour functionality\sideproject4 - group behaviour functionality.cbp" active="1">
+		<Project filename="sideproject4 - group behaviour functionality\sideproject4 - group behaviour functionality.cbp">
 			<Depends filename="mvMotion-CB.cbp" />
 		</Project>
 	</Workspace>

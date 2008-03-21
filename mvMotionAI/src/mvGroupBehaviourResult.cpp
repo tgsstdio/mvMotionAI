@@ -91,7 +91,7 @@ mvBodyPtr mvGroupBehaviourResult::getCurrentMemberAsBodyPtr() const
 	}
 
 	mvIndex requiredBody = current->getMemberIndex();
-	return world->getBodyPtr(requiredBody);
+	return world->bodies.getClassPtr(requiredBody);
 }
 
 mvEntryListNodePtr mvGroupBehaviourResult::getCurrentMemberNodePtr() const
