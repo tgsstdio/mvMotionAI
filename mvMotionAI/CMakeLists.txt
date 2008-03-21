@@ -110,7 +110,8 @@ include/mv/mvWaypointCapsule.h
 include/mv/mvWaypoint_V2.h
 include/mv/mvWorld2.h
 include/mv/mvFollowPath.h
-include/mv/mvEvasion.h
+include/mv/mvEvasion.h  
+include/mv/mvReadyMadeLoader.h 
 )
 
 IF(MSVC)

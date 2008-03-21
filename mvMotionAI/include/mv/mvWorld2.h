@@ -66,21 +66,6 @@
 class MV_GLOBAL_FUNC_PREFIX mvWorld
 {
    private:
-      mvPointerList<mvEntryListPtr, mvConstEntryListPtr> entryLists;
-      //char* worldID;
-      mvCapsuleList<mvBaseForcePtr, mvConstBaseForcePtr,\
-         mvForceCapsulePtr, mvConstForceCapsulePtr> forces;
-      mvPointerList<mvObstaclePtr, mvConstObstaclePtr> obstacles;
-      mvCapsuleList<mvBodyPtr, mvConstBodyPtr, mvBodyCapsulePtr,\
-         mvConstBodyCapsulePtr> bodies;
-      mvCapsuleList<mvWaypointPtr, mvConstWaypointPtr, mvWaypointCapsulePtr,\
-         mvConstWaypointCapsulePtr> waypoints;
-      mvPointerList<mvPathwayPtr,mvConstPathwayPtr> pathways;
-      mvPointerList<mvGroupBehaviourPtr, mvConstGroupBehaviourPtr>\
-         groupBehaviours;
-      mvPointerList<mvBehaviourPtr, mvConstBehaviourPtr> behaviours;
-      mvCapsuleList<mvGroupPtr, mvConstGroupPtr, mvGroupCapsulePtr,\
-         mvConstGroupCapsulePtr> groups;
       mvActionLoaderListPtr behavLoader;
 
       /// world step functionality
@@ -110,6 +95,21 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld
       bool addGroupBehaviourMemberToList(mvIndex bodyIndex,
          mvIndex behaviourIndex, mvIndex groupIndex, mvBaseActionPtr memberNodePtr);
    public:
+      mvPointerList<mvEntryListPtr, mvConstEntryListPtr> entryLists;
+      mvCapsuleList<mvBaseForcePtr, mvConstBaseForcePtr,\
+         mvForceCapsulePtr, mvConstForceCapsulePtr> forces;
+      mvPointerList<mvObstaclePtr, mvConstObstaclePtr> obstacles;
+      mvCapsuleList<mvBodyPtr, mvConstBodyPtr, mvBodyCapsulePtr,\
+         mvConstBodyCapsulePtr> bodies;
+      mvCapsuleList<mvWaypointPtr, mvConstWaypointPtr, mvWaypointCapsulePtr,\
+         mvConstWaypointCapsulePtr> waypoints;
+      mvPointerList<mvPathwayPtr,mvConstPathwayPtr> pathways;
+      mvPointerList<mvGroupBehaviourPtr, mvConstGroupBehaviourPtr>\
+         groupBehaviours;
+      mvPointerList<mvBehaviourPtr, mvConstBehaviourPtr> behaviours;
+      mvCapsuleList<mvGroupPtr, mvConstGroupPtr, mvGroupCapsulePtr,\
+         mvConstGroupCapsulePtr> groups;
+
       // TODO : register
       void registerAllGroupBehavioursToBodies();
       mvErrorEnum registerGroupBehaviourToBodies(mvIndex groupBehaviourIndex);
@@ -165,6 +165,7 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld
          mvFloat x, mvFloat y, mvFloat z, mvIndex saveFileIndex = MV_NULL);
       mvIndex createBody_str(const char* bType, const char* bShape,\
          mvFloat x, mvFloat y, mvFloat z, mvIndex saveFileIndex = MV_NULL);
+		/*
       mvBodyPtr getBodyPtr(mvIndex index);
       mvBodyPtr getCurrentBodyPtr();
       mvIndex setCurrentBody(mvIndex index);
@@ -210,271 +211,271 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld
          mvFloat* num) const;
       mvErrorEnum getBodyParameterv_str(mvIndex index, const char* param,\
          mvFloat* array, mvCount* noOfParameters) const;
-
+		*/
       // obstacle functions
       mvIndex createObstacle(mvOptionEnum oType, mvOptionEnum oState,\
          mvFloat x, mvFloat y, mvFloat z, mvIndex saveFileIndex = MV_NULL);
       mvIndex createObstacle_str(const char* oType, const char* oState,\
          mvFloat x, mvFloat y, mvFloat z, mvIndex saveFileIndex = MV_NULL);
-      mvObstaclePtr getObstaclePtr(mvIndex index);
-      mvObstaclePtr getCurrentObstaclePtr();
-      mvIndex setCurrentObstacle(mvIndex index);
-      mvErrorEnum deleteObstacle(mvIndex index);
-      void deleteAllObstacles();
-      void applyToAllObstacles(void (someFunction)(mvObstaclePtr, void*),\
-         void* extraPtr);
-      void applyToAllObstaclesByIndex(mvIndex worldIndex,\
-         void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
-
-      mvErrorEnum setObstacleParameteri(mvIndex index, mvParamEnum paramFlag,\
-         mvIndex paramIndex);
-      mvErrorEnum setObstacleParametero(mvIndex index, mvParamEnum paramFlag,\
-         mvOptionEnum option);
-      mvErrorEnum setObstacleParameterf(mvIndex index, mvParamEnum paramFlag,\
-         mvFloat num);
-      mvErrorEnum setObstacleParameterv(mvIndex index, mvParamEnum paramFlag,\
-         mvFloat* array);
-
-      mvErrorEnum setObstacleParameteri_str(mvIndex index, const char* param,\
-         mvIndex paramIndex);
-      mvErrorEnum setObstacleParametero_str(mvIndex index, const char* param,\
-         const char* option);
-      mvErrorEnum setObstacleParameterf_str(mvIndex index, const char* param,\
-         mvFloat num);
-      mvErrorEnum setObstacleParameterv_str(mvIndex index, const char* param,\
-         mvFloat* array);
-
-      mvErrorEnum getObstacleParameteri(mvIndex index, mvParamEnum paramFlag,\
-         mvIndex* outIndex) const;
-      mvErrorEnum getObstacleParametero(mvIndex index, mvParamEnum paramFlag,\
-         mvOptionEnum* option) const;
-      mvErrorEnum getObstacleParameterf(mvIndex index, mvParamEnum paramFlag,\
-         mvFloat* num) const;
-      mvErrorEnum getObstacleParameterv(mvIndex index, mvParamEnum paramFlag,\
-         mvFloat* array, mvCount* noOfParameters) const;
-
-      mvErrorEnum getObstacleParameteri_str(mvIndex index, const char* param,\
-         mvIndex* outIndex) const;
-      mvErrorEnum getObstacleParametero_str(mvIndex index, const char* param,\
-         const char** option) const;
-      mvErrorEnum getObstacleParameterf_str(mvIndex index, const char* param,\
-         mvFloat* num) const;
-      mvErrorEnum getObstacleParameterv_str(mvIndex index, const char* param,\
-         mvFloat* array, mvCount* noOfParameters) const;
+//      mvObstaclePtr getObstaclePtr(mvIndex index);
+//      mvObstaclePtr getCurrentObstaclePtr();
+//      mvIndex setCurrentObstacle(mvIndex index);
+//      mvErrorEnum deleteObstacle(mvIndex index);
+//      void deleteAllObstacles();
+//      void applyToAllObstacles(void (someFunction)(mvObstaclePtr, void*),\
+//         void* extraPtr);
+//      void applyToAllObstaclesByIndex(mvIndex worldIndex,\
+//         void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
+//
+//      mvErrorEnum setObstacleParameteri(mvIndex index, mvParamEnum paramFlag,\
+//         mvIndex paramIndex);
+//      mvErrorEnum setObstacleParametero(mvIndex index, mvParamEnum paramFlag,\
+//         mvOptionEnum option);
+//      mvErrorEnum setObstacleParameterf(mvIndex index, mvParamEnum paramFlag,\
+//         mvFloat num);
+//      mvErrorEnum setObstacleParameterv(mvIndex index, mvParamEnum paramFlag,\
+//         mvFloat* array);
+//
+//      mvErrorEnum setObstacleParameteri_str(mvIndex index, const char* param,\
+//         mvIndex paramIndex);
+//      mvErrorEnum setObstacleParametero_str(mvIndex index, const char* param,\
+//         const char* option);
+//      mvErrorEnum setObstacleParameterf_str(mvIndex index, const char* param,\
+//         mvFloat num);
+//      mvErrorEnum setObstacleParameterv_str(mvIndex index, const char* param,\
+//         mvFloat* array);
+//
+//      mvErrorEnum getObstacleParameteri(mvIndex index, mvParamEnum paramFlag,\
+//         mvIndex* outIndex) const;
+//      mvErrorEnum getObstacleParametero(mvIndex index, mvParamEnum paramFlag,\
+//         mvOptionEnum* option) const;
+//      mvErrorEnum getObstacleParameterf(mvIndex index, mvParamEnum paramFlag,\
+//         mvFloat* num) const;
+//      mvErrorEnum getObstacleParameterv(mvIndex index, mvParamEnum paramFlag,\
+//         mvFloat* array, mvCount* noOfParameters) const;
+//
+//      mvErrorEnum getObstacleParameteri_str(mvIndex index, const char* param,\
+//         mvIndex* outIndex) const;
+//      mvErrorEnum getObstacleParametero_str(mvIndex index, const char* param,\
+//         const char** option) const;
+//      mvErrorEnum getObstacleParameterf_str(mvIndex index, const char* param,\
+//         mvFloat* num) const;
+//      mvErrorEnum getObstacleParameterv_str(mvIndex index, const char* param,\
+//         mvFloat* array, mvCount* noOfParameters) const;
 
       // Waypoint functions
       mvIndex createWaypoint(mvOptionEnum wShape,mvFloat x,\
          mvFloat y, mvFloat z, mvIndex saveFileIndex = MV_NULL);
       mvIndex createWaypoint_str(const char* wShape,mvFloat x,\
          mvFloat y, mvFloat z, mvIndex saveFileIndex = MV_NULL);
-      mvWaypointPtr getWaypointPtr(mvIndex index);
-      mvWaypointPtr getCurrentWaypointPtr();
-      mvIndex setCurrentWaypoint(mvIndex index);
-      mvErrorEnum deleteWaypoint(mvIndex index);
-      void deleteAllWaypoints();
-      void applyToAllWaypoints(void (someFunction)(mvWaypointPtr, void*),\
-         void* extraPtr);
-      void applyToAllWaypointsByIndex(mvIndex worldIndex,\
-         void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
-
-      mvErrorEnum setWaypointParameteri(mvIndex index, mvParamEnum paramFlag,\
-         mvIndex paramIndex);
-      mvErrorEnum setWaypointParametero(mvIndex index, mvParamEnum paramFlag,\
-         mvOptionEnum option);
-      mvErrorEnum setWaypointParameterf(mvIndex index, mvParamEnum paramFlag,\
-         mvFloat num);
-      mvErrorEnum setWaypointParameterv(mvIndex index, mvParamEnum paramFlag,\
-         mvFloat* array);
-
-      mvErrorEnum setWaypointParameteri_str(mvIndex index, const char* param,\
-         mvIndex paramIndex);
-      mvErrorEnum setWaypointParametero_str(mvIndex index, const char* param,\
-         const char* option);
-      mvErrorEnum setWaypointParameterf_str(mvIndex index, const char* param,\
-         mvFloat num);
-      mvErrorEnum setWaypointParameterv_str(mvIndex index, const char* param,\
-         mvFloat* array);
-
-      mvErrorEnum getWaypointParameteri(mvIndex index, mvParamEnum paramFlag,\
-         mvIndex* outIndex) const;
-      mvErrorEnum getWaypointParametero(mvIndex index, mvParamEnum paramFlag,\
-         mvOptionEnum* option) const;
-      mvErrorEnum getWaypointParameterf(mvIndex index, mvParamEnum paramFlag,\
-         mvFloat* num) const;
-      mvErrorEnum getWaypointParameterv(mvIndex index, mvParamEnum paramFlag,\
-         mvFloat* array, mvCount* noOfParameters) const;
-
-      mvErrorEnum getWaypointParameteri_str(mvIndex index, const char* param,\
-         mvIndex* outIndex) const;
-      mvErrorEnum getWaypointParametero_str(mvIndex index, const char* param,\
-         const char** option) const;
-      mvErrorEnum getWaypointParameterf_str(mvIndex index, const char* param,\
-         mvFloat* num) const;
-      mvErrorEnum getWaypointParameterv_str(mvIndex index, const char* param,\
-         mvFloat* array, mvCount* noOfParameters) const;
+//      mvWaypointPtr getWaypointPtr(mvIndex index);
+//      mvWaypointPtr getCurrentWaypointPtr();
+//      mvIndex setCurrentWaypoint(mvIndex index);
+//      mvErrorEnum deleteWaypoint(mvIndex index);
+//      void deleteAllWaypoints();
+//      void applyToAllWaypoints(void (someFunction)(mvWaypointPtr, void*),\
+//         void* extraPtr);
+//      void applyToAllWaypointsByIndex(mvIndex worldIndex,\
+//         void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
+//
+//      mvErrorEnum setWaypointParameteri(mvIndex index, mvParamEnum paramFlag,\
+//         mvIndex paramIndex);
+//      mvErrorEnum setWaypointParametero(mvIndex index, mvParamEnum paramFlag,\
+//         mvOptionEnum option);
+//      mvErrorEnum setWaypointParameterf(mvIndex index, mvParamEnum paramFlag,\
+//         mvFloat num);
+//      mvErrorEnum setWaypointParameterv(mvIndex index, mvParamEnum paramFlag,\
+//         mvFloat* array);
+//
+//      mvErrorEnum setWaypointParameteri_str(mvIndex index, const char* param,\
+//         mvIndex paramIndex);
+//      mvErrorEnum setWaypointParametero_str(mvIndex index, const char* param,\
+//         const char* option);
+//      mvErrorEnum setWaypointParameterf_str(mvIndex index, const char* param,\
+//         mvFloat num);
+//      mvErrorEnum setWaypointParameterv_str(mvIndex index, const char* param,\
+//         mvFloat* array);
+//
+//      mvErrorEnum getWaypointParameteri(mvIndex index, mvParamEnum paramFlag,\
+//         mvIndex* outIndex) const;
+//      mvErrorEnum getWaypointParametero(mvIndex index, mvParamEnum paramFlag,\
+//         mvOptionEnum* option) const;
+//      mvErrorEnum getWaypointParameterf(mvIndex index, mvParamEnum paramFlag,\
+//         mvFloat* num) const;
+//      mvErrorEnum getWaypointParameterv(mvIndex index, mvParamEnum paramFlag,\
+//         mvFloat* array, mvCount* noOfParameters) const;
+//
+//      mvErrorEnum getWaypointParameteri_str(mvIndex index, const char* param,\
+//         mvIndex* outIndex) const;
+//      mvErrorEnum getWaypointParametero_str(mvIndex index, const char* param,\
+//         const char** option) const;
+//      mvErrorEnum getWaypointParameterf_str(mvIndex index, const char* param,\
+//         mvFloat* num) const;
+//      mvErrorEnum getWaypointParameterv_str(mvIndex index, const char* param,\
+//         mvFloat* array, mvCount* noOfParameters) const;
 
       // Pathway functions
       mvIndex createPathway(mvIndex saveFileIndex = MV_NULL);
-      mvPathwayPtr getPathwayPtr(mvIndex index);
-      mvPathwayPtr getCurrentPathwayPtr();
-      mvIndex setCurrentPathway(mvIndex index);
-      mvErrorEnum deletePathway(mvIndex index);
-      void deleteAllPathways();
-      void applyToAllPathways(void (someFunction)(mvPathwayPtr, void*),\
-         void* extraPtr);
-      void applyToAllPathwaysByIndex(mvIndex worldIndex,\
-         void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
-
-      mvErrorEnum setPathwayParameteri(mvIndex index, mvParamEnum paramFlag,\
-         mvIndex paramIndex);
-      mvErrorEnum setPathwayParametero(mvIndex index, mvParamEnum paramFlag,\
-         mvOptionEnum option);
-      mvErrorEnum setPathwayParameterf(mvIndex index, mvParamEnum paramFlag,\
-         mvFloat num);
-      mvErrorEnum setPathwayParameterv(mvIndex index, mvParamEnum paramFlag,\
-         mvFloat* array);
-
-      mvErrorEnum setPathwayParameteri_str(mvIndex index, const char* param,\
-         mvIndex paramIndex);
-      mvErrorEnum setPathwayParametero_str(mvIndex index, const char* param,\
-         const char* option);
-      mvErrorEnum setPathwayParameterf_str(mvIndex index, const char* param,\
-         mvFloat num);
-      mvErrorEnum setPathwayParameterv_str(mvIndex index, const char* param,\
-         mvFloat* array);
-
-      mvErrorEnum getPathwayParameteri(mvIndex index, mvParamEnum paramFlag,\
-         mvIndex* outIndex) const;
-      mvErrorEnum getPathwayParametero(mvIndex index, mvParamEnum paramFlag,\
-         mvOptionEnum* option) const;
-      mvErrorEnum getPathwayParameterf(mvIndex index, mvParamEnum paramFlag,\
-         mvFloat* num) const;
-      mvErrorEnum getPathwayParameterv(mvIndex index, mvParamEnum paramFlag,\
-         mvFloat* array, mvCount* noOfParameters) const;
-
-      mvErrorEnum getPathwayParameteri_str(mvIndex index, const char* param,\
-         mvIndex* outIndex) const;
-      mvErrorEnum getPathwayParametero_str(mvIndex index, const char* param,\
-         const char** option) const;
-      mvErrorEnum getPathwayParameterf_str(mvIndex index, const char* param,\
-         mvFloat* num) const;
-      mvErrorEnum getPathwayParameterv_str(mvIndex index, const char* param,\
-         mvFloat* array, mvCount* noOfParameters) const;
+//      mvPathwayPtr getPathwayPtr(mvIndex index);
+//      mvPathwayPtr getCurrentPathwayPtr();
+//      mvIndex setCurrentPathway(mvIndex index);
+//      mvErrorEnum deletePathway(mvIndex index);
+//      void deleteAllPathways();
+//      void applyToAllPathways(void (someFunction)(mvPathwayPtr, void*),\
+//         void* extraPtr);
+//      void applyToAllPathwaysByIndex(mvIndex worldIndex,\
+//         void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
+//
+//      mvErrorEnum setPathwayParameteri(mvIndex index, mvParamEnum paramFlag,\
+//         mvIndex paramIndex);
+//      mvErrorEnum setPathwayParametero(mvIndex index, mvParamEnum paramFlag,\
+//         mvOptionEnum option);
+//      mvErrorEnum setPathwayParameterf(mvIndex index, mvParamEnum paramFlag,\
+//         mvFloat num);
+//      mvErrorEnum setPathwayParameterv(mvIndex index, mvParamEnum paramFlag,\
+//         mvFloat* array);
+//
+//      mvErrorEnum setPathwayParameteri_str(mvIndex index, const char* param,\
+//         mvIndex paramIndex);
+//      mvErrorEnum setPathwayParametero_str(mvIndex index, const char* param,\
+//         const char* option);
+//      mvErrorEnum setPathwayParameterf_str(mvIndex index, const char* param,\
+//         mvFloat num);
+//      mvErrorEnum setPathwayParameterv_str(mvIndex index, const char* param,\
+//         mvFloat* array);
+//
+//      mvErrorEnum getPathwayParameteri(mvIndex index, mvParamEnum paramFlag,\
+//         mvIndex* outIndex) const;
+//      mvErrorEnum getPathwayParametero(mvIndex index, mvParamEnum paramFlag,\
+//         mvOptionEnum* option) const;
+//      mvErrorEnum getPathwayParameterf(mvIndex index, mvParamEnum paramFlag,\
+//         mvFloat* num) const;
+//      mvErrorEnum getPathwayParameterv(mvIndex index, mvParamEnum paramFlag,\
+//         mvFloat* array, mvCount* noOfParameters) const;
+//
+//      mvErrorEnum getPathwayParameteri_str(mvIndex index, const char* param,\
+//         mvIndex* outIndex) const;
+//      mvErrorEnum getPathwayParametero_str(mvIndex index, const char* param,\
+//         const char** option) const;
+//      mvErrorEnum getPathwayParameterf_str(mvIndex index, const char* param,\
+//         mvFloat* num) const;
+//      mvErrorEnum getPathwayParameterv_str(mvIndex index, const char* param,\
+//         mvFloat* array, mvCount* noOfParameters) const;
 
       // Behaviour functions
       mvIndex createBehaviour(mvOptionEnum bType,\
          mvIndex saveFileIndex = MV_NULL);
       mvIndex createBehaviour_str(const char* bType,\
          mvIndex saveFileIndex = MV_NULL);
-      mvBehaviourPtr getBehaviourPtr(mvIndex index);
-      mvBehaviourPtr getCurrentBehaviourPtr();
-      mvIndex setCurrentBehaviour(mvIndex index);
-      mvErrorEnum deleteBehaviour(mvIndex index);
-      void deleteAllBehaviours();
-      void applyToAllBehaviours(void (someFunction)(mvBehaviourPtr, void*),\
-         void* extraPtr);
-      void applyToAllBehavioursByIndex(mvIndex worldIndex,\
-         void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
-
-      mvErrorEnum setBehaviourParameteri(mvIndex index,\
-         mvParamEnum paramFlag, mvIndex paramIndex);
-      mvErrorEnum setBehaviourParametero(mvIndex index,\
-         mvParamEnum paramFlag, mvOptionEnum option);
-      mvErrorEnum setBehaviourParameterf(mvIndex index,\
-         mvParamEnum paramFlag, mvFloat num);
-      mvErrorEnum setBehaviourParameterv(mvIndex index,\
-         mvParamEnum paramFlag, mvFloat* array);
-
-      mvErrorEnum setBehaviourParameteri_str(mvIndex index, const char* param,\
-         mvIndex paramIndex);
-      mvErrorEnum setBehaviourParametero_str(mvIndex index, const char* param,\
-         const char* option);
-      mvErrorEnum setBehaviourParameterf_str(mvIndex index, const char* param,\
-         mvFloat num);
-      mvErrorEnum setBehaviourParameterv_str(mvIndex index, const char* param,\
-         mvFloat* array);
-
-      mvErrorEnum getBehaviourParameteri(mvIndex index,\
-         mvParamEnum paramFlag, mvIndex* outIndex) const;
-      mvErrorEnum getBehaviourParametero(mvIndex index,\
-         mvParamEnum paramFlag, mvOptionEnum* option) const;
-      mvErrorEnum getBehaviourParameterf(mvIndex index,\
-         mvParamEnum paramFlag, mvFloat* num) const;
-      mvErrorEnum getBehaviourParameterv(mvIndex index,\
-         mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters) const;
-
-      mvErrorEnum getBehaviourParameteri_str(mvIndex index, const char* param,\
-         mvIndex* outIndex) const;
-      mvErrorEnum getBehaviourParametero_str(mvIndex index, const char* param,\
-         const char** option) const;
-      mvErrorEnum getBehaviourParameterf_str(mvIndex index, const char* param,\
-         mvFloat* num) const;
-      mvErrorEnum getBehaviourParameterv_str(mvIndex index, const char* param,\
-         mvFloat* array, mvCount* noOfParameters) const;
+//      mvBehaviourPtr getBehaviourPtr(mvIndex index);
+//      mvBehaviourPtr getCurrentBehaviourPtr();
+//      mvIndex setCurrentBehaviour(mvIndex index);
+//      mvErrorEnum deleteBehaviour(mvIndex index);
+//      void deleteAllBehaviours();
+//      void applyToAllBehaviours(void (someFunction)(mvBehaviourPtr, void*),\
+//         void* extraPtr);
+//      void applyToAllBehavioursByIndex(mvIndex worldIndex,\
+//         void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
+//
+//      mvErrorEnum setBehaviourParameteri(mvIndex index,\
+//         mvParamEnum paramFlag, mvIndex paramIndex);
+//      mvErrorEnum setBehaviourParametero(mvIndex index,\
+//         mvParamEnum paramFlag, mvOptionEnum option);
+//      mvErrorEnum setBehaviourParameterf(mvIndex index,\
+//         mvParamEnum paramFlag, mvFloat num);
+//      mvErrorEnum setBehaviourParameterv(mvIndex index,\
+//         mvParamEnum paramFlag, mvFloat* array);
+//
+//      mvErrorEnum setBehaviourParameteri_str(mvIndex index, const char* param,\
+//         mvIndex paramIndex);
+//      mvErrorEnum setBehaviourParametero_str(mvIndex index, const char* param,\
+//         const char* option);
+//      mvErrorEnum setBehaviourParameterf_str(mvIndex index, const char* param,\
+//         mvFloat num);
+//      mvErrorEnum setBehaviourParameterv_str(mvIndex index, const char* param,\
+//         mvFloat* array);
+//
+//      mvErrorEnum getBehaviourParameteri(mvIndex index,\
+//         mvParamEnum paramFlag, mvIndex* outIndex) const;
+//      mvErrorEnum getBehaviourParametero(mvIndex index,\
+//         mvParamEnum paramFlag, mvOptionEnum* option) const;
+//      mvErrorEnum getBehaviourParameterf(mvIndex index,\
+//         mvParamEnum paramFlag, mvFloat* num) const;
+//      mvErrorEnum getBehaviourParameterv(mvIndex index,\
+//         mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters) const;
+//
+//      mvErrorEnum getBehaviourParameteri_str(mvIndex index, const char* param,\
+//         mvIndex* outIndex) const;
+//      mvErrorEnum getBehaviourParametero_str(mvIndex index, const char* param,\
+//         const char** option) const;
+//      mvErrorEnum getBehaviourParameterf_str(mvIndex index, const char* param,\
+//         mvFloat* num) const;
+//      mvErrorEnum getBehaviourParameterv_str(mvIndex index, const char* param,\
+//         mvFloat* array, mvCount* noOfParameters) const;
 
       // Group functions
       mvIndex createGroup(mvIndex saveFileIndex = MV_NULL);
-      mvGroupPtr getGroupPtr(mvIndex index);
-      mvGroupPtr getCurrentGroupPtr();
-      mvIndex setCurrentGroup(mvIndex index);
-      mvErrorEnum deleteGroup(mvIndex index);
-      void deleteAllGroups();
-      void applyToAllGroups(void (someFunction)(mvGroupPtr, void*),\
-         void* extraPtr);
-      void applyToAllGroupsByIndex(mvIndex worldIndex,\
-         void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
-
-      mvErrorEnum setGroupParameteri(mvIndex index, mvParamEnum paramFlag,\
-         mvIndex paramIndex);
-      mvErrorEnum setGroupParametero(mvIndex index, mvParamEnum paramFlag,\
-         mvOptionEnum option);
-      mvErrorEnum setGroupParameterf(mvIndex index, mvParamEnum paramFlag,\
-         mvFloat num);
-      mvErrorEnum setGroupParameterv(mvIndex index, mvParamEnum paramFlag,\
-         mvFloat* array);
-
-      mvErrorEnum setGroupParameteri_str(mvIndex index, const char* param,\
-         mvIndex paramIndex);
-      mvErrorEnum setGroupParametero_str(mvIndex index, const char* param,\
-         const char* option);
-      mvErrorEnum setGroupParameterf_str(mvIndex index, const char* param,\
-         mvFloat num);
-      mvErrorEnum setGroupParameterv_str(mvIndex index, const char* param,\
-         mvFloat* array);
-
-      mvErrorEnum getGroupParameteri(mvIndex index, mvParamEnum paramFlag,\
-         mvIndex* outIndex) const;
-      mvErrorEnum getGroupParametero(mvIndex index, mvParamEnum paramFlag,\
-         mvOptionEnum* option) const;
-      mvErrorEnum getGroupParameterf(mvIndex index, mvParamEnum paramFlag,\
-         mvFloat* num) const;
-      mvErrorEnum getGroupParameterv(mvIndex index, mvParamEnum paramFlag,\
-         mvFloat* array, mvCount* noOfParameters) const;
-
-      mvErrorEnum getGroupParameteri_str(mvIndex index, const char* param,\
-         mvIndex* outIndex) const;
-      mvErrorEnum getGroupParametero_str(mvIndex index, const char* param,\
-         const char** option) const;
-      mvErrorEnum getGroupParameterf_str(mvIndex index, const char* param,\
-         mvFloat* num) const;
-      mvErrorEnum getGroupParameterv_str(mvIndex index, const char* param,\
-         mvFloat* array, mvCount* noOfParameters) const;
+//      mvGroupPtr getGroupPtr(mvIndex index);
+//      mvGroupPtr getCurrentGroupPtr();
+//      mvIndex setCurrentGroup(mvIndex index);
+//      mvErrorEnum deleteGroup(mvIndex index);
+//      void deleteAllGroups();
+//      void applyToAllGroups(void (someFunction)(mvGroupPtr, void*),\
+//         void* extraPtr);
+//      void applyToAllGroupsByIndex(mvIndex worldIndex,\
+//         void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
+//
+//      mvErrorEnum setGroupParameteri(mvIndex index, mvParamEnum paramFlag,\
+//         mvIndex paramIndex);
+//      mvErrorEnum setGroupParametero(mvIndex index, mvParamEnum paramFlag,\
+//         mvOptionEnum option);
+//      mvErrorEnum setGroupParameterf(mvIndex index, mvParamEnum paramFlag,\
+//         mvFloat num);
+//      mvErrorEnum setGroupParameterv(mvIndex index, mvParamEnum paramFlag,\
+//         mvFloat* array);
+//
+//      mvErrorEnum setGroupParameteri_str(mvIndex index, const char* param,\
+//         mvIndex paramIndex);
+//      mvErrorEnum setGroupParametero_str(mvIndex index, const char* param,\
+//         const char* option);
+//      mvErrorEnum setGroupParameterf_str(mvIndex index, const char* param,\
+//         mvFloat num);
+//      mvErrorEnum setGroupParameterv_str(mvIndex index, const char* param,\
+//         mvFloat* array);
+//
+//      mvErrorEnum getGroupParameteri(mvIndex index, mvParamEnum paramFlag,\
+//         mvIndex* outIndex) const;
+//      mvErrorEnum getGroupParametero(mvIndex index, mvParamEnum paramFlag,\
+//         mvOptionEnum* option) const;
+//      mvErrorEnum getGroupParameterf(mvIndex index, mvParamEnum paramFlag,\
+//         mvFloat* num) const;
+//      mvErrorEnum getGroupParameterv(mvIndex index, mvParamEnum paramFlag,\
+//         mvFloat* array, mvCount* noOfParameters) const;
+//
+//      mvErrorEnum getGroupParameteri_str(mvIndex index, const char* param,\
+//         mvIndex* outIndex) const;
+//      mvErrorEnum getGroupParametero_str(mvIndex index, const char* param,\
+//         const char** option) const;
+//      mvErrorEnum getGroupParameterf_str(mvIndex index, const char* param,\
+//         mvFloat* num) const;
+//      mvErrorEnum getGroupParameterv_str(mvIndex index, const char* param,\
+//         mvFloat* array, mvCount* noOfParameters) const;
 
       // GroupBehaviour functions
       mvIndex createGroupBehaviour(mvOptionEnum type,\
          mvIndex saveFileIndex = MV_NULL);
       mvIndex createGroupBehaviour_str(const char* type,\
          mvIndex saveFileIndex = MV_NULL);
-      mvGroupBehaviourPtr getGroupBehaviourPtr(mvIndex index);
-      mvGroupBehaviourPtr getCurrentGroupBehaviourPtr();
-      mvIndex setCurrentGroupBehaviour(mvIndex index);
-      mvErrorEnum deleteGroupBehaviour(mvIndex index);
-      void deleteAllGroupBehaviours();
-      void applyToAllGroupBehaviours(\
-         void (someFunction)(mvGroupBehaviourPtr, void*), void* extraPtr);
-      void applyToAllGroupBehavioursByIndex(mvIndex worldIndex,\
-         void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
-
+//      mvGroupBehaviourPtr getGroupBehaviourPtr(mvIndex index);
+//      mvGroupBehaviourPtr getCurrentGroupBehaviourPtr();
+//      mvIndex setCurrentGroupBehaviour(mvIndex index);
+//      mvErrorEnum deleteGroupBehaviour(mvIndex index);
+//      void deleteAllGroupBehaviours();
+//      void applyToAllGroupBehaviours(\
+//         void (someFunction)(mvGroupBehaviourPtr, void*), void* extraPtr);
+//      void applyToAllGroupBehavioursByIndex(mvIndex worldIndex,\
+//         void (someFunction)(mvIndex, mvIndex, void*), void* extraPtr);
+//
       mvErrorEnum setGroupBehaviourParameteri(mvIndex index,\
          mvIndex groupIndex, mvParamEnum paramFlag, mvIndex paramIndex);
       mvErrorEnum setGroupBehaviourParametero(mvIndex index,\
@@ -518,6 +519,7 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld
          mvIndex saveFileIndex = MV_NULL);
       mvIndex createForce_str(const char* fType,\
          mvIndex saveFileIndex = MV_NULL);
+		// TODO : remove forces functions
       mvBaseForcePtr getForcePtr(mvIndex index);
       mvBaseForcePtr getCurrentForcePtr();
       mvIndex setCurrentForce(mvIndex index);

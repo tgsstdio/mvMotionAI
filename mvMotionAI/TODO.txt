@@ -29,9 +29,10 @@
  * - Removed STL objects for more compatibility.
  * - Use of bitfield structs for saving space (bool = 8 bits => 1 bit (or 8 bools) & some enum flags)
  * 	- classes such as mvForceResult, mvBehaviourResult, mvGroupBehaviourResult, mvForceStatus, mvBody.
- * - up vectors
+ * - up & front facing origin vectors 
  * - integrate timers in the library.
- *
- *  David Young, 2007.
+ * - replace custom mvBaseActionLoader for default actions with mvReadyMadeLoaders
+ * - removed excessive mvWorld get/set list parameters to reduce size of library
+ *  David Young, 2007, 2008.
  */
 

@@ -187,6 +187,7 @@
 		<Unit filename="include\mv\mvPointerList.h" />
 		<Unit filename="include\mv\mvPointerList.hpp" />
 		<Unit filename="include\mv\mvPursuit.h" />
+		<Unit filename="include\mv\mvReadyMadeLoader.h" />
 		<Unit filename="include\mv\mvSeek.h" />
 		<Unit filename="include\mv\mvShape.h" />
 		<Unit filename="include\mv\mvUniformAccelForce.h" />
