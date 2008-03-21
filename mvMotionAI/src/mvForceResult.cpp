@@ -69,7 +69,7 @@ mvConstWaypointPtr mvForceResult::fetchWaypointPtr(mvIndex index) const
       return MV_NULL;
    }
 
-   return currentWorld->getConstWaypointPtr(index);
+   return currentWorld->waypoints.getConstClassPtr(index);
 }
 
  /** @brief (one liner)
@@ -83,7 +83,7 @@ mvConstBodyPtr mvForceResult::fetchBodyPtr(mvIndex index) const
       return MV_NULL;
    }
 
-   return currentWorld->getConstBodyPtr(index);
+   return currentWorld->bodies.getConstClassPtr(index);
 }
 
  /** @brief (one liner)
@@ -97,7 +97,7 @@ mvConstGroupBehaviourPtr mvForceResult::fetchGroupBehaviourPtr(mvIndex index) co
       return MV_NULL;
    }
 
-   return currentWorld->getConstGroupBehaviourPtr(index);
+   return currentWorld->groupBehaviours.getConstClassPtr(index);
 }
 
  /** @brief (one liner)
@@ -111,7 +111,7 @@ mvConstPathwayPtr mvForceResult::fetchPathwayPtr(mvIndex index) const
       return MV_NULL;
    }
 
-   return currentWorld->getConstPathwayPtr(index);
+   return currentWorld->pathways.getConstClassPtr(index);
 }
 
  /** @brief (one liner)
@@ -125,7 +125,7 @@ mvConstGroupPtr mvForceResult::fetchGroupPtr(mvIndex index) const
       return MV_NULL;
    }
 
-   return currentWorld->getConstGroupPtr(index);
+   return currentWorld->groups.getConstClassPtr(index);
 }
 
  /** @brief (one liner)
@@ -211,7 +211,7 @@ mvConstBaseForcePtr mvForceResult::fetchForcePtr(mvIndex index) const
       return MV_NULL;
    }
 
-   return currentWorld->getConstForcePtr(index);
+   return currentWorld->forces.getConstClassPtr(index);
 }
 
 /** @brief (one liner)

@@ -820,7 +820,7 @@ mvErrorEnum mvPointerList<mvClass,mvConstClass>::getItemParametero_str(\
    error = classPtr->getParametero(paramFlag,&optionFlag);
    if(error == MV_NO_ERROR)
    {
-      *option = mvGetOptionString(optionFlag);
+      *option = mvGetOptionEnumString(optionFlag);
    }
    else
    {

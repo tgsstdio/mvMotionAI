@@ -157,19 +157,3 @@ bool mvEvasion::bodyOp(mvBehaviourResultPtr resultModule)
 
    return true;
 }
-
-mvBaseActionPtr mvCreateEvasions::operator()(mvNewBaseActionInfo& actionInfo)
-{
-   return new mvEvasion();
-}
-
-mvCreateEvasions::mvCreateEvasions()
-{
-
-}
-
-mvCreateEvasions::~mvCreateEvasions()
-{
-
-}
-

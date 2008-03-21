@@ -49,6 +49,7 @@
 #include MV_ENUMS_HEADER_FILE_H_
 #include MV_ACTION_LOADER_LIST_HEADER_FILE_H_
 #include MV_FORCE_LOADER_LIST_HEADER_FILE_H_
+#include MV_STDLIB_HEADER_FILE_H_
 
 #ifdef MV_BUILD_DLL
 #define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
@@ -256,64 +257,6 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvAddBehaviourFunction(mvOptionEnum bType,\
  */
 MV_GLOBAL_FUNC_PREFIX mvBaseActionPtr mvCreateNewBehaviourFromLoader(\
    mvOptionEnum type);
-
-/**
- * \ingroup mvGlobal
- * \brief Adds the sll default actions of the mvMotionAI library
- * to this action loader list
- * \param[in,out] loader A pointer to a mvActionLoaderList object free of any
- * actions or behaviours.
- * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
- *
- * NOTE: this function should be used when the programmer wishes to use the parts
- * of the library without the mvMotionAI C interface.
- */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLoadDefaultActions(\
-   mvActionLoaderListPtr loader);
-
-/**
- * \ingroup mvGlobal
- * \brief Adds the sll default forces of the mvMotionAI library
- * to this force loader list
- * \param[in,out] loader A pointer to a mvForceLoaderList object free of any
- * associated forces.
- * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
- *
- * NOTE: this function should be used when the programmer wishes to use the parts
- * of the library without the mvMotionAI C interface.
- */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvLoadDefaultForces(\
-   mvForceLoaderListPtr loader);
-
-// enums & error functions
-/**
- * \ingroup mvGlobal
- * \brief Retrieves C string description of the error value
- * \param[in] error An error value returned from a function
- * \return A C string description of the enum value
- *  or if error has occured, MV_NULL is returned.
- */
-MV_GLOBAL_FUNC_PREFIX const char* mvGetErrorEnumString(mvErrorEnum error);
-
-
-/**
- * \ingroup mvGlobal
- * \brief Retrieves C string description of the parameter value
- * \param[in] param An parameter/variable to retrieve data from mvMotionAI types
- * \return A C string description of the enum value
- *  or if error has occured, MV_NULL is returned.
- */
-MV_GLOBAL_FUNC_PREFIX const char* mvGetParamEnumString(mvParamEnum param);
-
-/**
- * \ingroup mvGlobal
- * \brief Retrieves C string description of the option value
- * \param[in] option An value/data for some of the variables in mvMotionAI
- * \return A C string description of the enum value
- *  or if error has occured, MV_NULL is returned.
- */
-MV_GLOBAL_FUNC_PREFIX const char* mvGetOptionEnumString(mvOptionEnum option);
-
 
 /**
  * \ingroup mvGlobal
@@ -1975,78 +1918,78 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveAllGroupsFromGroupBehaviour(\
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetMainGroupBehaviourParameteri(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameteri(\
    mvIndex worldIndex, mvIndex index, mvParamEnum paramFlag,\
    mvIndex paramIndex);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetMainGroupBehaviourParametero(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParametero(\
    mvIndex worldIndex, mvIndex index, mvParamEnum paramFlag,\
    mvOptionEnum option);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetMainGroupBehaviourParameterf(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameterf(\
    mvIndex worldIndex, mvIndex index, mvParamEnum paramFlag, mvFloat num);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetMainGroupBehaviourParameterv(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameterv(\
    mvIndex worldIndex, mvIndex index, mvParamEnum paramFlag, mvFloat* array);
 
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetMainGroupBehaviourParameteri_str(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameteri_str(\
    mvIndex worldIndex, mvIndex index, const char* param, mvIndex paramIndex);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetMainGroupBehaviourParametero_str(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParametero_str(\
    mvIndex worldIndex, mvIndex index, const char* param, const char* option);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetMainGroupBehaviourParameterf_str(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameterf_str(\
    mvIndex worldIndex, mvIndex index, const char* param, mvFloat array);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetMainGroupBehaviourParameterv_str(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameterv_str(\
    mvIndex worldIndex, mvIndex index, const char* param, mvFloat* array);
 
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetMainGroupBehaviourParameteri(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameteri(\
    mvIndex worldIndex, mvIndex index, mvParamEnum paramFlag, mvIndex* outIndex);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetMainGroupBehaviourParametero(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParametero(\
    mvIndex worldIndex, mvIndex index, mvParamEnum paramFlag,\
    mvOptionEnum* option);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetMainGroupBehaviourParameterf(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameterf(\
    mvIndex worldIndex, mvIndex index, mvParamEnum paramFlag, mvFloat* num);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetMainGroupBehaviourParameterv(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameterv(\
    mvIndex worldIndex, mvIndex index, mvParamEnum paramFlag, mvFloat* array,\
    mvCount* noOfParameters);
 
@@ -2054,25 +1997,25 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetMainGroupBehaviourParameterv(\
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetMainGroupBehaviourParameteri_str(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameteri_str(\
 	mvIndex worldIndex, mvIndex index, const char* param, mvIndex* outIndex);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetMainGroupBehaviourParametero_str(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParametero_str(\
 	mvIndex worldIndex, mvIndex index, const char* param, const char** option);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetMainGroupBehaviourParameterf_str(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameterf_str(\
 	mvIndex worldIndex, mvIndex index, const char* param, mvFloat* num);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetMainGroupBehaviourParameterv_str(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameterv_str(\
 	mvIndex worldIndex, mvIndex index, const char* param, mvFloat* array,\
 	mvCount* noOfParameters);
 
@@ -2080,28 +2023,28 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetMainGroupBehaviourParameterv_str(\
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameteri(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourNodeParameteri(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
 	mvParamEnum paramFlag, mvIndex paramIndex);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParametero(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourNodeParametero(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
    mvParamEnum paramFlag, mvOptionEnum option);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameterf(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourNodeParameterf(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
    mvParamEnum paramFlag, mvFloat num);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameterv(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourNodeParameterv(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
    mvParamEnum paramFlag, mvFloat* array);
 
@@ -2109,28 +2052,28 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameterv(\
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameteri_str(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourNodeParameteri_str(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
    const char* param, mvIndex paramIndex);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParametero_str(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourNodeParametero_str(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
    const char* param, const char* option);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameterf_str(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourNodeParameterf_str(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex, const char* param,\
 	mvFloat num);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameterv_str(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourNodeParameterv_str(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex, const char* param,\
 	mvFloat* array);
 
@@ -2139,28 +2082,28 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetGroupBehaviourParameterv_str(\
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameteri(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourNodeParameteri(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
    mvParamEnum paramFlag, mvIndex* outIndex);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParametero(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourNodeParametero(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
    mvParamEnum paramFlag, mvOptionEnum* option);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameterf(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourNodeParameterf(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
    mvParamEnum paramFlag, mvFloat* num);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameterv(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourNodeParameterv(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
 	mvParamEnum paramFlag, mvFloat* array, mvCount* noOfParameters);
 
@@ -2168,28 +2111,28 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameterv(\
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameteri_str(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourNodeParameteri_str(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
    const char* param, mvIndex* outIndex);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParametero_str(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourNodeParametero_str(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
    const char* param, const char** option);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameterf_str(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourNodeParameterf_str(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
    const char* param, mvFloat* num);
 /**
  * \ingroup mvGlobal
  * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
  */
-MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourParameterv_str(\
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvGetGroupBehaviourNodeParameterv_str(\
 	mvIndex worldIndex, mvIndex gbIndex, mvIndex groupIndex,\
    const char* param, mvFloat* array, mvCount* noOfParameters);
 

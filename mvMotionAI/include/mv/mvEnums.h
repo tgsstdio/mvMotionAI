@@ -30,6 +30,12 @@
 #include <mv/mvMotionAI-Types.h>
 #endif
 
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
 /*! \enum mvOptionEnum
  * \brief Option or state values within mvMotionAI library
  */
@@ -330,9 +336,34 @@ enum mvEffectTypeEnum
 const char* mvGetMotionTypeString(mvMotionTypeEnum mType);
 const char* mvGetEffectTypeString(mvEffectTypeEnum eType);
 
-const char* mvGetErrorString(mvErrorEnum error);
-const char* mvGetParamString(mvParamEnum param);
-const char* mvGetOptionString(mvOptionEnum option);
+/**
+ * \ingroup mvGlobal
+ * \brief Retrieves C string description of the error value
+ * \param[in] error An error value returned from a function
+ * \return A C string description of the enum value
+ *  or if error has occured, MV_NULL is returned.
+ */
+MV_GLOBAL_FUNC_PREFIX const char* mvGetErrorEnumString(mvErrorEnum error);
+
+
+/**
+ * \ingroup mvGlobal
+ * \brief Retrieves C string description of the parameter value
+ * \param[in] param An parameter/variable to retrieve data from mvMotionAI types
+ * \return A C string description of the enum value
+ *  or if error has occured, MV_NULL is returned.
+ */
+MV_GLOBAL_FUNC_PREFIX const char* mvGetParamEnumString(mvParamEnum param);
+
+/**
+ * \ingroup mvGlobal
+ * \brief Retrieves C string description of the option value
+ * \param[in] option An value/data for some of the variables in mvMotionAI
+ * \return A C string description of the enum value
+ *  or if error has occured, MV_NULL is returned.
+ */
+MV_GLOBAL_FUNC_PREFIX const char* mvGetOptionEnumString(mvOptionEnum option);
+
 
 bool mvCheckAllParamEnumsForString(const char* paramString, mvParamEnum* dest);
 bool mvCheckAllErrorEnumsForString(const char* errorString, mvErrorEnum* dest);

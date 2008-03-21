@@ -180,13 +180,3 @@ bool mvSeek::groupOp(mvGroupBehaviourResultPtr resultModule)
 {
    return false;
 }
-
-mvCreateSeeks::mvCreateSeeks()
-{
-   // empty body
-}
-
-mvBaseAction* mvCreateSeeks::operator()(mvNewBaseActionInfo& actionInfo)
-{
-   return new mvSeek();
-}

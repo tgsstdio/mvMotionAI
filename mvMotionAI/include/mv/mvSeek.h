@@ -57,16 +57,4 @@ class mvSeek : public mvBaseAction
       virtual ~mvSeek();
 };
 
-/**
- * \class mvCreateSeeks
- * \brief derived mvBaseActionLoader - creates mvSeek
- */
-class mvCreateSeeks : public mvBaseActionLoader
-{
-   public:
-      mvCreateSeeks();
-      virtual mvBaseActionPtr operator()(mvNewBaseActionInfo& actionInfo);
-      virtual ~mvCreateSeeks(){};
-};
-
 #endif

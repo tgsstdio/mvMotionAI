@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_workspace_file>
 	<Workspace title="mvMotionAI Code Blocks Workspace">
-		<Project filename="mvMotion-CB.cbp" active="1" />
+		<Project filename="mvMotion-CB.cbp" />
+		<Project filename="mvMotionAI C Interface.cbp" active="1" />
 		<Project filename="tutorial1.cbp">
 			<Depends filename="mvMotion-CB.cbp" />
 		</Project>

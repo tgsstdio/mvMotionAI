@@ -37,7 +37,7 @@
 
 /**
  * \class mvFollowPath
- * \brief derived mvBaseAction - moves the mvBody around the mvPathway 
+ * \brief derived mvBaseAction - moves the mvBody around the mvPathway
  */
 
 class mvFollowPath : public mvBaseAction
@@ -57,19 +57,6 @@ class mvFollowPath : public mvBaseAction
 	   virtual bool groupOp(mvGroupBehaviourResultPtr resultModule);
       virtual bool bodyOp(mvBehaviourResultPtr resultModule);
       ~mvFollowPath();
-};
-
-/**
- * \class mvCreatePathFollower
- * \brief derived mvBaseActionLoader - creates mvSeek
- */
-
-class mvCreatePathFollower : public mvBaseActionLoader
-{
-   public:
-      mvCreatePathFollower();
-      virtual mvBaseActionPtr operator()(mvNewBaseActionInfo& actionInfo);
-      ~mvCreatePathFollower();
 };
 
 #endif // MVFOLLOWPATH_H_INCLUDED

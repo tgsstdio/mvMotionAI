@@ -21,20 +21,6 @@
  */
 #include <mv/mvPursuit.h>
 
-mvCreatePursuits::mvCreatePursuits()
-{
-
-}
-
-/** @brief (one liner)
-  *
-  * (documentation goes here)
-  */
-mvBaseAction* mvCreatePursuits::operator()(mvNewBaseActionInfo& actionInfo)
-{
-   return new mvPursuit();
-}
-
 /** @brief (one liner)
   *
   * (documentation goes here)

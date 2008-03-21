@@ -31,16 +31,4 @@ class mvFlee : public mvBaseAction
       virtual mvErrorEnum getParameteri(mvParamEnum param, mvIndex* index) const;
 };
 
-/**
- * \class mvCreateFlees
- * \brief derived mvBaseActionLoader - creates mvFlee
- */
-class mvCreateFlees : public mvBaseActionLoader
-{
-   public:
-      mvCreateFlees();
-      virtual mvBaseActionPtr operator()(mvNewBaseActionInfo& actionInfo);
-      virtual ~mvCreateFlees(){};
-};
-
 #endif // MVFLEE_H_INCLUDED

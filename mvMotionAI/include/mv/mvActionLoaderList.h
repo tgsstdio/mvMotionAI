@@ -20,8 +20,10 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-#ifndef MVBEHAVFUNCLIST_H_INCLUDED
-#define MVBEHAVFUNCLIST_H_INCLUDED
+#ifndef MVACTIONLOADERLIST_H_INCLUDED
+#define MVACTIONLOADERLIST_H_INCLUDED
+
+#warning HELLO WORLD
 
 #ifdef MV_MOTIONAI_TYPES_HEADER_FILE_H_
 #include MV_MOTIONAI_TYPES_HEADER_FILE_H_
@@ -29,7 +31,7 @@
 #include <mv/mvMotionAI-Types.h>
 #endif
 
-#include MV_BASE_ACTION_HEADER_FILE_H_
+//#include MV_BASE_ACTION_HEADER_FILE_H_
 #include "mvFactoryFunctionList.h"
 
 #ifdef MV_BUILD_DLL
@@ -73,8 +75,6 @@ typedef class mvNewBaseActionInfo& mvNewBaseActionInfoRef;
 
 typedef class MV_GLOBAL_FUNC_PREFIX mvFactoryFunctionList<mvBaseActionLoader,\
    mvBaseAction, mvNewBaseActionInfoRef > mvActionLoaderList;
-
-
 
 
 #endif // MVBEHAVFUNCLIST_H_INCLUDED
