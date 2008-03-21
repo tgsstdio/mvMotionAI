@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-winXP-dll-debug" />
-	<File name="include\mv\mvActionLoaderList.h" open="0" top="0" tabpos="0">
-		<Cursor position="2461" topLine="36" />
+	<File name="include\mv\mvActionLoaderList.h" open="1" top="0" tabpos="6">
+		<Cursor position="1256" topLine="6" />
 	</File>
 	<File name="include\mv\mvBEntry.h" open="0" top="0" tabpos="7">
 		<Cursor position="1760" topLine="39" />
@@ -20,7 +20,7 @@
 		<Cursor position="1219" topLine="28" />
 	</File>
 	<File name="include\mv\mvBaseAction.h" open="0" top="0" tabpos="9">
-		<Cursor position="4632" topLine="112" />
+		<Cursor position="1467" topLine="6" />
 	</File>
 	<File name="include\mv\mvBaseForce.h" open="0" top="0" tabpos="2">
 		<Cursor position="2146" topLine="101" />
@@ -37,46 +37,46 @@
 	<File name="include\mv\mvBody_V2.h" open="0" top="0" tabpos="5">
 		<Cursor position="1982" topLine="159" />
 	</File>
-	<File name="include\mv\mvCapsuleList.h" open="1" top="0" tabpos="11">
+	<File name="include\mv\mvCapsuleList.h" open="0" top="0" tabpos="11">
 		<Cursor position="1895" topLine="73" />
 	</File>
 	<File name="include\mv\mvCapsuleList.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="7042" topLine="174" />
+		<Cursor position="11160" topLine="277" />
 	</File>
 	<File name="include\mv\mvEnums.h" open="0" top="0" tabpos="13">
-		<Cursor position="5321" topLine="165" />
+		<Cursor position="10049" topLine="332" />
 	</File>
 	<File name="include\mv\mvEvasion.h" open="0" top="0" tabpos="1">
-		<Cursor position="1383" topLine="0" />
+		<Cursor position="1079" topLine="0" />
 	</File>
 	<File name="include\mv\mvFactoryFunctionList.h" open="0" top="0" tabpos="2">
-		<Cursor position="1604" topLine="15" />
+		<Cursor position="1521" topLine="26" />
 	</File>
 	<File name="include\mv\mvFactoryFunctionList.hpp" open="0" top="0" tabpos="3">
-		<Cursor position="3819" topLine="90" />
+		<Cursor position="3819" topLine="0" />
 	</File>
 	<File name="include\mv\mvFlee.h" open="0" top="0" tabpos="3">
 		<Cursor position="911" topLine="0" />
 	</File>
 	<File name="include\mv\mvFollowPath.h" open="0" top="0" tabpos="11">
-		<Cursor position="337" topLine="0" />
+		<Cursor position="2210" topLine="22" />
 	</File>
 	<File name="include\mv\mvForceCapsule.h" open="0" top="0" tabpos="10">
 		<Cursor position="1995" topLine="40" />
 	</File>
-	<File name="include\mv\mvForceLoaderList.h" open="0" top="0" tabpos="0">
-		<Cursor position="1716" topLine="15" />
+	<File name="include\mv\mvForceLoaderList.h" open="1" top="0" tabpos="9">
+		<Cursor position="1394" topLine="13" />
 	</File>
 	<File name="include\mv\mvForceResult.h" open="0" top="0" tabpos="3">
 		<Cursor position="5839" topLine="210" />
 	</File>
 	<File name="include\mv\mvGravityForce.h" open="0" top="0" tabpos="18">
-		<Cursor position="1804" topLine="23" />
+		<Cursor position="1823" topLine="26" />
 	</File>
 	<File name="include\mv\mvGroupBNode_V2.h" open="0" top="0" tabpos="2">
 		<Cursor position="2840" topLine="43" />
 	</File>
-	<File name="include\mv\mvGroupBehaviourResult.h" open="1" top="0" tabpos="2">
+	<File name="include\mv\mvGroupBehaviourResult.h" open="0" top="0" tabpos="2">
 		<Cursor position="2299" topLine="19" />
 	</File>
 	<File name="include\mv\mvGroupBehaviour_V2.h" open="0" top="0" tabpos="8">
@@ -89,19 +89,19 @@
 		<Cursor position="1901" topLine="37" />
 	</File>
 	<File name="include\mv\mvIndexSet.h" open="0" top="0" tabpos="2">
-		<Cursor position="2832" topLine="61" />
+		<Cursor position="2428" topLine="46" />
 	</File>
-	<File name="include\mv\mvMotionAI-Types.h" open="0" top="0" tabpos="8">
-		<Cursor position="10703" topLine="198" />
+	<File name="include\mv\mvMotionAI-Types.h" open="1" top="0" tabpos="5">
+		<Cursor position="11519" topLine="376" />
 	</File>
 	<File name="include\mv\mvMotionAI-Utilities.h" open="0" top="0" tabpos="4">
 		<Cursor position="2333" topLine="25" />
 	</File>
-	<File name="include\mv\mvMotionAI.h" open="0" top="0" tabpos="7">
-		<Cursor position="95743" topLine="2426" />
+	<File name="include\mv\mvMotionAI.h" open="1" top="1" tabpos="11">
+		<Cursor position="1981" topLine="27" />
 	</File>
 	<File name="include\mv\mvNullLoader.h" open="0" top="0" tabpos="0">
-		<Cursor position="1551" topLine="0" />
+		<Cursor position="1620" topLine="3" />
 	</File>
 	<File name="include\mv\mvObstacle_V2.h" open="0" top="0" tabpos="0">
 		<Cursor position="2236" topLine="49" />
@@ -110,22 +110,25 @@
 		<Cursor position="1556" topLine="38" />
 	</File>
 	<File name="include\mv\mvPointerList.h" open="0" top="0" tabpos="7">
-		<Cursor position="1872" topLine="29" />
+		<Cursor position="2026" topLine="19" />
 	</File>
 	<File name="include\mv\mvPointerList.hpp" open="0" top="0" tabpos="6">
-		<Cursor position="4058" topLine="137" />
+		<Cursor position="19592" topLine="720" />
 	</File>
 	<File name="include\mv\mvPursuit.h" open="0" top="0" tabpos="0">
-		<Cursor position="2039" topLine="26" />
+		<Cursor position="1668" topLine="14" />
 	</File>
-	<File name="include\mv\mvReadyMadeLoader.h" open="1" top="0" tabpos="4">
-		<Cursor position="868" topLine="0" />
+	<File name="include\mv\mvReadyMadeLoader.h" open="1" top="0" tabpos="7">
+		<Cursor position="373" topLine="0" />
 	</File>
 	<File name="include\mv\mvSeek.h" open="0" top="0" tabpos="0">
-		<Cursor position="2161" topLine="9" />
+		<Cursor position="1775" topLine="20" />
 	</File>
 	<File name="include\mv\mvShape.h" open="0" top="0" tabpos="8">
 		<Cursor position="1606" topLine="21" />
+	</File>
+	<File name="include\mv\mvStdLib.h" open="1" top="0" tabpos="8">
+		<Cursor position="773" topLine="10" />
 	</File>
 	<File name="include\mv\mvUniformAccelForce.h" open="0" top="0" tabpos="0">
 		<Cursor position="1473" topLine="27" />
@@ -145,8 +148,8 @@
 	<File name="include\mv\mvWaypoint_V2.h" open="0" top="0" tabpos="0">
 		<Cursor position="2197" topLine="36" />
 	</File>
-	<File name="include\mv\mvWorld2.h" open="1" top="1" tabpos="3">
-		<Cursor position="25191" topLine="577" />
+	<File name="include\mv\mvWorld2.h" open="1" top="0" tabpos="2">
+		<Cursor position="3454" topLine="73" />
 	</File>
 	<File name="mvMotionAI-lib.rc" open="0" top="0" tabpos="10">
 		<Cursor position="205" topLine="0" />
@@ -173,7 +176,7 @@
 		<Cursor position="1791" topLine="43" />
 	</File>
 	<File name="src\mvBehaviourResult.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="17263" topLine="824" />
+		<Cursor position="10737" topLine="465" />
 	</File>
 	<File name="src\mvBehaviour_V2.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2681" topLine="104" />
@@ -185,22 +188,22 @@
 		<Cursor position="10968" topLine="500" />
 	</File>
 	<File name="src\mvEnums.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="16573" topLine="562" />
+		<Cursor position="16140" topLine="0" />
 	</File>
 	<File name="src\mvEvasion.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="2306" topLine="83" />
+		<Cursor position="3501" topLine="119" />
 	</File>
 	<File name="src\mvFlee.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="3903" topLine="134" />
+		<Cursor position="4128" topLine="142" />
 	</File>
 	<File name="src\mvFollowPath.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="1073" topLine="2" />
+		<Cursor position="3385" topLine="109" />
 	</File>
 	<File name="src\mvForceCapsule.cpp" open="0" top="0" tabpos="12">
 		<Cursor position="1169" topLine="0" />
 	</File>
 	<File name="src\mvForceResult.cpp" open="0" top="0" tabpos="15">
-		<Cursor position="18731" topLine="914" />
+		<Cursor position="4786" topLine="193" />
 	</File>
 	<File name="src\mvGravityForce.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="10" topLine="0" />
@@ -209,10 +212,10 @@
 		<Cursor position="5125" topLine="226" />
 	</File>
 	<File name="src\mvGroupBehaviourResult.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="2557" topLine="74" />
+		<Cursor position="3101" topLine="98" />
 	</File>
 	<File name="src\mvGroupBehaviour_V2.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="99" topLine="0" />
+		<Cursor position="13084" topLine="545" />
 	</File>
 	<File name="src\mvGroupCapsule.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2643" topLine="60" />
@@ -226,14 +229,14 @@
 	<File name="src\mvMotionAI-Utilities.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="3207" topLine="87" />
 	</File>
-	<File name="src\mvMotionAI.cpp" open="1" top="0" tabpos="10">
-		<Cursor position="11449" topLine="396" />
+	<File name="src\mvMotionAI.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="101876" topLine="3383" />
 	</File>
-	<File name="src\mvMotionAI_V2-Central.cpp" open="0" top="0" tabpos="12">
-		<Cursor position="8632" topLine="378" />
+	<File name="src\mvMotionAI_V2-Central.cpp" open="1" top="0" tabpos="10">
+		<Cursor position="2398" topLine="101" />
 	</File>
-	<File name="src\mvMotionAI_V2-Central.h" open="0" top="0" tabpos="0">
-		<Cursor position="5434" topLine="98" />
+	<File name="src\mvMotionAI_V2-Central.h" open="1" top="0" tabpos="3">
+		<Cursor position="5425" topLine="100" />
 	</File>
 	<File name="src\mvNullLoader.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1289" topLine="0" />
@@ -245,13 +248,16 @@
 		<Cursor position="12706" topLine="12" />
 	</File>
 	<File name="src\mvPursuit.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="4139" topLine="65" />
+		<Cursor position="4065" topLine="116" />
 	</File>
 	<File name="src\mvSeek.cpp" open="0" top="0" tabpos="9">
-		<Cursor position="1490" topLine="111" />
+		<Cursor position="4903" topLine="142" />
 	</File>
 	<File name="src\mvShape.cpp" open="0" top="0" tabpos="15">
 		<Cursor position="92" topLine="159" />
+	</File>
+	<File name="src\mvStdLib.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="240" topLine="0" />
 	</File>
 	<File name="src\mvUniformAccelForce.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="35" topLine="0" />
@@ -271,11 +277,11 @@
 	<File name="src\mvWaypoint_V2.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="53" topLine="0" />
 	</File>
-	<File name="src\mvWorld2.cpp" open="1" top="0" tabpos="9">
-		<Cursor position="8980" topLine="336" />
+	<File name="src\mvWorld2.cpp" open="0" top="0" tabpos="9">
+		<Cursor position="64436" topLine="2547" />
 	</File>
-	<File name="src\mvWorld2_Functions.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="8821" topLine="226" />
+	<File name="src\mvWorld2_Functions.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="5859" topLine="158" />
 	</File>
 	<File name="src\mvWorld2_Functions.h" open="0" top="0" tabpos="22">
 		<Cursor position="5275" topLine="108" />

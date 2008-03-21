@@ -51,16 +51,4 @@ class mvPursuit : public mvBaseAction
       virtual mvErrorEnum getParameteri(mvParamEnum param, mvIndex* index) const;
 };
 
-/**
- * \class mvCreatePursuits
- * \brief derived mvBaseActionLoader - creates mvPursuit
- */
-class mvCreatePursuits : public mvBaseActionLoader
-{
-   public:
-      mvCreatePursuits();
-      mvBaseActionPtr operator()(mvNewBaseActionInfo& actionInfo);
-      virtual ~mvCreatePursuits(){};
-};
-
 #endif // MVPURSUIT_H_INCLUDED

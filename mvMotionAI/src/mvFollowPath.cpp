@@ -147,18 +147,3 @@ mvFollowPath::~mvFollowPath()
 {
 
 }
-
-mvCreatePathFollower::mvCreatePathFollower()
-{
-
-}
-
-mvBaseActionPtr mvCreatePathFollower::operator()(mvNewBaseActionInfo& actionInfo)
-{
-   return new mvFollowPath();
-}
-
-mvCreatePathFollower::~mvCreatePathFollower()
-{
-
-}

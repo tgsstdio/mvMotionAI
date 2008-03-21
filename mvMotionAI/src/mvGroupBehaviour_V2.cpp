@@ -563,7 +563,7 @@ mvErrorEnum mvGroupBehaviour::getGroupParametero_str(mvIndex groupIndex,\
 
    if (error == MV_NO_ERROR)
    {
-      *option = mvGetOptionString(optionFlag);
+      *option = mvGetOptionEnumString(optionFlag);
    }
 
    return error;

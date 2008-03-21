@@ -177,10 +177,10 @@ lua_CFunction mvLua_LuaFunctionPointers[] =
    mvLua_DeleteGroupBehaviour,
 //10
    mvLua_DeleteAllGroupBehaviours,
-   mvLua_SetMainGroupBehaviourParameter,
-   mvLua_GetMainGroupBehaviourParameter,
    mvLua_SetGroupBehaviourParameter,
    mvLua_GetGroupBehaviourParameter,
+   mvLua_SetGroupBehaviourNodeParameter,
+   mvLua_GetGroupBehaviourNodeParameter,
    mvLua_AddGroupIntoGroupBehaviour,
    mvLua_RemoveGroupFromGroupBehaviour,
    mvLua_SetEntryListNodeParameter,
@@ -297,10 +297,10 @@ const char* mvLua_CFuncFunctionNames[] =
   "mvDeleteGroupBehaviour",
 //10
   "mvDeleteAllGroupBehaviours",
-  "mvSetMainGroupBehaviourParameter",
-  "mvGetMainGroupBehaviourParameter",
   "mvSetGroupBehaviourParameter",
   "mvGetGroupBehaviourParameter",
+  "mvSetGroupBehaviourNodeParameter",
+  "mvGetGroupBehaviourNodeParameter",
   "mvAddGroupIntoGroupBehaviour",
   "mvRemoveGroupFromGroupBehaviour",
   "mvSetEntryListNodeParameter",
@@ -1845,27 +1845,9 @@ int mvLua_DeleteAllGroupBehaviours(lua_State* luaVM)
    return mvLua_DeleteAllItems(luaVM, mvDeleteAllGroupBehaviours);
 }
 
-int mvLua_SetMainGroupBehaviourParameter(lua_State* luaVM)
-{
-   return mvLua_SetParameterFunction_2i(luaVM,
-      mvSetMainGroupBehaviourParametero_str,
-      mvSetMainGroupBehaviourParameteri_str,
-      mvSetMainGroupBehaviourParameterf_str,
-      mvSetMainGroupBehaviourParameterv_str);
-}
-
-int mvLua_GetMainGroupBehaviourParameter(lua_State* luaVM)
-{
-   return mvLua_GetParameterFunction_2i(luaVM,
-      mvGetMainGroupBehaviourParametero_str,
-      mvGetMainGroupBehaviourParameteri_str,
-      mvGetMainGroupBehaviourParameterf_str,
-      mvGetMainGroupBehaviourParameterv_str);
-}
-
 int mvLua_SetGroupBehaviourParameter(lua_State* luaVM)
 {
-   return mvLua_SetParameterFunction_3i(luaVM,
+   return mvLua_SetParameterFunction_2i(luaVM,
       mvSetGroupBehaviourParametero_str,
       mvSetGroupBehaviourParameteri_str,
       mvSetGroupBehaviourParameterf_str,
@@ -1874,11 +1856,29 @@ int mvLua_SetGroupBehaviourParameter(lua_State* luaVM)
 
 int mvLua_GetGroupBehaviourParameter(lua_State* luaVM)
 {
-   return mvLua_GetParameterFunction_3i(luaVM,
+   return mvLua_GetParameterFunction_2i(luaVM,
       mvGetGroupBehaviourParametero_str,
       mvGetGroupBehaviourParameteri_str,
       mvGetGroupBehaviourParameterf_str,
       mvGetGroupBehaviourParameterv_str);
+}
+
+int mvLua_SetGroupBehaviourNodeParameter(lua_State* luaVM)
+{
+   return mvLua_SetParameterFunction_3i(luaVM,
+      mvSetGroupBehaviourNodeParametero_str,
+      mvSetGroupBehaviourNodeParameteri_str,
+      mvSetGroupBehaviourNodeParameterf_str,
+      mvSetGroupBehaviourNodeParameterv_str);
+}
+
+int mvLua_GetGroupBehaviourNodeParameter(lua_State* luaVM)
+{
+   return mvLua_GetParameterFunction_3i(luaVM,
+      mvGetGroupBehaviourNodeParametero_str,
+      mvGetGroupBehaviourNodeParameteri_str,
+      mvGetGroupBehaviourNodeParameterf_str,
+      mvGetGroupBehaviourNodeParameterv_str);
 }
 
 int mvLua_AddGroupIntoGroupBehaviour(lua_State* luaVM)

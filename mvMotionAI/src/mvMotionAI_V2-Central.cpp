@@ -1,30 +1,14 @@
 #include "mvMotionAI_V2-Central.h"
 #include <cstring>
 
-/**
- * default behaviours/actions
- */
-#include <mv/mvNullLoader.h>
-#include <mv/mvSeek.h>
-#include <mv/mvPursuit.h>
-#include <mv/mvFlee.h>
-#include <mv/mvFollowPath.h>
-#include <mv/mvEvasion.h>
-
-/**
- * default forces
- */
-#include <mv/mvGravityForce.h>
-#include <mv/mvUniformForce.h>
-#include <mv/mvUniformAccelForce.h>
-#include <mv/mvUniformShiftForce.h>
-
 #define MV_MOTIONAI_V2_SINGLETON_DEBUG_OUTPUT 1
 #undef MV_MOTIONAI_V2_SINGLETON_DEBUG_OUTPUT
 
 #ifdef MV_MOTIONAI_V2_SINGLETON_DEBUG_OUTPUT
 #include <iostream>
 #endif
+
+#include MV_STDLIB_HEADER_FILE_H_
 
 
 mvMotionAI_V2_SUPERCLASS __mv__Motion__AI__Module;
@@ -72,40 +56,6 @@ mvMotionAI_V2::mvMotionAI_V2()
 {
    // EMPTY
 }
-/*
-bool findExistingWorld(mvWorldPtr worldPtr, void* extraPtr)
-{
-   const char* worldID = MV_NULL;
-   const char* existingID = MV_NULL;
-
-   if (worldPtr == MV_NULL)
-   {
-      return false;
-   }
-
-   if (extraPtr == MV_NULL)
-   {
-      return false;
-   }
-
-   worldID = (const char*) extraPtr;
-   existingID = worldPtr->getID();
-
-   if (existingID == MV_NULL)
-   {
-      return false;
-   }
-
-   if (strcmp(worldID, existingID) == 0)
-   {
-      return true;
-   }
-   else
-   {
-      return false;
-   }
-}
-*/
 
 mvIndex mvMotionAI_V2::createWorld(mvIndex saveFileIndex)
 {
@@ -137,13 +87,6 @@ mvWorldPtr mvMotionAI_V2::getCurrentWorldPtr()
    return worlds.getCurrentClassPtr();
 }
 
-/*
-mvIndex mvMotionAI_V2::getWorldByID(const char* worldID)
-{
-   return worlds.findItemInList(findExistingWorld, (void*) worldID);
-}
-*/
-
 mvCount mvMotionAI_V2::getNoOfWorlds() const
 {
    return worlds.getNoOfItems();
@@ -153,12 +96,6 @@ mvWorldPtr mvMotionAI_V2::getWorldPtr(mvIndex index)
 {
    return worlds.getClassPtr(index);
 }
-/*
-mvWorldPtr mvMotionAI_V2::getWorldPtrByID(const char* worldID)
-{
-   return worlds.findItemPtrInList(findExistingWorld, (void*) worldID);
-}
-*/
 
 void mvMotionAI_V2::deleteAllWorlds()
 {
@@ -195,213 +132,9 @@ void mvMotionAI_V2::applyToAllWorldsByIndex(void (someFunction)(mvIndex,void*),\
    worlds.applyToAllItemsByItemIndex(someFunction, extraPtr);
 }
 
-mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(mvActionLoaderListPtr
-   loader)
-{
-   mvErrorEnum error;
-   mvBaseActionLoaderPtr tempLoader;
-
-   if (loader == MV_NULL)
-   {
-      return MV_FUNCTION_LOADER_LIST_PTR_IS_NULL;
-   }
-
-   // adding nullLoaders to protected enums such as
-   // enum 1
-   tempLoader = MV_NULL;
-   tempLoader = new mvNullLoader();
-   // check for memory errors
-   if (tempLoader == MV_NULL)
-   {
-      return MV_INVALID_MEMORY_ALLOCATION;
-   }
-   error = loader->addFactoryFunction(MV_GROUP_BEHAVIOUR_MEMBER_ENTRY,\
-      tempLoader);
-   // if error occurs
-   if (error != MV_NO_ERROR)
-   {
-      delete tempLoader;
-      return error;
-   }
-
-   // enum 2
-   tempLoader = MV_NULL;
-   tempLoader = new mvNullLoader();
-   // check for memory errors
-   if (tempLoader == MV_NULL)
-   {
-      return MV_INVALID_MEMORY_ALLOCATION;
-   }
-   error = loader->addFactoryFunction(MV_EXISTING_BEHAVIOUR,\
-      tempLoader);
-   if (error != MV_NO_ERROR)
-   {
-      delete tempLoader;
-      return error;
-   }
-
-   // enum 3
-   tempLoader = MV_NULL;
-   tempLoader = new mvNullLoader();
-   // check for memory errors
-   if (tempLoader == MV_NULL)
-   {
-      return MV_INVALID_MEMORY_ALLOCATION;
-   }
-   error = loader->addFactoryFunction(MV_EXISTING_GROUP_BEHAVIOUR,\
-      tempLoader);
-   if (error != MV_NO_ERROR)
-   {
-      delete tempLoader;
-      return error;
-   }
-
-   // enum 4 seek
-   tempLoader = MV_NULL;
-   tempLoader = new mvCreateSeeks();
-   // check for memory errors
-   if (tempLoader == MV_NULL)
-   {
-      return MV_INVALID_MEMORY_ALLOCATION;
-   }
-   error = loader->addFactoryFunction(MV_SEEK,\
-      tempLoader);
-   if (error != MV_NO_ERROR)
-   {
-      delete tempLoader;
-      return error;
-   }
-
-   // enum 5 pursuit
-   tempLoader = MV_NULL;
-   tempLoader = new mvCreatePursuits();
-   // check for memory errors
-   if (tempLoader == MV_NULL)
-   {
-      return MV_INVALID_MEMORY_ALLOCATION;
-   }
-   error = loader->addFactoryFunction(MV_PURSUIT,\
-      tempLoader);
-   if (error != MV_NO_ERROR)
-   {
-      delete tempLoader;
-      return error;
-   }
-
-   // enum 6 flee
-   tempLoader = MV_NULL;
-   tempLoader = new mvCreateFlees();
-   // check for memory errors
-   if (tempLoader == MV_NULL)
-   {
-      return MV_INVALID_MEMORY_ALLOCATION;
-   }
-   error = loader->addFactoryFunction(MV_FLEE,\
-      tempLoader);
-   if (error != MV_NO_ERROR)
-   {
-      delete tempLoader;
-      return error;
-   }
-
-   // enum 6 path follow
-   tempLoader = MV_NULL;
-   tempLoader = new mvCreatePathFollower();
-   // check for memory errors
-   if (tempLoader == MV_NULL)
-   {
-      return MV_INVALID_MEMORY_ALLOCATION;
-   }
-   error = loader->addFactoryFunction(MV_FOLLOW_PATH,\
-      tempLoader);
-   if (error != MV_NO_ERROR)
-   {
-      delete tempLoader;
-      return error;
-   }
-
-   // enum 7 evade body
-   tempLoader = MV_NULL;
-   tempLoader = new mvCreateEvasions();
-   // check for memory errors
-   if (tempLoader == MV_NULL)
-   {
-      return MV_INVALID_MEMORY_ALLOCATION;
-   }
-   error = loader->addFactoryFunction(MV_EVASION,\
-      tempLoader);
-   if (error != MV_NO_ERROR)
-   {
-      delete tempLoader;
-      return error;
-   }
-
-   // now adding defined functions
-   //TODO : add more behaviours
-   return MV_NO_ERROR;
-}
-
-mvErrorEnum mvMotionAI_V2_LOADDEFAULTFORCES(mvForceLoaderListPtr
-   loader)
-{
-   mvErrorEnum error;
-   mvBaseForceLoaderPtr tempLoader;
-
-   if (loader == MV_NULL)
-   {
-      return MV_FUNCTION_LOADER_LIST_PTR_IS_NULL;
-   }
-
-   tempLoader = MV_NULL;
-   tempLoader = new mvGravityForceLoader();
-   error = loader->addFactoryFunction(MV_GRAVITY,\
-      tempLoader);
-   if (error != MV_NO_ERROR)
-   {
-      delete tempLoader;
-      return error;
-   }
-
-   tempLoader = MV_NULL;
-   tempLoader = new mvUniformForceLoader();
-   error = loader->addFactoryFunction(MV_UNIFORM_FORCE,\
-      tempLoader);
-   if (error != MV_NO_ERROR)
-   {
-      delete tempLoader;
-      return error;
-   }
-
-   tempLoader = MV_NULL;
-   tempLoader = new mvUniformAccelForceLoader();
-   error = loader->addFactoryFunction(MV_UNIFORM_ACCELERATION,\
-      tempLoader);
-   if (error != MV_NO_ERROR)
-   {
-      delete tempLoader;
-      return error;
-   }
-
-   tempLoader = MV_NULL;
-   tempLoader = new mvUniformShiftForceLoader();
-   error = loader->addFactoryFunction(MV_UNIFORM_SHIFT,\
-      tempLoader);
-   if (error != MV_NO_ERROR)
-   {
-      delete tempLoader;
-      return error;
-   }
-#ifdef MV_MOTIONAI_V2_SINGLETON_DEBUG_OUTPUT
-   // todo : add more forces
-   std::cout<< "No Of FF " << loader->getNoOfFactoryFunctions() << std::endl;
-#endif
-
-   return MV_NO_ERROR;
-}
-
 mvErrorEnum mvMotionAI_V2::loadDefaultActions()
 {
-   return mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(&bFunctions);
+   return mvLoadDefaultActions(&bFunctions);
 }
 
 mvBaseActionPtr mvMotionAI_V2::createNewBehaviour(mvOptionEnum type)
@@ -421,7 +154,7 @@ void mvMotionAI_V2::freeDefaultActions()
 
 mvErrorEnum mvMotionAI_V2::loadDefaultForces()
 {
-   return mvMotionAI_V2_LOADDEFAULTFORCES(&fFunctions);
+   return mvLoadDefaultForces(&fFunctions);
 }
 
 void mvMotionAI_V2::freeDefaultForces()

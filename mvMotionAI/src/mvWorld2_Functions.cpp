@@ -167,7 +167,7 @@ void mvWorld_V2_CalculateForceOnSingleBody(mvForceCapsulePtr fCapsulePtr,\
             currentResult.disableDragShift();
          }
 
-         puts(mvGetOptionString(currentForce->getType()));
+         puts(mvGetOptionEnumString(currentForce->getType()));
          // sum forces
          mvWorld_V2_SumForceResults(finalResult,currentResult);
       }
@@ -256,21 +256,21 @@ void mvWorldV2_registerGroup(mvWorldPtr currentWorld, mvOptionEnum defaultType,
 	// TODO : rewrite function - to simple for loop and create
    bool hasChanged =  currentWorld->hasGroupChanged(groupNo);
    mvGroupNodeMemberList& nodeMemberList = currentNode->memberDataList;
-   mvGroupMemberNodePtr memberNode = MV_NULL;
-   mvEntryListPtr currentMemberList = MV_NULL;
-   mvIndex entryIndex = MV_NULL;
+//   mvGroupMemberNodePtr memberNode = MV_NULL;
+//   mvEntryListPtr currentMemberList = MV_NULL;
+//   mvIndex entryIndex = MV_NULL;
    mvActionLoaderListPtr worldActionCreator = MV_NULL;
    int count = 0;
-	int theGroupIndex = 0, theGBIndex = 0;
+//	int theGroupIndex = 0, theGBIndex = 0;
    if (!hasChanged)
    {
 		return;
    }
 
 	// add/remove members  in group beh node that be same as group
-	mvIndex lhsSetIndex, rhsMemberIndex;
+//	mvIndex lhsSetIndex, rhsMemberIndex;
 
-	mvBaseActionPtr tempMemberActionPtr = MV_NULL;
+//	mvBaseActionPtr tempMemberActionPtr = MV_NULL;
 
 
 	worldActionCreator = currentWorld->getActionLoader();
@@ -517,11 +517,11 @@ mvBaseActionPtr mvWorld_V2_InitialiseResults(mvEntryPtr nodeInfo, mvIndex bodyIn
    mvIndex groupIndex = nodeInfo->getGroup();
 
    mvConstGroupBehaviourPtr globalGrpBehav =\
-      currentWorld->getConstGroupBehaviourPtr(behaviourIndex);
+      currentWorld->groupBehaviours.getConstClassPtr(behaviourIndex);
    mvConstBehaviourPtr globalBehav =\
-      currentWorld->getConstBehaviourPtr(behaviourIndex);
+      currentWorld->behaviours.getConstClassPtr(behaviourIndex);
    mvConstGroupPtr checkGroupPtr =\
-      currentWorld->getConstGroupPtr(groupIndex);
+      currentWorld->groups.getConstClassPtr(groupIndex);
 
    switch(nodeType)
    {

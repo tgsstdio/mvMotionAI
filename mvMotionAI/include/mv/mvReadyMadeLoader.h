@@ -7,12 +7,14 @@
 #include <mv/mvMotionAI-Types.h>
 #endif
 
+#include MV_BASE_ACTION_HEADER_FILE_H_
+
 template <class mvBaseActionClass>
-class mvReadyMadeActionLoader : public mvBaseActionLoader
+class MV_GLOBAL_FUNC_PREFIX mvReadyMadeActionLoader : public mvBaseActionLoader
 {
 	private:
 		mvOptionEnum actionKey;
-		mvBaseActionClass* exampleGroupAction;
+		mvBaseActionPtr exampleGroupAction;
 
 	public:
 		mvReadyMadeActionLoader(mvOptionEnum key = MV_OPTION_ENUM_KEY_IS_INVALID)
@@ -24,10 +26,10 @@ class mvReadyMadeActionLoader : public mvBaseActionLoader
 				MV_NULL,	MV_NULL);
 
 			exampleGroupAction = MV_NULL;
-			exampleGroupAction = this->(groupData);
+			exampleGroupAction = (*this)(groupData);
 		}
 
-		virtual mvBaseAction* operator()(mvNewBaseActionInfo& info)
+		virtual mvBaseActionPtr operator()(mvNewBaseActionInfo& info)
 		{
 			if (info.isGroupMemberNodeLookup())
 			{
@@ -35,7 +37,7 @@ class mvReadyMadeActionLoader : public mvBaseActionLoader
 			}
 			else
 			{
-				return new mvBaseActionClass(key);
+				return new mvBaseActionClass();
 			}
 		}
 
@@ -49,13 +51,10 @@ class mvReadyMadeActionLoader : public mvBaseActionLoader
 };
 
 template <class mvBaseActionClass>
-mvBaseAction* mvReadyMadeActionLoader<mvBaseActionClass>::
-
-template <class mvBaseActionClass>
-class mvReadyMadeCustomEnumActionLoader : public mvBaseActionLoader
+class MV_GLOBAL_FUNC_PREFIX mvReadyMadeCustomEnumActionLoader : public mvBaseActionLoader
 {
 	private:
-		mvBaseActionClass* exampleGroupAction;
+		mvBaseActionPtr exampleGroupAction;
 		mvOptionEnum actionFlag;
 
 	public:
@@ -67,10 +66,10 @@ class mvReadyMadeCustomEnumActionLoader : public mvBaseActionLoader
 				MV_NULL,	MV_NULL);
 
 			exampleGroupAction = MV_NULL;
-			exampleGroupAction = this->(groupData);
+			exampleGroupAction = (*this)(groupData);
 		}
 
-		virtual mvBaseAction* operator()(mvNewBaseActionInfo& info)
+		virtual mvBaseActionPtr operator()(mvNewBaseActionInfo& info)
 		{
 			if (info.isGroupMemberNodeLookup())
 			{
@@ -78,7 +77,7 @@ class mvReadyMadeCustomEnumActionLoader : public mvBaseActionLoader
 			}
 			else
 			{
-				return new mvBaseActionClass(key);
+				return new mvBaseActionClass(actionFlag);
 			}
 		}
 
@@ -89,7 +88,7 @@ class mvReadyMadeCustomEnumActionLoader : public mvBaseActionLoader
 				delete exampleGroupAction;
 			}
 		}
-}
+};
 
 
 #endif // MVREADYMADELOADER_H_INCLUDED

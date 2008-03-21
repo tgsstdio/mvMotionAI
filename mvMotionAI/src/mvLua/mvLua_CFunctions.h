@@ -118,10 +118,10 @@ int mvLua_DeleteGroupBehaviour(lua_State* luaVM);
 
 //10
 int mvLua_DeleteAllGroupBehaviours(lua_State* luaVM);
-int mvLua_SetMainGroupBehaviourParameter(lua_State* luaVM);
-int mvLua_GetMainGroupBehaviourParameter(lua_State* luaVM);
 int mvLua_SetGroupBehaviourParameter(lua_State* luaVM);
 int mvLua_GetGroupBehaviourParameter(lua_State* luaVM);
+int mvLua_SetGroupBehaviourNodeParameter(lua_State* luaVM);
+int mvLua_GetGroupBehaviourNodeParameter(lua_State* luaVM);
 int mvLua_AddGroupIntoGroupBehaviour(lua_State* luaVM);
 int mvLua_RemoveGroupFromGroupBehaviour(lua_State* luaVM);
 int mvLua_SetEntryListNodeParameter(lua_State* luaVM);

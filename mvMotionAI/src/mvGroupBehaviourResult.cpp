@@ -116,7 +116,7 @@ mvEntryListNodePtr mvGroupBehaviourResult::getCurrentMemberNodePtr() const
 	requiredList = current->getMemberIndex();
 	requiredNode = current->getEntryNodeIndex();
 
-	actionList = world->getEntryListPtr(requiredList);
+	actionList = world->entryLists.getClassPtr(requiredList);
 
 	if (actionList == MV_NULL)
 	{

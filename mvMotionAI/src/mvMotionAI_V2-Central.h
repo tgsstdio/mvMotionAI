@@ -70,10 +70,10 @@ mvErrorEnum mvMotionAI_V2_ADDFORCEFUNC(mvOptionEnum fType,\
 mvBaseForcePtr mvMotionAI_V2_CREATENEWFORCE(mvOptionEnum type);
 
 // global C default behaviour/force loading functions
-mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(mvActionLoaderListPtr
-   loader);
-mvErrorEnum mvMotionAI_V2_LOADDEFAULTFORCES(mvForceLoaderListPtr
-   loader);
+//mvErrorEnum mvMotionAI_V2_LOADDEFAULTBEHAVIOURS(mvActionLoaderListPtr
+//   loader);
+//mvErrorEnum mvMotionAI_V2_LOADDEFAULTFORCES(mvForceLoaderListPtr
+//   loader);
 
 mvErrorEnum mvMotionAI_V2_ADDBEHAVIOURFUNC(mvOptionEnum bType,\
    mvBaseActionLoaderPtr loader);

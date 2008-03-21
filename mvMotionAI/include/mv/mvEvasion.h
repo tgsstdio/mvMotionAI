@@ -35,17 +35,4 @@ class mvEvasion : public mvBaseAction
       virtual bool bodyOp(mvBehaviourResultPtr resultModule);
 };
 
-/**
- * \class mvCreateEvasions
- * \brief derived mvBaseActionLoader - creates mvEvasion
- */
-class mvCreateEvasions : public mvBaseActionLoader
-{
-   public:
-      virtual mvBaseActionPtr operator()(\
-         mvNewBaseActionInfo& actionInfo);
-      mvCreateEvasions();
-      ~mvCreateEvasions();
-};
-
 #endif // MVEVASION_H_INCLUDED

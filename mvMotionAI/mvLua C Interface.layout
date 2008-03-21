@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="mingw-winXP-debug" />
+	<ActiveTarget name="mingw-winXP-dll" />
 	<File name="src\mvLua\mvLua_CFunctions.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="21368" topLine="1934" />
+		<Cursor position="53688" topLine="1833" />
+	</File>
+	<File name="src\mvLua\mvLua_CFunctions.h" open="0" top="0" tabpos="0">
+		<Cursor position="4887" topLine="83" />
 	</File>
 </CodeBlocks_layout_file>

@@ -177,16 +177,6 @@ bool mvFlee::bodyOp(mvBehaviourResultPtr resultModule)
    length = 0;
 }
 
-mvCreateFlees::mvCreateFlees()
-{
-
-}
-
-mvBaseActionPtr mvCreateFlees::operator()(mvNewBaseActionInfo& actionInfo)
-{
-   return new mvFlee();
-}
-
 
 
 

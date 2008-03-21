@@ -280,7 +280,7 @@ const char* mvErrorEnumStrings[] =
    "MV_NO_OF_ERROR_ENUMS",
 };
 
-const char* mvGetErrorString(mvErrorEnum enumValue)
+MV_GLOBAL_FUNC_PREFIX const char* mvGetErrorEnumString(mvErrorEnum enumValue)
 {
    if (enumValue >= 0 && enumValue <= MV_NO_OF_ERROR_ENUMS)
    {
@@ -292,7 +292,7 @@ const char* mvGetErrorString(mvErrorEnum enumValue)
    }
 }
 
-const char* mvGetParamString(mvParamEnum param)
+MV_GLOBAL_FUNC_PREFIX const char* mvGetParamEnumString(mvParamEnum param)
 {
    if (param >= 0 && param <= MV_NO_OF_PARAM_ENUMS)
    {
@@ -304,7 +304,7 @@ const char* mvGetParamString(mvParamEnum param)
    }
 }
 
-const char* mvGetOptionString(mvOptionEnum option)
+MV_GLOBAL_FUNC_PREFIX const char* mvGetOptionEnumString(mvOptionEnum option)
 {
    if (option >= 0 && option <= MV_NO_OF_OPTION_ENUMS)
    {
