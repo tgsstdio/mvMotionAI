@@ -356,14 +356,14 @@
 1187586218 d:\mvmotionai\mvmotionai\experimental\include\mvuniformforce.h
 	"mvMotionAI-Types.h"
 
-1193548156 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
+1206108072 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
 	<mv/mvMotionAI-Types.h>
 
 1190961076 onAI-Types.h>
 
-1193123386 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
+1206107814 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
 
-1196083044 source:d:\mvmotionai\mvmotionai\examples-src\tutorial2\glmain.cpp
+1206282080 source:d:\mvmotionai\mvmotionai\examples-src\tutorial2\glmain.cpp
 	<GL/glut.h>
 	<iostream>
 	"../Camera.h"
@@ -381,4 +381,10 @@
 	<mv/mvMotionAI-Types.h>
 
 1191291243 /home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/include/mv/mvMotionAI-Types.h
+
+1190079822 source:d:\mvmotionai\mvmotionai\src\mvwaypointcapsule.cpp
+	<mv/mvWaypointCapsule.h>
+
+1206279978 d:\mvmotionai\mvmotionai\include\mv\mvwaypointcapsule.h
+	<mv/mvMotionAI-Types.h>
 

@@ -365,8 +365,8 @@ MV_GLOBAL_FUNC_PREFIX const char* mvGetParamEnumString(mvParamEnum param);
 MV_GLOBAL_FUNC_PREFIX const char* mvGetOptionEnumString(mvOptionEnum option);
 
 
-bool mvCheckAllParamEnumsForString(const char* paramString, mvParamEnum* dest);
-bool mvCheckAllErrorEnumsForString(const char* errorString, mvErrorEnum* dest);
-bool mvCheckAllOptionEnumsForString(const char* optionString, mvOptionEnum* dest);
+MV_GLOBAL_FUNC_PREFIX bool mvCheckAllParamEnumsForString(const char* paramString, mvParamEnum* dest);
+MV_GLOBAL_FUNC_PREFIX bool mvCheckAllErrorEnumsForString(const char* errorString, mvErrorEnum* dest);
+MV_GLOBAL_FUNC_PREFIX bool mvCheckAllOptionEnumsForString(const char* optionString, mvOptionEnum* dest);
 
 #endif

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="mingw-winXP" />
+	<ActiveTarget name="mingw-winXP-dll-debug" />
 	<File name="examples-src\tutorial3\CustomActionGLMain.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="0" topLine="110" />
+		<Cursor position="6808" topLine="197" />
 	</File>
 	<File name="examples-src\tutorial3\TimedHop.h" open="0" top="0" tabpos="4">
 		<Cursor position="3771" topLine="61" />

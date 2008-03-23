@@ -184,7 +184,7 @@ int main(int argc, char** argv)
   // paramError = mvAddForceIntoWaypoint(worldID, -1, -2);
    if (paramError != MV_NO_ERROR) puts("ERROR FOUND 2");
 
-   /* for testing purposes	
+   /* for testing purposes
    for (int k =0; k < 5000; k++)
    {
       mvCreateBody(worldID,MV_PARTICLE,MV_AABOX, k, 0, -3 * k/ 20);
@@ -301,9 +301,9 @@ void worldFunction(mvWorldPtr tempWorld, void* entry)
     */
    if (tempWorld != NULL)
    {
-      tempWorld->applyToAllBodies(displayBody,NULL);
-      tempWorld->applyToAllObstacles(displayObstacle,NULL);
-      tempWorld->applyToAllWaypoints(displayWaypoint,NULL);
+      tempWorld->bodies.applyToAllItems(displayBody,NULL);
+      tempWorld->obstacles.applyToAllItems(displayObstacle,NULL);
+      tempWorld->waypoints.applyToAllItems(displayWaypoint,NULL);
    }
 }
 

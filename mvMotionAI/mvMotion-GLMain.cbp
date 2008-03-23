@@ -75,7 +75,7 @@
 			<Target title="mingw-winXP-dll">
 				<Option output="bin\tutorial2-mingw-dll" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="bin" />
-				<Option external_deps="bin\mvMotionAI-mingw-dll.dll;bin\libmvMotionAI-mingw-dll.a;bin\libmvMotionAI-mingw-dll.def;" />
+				<Option external_deps="bin\libmvMotionAI-mingw-stdlib.a;bin\libmvMotionAICI.a;" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -91,7 +91,8 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add library="bin\libmvMotionAI-mingw-dll.a" />
+					<Add library="bin\libmvMotionAI-mingw-stdlib.a" />
+					<Add library="bin\libmvMotionAICI.a" />
 					<Add library="lib-other\freeglut.lib" />
 					<Add library="glu32" />
 					<Add library="opengl32" />
@@ -103,7 +104,7 @@
 			<Target title="mingw-winXP-dll-debug">
 				<Option output="bin\tutorial2-mingw-dll" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="bin" />
-				<Option external_deps="bin\mvMotionAI-mingw-dll.dll;bin\libmvMotionAI-mingw-dll.a;bin\libmvMotionAI-mingw-dll.def;" />
+				<Option external_deps="bin\libmvMotionAICI-debug.a;bin\libmvMotionAI-mingw-dll.a;" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -119,10 +120,12 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add library="bin\libmvMotionAI-mingw-dll-debug.a" />
+					<Add library="bin\libmvMotionAI-mingw-stdlib-debug.a" />
+					<Add library="bin\libmvMotionAICI-debug.a" />
 					<Add library="lib-other\freeglut-debug.lib" />
 					<Add library="glu32" />
 					<Add library="opengl32" />
+					<Add library="lib-other\freeglut.lib" />
 					<Add directory="lib" />
 					<Add directory="lib-other\mingw" />
 					<Add directory="lib-other" />

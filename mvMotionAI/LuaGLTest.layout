@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="mingw-winXP-dll-debug" />
+	<ActiveTarget name="mingw-winXP-dll" />
 	<File name="bin\Evasion.lua" open="0" top="0" tabpos="1">
 		<Cursor position="1112" topLine="0" />
 	</File>
@@ -8,7 +8,7 @@
 		<Cursor position="568" topLine="0" />
 	</File>
 	<File name="examples-src\sideproject1\LuaGLTest.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="3170" topLine="92" />
+		<Cursor position="6895" topLine="203" />
 	</File>
 	<File name="include\mvLua\mvLua.h" open="0" top="0" tabpos="2">
 		<Cursor position="513" topLine="0" />

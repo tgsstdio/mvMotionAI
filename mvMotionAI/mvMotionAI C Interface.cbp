@@ -6,25 +6,28 @@
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="mingw-winXP-debug">
-				<Option output="bin\mvMotionAI C Interface" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Debug\" />
+			<Target title="mingw-winXP-dll-debug">
+				<Option output="bin\mvMotionAICI-debug" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin" />
+				<Option object_output="obj\Debug-dll\" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
 					<Add option="-Wall" />
-					<Add option="-DBUILD_DLL" />
 					<Add option="-g" />
+					<Add option="-DBUILD_DLL" />
 				</Compiler>
 				<Linker>
 					<Add library="user32" />
+					<Add library="bin\libmvMotionAI-mingw-stdlib-debug.a" />
 				</Linker>
 			</Target>
-			<Target title="mingw-winXP">
-				<Option output="bin\mvMotionAI C Interface" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Release\" />
+			<Target title="mingw-winXP-dll">
+				<Option output="bin\mvMotionAICI" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin" />
+				<Option object_output="obj\Release-dll\" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -37,9 +40,13 @@
 				<Linker>
 					<Add option="-s" />
 					<Add library="user32" />
+					<Add library="bin\libmvMotionAI-mingw-stdlib.a" />
 				</Linker>
 			</Target>
 		</Build>
+		<Compiler>
+			<Add directory="include" />
+		</Compiler>
 		<Unit filename="include\mv\mvMotionAI.h" />
 		<Unit filename="src\mvMotionAI.cpp" />
 		<Unit filename="src\mvMotionAI_V2-Central.cpp" />

@@ -35,7 +35,16 @@
 #include MV_ENUMS_HEADER_FILE_H_
 #include MV_WAYPOINT_HEADER_FILE_H_
 
-class mvWaypointCapsule
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
+typedef class mvWaypointCapsule* mvWaypointCapsulePtr;
+typedef class mvWaypointCapsule const * const mvConstWaypointCapsulePtr;
+
+class MV_GLOBAL_FUNC_PREFIX mvWaypointCapsule
 {
    protected:
       mvWaypointPtr encappedWaypoint;
@@ -67,8 +76,4 @@ class mvWaypointCapsule
 
       ~mvWaypointCapsule();
 };
-
-typedef class mvWaypointCapsule* mvWaypointCapsulePtr;
-typedef class mvWaypointCapsule const * const mvConstWaypointCapsulePtr;
-
 #endif // MVWAYPOINTCAPSULE_H_INCLUDED
