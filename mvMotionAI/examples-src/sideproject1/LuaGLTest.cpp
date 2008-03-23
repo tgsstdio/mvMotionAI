@@ -220,9 +220,9 @@ void worldFunction(mvWorldPtr tempWorld, void* entry)
     */
    if (tempWorld != NULL)
    {
-      tempWorld->applyToAllBodies(displayBody,NULL);
-      tempWorld->applyToAllObstacles(displayObstacle,NULL);
-      tempWorld->applyToAllWaypoints(displayWaypoint,NULL);
+      tempWorld->bodies.applyToAllItems(displayBody,NULL);
+      tempWorld->obstacles.applyToAllItems(displayObstacle,NULL);
+      tempWorld->waypoints.applyToAllItems(displayWaypoint,NULL);
    }
 }
 

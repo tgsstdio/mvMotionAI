@@ -50,7 +50,7 @@
 				<Option platforms="Windows;" />
 				<Option output="bin\mvLua-dll" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj\dll-Release\" />
-				<Option external_deps="bin\libmvMotionAI-mingw-dll.a;lib-other\mingw\liblua5.1.a;" />
+				<Option external_deps="bin\libmvMotionAI-mingw-stdlib.a;lib-other\mingw\liblua5.1.a;bin\libmvMotionAICI.a;" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -63,7 +63,8 @@
 				<Linker>
 					<Add option="-s" />
 					<Add library="lib-other\mingw\liblua5.1.a" />
-					<Add library="bin\libmvMotionAI-mingw-dll.a" />
+					<Add library="bin\libmvMotionAI-mingw-stdlib.a" />
+					<Add library="bin\libmvMotionAICI.a" />
 					<Add directory="lib-other\mingw" />
 				</Linker>
 			</Target>
@@ -71,7 +72,7 @@
 				<Option platforms="Windows;" />
 				<Option output="bin\mvLua-dll-debug" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj\dll-Release\" />
-				<Option external_deps="bin\libmvMotionAI-mingw-dll-debug.a;lib-other\mingw\liblua5.1.a;" />
+				<Option external_deps="lib-other\mingw\liblua5.1.a;bin\libmvMotionAICI-debug.a;bin\libmvMotionAI-mingw-stdlib-debug.a;" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -88,7 +89,8 @@
 				</Compiler>
 				<Linker>
 					<Add library="lib-other\mingw\liblua5.1.a" />
-					<Add library="bin\libmvMotionAI-mingw-dll-debug.a" />
+					<Add library="bin\libmvMotionAICI-debug.a" />
+					<Add library="bin\libmvMotionAI-mingw-stdlib-debug.a" />
 					<Add directory="lib-other\mingw" />
 				</Linker>
 			</Target>

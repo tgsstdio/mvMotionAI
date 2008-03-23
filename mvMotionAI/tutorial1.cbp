@@ -51,25 +51,27 @@
 			<Target title="mingw-winXP-dll">
 				<Option output="bin\tutorial1-winXP-dll" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj\Debug\" />
-				<Option external_deps="bin\libmvMotionAI-mingw-dll.def;bin\libmvMotionAI-mingw-dll.a;" />
+				<Option external_deps="bin\libmvMotionAI-mingw-stdlib.a;bin\libmvMotionAICI.a;" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Linker>
-					<Add library="bin\libmvMotionAI-mingw-dll.a" />
+					<Add library="bin\libmvMotionAI-mingw-stdlib.a" />
+					<Add library="bin\libmvMotionAICI.a" />
 					<Add directory="bin" />
 				</Linker>
 			</Target>
 			<Target title="mingw-winXP-dll-debug">
 				<Option output="bin\tutorial1-winXP-dll-debug" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj\Debug\" />
-				<Option external_deps="bin\libmvMotionAI-mingw-dll-debug.a;bin\libmvMotionAI-mingw-dll-debug.def;" />
+				<Option external_deps="bin\libmvMotionAI-mingw-stdlib-debug.a;bin\libmvMotionAICI-debug.a;" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
-					<Add library="bin\libmvMotionAI-mingw-dll-debug.a" />
+					<Add library="bin\libmvMotionAI-mingw-stdlib-debug.a" />
+					<Add library="bin\libmvMotionAICI-debug.a" />
 					<Add directory="bin" />
 				</Linker>
 			</Target>

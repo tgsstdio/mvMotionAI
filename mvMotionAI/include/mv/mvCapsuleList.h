@@ -36,8 +36,14 @@
 #include MV_ENUMS_HEADER_FILE_H_
 #include "mvPointerList.h"
 
+#ifdef MV_BUILD_DLL
+#define MV_GLOBAL_FUNC_PREFIX __declspec(dllexport)
+#else
+#define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
+#endif
+
 template<class mvClass>
-class mvConverter
+class MV_GLOBAL_FUNC_PREFIX mvConverter
 {
    public:
       typedef void mvClassFunction(mvClass,void*);
@@ -61,7 +67,7 @@ void CapsuledConverterFunction(mvCapsulePtr itemPtr, void* extraPtr)
 
 template <class mvClass, class mvConstClass, class mvCapsulePtr,
    class mvConstCapsulePtr>
-class mvCapsuleList
+class MV_GLOBAL_FUNC_PREFIX mvCapsuleList
 {
    public:
       mvPointerList<mvCapsulePtr,mvConstCapsulePtr> itemList;

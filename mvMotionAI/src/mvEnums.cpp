@@ -646,19 +646,19 @@ template
    return false;
 }
 
-bool mvCheckAllParamEnumsForString(const char* paramString, mvParamEnum* dest)
+MV_GLOBAL_FUNC_PREFIX bool mvCheckAllParamEnumsForString(const char* paramString, mvParamEnum* dest)
 {
    return binarySearchOfEnumStrings<mvParamEnum>(paramString,dest,&mvParamEnumStrings[0],
       orderedParamEnums,MV_NO_OF_PARAM_ENUMS,MV_NO_PARAMETER, false);
 }
 
-bool mvCheckAllErrorEnumsForString(const char* errorString, mvErrorEnum* dest)
+MV_GLOBAL_FUNC_PREFIX bool mvCheckAllErrorEnumsForString(const char* errorString, mvErrorEnum* dest)
 {
    return binarySearchOfEnumStrings<mvErrorEnum>(errorString,dest,&mvErrorEnumStrings[0],
       orderedErrorEnums,MV_NO_OF_ERROR_ENUMS,MV_ERROR_ENUM_IS_NOT_FOUND, false);
 }
 
-bool mvCheckAllOptionEnumsForString(const char* optionString, mvOptionEnum* dest)
+MV_GLOBAL_FUNC_PREFIX bool mvCheckAllOptionEnumsForString(const char* optionString, mvOptionEnum* dest)
 {
    return binarySearchOfEnumStrings<mvOptionEnum>(optionString,dest,&mvOptionEnumStrings[0],
    orderedOptionEnums,MV_NO_OF_OPTION_ENUMS,MV_NON_OPTION_ENUM, false);

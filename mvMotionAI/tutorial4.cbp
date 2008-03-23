@@ -6,26 +6,9 @@
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="mingw-winXP-debug">
-				<Option output="bin\tutorial4-mingw-debug" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Debug\" />
-				<Option external_deps="lib\libmvMotionAI-mingw-debug.a;" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-g" />
-					<Add directory="include-other" />
-				</Compiler>
-				<Linker>
-					<Add library="lib-other\freeglut-debug.lib" />
-					<Add library="opengl32" />
-					<Add library="glu32" />
-					<Add library="lib\libmvMotionAI-mingw-debug.a" />
-					<Add directory="lib-other" />
-				</Linker>
-			</Target>
 			<Target title="mingw-winXP">
 				<Option output="bin\tutorial4-mingw" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin" />
 				<Option object_output="obj\Release\" />
 				<Option external_deps="lib\libmvMotionAI-mingw.a;" />
 				<Option type="1" />
@@ -43,10 +26,51 @@
 					<Add directory="lib-other" />
 				</Linker>
 			</Target>
+			<Target title="mingw-winXP-debug">
+				<Option output="bin\tutorial4-mingw-debug" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin" />
+				<Option object_output="obj\Debug\" />
+				<Option external_deps="lib\libmvMotionAI-mingw-debug.a;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include-other" />
+				</Compiler>
+				<Linker>
+					<Add library="lib-other\freeglut-debug.lib" />
+					<Add library="opengl32" />
+					<Add library="glu32" />
+					<Add library="lib\libmvMotionAI-mingw-debug.a" />
+					<Add directory="lib-other" />
+				</Linker>
+			</Target>
+			<Target title="mingw-winXP-dll">
+				<Option output="bin\tutorial4-mingw-dll" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin" />
+				<Option object_output="obj\Release-dll\" />
+				<Option external_deps="bin\libmvMotionAI-mingw-stdlib.a;bin\libmvMotionAICI.a;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include-other" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="lib-other\freeglut.lib" />
+					<Add library="opengl32" />
+					<Add library="glu32" />
+					<Add library="bin\libmvMotionAI-mingw-stdlib.a" />
+					<Add library="bin\libmvMotionAICI.a" />
+					<Add directory="lib-other" />
+				</Linker>
+			</Target>
 			<Target title="mingw-winXP-dll-debug">
 				<Option output="bin\tutorial4-mingw-dll-debug" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin" />
 				<Option object_output="obj\Debug-dll\" />
-				<Option external_deps="bin\mvMotionAI-mingw-dll-debug.dll;bin\libmvMotionAI-mingw-dll-debug.a;bin\libmvMotionAI-mingw-dll-debug.def;" />
+				<Option external_deps="bin\libmvMotionAICI.a;bin\libmvMotionAI-mingw-stdlib.a;" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -59,26 +83,8 @@
 					<Add library="lib-other\freeglut-debug.lib" />
 					<Add library="glu32" />
 					<Add library="opengl32" />
-					<Add library="bin\libmvMotionAI-mingw-dll-debug.a" />
-					<Add directory="lib-other" />
-				</Linker>
-			</Target>
-			<Target title="mingw-winXP-dll">
-				<Option output="bin\tutorial4-mingw-dll" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Release-dll\" />
-				<Option external_deps="bin\mvMotionAI-mingw-dll.dll;bin\libmvMotionAI-mingw-dll.a;bin\libmvMotionAI-mingw-dll.def;" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-O2" />
-					<Add directory="include-other" />
-				</Compiler>
-				<Linker>
-					<Add option="-s" />
-					<Add library="lib-other\freeglut.lib" />
-					<Add library="opengl32" />
-					<Add library="glu32" />
-					<Add library="bin\libmvMotionAI-mingw-dll.a" />
+					<Add library="bin\libmvMotionAICI-debug.a" />
+					<Add library="bin\libmvMotionAI-mingw-stdlib-debug.a" />
 					<Add directory="lib-other" />
 				</Linker>
 			</Target>

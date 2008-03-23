@@ -2,24 +2,32 @@
 <CodeBlocks_workspace_file>
 	<Workspace title="mvMotionAI Code Blocks Workspace">
 		<Project filename="mvMotion-CB.cbp" />
-		<Project filename="mvMotionAI C Interface.cbp" active="1" />
+		<Project filename="mvMotionAI C Interface.cbp">
+			<Depends filename="mvMotion-CB.cbp" />
+		</Project>
 		<Project filename="tutorial1.cbp">
 			<Depends filename="mvMotion-CB.cbp" />
+			<Depends filename="mvMotionAI C Interface.cbp" />
 		</Project>
 		<Project filename="mvMotion-GLMain.cbp">
 			<Depends filename="mvMotion-CB.cbp" />
+			<Depends filename="mvMotionAI C Interface.cbp" />
 		</Project>
 		<Project filename="CustomAction.cbp">
 			<Depends filename="mvMotion-CB.cbp" />
+			<Depends filename="mvMotionAI C Interface.cbp" />
 		</Project>
 		<Project filename="tutorial4.cbp">
 			<Depends filename="mvMotion-CB.cbp" />
+			<Depends filename="mvMotionAI C Interface.cbp" />
 		</Project>
 		<Project filename="mvLua C Interface.cbp">
 			<Depends filename="mvMotion-CB.cbp" />
+			<Depends filename="mvMotionAI C Interface.cbp" />
 		</Project>
-		<Project filename="LuaGLTest.cbp">
+		<Project filename="LuaGLTest.cbp" active="1">
 			<Depends filename="mvMotion-CB.cbp" />
+			<Depends filename="mvMotionAI C Interface.cbp" />
 			<Depends filename="mvLua C Interface.cbp" />
 		</Project>
 		<Project filename="mvMotionAI-TypeSizes.cbp">
