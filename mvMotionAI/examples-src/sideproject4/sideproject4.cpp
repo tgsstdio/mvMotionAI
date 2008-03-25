@@ -152,6 +152,13 @@ int main(int argc, char** argv)
 		std::cout << "parent (" << bodyID << ") index :" <<  bodyID - 1 << std::endl;
 	}
 
+	mvRemoveAllMembersFromGroup(worldID, groupID);
+	paramError = mvRegisterGroupBehaviourToBodies(worldID, behaviourID);
+	if (paramError)
+	{
+		std::cout <<"Param Error " << mvGetErrorEnumString(paramError) << std::endl;
+	}
+
    glutDisplayFunc(display);
    glutReshapeFunc(reshape);
    glutKeyboardFunc(keyboard);

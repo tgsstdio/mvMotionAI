@@ -513,19 +513,46 @@ void mvWorldV2_registerGroup(mvWorldPtr currentWorld, mvOptionEnum defaultType,
 		}
 		else
 		{
-			nodeMemberList.toNextMember();
-		}
+			if (currentGroup->getCurrentMember() >
+				nodeMemberList.getCurrentMember()->getMemberIndex())
+			{
+				// delete all preceding non-participating members.
+				std::cout << "delete new member" << nodeMemberList.getCurrentMember()->getMemberIndex() << std::endl;
+				nodeMemberList.deleteCurrentMember();
 
-		count++;
-		currentGroup->toNextMember();
+				if (!currentGroup->areMembersFinished())
+				{
+					std::cout << "Next member" << nodeMemberList.getCurrentMember()->getMemberIndex() << std::endl;
+				}
+			}
+			else
+			{
+				if (currentGroup->getCurrentMember() <
+					nodeMemberList.getCurrentMember()->getMemberIndex())
+				{
+					// A : find existing member data for code
+					mvWorldV2_addNewGroupNodeIntoMemberList(currentWorld,
+						nodeMemberList, currentGroup->getCurrentMember(),
+						gbGroupIndex, grpBehavIndex, mainActionPtr,
+						groupAction, defaultType, worldActionCreator);
+				}
+				else
+				{
+					// if same just move ahead
+					nodeMemberList.toNextMember();
+				}
+				count++;
+				currentGroup->toNextMember();
+			}
+		}
    }
 
    // delete any trailing members which are not removed
    while (!nodeMemberList.hasAllNodesBeenVisited())
 	{
-		std::cout << "delete new member" << currentGroup->getCurrentMember() << std::endl;
+		std::cout << "delete members " << nodeMemberList.getCurrentMember()->getMemberIndex() << std::endl;
+		nodeMemberList.deleteCurrentMember();
 		// delete member node from member list
-		currentGroup->toNextMember();
 	}
 
 	std::cout << "GROUP COUNT : " << count << std::endl;

@@ -2585,3 +2585,20 @@ mvErrorEnum mvWorld::registerGroupBehaviourToBodies(mvIndex groupBehaviourIndex)
 
    return MV_NO_ERROR;
 }
+
+mvErrorEnum mvWorld::removeBodyAndEntryList(mvIndex objIndex)
+{
+	mvErrorEnum error = bodies.deleteItem(objIndex);
+	mvErrorEnum error2 = entryLists.deleteItem(objIndex);
+
+	return (error == MV_NO_ERROR) ? error2 : error;
+}
+
+mvErrorEnum mvWorld::setCurrentBodyAndEntryList(mvIndex objIndex)
+{
+	mvIndex error = bodies.setCurrentIndex(objIndex);
+	mvIndex error2 = entryLists.setCurrentIndex(objIndex);
+
+	return (error != MV_NULL && error2 != MV_NULL)\
+		? MV_NO_ERROR : MV_INDEX_VALUE_IS_INVALID;
+}

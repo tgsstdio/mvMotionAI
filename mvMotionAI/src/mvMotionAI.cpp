@@ -5411,3 +5411,44 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRegisterGroupBehaviourToBodies(mvIndex\
    }
    return error;
 }
+
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveBodyAndEntryList(mvIndex worldIndex,\
+	mvIndex objIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->removeBodyAndEntryList(objIndex);
+   }
+   return error;
+}
+
+/**
+ * \ingroup mvGlobal
+ * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
+ */
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyAndEntryList(mvIndex worldIndex,\
+	mvIndex objIndex)
+{
+   mvErrorEnum error = mvMotionAI_V2_CHECKIFINITIALISED();
+   mvWorldPtr worldPtr = MV_NULL;
+
+   if (error == MV_NO_ERROR)
+   {
+      worldPtr = mvMotionAI_V2_GETWORLDPTR(worldIndex);
+      if (worldPtr == MV_NULL)
+      {
+         return MV_INVALID_WORLD_INDEX;
+      }
+      return worldPtr->setCurrentBodyAndEntryList(objIndex);
+   }
+   return error;
+}
+
