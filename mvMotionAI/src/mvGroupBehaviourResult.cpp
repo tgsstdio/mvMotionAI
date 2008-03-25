@@ -163,3 +163,116 @@ mvGroupBehaviourResult::~mvGroupBehaviourResult()
 {
 
 }
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvBodyPtr mvGroupBehaviourResult::fetchBodyPtr(mvIndex objIndex) const
+{
+	if (world == MV_NULL)
+	{
+		return MV_NULL;
+	}
+
+	return world->bodies.getClassPtr(objIndex);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvObstaclePtr mvGroupBehaviourResult::fetchObstaclePtr(mvIndex objIndex) const
+{
+	if (world == MV_NULL)
+	{
+		return MV_NULL;
+	}
+
+	return world->obstacles.getClassPtr(objIndex);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvBaseForcePtr mvGroupBehaviourResult::fetchForcePtr(mvIndex objIndex) const
+{
+	if (world == MV_NULL)
+	{
+		return MV_NULL;
+	}
+
+	return world->forces.getClassPtr(objIndex);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvWaypointPtr mvGroupBehaviourResult::fetchWaypointPtr(mvIndex objIndex) const
+{
+	if (world == MV_NULL)
+	{
+		return MV_NULL;
+	}
+
+	return world->waypoints.getClassPtr(objIndex);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvGroupPtr mvGroupBehaviourResult::fetchGroupPtr(mvIndex objIndex) const
+{
+	if (world == MV_NULL)
+	{
+		return MV_NULL;
+	}
+
+	return world->groups.getClassPtr(objIndex);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvBehaviourPtr mvGroupBehaviourResult::fetchBehaviourPtr(mvIndex objIndex) const
+{
+	if (world == MV_NULL)
+	{
+		return MV_NULL;
+	}
+
+	return world->behaviours.getClassPtr(objIndex);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvGroupBehaviourPtr mvGroupBehaviourResult::fetchGroupBehaviourPtr(mvIndex\
+	objIndex) const
+{
+	if (world == MV_NULL)
+	{
+		return MV_NULL;
+	}
+
+	return world->groupBehaviours.getClassPtr(objIndex);
+}
+
+/** @brief (one liner)
+  *
+  * (documentation goes here)
+  */
+mvPathwayPtr mvGroupBehaviourResult::fetchPathwayPtr(mvIndex objIndex) const
+{
+	if (world == MV_NULL)
+	{
+		return MV_NULL;
+	}
+
+	return world->pathways.getClassPtr(objIndex);
+}

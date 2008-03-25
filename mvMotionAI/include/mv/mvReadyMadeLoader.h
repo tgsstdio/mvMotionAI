@@ -17,7 +17,7 @@ class MV_GLOBAL_FUNC_PREFIX mvReadyMadeActionLoader : public mvBaseActionLoader
 		mvBaseActionPtr exampleGroupAction;
 
 	public:
-		mvReadyMadeActionLoader(mvOptionEnum key = MV_OPTION_ENUM_KEY_IS_INVALID)
+		mvReadyMadeActionLoader(mvOptionEnum key = MV_NON_OPTION_ENUM)
 		{
 			actionKey = key;
 

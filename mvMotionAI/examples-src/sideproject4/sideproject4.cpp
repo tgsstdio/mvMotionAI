@@ -42,7 +42,6 @@
 #include <mv/mvMotionAI.h>
 #include "mvFlyingV.h"
 #include "mvMovingAcross.h"
-#include <mvReadyMadeLoader.h>
 
 static float left = -1.0;
 static float right = 1.0;
@@ -133,7 +132,7 @@ int main(int argc, char** argv)
 	mvAddMemberIntoGroup(worldID, groupID, bodyID);
 	mvAddGroupIntoGroupBehaviour(worldID, behaviourID, groupID);
 
-	float position[4] = {1,1,0,1};
+	float position[4] = {-1,1,0,1};
 	float initialPos[4] = {0,0,0,1};
 
 	for (int j = 0; j < 10; j++)
@@ -149,6 +148,8 @@ int main(int argc, char** argv)
 		}
 		mvSetEntryListNodeParameterv(worldID, bodyID, -1, MV_POSITION, &position[0]);
 		mvSetEntryListNodeParameteri(worldID, bodyID, -1, MV_INDEX, bodyID - 1);
+
+		std::cout << "parent (" << bodyID << ") index :" <<  bodyID - 1 << std::endl;
 	}
 
    glutDisplayFunc(display);
@@ -233,9 +234,9 @@ void worldFunction(mvWorldPtr tempWorld, void* entry)
     */
    if (tempWorld != NULL)
    {
-      tempWorld->applyToAllBodies(displayBody,NULL);
-      tempWorld->applyToAllObstacles(displayObstacle,NULL);
-      tempWorld->applyToAllWaypoints(displayWaypoint,NULL);
+      tempWorld->bodies.applyToAllItems(displayBody,NULL);
+      tempWorld->obstacles.applyToAllItems(displayObstacle,NULL);
+      tempWorld->waypoints.applyToAllItems(displayWaypoint,NULL);
    }
 }
 
