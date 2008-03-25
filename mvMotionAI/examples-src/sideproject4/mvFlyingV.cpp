@@ -5,7 +5,8 @@
   * (documentation goes here)
   */
 mvFlyingV::mvFlyingV()
-	: mvBaseAction(MV_VEHICLE)
+	: mvBaseAction(MV_VEHICLE),
+	parentNode(MV_NULL)
 {
 
 }
@@ -58,13 +59,12 @@ bool mvFlyingV::groupOp(mvGroupBehaviourResult* result)
 					// only bodies that following a parent are calculated
 					if (leaderNode != MV_NULL)
 					{
-						targetBody = currentWorld->getBodyPtr(leaderNode);
+						targetBody = result->fetchBodyPtr(leaderNode);
 
-						totalVelocity = targetBody->getPosition();
-						totalVelocity += flyData->offsetPosition;
+						flyData->finalVelocity = targetBody->getPosition();
+						flyData->finalVelocity += flyData->offsetPosition;
 
-						flyData->finalVelocity = currentBody->getPosition();
-						flyData->finalVelocity -= totalVelocity;
+						flyData->finalVelocity -= currentBody->getPosition();
 					}
 				}
 			}
@@ -87,7 +87,6 @@ bool mvFlyingV::bodyOp(mvBehaviourResultPtr result)
 	}
 
 	result->setVelocity(finalVelocity, MV_DIRECTIONAL_MOTION, MV_GLOBAL_EFFECT);
-	std::cout << "Flying after : "  << parentNode<< std::endl;
 	return true;
 }
 

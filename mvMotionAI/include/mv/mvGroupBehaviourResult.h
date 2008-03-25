@@ -62,6 +62,15 @@ class MV_GLOBAL_FUNC_PREFIX mvGroupBehaviourResult
    mvBaseActionPtr getCurrentMemberActionDataPtr() const;
    mvBodyPtr getCurrentMemberAsBodyPtr() const;
 
+   mvBodyPtr fetchBodyPtr(mvIndex objIndex) const;
+   mvObstaclePtr fetchObstaclePtr(mvIndex objIndex) const;
+   mvBaseForcePtr fetchForcePtr(mvIndex objIndex) const;
+   mvWaypointPtr fetchWaypointPtr(mvIndex objIndex) const;
+   mvGroupPtr fetchGroupPtr(mvIndex objIndex) const;
+   mvBehaviourPtr fetchBehaviourPtr(mvIndex objIndex) const;
+   mvGroupBehaviourPtr fetchGroupBehaviourPtr(mvIndex objIndex) const;
+   mvPathwayPtr fetchPathwayPtr(mvIndex objIndex) const;
+
    ~mvGroupBehaviourResult();
 };
 

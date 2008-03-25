@@ -25,7 +25,7 @@
 			<Depends filename="mvMotion-CB.cbp" />
 			<Depends filename="mvMotionAI C Interface.cbp" />
 		</Project>
-		<Project filename="LuaGLTest.cbp" active="1">
+		<Project filename="LuaGLTest.cbp">
 			<Depends filename="mvMotion-CB.cbp" />
 			<Depends filename="mvMotionAI C Interface.cbp" />
 			<Depends filename="mvLua C Interface.cbp" />
@@ -45,8 +45,9 @@
 		<Project filename="mvMotionAI-LuaFunctions.cbp">
 			<Depends filename="mvLightfeather Conversion\mvLightfeather Conversion.cbp" />
 		</Project>
-		<Project filename="sideproject4 - group behaviour functionality\sideproject4 - group behaviour functionality.cbp">
+		<Project filename="sideproject4 - group behaviour functionality\sideproject4 - group behaviour functionality.cbp" active="1">
 			<Depends filename="mvMotion-CB.cbp" />
+			<Depends filename="mvMotionAI C Interface.cbp" />
 		</Project>
 	</Workspace>
 </CodeBlocks_workspace_file>

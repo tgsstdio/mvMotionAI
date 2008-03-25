@@ -17,6 +17,8 @@
 #define MV_GLOBAL_FUNC_PREFIX //__declspec(dllimport)
 #endif
 
+#include MV_READY_MADE_ACTION_LOADER_HEADER_FILE_H_
+
 /**
  * \ingroup mvGlobal
  * \brief Adds the sll default actions of the mvMotionAI library

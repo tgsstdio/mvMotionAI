@@ -243,21 +243,85 @@ void mvWorld_V2_RegisterEachGroupInGroupBehaviour(\
 		groupAction,currentGBehaviour);
 }
 
+void mvWorldV2_addNewGroupNodeIntoMemberList(mvWorldPtr currentWorld,
+	mvGroupNodeMemberList& nodeMemberList, mvIndex memberIndex,
+	mvIndex gbGroupIndex, mvIndex grpBehavIndex, mvBaseActionPtr mainActionPtr,
+	mvBaseActionPtr groupAction, mvOptionEnum defaultType, mvActionLoaderListPtr
+	worldActionCreator)
+{
+	mvIndex existingMemberEntryIndex = MV_NULL;
+	mvBaseActionPtr memberActionData = MV_NULL;
+	mvBaseActionPtr lookupData = MV_NULL;
+   mvEntryListPtr currentEntryList = MV_NULL;
+
+	// A1: create new info struct for lookups
+	mvNewBaseActionInfo typeLookupInfo(defaultType,
+		mvNewBaseActionInfo::MV_GROUP_MEMBER_LOOKUP_OP,
+		mainActionPtr, groupAction);
+	// A2 : find out typical member node data type for entry list query
+	// by 'psuedo' creating a new object
+
+	// NOTE : type of the highest level flag group value
+	// used for default group
+	lookupData = worldActionCreator->createAClassPtr(\
+		defaultType, typeLookupInfo);
+
+	// A3 : retrieve entry list ptr of the new member
+	currentEntryList = currentWorld->entryLists.getClassPtr(\
+		memberIndex);
+
+	// A4 : if entrylist therefore body doesn't exist
+	if (!currentEntryList)
+	{
+		// exit and don't create.
+		return;
+	}
+
+	// A4 : query entry list  by type, group id, group list
+	existingMemberEntryIndex = currentEntryList->findExistingGroupEntry(
+		grpBehavIndex, gbGroupIndex, lookupData->getType());
+
+	// A5 : if not found then
+	if (existingMemberEntryIndex == MV_NULL)
+	{
+		// A5a: create actual info for new member node
+		mvNewBaseActionInfo memberInfo(defaultType,
+			mvNewBaseActionInfo::MV_NEW_GB_GROUP_MEMBER_OP,
+			mainActionPtr, groupAction);
+
+		// A5b: create the action class for new class pointers
+		memberActionData = worldActionCreator->createAClassPtr(\
+			defaultType, memberInfo);
+
+		// TODO  : check if action are being created.
+
+		// A5c : create new node
+		existingMemberEntryIndex =
+			currentEntryList->addNewGroupBehaviourMemberNode(\
+			grpBehavIndex, gbGroupIndex, memberActionData);
+	}
+
+	// A6 : add this node to the list.
+	nodeMemberList.insertBeforeCurrentMember(\
+		memberIndex,existingMemberEntryIndex);
+
+	std::cout << "Created new object : " << memberIndex << " " << existingMemberEntryIndex << std::endl;
+}
+
 void mvWorldV2_registerGroup(mvWorldPtr currentWorld, mvOptionEnum defaultType,
 	mvGroupBehaviourGroupNodePtr currentNode, mvBaseActionPtr mainActionPtr,\
-	mvBaseActionPtr groupAction, mvIndex currentGBehaviour)
+	mvBaseActionPtr groupAction, mvIndex grpBehavIndex)
 {
-   mvIndex groupNo = currentNode->getGroup();
-   mvGroupPtr currentGroup = currentWorld->groups.getClassPtr(groupNo);
+   mvIndex gbGroupIndex = currentNode->getGroup();
+   mvGroupPtr currentGroup = currentWorld->groups.getClassPtr(gbGroupIndex);
    if (currentGroup == MV_NULL)
    {
       return;
    }
 	// TODO : rewrite function - to simple for loop and create
-   bool hasChanged =  currentWorld->hasGroupChanged(groupNo);
+   bool hasChanged =  currentWorld->hasGroupChanged(gbGroupIndex);
    mvGroupNodeMemberList& nodeMemberList = currentNode->memberDataList;
 //   mvGroupMemberNodePtr memberNode = MV_NULL;
-//   mvEntryListPtr currentMemberList = MV_NULL;
 //   mvIndex entryIndex = MV_NULL;
    mvActionLoaderListPtr worldActionCreator = MV_NULL;
    int count = 0;
@@ -269,10 +333,6 @@ void mvWorldV2_registerGroup(mvWorldPtr currentWorld, mvOptionEnum defaultType,
 
 	// add/remove members  in group beh node that be same as group
 //	mvIndex lhsSetIndex, rhsMemberIndex;
-
-//	mvBaseActionPtr tempMemberActionPtr = MV_NULL;
-
-
 	worldActionCreator = currentWorld->getActionLoader();
 
 	if (worldActionCreator == MV_NULL)
@@ -284,7 +344,7 @@ void mvWorldV2_registerGroup(mvWorldPtr currentWorld, mvOptionEnum defaultType,
 	currentGroup->setToFirstMember();
 	nodeMemberList.toFirstMember();
 
-	std::cout << "Current Group : "  << currentGroup->getNoOfMembers() << std::endl;
+	std::cout << "Current Group Size : "  << currentGroup->getNoOfMembers() << std::endl;
 	//theGBIndex = currentMemberList.getNoOfMembers();
 
 	while (!currentGroup->areMembersFinished())
@@ -325,7 +385,7 @@ void mvWorldV2_registerGroup(mvWorldPtr currentWorld, mvOptionEnum defaultType,
 				{
 					// looking for existing subscription
 					entryIndex = currentMemberList->findExistingGroupEntry(
-						currentGBehaviour, groupNo,
+						grpBehavIndex, gbGroupIndex,
 						tempMemberActionPtr->getType());
 
 					// not created
@@ -334,7 +394,7 @@ void mvWorldV2_registerGroup(mvWorldPtr currentWorld, mvOptionEnum defaultType,
 						// create new entry
 						entryIndex =
 							currentMemberList->addNewGroupBehaviourMemberNode(\
-							currentGBehaviour, groupNo, tempMemberActionPtr);
+							grpBehavIndex, gbGroupIndex, tempMemberActionPtr);
 
 						nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,
 								entryIndex);
@@ -400,7 +460,7 @@ void mvWorldV2_registerGroup(mvWorldPtr currentWorld, mvOptionEnum defaultType,
 					{
 						// looking for existing subscription
 						entryIndex = currentMemberList->findExistingGroupEntry(
-							currentGBehaviour, groupNo,
+							grpBehavIndex, gbGroupIndex,
 							tempMemberActionPtr->getType());
 
 						// not created
@@ -409,7 +469,7 @@ void mvWorldV2_registerGroup(mvWorldPtr currentWorld, mvOptionEnum defaultType,
 							// create new entry
 							entryIndex =
 								currentMemberList->addNewGroupBehaviourMemberNode(\
-								currentGBehaviour, groupNo, tempMemberActionPtr);
+								grpBehavIndex, gbGroupIndex, tempMemberActionPtr);
 
 							// add to list
 							nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,
@@ -438,8 +498,15 @@ void mvWorldV2_registerGroup(mvWorldPtr currentWorld, mvOptionEnum defaultType,
 			// add extra group members then quit
 			while (!currentGroup->areMembersFinished())
 			{
-				std::cout << "add new member" << currentGroup->getCurrentMember() << std::endl;
-				nodeMemberList.insertBeforeCurrentMember(currentGroup->getCurrentMember(),1);
+				//std::cout << "add new member " << currentGroup->getCurrentMember() << std::endl;
+
+				// A : find existing member data for code
+				mvWorldV2_addNewGroupNodeIntoMemberList(currentWorld,
+					nodeMemberList, currentGroup->getCurrentMember(),
+					gbGroupIndex, grpBehavIndex, mainActionPtr,
+					groupAction, defaultType, worldActionCreator);
+
+				// A2 : move to next member of the group
 				currentGroup->toNextMember();
 			}
 			break;
@@ -453,11 +520,19 @@ void mvWorldV2_registerGroup(mvWorldPtr currentWorld, mvOptionEnum defaultType,
 		currentGroup->toNextMember();
    }
 
+   // delete any trailing members which are not removed
+   while (!nodeMemberList.hasAllNodesBeenVisited())
+	{
+		std::cout << "delete new member" << currentGroup->getCurrentMember() << std::endl;
+		// delete member node from member list
+		currentGroup->toNextMember();
+	}
+
 	std::cout << "GROUP COUNT : " << count << std::endl;
 
 	count = 0;
 
-	// TODO : what the hell does the code section do below
+	// iterate over update Memeber List
    nodeMemberList.toFirstMember();
    while (!nodeMemberList.hasAllNodesBeenVisited())
    {

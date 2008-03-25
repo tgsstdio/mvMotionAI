@@ -626,7 +626,7 @@ mvIndex mvEntryList::addNewGroupBehaviourMemberNode(mvIndex behaviourIndex,
    {
       // add new entry
       entryIndex = addNewEntry(MV_GROUP_BEHAVIOUR_MEMBER_ENTRY,\
-         behaviourIndex,groupIndex, MV_NULL,\
+         behaviourIndex,groupIndex, memberAction,\
          defaultNodeTimerFlags.getWeight(),\
          defaultNodeTimerFlags.getTimerPtr()->getPeriod(),\
          defaultNodeTimerFlags.getTimerPtr()->getElapsedTime());
