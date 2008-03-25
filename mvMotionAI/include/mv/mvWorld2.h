@@ -167,6 +167,9 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld
       mvIndex createBody_str(const char* bType, const char* bShape,\
          mvFloat x, mvFloat y, mvFloat z, mvIndex saveFileIndex = MV_NULL);
 
+		mvErrorEnum removeBodyAndEntryList(mvIndex objIndex);
+		mvErrorEnum setCurrentBodyAndEntryList(mvIndex objIndex);
+
       // obstacle functions
       mvIndex createObstacle(mvOptionEnum oType, mvOptionEnum oState,\
          mvFloat x, mvFloat y, mvFloat z, mvIndex saveFileIndex = MV_NULL);

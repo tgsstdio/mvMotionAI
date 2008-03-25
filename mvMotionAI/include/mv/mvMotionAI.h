@@ -2414,5 +2414,19 @@ MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRegisterAllGroupBehavioursToBodies(mvIndex\
 MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRegisterGroupBehaviourToBodies(mvIndex\
 	worldIndex, mvIndex groupBehaviour);
 
+/**
+ * \ingroup mvGlobal
+ * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
+ */
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvRemoveBodyAndEntryList(mvIndex worldIndex,\
+	mvIndex objIndex);
+
+/**
+ * \ingroup mvGlobal
+ * \return MV_NO_ERROR or if error has occured, a non zero value is returned.
+ */
+MV_GLOBAL_FUNC_PREFIX mvErrorEnum mvSetCurrentBodyAndEntryList(mvIndex worldIndex,\
+	mvIndex objIndex);
+
 #endif
 
