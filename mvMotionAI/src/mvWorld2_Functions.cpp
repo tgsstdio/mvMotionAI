@@ -4,7 +4,42 @@
 #define MV_WORLD_V2_FUNCTIONS_DEBUG
 #undef MV_WORLD_V2_FUNCTIONS_DEBUG
 
+#include MV_BODY_HEADER_FILE_H_
 #include MV_MOTIONAI_UTILITIES_HEADER_FILE_H_
+
+// TODO : local conversions
+void convertLocalLinearToGlobal(mvVec3& localVec,\
+	mvConstBodyPtr currentBody)
+{
+	mvFloat factor = localVec.getX();
+	mvVec3 forward = currentBody->getBodyDirection();
+
+	localVec = forward * factor;
+}
+
+void convertLocalRotationalToGlobal(mvVec3& localVec,\
+	mvConstBodyPtr currentBody)
+{
+	//return localVec;
+}
+
+void convertRotationalUnits(mvVec3& localVec, bool isRotationInDegrees,\
+	mvConstBodyPtr currentBody)
+{
+	//return localVec;
+}
+
+void convertLocalTorqueToGlobal(mvVec3& localVec,\
+	mvConstBodyPtr currentBody)
+{
+	//return localVec;
+}
+
+void convertLocalQuaternionToGlobal(mvVec3& localVec,\
+	mvConstBodyPtr currentBody)
+{
+	//return localVec;
+}
 
 template <class mvFinalResultObject, class mvCurrentResultObject>
 void mvWorld_V2_InitialiseCurrentResultObject(mvFinalResultObject* finalResult,
@@ -305,7 +340,9 @@ void mvWorldV2_addNewGroupNodeIntoMemberList(mvWorldPtr currentWorld,
 	nodeMemberList.insertBeforeCurrentMember(\
 		memberIndex,existingMemberEntryIndex);
 
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
 	std::cout << "Created new object : " << memberIndex << " " << existingMemberEntryIndex << std::endl;
+#endif
 }
 
 void mvWorldV2_registerGroup(mvWorldPtr currentWorld, mvOptionEnum defaultType,
@@ -318,21 +355,16 @@ void mvWorldV2_registerGroup(mvWorldPtr currentWorld, mvOptionEnum defaultType,
    {
       return;
    }
-	// TODO : rewrite function - to simple for loop and create
    bool hasChanged =  currentWorld->hasGroupChanged(gbGroupIndex);
    mvGroupNodeMemberList& nodeMemberList = currentNode->memberDataList;
-//   mvGroupMemberNodePtr memberNode = MV_NULL;
-//   mvIndex entryIndex = MV_NULL;
    mvActionLoaderListPtr worldActionCreator = MV_NULL;
    int count = 0;
-//	int theGroupIndex = 0, theGBIndex = 0;
    if (!hasChanged)
    {
 		return;
    }
 
-	// add/remove members  in group beh node that be same as group
-//	mvIndex lhsSetIndex, rhsMemberIndex;
+	// add/remove members in group beh node that be same as group
 	worldActionCreator = currentWorld->getActionLoader();
 
 	if (worldActionCreator == MV_NULL)
@@ -343,156 +375,14 @@ void mvWorldV2_registerGroup(mvWorldPtr currentWorld, mvOptionEnum defaultType,
 	// iterate over all member in list
 	currentGroup->setToFirstMember();
 	nodeMemberList.toFirstMember();
-
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
 	std::cout << "Current Group Size : "  << currentGroup->getNoOfMembers() << std::endl;
 	//theGBIndex = currentMemberList.getNoOfMembers();
+#endif
 
 	while (!currentGroup->areMembersFinished())
 	//	!nodeMemberList.hasAllNodesBeenVisited() )
 	{
-	/*
-		if (!currentGroup->areMembersFinished())
-		{
-			theGroupIndex = currentGroup->getCurrentMember();
-		}
-
-		if (nodeMemberList.hasAllNodesBeenVisited())
-		{
-			theGBIndex = nodeMemberList.getCurrentMember()->getMemberIndex();
-		}
-
-		// if member is finished keep adding
-		if (nodeMemberList.hasAllNodesBeenVisited())
-		{
-			// keep adding new members of a group to node member list
-			lhsSetIndex = currentGroup->getCurrentMember();
-
-			// add node
-			currentMemberList = currentWorld->getEntryListPtr(lhsSetIndex);
-			if (currentMemberList != MV_NULL)
-			{
-				// new action creation info
-				mvNewBaseActionInfo memberInfo(defaultType,
-					mvNewBaseActionInfo::MV_NEW_GB_GROUP_MEMBER_OP,
-					mainActionPtr, groupAction);
-
-				// creating new mvBaseAction
-				tempMemberActionPtr =
-					worldActionCreator->createAClassPtr(\
-						defaultType, memberInfo);
-
-				if (tempMemberActionPtr != MV_NULL)
-				{
-					// looking for existing subscription
-					entryIndex = currentMemberList->findExistingGroupEntry(
-						grpBehavIndex, gbGroupIndex,
-						tempMemberActionPtr->getType());
-
-					// not created
-					if (entryIndex == MV_NULL)
-					{
-						// create new entry
-						entryIndex =
-							currentMemberList->addNewGroupBehaviourMemberNode(\
-							grpBehavIndex, gbGroupIndex, tempMemberActionPtr);
-
-						nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,
-								entryIndex);
-					}
-					else
-					{
-						// free unused memory
-						delete tempMemberActionPtr;
-						tempMemberActionPtr = MV_NULL;
-
-						// get existing file
-						nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,
-								entryIndex);
-					}
-				}
-			}
-			count++;
-			currentGroup->toNextMember();
-		}
-		else if (currentGroup->areMembersFinished())
-		{
-			std::cout << "REMOVING MEMBERS " << count << std::endl;
-			// remove all trailing member nodes
-			nodeMemberList.deleteCurrentMember();
-		}
-		else
-		{
-			// both sides have still contain items
-
-			memberNode = nodeMemberList.getCurrentMember();
-			rhsMemberIndex = memberNode->getMemberIndex();
-			lhsSetIndex = currentGroup->getCurrentMember();
-
-			if (lhsSetIndex > rhsMemberIndex)
-			{
-				// remove all rhs member nodes preceding node
-				nodeMemberList.deleteCurrentMember();
-			}
-			else if (lhsSetIndex == rhsMemberIndex)
-			{
-				// skip by incrementing both lhs & rhs
-				currentGroup->toNextMember();
-				nodeMemberList.toNextMember();
-			}
-			else // (lhsSetIndex < rhsMemberIndex)
-			{
-				// insert ahead of position
-				// add node
-				currentMemberList = currentWorld->getEntryListPtr(lhsSetIndex);
-				if (currentMemberList != MV_NULL)
-				{
-					// new action creation info
-					mvNewBaseActionInfo memberInfo(defaultType,
-						mvNewBaseActionInfo::MV_NEW_GB_GROUP_MEMBER_OP,
-						mainActionPtr, groupAction);
-
-					// creating new mvBaseAction
-					tempMemberActionPtr =
-						worldActionCreator->createAClassPtr(\
-							defaultType, memberInfo);
-
-					if (tempMemberActionPtr != MV_NULL)
-					{
-						// looking for existing subscription
-						entryIndex = currentMemberList->findExistingGroupEntry(
-							grpBehavIndex, gbGroupIndex,
-							tempMemberActionPtr->getType());
-
-						// not created
-						if (entryIndex == MV_NULL)
-						{
-							// create new entry
-							entryIndex =
-								currentMemberList->addNewGroupBehaviourMemberNode(\
-								grpBehavIndex, gbGroupIndex, tempMemberActionPtr);
-
-							// add to list
-							nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,
-								entryIndex);
-						}
-						else
-						{
-							// free unused memory
-							delete tempMemberActionPtr;
-							tempMemberActionPtr = MV_NULL;
-
-							// get existing file
-							nodeMemberList.insertBeforeCurrentMember(lhsSetIndex,
-								entryIndex);
-						}
-					}
-				}
-				count++;
-				currentGroup->toNextMember();
-			}
-		}
-		*/
-
 		if (nodeMemberList.hasAllNodesBeenVisited())
 		{
 			// add extra group members then quit
@@ -516,14 +406,18 @@ void mvWorldV2_registerGroup(mvWorldPtr currentWorld, mvOptionEnum defaultType,
 			if (currentGroup->getCurrentMember() >
 				nodeMemberList.getCurrentMember()->getMemberIndex())
 			{
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
 				// delete all preceding non-participating members.
 				std::cout << "delete new member" << nodeMemberList.getCurrentMember()->getMemberIndex() << std::endl;
+#endif
 				nodeMemberList.deleteCurrentMember();
 
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
 				if (!currentGroup->areMembersFinished())
 				{
 					std::cout << "Next member" << nodeMemberList.getCurrentMember()->getMemberIndex() << std::endl;
 				}
+#endif
 			}
 			else
 			{
@@ -550,25 +444,31 @@ void mvWorldV2_registerGroup(mvWorldPtr currentWorld, mvOptionEnum defaultType,
    // delete any trailing members which are not removed
    while (!nodeMemberList.hasAllNodesBeenVisited())
 	{
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
 		std::cout << "delete members " << nodeMemberList.getCurrentMember()->getMemberIndex() << std::endl;
+#endif
 		nodeMemberList.deleteCurrentMember();
 		// delete member node from member list
 	}
-
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
 	std::cout << "GROUP COUNT : " << count << std::endl;
-
+#endif
 	count = 0;
 
 	// iterate over update Memeber List
    nodeMemberList.toFirstMember();
    while (!nodeMemberList.hasAllNodesBeenVisited())
    {
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
    	//memberNode = nodeMemberList.getCurrentMember();
+#endif
 		std::cout << "member : " << nodeMemberList.getCurrentMember()->getMemberIndex() << std::endl;
       nodeMemberList.toNextMember();
       count++;
    }
+#ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
    std::cout << "COUNT : " << count << std::endl;
+#endif
 }
 
 
@@ -825,7 +725,7 @@ void mvWorld_V2_SumForceResults(mvForceResultPtr summedResult,
       actionVec = actionResult.getShift();
       if (currentEffect == MV_LOCAL_EFFECT)
       {
-         // TODO : delocalise function
+			 convertLocalLinearToGlobal(actionVec,currentBody);
       }
 
       if (currentMotion == MV_DIRECTIONAL_MOTION)
@@ -857,7 +757,7 @@ void mvWorld_V2_SumForceResults(mvForceResultPtr summedResult,
       actionVec = actionResult.getGravity();
       if (currentEffect == MV_LOCAL_EFFECT)
       {
-         // TODO : delocalise function
+			convertLocalLinearToGlobal(actionVec,currentBody);
       }
 
       totalVec += actionVec;
@@ -904,7 +804,7 @@ void mvWorld_V2_SumBehaviourResults(mvBehaviourResultPtr summedResult,
       actionVec = actionResult.getVelocity();
       if (currentEffect == MV_LOCAL_EFFECT)
       {
-         // TODO : delocalise function
+			convertLocalLinearToGlobal(actionVec,currentBody);
       }
 
       actionVec *= weight;
@@ -970,7 +870,7 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
       actionVec *= weight;
       if (currentEffect == MV_LOCAL_EFFECT)
       {
-         // TODO : delocalise function
+			convertLocalLinearToGlobal(actionVec,currentBody);
       }
       // TODO : check if before or after delocal
 
@@ -1002,11 +902,11 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
       }
 
       actionVec = actionResult.getAcceleration();
-      // TODO : check if before or after delocal or confining
+
       actionVec *= weight;
       if (currentEffect == MV_LOCAL_EFFECT)
       {
-         // TODO : delocalise function
+			convertLocalLinearToGlobal(actionVec,currentBody);
       }
 
       if (isConfined)
@@ -1040,9 +940,8 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
       actionVec *= weight;
       if (currentEffect == MV_LOCAL_EFFECT)
       {
-         // TODO : delocalise function
+			convertLocalRotationalToGlobal(actionVec,currentBody);
       }
-      // TODO : check if before or after delocal or confining
 
       if (isConfined)
       {
@@ -1078,15 +977,13 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
       }
 
       actionVec = actionResult.getOmega();
-      if(actionResult.isOmegaInDegrees())
-      {
-         // TODO convert degrees in radains
-      }
+		convertRotationalUnits(actionVec, actionResult.isOmegaInDegrees(),
+			currentBody);
 
       actionVec *= weight;
       if (currentEffect == MV_LOCAL_EFFECT)
       {
-         // TODO : delocalise function
+			convertLocalRotationalToGlobal(actionVec,currentBody);
       }
       // TODO : check if before or after delocal or confining
 
@@ -1124,16 +1021,13 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
 
       actionVec = actionResult.getRotation();
 
-      if(actionResult.isRotationInDegrees())
-      {
-         // TODO convert degrees in radains
-      }
+		convertRotationalUnits(actionVec,
+			actionResult.isRotationInDegrees(), currentBody);
 
       actionVec *= weight;
       if (currentEffect == MV_LOCAL_EFFECT)
       {
-         // TODO : delocalise function
-        // actionVec -= currentBody->getRotation();
+			convertLocalRotationalToGlobal(actionVec,currentBody);
       }
       // TODO : check if before or after delocal or confining
 
@@ -1174,15 +1068,15 @@ void mvWorld_V2_CalculateEntryByRandomSum(mvEntryListNodePtr eNodePtr,\
       // apply mvBaseAction operator
       if (currentAction != MV_NULL)
       {
+      	// negetive weights into positive percentage
+      	if (minPercentage < 0)
+      	{
+				minPercentage *= -1;
+      	}
 
-         // TODO : negetive weights
-         if (minPercentage > 0)
+         if (minPercentage > 1)
          {
-            minPercentage = mvMin(minPercentage, 1);
-         }
-         else
-         {
-            minPercentage = mvMax(minPercentage, 0);
+            minPercentage = mvMax(minPercentage, 1);
          }
 
          //minPercentage = 1;
@@ -1194,7 +1088,10 @@ void mvWorld_V2_CalculateEntryByRandomSum(mvEntryListNodePtr eNodePtr,\
             bool addActionToResult = currentAction->bodyOp(&currentResult);
             if (addActionToResult)
             {
-               mvWorld_V2_SumBehaviourResults(finalResult, currentResult,1.0,isConfined);
+					// negetive weights = inverse of direction
+            	mvFloat positiveWeight = (eNodePtr->entryFlags.getWeight() >= 0) ? 1 : -1;
+
+               mvWorld_V2_SumBehaviourResults(finalResult, currentResult,positiveWeight,isConfined);
                bCapsule->performIntegration = true;
             }
          }

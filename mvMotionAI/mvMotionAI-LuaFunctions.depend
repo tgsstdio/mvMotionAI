@@ -359,12 +359,12 @@
 	<math.h>
 	<unistd.h>
 
-1193548156 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
+1206441378 d:\mvmotionai\mvmotionai\include\mv\mvmotionai.h
 	<mv/mvMotionAI-Types.h>
 
 1190961076 onAI-Types.h>
 
-1193119786 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
+1206107814 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
 
 1191290939 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/mvLua.cpp
 	"mvLua.h"
@@ -597,7 +597,7 @@
 	<iostream>
 	<lf/core/array.h>
 
-1202301582 k:\lf-bedge\include\lf\core\vector3d.h
+1206111110 k:\lf-bedge\include\lf\core\vector3d.h
 	<math.h>
 	<lf/core/lfmath.h>
 	<lf/core/lftypes.h>
@@ -879,7 +879,7 @@
 	<lf/core/list.h>
 	<lf/render/gui/CGUIManager.h>
 
-1203731758 k:\lf-bedge\include\lf\render\irenderwindow.h
+1206111112 k:\lf-bedge\include\lf\render\irenderwindow.h
 	<lf/LfConfig.h>
 	<lf/core/lftypes.h>
 	<lf/core/CRefCounted.h>
@@ -891,6 +891,7 @@
 	<lf/render/IFrameListener.h>
 	<lf/render/IRenderWindowListener.h>
 	<lf/resources/CImage.h>
+	<Carbon/Carbon.h>
 
 1202301584 k:\lf-bedge\include\lf\render\edrivertypes.h
 	<lf/LfConfig.h>
@@ -962,7 +963,7 @@
 	<lf/core/vector2d.h>
 	<lf/core/array.h>
 
-1204344194 k:\lf-bedge\include\lf\render\gui\cguimanager.h
+1206111112 k:\lf-bedge\include\lf\render\gui\cguimanager.h
 	<lf/core/rect.h>
 	<lf/core/array.h>
 	<lf/core/CColorI.h>
@@ -995,13 +996,13 @@
 	<lf/resources/CTexture.h>
 	<lf/render/gui/CGUITheme.h>
 
-1203731760 k:\lf-bedge\include\lf\resources\ctexture.h
+1206111112 k:\lf-bedge\include\lf\resources\ctexture.h
 	<lf/LfConfig.h>
 	<lf/render/glmac.h>
 	<OpenGL/glu.h>
 	<windows.h>
-	<gl\gl.h>
-	<gl\glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
 	<GL/glx.h>
 	<GL/gl.h>
 	<GL/glu.h>
@@ -1059,8 +1060,9 @@
 1202301584 k:\lf-bedge\include\lf\render\gui\iguimousewheellistener.h
 	<lf/input/CMouseEvent.h>
 
-1202301584 k:\lf-bedge\include\lf\render\irenderlayer.h
+1206111112 k:\lf-bedge\include\lf\render\irenderlayer.h
 	<lf/core/CRefCounted.h>
+	<lf/core/array.h>
 
 1202301584 k:\lf-bedge\include\lf\render\gui\cguimousepointer.h
 	<lf/core/CRefCounted.h>
@@ -1173,7 +1175,7 @@
 	<lf/render/CRenderWindowMac.h>
 	<AGL/AGL.h>
 
-1203831042 k:\lf-bedge\include\lf\render\crendercontextopenglstub.h
+1206111110 k:\lf-bedge\include\lf\render\crendercontextopenglstub.h
 	<lf/LfConfig.h>
 	<lf/render/CRenderContextStub.h>
 	<lf/render/CTexCoordMapping.h>
@@ -1184,7 +1186,7 @@
 	<GL/gl.h>
 	<lf/render/glext.h>
 
-1203731758 k:\lf-bedge\include\lf\render\crendercontextstub.h
+1206111110 k:\lf-bedge\include\lf\render\crendercontextstub.h
 	<lf/LfConfig.h>
 	<lf/render/IRenderContext.h>
 	<lf/core/array.h>
@@ -1197,7 +1199,7 @@
 	<lf/resources/CTextureCube.h>
 	<lf/resources/CTextureRect.h>
 
-1203731758 k:\lf-bedge\include\lf\render\irendercontext.h
+1206111110 k:\lf-bedge\include\lf\render\irendercontext.h
 	<lf/LfConfig.h>
 	<lf/core/rect.h>
 	<lf/core/CColorI.h>
@@ -1224,7 +1226,7 @@
 
 1202301584 k:\lf-bedge\include\lf\render\sexposedvideodata.h
 
-1204984518 k:\lf-bedge\include\lf\render\irenderpass.h
+1206111112 k:\lf-bedge\include\lf\render\irenderpass.h
 	<lf/LfConfig.h>
 	<lf/core/lftypes.h>
 	<lf/render/CRenderContextCapabilities.h>
@@ -1276,7 +1278,7 @@
 1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstatealphatest.h
 	<lf/render/CRenderState.h>
 
-1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstateambientlight.h
+1206111112 k:\lf-bedge\include\lf\render\renderstates\crenderstateambientlight.h
 	<lf/render/CRenderState.h>
 	<lf/core//CColorI.h>
 
@@ -1312,7 +1314,7 @@
 1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstatedither.h
 	<lf/render/CRenderState.h>
 
-1202301586 k:\lf-bedge\include\lf\render\renderstates\crenderstatefog.h
+1206111112 k:\lf-bedge\include\lf\render\renderstates\crenderstatefog.h
 	<lf/render/CRenderState.h>
 	<lf/core/CColorI.h>
 
@@ -1347,7 +1349,7 @@
 	<lf/core/CColorI.h>
 	<lf/core/matrix4.h>
 
-1204344194 k:\lf-bedge\include\lf\scene\cscenerenderlist.h
+1206111112 k:\lf-bedge\include\lf\scene\cscenerenderlist.h
 	<lf/LfConfig.h>
 	<lf/core/CRefCounted.h>
 	<lf/render/IRenderPass.h>
@@ -1361,7 +1363,7 @@
 	<lf/render/IRenderContext.h>
 	<lf/resources/CResource.h>
 
-1202301700 k:\lf-bedge\include\lf\resources\cvertexbuffer.h
+1206111112 k:\lf-bedge\include\lf\resources\cvertexbuffer.h
 	<lf/LfConfig.h>
 	<lf/core/lftypes.h>
 	<lf/core/CColorF.h>
@@ -1375,8 +1377,8 @@
 	<lf/resources/CResource.h>
 	<lf/render/glmac.h>
 	<windows.h>
-	<gl\gl.h>
-	<gl\glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
 	<GL/glx.h>
 	<GL/gl.h>
 	<GL/glu.h>
@@ -1886,7 +1888,7 @@
 	<ffmpeg/avformat.h>
 	<ffmpeg/swscale.h>
 
-1204984518 k:\lf-bedge\include\lf\lfrender.h
+1206111110 k:\lf-bedge\include\lf\lfrender.h
 	<lf/render/CLFRender.h>
 	<lf/render/CFrameEvent.h>
 	<lf/render/CPostProcessor.h>
@@ -1897,6 +1899,7 @@
 	<lf/render/CRenderState.h>
 	<lf/render/CRenderStateContainer.h>
 	<lf/render/CRenderFeatureImplementation.h>
+	<lf/render/CRenderFeatureRegistry.h>
 	<lf/render/CRenderWindowEvent.h>
 	<lf/render/CRenderWindowLinux.h>
 	<lf/render/CRenderWindowMac.h>
@@ -1930,7 +1933,7 @@
 	<lf/render/LfRenderStates.h>
 	<lf/render/LfGUI.h>
 
-1202301584 k:\lf-bedge\include\lf\render\clfrender.h
+1206111110 k:\lf-bedge\include\lf\render\clfrender.h
 	<lf/LfConfig.h>
 	<lf/core/CSingleton.h>
 	<lf/core/array.h>
@@ -1938,7 +1941,7 @@
 	<lf/resources/CVertexBuffer.h>
 	<lf/render/IRenderWindow.h>
 
-1202301584 k:\lf-bedge\include\lf\render\cpostprocessor.h
+1206111110 k:\lf-bedge\include\lf\render\cpostprocessor.h
 	<lf/LfConfig.h>
 	<lf/core/vector2d.h>
 	<lf/core/stringc.h>
@@ -1953,12 +1956,13 @@
 	<lf/scene/CCamera.h>
 	<lf/render/CPostProcessorStep.h>
 
-1202301584 k:\lf-bedge\include\lf\render\crenderlayerpp.h
+1206111110 k:\lf-bedge\include\lf\render\crenderlayerpp.h
 	<lf/render/IRenderLayer.h>
 	<lf/resources/CMaterial.h>
 	<lf/resources/CMesh.h>
+	<lf/log/CLFLog.h>
 
-1202301586 k:\lf-bedge\include\lf\resources\cmaterial.h
+1206111112 k:\lf-bedge\include\lf\resources\cmaterial.h
 	<lf/core/CRefCounted.h>
 	<lf/resources/CResource.h>
 	<lf/resources/CTexture.h>
@@ -2003,7 +2007,7 @@
 	<lf/render/CSprite.h>
 	<lf/core/CRefCounted.h>
 
-1202818460 k:\lf-bedge\include\lf\scene\ccamera.h
+1206111112 k:\lf-bedge\include\lf\scene\ccamera.h
 	<lf/LfConfig.h>
 	<lf/scene/CViewFrustum.h>
 	<lf/core/matrix4.h>
@@ -2024,7 +2028,7 @@
 	<lf/core/SCone.h>
 	<lf/core/aabbox3d.h>
 
-1203731760 k:\lf-bedge\include\lf\scene\cscenenode.h
+1206111112 k:\lf-bedge\include\lf\scene\cscenenode.h
 	<lf/LfConfig.h>
 	<lf/core/CRefCounted.h>
 	<lf/core/CProperties.h>
@@ -2043,7 +2047,7 @@
 	<lf/render/CTextureSetup.h>
 	<lf/scene/ISceneNodeListener.h>
 
-1203731760 k:\lf-bedge\include\lf\scene\cscenestatecontainer.h
+1206111112 k:\lf-bedge\include\lf\scene\cscenestatecontainer.h
 	<lf/LfConfig.h>
 	<lf/scene/CSceneState.h>
 	<lf/core/array.h>
@@ -2061,7 +2065,7 @@
 	<lf/LfConfig.h>
 	<lf/core/CEvent.h>
 
-1202301584 k:\lf-bedge\include\lf\render\cpostprocessorstep.h
+1206111110 k:\lf-bedge\include\lf\render\cpostprocessorstep.h
 	<lf/LfConfig.h>
 	<lf/core/vector2d.h>
 	<lf/core/stringc.h>
@@ -2073,14 +2077,14 @@
 	<lf/resources/CTextureRect.h>
 	<lf/resources/CMaterial.h>
 
-1204984518 k:\lf-bedge\include\lf\render\crenderpassopengl.h
+1206111110 k:\lf-bedge\include\lf\render\crenderpassopengl.h
 	<lf/render/IRenderPass.h>
 	<windows.h>
-	<gl\gl.h>
-	<gl\glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
 	<GL/glx.h>
 	<GL/gl.h>
-	"glext.h"
+	<lf/render/glext.h>
 	<lf/render/glmac.h>
 	<Cg/cg.h>
 	<Cg/cgGL.h>
@@ -2092,7 +2096,7 @@
 	<lf/resources/CMesh.h>
 	<iostream>
 
-1204344194 k:\lf-bedge\include\lf\scene\cscenemanager.h
+1206111112 k:\lf-bedge\include\lf\scene\cscenemanager.h
 	<lf/LfConfig.h>
 	<lf/scene/CGroupSceneNode.h>
 	<lf/core/CRefCounted.h>
@@ -2153,7 +2157,7 @@
 	<lf/render/CRenderContextOpenGLStub.h>
 	<X11/Xlib.h>
 
-1203731758 k:\lf-bedge\include\lf\render\crenderlayer3d.h
+1206111110 k:\lf-bedge\include\lf\render\crenderlayer3d.h
 	<lf/LfConfig.h>
 	<lf/core/CRefCounted.h>
 	<lf/core/array.h>
@@ -2161,11 +2165,11 @@
 	<lf/scene/CCamera.h>
 	<lf/scene/CSceneManager.h>
 
-1203731758 k:\lf-bedge\include\lf\render\crenderlayer3dsp.h
+1206111110 k:\lf-bedge\include\lf\render\crenderlayer3dsp.h
 	<lf/render/CRenderLayer3D.h>
 	<lf/scene/CSceneRenderList.h>
 
-1204984518 k:\lf-bedge\include\lf\render\crenderlayer3doppl.h
+1206111110 k:\lf-bedge\include\lf\render\crenderlayer3doppl.h
 	<lf/render/CRenderLayer3D.h>
 	<lf/scene/CSceneRenderList.h>
 
@@ -2184,7 +2188,7 @@
 	"renderpasses/LfSinglePassRPs.h"
 	"renderpasses/LfOpplRPs.h"
 
-1202301586 k:\lf-bedge\include\lf\render\renderpasses\lfsinglepassrps.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\lfsinglepassrps.h
 	"singlepass/CRPOGLCustomPVSCalc.h"
 	"singlepass/CRPOGLColorOnly.h"
 	"singlepass/CRPOGLDetailMap.h"
@@ -2197,7 +2201,6 @@
 	"singlepass/CRPOGLDiffuseMapCubeMap.h"
 	"singlepass/CRPOGL2LayerCustomFixed.h"
 	"singlepass/CRPOGLSkyBox.h"
-	"singlepass/CRPOGLSkyDome.h"
 	"singlepass/CRPOGLCubeMapReflection.h"
 	"singlepass/CRPOGLLightmap.h"
 	"singlepass/CRPOGLLightmapAdd.h"
@@ -2222,124 +2225,148 @@
 	"singlepass/CRPOGLCgReliefTextureMap.h"
 	"singlepass/CRPOGLCgPerPixelLighting.h"
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglcustompvscalc.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglcustompvscalc.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglcoloronly.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglcoloronly.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogldetailmap.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogldetailmap.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogldiffusemap.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogldiffusemap.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglslperpixelspotlight.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglslperpixelspotlight.h
 	<lf/render/CRenderPassOpenGLSL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglslvertexcolorsplatting.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglslvertexcolorsplatting.h
 	<lf/render/CRenderPassOpenGLSL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglslshadowmap.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglslshadowmap.h
 	<lf/render/renderpasses/singlepass/CRPOGLSLCustom.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglslcustom.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglslcustom.h
 	<lf/render/CRenderPassOpenGLSL.h>
 	<lf/resources/CMesh.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogldiffusemapcubemap.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogldiffusemapcubemap.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogl2layercustomfixed.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogl2layercustomfixed.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglskybox.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglskybox.h
 	<lf/render/CRenderPassOpenGL.h>
 
 1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglskydome.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglcubemapreflection.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglcubemapreflection.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogllightmap.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogllightmap.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogllightmapadd.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogllightmapadd.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglprojectedtexture.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglprojectedtexture.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglshadowmap.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglshadowmap.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogltranslucent.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogltranslucent.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogltranslucentadd.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogltranslucentadd.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984520 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogltransparent.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogltransparent.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984520 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglvertexblend.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglvertexblend.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984520 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglvertexcolorsplatting.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglvertexcolorsplatting.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984520 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglvertexcolorsplattingdetail.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglvertexcolorsplattingdetail.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogl2layermultexturealpha.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogl2layermultexturealpha.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogltranslucentcubemap.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpogltranslucentcubemap.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglslnormalmapping.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglslnormalmapping.h
 	<lf/render/CRenderPassOpenGLSL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglslparallaxmapping.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglslparallaxmapping.h
 	<lf/render/CRenderPassOpenGLSL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglsllitparallaxmapping.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglsllitparallaxmapping.h
 	<lf/render/CRenderPassOpenGLSL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglshadowvolumezpass.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglshadowvolumezpass.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglshadowvolumezfail.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglshadowvolumezfail.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglshadowvolumequad.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglshadowvolumequad.h
 	<lf/render/CRenderPassOpenGL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglcustomcg.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglcustomcg.h
 	<lf/render/CRenderPassOpenGLCg.h>
 	<Cg/cg.h>
 	<Cg/cgGL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglcgtangentspacenormalmap.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglcgtangentspacenormalmap.h
 	<lf/render/CRenderPassOpenGLCg.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglcgrelieftexturemap.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglcgrelieftexturemap.h
 	<lf/render/CRenderPassOpenGLCg.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglcgperpixellighting.h
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\singlepass\crpoglcgperpixellighting.h
 	<lf/render/CRenderPassOpenGLCg.h>
 	<Cg/cg.h>
 	<Cg/cgGL.h>
 
-1204984518 k:\lf-bedge\include\lf\render\renderpasses\lfopplrps.h
-	"oppl/CRPOPPLOGLSLColorOnlyAmbient.h"
-	"oppl/CRPOPPLOGLSLColorOnlyDirectionalPerPixel.h"
-	"oppl/CRPOPPLOGLSLColorOnlyDirectionalPerPixelShadowed.h"
-	"oppl/CRPOPPLOGLSLColorOnlyPointPerPixel.h"
-	"oppl/CRPOPPLOGLSLColorOnlySpotPerPixel.h"
-	"oppl/CRPOPPLOGLSLColorOnlySpotPerPixelShadowed.h"
-	"oppl/CRPOPPLOGLSLDiffusemapAmbient.h"
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\lfopplrps.h
+	"oppl/CRPOPPLOGLSL2LayerMulTextureAlpha.h"
+	"oppl/CRPOPPLOGLSLAmbient.h"
+	"oppl/CRPOPPLOGLSLDepthOnly.h"
+	"oppl/CRPOPPLOGLSLDetailmap.h"
+	"oppl/CRPOPPLOGLSLDiffusemap.h"
+	"oppl/CRPOPPLOGLSLLightDirectionalNM.h"
+	"oppl/CRPOPPLOGLSLLightDirectionalNMShadowed.h"
+	"oppl/CRPOPPLOGLSLLightDirectionalPM.h"
+	"oppl/CRPOPPLOGLSLLightDirectionalPMShadowed.h"
+	"oppl/CRPOPPLOGLSLLightDirectionalVN.h"
+	"oppl/CRPOPPLOGLSLLightDirectionalVNShadowed.h"
+	"oppl/CRPOPPLOGLSLLightmap.h"
+	"oppl/CRPOPPLOGLSLLightmapAdd.h"
+	"oppl/CRPOPPLOGLSLLightPointNM.h"
+	"oppl/CRPOPPLOGLSLLightPointNMShadowed.h"
+	"oppl/CRPOPPLOGLSLLightPointPM.h"
+	"oppl/CRPOPPLOGLSLLightPointPMShadowed.h"
+	"oppl/CRPOPPLOGLSLLightPointVN.h"
+	"oppl/CRPOPPLOGLSLLightPointVNShadowed.h"
+	"oppl/CRPOPPLOGLSLLightSpotNM.h"
+	"oppl/CRPOPPLOGLSLLightSpotNMShadowed.h"
+	"oppl/CRPOPPLOGLSLLightSpotPM.h"
+	"oppl/CRPOPPLOGLSLLightSpotPMShadowed.h"
+	"oppl/CRPOPPLOGLSLLightSpotVN.h"
+	"oppl/CRPOPPLOGLSLLightSpotVNShadowed.h"
+	"oppl/CRPOPPLOGLSLTranslucent.h"
+	"oppl/CRPOPPLOGLSLTranslucentAdd.h"
+	"oppl/CRPOPPLOGLSLTransparent.h"
+	"oppl/CRPOPPLOGLSLTransparentAmbient.h"
+	"oppl/CRPOPPLOGLSLVertexColor.h"
+	"oppl/CRPOPPLOGLSLVertexColorSplatting4.h"
 
 1204984518 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglslcoloronlyambient.h
 	<lf/render/CRenderPassOpenGLSL.h>
@@ -2362,7 +2389,7 @@
 1204984518 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsldiffusemapambient.h
 	<lf/render/CRenderPassOpenGLSL.h>
 
-1202818460 k:\lf-bedge\include\lf\render\lfgui.h
+1206111112 k:\lf-bedge\include\lf\render\lfgui.h
 	"gui/IGUIActionListener.h"
 	"gui/IGUIContainerListener.h"
 	"gui/IGUIMouseListener.h"
@@ -2381,6 +2408,7 @@
 	"gui/CGUILabel.h"
 	"gui/CGUIListBox.h"
 	"gui/CGUIManager.h"
+	"gui/CGUIMessageBox.h"
 	"gui/CGUIMousePointer.h"
 	"gui/CGUIPanel.h"
 	"gui/CGUIProgressBar.h"
@@ -2503,7 +2531,7 @@
 	<lf/render/gui/CGUIWidget.h>
 	<lf/core/stringw.h>
 
-1204984518 k:\lf-bedge\include\lf\render\gui\cguitabcontrol.h
+1206111112 k:\lf-bedge\include\lf\render\gui\cguitabcontrol.h
 	<lf/render/gui/CGUIWidget.h>
 	<lf/render/gui/CGUILabel.h>
 	<lf/render/gui/IGUISelectionListener.h>
@@ -2560,7 +2588,7 @@
 1202301584 k:\lf-bedge\include\lf\render\gui\cguifader.h
 	<lf/render/gui/CGUIWidget.h>
 
-1202818460 k:\lf-bedge\include\lf\render\gui\cguianimator.h
+1206111112 k:\lf-bedge\include\lf\render\gui\cguianimator.h
 	<lf/render/gui/CGUIWidget.h>
 	<lf/core/IUpdateable.h>
 	<lf/core/list.h>
@@ -2574,7 +2602,7 @@
 1202301586 k:\lf-bedge\include\lf\render\gui\text\ctextselectionevent.h
 	<lf/LfConfig.h>
 
-1202301580 k:\lf-bedge\include\lf\lfscene.h
+1206111110 k:\lf-bedge\include\lf\lfscene.h
 	"scene/CCamera.h"
 	"scene/C2DCamera.h"
 	"scene/C3DCamera.h"
@@ -2600,6 +2628,7 @@
 	"scene/CSceneStateShadowCaster.h"
 	"scene/CSceneStateShadowReceiver.h"
 	"scene/CSector.h"
+	"scene/CSkySceneNode.h"
 	"scene/CPagingManager.h"
 	"scene/ISectorListener.h"
 	"scene/CViewFrustum.h"
@@ -2615,14 +2644,14 @@
 1202301750 k:\lf-bedge\include\lf\scene\c2dcamera.h
 	<lf/scene/CCamera.h>
 
-1202301750 k:\lf-bedge\include\lf\scene\c3dcamera.h
+1206111112 k:\lf-bedge\include\lf\scene\c3dcamera.h
 	<lf/scene/CCamera.h>
 	<lf/core/line3d.h>
 
-1202301752 k:\lf-bedge\include\lf\scene\corthocamera.h
+1206111112 k:\lf-bedge\include\lf\scene\corthocamera.h
 	<lf/scene/CCamera.h>
 
-1203731760 k:\lf-bedge\include\lf\scene\cdlodscenenode.h
+1206111112 k:\lf-bedge\include\lf\scene\cdlodscenenode.h
 	<lf/LfConfig.h>
 	<lf/scene/CSceneNode.h>
 	<lf/resources/CModel.h>
@@ -2673,12 +2702,12 @@
 	<lf/scene/CSceneNode.h>
 	<lf/resources/CSkeletonJoint.h>
 
-1203731760 k:\lf-bedge\include\lf\scene\clargeterrainscenenode.h
+1206111112 k:\lf-bedge\include\lf\scene\clargeterrainscenenode.h
 	<lf/LfConfig.h>
 	<lf/scene/CSceneNode.h>
 	<lf/resources/nature/CLargeTerrainModel.h>
 
-1202301750 k:\lf-bedge\include\lf\resources\nature\clargeterrainmodel.h
+1206111112 k:\lf-bedge\include\lf\resources\nature\clargeterrainmodel.h
 	<lf/LfConfig.h>
 	<lf/resources/CModel.h>
 	<lf/resources/nature/CGeoMipMapTerrainModel.h>
@@ -2711,14 +2740,14 @@
 1202301750 k:\lf-bedge\include\lf\resources\nature\iterraintiledisplaylistener.h
 	<lf/resources/nature/CTerrainTileEvent.h>
 
-1203731760 k:\lf-bedge\include\lf\scene\cmodelscenenode.h
+1206111112 k:\lf-bedge\include\lf\scene\cmodelscenenode.h
 	<lf/LfConfig.h>
 	<lf/scene/CSceneNode.h>
 	<lf/resources/CModel.h>
 	<lf/scene/CLight.h>
 	<lf/resources/IModelMeshListener.h>
 
-1203731760 k:\lf-bedge\include\lf\scene\cocttreemodelscenenode.h
+1206111112 k:\lf-bedge\include\lf\scene\cocttreemodelscenenode.h
 	<lf/scene/CIndexOctTree.h>
 	<lf/scene/CModelSceneNode.h>
 
@@ -3005,15 +3034,14 @@
 1202301752 k:\lf-bedge\include\lf\scene\cscenenodeselectorall.h
 	<lf/scene/ISceneNodeSelector.h>
 
-1204984520 k:\lf-bedge\include\lf\scene\ishadowmapsetup.h
+1206111112 k:\lf-bedge\include\lf\scene\ishadowmapsetup.h
 	<lf/LfConfig.h>
 	<lf/core/CRefCounted.h>
 	<lf/core/CRTTI.h>
 	<lf/core/CColorF.h>
-	<lf/render/IRenderPass.h>
 	<lf/scene/CLight.h>
 
-1202818460 k:\lf-bedge\include\lf\scene\cbasicshadowmapsetup.h
+1206111112 k:\lf-bedge\include\lf\scene\cbasicshadowmapsetup.h
 	<lf/core/array.h>
 	<lf/scene/IShadowMapSetup.h>
 	<lf/scene/CLight.h>
@@ -3144,7 +3172,7 @@
 1202301586 k:\lf-bedge\include\lf\resources\canimatedtexture.h
 	<lf/resources/CTexture.h>
 
-1202301586 k:\lf-bedge\include\lf\resources\cmodelanimator.h
+1206111112 k:\lf-bedge\include\lf\resources\cmodelanimator.h
 	<lf/core/CRefCounted.h>
 	<lf/core/CRTTI.h>
 	<lf/resources/CAnimation.h>
@@ -3221,7 +3249,7 @@
 	"basicmodels/CTextModel.h"
 	"basicmodels/CTorusModel.h"
 
-1202301700 k:\lf-bedge\include\lf\resources\basicmodels\cbillboardmodel.h
+1206111112 k:\lf-bedge\include\lf\resources\basicmodels\cbillboardmodel.h
 	<lf/LfConfig.h>
 	<lf/resources/CModel.h>
 	<lf/core/vector2d.h>
@@ -3243,7 +3271,7 @@
 	<lf/LfConfig.h>
 	<lf/resources/CModel.h>
 
-1202301700 k:\lf-bedge\include\lf\resources\basicmodels\cdecalmodel.h
+1206111112 k:\lf-bedge\include\lf\resources\basicmodels\cdecalmodel.h
 	<lf/resources/CModel.h>
 	<lf/core/array2.h>
 
@@ -3306,7 +3334,7 @@
 	<lf/resources/IResourceLoaderFactory.h>
 	<lf/resources/loaders/CResourceLoaderLFM.h>
 
-1203082166 k:\lf-bedge\include\lf\resources\loaders\cresourceloaderlfm.h
+1206111112 k:\lf-bedge\include\lf\resources\loaders\cresourceloaderlfm.h
 	<lf/LfConfig.h>
 	<lf/resources/CResourceLoader.h>
 	<lf/resources/CMaterial.h>
@@ -3711,4 +3739,117 @@
 	<lf/core/stringc.h>
 	<lf/resources/CVertexBufferNI.h>
 	<lf/resources/CIndexBuffer.h>
+
+1206111110 k:\lf-bedge\include\lf\render\crenderfeatureregistry.h
+	<lf/LfConfig.h>
+	<lf/render/IRenderPass.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/array.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsl2layermultexturealpha.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglslambient.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsldepthonly.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsldetailmap.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsldiffusemap.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsllightdirectionalnm.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsllightdirectionalnmshadowed.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsllightdirectionalpm.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsllightdirectionalpmshadowed.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsllightdirectionalvn.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsllightdirectionalvnshadowed.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsllightmap.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsllightmapadd.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsllightpointnm.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsllightpointnmshadowed.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsllightpointpm.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsllightpointpmshadowed.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsllightpointvn.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsllightpointvnshadowed.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsllightspotnm.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsllightspotnmshadowed.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsllightspotpm.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsllightspotpmshadowed.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsllightspotvn.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsllightspotvnshadowed.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsltranslucent.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsltranslucentadd.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsltransparent.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglsltransparentambient.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglslvertexcolor.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglslvertexcolorsplatting4.h
+	<lf/render/CRenderPassOpenGLSL.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguimessagebox.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+	<lf/render/gui/CGUIWindow.h>
+	<lf/render/gui/CGUIModalLoop.h>
+
+1202301584 k:\lf-bedge\include\lf\render\gui\cguimodalloop.h
+	<lf/render/gui/IGUIActionListener.h>
+
+1206111112 k:\lf-bedge\include\lf\scene\cskyscenenode.h
+	<lf/LfConfig.h>
+	<lf/scene/CModelSceneNode.h>
+	<lf/core/array.h>
 

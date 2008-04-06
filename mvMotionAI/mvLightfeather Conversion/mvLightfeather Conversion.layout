@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-winXP-debug" />
-	<File name="mvLFMotionAI-Types.h" open="0" top="0" tabpos="1">
-		<Cursor position="1792" topLine="23" />
+	<File name="..\include\mv\mvMotionAI.h" open="0" top="0" tabpos="0">
+		<Cursor position="1948" topLine="21" />
+	</File>
+	<File name="mvLFMotionAI-Types.h" open="1" top="0" tabpos="4">
+		<Cursor position="11722" topLine="387" />
 	</File>
 	<File name="mvLFVec3.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="13260" topLine="479" />
@@ -11,6 +14,6 @@
 		<Cursor position="4290" topLine="96" />
 	</File>
 	<File name="..\src\mvWorld2_Functions.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="46541" topLine="1443" />
+		<Cursor position="399" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

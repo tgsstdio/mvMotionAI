@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-winXP-dll" />
+	<File name="include\mv\mvMotionAI.h" open="0" top="0" tabpos="0">
+		<Cursor position="94003" topLine="2395" />
+	</File>
+	<File name="src\mvMotionAI.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="162046" topLine="5413" />
+	</File>
 	<File name="src\mvMotionAI_V2-Central.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="618" topLine="7" />
 	</File>
