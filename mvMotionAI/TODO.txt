@@ -1,11 +1,9 @@
 /**
  * \page todo_page mvMotionAI TODO list
  *
- * mvMotionAI TODO list on 11th December 2007
+ * mvMotionAI TODO list on 25 March 2008
  *
- * - a complete group behaviours class
- * - connection to EntryListNode for set/get parameters
- * - group node - individual member node relationship code not implemented
+ * - simple boid type behaviour
  * - torque -> omega -> rotation conversion for integrator (and vice versa)
  * - 3D moment of inertia calculations
  * - vehicle type body 
@@ -17,10 +15,6 @@
  * - left & right handness world conversion
  * - update position / update rotation flags for integrator
  * - rotation to box and cylinder for local force collision detection
- * - groups iterator instead of group pointer for integration
- * (inside bodyOp of mvBaseActions/calcFullForces in mvBaseForces) 
- * - waypoint / pathway helper class for following pathway for integration
- * (inside bodyOp of mvBaseActions/calcFullForces in mvBaseForces) 
  * - degree / radians unit conversions
  * - separate behaviour integration for each body
  *	- MV_PRIORITIZED_WEIGHTED as list
@@ -31,6 +25,18 @@
  * 	- classes such as mvForceResult, mvBehaviourResult, mvGroupBehaviourResult, mvForceStatus, mvBody.
  * - up & front facing origin vectors 
  * - integrate timers in the library.
+ * _ cylinder shapes in force calculations
+ * - collision detection /avoidance as a group behaviour
+ * - mvString type typedef interchangeable (i.e. std::string, char*, std::wstring, wchar*)
+ * 
+ * COMPLETED
+ * - a group behaviours class
+ * - connection to EntryListNode for set/get parameters
+ * - group node individual member node relationship cod implemented
+ * - groups iterator instead of group pointer for integration
+ * (inside bodyOp of mvBaseActions/calcFullForces in mvBaseForces) 
+ * - waypoint / pathway helper class for following pathway for integration
+ * (inside bodyOp of mvBaseActions/calcFullForces in mvBaseForces) 
  * - replace custom mvBaseActionLoader for default actions with mvReadyMadeLoaders
  * - removed excessive mvWorld get/set list parameters to reduce size of library
  *  David Young, 2007, 2008.

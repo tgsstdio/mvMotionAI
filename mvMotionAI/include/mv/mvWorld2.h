@@ -111,7 +111,6 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld
       mvCapsuleList<mvGroupPtr, mvConstGroupPtr, mvGroupCapsulePtr,\
          mvConstGroupCapsulePtr> groups;
 
-      // TODO : register
       void registerAllGroupBehavioursToBodies();
       mvErrorEnum registerGroupBehaviourToBodies(mvIndex groupBehaviourIndex);
 
@@ -282,7 +281,6 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld
          mvIndex nodeIndex, const char* param, mvFloat* array,\
          mvCount* noOfParameters) const;
 
-      // TODO: link code to group behaviours
       mvErrorEnum setEntryListNodeParameteri(mvIndex listIndex,\
          mvIndex nodeIndex, mvParamEnum paramFlag, mvIndex index);
       mvErrorEnum setEntryListNodeParametero(mvIndex listIndex,\
@@ -357,11 +355,8 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld
 
       mvErrorEnum addForceIntoWaypoint(mvIndex waypointIndex,
          mvIndex forceIndex);
-      // TODO : Current Func Constant add / remove index order
-      // TODO : Constant add / remove index order
       mvErrorEnum removeForceFromWaypoint(mvIndex waypointIndex,\
          mvIndex forceIndex);
-//      mvEntryListPtr getEntryListPtr(mvIndex entryListIndex) const;
       mvErrorEnum stepBody(mvIndex bodyIndex, mvFloat timeInSecs);
 };
 

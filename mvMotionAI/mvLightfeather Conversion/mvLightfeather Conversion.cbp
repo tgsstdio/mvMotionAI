@@ -99,6 +99,7 @@
 		<Unit filename="..\include\mv\mvPursuit.h" />
 		<Unit filename="..\include\mv\mvSeek.h" />
 		<Unit filename="..\include\mv\mvShape.h" />
+		<Unit filename="..\include\mv\mvStdLib.h" />
 		<Unit filename="..\include\mv\mvUniformAccelForce.h" />
 		<Unit filename="..\include\mv\mvUniformForce.h" />
 		<Unit filename="..\include\mv\mvUniformShiftForce.h" />
@@ -142,6 +143,7 @@
 		<Unit filename="..\src\mvPursuit.cpp" />
 		<Unit filename="..\src\mvSeek.cpp" />
 		<Unit filename="..\src\mvShape.cpp" />
+		<Unit filename="..\src\mvStdLib.cpp" />
 		<Unit filename="..\src\mvUniformAccelForce.cpp" />
 		<Unit filename="..\src\mvUniformForce.cpp" />
 		<Unit filename="..\src\mvUniformShiftForce.cpp" />

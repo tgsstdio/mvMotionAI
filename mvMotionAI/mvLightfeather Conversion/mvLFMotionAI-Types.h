@@ -413,5 +413,10 @@ typedef class mvBEntryListNode const * const mvConstEntryListNodePtr;
 #define MV_GROUP_CAPSULE_HEADER_FILE_H_ <mv/mvGroupCapsule.h>
 
 #define MV_MOTIONAI_UTILITIES_HEADER_FILE_H_ <mv/mvMotionAI-Utilities.h>
+#define MV_READY_MADE_ACTION_LOADER_HEADER_FILE_H_ <mv/mvReadyMadeLoader.h>
+#define MV_STDLIB_HEADER_FILE_H_ <mv/mvStdLib.h>
+
+typedef lf::core::quaternion mvQuaternion;
+typedef lf::core::matrix4 mvMatrix4x4;
 
 #endif
