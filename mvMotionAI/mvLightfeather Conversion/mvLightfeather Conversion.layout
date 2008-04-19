@@ -4,14 +4,20 @@
 	<File name="..\include\mv\mvMotionAI.h" open="0" top="0" tabpos="0">
 		<Cursor position="1948" topLine="21" />
 	</File>
-	<File name="mvLFMotionAI-Types.h" open="1" top="0" tabpos="4">
+	<File name="mvLFMotionAI-Types.h" open="1" top="0" tabpos="1">
 		<Cursor position="11722" topLine="387" />
+	</File>
+	<File name="mvLFQuaternion.cpp" open="1" top="1" tabpos="4">
+		<Cursor position="793" topLine="3" />
+	</File>
+	<File name="mvLFQuaternion.h" open="1" top="0" tabpos="2">
+		<Cursor position="406" topLine="0" />
 	</File>
 	<File name="mvLFVec3.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="13260" topLine="479" />
 	</File>
-	<File name="mvLFVec3.h" open="0" top="0" tabpos="2">
-		<Cursor position="4290" topLine="96" />
+	<File name="mvLFVec3.h" open="1" top="0" tabpos="3">
+		<Cursor position="2565" topLine="63" />
 	</File>
 	<File name="..\src\mvWorld2_Functions.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="399" topLine="0" />
