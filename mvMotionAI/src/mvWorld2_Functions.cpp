@@ -957,6 +957,27 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
    if (actionResult.isDirectionSet())
    {
       //TODO : direction addition/subtraction
+      currentMotion = actionResult.getDirectionMotionType();
+      currentEffect = actionResult.getDirectionEffectType();
+
+      if (currentMotion == MV_DEFAULT_MOTION)
+      {
+         currentMotion = defaultMotion;
+      }
+
+      if (currentEffect == MV_DEFAULT_EFFECT)
+      {
+         currentEffect = defaultEffect;
+      }
+
+		// TODO: localise - how?
+		mvRotationUnit tempAngle(currentBody->getFaceDirection(),\
+			actionResult.getDirection());
+
+      mvRotationUnit totalAngle(summedResult->getRotationUnit());
+		totalAngle.composeProduct(tempAngle);
+      summedResult->setRotationUnit(totalAngle, MV_STEERING_MOTION,
+         MV_GLOBAL_EFFECT);
    }
 
    if (actionResult.isOmegaSet())
@@ -998,14 +1019,49 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
          MV_GLOBAL_EFFECT);
    }
 
-   if (actionResult.isQuaternionSet())
+   if (actionResult.isRotationUnitSet())
    {
-      //TODO : quaternion addition/subtraction
+      currentMotion = actionResult.getRotationUnitMotionType();
+      currentEffect = actionResult.getRotationUnitEffectType();
+
+      if (currentMotion == MV_DEFAULT_MOTION)
+      {
+         currentMotion = defaultMotion;
+      }
+
+      if (currentEffect == MV_DEFAULT_EFFECT)
+      {
+         currentEffect = defaultEffect;
+      }
+
+      mvRotationUnit actionAngle(actionResult.getRotationUnit());
+      actionAngle.
+
+      // for the moment - default is steering
+      mvRotationUnit tempAngle(actionAngle);
+
+      //TODO : localise - how?
+
+      if (currentMotion == MV_DIRECTIONAL_MOTION)
+      {
+			// TODO : not sure how
+			tempAngle.setDelta(currentBody->getRotation(), actionAngle);
+      }
+
+      if (isConfined)
+      {
+			// TODO : not sure how do that -how?
+      }
+
+      mvRotationUnit totalAngle(summedResult->getRotationUnit());
+		totalAngle.composeProduct(tempAngle);
+      summedResult->setRotationUnit(totalAngle, MV_STEERING_MOTION,
+         MV_GLOBAL_EFFECT);
    }
 
    if (actionResult.isRotationSet())
    {
-      totalVec = summedResult->getRotation();
+      actionVec = actionResult.getRotation();
       currentMotion = actionResult.getRotationMotionType();
       currentEffect = actionResult.getRotationEffectType();
 
@@ -1019,17 +1075,12 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
          currentEffect = defaultEffect;
       }
 
-      actionVec = actionResult.getRotation();
-
-		convertRotationalUnits(actionVec,
-			actionResult.isRotationInDegrees(), currentBody);
-
       actionVec *= weight;
+      //TODO : localise - how?
       if (currentEffect == MV_LOCAL_EFFECT)
       {
 			convertLocalRotationalToGlobal(actionVec,currentBody);
       }
-      // TODO : check if before or after delocal or confining
 
       if (isConfined)
       {
@@ -1037,8 +1088,25 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
             actionVec);
       }
 
-      totalVec += actionVec;
-      summedResult->setRotationInRadians(totalVec, MV_STEERING_MOTION,
+      mvRotationUnit actionAngle, tempAngle;
+      if (actionResult.isRotationInDegrees())
+      {
+      	actionAngle.setEulerAnglesInDegrees(actionVec);
+      }
+      else
+      {
+      	actionAngle.setEulerAngles(actionVec);
+      }
+
+		if (currentMotion == MV_DIRECTIONAL_MOTION)
+      {
+			// TODO : not sure how
+			tempAngle.setDelta(currentBody->getRotation(), actionAngle);
+      }
+
+      mvRotationUnit totalAngle(summedResult->getRotationUnit());
+		totalAngle.composeProduct(tempAngle);
+      summedResult->setRotationUnit(totalAngle, MV_STEERING_MOTION,
          MV_GLOBAL_EFFECT);
    }
 }

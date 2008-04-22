@@ -406,6 +406,9 @@ typedef class mvBEntryListNode* mvEntryListNodePtr;
  */
 typedef class mvBEntryListNode const * const mvConstEntryListNodePtr;
 
+#define MV_ROTATION_UNIT_HEADER_FILE_H_ <mvLFQuaternion.h>
+typedef class mvLFQuaternion mvRotationUnit;
+
 #define MV_POINTER_LIST_HEADER_FILE_H_ <mv/mvPointerList.h>
 #define MV_CAPSULE_LIST_HEADER_FILE_H_ <mv/mvCapsuleList.h>
 #define MV_BODY_CAPSULE_HEADER_FILE_H_ <mv/mvBodyCapsule.h>

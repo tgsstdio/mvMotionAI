@@ -33,6 +33,7 @@
 #include MV_VEC_3_HEADER_FILE_H_
 #include MV_ENUMS_HEADER_FILE_H_
 #include MV_SHAPE_HEADER_FILE_H_
+#include MV_ROTATION_UNIT_HEADER_FILE_H_
 
 //TODO: up vector
 // TODO : separate reverse speed
@@ -69,7 +70,7 @@ class MV_GLOBAL_FUNC_PREFIX mvBody
       mvVec3 bodysTorque;
       mvVec3 finalOmega;
       mvVec3 bodysOmega;
-      mvVec3 bodysRotation;
+      mvRotationUnit bodysRotation;
 
       // direction of object local to motion
       mvVec3 faceDirection;
@@ -199,8 +200,8 @@ class MV_GLOBAL_FUNC_PREFIX mvBody
       void setBodysTorque(const mvVec3& vec);
       const mvVec3& getFinalOmega() const;
       void setFinalOmega(const mvVec3& vec);
-      const mvVec3& getRotation() const;
-      void setRotation(const mvVec3& vec);
+      const mvRotationUnit& getRotation() const;
+      void setRotation(const mvRotationUnit& vec);
       const mvVec3& getBodysOmega() const;
       void setBodysOmega(const mvVec3& vec);
 };

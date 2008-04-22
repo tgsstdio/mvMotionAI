@@ -121,6 +121,7 @@
 			<Target title="mvBitfields">
 				<Option output="bin\test\mvBitFieldsUnitTest" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="bin\test" />
+				<Option external_deps="bin\libmvMotionAI-mingw-stdlib.a;bin\libmvMotionAICI.a;" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -131,7 +132,8 @@
 				<Linker>
 					<Add library="cppunit.dll" />
 					<Add library="cppunit" />
-					<Add library="mvMotionAI-mingw" />
+					<Add library="bin\libmvMotionAICI.a" />
+					<Add library="bin\libmvMotionAI-mingw-stdlib.a" />
 					<Add directory="..\..\CPPunit\cppunit-1.12.0\src\cppunit\.libs" />
 					<Add directory="..\mvMotionAI" />
 				</Linker>

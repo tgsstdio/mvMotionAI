@@ -40,7 +40,7 @@
 #include MV_ENUMS_HEADER_FILE_H_
 #include MV_BODY_HEADER_FILE_H_
 #include MV_WORLD_HEADER_FILE_H_
-#define MV_QUATERNION_LENGTH 4
+#include MV_ROTATION_UNIT_HEADER_FILE_H_
 
 //typedef void* mvWorldPtr;
 
@@ -94,10 +94,10 @@ class MV_GLOBAL_FUNC_PREFIX mvBehaviourResult
       const mvVec3&  getVelocity() const;
       mvMotionTypeEnum   getVelocityMotionType() const;
       mvEffectTypeEnum   getVelocityEffectType() const;
-      bool           isQuaternionSet() const;
-      const mvFloat* getQuaternion() const;
-      mvMotionTypeEnum   getQuaternionMotionType() const;
-      mvEffectTypeEnum   getQuaternionEffectType() const;
+      bool           isRotationUnitSet() const;
+      const mvRotationUnit& getRotationUnit() const;
+      mvMotionTypeEnum   getRotationUnitMotionType() const;
+      mvEffectTypeEnum   getRotationUnitEffectType() const;
 
       bool           isRotationSet() const;
       const mvVec3&  getRotation() const;
@@ -139,7 +139,7 @@ class MV_GLOBAL_FUNC_PREFIX mvBehaviourResult
       void setDirection(const mvVec3& value,\
          mvMotionTypeEnum mType = MV_DEFAULT_MOTION,\
          mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
-      void setQuaternion(const mvFloat* quatArray,\
+      void setRotationUnit(const mvRotationUnit& quatArray,\
          mvMotionTypeEnum mType = MV_DEFAULT_MOTION,\
          mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
       void setOmega(const mvVec3& value,\
@@ -212,7 +212,7 @@ class MV_GLOBAL_FUNC_PREFIX mvBehaviourResult
       bool applyTorque;
       // rotation change
       bool applyOmega;
-      bool applyQuaternion;
+      bool applyRotationUnit;
       bool omegaInDegrees;
       bool rotationInDegrees;
       bool applyRotation;
@@ -224,7 +224,7 @@ class MV_GLOBAL_FUNC_PREFIX mvBehaviourResult
       mvVec3 torque;
       mvVec3 omega;
       mvVec3 rotation;
-      mvFloat quaternion[MV_QUATERNION_LENGTH];
+      mvRotationUnit quaternion;
 
       // predicted items.
       mvVec3 brFuturePosition;

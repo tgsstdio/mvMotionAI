@@ -30,7 +30,7 @@
 #include <mv/mvMotionAI-Types.h>
 #endif
 
-#define MV_FORCE_QUATERNION_LENGTH (4)
+#include MV_ROTATION_UNIT_HEADER_FILE_H_
 #include MV_VEC_3_HEADER_FILE_H_
 #include MV_BODY_HEADER_FILE_H_
 #include MV_WORLD_HEADER_FILE_H_
@@ -71,8 +71,8 @@ class MV_GLOBAL_FUNC_PREFIX mvForceResult
       bool           isRotationSet() const;
       const mvVec3&  getRotation() const;
       bool           isRotationInDegrees() const;
-      bool           isQuaternionSet() const;
-      const mvFloat* getQuaternion() const;
+      bool           isRotationUnitSet() const;
+      const mvRotationUnit& getRotationUnit() const;
       bool           isDirectionSet() const;
       const mvVec3&  getDirection() const;
 
@@ -95,8 +95,8 @@ class MV_GLOBAL_FUNC_PREFIX mvForceResult
       mvEffectTypeEnum   getOmegaEffectType() const;
       mvMotionTypeEnum   getShiftMotionType() const;
       mvEffectTypeEnum   getShiftEffectType() const;
-      mvMotionTypeEnum   getQuaternionMotionType() const;
-      mvEffectTypeEnum   getQuaternionEffectType() const;
+      mvMotionTypeEnum   getRotationUnitMotionType() const;
+      mvEffectTypeEnum   getRotationUnitEffectType() const;
       mvMotionTypeEnum   getGravityMotionType() const;
       mvEffectTypeEnum   getGravityEffectType() const;
       mvMotionTypeEnum   getRotationMotionType() const;
@@ -128,7 +128,7 @@ class MV_GLOBAL_FUNC_PREFIX mvForceResult
       void setTorque(const mvVec3& value,
          mvMotionTypeEnum mType = MV_DEFAULT_MOTION,
          mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
-      void setQuaternion(const mvFloat* quatArray,
+      void setRotationUnit(const mvRotationUnit& quatArray,
          mvMotionTypeEnum mType = MV_DEFAULT_MOTION,
          mvEffectTypeEnum eType = MV_DEFAULT_EFFECT);
       void setDirection(const mvVec3& value,
@@ -185,7 +185,7 @@ class MV_GLOBAL_FUNC_PREFIX mvForceResult
       void disableTorque();
       void disableOmega();
       void disableDirection();
-      void disableQuaternion();
+      void disableRotationUnit();
       void disableRotation();
       void disableDragForce();
       void disableDragAccel();
@@ -201,7 +201,7 @@ class MV_GLOBAL_FUNC_PREFIX mvForceResult
       bool applyTorque;
       bool applyOmega;
       bool applyDirection;
-      bool applyQuaternion;
+      bool applyRotationUnit;
       bool applyRotation;
       bool applyDragForce;
       bool applyDragAccel;
@@ -244,7 +244,7 @@ class MV_GLOBAL_FUNC_PREFIX mvForceResult
       mvVec3 omega;
       mvVec3 rotation;
       mvVec3 direction;
-      mvFloat quaternion[MV_FORCE_QUATERNION_LENGTH];
+      mvRotationUnit quaternion;
 
       // predicted items.
       mvVec3 brFuturePosition;

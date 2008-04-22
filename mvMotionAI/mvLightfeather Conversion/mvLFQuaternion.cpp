@@ -4,6 +4,16 @@
   *
   * @todo: document this function
   */
+mvLFQuaternion::mvLFQuaternion()
+{
+
+}
+
+mvLFQuaternion::mvLFQuaternion(const mvLFQuaternion& rhs)
+{
+	m_qtr = rhs.m_qtr;
+}
+
 mvLFQuaternion::mvLFQuaternion(const mvVec3& rhs)
 {
 	lf::core::vector3df temp = rhs.components;
@@ -14,7 +24,7 @@ mvLFQuaternion::mvLFQuaternion(const mvVec3& rhs)
   *
   * @todo: document this function
   */
-mvVec3 mvLFQuaternion::convertToVec3() const
+mvVec3 mvLFQuaternion::getEulerAngles() const
 {
 	mvVec3 temp;
 	temp.components = m_qtr.toEuler();
@@ -29,6 +39,19 @@ mvLFQuaternion mvLFQuaternion::interpolate(mvFloat factor) const
 void mvLFQuaternion::invert()
 {
 	m_qtr.makeInverse();
+}
+
+mvLFQuaternion::mvLFQuaternion(const mvVec3& origin, const mvVec3& finalDir)
+{
+	mvVec3 left = origin;
+	left.normalize();
+	mvVec3 right = finalDir;
+	right.normalize();
+	mvVec3 axis = left.cross(right);
+	axis.normalize();
+	// shortest angle
+	mvFloat angle = left.dot(right);
+	m_qtr.set(axis, angle);
 }
 
 void mvLFQuaternion::composeProduct(const mvLFQuaternion& rhs)
@@ -46,9 +69,4 @@ void mvLFQuaternion::setDelta(const mvLFQuaternion& lhs, const mvLFQuaternion& r
 mvLFQuaternion::mvLFQuaternion(const lf::core::quaternion& rhs)
 {
 	m_qtr = rhs;
-}
-
-mvLFQuaternion::mvLFQuaternion()
-{
-
 }

@@ -845,7 +845,7 @@ mvErrorEnum mvBody::getParameterv(mvParamEnum paramFlag, mvFloat* numArray,\
          *noOfParameters = 3;
          return MV_NO_ERROR;
       case MV_ROTATION:
-         resultVector = getRotation();
+         resultVector = getRotation().getEulerAngles();
          numArray[0] = resultVector.getX();
          numArray[1] = resultVector.getY();
          numArray[2] = resultVector.getZ();
@@ -1389,7 +1389,7 @@ void mvBody::setFinalOmega(const mvVec3& vec)
 /** \brief blah blah
  *
  */
-const mvVec3& mvBody::getRotation() const
+const mvRotationUnit& mvBody::getRotation() const
 {
    return bodysRotation;
 }
@@ -1397,7 +1397,7 @@ const mvVec3& mvBody::getRotation() const
 /** \brief blah blah
  *
  */
-void mvBody::setRotation(const mvVec3& vec)
+void mvBody::setRotation(const mvRotationUnit& vec)
 {
    bodysRotation = vec;
 }

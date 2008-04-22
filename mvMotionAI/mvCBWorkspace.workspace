@@ -6,47 +6,38 @@
 			<Depends filename="mvMotion-CB.cbp" />
 		</Project>
 		<Project filename="tutorial1.cbp">
-			<Depends filename="mvMotion-CB.cbp" />
 			<Depends filename="mvMotionAI C Interface.cbp" />
 		</Project>
 		<Project filename="mvMotion-GLMain.cbp">
-			<Depends filename="mvMotion-CB.cbp" />
 			<Depends filename="mvMotionAI C Interface.cbp" />
 		</Project>
 		<Project filename="CustomAction.cbp">
-			<Depends filename="mvMotion-CB.cbp" />
 			<Depends filename="mvMotionAI C Interface.cbp" />
 		</Project>
 		<Project filename="tutorial4.cbp">
-			<Depends filename="mvMotion-CB.cbp" />
 			<Depends filename="mvMotionAI C Interface.cbp" />
 		</Project>
 		<Project filename="mvLua C Interface.cbp">
-			<Depends filename="mvMotion-CB.cbp" />
 			<Depends filename="mvMotionAI C Interface.cbp" />
 		</Project>
 		<Project filename="LuaGLTest.cbp">
-			<Depends filename="mvMotion-CB.cbp" />
 			<Depends filename="mvMotionAI C Interface.cbp" />
 			<Depends filename="mvLua C Interface.cbp" />
 		</Project>
-		<Project filename="mvMotionAI-TypeSizes.cbp">
-			<Depends filename="mvMotion-CB.cbp" />
-		</Project>
-		<Project filename="test\mvTimer-CPPUNIT.cbp">
-			<Depends filename="mvMotion-CB.cbp" />
-		</Project>
+		<Project filename="mvMotionAI-TypeSizes.cbp" />
+		<Project filename="test\mvTimer-CPPUNIT.cbp" />
 		<Project filename="test\mvVec3CPPUnitTest.cbp" />
 		<Project filename="test\mvBListCPPUnitTest.cbp" />
 		<Project filename="CPPUnit Static Library.cbp" />
-		<Project filename="mvBaseBehaviours.cbp" />
+		<Project filename="mvBaseBehaviours.cbp">
+			<Depends filename="mvMotionAI C Interface.cbp" />
+		</Project>
 		<Project filename="BaseTypes.cbp" />
-		<Project filename="mvLightfeather Conversion\mvLightfeather Conversion.cbp" />
-		<Project filename="mvMotionAI-LuaFunctions.cbp" active="1">
+		<Project filename="mvLightfeather Conversion\mvLightfeather Conversion.cbp" active="1" />
+		<Project filename="mvMotionAI-LuaFunctions.cbp">
 			<Depends filename="mvLightfeather Conversion\mvLightfeather Conversion.cbp" />
 		</Project>
 		<Project filename="sideproject4 - group behaviour functionality\sideproject4 - group behaviour functionality.cbp">
-			<Depends filename="mvMotion-CB.cbp" />
 			<Depends filename="mvMotionAI C Interface.cbp" />
 		</Project>
 	</Workspace>
