@@ -87,7 +87,7 @@ void mvBehaviourResult::resetAll()
    applyOmega = false;
    omegaInDegrees = true;
    rotationInDegrees = true;
-   applyQuaternion = false;
+   applyRotationUnit = false;
    applyRotation = false;
 
    accelMotionType = MV_DEFAULT_MOTION;
@@ -114,15 +114,12 @@ void mvBehaviourResult::resetAll()
   *
   * (documentation goes here)
   */
-void mvBehaviourResult::setQuaternion(const mvFloat* quatArray,\
+void mvBehaviourResult::setRotationUnit(const mvRotationUnit& quatArray,\
    mvMotionTypeEnum mType, mvEffectTypeEnum eType)
 {
-   mvIndex i;
-   for (i = 0; i < MV_QUATERNION_LENGTH; i++)
-   {
-      quaternion[i] = quatArray[i];
-   }
-   applyQuaternion = true;
+	quaternion = quatArray;
+
+   applyRotationUnit = true;
    quaternionEffectType = eType;
    quaternionMotionType = mType;
 }
@@ -751,16 +748,16 @@ mvEffectTypeEnum mvBehaviourResult::getVelocityEffectType() const
   *
   * (documentation goes here)
   */
-bool mvBehaviourResult::isQuaternionSet() const
+bool mvBehaviourResult::isRotationUnitSet() const
 {
-   return applyQuaternion;
+   return applyRotationUnit;
 }
 
 /** @brief (one liner)
   *
   * (documentation goes here)
   */
-const mvFloat* mvBehaviourResult::getQuaternion() const
+const mvRotationUnit& mvBehaviourResult::getRotationUnit() const
 {
    return quaternion;
 }
@@ -769,7 +766,7 @@ const mvFloat* mvBehaviourResult::getQuaternion() const
   *
   * (documentation goes here)
   */
-mvMotionTypeEnum mvBehaviourResult::getQuaternionMotionType() const
+mvMotionTypeEnum mvBehaviourResult::getRotationUnitMotionType() const
 {
    return quaternionMotionType;
 }
@@ -778,7 +775,7 @@ mvMotionTypeEnum mvBehaviourResult::getQuaternionMotionType() const
   *
   * (documentation goes here)
   */
-mvEffectTypeEnum mvBehaviourResult::getQuaternionEffectType() const
+mvEffectTypeEnum mvBehaviourResult::getRotationUnitEffectType() const
 {
    return quaternionEffectType;
 }

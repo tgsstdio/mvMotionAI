@@ -371,16 +371,16 @@ const mvVec3& mvForceResult::getShift() const
 *
 * (documentation goes here)
 */
-bool mvForceResult::isQuaternionSet() const
+bool mvForceResult::isRotationUnitSet() const
 {
-   return applyQuaternion;
+   return applyRotationUnit;
 }
 
 /** @brief (one liner)
 *
 * (documentation goes here)
 */
-const mvFloat* mvForceResult::getQuaternion() const
+const mvRotationUnit& mvForceResult::getRotationUnit() const
 {
    return quaternion;
 }
@@ -553,14 +553,11 @@ void mvForceResult::setTorque(const mvVec3& value,
 *
 * (documentation goes here)
 */
-void mvForceResult::setQuaternion(const mvFloat* quatArray,
+void mvForceResult::setRotationUnit(const mvRotationUnit& quatArray,
    mvMotionTypeEnum mType, mvEffectTypeEnum eType)
 {
-   for ( mvIndex i = 0; i < MV_QUATERNION_LENGTH; i++)
-   {
-      quaternion[i] = quatArray[i];
-   }
-   applyQuaternion = true;
+	quaternion = quatArray;
+   applyRotationUnit = true;
    quaternionEffect = eType;
    quaternionMotion = mType;
 }
@@ -746,7 +743,7 @@ mvEffectTypeEnum mvForceResult::getShiftEffectType() const
 *
 * (documentation goes here)
 */
-mvMotionTypeEnum mvForceResult::getQuaternionMotionType() const
+mvMotionTypeEnum mvForceResult::getRotationUnitMotionType() const
 {
    return quaternionMotion;
 }
@@ -755,7 +752,7 @@ mvMotionTypeEnum mvForceResult::getQuaternionMotionType() const
 *
 * (documentation goes here)
 */
-mvEffectTypeEnum   mvForceResult::getQuaternionEffectType() const
+mvEffectTypeEnum   mvForceResult::getRotationUnitEffectType() const
 {
    return quaternionEffect;
 }
@@ -805,7 +802,7 @@ void mvForceResult::resetAll()
    applyTorque = false;
    applyOmega = false;
    applyDirection = false;
-   applyQuaternion = false;
+   applyRotationUnit = false;
    applyRotation = false;
 
    forceMotion = MV_DEFAULT_MOTION;
@@ -907,9 +904,9 @@ void mvForceResult::disableDirection()
 *
 * (documentation goes here)
 */
-void mvForceResult::disableQuaternion()
+void mvForceResult::disableRotationUnit()
 {
-   applyQuaternion = false;
+   applyRotationUnit = false;
 }
 
 /** @brief (one liner)

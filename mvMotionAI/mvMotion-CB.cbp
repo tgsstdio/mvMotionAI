@@ -194,6 +194,7 @@
 		<Unit filename="include\mv\mvPointerList.hpp" />
 		<Unit filename="include\mv\mvPursuit.h" />
 		<Unit filename="include\mv\mvReadyMadeLoader.h" />
+		<Unit filename="include\mv\mvRotationUnitStub.h" />
 		<Unit filename="include\mv\mvSeek.h" />
 		<Unit filename="include\mv\mvShape.h" />
 		<Unit filename="include\mv\mvStdLib.h" />
@@ -262,6 +263,7 @@
 		<Unit filename="src\mvObstacle_V2.cpp" />
 		<Unit filename="src\mvPathway_V2.cpp" />
 		<Unit filename="src\mvPursuit.cpp" />
+		<Unit filename="src\mvRotationUnitStub.cpp" />
 		<Unit filename="src\mvSeek.cpp" />
 		<Unit filename="src\mvShape.cpp" />
 		<Unit filename="src\mvStdLib.cpp" />
