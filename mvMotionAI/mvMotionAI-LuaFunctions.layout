@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="mingw-winXP" />
-	<File name="examples-src\sideproject3\sideproject3.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="236" topLine="0" />
+	<ActiveTarget name="mingw-winXP-dll" />
+	<File name="examples-src\sideproject3\CTutorial3.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="1159" topLine="87" />
+	</File>
+	<File name="examples-src\sideproject3\tutorial3.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="0" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

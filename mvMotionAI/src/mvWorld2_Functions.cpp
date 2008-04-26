@@ -23,10 +23,20 @@ void convertLocalRotationalToGlobal(mvVec3& localVec,\
 	//return localVec;
 }
 
-void convertRotationalUnits(mvVec3& localVec, bool isRotationInDegrees,\
+#define MV_WORLD_IMPL_DEG_TO_RAD_CONVERSION 0.017453292519943295769236907684886
+#define MV_WORLD_IMPL_RAD_TO_DEG_CONVERSION 57.295779513082320876798154817014
+
+void convertRotationIntoRadians(mvVec3& localVec, bool isRotationInDegrees,\
 	mvConstBodyPtr currentBody)
 {
-	//return localVec;
+	mvFloat conversionValue = 1;
+
+	if (isRotationInDegrees)
+	{
+		conversionValue = (mvFloat) MV_WORLD_IMPL_DEG_TO_RAD_CONVERSION;
+	}
+
+	localVec *= conversionValue;
 }
 
 void convertLocalTorqueToGlobal(mvVec3& localVec,\
@@ -227,6 +237,11 @@ void mvWorld_V2_PrepareBodyCapsule(mvBodyCapsulePtr capsulePtr, void* extraPtr)
    capsulePtr->additionalTorque.toZeroVec();
    capsulePtr->futureOmega.toZeroVec();
    capsulePtr->additionalOmega.toZeroVec();
+
+   mvVec3 zeroVector;
+   zeroVector.toZeroVec();
+   capsulePtr->deltaRotation.setEulerAngles(zeroVector);
+   capsulePtr->fDeltaRotation.setEulerAngles(zeroVector);
 }
 
 void mvWorld_V2_PrepareForceCapsule(mvForceCapsulePtr capsulePtr,\
@@ -827,6 +842,7 @@ void mvWorld_V2_SumBehaviourResults(mvBehaviourResultPtr summedResult,
    }
 }
 
+// TODO : refactor into class
 template <class mvFinalResultObject, class mvCurrentResultObject>
 void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
    const mvCurrentResultObject& actionResult, mvFloat weight, bool isConfined)
@@ -998,7 +1014,7 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
       }
 
       actionVec = actionResult.getOmega();
-		convertRotationalUnits(actionVec, actionResult.isOmegaInDegrees(),
+		convertRotationIntoRadians(actionVec, actionResult.isOmegaInDegrees(),
 			currentBody);
 
       actionVec *= weight;
@@ -1035,7 +1051,6 @@ void mvWorld_V2_SumResultObjects(mvFinalResultObject* summedResult,
       }
 
       mvRotationUnit actionAngle(actionResult.getRotationUnit());
-      actionAngle.
 
       // for the moment - default is steering
       mvRotationUnit tempAngle(actionAngle);
@@ -1315,6 +1330,7 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
   // mvIndex i = 0;
 
    mvVec3 accelVec, deltaVelocity, bodyVelocity;
+	mvRotationUnit totalRotationDelta;
    mvFloat hTimeStep = helperModule->timeInSecs;
    mvFloat bodyMass = currentBody->getMass();
    mvVec3 zeroVector;
@@ -1410,11 +1426,37 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
       currentBody->setBodysForce(accelVec);
 
 
-      /*
+		// TODO : omega, rotation, quaternion sum - if bodys rotation test
+
+		// add omega to delta rotation
+		mvVec3 bodyOmega = capsulePtr->futureOmega;
+
+		/*
        *  Set Torque
-       * TODO : omega, rotation, quaternion sum
        */
       mvVec3 bodyTorque = capsulePtr->futureTorque;
+
+		// todo : inverse mass matrix -> alpha (rot accel) -> omega (rot vel)
+
+      // turn into delta rotations (euler angles)
+		bodyOmega *= hTimeStep;
+
+		// add deltas together
+		totalRotationDelta.setEulerAngles(bodyOmega);
+		totalRotationDelta.composeProduct(capsulePtr->deltaRotation);
+
+		// TODO : apply roll & yaw limits by rotation then subtraction then inverse again
+
+		bodyOmega = totalRotationDelta.getEulerAngles();
+		bodyOmega *= inverse_h;
+		//TODO : convert rotation unit format for body
+		currentBody->setBodysOmega(bodyOmega);
+
+		// is torque just unit axis vector plus angle
+
+
+		// todo : omega (rot vel) -> alpha (rot accel) ->  inverse mass matrix
+
       currentBody->setBodysTorque(bodyTorque);
    }
    else
@@ -1423,6 +1465,8 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
       currentBody->setVelocity(zeroVector);
       currentBody->setBodysTorque(zeroVector);
       currentBody->setBodysForce(zeroVector);
+      currentBody->setBodysOmega(zeroVector);
+      totalRotationDelta.setEulerAngles(zeroVector);
    }
 
     /* 4. create a final velocity and final force which are
@@ -1451,6 +1495,7 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
       bodyVelocity.getY() << " " << bodyVelocity.getZ() << std::endl;
 #endif
 
+	// todo : filter force shifts
    bodyVelocity += capsulePtr->additionalVelocity;
 #ifdef MV_WORLD_V2_FUNCTIONS_DEBUG
    std::cout << "Body Vecel 1: " << bodyVelocity.getX() << " " <<
@@ -1501,10 +1546,43 @@ void mvWorld_V2_CalculateIntegrationOfBody(mvBodyCapsulePtr capsulePtr,
     * set torque
     * TODO : omega, rotation, quaternion sum
     */
+
+	// add omega to delta rotation
+	mvVec3 finalOmega = capsulePtr->additionalOmega;
+
+	/*
+	 *  Set Torque
+	 */
    mvVec3 totalTorque = currentBody->getBodysTorque();
    totalTorque += capsulePtr->additionalTorque;
-   currentBody->setFinalTorque(totalTorque);
 
+	// todo : inverse mass matrix -> alpha (rot accel) -> omega (rot vel)
+
+	// turn into delta rotations (euler angles)
+	finalOmega *= hTimeStep;
+
+	// add deltas together
+	mvRotationUnit finalRotation;
+	finalRotation.setEulerAngles(finalOmega);
+
+	totalRotationDelta.composeProduct(finalRotation);
+	totalRotationDelta.composeProduct(capsulePtr->fDeltaRotation);
+
+	// TODO : apply roll & yaw limits by rotation then subtraction then inverse again
+
+	finalOmega = totalRotationDelta.getEulerAngles();
+	finalOmega *= inverse_h;
+
+	//TODO : convert rotation unit format for body
+	currentBody->setFinalOmega(finalOmega);
+
+	// todo : omega (rot vel) -> alpha (rot accel) ->  mass matrix -> final torque
+
+	finalRotation = currentBody->getRotation();
+	finalRotation.composeProduct(totalRotationDelta);
+
+	currentBody->setRotation(finalRotation);
+   currentBody->setFinalTorque(totalTorque);
    currentBody->setFinalVelocity(euler_vel[1]);
    currentBody->setPosition(euler_pos[1]);
 }

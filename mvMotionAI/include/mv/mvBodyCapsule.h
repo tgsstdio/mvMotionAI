@@ -31,7 +31,6 @@
  *
  */
 #endif
-//#include MV_BEHAVIOUR_LIST_NODE_HEADER_FILE_H_
 
 #include MV_BODY_HEADER_FILE_H_
 
@@ -48,6 +47,8 @@ class MV_GLOBAL_FUNC_PREFIX mvBodyCapsule
    public:
       bool performIntegration;
       mvIndex bodyIndex;
+      mvRotationUnit deltaRotation;
+      mvRotationUnit fDeltaRotation;
       mvVec3 futureVelocity;
       mvVec3 additionalVelocity;
       mvVec3 futureForce;

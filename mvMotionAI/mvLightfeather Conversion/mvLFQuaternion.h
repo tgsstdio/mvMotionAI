@@ -27,6 +27,7 @@ class mvLFQuaternion
 		void inBetweenAngles(const mvLFQuaternion& start, const mvLFQuaternion& end, mvFloat factor);
 		void invert();
 		void composeProduct(const mvLFQuaternion& rhs);
+		void operator*=(const mvFloat& rhs);
 		void setEulerAnglesInDegrees(const mvVec3& angles);
 		void setEulerAngles(const mvVec3& angles);
 		void setDelta(const mvLFQuaternion& lhs, const mvLFQuaternion& rhs);
