@@ -364,7 +364,7 @@
 
 1190961076 onAI-Types.h>
 
-1206107814 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
+1208583906 d:\mvmotionai\mvmotionai\include\mv\mvmotionai-types.h
 
 1191290939 source:/home/dyoung/mvMotionAI/mvmotionai/mvMotionAI/examples-src/mvLua.cpp
 	"mvLua.h"
@@ -516,7 +516,7 @@
 	<lf/Lightfeather.h>
 	<iostream>
 
-1207050742 k:\lf-bedge\include\lf\lightfeather.h
+1209129056 k:\lf-bedge\include\lf\lightfeather.h
 	"LfConfig.h"
 	"LfCore.h"
 	"LfInput.h"
@@ -526,14 +526,17 @@
 	"LfRender.h"
 	"LfScene.h"
 	"LfResources.h"
+	"LfUtil.h"
 
-1207050742 k:\lf-bedge\include\lf\lfconfig.h
+1209129056 k:\lf-bedge\include\lf\lfconfig.h
 	<wchar.h>
 	"localconfig.h"
 
-1202301580 k:\lf-bedge\include\lf\lfcore.h
+1209129056 k:\lf-bedge\include\lf\lfcore.h
 	<lf/core/aabbox3d.h>
 	<lf/core/array.h>
+	<lf/core/array_refcounted.h>
+	<lf/core/array_resource.h>
 	<lf/core/CColorConverter.h>
 	<lf/core/CColorF.h>
 	<lf/core/CColorI.h>
@@ -550,6 +553,8 @@
 	<lf/core/heapsort.h>
 	<lf/core/IColor.h>
 	<lf/core/list.h>
+	<lf/core/list_refcounted.h>
+	<lf/core/list_resource.h>
 	<lf/core/lfmath.h>
 	<lf/core/lftypes.h>
 	<lf/core/line2d.h>
@@ -597,7 +602,7 @@
 	<iostream>
 	<lf/core/array.h>
 
-1206111110 k:\lf-bedge\include\lf\core\vector3d.h
+1209129056 k:\lf-bedge\include\lf\core\vector3d.h
 	<math.h>
 	<lf/core/lfmath.h>
 	<lf/core/lftypes.h>
@@ -665,7 +670,7 @@
 	<lf/core/CRefCounted.h>
 	<lf/core/list.h>
 
-1202301582 k:\lf-bedge\include\lf\core\stringc.h
+1209129056 k:\lf-bedge\include\lf\core\stringc.h
 	<lf/core/lftypes.h>
 	<lf/core/array.h>
 	<stdio.h>
@@ -717,7 +722,7 @@
 	<lf/core/lftypes.h>
 	<iostream>
 
-1207050742 k:\lf-bedge\include\lf\core\quaternion.h
+1209129056 k:\lf-bedge\include\lf\core\quaternion.h
 	<lf/core/lftypes.h>
 	<lf/core/matrix4.h>
 	<lf/core/lfmath.h>
@@ -735,7 +740,7 @@
 	"stringw.h"
 	"stringc.h"
 
-1202301582 k:\lf-bedge\include\lf\core\stringw.h
+1209129056 k:\lf-bedge\include\lf\core\stringw.h
 	<lf/core/lftypes.h>
 	<stdio.h>
 	<stdarg.h>
@@ -762,7 +767,7 @@
 	<lf/LfConfig.h>
 	<assert.h>
 
-1202301580 k:\lf-bedge\include\lf\core\cstringtokenizer.h
+1209129056 k:\lf-bedge\include\lf\core\cstringtokenizer.h
 	<lf/core/stringc.h>
 	<lf/core/CRefCounted.h>
 	<lf/core/array.h>
@@ -865,7 +870,7 @@
 	<lf/input/ICursorControl.h>
 	<lf/render/CRenderWindowMac.h>
 
-1202301584 k:\lf-bedge\include\lf\render\crenderwindowmac.h
+1209129056 k:\lf-bedge\include\lf\render\crenderwindowmac.h
 	<lf/LfConfig.h>
 	<lf/render/CRenderWindowStub.h>
 	<lf/render/IRenderWindow.h>
@@ -964,7 +969,7 @@
 	<lf/core/vector2d.h>
 	<lf/core/array.h>
 
-1207050742 k:\lf-bedge\include\lf\render\gui\cguimanager.h
+1209129056 k:\lf-bedge\include\lf\render\gui\cguimanager.h
 	<lf/core/rect.h>
 	<lf/core/array.h>
 	<lf/core/CColorI.h>
@@ -1035,7 +1040,7 @@
 	<lf/core/CRefCounted.h>
 	<lf/core/stringc.h>
 
-1207050742 k:\lf-bedge\include\lf\render\gui\cguitheme.h
+1209129056 k:\lf-bedge\include\lf\render\gui\cguitheme.h
 	<lf/core/CRefCounted.h>
 	<lf/resources/CTexture.h>
 	<lf/core/CTreeElement.h>
@@ -1108,7 +1113,7 @@
 	<lf/core/rect.h>
 	<lf/core/vector2d.h>
 
-1202301586 k:\lf-bedge\include\lf\render\gui\text\ctextselection.h
+1209129056 k:\lf-bedge\include\lf\render\gui\text\ctextselection.h
 	<lf/core/list.h>
 	<lf/core/CRefCounted.h>
 	<lf/render/gui/text/ITextSelectionListener.h>
@@ -1161,7 +1166,7 @@
 	<lf/render/gui/IGUIActionListener.h>
 	<lf/render/gui/IGUIWidgetListener.h>
 
-1202301584 k:\lf-bedge\include\lf\render\gui\cguibutton.h
+1209129056 k:\lf-bedge\include\lf\render\gui\cguibutton.h
 	<lf/render/gui/CGUIWidget.h>
 	<lf/render/gui/IGUIActionListener.h>
 	<lf/core/list.h>
@@ -1351,7 +1356,7 @@
 	<lf/core/CColorI.h>
 	<lf/core/matrix4.h>
 
-1206111112 k:\lf-bedge\include\lf\scene\cscenerenderlist.h
+1209129058 k:\lf-bedge\include\lf\scene\cscenerenderlist.h
 	<lf/LfConfig.h>
 	<lf/core/CRefCounted.h>
 	<lf/render/IRenderPass.h>
@@ -1451,10 +1456,11 @@
 	<lf/log/ILogChannel.h>
 	<lf/core/list.h>
 
-1202301582 k:\lf-bedge\include\lf\log\chtmllogchannel.h
+1209129056 k:\lf-bedge\include\lf\log\chtmllogchannel.h
 	<lf/LfConfig.h>
 	<lf/core/CColorI.h>
 	<lf/core/stringc.h>
+	<lf/core/CStringTokenizer.h>
 	<lf/log/CLogChannel.h>
 
 1202301582 k:\lf-bedge\include\lf\log\cfilelogchannel.h
@@ -1507,7 +1513,7 @@
 	<lf/net/ENetProtocol.h>
 	<lf/net/list.h>
 
-1202301582 k:\lf-bedge\include\lf\net\lfnetconfig.h
+1209129056 k:\lf-bedge\include\lf\net\lfnetconfig.h
 	<lf/LfConfig.h>
 
 1202301582 k:\lf-bedge\include\lf\net\clfnet.h
@@ -1515,16 +1521,17 @@
 	<lf/core/CSingleton.h>
 	<lf/core/lftypes.h>
 
-1204984518 k:\lf-bedge\include\lf\net\cdatastream.h
+1209129056 k:\lf-bedge\include\lf\net\cdatastream.h
 	<lf/LfConfig.h>
 	<lf/core/lftypes.h>
 	<lf/core/CRefCounted.h>
 	<lf/core/stringc.h>
+	<lf/os/CFile.h>
 	<cassert>
 	<iostream>
 	<string>
 
-1202301582 k:\lf-bedge\include\lf\net\cnetaddress.h
+1209129056 k:\lf-bedge\include\lf\net\cnetaddress.h
 	<lf/LfConfig.h>
 	<lf/core/lftypes.h>
 	<string>
@@ -1532,7 +1539,7 @@
 	<arpa/inet.h>
 	<netdb.h>
 
-1202301582 k:\lf-bedge\include\lf\net\csocket.h
+1209129056 k:\lf-bedge\include\lf\net\csocket.h
 	<lf/LfConfig.h>
 	<lf/core/lftypes.h>
 	<lf/net/CNetAddress.h>
@@ -1568,16 +1575,16 @@
 	<lf/LfConfig.h>
 	<stdlib.h>
 
-1202301582 k:\lf-bedge\include\lf\net\enetprotocol.h
+1209129056 k:\lf-bedge\include\lf\net\enetprotocol.h
 	<lf/LfConfig.h>
 	<lf/core/lftypes.h>
 	<lf/net/list.h>
 	<lf/net/CPacket.h>
 
-1202301582 k:\lf-bedge\include\lf\net\enetchannel.h
+1209129056 k:\lf-bedge\include\lf\net\enetchannel.h
 	<lf/LfConfig.h>
 
-1202301582 k:\lf-bedge\include\lf\net\chost.h
+1209129056 k:\lf-bedge\include\lf\net\chost.h
 	<lf/LfConfig.h>
 	<lf/net/ENetBuffer.h>
 	<lf/core/lftypes.h>
@@ -2030,7 +2037,7 @@
 	<lf/core/SCone.h>
 	<lf/core/aabbox3d.h>
 
-1206111112 k:\lf-bedge\include\lf\scene\cscenenode.h
+1209129058 k:\lf-bedge\include\lf\scene\cscenenode.h
 	<lf/LfConfig.h>
 	<lf/core/CRefCounted.h>
 	<lf/core/CProperties.h>
@@ -2485,14 +2492,14 @@
 	<lf/render/gui/CGUIButton.h>
 	<lf/render/gui/CGUIListBox.h>
 
-1207050742 k:\lf-bedge\include\lf\render\gui\cguilistbox.h
+1209129056 k:\lf-bedge\include\lf\render\gui\cguilistbox.h
 	<lf/render/gui/CGUIWidget.h>
 	<lf/render/gui/CGUILabel.h>
 	<lf/render/gui/CGUIImage.h>
 	<lf/render/gui/IGUISelectionListener.h>
 	<lf/render/gui/CGUISliderVertical.h>
 
-1202301584 k:\lf-bedge\include\lf\render\gui\cguislidervertical.h
+1209129056 k:\lf-bedge\include\lf\render\gui\cguislidervertical.h
 	<lf/render/gui/CGUIWidget.h>
 	<lf/render/gui/CGUIButton.h>
 	<lf/render/gui/IGUIScrollingListener.h>
@@ -2527,7 +2534,7 @@
 	<lf/render/gui/CGUISliderHorizontal.h>
 	<lf/render/gui/IGUIScrollingListener.h>
 
-1202301584 k:\lf-bedge\include\lf\render\gui\cguisliderhorizontal.h
+1209129056 k:\lf-bedge\include\lf\render\gui\cguisliderhorizontal.h
 	<lf/render/gui/CGUIWidget.h>
 	<lf/render/gui/CGUIButton.h>
 	<lf/render/gui/IGUIScrollingListener.h>
@@ -2568,7 +2575,7 @@
 	<lf/render/gui/CGUILabel.h>
 	<lf/render/gui/CGUIButton.h>
 
-1202301584 k:\lf-bedge\include\lf\render\gui\cguieditbox.h
+1209129056 k:\lf-bedge\include\lf\render\gui\cguieditbox.h
 	<lf/render/gui/CGUIWidget.h>
 	<lf/render/gui/IGUITextListener.h>
 	<lf/core/list.h>
@@ -2607,7 +2614,8 @@
 1202301586 k:\lf-bedge\include\lf\render\gui\text\ctextselectionevent.h
 	<lf/LfConfig.h>
 
-1206111110 k:\lf-bedge\include\lf\lfscene.h
+1209129056 k:\lf-bedge\include\lf\lfscene.h
+	"scene/CAtmosphereSceneNode.h"
 	"scene/CCamera.h"
 	"scene/C2DCamera.h"
 	"scene/C3DCamera.h"
@@ -2622,6 +2630,8 @@
 	"scene/CPortal.h"
 	"scene/CPortalSystem.h"
 	"scene/CPVSCalculator.h"
+	"scene/CQuadTreeNode.h"
+	"scene/CQuadTreeSceneNode.h"
 	"scene/CSceneManager.h"
 	"scene/CSceneNode.h"
 	"scene/CSceneNodeController.h"
@@ -2712,7 +2722,7 @@
 	<lf/scene/CSceneNode.h>
 	<lf/resources/nature/CLargeTerrainModel.h>
 
-1206111112 k:\lf-bedge\include\lf\resources\nature\clargeterrainmodel.h
+1209129058 k:\lf-bedge\include\lf\resources\nature\clargeterrainmodel.h
 	<lf/LfConfig.h>
 	<lf/resources/CModel.h>
 	<lf/resources/nature/CGeoMipMapTerrainModel.h>
@@ -2770,12 +2780,12 @@
 1202301700 k:\lf-bedge\include\lf\resources\basicmodels\clinemodel.h
 	<lf/resources/CModel.h>
 
-1204344194 k:\lf-bedge\include\lf\scene\cportal.h
+1209129058 k:\lf-bedge\include\lf\scene\cportal.h
 	<lf/LfConfig.h>
 	<lf/core/array.h>
 	<lf/scene/CSceneNode.h>
 
-1204344194 k:\lf-bedge\include\lf\scene\cportalsystem.h
+1209129058 k:\lf-bedge\include\lf\scene\cportalsystem.h
 	<lf/LfConfig.h>
 	<lf/core/array.h>
 	<lf/scene/CGroupSceneNode.h>
@@ -2892,7 +2902,7 @@
 	<lf/resources/particles/CParticleSystemAffector.h>
 	<lf/resources/particles/IParticleSystemListener.h>
 
-1202301750 k:\lf-bedge\include\lf\resources\particles\sparticle.h
+1209129058 k:\lf-bedge\include\lf\resources\particles\sparticle.h
 	<lf/core/lftypes.h>
 	<lf/core/CColorI.h>
 	<lf/core/vector3d.h>
@@ -2921,7 +2931,7 @@
 	<lf/core/lftypes.h>
 	<lf/core/CEvent.h>
 
-1203083074 k:\lf-bedge\include\lf\resources\particles\cmultiparticlesystem.h
+1209129058 k:\lf-bedge\include\lf\resources\particles\cmultiparticlesystem.h
 	<lf/resources/particles/CParticleEmitter.h>
 
 1203083676 k:\lf-bedge\include\lf\resources\particles\cparticleemitter.h
@@ -3039,19 +3049,19 @@
 1202301752 k:\lf-bedge\include\lf\scene\cscenenodeselectorall.h
 	<lf/scene/ISceneNodeSelector.h>
 
-1206111112 k:\lf-bedge\include\lf\scene\ishadowmapsetup.h
+1209129058 k:\lf-bedge\include\lf\scene\ishadowmapsetup.h
 	<lf/LfConfig.h>
 	<lf/core/CRefCounted.h>
 	<lf/core/CRTTI.h>
 	<lf/core/CColorF.h>
 	<lf/scene/CLight.h>
 
-1206111112 k:\lf-bedge\include\lf\scene\cbasicshadowmapsetup.h
+1209129058 k:\lf-bedge\include\lf\scene\cbasicshadowmapsetup.h
 	<lf/core/array.h>
 	<lf/scene/IShadowMapSetup.h>
 	<lf/scene/CLight.h>
 
-1204984520 k:\lf-bedge\include\lf\scene\cfocusedshadowmapsetup.h
+1209129058 k:\lf-bedge\include\lf\scene\cfocusedshadowmapsetup.h
 	<lf/scene/CBasicShadowMapSetup.h>
 	<lf/core/IUpdateable.h>
 
@@ -3255,25 +3265,25 @@
 	"basicmodels/CTextModel.h"
 	"basicmodels/CTorusModel.h"
 
-1206111112 k:\lf-bedge\include\lf\resources\basicmodels\cbillboardmodel.h
+1209129056 k:\lf-bedge\include\lf\resources\basicmodels\cbillboardmodel.h
 	<lf/LfConfig.h>
 	<lf/resources/CModel.h>
 	<lf/core/vector2d.h>
 	<lf/render/IRenderPass.h>
 
-1202301700 k:\lf-bedge\include\lf\resources\basicmodels\ccappedcylindermodel.h
+1209129058 k:\lf-bedge\include\lf\resources\basicmodels\ccappedcylindermodel.h
 	<lf/LfConfig.h>
 	<lf/resources/CModel.h>
 
-1202301700 k:\lf-bedge\include\lf\resources\basicmodels\ccubemodel.h
+1209129058 k:\lf-bedge\include\lf\resources\basicmodels\ccubemodel.h
 	<lf/LfConfig.h>
 	<lf/resources/CModel.h>
 
-1202301700 k:\lf-bedge\include\lf\resources\basicmodels\ccylindermodel.h
+1209129058 k:\lf-bedge\include\lf\resources\basicmodels\ccylindermodel.h
 	<lf/LfConfig.h>
 	<lf/resources/CModel.h>
 
-1202301700 k:\lf-bedge\include\lf\resources\basicmodels\cconemodel.h
+1209129058 k:\lf-bedge\include\lf\resources\basicmodels\cconemodel.h
 	<lf/LfConfig.h>
 	<lf/resources/CModel.h>
 
@@ -3285,7 +3295,7 @@
 	<lf/LfConfig.h>
 	<lf/resources/CModel.h>
 
-1202301700 k:\lf-bedge\include\lf\resources\basicmodels\cplanemodel.h
+1209129058 k:\lf-bedge\include\lf\resources\basicmodels\cplanemodel.h
 	<lf/LfConfig.h>
 	<lf/resources/CModel.h>
 	<lf/core/vector2d.h>
@@ -3297,7 +3307,7 @@
 1202301700 k:\lf-bedge\include\lf\resources\basicmodels\cpointmodel.h
 	<lf/resources/CModel.h>
 
-1202301700 k:\lf-bedge\include\lf\resources\basicmodels\cspheremodel.h
+1209129058 k:\lf-bedge\include\lf\resources\basicmodels\cspheremodel.h
 	<lf/LfConfig.h>
 	<lf/resources/CModel.h>
 
@@ -3305,7 +3315,7 @@
 	<lf/resources/basicmodels/CBillboardModel.h>
 	<lf/resources/CFont.h>
 
-1202301700 k:\lf-bedge\include\lf\resources\basicmodels\ctorusmodel.h
+1209129058 k:\lf-bedge\include\lf\resources\basicmodels\ctorusmodel.h
 	<lf/LfConfig.h>
 	<lf/resources/CModel.h>
 
@@ -3361,7 +3371,7 @@
 	<lf/resources/CResourceLoader.h>
 	<lf/resources/CMaterial.h>
 
-1207050742 k:\lf-bedge\include\lf\resources\loaders\clfmparserguitheme.h
+1209129058 k:\lf-bedge\include\lf\resources\loaders\clfmparserguitheme.h
 	<lf/render/gui/CGUITheme.h>
 	<lf/resources/loaders/CLFMSectionParser.h>
 
@@ -3845,7 +3855,7 @@
 1206111112 k:\lf-bedge\include\lf\render\renderpasses\oppl\crpopploglslvertexcolorsplatting4.h
 	<lf/render/CRenderPassOpenGLSL.h>
 
-1202301584 k:\lf-bedge\include\lf\render\gui\cguimessagebox.h
+1209129056 k:\lf-bedge\include\lf\render\gui\cguimessagebox.h
 	<lf/LfConfig.h>
 	<lf/core/lftypes.h>
 	<lf/render/gui/CGUIWindow.h>
@@ -3867,7 +3877,7 @@
 1203731758 k:\lf-bedge\include\lf\core\array_resource.h
 	<lf/core/array.h>
 
-1207050742 k:\lf-bedge\include\lf\render\gui\cguifiledialog.h
+1209129056 k:\lf-bedge\include\lf\render\gui\cguifiledialog.h
 	<lf/LfConfig.h>
 	<lf/core/lftypes.h>
 	<lf/render/gui/CGUIWindow.h>
@@ -3880,9 +3890,60 @@
 	<lf/render/gui/IGUITextListener.h>
 	<lf/render/gui/IGUIActionListener.h>
 	<lf/os/CFileName.h>
+	<lf/core/CStringTokenizer.h>
 
 1207050742 k:\lf-bedge\include\lf\resources\cinstancedmodel.h
 	<lf/LfConfig.h>
 	<lf/core/CSpacial.h>
 	<lf/resources/CModel.h>
+
+1203731758 k:\lf-bedge\include\lf\core\array_refcounted.h
+	<lf/core/array.h>
+
+1202301582 k:\lf-bedge\include\lf\core\list_refcounted.h
+	<lf/core/list.h>
+
+1202301582 k:\lf-bedge\include\lf\core\list_resource.h
+	<lf/core/list.h>
+
+1209129058 k:\lf-bedge\include\lf\scene\catmospherescenenode.h
+	<lf/core/lftypes.h>
+	<lf/core/vector3d.h>
+	<lf/core/CColorI.h>
+	<lf/scene/CSkySceneNode.h>
+
+1209129058 k:\lf-bedge\include\lf\scene\cquadtreenode.h
+	<lf/core/lftypes.h>
+	<lf/core/CSpacial.h>
+	<lf/core/CRefCounted.h>
+	<lf/core/sphere3d.h>
+
+1209129058 k:\lf-bedge\include\lf\scene\cquadtreescenenode.h
+	<lf/LfConfig.h>
+	<lf/scene/CSceneNode.h>
+
+1209129056 k:\lf-bedge\include\lf\lfutil.h
+	<lf/util/CLFProfiler.h>
+
+1209129058 k:\lf-bedge\include\lf\util\clfprofiler.h
+	<lf/LfConfig.h>
+	<lf/core/lftypes.h>
+	<lf/core/stringc.h>
+	<lf/core/array.h>
+	<lf/core/list.h>
+	<lf/core/hashtable.h>
+	<lf/core/CSingleton.h>
+	<lf/log/ILogChannel.h>
+
+1204984516 source:d:\mvmotionai\mvmotionai\examples-src\sideproject3\tutorial3.cpp
+	<lf/Lightfeather.h>
+	"CTutorial3.h"
+
+1204984516 d:\mvmotionai\mvmotionai\examples-src\sideproject3\ctutorial3.h
+	<lf/Lightfeather.h>
+
+1209134346 source:d:\mvmotionai\mvmotionai\examples-src\sideproject3\ctutorial3.cpp
+	"CTutorial3.h"
+	<mv/mvMotionAI.h>
+	<iostream>
 

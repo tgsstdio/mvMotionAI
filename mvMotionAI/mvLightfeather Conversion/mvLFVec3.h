@@ -27,8 +27,8 @@
  * - converted vector class into lightheader vector3df holder class
  */
 
-#ifndef MV_MVVEC3_H_
-#define MV_MVVEC3_H_
+#ifndef MV_LF_VEC3_H_
+#define MV_LF_VEC3_H_
 
 #ifdef MV_MOTIONAI_TYPES_HEADER_FILE_H_
 #include MV_MOTIONAI_TYPES_HEADER_FILE_H_

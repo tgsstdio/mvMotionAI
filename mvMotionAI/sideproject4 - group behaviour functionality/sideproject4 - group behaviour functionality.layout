@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-winXP-debug" />
-	<File name="..\examples-src\sideproject4\mvFlyingV.cpp" open="1" top="0" tabpos="1">
+	<File name="..\examples-src\sideproject4\mvFlyingV.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="2254" topLine="73" />
 	</File>
 	<File name="..\examples-src\sideproject4\mvFlyingV.h" open="0" top="0" tabpos="2">
 		<Cursor position="769" topLine="0" />
 	</File>
-	<File name="..\examples-src\sideproject4\mvMovingAcross.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="423" topLine="6" />
+	<File name="..\examples-src\sideproject4\mvMovingAcross.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="327" topLine="7" />
 	</File>
 	<File name="..\examples-src\sideproject4\mvMovingAcross.h" open="0" top="0" tabpos="3">
 		<Cursor position="286" topLine="0" />
 	</File>
-	<File name="..\examples-src\sideproject4\sideproject4.cpp" open="1" top="0" tabpos="2">
+	<File name="..\examples-src\sideproject4\sideproject4.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="5461" topLine="128" />
 	</File>
 	<File name="..\experimental\include\mvReadyMadeLoader.h" open="0" top="0" tabpos="2">

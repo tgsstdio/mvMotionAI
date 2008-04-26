@@ -946,6 +946,12 @@ void mvWorld::setFinalBodyCapsuleVariables(mvBodyCapsulePtr bodyPtr,\
       {
          bodyPtr->futureOmega += behavResModule->getOmega();
       }
+
+      if (behavResModule->isRotationUnitSet())
+      {
+      	// add
+			bodyPtr->deltaRotation = behavResModule->getRotationUnit();
+      }
    }
 
 
@@ -984,13 +990,11 @@ void mvWorld::setFinalBodyCapsuleVariables(mvBodyCapsulePtr bodyPtr,\
       bodyPtr->additionalOmega = forceResModule->getOmega();
    }
 
-   // translate
-   // TODO : direction to omega
-
-   // TODO : rotation to omega
-
-   // TODO : quaternion to omega
-
+	if (forceResModule->isRotationUnitSet())
+	{
+		// TODO : add
+		bodyPtr->fDeltaRotation = forceResModule->getRotationUnit();
+	}
 }
 
 void mvWorld::finaliseIntegrationStep(mvFloat timeInSecs)
@@ -2537,15 +2541,6 @@ mvErrorEnum mvWorld::removeAllMembersFromGroup(mvIndex groupIndex)
    tempGroup->clearAll();
    return MV_NO_ERROR;
 }
-
-// TODO : register
-bool addGroupBehaviourMemberToList(mvIndex bodyIndex,
-   mvIndex behaviourIndex, mvIndex groupIndex, mvBaseActionPtr memberNodePtr)
-{
-   return false;
-}
-
-// TODO : register
 
 void mvWorld::registerAllGroupBehavioursToBodies()
 {

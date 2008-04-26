@@ -51,7 +51,7 @@ mvLFQuaternion::mvLFQuaternion(const mvVec3& origin, const mvVec3& finalDir)
 	axis.normalize();
 	// shortest angle
 	mvFloat angle = left.dot(right);
-	m_qtr.set(axis, angle);
+	m_qtr.set(axis.components, angle);
 }
 
 void mvLFQuaternion::composeProduct(const mvLFQuaternion& rhs)
@@ -69,4 +69,19 @@ void mvLFQuaternion::setDelta(const mvLFQuaternion& lhs, const mvLFQuaternion& r
 mvLFQuaternion::mvLFQuaternion(const lf::core::quaternion& rhs)
 {
 	m_qtr = rhs;
+}
+
+void mvLFQuaternion::operator*=(const mvFloat& rhs)
+{
+	m_qtr *= rhs;
+}
+
+void mvLFQuaternion::setEulerAnglesInDegrees(const mvVec3& angles)
+{
+	m_qtr.setDegrees(angles.components);
+}
+
+void mvLFQuaternion::setEulerAngles(const mvVec3& angles)
+{
+	m_qtr.set(angles.components);
 }

@@ -93,8 +93,6 @@ class MV_GLOBAL_FUNC_PREFIX mvWorld
       mvForceLoaderListPtr forceLoader;
       void* wUserData;
 
-      bool addGroupBehaviourMemberToList(mvIndex bodyIndex,
-         mvIndex behaviourIndex, mvIndex groupIndex, mvBaseActionPtr memberNodePtr);
    public:
       mvPointerList<mvEntryListPtr, mvConstEntryListPtr> entryLists;
       mvCapsuleList<mvBaseForcePtr, mvConstBaseForcePtr,\

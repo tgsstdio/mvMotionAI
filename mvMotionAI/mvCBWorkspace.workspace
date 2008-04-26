@@ -33,8 +33,8 @@
 			<Depends filename="mvMotionAI C Interface.cbp" />
 		</Project>
 		<Project filename="BaseTypes.cbp" />
-		<Project filename="mvLightfeather Conversion\mvLightfeather Conversion.cbp" active="1" />
-		<Project filename="mvMotionAI-LuaFunctions.cbp">
+		<Project filename="mvLightfeather Conversion\mvLightfeather Conversion.cbp" />
+		<Project filename="mvMotionAI-LuaFunctions.cbp" active="1">
 			<Depends filename="mvLightfeather Conversion\mvLightfeather Conversion.cbp" />
 		</Project>
 		<Project filename="sideproject4 - group behaviour functionality\sideproject4 - group behaviour functionality.cbp">
