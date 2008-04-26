@@ -6,9 +6,9 @@
 #ifndef _C_PE_SCENE_NODE_CONTROLLER_H_
 #define _C_PE_SCENE_NODE_CONTROLLER_H_
 
-#include <lfpe/lfpeConfig.h>
+#include <lfpe-bullet/lfpeConfig.h>
 #include <lf/Lightfeather.h>
-#include <ode/ode.h>
+#include <LinearMath/btQuaternion.h>
 
 namespace lf
 {
@@ -17,57 +17,57 @@ namespace pe
 namespace world
 {
 	using namespace lf;
-	
+
 	class CPeSceneNodeControllerContainer;
-	
-	//! 
+
+	//!
 	class LFPE_DLL_EXPORT CPeSceneNodeController : public CRefCounted
 	{
 	public:
 		//! Default Constructor
 		CPeSceneNodeController(CPeSceneNodeControllerContainer* container);
-		
+
 		//! Destructor
 		virtual ~CPeSceneNodeController();
-	
+
 		//! returns the container where the scene node controler belongs to
 		CPeSceneNodeControllerContainer* getContainer() const;
 
 		//! Attaches the given scene node to this object
 		//! \param sceneNode: scene node to attach or 0 to detach
 		void attachSceneNode( scene::CSceneNode *sceneNode );
-		
+
 		//! detaches the attached scene node
 		void detachSceneNode();
-	
+
 		//! assigns the position and translation to the attached scene node.
 		//! if pos is false, no position is assigned
 		//! if rot is false, no rattion is assigned
 		//! if moveChilds is false, the worldTranslation of the scene node childs
 		//! will stay the same
 		void assignTranslation();
-	
+
 		//! sets if the translation should be automatically assigned to the attached
 		//! scene node by the world object. Default is true
 		//! \param pos: translate position
 		//! \param rot: translate rotation
 		//! \param moveChilds: also move childs of scene node
 		void setAutoTranslateFlags( bool pos, bool rot, bool moveChilds );
-		
+
 		//! returns if the translation should be automatically assigned to the attached
 		//! scene node by the world object.
 		//! \param pos: translate position
 		//! \param rot: translate rotation
 		//! \param moveChilds: also move childs of scene node
 		void getAutoTranslateFlags( bool& pos, bool& rot, bool& moveChilds ) const;
-	
+
 		//! Set the position of the object.
 		//! \param pos: new position
 		virtual void setPosition( const core::vector3df& pos ) = 0;
 
 		//! Get the position of the object.
 		virtual core::vector3df getPosition() const = 0;
-		
+
 		//! Get the position of the object.
 		//! \param pos: position
 		virtual void getPosition( core::vector3df& pos ) const = 0;
@@ -108,26 +108,26 @@ namespace world
 
 		//! Get the rotation of the object.
 		virtual core::quaternion getRotation() const = 0;
-		
+
 		//! Get the rotation of the object.
 		//! \param rot: rotation as quaternion
 		virtual void getRotation( core::quaternion& rot ) const = 0;
 
 		//! coneverts an ode quaternion into an lf quaternion
-		void odeQuaternionToLfQuaternion( const dReal* ode, core::quaternion& lf ) const;
-		
+		void peQuaternionToLfQuaternion( const btQuaternion& peq, core::quaternion& lf ) const;
+
 		//! coneverts an lf quaternion into an ode quaternion
-		void lfQuaternionToOdeQuaternion( const core::quaternion& lf, dReal* ode ) const;
+		void lfQuaternionTopeQuaternion( const core::quaternion& lf, btQuaternion& peq ) const;
 
 	protected:
 		CPeSceneNodeControllerContainer* container;
 		scene::CSceneNode	*sceneNode;
-		
+
 		bool autoTranslatePos;
 		bool autoTranslateRot;
 		bool autoTranslateMoveChilds;
 	};
-	
+
 } // end namespace world
 } // end namespace pe
 } // end namespace lf

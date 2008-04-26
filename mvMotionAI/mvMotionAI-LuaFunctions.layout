@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-winXP-dll" />
-	<File name="examples-src\sideproject3\CTutorial3.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="1159" topLine="87" />
+	<File name="examples-src\sideproject3\CTutorial3.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="2630" topLine="51" />
+	</File>
+	<File name="examples-src\sideproject3\lfpe-bullet\lfpe.h" open="1" top="0" tabpos="8">
+		<Cursor position="35" topLine="0" />
+	</File>
+	<File name="examples-src\sideproject3\lfpe-bullet\lfpeConfig.h" open="1" top="0" tabpos="9">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="examples-src\sideproject3\lfpe-bullet\src\world\CPeBulletWorld.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="359" topLine="0" />
+	</File>
+	<File name="examples-src\sideproject3\lfpe-bullet\src\world\CPeSceneNodeController.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="404" topLine="146" />
+	</File>
+	<File name="examples-src\sideproject3\lfpe-bullet\world\CPeBulletWorld.h" open="1" top="1" tabpos="3">
+		<Cursor position="371" topLine="0" />
+	</File>
+	<File name="examples-src\sideproject3\lfpe-bullet\world\CPeSceneNodeController.h" open="1" top="0" tabpos="4">
+		<Cursor position="398" topLine="97" />
+	</File>
+	<File name="examples-src\sideproject3\lfpe-bullet\world\CPeSceneNodeControllerContainer.h" open="1" top="0" tabpos="5">
+		<Cursor position="603" topLine="12" />
 	</File>
 	<File name="examples-src\sideproject3\tutorial3.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="0" topLine="0" />
