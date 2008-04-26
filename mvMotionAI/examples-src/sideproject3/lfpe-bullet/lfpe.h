@@ -1,5 +1,5 @@
-#include <lfpe/lfpeConfig.h>
-
+#include <lfpe-bullet/lfpeConfig.h>
+/*
 #include <lfpe/world/CPeWorld.h>
 #include <lfpe/world/CPeSceneNodeController.h>
 #include <lfpe/world/CPeSceneNodeControllerContainer.h>
@@ -52,3 +52,4 @@
 #include <lfpe/collision/IGeomAttacher.h>
 #include <lfpe/collision/IGeomListener.h>
 #include <lfpe/collision/IHeightFieldDataListener.h>
+*/

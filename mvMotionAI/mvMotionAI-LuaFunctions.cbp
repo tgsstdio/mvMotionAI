@@ -95,6 +95,7 @@
 				</Environment>
 			</Target>
 			<Environment>
+				<Variable name="bullet" value="K:\bullet-edge\trunk\src" />
 				<Variable name="lf" value="K:\lf-bedge" />
 			</Environment>
 		</Build>
@@ -106,6 +107,8 @@
 			<Add directory="include" />
 			<Add directory="$(lf)\include" />
 			<Add directory="mvLightfeather Conversion" />
+			<Add directory="examples-src\sideproject3" />
+			<Add directory="$(bullet)" />
 		</Compiler>
 		<Linker>
 			<Add library="bin\libLightfeather.a" />
@@ -114,6 +117,16 @@
 		</Linker>
 		<Unit filename="examples-src\sideproject3\CTutorial3.cpp" />
 		<Unit filename="examples-src\sideproject3\CTutorial3.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\CCollisionSystem.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\lfpe.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\lfpeConfig.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\rigid\CRigidSystem.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\src\world\CPeBulletWorld.cpp" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\src\world\CPeSceneNodeController.cpp" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\src\world\CPeSceneNodeControllerContainer.cpp" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\world\CPeBulletWorld.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\world\CPeSceneNodeController.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\world\CPeSceneNodeControllerContainer.h" />
 		<Unit filename="examples-src\sideproject3\tutorial3.cpp" />
 		<Extensions>
 			<code_completion />

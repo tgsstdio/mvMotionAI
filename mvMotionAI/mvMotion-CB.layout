@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-winXP-dll" />
-	<File name="include\mv\mvActionLoaderList.h" open="1" top="0" tabpos="6">
+	<File name="include\mv\mvActionLoaderList.h" open="1" top="0" tabpos="4">
 		<Cursor position="1256" topLine="6" />
 	</File>
 	<File name="include\mv\mvBEntry.h" open="0" top="0" tabpos="7">
