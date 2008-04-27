@@ -5,6 +5,7 @@
 		<Option title="sideproject3  : mv To LF conversion" />
 		<Option pch_mode="0" />
 		<Option compiler="gcc" />
+		<Option virtualFolders="K:\;" />
 		<Build>
 			<Target title="default">
 				<Option output="bin\sideproject3.exe" prefix_auto="0" extension_auto="0" />
@@ -118,9 +119,61 @@
 		<Unit filename="examples-src\sideproject3\CTutorial3.cpp" />
 		<Unit filename="examples-src\sideproject3\CTutorial3.h" />
 		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\CCollisionSystem.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\CGeom.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\CGeomBox.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\CGeomCapsule.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\CGeomCylinder.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\CGeomEvent.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\CGeomHeightField.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\CGeomPlane.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\CGeomRay.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\CGeomSpace.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\CGeomSphere.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\CGeomTransform.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\CGeomTrimesh.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\CHeightFieldData.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\CHeightFieldDataEvent.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\CTrimeshData.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\IGeomAttacher.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\IGeomListener.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\IHeightFieldDataListener.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\bphase\CCollisionBroadphase.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\config\CCollisionConfiguration.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\config\CDefaultConfiguration.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\dispatcher\CCollisionDispatcher.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\dispatcher\CDefaultDispatcher.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\external lib examples\BspDemo.cpp">
+			<Option target="mingw-winXP" />
+			<Option target="unix" />
+			<Option target="unix debug" />
+		</Unit>
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\external lib examples\CTutorialBasics.cpp">
+			<Option target="mingw-winXP" />
+			<Option target="unix" />
+			<Option target="unix debug" />
+		</Unit>
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\external lib examples\CollisionDemo.cpp">
+			<Option target="mingw-winXP" />
+			<Option target="unix" />
+			<Option target="unix debug" />
+		</Unit>
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\external lib examples\HelloWorld.cpp">
+			<Option target="mingw-winXP" />
+			<Option target="unix" />
+			<Option target="unix debug" />
+		</Unit>
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\external lib examples\RagdollDemo.cpp">
+			<Option target="mingw-winXP" />
+			<Option target="unix" />
+			<Option target="unix debug" />
+		</Unit>
 		<Unit filename="examples-src\sideproject3\lfpe-bullet\lfpe.h" />
 		<Unit filename="examples-src\sideproject3\lfpe-bullet\lfpeConfig.h" />
 		<Unit filename="examples-src\sideproject3\lfpe-bullet\rigid\CRigidSystem.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\src\collision\config\CCollisionConfiguration.cpp" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\src\collision\config\CDefaultConfiguration.cpp" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\src\collision\dispatcher\CCollisionDispatcher.cpp" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\src\collision\dispatcher\CDefaultDispatcher.cpp" />
 		<Unit filename="examples-src\sideproject3\lfpe-bullet\src\world\CPeBulletWorld.cpp" />
 		<Unit filename="examples-src\sideproject3\lfpe-bullet\src\world\CPeSceneNodeController.cpp" />
 		<Unit filename="examples-src\sideproject3\lfpe-bullet\src\world\CPeSceneNodeControllerContainer.cpp" />

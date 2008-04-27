@@ -41,7 +41,7 @@ namespace world
 	using namespace lf;
 
 
-	class LFPE_DLL_EXPORT CPeBulletWorld
+	class LFPE_DLL_EXPORT CPeBulletWorld : public CRefCounted
 	{
 	public:
 		//! Default Constructor
