@@ -1,31 +1,70 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-winXP-dll" />
-	<File name="examples-src\sideproject3\CTutorial3.cpp" open="1" top="0" tabpos="2">
+	<File name="examples-src\sideproject3\CTutorial3.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="2630" topLine="51" />
 	</File>
-	<File name="examples-src\sideproject3\lfpe-bullet\lfpe.h" open="1" top="0" tabpos="8">
-		<Cursor position="35" topLine="0" />
+	<File name="examples-src\sideproject3\lfpe-bullet\collision\CCollisionSystem.h" open="1" top="0" tabpos="11">
+		<Cursor position="508" topLine="3" />
 	</File>
-	<File name="examples-src\sideproject3\lfpe-bullet\lfpeConfig.h" open="1" top="0" tabpos="9">
+	<File name="examples-src\sideproject3\lfpe-bullet\collision\CGeomSpace.h" open="1" top="0" tabpos="6">
+		<Cursor position="6570" topLine="99" />
+	</File>
+	<File name="examples-src\sideproject3\lfpe-bullet\collision\bphase\CCollisionBroadphase.h" open="1" top="1" tabpos="16">
+		<Cursor position="241" topLine="0" />
+	</File>
+	<File name="examples-src\sideproject3\lfpe-bullet\collision\config\CCollisionConfiguration.h" open="1" top="0" tabpos="12">
+		<Cursor position="118" topLine="0" />
+	</File>
+	<File name="examples-src\sideproject3\lfpe-bullet\collision\config\CDefaultConfiguration.h" open="1" top="0" tabpos="15">
+		<Cursor position="318" topLine="0" />
+	</File>
+	<File name="examples-src\sideproject3\lfpe-bullet\collision\dispatcher\CCollisionDispatcher.h" open="1" top="0" tabpos="8">
+		<Cursor position="478" topLine="0" />
+	</File>
+	<File name="examples-src\sideproject3\lfpe-bullet\collision\dispatcher\CDefaultDispatcher.h" open="1" top="0" tabpos="7">
+		<Cursor position="368" topLine="0" />
+	</File>
+	<File name="examples-src\sideproject3\lfpe-bullet\external lib examples\HelloWorld.cpp" open="0" top="0" tabpos="10">
+		<Cursor position="1144" topLine="15" />
+	</File>
+	<File name="examples-src\sideproject3\lfpe-bullet\lfpe.h" open="1" top="0" tabpos="10">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="examples-src\sideproject3\lfpe-bullet\src\world\CPeBulletWorld.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="359" topLine="0" />
+	<File name="examples-src\sideproject3\lfpe-bullet\lfpeConfig.h" open="1" top="0" tabpos="4">
+		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="examples-src\sideproject3\lfpe-bullet\src\world\CPeSceneNodeController.cpp" open="1" top="0" tabpos="7">
+	<File name="examples-src\sideproject3\lfpe-bullet\rigid\CRigidSystem.h" open="1" top="0" tabpos="5">
+		<Cursor position="933" topLine="198" />
+	</File>
+	<File name="examples-src\sideproject3\lfpe-bullet\src\collision\config\CCollisionConfiguration.cpp" open="1" top="0" tabpos="13">
+		<Cursor position="369" topLine="0" />
+	</File>
+	<File name="examples-src\sideproject3\lfpe-bullet\src\collision\config\CDefaultConfiguration.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="143" topLine="0" />
+	</File>
+	<File name="examples-src\sideproject3\lfpe-bullet\src\collision\dispatcher\CCollisionDispatcher.cpp" open="1" top="0" tabpos="14">
+		<Cursor position="301" topLine="3" />
+	</File>
+	<File name="examples-src\sideproject3\lfpe-bullet\src\collision\dispatcher\CDefaultDispatcher.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="138" topLine="0" />
+	</File>
+	<File name="examples-src\sideproject3\lfpe-bullet\src\world\CPeBulletWorld.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="823" topLine="15" />
+	</File>
+	<File name="examples-src\sideproject3\lfpe-bullet\src\world\CPeSceneNodeController.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="404" topLine="146" />
 	</File>
-	<File name="examples-src\sideproject3\lfpe-bullet\world\CPeBulletWorld.h" open="1" top="1" tabpos="3">
-		<Cursor position="371" topLine="0" />
+	<File name="examples-src\sideproject3\lfpe-bullet\world\CPeBulletWorld.h" open="1" top="0" tabpos="1">
+		<Cursor position="1118" topLine="29" />
 	</File>
-	<File name="examples-src\sideproject3\lfpe-bullet\world\CPeSceneNodeController.h" open="1" top="0" tabpos="4">
-		<Cursor position="398" topLine="97" />
+	<File name="examples-src\sideproject3\lfpe-bullet\world\CPeSceneNodeController.h" open="0" top="0" tabpos="4">
+		<Cursor position="398" topLine="0" />
 	</File>
-	<File name="examples-src\sideproject3\lfpe-bullet\world\CPeSceneNodeControllerContainer.h" open="1" top="0" tabpos="5">
-		<Cursor position="603" topLine="12" />
+	<File name="examples-src\sideproject3\lfpe-bullet\world\CPeSceneNodeControllerContainer.h" open="1" top="0" tabpos="2">
+		<Cursor position="425" topLine="0" />
 	</File>
-	<File name="examples-src\sideproject3\tutorial3.cpp" open="1" top="0" tabpos="1">
+	<File name="examples-src\sideproject3\tutorial3.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="0" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

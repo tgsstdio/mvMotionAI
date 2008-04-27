@@ -3947,3 +3947,114 @@
 	<mv/mvMotionAI.h>
 	<iostream>
 
+1209305956 source:d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\src\collision\config\ccollisionconfiguration.cpp
+	<lfpe-bullet/collision/config/CCollisionConfiguration.h>
+
+1209304744 d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\collision\config\ccollisionconfiguration.h
+	<lf/Lightfeather.h>
+	<BulletCollision\CollisionDispatch\btCollisionConfiguration.h>
+
+1195453012 k:\bullet-edge\trunk\src\bulletcollision\collisiondispatch\btcollisionconfiguration.h
+
+1209305602 source:d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\src\collision\dispatcher\ccollisiondispatcher.cpp
+	<lfpe-bullet/collision/dispatcher/CCollisionDispatcher.h>
+
+1209305646 d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\collision\dispatcher\ccollisiondispatcher.h
+	<lfpe-bullet/lfpeConfig.h>
+	<lf/LightFeather.h>
+	<lfpe-bullet\collision\config\CCollisionConfiguration.h>
+	<BulletCollision/CollisionDispatch/btCollisionDispatcher.h>
+
+1199185108 d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\lfpeconfig.h
+	<lf/LfConfig.h>
+
+1197871380 k:\bullet-edge\trunk\src\bulletcollision\collisiondispatch\btcollisiondispatcher.h
+	"BulletCollision/BroadphaseCollision/btDispatcher.h"
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+	"BulletCollision/CollisionDispatch/btManifoldResult.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btCollisionCreateFunc.h"
+
+1208534272 k:\bullet-edge\trunk\src\bulletcollision\broadphasecollision\btdispatcher.h
+	"LinearMath/btScalar.h"
+
+1208534276 k:\bullet-edge\trunk\src\linearmath\btscalar.h
+	<math.h>
+	<cstdlib>
+	<cfloat>
+	<float.h>
+	<ppcintrinsics.h>
+	<assert.h>
+	<assert.h>
+	<assert.h>
+	<assert.h>
+
+1208534274 k:\bullet-edge\trunk\src\bulletcollision\narrowphasecollision\btpersistentmanifold.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"btManifoldPoint.h"
+	"LinearMath/btAlignedAllocator.h"
+
+1195453016 k:\bullet-edge\trunk\src\linearmath\btvector3.h
+	"btQuadWord.h"
+
+1195453016 k:\bullet-edge\trunk\src\linearmath\btquadword.h
+	"btScalar.h"
+	"btMinMax.h"
+
+1195453016 k:\bullet-edge\trunk\src\linearmath\btminmax.h
+
+1195453014 k:\bullet-edge\trunk\src\linearmath\bttransform.h
+	"btVector3.h"
+	"btMatrix3x3.h"
+
+1195453016 k:\bullet-edge\trunk\src\linearmath\btmatrix3x3.h
+	"btScalar.h"
+	"btVector3.h"
+	"btQuaternion.h"
+
+1195453016 k:\bullet-edge\trunk\src\linearmath\btquaternion.h
+	"btVector3.h"
+
+1208534274 k:\bullet-edge\trunk\src\bulletcollision\narrowphasecollision\btmanifoldpoint.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransformUtil.h"
+
+1208534276 k:\bullet-edge\trunk\src\linearmath\bttransformutil.h
+	"btTransform.h"
+
+1195453014 k:\bullet-edge\trunk\src\linearmath\btalignedallocator.h
+	"btScalar.h"
+
+1195453010 k:\bullet-edge\trunk\src\bulletcollision\collisiondispatch\btmanifoldresult.h
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+	"BulletCollision/NarrowPhaseCollision/btDiscreteCollisionDetectorInterface.h"
+	"LinearMath/btTransform.h"
+
+1195453008 k:\bullet-edge\trunk\src\bulletcollision\narrowphasecollision\btdiscretecollisiondetectorinterface.h
+	"LinearMath/btTransform.h"
+	"LinearMath/btVector3.h"
+
+1208534272 k:\bullet-edge\trunk\src\bulletcollision\broadphasecollision\btbroadphaseproxy.h
+	"LinearMath/btScalar.h"
+	"LinearMath/btAlignedAllocator.h"
+
+1195453016 k:\bullet-edge\trunk\src\linearmath\btalignedobjectarray.h
+	"btScalar.h"
+	"btAlignedAllocator.h"
+	<memory.h>
+	<string.h>
+	<new>
+
+1195453010 k:\bullet-edge\trunk\src\bulletcollision\collisiondispatch\btcollisioncreatefunc.h
+	"LinearMath/btAlignedObjectArray.h"
+
+1209305078 source:d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\src\collision\dispatcher\cdefaultdispatcher.cpp
+	<lfpe-bullet/collision/dispatcher/CDefaultDispatcher.h>
+	<BulletCollision/CollisionDispatch/btCollisionDispatcher.h>
+
+1209304022 d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\collision\dispatcher\cdefaultdispatcher.h
+	<lfpe-bullet/collision/dispatcher/CCollisionDispatcher.h>
+	<lfpe-bullet/collision/config/CCollisionConfiguration.h>
+

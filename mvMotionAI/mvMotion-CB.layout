@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="mingw-winXP-dll" />
-	<File name="include\mv\mvActionLoaderList.h" open="1" top="0" tabpos="4">
+	<File name="include\mv\mvActionLoaderList.h" open="0" top="0" tabpos="4">
 		<Cursor position="1256" topLine="6" />
 	</File>
 	<File name="include\mv\mvBEntry.h" open="0" top="0" tabpos="7">
@@ -151,7 +151,7 @@
 	<File name="include\mv\mvWaypoint_V2.h" open="0" top="0" tabpos="0">
 		<Cursor position="2197" topLine="36" />
 	</File>
-	<File name="include\mv\mvWorld2.h" open="1" top="0" tabpos="3">
+	<File name="include\mv\mvWorld2.h" open="0" top="0" tabpos="3">
 		<Cursor position="6282" topLine="129" />
 	</File>
 	<File name="mvMotionAI-lib.rc" open="0" top="0" tabpos="10">
@@ -283,10 +283,10 @@
 	<File name="src\mvWaypoint_V2.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="53" topLine="0" />
 	</File>
-	<File name="src\mvWorld2.cpp" open="1" top="0" tabpos="2">
+	<File name="src\mvWorld2.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="19694" topLine="772" />
 	</File>
-	<File name="src\mvWorld2_Functions.cpp" open="1" top="0" tabpos="1">
+	<File name="src\mvWorld2_Functions.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="48874" topLine="1548" />
 	</File>
 	<File name="src\mvWorld2_Functions.h" open="0" top="0" tabpos="12">
