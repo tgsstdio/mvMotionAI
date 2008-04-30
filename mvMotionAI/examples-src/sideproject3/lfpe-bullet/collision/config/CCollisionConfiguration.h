@@ -18,7 +18,7 @@ namespace collision
 	class CCollisionConfiguration : public CRefCounted
 	{
 		public:
-			btCollisionConfiguration* getInternalConfig() const;
+			btCollisionConfiguration* getInternalObjectPtr() const;
 			ELFPE_BULLET_CONFIGURATION_TYPE getType() const;
 			virtual ~CCollisionConfiguration();
 		protected:

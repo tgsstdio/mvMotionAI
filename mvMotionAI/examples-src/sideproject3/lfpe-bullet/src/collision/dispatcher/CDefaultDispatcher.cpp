@@ -8,7 +8,7 @@ namespace pe
 namespace collision
 {
 	CDefaultDispatcher::CDefaultDispatcher(CCollisionConfiguration* config)
-	 : CCollisionDispatcher(config, new btCollisionDispatcher(config->getInternalConfig()),
+	 : CCollisionDispatcher(config, new btCollisionDispatcher(config->getInternalObjectPtr()),
 		ELFPE_BLT_DT_DEFAULT_DISPATCHER)
 	{
 

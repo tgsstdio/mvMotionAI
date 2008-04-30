@@ -117,7 +117,7 @@ namespace world
 		void peQuaternionToLfQuaternion( const btQuaternion& peq, core::quaternion& lf ) const;
 
 		//! coneverts an lf quaternion into an ode quaternion
-		void lfQuaternionTopeQuaternion( const core::quaternion& lf, btQuaternion& peq ) const;
+		void lfQuaternionToPeQuaternion( const core::quaternion& lf, btQuaternion& peq ) const;
 
 	protected:
 		CPeSceneNodeControllerContainer* container;

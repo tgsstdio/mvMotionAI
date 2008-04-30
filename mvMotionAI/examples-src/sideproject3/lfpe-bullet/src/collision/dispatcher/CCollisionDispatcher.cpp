@@ -25,9 +25,9 @@ CCollisionDispatcher::~CCollisionDispatcher()
 	}
 }
 
-CCollisionConfiguration* CCollisionDispatcher::getConfiguration() const
+btCollisionDispatcher* CCollisionDispatcher::getInternalObjectPtr() const
 {
-	return m_currentConfig;
+	return m_cColDispatcher;
 }
 
 CCollisionDispatcher::CCollisionDispatcher(CCollisionConfiguration* config,\

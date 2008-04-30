@@ -3,7 +3,7 @@
 
 #include <lfpe-bullet/lfpeConfig.h>
 #include <lf/LightFeather.h>
-#include <lfpe-bullet\collision\config\CCollisionConfiguration.h>
+#include <lfpe-bullet/collision/config/CCollisionConfiguration.h>
 #include <BulletCollision/CollisionDispatch/btCollisionDispatcher.h>
 
 namespace lf
@@ -24,7 +24,7 @@ namespace collision
 		public:
 			ELFPE_BULLET_DISPATCHER_TYPE getType() const;
 			virtual ~CCollisionDispatcher();
-			CCollisionConfiguration* getConfiguration() const;
+			btCollisionDispatcher* getInternalObjectPtr() const;
 
 		protected:
 			ELFPE_BULLET_DISPATCHER_TYPE m_dpType;
