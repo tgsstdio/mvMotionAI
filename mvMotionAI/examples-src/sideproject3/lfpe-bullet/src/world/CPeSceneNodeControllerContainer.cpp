@@ -3,8 +3,8 @@
 // This file is part of the Lightfeather 3D-Engine.
 // The license under which this code is distributed can be found in the file COPYING
 
-#include <lfpe/world/CPeSceneNodeControllerContainer.h>
-#include <lfpe/world/CPeWorld.h>
+#include <lfpe-bullet/world/CPeSceneNodeControllerContainer.h>
+#include <lfpe-bullet/world/CPeBulletWorld.h>
 
 
 namespace lf
@@ -30,7 +30,7 @@ namespace world
 		{
 			sceneNodeControlers.push_back(snc);
 		}
-		
+
 		//! removes a scene node controler
 		void CPeSceneNodeControllerContainer::removeSceneNodeControler(CPeSceneNodeController* snc)
 		{
@@ -44,7 +44,7 @@ namespace world
 				}
 			}
 		}
-		
+
 		//! translates all SceneNodes attached to scene node controler object
 		void CPeSceneNodeControllerContainer::translateSceneNodes()
 		{

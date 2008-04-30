@@ -3947,22 +3947,22 @@
 	<mv/mvMotionAI.h>
 	<iostream>
 
-1209305956 source:d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\src\collision\config\ccollisionconfiguration.cpp
+1209554218 source:d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\src\collision\config\ccollisionconfiguration.cpp
 	<lfpe-bullet/collision/config/CCollisionConfiguration.h>
 
-1209304744 d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\collision\config\ccollisionconfiguration.h
+1209554218 d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\collision\config\ccollisionconfiguration.h
 	<lf/Lightfeather.h>
 	<BulletCollision\CollisionDispatch\btCollisionConfiguration.h>
 
 1195453012 k:\bullet-edge\trunk\src\bulletcollision\collisiondispatch\btcollisionconfiguration.h
 
-1209305602 source:d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\src\collision\dispatcher\ccollisiondispatcher.cpp
+1209554974 source:d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\src\collision\dispatcher\ccollisiondispatcher.cpp
 	<lfpe-bullet/collision/dispatcher/CCollisionDispatcher.h>
 
-1209305646 d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\collision\dispatcher\ccollisiondispatcher.h
+1209554932 d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\collision\dispatcher\ccollisiondispatcher.h
 	<lfpe-bullet/lfpeConfig.h>
 	<lf/LightFeather.h>
-	<lfpe-bullet\collision\config\CCollisionConfiguration.h>
+	<lfpe-bullet/collision/config/CCollisionConfiguration.h>
 	<BulletCollision/CollisionDispatch/btCollisionDispatcher.h>
 
 1199185108 d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\lfpeconfig.h
@@ -4050,11 +4050,169 @@
 1195453010 k:\bullet-edge\trunk\src\bulletcollision\collisiondispatch\btcollisioncreatefunc.h
 	"LinearMath/btAlignedObjectArray.h"
 
-1209305078 source:d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\src\collision\dispatcher\cdefaultdispatcher.cpp
+1209554218 source:d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\src\collision\dispatcher\cdefaultdispatcher.cpp
 	<lfpe-bullet/collision/dispatcher/CDefaultDispatcher.h>
 	<BulletCollision/CollisionDispatch/btCollisionDispatcher.h>
 
 1209304022 d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\collision\dispatcher\cdefaultdispatcher.h
 	<lfpe-bullet/collision/dispatcher/CCollisionDispatcher.h>
 	<lfpe-bullet/collision/config/CCollisionConfiguration.h>
+
+1209306104 source:d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\src\collision\config\cdefaultconfiguration.cpp
+	<lfpe-bullet\collision\config\CDefaultConfiguration.h>
+	<BulletCollision\CollisionDispatch\btDefaultCollisionConfiguration.h>
+
+1209305848 d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\collision\config\cdefaultconfiguration.h
+	<lfpe-bullet\collision\config\CCollisionConfiguration.h>
+
+1197871380 k:\bullet-edge\trunk\src\bulletcollision\collisiondispatch\btdefaultcollisionconfiguration.h
+	"btCollisionConfiguration.h"
+
+1209554180 source:d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\src\collision\bphase\ccollisionbroadphase.cpp
+	<lfpe-bullet\collision\bphase\CCollisionBroadphase.h>
+
+1209554180 d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\collision\bphase\ccollisionbroadphase.h
+	<lf/Lightfeather.h>
+	<BulletCollision/BroadphaseCollision/btOverlappingPairCache.h>
+
+1195453006 k:\bullet-edge\trunk\src\bulletcollision\broadphasecollision\btoverlappingpaircache.h
+	"btBroadphaseInterface.h"
+	"btBroadphaseProxy.h"
+	"LinearMath/btPoint3.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1195453006 k:\bullet-edge\trunk\src\bulletcollision\broadphasecollision\btbroadphaseinterface.h
+	"btBroadphaseProxy.h"
+	"LinearMath/btVector3.h"
+
+1195453014 k:\bullet-edge\trunk\src\linearmath\btpoint3.h
+	"btVector3.h"
+
+1209380664 source:d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\src\collision\bphase\caxissweep3.cpp
+	<lfpe-bullet/collision/bphase/CAxisSweep3.h>
+	<BulletCollision/BroadphaseCollision/btAxisSweep3.h>
+
+1209380338 d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\collision\bphase\caxissweep3.h
+	<lfpe-bullet/collision/bphase/CCollisionBroadphase.h>
+	<LinearMath/btVector3.h>
+
+1195453006 k:\bullet-edge\trunk\src\bulletcollision\broadphasecollision\btaxissweep3.h
+	"LinearMath/btPoint3.h"
+	"LinearMath/btVector3.h"
+	"btOverlappingPairCache.h"
+	"btBroadphaseInterface.h"
+	"btBroadphaseProxy.h"
+	"btOverlappingPairCallback.h"
+	<stdio.h>
+	<stdio.h>
+
+1196650828 k:\bullet-edge\trunk\src\bulletcollision\broadphasecollision\btoverlappingpaircallback.h
+
+1209385310 source:d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\src\rigid\solver\cconstraintsolver.cpp
+	<lfpe-bullet/rigid/solver/CConstraintSolver.h>
+
+1209385572 d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\rigid\solver\cconstraintsolver.h
+	<lf/Lightfeather.h>
+	<BulletDynamics/ConstraintSolver/btConstraintSolver.h>
+
+1195452994 k:\bullet-edge\trunk\src\bulletdynamics\constraintsolver\btconstraintsolver.h
+	"LinearMath/btScalar.h"
+
+1209387040 source:d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\src\rigid\solver\csequentialimpulsesolver.cpp
+	<lfpe-bullet/rigid/solver/CSequentialImpulseSolver.h>
+	<BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h>
+
+1209387000 d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\rigid\solver\csequentialimpulsesolver.h
+	<lfpe-bullet/rigid/solver/CConstraintSolver.h>
+
+1196650826 k:\bullet-edge\trunk\src\bulletdynamics\constraintsolver\btsequentialimpulseconstraintsolver.h
+	"btConstraintSolver.h"
+	"btContactConstraint.h"
+	"btSolverBody.h"
+	"btSolverConstraint.h"
+
+1195452994 k:\bullet-edge\trunk\src\bulletdynamics\constraintsolver\btcontactconstraint.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btScalar.h"
+
+1195452994 k:\bullet-edge\trunk\src\bulletdynamics\constraintsolver\btsolverbody.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btMatrix3x3.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"LinearMath/btAlignedAllocator.h"
+
+1208534268 k:\bullet-edge\trunk\src\bulletdynamics\dynamics\btrigidbody.h
+	"LinearMath/btAlignedObjectArray.h"
+	"LinearMath/btPoint3.h"
+	"LinearMath/btTransform.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"BulletCollision/CollisionDispatch/btCollisionObject.h"
+
+1208534274 k:\bullet-edge\trunk\src\bulletcollision\collisiondispatch\btcollisionobject.h
+	"LinearMath/btTransform.h"
+	"LinearMath/btMotionState.h"
+	"LinearMath/btAlignedAllocator.h"
+
+1195453014 k:\bullet-edge\trunk\src\linearmath\btmotionstate.h
+	"btTransform.h"
+
+1208534266 k:\bullet-edge\trunk\src\bulletdynamics\constraintsolver\btsolverconstraint.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btMatrix3x3.h"
+
+1209554858 source:d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\src\world\cpebulletworld.cpp
+	<lfpe-bullet/world/CPeBulletWorld.h>
+
+1209554736 d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\world\cpebulletworld.h
+	<lfpe-bullet/lfpeConfig.h>
+	<lfpe-bullet/collision/config/CCollisionConfiguration.h>
+	<lfpe-bullet/collision/bphase/CCollisionBroadphase.h>
+	<lfpe-bullet/collision/dispatcher/CCollisionDispatcher.h>
+	<lfpe-bullet/rigid/solver/CConstraintSolver.h>
+	<lfpe-bullet/world/CPeSceneNodeController.h>
+	<lf/Lightfeather.h>
+	<BulletDynamics/Dynamics/btDynamicsWorld.h>
+
+1209391798 d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\world\cpescenenodecontroller.h
+	<lfpe-bullet/lfpeConfig.h>
+	<lf/Lightfeather.h>
+	<LinearMath/btQuaternion.h>
+
+1208534268 k:\bullet-edge\trunk\src\bulletdynamics\dynamics\btdynamicsworld.h
+	"BulletCollision/CollisionDispatch/btCollisionWorld.h"
+
+1208534274 k:\bullet-edge\trunk\src\bulletcollision\collisiondispatch\btcollisionworld.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"btCollisionObject.h"
+	"btCollisionDispatcher.h"
+	"BulletCollision/BroadphaseCollision/btOverlappingPairCache.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1209392010 source:d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\src\world\cpescenenodecontroller.cpp
+	<lfpe-bullet/world/CPeSceneNodeController.h>
+	<lfpe-bullet/world/CPeSceneNodeControllerContainer.h>
+
+1209223414 d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\world\cpescenenodecontrollercontainer.h
+	<lfpe-bullet/lfpeConfig.h>
+	<lfpe-bullet/world/CPeSceneNodeController.h>
+	<lf/Lightfeather.h>
+
+1209392036 source:d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\src\world\cpescenenodecontrollercontainer.cpp
+	<lfpe-bullet/world/CPeSceneNodeControllerContainer.h>
+	<lfpe-bullet/world/CPeBulletWorld.h>
+
+1209554718 source:d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\src\world\cdiscreteworld.cpp
+	<lfpe-bullet/world/CDiscreteWorld.h>
+	<BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h>
+
+1209554810 d:\mvmotionai\mvmotionai\examples-src\sideproject3\lfpe-bullet\world\cdiscreteworld.h
+	<lfpe-bullet\world\CPeBulletWorld.h>
+
+1208534268 k:\bullet-edge\trunk\src\bulletdynamics\dynamics\btdiscretedynamicsworld.h
+	"btDynamicsWorld.h"
+	"BulletDynamics/ConstraintSolver/btContactSolverInfo.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1195452996 k:\bullet-edge\trunk\src\bulletdynamics\constraintsolver\btcontactsolverinfo.h
 

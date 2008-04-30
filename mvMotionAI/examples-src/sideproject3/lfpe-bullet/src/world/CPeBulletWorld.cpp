@@ -4,80 +4,107 @@
 // The license under which this code is distributed can be found in the file COPYING
 
 #include <lfpe-bullet/world/CPeBulletWorld.h>
-#include <lfpe-bullet/collision/CCollisionSystem.h>
-#include <lfpe-bullet/rigid/CRigidSystem.h>
+//#include <lfpe-bullet/collision/CCollisionSystem.h>
+//#include <lfpe-bullet/rigid/CRigidSystem.h>
 
 
-
+namespace lf
 {
 namespace pe
 {
 namespace world
 {
 		//! default-constructor
-		CPeBulletWorld::CPeBulletWorld(collision::CCollisionSystem* collisionSystem /*= 0*/)
+		CPeBulletWorld::CPeBulletWorld(collision::CCollisionDispatcher* cDispatcher,
+			collision::CCollisionBroadphase* collisionBPhase,
+			rigid::CConstraintSolver* constraintSolver,
+			collision::CCollisionConfiguration* collisionConfig,
+			btDynamicsWorld* worldPtr,
+			LPFE_BULLET_PHYSICS_WORLD_TYPE type)
+			: m_cDispatcher(cDispatcher), m_collisionBPhase(collisionBPhase),
+			m_collisionConfig(collisionConfig), m_constraintSolver(constraintSolver),
+			m_worldID(worldPtr), m_worldType(type)
 		{
-			worldID = dWorldCreate();
-			assert( worldID );
-
-			if(collisionSystem == 0)
+			if (m_cDispatcher)
 			{
-				deleteCollisionSystem = true;
-				this->collisionSystem = new collision::CCollisionSystem();
-			}
-			else
-			{
-				deleteCollisionSystem = false;
-				this->collisionSystem = collisionSystem;
+				m_cDispatcher->grab();
 			}
 
-			rigidSystem = new rigid::CRigidSystem(this);
+			if (m_collisionBPhase)
+			{
+				m_collisionBPhase->grab();
+			}
+
+			if (m_collisionConfig)
+			{
+				m_collisionConfig->grab();
+			}
+
+			if(m_constraintSolver)
+			{
+				m_constraintSolver->grab();
+			}
 		}
 
 		//! destructor
 		CPeBulletWorld::~CPeBulletWorld()
 		{
-			if(deleteCollisionSystem && collisionSystem)
+			if (m_cDispatcher)
 			{
-				delete collisionSystem;
+				m_cDispatcher->drop();
 			}
 
-			delete rigidSystem;
+			if (m_collisionBPhase)
+			{
+				m_collisionBPhase->drop();
+			}
 
-			dWorldDestroy( worldID );
-			dCloseODE();
+			if (m_collisionConfig)
+			{
+				m_collisionConfig->drop();
+			}
+
+			if(m_constraintSolver)
+			{
+				m_constraintSolver->drop();
+			}
+
+			if (m_worldID)
+			{
+				delete m_worldID;
+			}
 		}
 
 		//! returns the ODE internal worldID
-		dWorldID CPeBulletWorld::getWorldID() const
+		btDynamicsWorld* CPeBulletWorld::getWorldID() const
 		{
-			return worldID;
+			return m_worldID;
 		}
 
 		//! return the collision system of the world
-		collision::CCollisionSystem* CPeBulletWorld::getCollisionSystem() const
+		collision::CCollisionDispatcher* CPeBulletWorld::getCollisionDispatcher() const
 		{
-			return collisionSystem;
+			return m_cDispatcher;
 		}
 
 		//! returns the rigid system of the world
-		rigid::CRigidSystem* CPeBulletWorld::getRigidSystem() const
+		rigid::CConstraintSolver* CPeBulletWorld::getConstraintSolver() const
 		{
-			return rigidSystem;
+			return m_constraintSolver;
 		}
 
 		//! collides all geoms
 		void CPeBulletWorld::collideGeoms()
 		{
-			rigidSystem->clearCollisionJoints();
-			collisionSystem->collideGeoms();
+			//rigidSystem->clearCollisionJoints();
+			//collisionSystem->collideGeoms();
 		}
 
 		//! translates all SceneNodes attached to scene node controler object
 		void CPeBulletWorld::translateSceneNodes()
 		{
-			collisionSystem->translateSceneNodes();
-			rigidSystem->translateSceneNodes();
+			//collisionSystem->translateSceneNodes();
+			//rigidSystem->translateSceneNodes();
 		}
 
 } // end namespace world

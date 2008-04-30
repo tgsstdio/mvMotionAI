@@ -6,7 +6,7 @@ namespace pe
 {
 namespace collision
 {
-btCollisionConfiguration* CCollisionConfiguration::getInternalConfig() const
+btCollisionConfiguration* CCollisionConfiguration::getInternalObjectPtr() const
 {
 	return m_collInternalConfig;
 }

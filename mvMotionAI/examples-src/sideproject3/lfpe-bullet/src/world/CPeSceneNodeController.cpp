@@ -3,8 +3,8 @@
 // This file is part of the Lightfeather 3D-Engine.
 // The license under which this code is distributed can be found in the file COPYING
 
-#include <lfpe/world/CPeSceneNodeController.h>
-#include <lfpe/world/CPeSceneNodeControllerContainer.h>
+#include <lfpe-bullet/world/CPeSceneNodeController.h>
+#include <lfpe-bullet/world/CPeSceneNodeControllerContainer.h>
 
 
 namespace lf
@@ -15,7 +15,7 @@ namespace world
 {
 		//! default-constructor
 		CPeSceneNodeController::CPeSceneNodeController(CPeSceneNodeControllerContainer* container)
-		 : container(container), sceneNode(0), 
+		 : container(container), sceneNode(0),
 			autoTranslatePos(true), autoTranslateRot(true), autoTranslateMoveChilds(true)
 		{
 			container->addSceneNodeControler(this);
@@ -41,20 +41,20 @@ namespace world
 			if( this->sceneNode )
 			{
 				this->sceneNode->drop();
-			}			
+			}
 			this->sceneNode = sceneNode;
 			if( this->sceneNode )
 			{
 				this->sceneNode->grab();
-			}			
+			}
 		}
-		
+
 		//! detaches the attached scene node
 		void CPeSceneNodeController::detachSceneNode()
 		{
 			attachSceneNode( 0 );
 		}
-		
+
 		//! assigns the position and translation to the attached scene node.
 		void CPeSceneNodeController::assignTranslation()
 		{
@@ -77,7 +77,7 @@ namespace world
 				}
 			}
 		}
-	
+
 		//! sets if the translation should be automatically assigned to the attached
 		//! scene node by the world object. Default is true
 		//! \param pos: translate position
@@ -89,7 +89,7 @@ namespace world
 			autoTranslateRot = rot;
 			autoTranslateMoveChilds = moveChilds;
 		}
-		
+
 		//! returns if the translation should be automatically assigned to the attached
 		//! scene node by the world object.
 		//! \param pos: translate position
@@ -161,21 +161,21 @@ namespace world
 		}
 
 		//! coneverts an ode quaternion into an lf quaternion
-		void CPeSceneNodeController::odeQuaternionToLfQuaternion( const dReal* ode, core::quaternion& lf ) const
+		void CPeSceneNodeController::peQuaternionToLfQuaternion(const btQuaternion& peq, core::quaternion& lf ) const
 		{
-			lf.X = ode[1];
-			lf.Y = ode[2];
-			lf.Z = ode[3];
-			lf.W = ode[0];
+			lf.X = peq.getX();
+			lf.Y = peq.getY();
+			lf.Z = peq.getZ();
+			lf.W = peq.getW();
 		}
-		
+
 		//! coneverts an lf quaternion into an ode quaternion
-		void CPeSceneNodeController::lfQuaternionToOdeQuaternion( const core::quaternion& lf, dReal* ode ) const
+		void CPeSceneNodeController::lfQuaternionToPeQuaternion(const core::quaternion& lf, btQuaternion& peq ) const
 		{
-			ode[1] = lf.X;
-			ode[2] = lf.Y;
-			ode[3] = lf.Z;
-			ode[0] = lf.W;
+			peq.setX((btScalar) lf.X);
+			peq.setY((btScalar) lf.Y);
+			peq.setZ((btScalar) lf.Z);
+			peq.setW((btScalar) lf.W);
 		}
 
 } // end namespace world
