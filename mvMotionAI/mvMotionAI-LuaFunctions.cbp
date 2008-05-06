@@ -121,6 +121,9 @@
 		</Linker>
 		<Unit filename="examples-src\sideproject3\CTutorial3.cpp" />
 		<Unit filename="examples-src\sideproject3\CTutorial3.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\CPeResourceManager.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\CCollisionSystem.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\CGeom.h" />
 		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\bphase\CAxisSweep3.h" />
 		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\bphase\CCollisionBroadphase.h" />
 		<Unit filename="examples-src\sideproject3\lfpe-bullet\collision\config\CCollisionConfiguration.h" />
@@ -147,6 +150,12 @@
 			<Option target="unix" />
 			<Option target="unix debug" />
 		</Unit>
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\external lib examples\NewtonPhysicsController.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\external lib examples\NewtonPhysicsModule.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\external lib examples\PhysicsBody.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\external lib examples\PhysicsController.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\external lib examples\PhysicsModule.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\external lib examples\RagdollController.h" />
 		<Unit filename="examples-src\sideproject3\lfpe-bullet\external lib examples\RagdollDemo.cpp">
 			<Option target="mingw-winXP" />
 			<Option target="unix" />
@@ -154,6 +163,11 @@
 		</Unit>
 		<Unit filename="examples-src\sideproject3\lfpe-bullet\lfpe.h" />
 		<Unit filename="examples-src\sideproject3\lfpe-bullet\lfpeConfig.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\rigid\CBody.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\rigid\CForceAffector.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\rigid\CRigidBody.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\rigid\CRigidMotionState.h" />
+		<Unit filename="examples-src\sideproject3\lfpe-bullet\rigid\CRigidSystem.h" />
 		<Unit filename="examples-src\sideproject3\lfpe-bullet\rigid\solver\CConstraintSolver.h" />
 		<Unit filename="examples-src\sideproject3\lfpe-bullet\rigid\solver\CSequentialImpulseSolver.h" />
 		<Unit filename="examples-src\sideproject3\lfpe-bullet\src\collision\bphase\CAxisSweep3.cpp" />
